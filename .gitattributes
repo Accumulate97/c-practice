@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+# 规范文档与题目数据一律用 LF，避免 Windows 换行漂移

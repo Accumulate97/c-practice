@@ -1,0 +1,248 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Problem",
+  "description": "C practice 题目统一数据结构 v3。基础字段共用，按 type 追加特有字段。支持 11 种题型。",
+  "type": "object",
+  "required": ["id", "type", "category", "chapter", "section", "difficulty", "bloom", "stem", "explanation"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[cd]s?-ch[0-9]{2}-(cc|dbg|cr|pg|sc|tf|fb|co|sa|cx|mt)-[0-9]{3}$",
+      "description": "全局唯一。格式：{c|ds}-章号-题型缩写-序号。题型缩写：cc程序填空 dbg改错 cr阅读 pg编程 sc选择 tf判断 fb概念填空 co代码排序 sa简答 cx复杂度 mt匹配"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["code_completion", "debug", "code_reading", "programming",
+               "single_choice", "true_false", "fill_blank",
+               "code_ordering", "short_answer", "complexity", "matching"],
+      "description": "主力题型为前四种"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["c", "ds"],
+      "description": "c = C语言, ds = 数据结构"
+    },
+    "chapter": { "type": "string", "description": "如 第9章 指针" },
+    "section": { "type": "string", "description": "如 9.3 指针与数组" },
+    "source": {
+      "type": "string",
+      "description": "出处。教材原题写 书名+题号；变式写 变式（源自...）；原创写 原创（依据大纲考点：...）"
+    },
+    "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "bloom": {
+      "type": "string",
+      "enum": ["remember", "understand", "apply", "analyze"]
+    },
+    "stem": { "type": "string", "description": "题干" },
+    "explanation": {
+      "type": "string",
+      "description": "详解，必填。讲清为什么，不只是答案是什么"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "知识点标签"
+    },
+    "knowledgeIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "关联的知识卡片 id，用于跳转"
+    },
+    "vizIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "关联的可视化演示 id"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "代码类题目是否通过实机编译验证。非代码题固定 true"
+    },
+    "ai_generated": { "type": "boolean", "default": true },
+    "generated_at": { "type": "string", "format": "date" }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "code_completion" } } },
+      "then": {
+        "required": ["code", "blanks", "solution", "testCases"],
+        "properties": {
+          "code": { "type": "string", "description": "含 /*__BLANK_n__*/ 标记的代码" },
+          "blanks": {
+            "type": "array", "minItems": 1, "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": ["index", "answer"],
+              "properties": {
+                "index": { "type": "integer", "minimum": 1 },
+                "hint": { "type": "string" },
+                "answer": { "type": "string" },
+                "accepted": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "solution": { "type": "string", "description": "补全后的完整代码" },
+          "testCases": { "$ref": "#/definitions/testCases" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "debug" } } },
+      "then": {
+        "required": ["code", "bugs", "fixed_code", "testCases"],
+        "properties": {
+          "code": { "type": "string" },
+          "bugs": {
+            "type": "array", "minItems": 2, "maxItems": 3,
+            "items": { "type": "string" },
+            "description": "植入的错误说明，不展示给学生"
+          },
+          "fixed_code": { "type": "string" },
+          "testCases": { "$ref": "#/definitions/testCases" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "code_reading" } } },
+      "then": {
+        "required": ["code", "answer"],
+        "properties": {
+          "code": { "type": "string" },
+          "answer": { "type": "string", "description": "真实运行结果或功能描述" },
+          "answerIsDescription": {
+            "type": "boolean", "default": false,
+            "description": "true 表示本题要求描述功能而非写出输出"
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "programming" } } },
+      "then": {
+        "required": ["reference", "testCases"],
+        "properties": {
+          "input_format": { "type": "string" },
+          "output_format": { "type": "string" },
+          "code_starter": { "type": "string" },
+          "reference": { "type": "string" },
+          "testCases": { "$ref": "#/definitions/testCases" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "single_choice" } } },
+      "then": {
+        "required": ["options", "answer"],
+        "properties": {
+          "options": {
+            "type": "array", "minItems": 4, "maxItems": 4,
+            "items": { "type": "string" }
+          },
+          "answer": { "type": "integer", "minimum": 0, "maximum": 3 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "true_false" } } },
+      "then": {
+        "required": ["answer"],
+        "properties": { "answer": { "type": "boolean" } }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "fill_blank" } } },
+      "then": {
+        "required": ["blanks"],
+        "properties": {
+          "blanks": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["index", "answer"],
+              "properties": {
+                "index": { "type": "integer", "minimum": 1 },
+                "answer": { "type": "string" },
+                "accepted": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "code_ordering" } } },
+      "then": {
+        "required": ["lines", "correct_order", "testCases"],
+        "properties": {
+          "lines": { "type": "array", "items": { "type": "string" }, "description": "打乱后的代码行" },
+          "correct_order": {
+            "type": "array", "items": { "type": "integer" },
+            "description": "正确顺序，元素为 lines 的下标"
+          },
+          "testCases": { "$ref": "#/definitions/testCases" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "short_answer" } } },
+      "then": {
+        "required": ["reference_answer", "grading_points"],
+        "properties": {
+          "reference_answer": { "type": "string" },
+          "grading_points": {
+            "type": "array", "items": { "type": "string" },
+            "description": "评分要点，供学生自评"
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "complexity" } } },
+      "then": {
+        "required": ["code", "answer"],
+        "properties": {
+          "code": { "type": "string" },
+          "answer": { "type": "string", "description": "如 O(n^2)" },
+          "accepted": { "type": "array", "items": { "type": "string" } },
+          "askSpace": { "type": "boolean", "default": false, "description": "true 表示问空间复杂度" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "type": { "const": "matching" } } },
+      "then": {
+        "required": ["pairs"],
+        "properties": {
+          "pairs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["left", "right"],
+              "properties": {
+                "left": { "type": "string" },
+                "right": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+
+  "definitions": {
+    "testCases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["stdin", "expected"],
+        "properties": {
+          "stdin": { "type": "string" },
+          "expected": { "type": "string" },
+          "note": { "type": "string", "description": "如 边界情况、典型输入" }
+        }
+      }
+    }
+  }
+}

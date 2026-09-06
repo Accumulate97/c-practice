@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Knowledge",
+  "description": "C practice 知识点卡片数据结构",
+  "type": "object",
+  "required": ["id", "category", "title", "chapter", "order", "summary", "content", "keyPoints"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(c|ds)-[a-z0-9-]+$",
+      "description": "全局唯一，小写连字符。如 c-pointer-arith、ds-binary-tree-traversal"
+    },
+    "category": { "type": "string", "enum": ["c", "ds"] },
+    "title": { "type": "string", "description": "如 指针的算术运算" },
+    "chapter": { "type": "string", "description": "如 第9章 指针" },
+    "section": { "type": "string", "description": "如 9.3 指针运算" },
+    "order": { "type": "integer", "description": "章节内排序" },
+
+    "summary": { "type": "string", "description": "一句话定义，列表页展示" },
+    "content": { "type": "string", "description": "正文，Markdown 格式，支持代码高亮" },
+    "keyPoints": {
+      "type": "array", "minItems": 3, "maxItems": 6,
+      "items": { "type": "string" },
+      "description": "要点清单"
+    },
+    "pitfalls": {
+      "type": "array", "items": { "type": "string" },
+      "description": "易错点"
+    },
+
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "code"],
+        "properties": {
+          "title": { "type": "string" },
+          "code": { "type": "string", "description": "完整可编译代码" },
+          "runnable": { "type": "boolean", "default": true },
+          "stdin": { "type": "string" },
+          "expected": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["caption", "header", "rows"],
+        "properties": {
+          "caption": { "type": "string" },
+          "header": { "type": "array", "items": { "type": "string" } },
+          "rows": {
+            "type": "array",
+            "items": { "type": "array", "items": {} }
+          }
+        }
+      },
+      "description": "对比表格，如运算符优先级表、排序算法对比表"
+    },
+
+    "complexity": {
+      "type": "object",
+      "properties": {
+        "time": { "type": "array", "items": { "type": "string" }, "description": "[最好, 平均, 最坏]" },
+        "space": { "type": "string" },
+        "stable": { "type": "boolean" },
+        "note": { "type": "string" }
+      }
+    },
+
+    "relatedViz": { "type": "array", "items": { "type": "string" } },
+    "relatedProblems": { "type": "array", "items": { "type": "string" } },
+    "relatedKnowledge": { "type": "array", "items": { "type": "string" } }
+  }
+}
