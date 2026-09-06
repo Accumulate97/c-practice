@@ -438,7 +438,11 @@ console.log('\n存档 ' + reportPath.replace(ROOT + '\\', '').replace(ROOT + '/'
 
 const passed = results.filter((r) => r.ok).length
 const hardFailed = results.filter((r) => !r.ok).length
-console.log('通过 ' + passed + '/' + results.length + (flipped.length ? '  已置 verified:true → ' + flipped.join(', ') : ''))
+const carriedCount = results.filter((r) => r.carried_over).length
+console.log('通过 ' + passed + '/' + results.length +
+  // 「沿用旧证据」不是本轮复核，别让它看起来像绿灯
+  (carriedCount ? '（⚠ 其中 ' + carriedCount + ' 道是沿用 last_known_good 的旧证据，本轮未实机复核）' : '') +
+  (flipped.length ? '  已置 verified:true → ' + flipped.join(', ') : ''))
 if (inconclusiveCount > 0) {
   console.log('🚩 本轮 ' + inconclusiveCount + ' 道因后端抖动（HTTP 5xx / 网络）未判定：' +
     results.filter((r) => r.inconclusive).map((r) => r.id + (r.carried_over ? '(沿用旧证据)' : '(无旧证据)')).join(', ') +

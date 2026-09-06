@@ -508,3 +508,19 @@ MD5：c-ch05.json / c-ch06.json / ds-ch02.json / index.json 四个文件 before 
 **顺带记录一条环境事实**：`npm run build` 在受限沙箱内以 `spawn EPERM` 失败
 （tailwind oxide 原生模块加载 + 子进程创建受限），非沙箱下 337 ms 正常完成。
 这不是代码问题，别把它误读成「构建坏了」。
+
+
+### 10.8 生成物去时间戳：改内容指纹（阶段 3 收尾时补做）
+
+`build-index.ts` 原来往 4 个生成文件里写 `generated_at: <时间戳>`，后果是**每跑一次
+`npm run build:index`，git status 里就多出 4 个假变更**，「数据到底改没改」看不出来，
+也没法用 `build:index && git diff --exit-code` 当手改检测。现改为 `content_sha`
+（sha256 前 16 位，覆盖除自身外的全部序列化字节）。三条实测：
+
+| 检验 | 命令 | 结果 |
+|---|---|---|
+| 确定性 | 连跑两次 `node scripts/build-index.ts`，比 6 个 JSON 的 MD5 序列 | 完全相同 |
+| 内容相关 | 临时改 `c-ch05.json` 一个词 → 重建 → 还原 → 重建 | 指纹 `8808fefe… → 0dc5a2fe…`、`62e39cb8… → 40c37513…`；还原后指纹与文件 MD5 逐字节回到基线 |
+| 手改自愈 | 手工把 `problems/index.json` 的 `count` 改成 99 → 重建 | 还原为原字节，`$after -eq $orig` 为 True |
+
+代价：`generated_at` 字段没了。谁需要构建时间，从 git 提交时间或 CI 日志取，别塞进内容寻址的产物里。

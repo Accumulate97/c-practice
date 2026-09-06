@@ -13,6 +13,7 @@
  * 用法：node scripts/build-index.ts
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { createRequire } from 'node:module'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -94,13 +95,16 @@ function collectIds(dir: string, key: string): ProblemLike[] {
   void key
 }
 
-const stamp = new Date().toISOString()
+/** 生成物用「内容指纹」而不是时间戳：同样的输入必须产出字节相同的文件，
+ *  否则每跑一次 build:index 就有 4 个文件在 git status 里假变更，
+ *  也没法用 `build:index && git diff --exit-code` 检测有人手工编辑过 index。 */
+const CONTENT_SHA = '__CONTENT_SHA__'
 const shards = loadProblemShards()
 const cards = shards.flatMap((s) => s.problems.map((p) => cardOf(p, s.file)))
 
 const problemIndex = {
   _generated: GENERATED,
-  generated_at: stamp,
+  content_sha: CONTENT_SHA,
   schema_version: 1,
   data_version: pkg.version,
   count: cards.length,
@@ -129,7 +133,7 @@ const searchDocs = cards.map((c) => ({
 
 const searchIndex = {
   _generated: GENERATED,
-  generated_at: stamp,
+  content_sha: CONTENT_SHA,
   /** 前端 MiniSearch 的字段配置，写进数据以免两边口径不一致 */
   fields: ['title', 'tags', 'chapter', 'section'],
   enrichStrategies: ['minisearch-stemmer:en'],
@@ -141,7 +145,7 @@ function knowledgeIndexShaped(): Record<string, unknown> {
   const nodes = collectIds(join(DATA, 'knowledge'), 'cards')
   return {
     _generated: GENERATED,
-    generated_at: stamp,
+    content_sha: CONTENT_SHA,
     count: nodes.length,
     cards: nodes.map((n) => ({
       id: n.id,
@@ -158,7 +162,7 @@ function vizIndexShaped(): Record<string, unknown> {
   const nodes = collectIds(join(DATA, 'viz'), 'demos')
   return {
     _generated: GENERATED,
-    generated_at: stamp,
+    content_sha: CONTENT_SHA,
     count: nodes.length,
     demos: nodes.map((n) => ({
       id: n.id,
@@ -173,8 +177,11 @@ function emit(rel: string, value: unknown): void {
   const path = join(DATA, rel)
   /** 目录可能还不存在（search/ 与阶段 5、6 的 knowledge/ viz/），先生成再写 */
   mkdirSync(dirname(path), { recursive: true })
-  writeFileSync(path, JSON.stringify(value, null, 2) + '\n', 'utf8')
-  console.log('生成 ' + rel + '  (' + readFileSync(path, 'utf8').length + ' 字符)')
+  // 指纹覆盖「除自身以外的全部字节」：把占位符写进序列化结果再算，最后回填
+  const body = JSON.stringify({ ...(value as Record<string, unknown>), content_sha: CONTENT_SHA }, null, 2)
+  const sha = createHash('sha256').update(body).digest('hex').slice(0, 16)
+  writeFileSync(path, body.replace(CONTENT_SHA, sha) + '\n', 'utf8')
+  console.log('生成 ' + rel + '  (' + readFileSync(path, 'utf8').length + ' 字符  内容指纹=' + sha + ')')
 }
 
 emit(join('problems', 'index.json'), problemIndex)
