@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   设计令牌。颜色语义遵循 07_可视化演示规范.md 第五节：
+   比较=黄 / 交换=红 / 就位=绿 / 基准=蓝
+   ============================================================ */
+@theme {
+  --color-brand: #2563eb;
+  --color-viz-compare: #f59e0b;
+  --color-viz-swap: #ef4444;
+  --color-viz-sorted: #10b981;
+  --color-viz-pivot: #3b82f6;
+  --color-viz-idle: #94a3b8;
+  --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Consolas, monospace;
+}
+
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --bg-elev: #f8fafc;
+  --fg: #0f172a;
+  --fg-muted: #64748b;
+  --border: #e2e8f0;
+}
+:root[data-theme='dark'] {
+  --bg: #0b1120;
+  --bg-elev: #151d2e;
+  --fg: #e2e8f0;
+  --fg-muted: #94a3b8;
+  --border: #29344a;
+}
+
+@layer base {
+  html { color-scheme: light dark; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--color-brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+}
+
+@media print {
+  nav, aside, .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* 尊重"减少动效"偏好：播放器自动播放不受影响，仅关闭装饰性过渡 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}

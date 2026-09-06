@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="C 语言与数据结构在线学习平台：知识点汇总、可视化演示、在线刷题三合一" />
+    <title>C practice · C 语言与数据结构学习平台</title>
+    <script>
+      // 主题防闪烁：在首帧之前把 data-theme 打到 <html> 上
+      try {
+        var s = localStorage.getItem('cpractice:settings:v1')
+        var t = s ? (JSON.parse(s).theme || 'auto') : 'auto'
+        var dark = t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
