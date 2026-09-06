@@ -18,7 +18,7 @@
 1. **网站在线编译/判分**：Godbolt **Compiler Explorer REST API**，浏览器直连，无需任何 key。
    - 端点 `POST https://godbolt.org/api/compiler/<id>/compile`，`<id>` 默认 `cg132`（GCC 13.2 x86-64），`lang: "c"`。
 2. **构建期批量验证**（写入 `verified: true`）：走同一 API，**离线脚本串行慢跑**（`scripts/judge-verify.ts`），可接受耗时。
-3. **保留抽象层**：`JudgeBackend` 接口 + `GodboltAdapter`（现役）+ `PistonAdapter`（休眠保留）+ `Judge0Adapter`（占位）。切换只换适配器，不改上层判分逻辑。
+3. **保留抽象层，但不保留死代码**：`JudgeBackend` 契约（`src/judge/types.ts`）+ `GodboltAdapter`（唯一现役实现）。原计划的 `PistonAdapter`（休眠）与 `Judge0Adapter`（占位）经 2026-09-06 阶段 2 裁决**删除** —— Piston 公共 API 已白名单化（4.0 实测 401），Judge0 需 API key 而纯静态站只能把 key 打进 bundle（等于公开泄露），此刻写它们必然是无法验证的死代码。切换成本改由「契约 + 注册处注释」承担：`src/judge/index.ts::getBackend()` 顶部写明新增后端要实现哪些成员、如何注册。上层判分逻辑不随适配器改变。
 4. **降级模式为强制交付项**（不是可选优化）：后端不可用时读构建期预存的真实 stdout 供学生自评，站点不瘫。
 
 ## 3. 被否决的方案及理由
@@ -27,8 +27,8 @@
 |---|---|---|
 | B 自建 Piston 实例 | **否决** | 项目要开源到 GitHub 供他人访问与 fork。① 访客请求全部打到个人 VPS，需 7×24 运维；② fork 者必须自建服务器才能用，等于白开源；③ 单机停机则全站编译功能失效。与项目目标直接冲突。 |
 | E 双轨（在线 Godbolt + 判分自建） | **否决** | 同上，判分链路仍绑定个人服务器，开源可用性不成立。 |
-| A 申请 Piston 白名单 | **暂不采用**，保留为将来选项 | 资格与审批周期不确定；白名单通常配套要求服务端调用，浏览器直连仍可能被 CORS 拦。若将来获批，仅需把 `VITE_JUDGE_BACKEND` 切回 `piston`。 |
-| C Judge0 | **否决**，仅保留适配器 | 公共实例多已下线；RapidAPI 版需 key，key 放进浏览器 = 配额可被盗刷。 |
+| A 申请 Piston 白名单 | **暂不采用**，保留为将来选项 | 资格与审批周期不确定；白名单通常配套要求服务端调用，浏览器直连仍可能被 CORS 拦。若将来获批，需按第 5 节契约**重新实现** `PistonAdapter` 并在 `src/judge/index.ts` 注册（原休眠实现已删除），再把 `VITE_JUDGE_BACKEND` 设为 `piston`。 |
+| C Judge0 | **否决**，连适配器也不写 | 公共实例多已下线；RapidAPI 版需 key，key 放进浏览器 = 配额可被盗刷，且纯静态站无法隐藏。 |
 | D 纯预存 expected + 学生自评 | **否决**为主方案 | 牺牲核心交互体验；仅作为降级模式实现。 |
 | Wandbox | 不采用 | 实测 504 网关超时（重试后仍不稳定），且无执行结果的稳定契约。 |
 ## 4. 阶段 0 Spike 证据
@@ -149,41 +149,60 @@ tag = { line: number, column: number, severity: number, file: string, text: stri
 ## 5. 接口契约
 
 ```ts
-export interface CompileRequest {
-  code: string; stdin?: string; userArguments?: string; timeoutMs?: number
+// src/judge/types.ts —— 以下为实际落地（as-built）契约，不是草案
+export interface RunRequest {
+  code: string; stdin: string            // 无输入传空串，不传 undefined
+  userArguments?: string; compileOnly?: boolean
 }
-export interface Diagnostic { line: number; column: number; severity: 2 | 3; text: string }
-export type JudgeErrorClass =
-  | 'none' | 'compile-error' | 'runtime-error' | 'timeout'
-  | 'truncated-output' | 'network' | 'backend-unavailable' | 'bad-request'
-export interface CompileResult {
-  ok: boolean
-  runStdout: string; runStderr: string           // 已 join("\n") 且剥离 ANSI
-  diagnostics: Diagnostic[]                      // 来自 buildResult.stderr[].tag
-  warnings: Diagnostic[]; errors: Diagnostic[]   // 按 severity 分组
-  exitCode: number | null
-  errorClass: JudgeErrorClass
-  compileTimeMs: number; runTimeMs: number
-  raw?: unknown
-  meta: { queueMs: number; retried: number; cached: boolean; backend: string }
+export interface CompileDiag {
+  line: number; column: number           // 均 1 起，列未知为 0
+  severity: 'warning' | 'error'; message: string
 }
+/** 后端只描述事实，不判对错；比对 expected 在 client.ts */
+export interface ExecutionResult {
+  errorClass: 'ok' | 'compile-error' | 'runtime-error' | 'timeout' | 'truncated'
+  compiled: boolean; exitCode: number
+  stdout: string; stderr: string         // 已 join / 剥 ANSI / 归一化
+  diagnostics: CompileDiag[]; compilerMessage: string
+  execTimeMs?: number; raw?: unknown
+}
+export class JudgeTransportError extends Error {
+  kind: 'network' | 'busy' | 'quota' | 'backend-auth'; retryable: boolean; status?: number
+}
+/** 新增后端 = 4 个只读配置 + 1 个方法 */
 export interface JudgeBackend {
   readonly id: string
-  readonly maxConcurrency: number   // godbolt: 2（依据 4.3） | piston: 1 | judge0: 2
+  readonly maxConcurrency: number   // godbolt: 2（依据 4.3，更高反而降低吞吐）
   readonly minIntervalMs: number    // godbolt: 250
   readonly timeoutMs: number        // godbolt: 20000
-  readonly supportsWarnings: boolean
-  execute(req: CompileRequest, signal: AbortSignal): Promise<CompileResult>
-  probe(signal: AbortSignal): Promise<BackendHealth>
+  execute(req: RunRequest): Promise<ExecutionResult>
 }
 ```
 
-- 实现：`GodboltAdapter`（现役）、`PistonAdapter`（休眠保留，含 5 次/秒令牌桶原设计）、`Judge0Adapter`（占位）。
-- 装配：`createJudgeBackend(import.meta.env.VITE_JUDGE_BACKEND ?? "godbolt")`。
-- **`verified: true` 只能由 `scripts/judge-verify.ts` 写入**，同时把真实 stdout 存档进
-  `public/data/problems/verification-report.json`，形成"即使后端下线也可复核"的证据链。
-- **输出比对归一化**（配合裁决二第 2 条，`expected` 一律不写末尾换行）：
-  CRLF/CR → LF → 每行行尾空白剥离 → **整体末尾所有换行剥离** → 逐行比对。
+**与早期草案的差异（草案字段从未实现，已从本文档删除）**：`CompileRequest` / `CompileResult` /
+`Diagnostic` / `JudgeErrorClass` / `supportsWarnings` / `probe()` 全部去掉。理由：
+- 判分结论（`accepted` / `wrong-answer` / `degraded` …）不属于适配器，由 `client.ts` 拿归一化后的
+  stdout 与 `expected` 比对产出（`JudgeResponse.state`），后端契约里不再重复表达；
+- `supportsWarnings` 恒为真，无信息量；`probe()` 健康检查（见 7.4）未随阶段 2 交付，列为阶段 3+ 可选；
+- Godbolt 把「编译失败」与「运行超时」都压成顶层 `code = -1`，适配器按 `buildResult.code != 0 →
+  compile-error` 优先、再 `timedOut → timeout` 的顺序区分（见 4.5）；
+- 传输层故障归类：`401/403 → backend-auth`（不可重试）、`429 → quota`（退避后重试）、
+  `5xx / 网络 / 超时 → busy / network`（可重试）。学生代码写错**不是**故障，一律走 `errorClass`，不得抛异常。
+
+- 实现：只有 `GodboltAdapter`（`src/judge/backends/godbolt.ts`）。`PistonAdapter` / `Judge0Adapter` 已删除，理由见第 2 节第 3 条。
+- 队列 / 缓存 / 重试 / 降级 / 跨标签页锁**全部在 `src/judge/client.ts`**，适配器不得复制一份：FIFO +
+  优先级队列、`maxConcurrency` + `minIntervalMs`（原「5 次/秒令牌桶」的意图由这两个参数共同表达）、
+  结果缓存（键 = 后端 id + 归一化源码 + stdin，fnv1a）、失败退避 `800ms × n` 与后端 30s 冷却、
+  `navigator.locks` 跨标签共享并发额度、后端不可用时读构建期预存 stdout 自评。
+- 装配：`src/judge/index.ts` 的 `BACKENDS` 注册表 + `getBackend()`（读 `config.judge.backend`，未知取值
+  回落 godbolt 并 `console.warn`）+ `registerBackend()`（单测注入替身）+ `availableBackends()`。
+- **`verified: true` 只能由 `scripts/judge-verify.ts` 写入**（**尚未实现，阶段 3 交付**；当前 `scripts/` 只有
+  `verify-pages-dist.mjs`），同时把真实 stdout 存档进 `public/data/problems/verification-report.json`，
+  形成「即使后端下线也可复核」的证据链。
+- **输出比对归一化**（配合裁决二第 2 条，`expected` 一律不写末尾换行）：CRLF/CR → LF → 每行行尾空白
+  剥离 → 整体末尾所有换行剥离 → 逐行比对。实现于 `src/judge/backends/base.ts`，是唯一一份归一化代码，
+  页面与题目数据都不得自行 trim。
+
 ## 6. 与硬性约束的合规性声明
 
 | 约束 | 状态 | 说明 |
@@ -192,9 +211,9 @@ export interface JudgeBackend {
 | 2 不得引入需服务端运行时的方案 | ✅ 满足 | 不引入自建后端；仅"依赖外部公共 HTTP API"，与原 Piston 方案同性质 |
 | 3 localStorage 存进度 | ✅ 不受影响 | — |
 | 4 JSON 分片 + 索引懒加载 | ✅ 不受影响 | — |
-| 5 Piston + 5 次/秒 + 预留 Judge0 接口 | ⚠ **部分偏离**（本 ADR 即偏离的正式记录） | 引擎 Piston → Godbolt（Piston 已白名单化）；"5 次/秒"以"并发 ≤ 2 + 排队 + 250ms 间隔"落实（实测依据 4.3，且实测证明高并发反而降低吞吐）；**Piston/Judge0 切换接口照样保留**，该子句完整满足 |
-| 6 标准 C | ✅ 满足 | `-std=c99 -Wall -Wextra`；另有 `scripts/lint-code.ts` 静态扫非法构造 |
-| 7 实机验证后才可 `verified: true` | ✅ 满足 | 由 `judge-verify.ts` 真实编译 + 执行 + 比对 `expected` 后写入 |
+| 5 Piston + 5 次/秒 + 预留 Judge0 接口 | ⚠ **部分偏离**（本 ADR 即偏离的正式记录） | 引擎 Piston → Godbolt（Piston 已白名单化）；"5 次/秒"以"并发 ≤ 2 + FIFO 排队 + 250ms 最小间隔"落实（实测依据 4.3 与 9.3：串行 4 组实际 ≈ 1.2 请求/秒，且高并发反而降低吞吐）；抽象层（`JudgeBackend` 契约 + 集中式 client）保留，但 `PistonAdapter` / `Judge0Adapter` 两份实现已删除，将来切换后端需按第 5 节契约补写 —— 这是对该子句字面要求的**诚实偏离**，经用户 2026-09-06 阶段 2 裁决批准 |
+| 6 标准 C | ✅ 满足 | `-std=c99 -Wall -Wextra`；另有 `scripts/lint-code.ts` 静态扫非法构造 —— **阶段 3 交付，当前尚未实现** |
+| 7 实机验证后才可 `verified: true` | ⏳ 待阶段 3 | 由 `scripts/judge-verify.ts`（**尚未实现**）真实编译 + 执行 + 比对 `expected` 后写入 |
 
 ## 7. 残留风险与缓解
 
@@ -202,11 +221,171 @@ export interface JudgeBackend {
 2. **学生代码被发送到第三方公共服务** → UI 明示"代码将发送至 godbolt.org 编译"；只提交源码与 stdin，不提交任何个人信息。
 3. **`truncated = true` 输出被截断** → 判为 `truncated-output`，不自动判 WA，转"参考输出 + 自评"。
 4. **编译器 id 漂移（`cg132` 下线）** → 启动时 `GET /api/languages` / `GET /api/compilers/c` 校验，失败回落到清单中首个 gcc；CI 每日跑一次 `probe()` 并在失败时告警。
-5. **Godbolt 服务端排队导致高峰体验劣化** → 并发上限 2 + 排队可视化 + 结果缓存（`sha1(source + stdin)`，命中即 0 请求）。
+5. **Godbolt 服务端排队导致高峰体验劣化** → 并发上限 2 + 排队可视化 + 结果缓存（`fnv1a(backendId + compiler + args + code + stdin)`，命中即 0 请求，9.3 实测第二次批跑 10ms / 0 网络请求）。
 6. **单文件为主**（本项目全部题目均为单文件，够用）；确需多文件时用 `files: [{ filename, contents }]`（官方文档已确认支持；`#include <https://…>` 形式出于安全被禁）。
 
 ## 8. 复审触发条件
 
 - Godbolt 引入鉴权 / 明确限流且低于本站用量 → 回到第 3 节重新评估方案 A（申请白名单）。
-- 用户获批 Piston 公共 API 白名单 → 切回 `PistonAdapter`，仅需同步修订限流参数（回到 5 次/秒令牌桶）。
+- 用户获批 Piston 公共 API 白名单 → 按第 5 节契约**重新实现** `PistonAdapter` 并在 `src/judge/index.ts` 注册（原实现已删除，不存在「切回」），限流参数改回 `maxConcurrency: 5` / `minIntervalMs: 200`。
 - 出现 ≥ 1 次因后端导致的**大面积判分错误** → 强制评估。
+
+## 9. 阶段 1 复校与阶段 2 实测记录（2026-09-06）
+
+### 9.1 用完整 Ajv 复校 `04_题型规范与样例.md` 的**全部**样例
+
+前一轮只跑了 id 的 pattern 正则，那不叫校验。本轮以 `schema/Problem.schema.json` 为唯一真源，
+用 `ajv@8` + `ajv-formats@3`（draft 2020-12、`strict: false`、递归编译 `$defs`）对 04 里**每一个**
+json 代码块做完整校验。校验脚本是临时件（`%TEMP%\ajv_check.mjs`），未入库 —— 入库版属阶段 3 的
+`scripts/`，本轮不提前交付。
+
+| # | 04 行号 | type | id | category | difficulty | bloom | verified | 结果 |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 55–86 | code_completion | c-ch09-cc-001 | "c" | 3 | apply | false | ✓ PASS（无未定义字段） |
+| 2 | 112–133 | debug | c-ch09-dbg-001 | "c" | 3 | analyze | false | ✓ PASS |
+| 3 | 159–175 | code_reading | c-ch09-cr-001 | "c" | 3 | analyze | false | ✓ PASS |
+| 4 | 192–216 | programming | c-ch05-pg-001 | "c" | 3 | apply | false | ✓ PASS |
+| 5 | 230–252 | single_choice | c-ch09-sc-001 | "c" | 2 | understand | true | ✓ PASS |
+| 6 | 257–273 | true_false | c-ch09-tf-001 | "c" | 2 | understand | true | ✓ PASS |
+| 7 | 278–310 | fill_blank | ds-ch01-fb-001 | "ds" | 1 | remember | true | ✓ PASS |
+| 8 | 315–353 | code_ordering | c-ch05-co-001 | "c" | 2 | apply | true | ✓ PASS |
+| 9 | 358–380 | short_answer | ds-ch02-sa-001 | "ds" | 3 | analyze | true | ✓ PASS |
+| 10 | 385–403 | complexity | ds-ch01-cx-001 | "ds" | 3 | analyze | true | ✓ PASS |
+| 11 | 408–445 | matching | ds-ch03-mt-001 | "ds" | 1 | remember | true | ✓ PASS |
+
+合计 11 个 json 代码块：**通过 11 / 失败 0**。
+
+负例对照（证明校验器不是空转，每例都是人为破坏后重跑）：
+
+| 人为破坏 | Ajv 结论 |
+|---|---|
+| `category: "C"`（大写） | ✗ must be equal to constant（枚举只允许 `"c"` / `"ds"`） |
+| 删掉 `category` | ✗ must have required property 'category' |
+| `difficulty: 6` | ✗ must be <= 5 |
+| `difficulty: "apply"`（把 bloom 的值填进 difficulty） | ✗ must be integer |
+| `id` 去掉 `c-` / `ds-` 前缀 | ✗ must match pattern `^[cd]s?-ch[0-9]{2}-(cc\|dbg\|cr\|pg\|sc\|tf\|fb\|co\|sa\|cx\|mt)-[0-9]{3}$` |
+| **加一个 schema 里不存在的 `score` 字段** | **✓ 反而通过** |
+| **`expected` 末尾多写一个换行** | **✓ 反而通过** |
+
+⇒ **遗留问题（待用户裁决）**：`Problem.schema.json` 顶层与 11 个 `allOf` 分支**都没有
+`additionalProperties: false`**，所以"schema 没定义就不许出现"这条纪律 Ajv 兜不住。本轮由校验脚本
+另外手工比对已定义字段（上表"无未定义字段"即此项），并用 grep 确认 04 中 `score` 出现 0 次、
+`"category"` 11 处全小写、`"difficulty"` 取值仅 1/2/3。末尾换行不由 schema 表达，属归一化规则，
+落在 `src/judge/backends/base.ts`。是否给 schema 补 `additionalProperties: false` 不擅动。
+
+04 的真实改动（`git diff --stat`：+200 / −13）：第六节原为 4 个残缺片段，补成 7 个完整样例；
+新增 id `c-ch09-sc-001` `c-ch09-tf-001` `ds-ch01-fb-001` `c-ch05-co-001` `ds-ch02-sa-001`
+`ds-ch01-cx-001` `ds-ch03-mt-001`；统一 category 小写、difficulty 改为 1–5 整数、删除 schema 里没有的
+`score`；错字"主力气型"→"主力题型"；`code_ordering` 的判分口径改为指向本 ADR 的归一化规则；
+开头补两条全局规则（id 必须带 `c-` / `ds-` 前缀且必须含 category；`expected` 不写末尾换行 + 判分侧归一化）。
+澄清：`score` / 大写 category / bloom 混进 difficulty 这三处在 HEAD `b202cb5` 时就已修好，本轮补的是
+「完整 Ajv 复校证据」而不是重复修改。
+
+### 9.2 4 道主力代码题的 Godbolt 真跑（构建期验证口径）
+
+| 样例 id | 送验字段 | stdin | 归一化后 stdout | HTTP / exitCode | 与 expected 一致 | 单请求耗时 |
+|---|---|---|---|---|---|---|
+| c-ch09-cc-001 | solution_code | `5` | `5 4 3 2 1` | 200 / 0 | true | 964ms |
+| c-ch09-dbg-001 | fixed_code | — | `a=5, b=3` | 200 / 0 | true | 756ms |
+| c-ch09-cr-001 | code | — | `1 2 3` | 200 / 0 | true | 699ms |
+| c-ch05-co-001 | 按正序合并后的完整源码 | `100` | `5050` | 200 / 0 | true | 897ms |
+
+04 里的 `verified` 仍保持 `false`：按第 5 节纪律，置 `true` 只能由阶段 3 的 `scripts/judge-verify.ts`
+在写入数据文件的同时存档真实 stdout，本轮不手改题目数据。
+
+### 9.3 一道编程题 × 4 组用例「串行」端到端实测
+
+按用户要求**不使用并发**（4.3：并发 20 时完成速率从 1.36 QPS 跌到 0.52 QPS）。被测路径：
+JudgeLab 的「4 组用例串行 + 耗时报告」按钮 → `JudgeClient.runTests(code, 4 组用例, onProgress)`
+→ 4 次 `godbolt.execute`（`c-ch05-pg-001` 参考程序 × 4 组用例）。
+
+测量方式：headless Edge + CDP，用 `Input.dispatchMouseEvent` 派发**真实鼠标事件**（走命中测试，
+不是 `.click()` 合成调用），在页面里包一层 `fetch` 记录每个请求的起止与 HTTP 状态，轮询到报告出现为止。
+2026-09-06 本轮三次独立**冷跑**（每次新开标签页，缓存为空）：
+
+| 运行 | 页面自报各请求耗时 (ms) | 总耗时 | fetch 层实测 (ms) | 状态码 | 通过 | 缓存命中 |
+|---|---|---|---|---|---|---|
+| 冷跑 A | 1167 / 869 / 868 / 723 | **3627 ms** | 1151 / 865 / 865 / 719 | 200×4 | 4/4 | 0 |
+| 冷跑 B | 991 / 860 / 304 / 706 | **2861 ms** | 973 / 854 / 300 / 702 | 200×4 | 4/4 | 0 |
+| 冷跑 C | 648 / 876 / 875 / 691 | **3090 ms** | 631 / 873 / 871 / 688 | 200×4 | 4/4 | 0 |
+
+三次区间 **2861–3627 ms**，均值 ≈ 3193 ms，最坏 3627 ms。每次都是**恰好 4 条**
+`POST https://godbolt.org/api/compiler/cg132/compile`，无重试、无 `Runtime.exceptionThrown`。
+页面自报比 fetch 层多 12–17ms，即 React 渲染开销，计时口径可信。
+
+**决策：总耗时 < 5000 ms → 采纳串行方案，刷题页 UI 显示「第 N/M 组」进度。**
+`onProgress` 回调时机定在每组**开始执行前**（`client.ts:198`），否则界面会滞后一组显示。
+
+**缓存命中路径**（同一标签页第二次点同一个批跑，实测）：**0 次网络请求**，各组 3 / 3 / 2 / 2 ms，
+总耗时 **10 ms**，通过 4/4，缓存命中 4 次。即学生反复提交一份没改过的代码不消耗配额。
+
+**节流核实**：冷跑 C 四次请求起始时刻 2877 → 3511 → 4388 → 5263，扣除上一请求耗时后净间隔 3–5ms。
+说明 `minIntervalMs: 250` 在这条路径上从未产生额外等待（单个请求本身 >250ms），串行 4 组的实际速率
+≈ 1.2 请求/秒，远低于 5 次/秒红线；真正起作用的是 `maxConcurrency: 2` + FIFO 队列 + 页面级 `busy` 互斥。
+
+**勘误（务必读）**：本节上一版记录的 2965 / 3729 / 3 / 2170 ms 四个数**不可复现，已整表替换**。
+根因是当时的探测脚本把「找按钮」的函数 `JSON.stringify` 成字符串再拼进 `Runtime.evaluate` 表达式，
+表达式在页面里抛 `TypeError: b.getBoundingClientRect is not a function`，脚本在**武装监听与点击之前**
+就退出了。因此「runBatch 从未执行 / 日志为空」从来不是关于本应用的证据，而是脚本自身的 bug；
+应用代码经复核没有该问题。本轮换用真实鼠标事件重测，上表三次数据可重复。
+
+**余量提示**：单请求实测区间 300–1400ms。若 Godbolt 高峰把单请求拖到两倍，总时长约 6–7s，
+会越过 5s 采纳线但未越过 8s 上报线。列为待观察项：上线后复测一次。
+
+
+### 9.4 六种判定状态逐一实测（含两次「假通过」的复盘）
+
+被测路径：JudgeLab 的下拉预设 → 真实鼠标点击「编译并运行」→ 读回页面渲染的判定标题。headless Edge + CDP `Input.dispatchMouseEvent`。
+
+| 行 | 预设 | 页面渲染 | 网络请求 | 端到端 | 结论 |
+|---|---|---|---|---|---|
+| P1 | ① 参考程序 | ✓ 通过 · 输出正确 | 1 (200) | 1861ms | **有效** |
+| P2 | ② 答案不全 | ✗ 输出不符 · 第 3 行与期望不符（实际 `6 28 496` / 期望 `6 28`） | 1 (200) | 773ms | **有效** |
+| P3 | ③ 漏分号 | ✗ 编译错误 · `<source>:4:5: error: expected ',' or ';' before 'printf'` + 位置/级别/信息表 | 1 (200) | 959ms | **有效**（结构化诊断可用） |
+| P4 | ④ scanf 漏 & | ✗ 运行崩溃 · exit code 139，SIGSEGV(11) | 1 (200) | 1132ms | **有效** |
+| P5 | ⑤ 死循环 | ✗ 输出不符 · 实际 `2147483647` | 1 (200) | 4201ms | **假通过——夹具本身错了** |
+| D | ① + 勾「模拟后端不可用」 | ✓ 通过 | **0** | 4ms | **假通过——降级根本没触发** |
+
+**P5 根因**：夹具原写作 `while (i < 10) i = i - 1;`，有符号溢出在该编译选项下**回绕**成 `INT_MAX`，
+循环正常结束并打印一行，于是被正确判成 wrong-answer——后端从未见过「挂住」的程序，timeout 分类路径**从未被执行**。
+换成 `volatile int spin` + `while (1)` 真忙等后（`JudgeLabPage.tsx:77-79`）才真正测到该路径。
+
+**D 根因**：脚本用原生 setter + `dispatchEvent('change')` 设置 `checkbox.checked`，React 19 的受控复选框**没有接收**，
+`offline` state 仍是 false → `useMemo` 未重建 client → 仍走 godbolt 并命中实例缓存 → 0 请求还判通过。
+更阴的陷阱：脚本自己打印了从 DOM 读回的 `offline=true`，**DOM 的 checked ≠ React 状态**。
+改为真实鼠标点击后，点击坐标 `y=-176`（元素在视口外）又落空一次；最终版先 `scrollIntoView` 再校验坐标落在视口内，
+并把**页面上的后端标识 `<b>`**（godbolt / offline-sim）当作状态真变的铁证。
+
+**修正后的实测（2026-09-06 17:4x，全绿）**：
+
+| 行 | 场景 | 页面渲染 | 网络请求 | 端到端 |
+|---|---|---|---|---|
+| S0 | 初始 | 后端标识 = `godbolt` | — | — |
+| T1 | 真死循环 | **✗ 运行超时**（「运行超时：检查死循环，或该用例规模是否过大」） | 1 (200) | 1603ms（源码与刚才的 API 探测相同，命中 Godbolt 服务端执行缓存） |
+| S2 | 真实点击复选框 | `checked=false → true`，后端标识 `godbolt → offline-sim` | — | — |
+| D1 | 降级 + 有预存输出 | **⚠ 降级自评** + 徽标「数据来自构建期预存」+ 不计正确率、不置 verified | **0** | 832ms |
+| D2 | 降级 + 无预存输出 | **⚠ 后端不可用**（绝不伪造「通过」） | **0** | 822ms |
+| S4 | 再点取消 | 后端标识回到 `godbolt` | — | — |
+| R1 | 恢复正常 | ✓ 通过 | 1 (200) | 1341ms |
+
+D1/D2 的 ~830ms 全部是 `network` 类错误的 800ms 退避重试，降级路径本身是瞬时的。
+至此「降级模式必须实现」这条硬约束第一次拿到**可复现证据**（0 次网络请求 + 明确的不计正确率文案）。
+
+**由 T1 暴露并修掉的真实缺陷**：`config.judge.timeoutMs` 原为 `20_000`，而 Godbolt 公共实例对挂死程序
+**固定在自己的 20 s 时限**（实测 `execTime=20154 / 20357 ms`，`timedOut=true`，`code=143` SIGTERM，
+`stderr: Killed - processing time exceeded / Program terminated with signal: SIGKILL`，HTTP 响应约 20.9 s 才回）。
+两个 20 s 相撞 → 我方 AbortController 先掐断 → 分类成 `busy` 且**可重试**，于是 1 次死循环提交要等 **40841 ms**
+才拿到「⚠ 后端不可用」，`timeout` 判定永远走不到。修复：`timeoutMs: 25_000`（必须 > 后端时限）+ 中止类错误改为
+`retryable: !aborted`（`godbolt.ts:98`）。
+
+**顺带否掉一条省时的想法**：`options.executeParameters.timeout` 传 3 秒**不生效**（同一请求 `execTime` 仍是 20154ms，
+公共实例忽略该字段）。所以不能靠它压缩死循环等待；短时限只能由我们自己放弃等待，而那会丢掉 `timedOut` 信号——
+正确做法就是现在这样：等后端自己回，并把软超时设在 20 s 之上。
+
+**修完后复测 4 组用例串行**（本会话，代码即仓库当前版本）：单请求 **2747 / 337 / 346 / 677 ms**，总 **4107 ms**，
+4/4 通过，缓存命中 0，`Runtime.exceptionThrown` 0，页面无 error overlay。仍在 5 s 采纳线内，
+与 9.3 三次冷跑（2861 / 3090 / 3627 ms）一致；首请求偏慢是冷编译，后续请求复用同一二进制。
+
+> 复盘要点：本轮两次「假通过」都不是应用逻辑错，而是**测试没有测到它声称测的东西**。
+> 因此以后每条判定的验收都必须同时满足：① 状态标签对得上；② 网络请求次数对得上（降级必须是 0）；
+> ③ 页面上的后端标识对得上。缺任一条即视为未验证。

@@ -16,8 +16,14 @@ export const judge = {
   maxConcurrency: 2,
   /** 串行请求之间的最小间隔，避免突发压测把公共实例打抖 */
   minIntervalMs: 250,
-  /** 单请求软超时；服务端排队时 P99 可达数秒，故留 20s 余量 */
-  timeoutMs: 20_000,
+  /**
+   * 单请求软超时。必须 **大于** Godbolt 服务端的执行时限，否则死循环会被我方
+   * AbortController 先掐断，判成「后端不可用」而不是「运行超时」。
+   * 实测（ADR-0001 §9.4）：死循环请求 execTime=20154/20357 ms，HTTP 响应在 ~20.9 s 返回；
+   * 而 executeParameters.timeout 传 3 秒并不生效（公共实例忽略该字段，仍在 20 s 处 SIGKILL）。
+   * 旧值 20_000 与 20 s 相撞，实测导致 timeout 分类永远走不到，故上调到 25s。
+   */
+  timeoutMs: 25_000,
   userArguments: '-std=c99 -Wall -Wextra',
   /** 顶层 code=-1 同时表示编译失败与 TLE，必须靠 buildResult.code / timedOut 区分 */
   resultOrder: ['buildResult.code', 'timedOut', 'code', 'truncated'] as const,

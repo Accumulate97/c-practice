@@ -6,6 +6,7 @@ const NAV = [
   { to: '/', label: '首页' },
   ...sections.map((s) => ({ to: s.path, label: `${s.emoji} ${s.title}` })),
   { to: '/progress', label: '📈 我的进度' },
+  { to: '/judge-lab', label: '🧪 判分实测台' },
 ]
 
 export function AppShell() {

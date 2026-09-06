@@ -3,6 +3,7 @@ import { AppShell } from './components/layout/AppShell'
 import { HomePage } from './pages/HomePage'
 import { SectionPage } from './pages/SectionPage'
 import { ProgressPage } from './pages/ProgressPage'
+import { JudgeLabPage } from './pages/JudgeLabPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 
 /**
@@ -23,6 +24,8 @@ export const router = createHashRouter([
       { path: 'viz', element: <SectionPage /> },
       { path: 'viz/:section', element: <SectionPage /> },
       { path: 'progress', element: <ProgressPage /> },
+      // 阶段 2 的判分实测台，阶段 4 判分器进刷题页后可移除
+      { path: 'judge-lab', element: <JudgeLabPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
