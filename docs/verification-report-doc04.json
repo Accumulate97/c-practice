@@ -1,0 +1,199 @@
+{
+  "_generated": "GENERATED — 由 npm run judge:verify 生成，禁止手工编辑（verified:true 的唯一证据链）",
+  "generated_at": "2026-09-06T11:19:51.008Z",
+  "backend": "godbolt",
+  "compiler": "cg132",
+  "user_arguments": "-std=c99 -Wall -Wextra",
+  "serial_only": true,
+  "min_interval_ms": 100,
+  "scope": "04_题型规范与样例.md",
+  "problems": 5,
+  "requests": 9,
+  "total_wall_ms": 7802,
+  "mean_request_ms": 867,
+  "adopted_answer_of": [],
+  "results": [
+    {
+      "id": "c-ch09-cc-001",
+      "type": "code_completion",
+      "file": "04_题型规范与样例.md",
+      "checked_field": "solution",
+      "request_count": 1,
+      "wall_ms": 1083,
+      "ok": true,
+      "adopted_answer": null,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "",
+          "ms": 980,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 24,
+          "observed": "5 4 3 2 1",
+          "expected": "5 4 3 2 1",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "c-ch09-dbg-001",
+      "type": "debug",
+      "file": "04_题型规范与样例.md",
+      "checked_field": "fixed_code",
+      "request_count": 1,
+      "wall_ms": 838,
+      "ok": true,
+      "adopted_answer": null,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "",
+          "ms": 735,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 22,
+          "observed": "a=5, b=3",
+          "expected": "a=5, b=3",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "c-ch09-cr-001",
+      "type": "code_reading",
+      "file": "04_题型规范与样例.md",
+      "checked_field": "answer",
+      "request_count": 1,
+      "wall_ms": 829,
+      "ok": true,
+      "adopted_answer": null,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "",
+          "ms": 723,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 42,
+          "observed": "1 2 3",
+          "expected": "1 2 3",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "c-ch05-pg-001",
+      "type": "programming",
+      "file": "04_题型规范与样例.md",
+      "checked_field": "reference",
+      "request_count": 4,
+      "wall_ms": 3803,
+      "ok": true,
+      "adopted_answer": null,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "10",
+          "ms": 693,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 41,
+          "observed": "6",
+          "expected": "6",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 1,
+          "stdin": "1000",
+          "ms": 892,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 38,
+          "observed": "6\n28\n496",
+          "expected": "6\n28\n496",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 2,
+          "stdin": "2",
+          "ms": 896,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 42,
+          "observed": "None",
+          "expected": "None",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 3,
+          "stdin": "6",
+          "ms": 913,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 24,
+          "observed": "6",
+          "expected": "6",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "c-ch05-co-001",
+      "type": "code_ordering",
+      "file": "04_题型规范与样例.md",
+      "checked_field": "correct_order",
+      "request_count": 2,
+      "wall_ms": 1249,
+      "ok": true,
+      "adopted_answer": null,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "100",
+          "ms": 713,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 30,
+          "observed": "5050",
+          "expected": "5050",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 1,
+          "stdin": "1",
+          "ms": 332,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 30,
+          "observed": "1",
+          "expected": "1",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    }
+  ]
+}

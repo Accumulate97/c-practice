@@ -1,0 +1,83 @@
+{
+  "category": "c",
+  "chapter": "第6章 利用数组处理批量数据",
+  "problems": [
+    {
+      "id": "c-ch06-cc-001",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 利用数组处理批量数据",
+      "section": "6.1 怎样定义和引用一维数组",
+      "source": "原创（依据大纲考点：一维数组遍历、求最大值下标、逆序输出）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序功能：读入 n 个整数，先输出最大值及其位置（位置从 1 开始计数，若有多个最大值只取第一个），再逆序输出这 n 个整数（同一行，空格分隔，行末无多余空格）。请补全三个空。",
+      "code": "#include <stdio.h>\n\n#define N 100\n\nint main(void)\n{\n    int a[N];\n    int n, i, max, pos;\n\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n\n    max = a[0];\n    pos = 0;\n    for (i = 1; i < n; i++) {\n        if (/*__BLANK_1__*/) {\n            max = a[i];\n            /*__BLANK_2__*/\n        }\n    }\n    printf(\"%d %d\\n\", max, pos + 1);\n\n    for (i = /*__BLANK_3__*/; i >= 0; i--) {\n        if (i == 0)\n            printf(\"%d\\n\", a[i]);\n        else\n            printf(\"%d \", a[i]);\n    }\n\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "hint": "只在遇到「严格更大」的元素时更新，才能保证取第一个最大值",
+          "answer": "max < a[i]",
+          "accepted": [
+            "a[i] > max",
+            "a[i]>max",
+            "max<a[i]",
+            "a[i] > max"
+          ]
+        },
+        {
+          "index": 2,
+          "hint": "记录下标，注意不是记录值",
+          "answer": "pos = i;",
+          "accepted": [
+            "pos = i",
+            "pos=i;",
+            "pos=i"
+          ]
+        },
+        {
+          "index": 3,
+          "hint": "逆序遍历的起点是最后一个元素的下标",
+          "answer": "n - 1",
+          "accepted": [
+            "n-1",
+            "n - 1"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n\n#define N 100\n\nint main(void)\n{\n    int a[N];\n    int n, i, max, pos;\n\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n\n    max = a[0];\n    pos = 0;\n    for (i = 1; i < n; i++) {\n        if (max < a[i]) {\n            max = a[i];\n            pos = i;\n        }\n    }\n    printf(\"%d %d\\n\", max, pos + 1);\n\n    for (i = n - 1; i >= 0; i--) {\n        if (i == 0)\n            printf(\"%d\\n\", a[i]);\n        else\n            printf(\"%d \", a[i]);\n    }\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n5 9 3 7 5",
+          "expected": "9 2\n5 7 3 9 5",
+          "note": "典型输入：最大值在中间"
+        },
+        {
+          "stdin": "1\n-7",
+          "expected": "-7 1\n-7",
+          "note": "边界：n = 1，且为负数"
+        },
+        {
+          "stdin": "6\n4 8 2 8 1 8",
+          "expected": "8 2\n8 1 8 2 8 4",
+          "note": "特殊情况：多个最大值，取第一个"
+        },
+        {
+          "stdin": "4\n-1 -2 -3 -4",
+          "expected": "-1 1\n-4 -3 -2 -1",
+          "note": "边界：最大值在表头，全为负"
+        }
+      ],
+      "explanation": "第 1 空必须用严格不等关系：若写成 max <= a[i]，遇到重复最大值时会把 pos 更新到最后一个，用例 3 会输出 8 6 而非 8 2。第 2 空记录的是下标 i 而不是值 a[i]，值已由 max 保存。第 3 空逆序起点是 n - 1（最后一个元素的合法下标），写成 n 会越界读，写成 0 则只剩一个数。位置输出用 pos + 1 完成「C 下标从 0」到「题目位置从 1」的换算；行末空格用 if (i == 0) 单独换行规避，这是「输出格式严格匹配」的常用手法。",
+      "tags": [
+        "一维数组",
+        "求最大值",
+        "逆序输出",
+        "下标与位置换算"
+      ],
+      "verified": true,
+      "ai_generated": true,
+      "generated_at": "2026-09-06"
+    }
+  ]
+}

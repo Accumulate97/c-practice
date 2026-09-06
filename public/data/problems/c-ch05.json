@@ -1,0 +1,30 @@
+{
+  "category": "c",
+  "chapter": "第5章 循环结构程序设计",
+  "problems": [
+    {
+      "id": "c-ch05-cr-001",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构程序设计",
+      "section": "5.7.2 用continue语句提前结束本次循环",
+      "source": "原创（依据大纲考点：while 循环与 continue 语句的执行流）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "阅读下列程序，写出运行结果。",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 1;\n    int sum = 0;\n\n    while (i <= 20) {\n        if (i % 3 == 0) {\n            i += 2;\n            continue;\n        }\n        sum += i;\n        i += 1;\n    }\n    printf(\"%d\\n\", sum);\n\n    return 0;\n}",
+      "answer": "78",
+      "answerIsDescription": false,
+      "explanation": "continue 只跳过本次循环中其后的语句，不退出循环，但本题在 continue 之前已经执行了 i += 2，因此凡 i 是 3 的倍数时，该值不会被累加，且 i 一次跳过 2（例如 i = 3 直接变 5，5 又会被累加）。被累加的是 1..20 中所有 3 的倍数以及紧邻 3 的倍数之后的那个数之外的数：依次访问 1、2、（3 跳过→5）、5、（6 跳过→8）、8、（9 跳过→11）、11、（12 跳过→14）、14、（15 跳过→17）、17、（18 跳过→20）、20，然后 i 变 21，条件 i <= 20 不成立而退出。注意 3 的倍数本身被跳过，但 3 的倍数 + 2 的数（5、8、11、14、17、20）会被累加，所以结果是 1+2+5+8+11+14+17+20。关键教训：continue 前对循环变量的修改会直接影响下一轮，这是最常见的死循环来源——若把 i += 2 放到 continue 之后，程序将永远在 i = 3 处打转。",
+      "tags": [
+        "while循环",
+        "continue",
+        "循环变量",
+        "执行流追踪"
+      ],
+      "verified": true,
+      "ai_generated": true,
+      "generated_at": "2026-09-06"
+    }
+  ]
+}

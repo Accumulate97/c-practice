@@ -1,0 +1,53 @@
+{
+  "category": "ds",
+  "chapter": "第2章 线性表",
+  "problems": [
+    {
+      "id": "ds-ch02-pg-001",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第2章 线性表",
+      "section": "2.4.2 顺序表中基本操作的实现",
+      "source": "原创（依据大纲考点：顺序表删除操作、元素相对顺序保持、时间空间代价权衡）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "已知顺序表 L 中元素个数为 length，请实现 void RemoveAll(SqList *L, int x)，删除表中所有值等于 x 的元素，要求保持其余元素的相对顺序，且只允许在长度为 MAXN 的数组上原地完成（不得开辟第二个数组）。",
+      "input_format": "第 1 行：两个整数 length 和 x，分别表示顺序表长度与待删除的值（0 ≤ length ≤ 1000）\n第 2 行：length 个整数，表示顺序表中的元素（length 为 0 时第二行可以省略）",
+      "output_format": "第 1 行：删除后的所有元素，同一行以单个空格分隔，行末不得有多余空格；若表已空则输出 NULL\n第 2 行：删除后的表长度",
+      "code_starter": "#include <stdio.h>\n\n#define MAXN 1005\n\ntypedef struct\n{\n    int data[MAXN];\n    int length;\n} SqList;\n\n/* 删除顺序表中所有值等于 x 的元素，保持其余元素的相对顺序 */\nvoid RemoveAll(SqList *L, int x)\n{\n    int i, k = 0;\n\n    /* 在此编写：把不等于 x 的元素前移，最后更新 L->length */\n}\n\nint main(void)\n{\n    SqList L;\n    int i, x;\n\n    if (scanf(\"%d %d\", &L.length, &x) != 2)\n        return 1;\n    for (i = 0; i < L.length; i++)\n        scanf(\"%d\", &L.data[i]);\n\n    RemoveAll(&L, x);\n\n    if (L.length == 0)\n        printf(\"NULL\\n\");\n    else {\n        for (i = 0; i < L.length; i++) {\n            if (i == 0)\n                printf(\"%d\", L.data[i]);\n            else\n                printf(\" %d\", L.data[i]);\n        }\n        printf(\"\\n\");\n    }\n    printf(\"%d\\n\", L.length);\n\n    return 0;\n}",
+      "reference": "#include <stdio.h>\n\n#define MAXN 1005\n\ntypedef struct\n{\n    int data[MAXN];\n    int length;\n} SqList;\n\n/* 删除顺序表中所有值等于 x 的元素，保持其余元素的相对顺序 */\nvoid RemoveAll(SqList *L, int x)\n{\n    int i, k = 0;\n\n    for (i = 0; i < L->length; i++) {\n        if (L->data[i] != x) {\n            L->data[k] = L->data[i];\n            k++;\n        }\n    }\n    L->length = k;\n}\n\nint main(void)\n{\n    SqList L;\n    int i, x;\n\n    if (scanf(\"%d %d\", &L.length, &x) != 2)\n        return 1;\n    for (i = 0; i < L.length; i++)\n        scanf(\"%d\", &L.data[i]);\n\n    RemoveAll(&L, x);\n\n    if (L.length == 0)\n        printf(\"NULL\\n\");\n    else {\n        for (i = 0; i < L.length; i++) {\n            if (i == 0)\n                printf(\"%d\", L.data[i]);\n            else\n                printf(\" %d\", L.data[i]);\n        }\n        printf(\"\\n\");\n    }\n    printf(\"%d\\n\", L.length);\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5 3\n1 3 2 3 4",
+          "expected": "1 2 4\n3",
+          "note": "典型输入：待删元素分散在中间"
+        },
+        {
+          "stdin": "6 1\n1 2 3 4 5 1",
+          "expected": "2 3 4 5\n4",
+          "note": "边界：待删元素同时出现在表头与表尾"
+        },
+        {
+          "stdin": "4 7\n7 7 7 7",
+          "expected": "NULL\n0",
+          "note": "特殊情况：全部元素都被删除"
+        },
+        {
+          "stdin": "7 0\n-1 0 2 0 -3 0 4",
+          "expected": "-1 2 -3 4\n4",
+          "note": "特殊情况：x = 0 且含负数"
+        }
+      ],
+      "explanation": "标准做法是双指针（下标）一次扫描：i 遍历原表，k 记录「保留下来写到第几个位置」，遇到不等于 x 的元素就 L->data[k++] = L->data[i]，最后 L->length = k。因为 k 永远不大于 i，写入位置总是落在尚未读过的区间或刚读过的位置上，所以原地进行且不破坏相对顺序，时间 O(n)、附加空间 O(1)。常见错误有两种：一是每遇到一个 x 就用内层循环把后面所有元素整体前移一次，最坏退化成 O(n^2)；二是用 L->data[i] != x 判断却忘了最后写回 length，导致输出仍带旧的尾部元素。本题也说明顺序表的固有弱点——删除需要移动元素；若删除是主要操作，应改用链表。",
+      "tags": [
+        "顺序表",
+        "删除操作",
+        "原地算法",
+        "时间空间权衡"
+      ],
+      "verified": true,
+      "ai_generated": true,
+      "generated_at": "2026-09-06"
+    }
+  ]
+}

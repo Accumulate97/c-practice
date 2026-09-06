@@ -28,18 +28,38 @@ C 语言 + 数据结构在线学习平台。纯静态网站，最终部署到 Gi
 4. **数据以 JSON 文件存放**，按章节分片 + 索引文件，前端懒加载
 
 ### 编译
-5. 编译引擎用 **Piston 公共 API**
-   - 端点：`POST https://emkc.org/api/v2/piston/execute`
-   - 免 API Key，`language: "c"`
-   - 限制 **5 次/秒**，前端必须做请求节流与排队
-   - 把编译层抽象成独立模块，预留切换到 Judge0 的接口
+5. 编译引擎用 **Compiler Explorer（Godbolt）公共 API**，浏览器直连
+   （2026-09-06 用户裁决一。原 Piston 公共 API 自 2026-02-15 起对非白名单请求返回 401；
+   Wandbox 三次探测全部 504。理由：本项目要开源，不能依赖个人自建实例）
+   - 端点：`POST https://godbolt.org/api/compiler/cg132/compile`，免 API Key
+   - 编译参数固定 `-std=c99 -Wall -Wextra`
+   - **取运行时 stdout 必须同时给 `executorRequest: true` 与 `filters.execute: true`**
+     （双执行开关，少一个只有汇编/编译产物）
+   - **实测限流：Godbolt 是排队不是限流，且并发越高吞吐越低**
+     （串行 ≈ 1.36 QPS，并发 20 跌到 0.52 QPS）→ **多组测试用例一律严格串行，禁止并发**；
+     参数 `maxConcurrency: 2` + FIFO 队列 + `minIntervalMs: 100`
+   - **软超时 25 s，必须 > Godbolt 自身 ~20 s 执行时限**（实测挂死程序 `execTime` 20154 / 20357 ms）；
+     两个 20 s 相撞会把「运行超时」误判成「后端不可用」
+   - **判分顺序固定**：`buildResult.code != 0 → compile-error` → `timedOut → timeout` →
+     退出码 → 输出截断。顶层 `code = -1` 有**双重含义**（编译失败 / 运行时被信号杀死），
+     必须靠 `buildResult` 区分
+   - **降级模式必须实现**：后端不可用时读构建期预存 stdout 让学生自评，
+     不计正确率、不置 verified，绝不伪造「通过」
+   - 编译层抽象成独立模块 `JudgeBackend`（`src/judge/`），后端**可切换**：
+     `BACKENDS` 注册表 + `getBackend()` + `registerBackend()`，新增后端按契约补一个适配器即可
 
 ### 代码
 6. **题目代码必须是标准 C**
    - ❌ 禁用 C++ 语法（`&` 引用、`new`/`delete`、`cin`/`cout`）
    - ❌ 禁用严蔚敏教材的"类C伪码"
    - ❌ 禁用 `gets()`、`conio.h`、`getch()`、`system("pause")` 等非标准内容
-7. **所有代码类题目必须经 Piston 实机验证**，通过后才可置 `verified: true`
+7. **所有代码类题目必须经 Godbolt 实机验证**，通过后才可置 `verified: true`
+   —— 由 `npm run judge:verify` 真实编译 + 执行 + 比对后写入，并把真实 stdout 与逐请求耗时
+   存档进 `public/data/problems/verification-report.json`；**禁止手工置 true**
+   （`verify-data.ts` 会用 `VERIFIED-NO-PROOF` 反查报告里查无记录的 verified 标记）
+   - **后端抖动（HTTP 5xx / 网络失败）= 「未判定」，不是「失败」**：该题 `verified` 一个字节都不改，
+     报告里的成功证据走 `last_known_good` 只增不减（2026-09-06 真实 502 曾把一道已验证题悄悄翻回 false）；
+     传输层错误串行复跑 2 轮，内容错误（编译失败/输出不符）不重试；进程退出码仍为 1，闸门不放行
 
 ---
 
@@ -110,4 +130,5 @@ C 语言 + 数据结构在线学习平台。纯静态网站，最终部署到 Gi
 - 可视化：**SVG + React**，算法写成 Generator 产出 Step 快照
   （不推荐 D3——本场景用不到其数据绑定能力，体积 ~90KB）
 - 搜索：MiniSearch 等纯前端方案
-- 编译：Piston，封装为独立模块 + 请求队列
+- 编译：Godbolt 浏览器直连（详见第二节第 5 条与 `docs/adr/0001-judge-backend.md`），
+  封装为独立模块 + **串行**请求队列

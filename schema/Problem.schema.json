@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Problem",
-  "description": "C practice 题目统一数据结构 v3。基础字段共用，按 type 追加特有字段。支持 11 种题型。",
+  "description": "C practice 题目统一数据结构 v3.1。基础字段共用，按 type 追加特有字段。支持 11 种题型。根节点 unevaluatedProperties:false 禁止规范外字段（如 score），新增字段必须先改本 Schema。",
   "type": "object",
   "required": ["id", "type", "category", "chapter", "section", "difficulty", "bloom", "stem", "explanation"],
   "properties": {
@@ -62,6 +62,7 @@
     "generated_at": { "type": "string", "format": "date" }
   },
 
+  "unevaluatedProperties": false,
   "allOf": [
     {
       "if": { "properties": { "type": { "const": "code_completion" } } },

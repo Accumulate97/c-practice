@@ -1,0 +1,61 @@
+{
+  "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
+  "generated_at": "2026-09-06T11:41:12.793Z",
+  "fields": [
+    "title",
+    "tags",
+    "chapter",
+    "section"
+  ],
+  "enrichStrategies": [
+    "minisearch-stemmer:en"
+  ],
+  "count": 3,
+  "docs": [
+    {
+      "id": "c-ch05-cr-001",
+      "file": "c-ch05.json",
+      "title": "阅读下列程序",
+      "tags": [
+        "while循环",
+        "continue",
+        "循环变量",
+        "执行流追踪"
+      ],
+      "chapter": "第5章 循环结构程序设计",
+      "section": "5.7.2 用continue语句提前结束本次循环",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-001",
+      "file": "c-ch06.json",
+      "title": "程序功能",
+      "tags": [
+        "一维数组",
+        "求最大值",
+        "逆序输出",
+        "下标与位置换算"
+      ],
+      "chapter": "第6章 利用数组处理批量数据",
+      "section": "6.1 怎样定义和引用一维数组",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "ds-ch02-pg-001",
+      "file": "ds-ch02.json",
+      "title": "已知顺序表 L 中元素个数为 length",
+      "tags": [
+        "顺序表",
+        "删除操作",
+        "原地算法",
+        "时间空间权衡"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4.2 顺序表中基本操作的实现",
+      "type": "programming",
+      "category": "ds"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "_generated": "GENERATED — 由 npm run judge:verify 生成，禁止手工编辑（verified:true 的唯一证据链）",
+  "generated_at": "2026-09-06T11:38:03.016Z",
+  "backend": "godbolt",
+  "compiler": "cg132",
+  "user_arguments": "-std=c99 -Wall -Wextra",
+  "serial_only": true,
+  "min_interval_ms": 100,
+  "scope": "public/data/problems/*.json",
+  "problems": 3,
+  "requests": 9,
+  "total_wall_ms": 15260,
+  "mean_request_ms": 1696,
+  "adopted_answer_of": [],
+  "inconclusive_this_run": [],
+  "last_known_good": {
+    "c-ch05-cr-001": {
+      "at": "2026-09-06T11:38:03.016Z",
+      "wall_ms": 7957,
+      "requests": 1
+    },
+    "c-ch06-cc-001": {
+      "at": "2026-09-06T11:38:03.016Z",
+      "wall_ms": 3560,
+      "requests": 4
+    },
+    "ds-ch02-pg-001": {
+      "at": "2026-09-06T11:38:03.016Z",
+      "wall_ms": 3743,
+      "requests": 4
+    }
+  },
+  "results": [
+    {
+      "id": "c-ch05-cr-001",
+      "type": "code_reading",
+      "file": "c-ch05.json",
+      "checked_field": "answer",
+      "request_count": 1,
+      "wall_ms": 7957,
+      "ok": true,
+      "adopted_answer": null,
+      "inconclusive": false,
+      "attempts": 1,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "",
+          "ms": 7846,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 24,
+          "observed": "78",
+          "expected": "78",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "c-ch06-cc-001",
+      "type": "code_completion",
+      "file": "c-ch06.json",
+      "checked_field": "solution",
+      "request_count": 4,
+      "wall_ms": 3560,
+      "ok": true,
+      "adopted_answer": null,
+      "inconclusive": false,
+      "attempts": 1,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "5\n5 9 3 7 5",
+          "ms": 322,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 23,
+          "observed": "9 2\n5 7 3 9 5",
+          "expected": "9 2\n5 7 3 9 5",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 1,
+          "stdin": "1\n-7",
+          "ms": 1362,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 27,
+          "observed": "-7 1\n-7",
+          "expected": "-7 1\n-7",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 2,
+          "stdin": "6\n4 8 2 8 1 8",
+          "ms": 731,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 52,
+          "observed": "8 2\n8 1 8 2 8 4",
+          "expected": "8 2\n8 1 8 2 8 4",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 3,
+          "stdin": "4\n-1 -2 -3 -4",
+          "ms": 729,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 24,
+          "observed": "-1 1\n-4 -3 -2 -1",
+          "expected": "-1 1\n-4 -3 -2 -1",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    },
+    {
+      "id": "ds-ch02-pg-001",
+      "type": "programming",
+      "file": "ds-ch02.json",
+      "checked_field": "reference",
+      "request_count": 4,
+      "wall_ms": 3743,
+      "ok": true,
+      "adopted_answer": null,
+      "inconclusive": false,
+      "attempts": 1,
+      "cases": [
+        {
+          "index": 0,
+          "stdin": "5 3\n1 3 2 3 4",
+          "ms": 683,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 20,
+          "observed": "1 2 4\n3",
+          "expected": "1 2 4\n3",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 1,
+          "stdin": "6 1\n1 2 3 4 5 1",
+          "ms": 885,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 23,
+          "observed": "2 3 4 5\n4",
+          "expected": "2 3 4 5\n4",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 2,
+          "stdin": "4 7\n7 7 7 7",
+          "ms": 877,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 23,
+          "observed": "NULL\n0",
+          "expected": "NULL\n0",
+          "match": true,
+          "warnings": []
+        },
+        {
+          "index": 3,
+          "stdin": "7 0\n-1 0 2 0 -3 0 4",
+          "ms": 869,
+          "http_ok": true,
+          "error_class": "ok",
+          "exit_code": 0,
+          "exec_ms": 24,
+          "observed": "-1 2 -3 4\n4",
+          "expected": "-1 2 -3 4\n4",
+          "match": true,
+          "warnings": []
+        }
+      ],
+      "diagnostics_preview": ""
+    }
+  ]
+}

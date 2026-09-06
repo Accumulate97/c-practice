@@ -1,0 +1,87 @@
+{
+  "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
+  "generated_at": "2026-09-06T11:41:12.793Z",
+  "schema_version": 1,
+  "data_version": "0.1.0",
+  "count": 3,
+  "shard_count": 3,
+  "shards": [
+    {
+      "file": "c-ch05.json",
+      "category": "c",
+      "chapter": "第5章 循环结构程序设计",
+      "count": 1,
+      "url": "data/problems/c-ch05.json"
+    },
+    {
+      "file": "c-ch06.json",
+      "category": "c",
+      "chapter": "第6章 利用数组处理批量数据",
+      "count": 1,
+      "url": "data/problems/c-ch06.json"
+    },
+    {
+      "file": "ds-ch02.json",
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "count": 1,
+      "url": "data/problems/ds-ch02.json"
+    }
+  ],
+  "problems": [
+    {
+      "id": "c-ch05-cr-001",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构程序设计",
+      "section": "5.7.2 用continue语句提前结束本次循环",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "while循环",
+        "continue",
+        "循环变量",
+        "执行流追踪"
+      ],
+      "title": "阅读下列程序",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch06-cc-001",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第6章 利用数组处理批量数据",
+      "section": "6.1 怎样定义和引用一维数组",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "一维数组",
+        "求最大值",
+        "逆序输出",
+        "下标与位置换算"
+      ],
+      "title": "程序功能",
+      "file": "c-ch06.json"
+    },
+    {
+      "id": "ds-ch02-pg-001",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "section": "2.4.2 顺序表中基本操作的实现",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "顺序表",
+        "删除操作",
+        "原地算法",
+        "时间空间权衡"
+      ],
+      "title": "已知顺序表 L 中元素个数为 length",
+      "file": "ds-ch02.json"
+    }
+  ]
+}

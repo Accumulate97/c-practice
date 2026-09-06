@@ -89,7 +89,9 @@ POST https://emkc.org/api/v2/piston/execute   -> HTTP 401
 所以正确策略不是"允许 5 并发"，而是：
 
 - `maxConcurrency = 2`（留 1 个余量，避免单个慢请求把队列钉死），**严禁放大并发**；
-- FIFO + 优先级队列（交互判分 > 示例运行 > 批量预取）；批量验证脚本一律串行，每请求间隔 ≥ 250ms；
+- FIFO + 优先级队列（交互判分 > 示例运行 > 批量预取）；批量验证脚本一律串行，每请求间隔 ≥ 100ms
+  （阶段 3 依用户裁决三第 3 条由 250 降为 100：批量路径单请求本就 300–2700ms，节流用不上；
+  但前端缓存命中约 10ms、学生连点「编译并运行」时它会立刻生效，保留的成本为零）；
 - 跨标签页用 `navigator.locks.request('judge:godbolt')` 共享同一并发额度；
 - **不设 `bypassCache`**：同源码 + 不同 stdin 会复用编译缓存（实测第 3 组 597ms < 第 1 组 907ms），
   所以"多组测试用例 = 依次提多个执行请求"是廉价的，不必强行合并成一次请求（这点与 Piston 设计相反）；
@@ -173,8 +175,8 @@ export class JudgeTransportError extends Error {
 export interface JudgeBackend {
   readonly id: string
   readonly maxConcurrency: number   // godbolt: 2（依据 4.3，更高反而降低吞吐）
-  readonly minIntervalMs: number    // godbolt: 250
-  readonly timeoutMs: number        // godbolt: 20000
+  readonly minIntervalMs: number    // godbolt: 100
+  readonly timeoutMs: number        // godbolt: 25000（必须 > Godbolt 公共实例自身 ~20s 执行时限，见 9.4）
   execute(req: RunRequest): Promise<ExecutionResult>
 }
 ```
@@ -196,9 +198,11 @@ export interface JudgeBackend {
   `navigator.locks` 跨标签共享并发额度、后端不可用时读构建期预存 stdout 自评。
 - 装配：`src/judge/index.ts` 的 `BACKENDS` 注册表 + `getBackend()`（读 `config.judge.backend`，未知取值
   回落 godbolt 并 `console.warn`）+ `registerBackend()`（单测注入替身）+ `availableBackends()`。
-- **`verified: true` 只能由 `scripts/judge-verify.ts` 写入**（**尚未实现，阶段 3 交付**；当前 `scripts/` 只有
-  `verify-pages-dist.mjs`），同时把真实 stdout 存档进 `public/data/problems/verification-report.json`，
-  形成「即使后端下线也可复核」的证据链。
+- **`verified: true` 只能由 `scripts/judge-verify.ts` 写入**（**阶段 3 已交付**：`npm run judge:verify`；
+  `scripts/` 现有 `build-index.ts` / `verify-data.ts` / `lint-code.ts` / `judge-verify.ts`，另有 `verify-pages-dist.mjs`），
+  同时把真实 stdout 与逐请求耗时存档进 `public/data/problems/verification-report.json`，
+  形成「即使后端下线也可复核」的证据链；`verify-data.ts` 另有 `VERIFIED-NO-PROOF` 反向核查
+  「报告里查无实机记录的 `verified: true`」——翻标记与留证据必须同时发生。
 - **输出比对归一化**（配合裁决二第 2 条，`expected` 一律不写末尾换行）：CRLF/CR → LF → 每行行尾空白
   剥离 → 整体末尾所有换行剥离 → 逐行比对。实现于 `src/judge/backends/base.ts`，是唯一一份归一化代码，
   页面与题目数据都不得自行 trim。
@@ -211,9 +215,9 @@ export interface JudgeBackend {
 | 2 不得引入需服务端运行时的方案 | ✅ 满足 | 不引入自建后端；仅"依赖外部公共 HTTP API"，与原 Piston 方案同性质 |
 | 3 localStorage 存进度 | ✅ 不受影响 | — |
 | 4 JSON 分片 + 索引懒加载 | ✅ 不受影响 | — |
-| 5 Piston + 5 次/秒 + 预留 Judge0 接口 | ⚠ **部分偏离**（本 ADR 即偏离的正式记录） | 引擎 Piston → Godbolt（Piston 已白名单化）；"5 次/秒"以"并发 ≤ 2 + FIFO 排队 + 250ms 最小间隔"落实（实测依据 4.3 与 9.3：串行 4 组实际 ≈ 1.2 请求/秒，且高并发反而降低吞吐）；抽象层（`JudgeBackend` 契约 + 集中式 client）保留，但 `PistonAdapter` / `Judge0Adapter` 两份实现已删除，将来切换后端需按第 5 节契约补写 —— 这是对该子句字面要求的**诚实偏离**，经用户 2026-09-06 阶段 2 裁决批准 |
-| 6 标准 C | ✅ 满足 | `-std=c99 -Wall -Wextra`；另有 `scripts/lint-code.ts` 静态扫非法构造 —— **阶段 3 交付，当前尚未实现** |
-| 7 实机验证后才可 `verified: true` | ⏳ 待阶段 3 | 由 `scripts/judge-verify.ts`（**尚未实现**）真实编译 + 执行 + 比对 `expected` 后写入 |
+| 5 Piston + 5 次/秒 + 预留 Judge0 接口 | ⚠ **部分偏离**（本 ADR 即偏离的正式记录） | 引擎 Piston → Godbolt（Piston 已白名单化）；"5 次/秒"以"并发 ≤ 2 + FIFO 排队 + 100ms 最小间隔"落实（实测依据 4.3 与 9.3：串行 4 组实际 ≈ 1.2 请求/秒，且高并发反而降低吞吐）；抽象层（`JudgeBackend` 契约 + 集中式 client）保留，但 `PistonAdapter` / `Judge0Adapter` 两份实现已删除，将来切换后端需按第 5 节契约补写 —— 这是对该子句字面要求的**诚实偏离**，经用户 2026-09-06 阶段 2 裁决批准 |
+| 6 标准 C | ✅ 满足 | `-std=c99 -Wall -Wextra`；另有 `scripts/lint-code.ts` 静态扫非法构造 —— **阶段 3 已交付**：`npm run lint:code` 扫 22 处代码段 0 命中；`--self-test` 19 条对照（9 条必抓 + 10 条不得误报）全过；`--all` 能抓到 05 里故意写错的反例，证明规则集不是空转 |
+| 7 实机验证后才可 `verified: true` | ✅ 已满足（引擎为 Godbolt） | 由 `scripts/judge-verify.ts` 真实编译 + 执行 + 比对 `expected` 后才写 `verified`；3 道种子题 + 04 的 5 道代码样例全绿（18 个请求），逐请求耗时与真实 stdout 存档见第 10 节 |
 
 ## 7. 残留风险与缓解
 
@@ -293,6 +297,9 @@ json 代码块做完整校验。校验脚本是临时件（`%TEMP%\ajv_check.mjs
 04 里的 `verified` 仍保持 `false`：按第 5 节纪律，置 `true` 只能由阶段 3 的 `scripts/judge-verify.ts`
 在写入数据文件的同时存档真实 stdout，本轮不手改题目数据。
 
+> **后续（阶段 3，2026-09-06）**：这条纪律已落地。`judge-verify.ts --doc04` 把 04 的 4 道主力代码题
+> `verified` **定点改写**为 `true`（`git diff -- 04_*` 只有 4 行，无格式化噪声），证据见第 10 节。
+
 ### 9.3 一道编程题 × 4 组用例「串行」端到端实测
 
 按用户要求**不使用并发**（4.3：并发 20 时完成速率从 1.36 QPS 跌到 0.52 QPS）。被测路径：
@@ -320,7 +327,7 @@ JudgeLab 的「4 组用例串行 + 耗时报告」按钮 → `JudgeClient.runTes
 总耗时 **10 ms**，通过 4/4，缓存命中 4 次。即学生反复提交一份没改过的代码不消耗配额。
 
 **节流核实**：冷跑 C 四次请求起始时刻 2877 → 3511 → 4388 → 5263，扣除上一请求耗时后净间隔 3–5ms。
-说明 `minIntervalMs: 250` 在这条路径上从未产生额外等待（单个请求本身 >250ms），串行 4 组的实际速率
+说明 `minIntervalMs: 250`（阶段 2 当时的配置值，阶段 3 依裁决三第 3 条降为 100）在这条路径上从未产生额外等待（单个请求本身 >250ms），串行 4 组的实际速率
 ≈ 1.2 请求/秒，远低于 5 次/秒红线；真正起作用的是 `maxConcurrency: 2` + FIFO 队列 + 页面级 `busy` 互斥。
 
 **勘误（务必读）**：本节上一版记录的 2965 / 3729 / 3 / 2170 ms 四个数**不可复现，已整表替换**。
@@ -389,3 +396,115 @@ D1/D2 的 ~830ms 全部是 `network` 类错误的 800ms 退避重试，降级路
 > 复盘要点：本轮两次「假通过」都不是应用逻辑错，而是**测试没有测到它声称测的东西**。
 > 因此以后每条判定的验收都必须同时满足：① 状态标签对得上；② 网络请求次数对得上（降级必须是 0）；
 > ③ 页面上的后端标识对得上。缺任一条即视为未验证。
+
+---
+
+## 10. 阶段 3 证据：数据闸门与构建期实机验证（2026-09-06）
+
+### 10.1 交付物与「同源」原则
+
+| 文件 | 职责 | 关键设计 |
+|---|---|---|
+| `scripts/build-index.ts` | 由 `public/data/problems/*.json` 生成 `index.json` 与 `search/problems.json`（另生成 knowledge/viz 空索引） | 产物头部 `_generated: GENERATED —— 禁止手工编辑`；知识卡片与演示尚未开工时也能空跑 |
+| `scripts/verify-data.ts` | Ajv 全量校验 + id 唯一 + index↔分片双向一致 + 三向引用不悬空（双向）+ 章节三向一致 | `--self-test` 造 11 个已知坏样本，证明闸门本身有效，而不是「没报错=通过」 |
+| `scripts/lint-code.ts` | 硬扫非法 C 构造（引用形参 / new / delete / cin·cout / gets / conio.h·getch / system("pause") / 专有头） | 先剥注释与字符串字面量再匹配；`banned-system` 走原文匹配（注释里的反例仍不算）；`--self-test` 19 条对照 |
+| `scripts/judge-verify.ts` | Godbolt 真跑 + `verified` 写回 + 真实 stdout 存档 | 用 Vite `middlewareMode + ssrLoadModule` 加载**应用真正会用的那份** `godbolt.ts` / `base.ts` / `config.ts`，构建期与线上判分口径同源，不会出现两套实现 |
+
+### 10.2 Schema 严格化（用户裁决三第 1 条）
+
+- 已实测：draft-07 根节点直接加 `additionalProperties: false` 会把 `allOf` 分支自己的字段全部判为非法。
+- 采纳方案：升级到 **`$schema: 2020-12` + 根节点 `unevaluatedProperties: false`**（分支 `$defs` 仍可自由扩展，只有「任何分支都不认领」的键才被拒）。
+- 双向验证都通过才采纳：
+  - 正例 —— `node scripts/verify-data.ts --doc04` → `04 样例 Schema 校验：11/11 通过`；
+  - 反例 —— `--self-test` 用例「多塞一个 Schema 里没有的 `score: 10`」→ 被 `SCHEMA` 拦下（10.4 第 1 条）。
+- 备选方案（Schema 不动、改在 `verify-data.ts` 里做题型字段白名单）**未启用**，无需退回。
+
+### 10.3 Godbolt 实机验证（唯一真源 = 两份 report JSON）
+
+统一口径：`compiler=cg132`、`userArguments="-std=c99 -Wall -Wextra"`、
+**`executorRequest: true` + `filters.execute: true` 双执行开关缺一不可**（只给一个就只能拿回汇编/编译产物，
+拿不到运行时 stdout）、严格串行、`minIntervalMs=100`、`timeoutMs=25000`。
+
+种子题 —— `public/data/problems/verification-report.json`（3 题 / 9 请求 / 总墙钟 7815ms / 均值 868ms·请求）：
+
+| id | type | 送验字段 | 请求数 | 各请求墙钟 ms | Godbolt 执行 ms | 结论 |
+|---|---|---|---|---|---|---|
+| c-ch05-cr-001 | code_reading | `answer`（真实 stdout 采纳） | 1 | 322 | 24 | PASS → verified=true |
+| c-ch06-cc-001 | code_completion | `solution` × 4 组用例 | 4 | 1095/806/886/994 | 23/27/52/24 | PASS → verified=true |
+| ds-ch02-pg-001 | programming | `reference` × 4 组用例 | 4 | 548/779/395/1022 | 20/23/23/24 | PASS → verified=true |
+
+`code_reading` 的 `answer` 采纳流程（硬约束「禁止手推」）：数据里先写占位符 `PENDING-REAL-STDOUT` →
+第一遍取回真实 stdout = `"78"`（750ms）→ 隔 `minIntervalMs` 后**独立复跑第二遍** = `"78"`（291ms）→
+两遍归一化后完全一致才落盘；任一遍失败即拒绝回填并保持 `verified:false`。最终判定刻意**重新读盘**，
+保证「被置 true 的数据」与「报告里存档的数据」是同一份。
+
+04 样例 —— `docs/verification-report-doc04.json`（5 题 / 9 请求 / 总墙钟 7802ms / 均值 867ms·请求）：
+c-ch09-cc-001 980 · c-ch09-dbg-001 735 · c-ch09-cr-001 723 · c-ch05-pg-001 693/892/896/913 ·
+c-ch05-co-001 713/332（ms）→ **5/5 PASS**，写回时 `定点改写 4 处 verified`（第 5 道本来就是 true，
+脚本只在值真的不同时才动那一行）。`git diff --stat -- 04_*` = **4 insertions / 4 deletions**，
+全部是 `"verified": false → true`，没有格式化噪声（见 10.6 的事故复盘）。
+
+### 10.4 `verify-data.ts --self-test` 的 11 个负例（闸门有效性的证明）
+
+SCHEMA（多塞 `score`）· ID-DUP · REF-DANGLING · LINE-ENDING（`expected` 末尾多写换行）· SHARD-UNKNOWN ·
+ID-FILE（题放错分片）· ID-CHAPTER（`chapter` 字符串与 id 前缀不符）· SECTION-CHAPTER（`section` 节号不属于该章）·
+SOURCE（缺 `source`）· NONCODE-VERIFIED · VERIFIED-NO-PROOF。
+基线噪声（合成题不在真实 index 里、知识/演示语料尚空）单列，不与上述 11 码混淆。
+
+### 10.5 对硬约束表的增量影响
+
+- 第 6 节第 5、6、7 行的状态已按阶段 3 事实更新（原文见各处「已交付」标注）。
+- 遗留：7.4 的 `probe()` 健康检查仍未实现；`docs/chapter-map.md` 的 `pendingRulings`
+  （指针章号 `c-ch08` 与本仓库 04/08 文档示例里的 `c-ch09` 冲突）待用户裁决后才能批量出题。
+
+### 10.6 事故复盘：一次「定点改写」写成了整块重排
+
+`--doc04` 的第一版写回实现是「找到围栏 → `JSON.stringify(obj, null, 2)` 整块重写」，
+结果是 04 里 `"accepted": ["a","b"]` 这类紧凑数组被炸成多行：一次 4 行的 verified 翻转
+制造了 **56 insertions / 13 deletions** 的 diff——规范文档没法审。已改为
+`patchDocSample()`：按顶层键逐行定点替换（顶层键固定两空格缩进，嵌套同名键不会误伤），
+替换后**重新解析并断言除目标键外没有任何语义变化**，不满足就抛异常、一个字都不写。
+`04_题型规范与样例.md` 已用 `git cat-file blob <HEAD-sha>` 字节级还原后重跑，最终 diff 即 10.3 所列 4 行。
+纪律：**任何写回规范文档的脚本，验收标准是 `git diff` 的行数，不是「跑成功了」**。
+
+### 10.7 事故复盘：一次 HTTP 502 把已验证的题悄悄降级了
+
+真实跑 `npm run judge:verify`（9 个串行请求）时，第 5 个请求 Godbolt 返回 **HTTP 502**。
+第一版脚本只区分「用例比对通过 / 不通过」，于是：
+
+1. `c-ch06-cc-001` 的 `verified` 被从 `true` **写回成 `false`**；
+2. 报告被本轮结果整体覆盖，**上一次成功取证的 stdout 与耗时一并丢失**。
+
+一次上游抖动毁掉了已验证状态与它的证据链——这比「后端不可用」本身更糟，因为站点数据被
+静默改坏了。**结论：传输层结果必须和内容层结果分开建模。**
+
+修正后的语义（`scripts/judge-verify.ts`）：
+
+| 概念 | 判定 | 处置 |
+|---|---|---|
+| `isInconclusive()` | 任一用例 `!http_ok` 或 `error_class === 'transport-error'` | 本题记为**未判定** |
+| 重试 | 仅传输层，`MAX_ATTEMPTS = 2`，间隔 1500 ms **串行**复跑 | 内容错误（编译失败 / 输出不符）**不重试**，那是真失败 |
+| 写回 | 两处写回（04 与分片）都是 `if (r.inconclusive) continue` | `verified` 一个字节都不动 |
+| 证据 | 报告新增 `last_known_good: { id: { at, wall_ms, requests } }` | **只增不减**：本轮真跑通才刷新，未判定沿用原时刻 |
+| 退出码 | `hardFailed === 0 && inconclusiveCount === 0 ? 0 : 1` | 有未判定就 **EXIT=1**，闸门不放行，但数据不改 |
+
+负例对照（同一轮内连续两次执行，后端换成必然抛 `HTTP 502` 的替身）：
+
+```text
+$ node scripts/judge-verify.ts --simulate-5xx   # 第 1 次
+🚩 未判定 c-ch05-cr-001  轮次=2  沿用 2026-09-06T11:36:21.466Z 那次成功的实机证据
+🚩 未判定 c-ch06-cc-001  轮次=2  沿用 2026-09-06T11:36:21.466Z 那次成功的实机证据
+🚩 未判定 ds-ch02-pg-001 轮次=2  沿用 2026-09-06T11:36:21.466Z 那次成功的实机证据
+无需改 c-ch05.json / c-ch06.json / ds-ch02.json —— 未判定(verified 不动)      EXIT=1
+$ node scripts/judge-verify.ts --simulate-5xx   # 第 2 次（连续抖动）
+   carried_from 仍然是 11:36:21.466Z —— 取证时刻没被「沿用的沿用」稀释成抖动那一轮的时间
+MD5：c-ch05.json / c-ch06.json / ds-ch02.json / index.json 四个文件 before 与 after 全部 SAME
+```
+
+随后联网复跑 `node scripts/judge-verify.ts` → **3/3 PASS**（9 请求 · 总墙钟 15260 ms ·
+均值 1696 ms/请求；其中一条 `code_reading` 请求 7846 ms，可见 Godbolt 排队抖动的量级），
+`c-ch06-cc-001` 的 `verified=true` 与报告证据同时恢复，`inconclusive_this_run: []`。
+
+**顺带记录一条环境事实**：`npm run build` 在受限沙箱内以 `spawn EPERM` 失败
+（tailwind oxide 原生模块加载 + 子进程创建受限），非沙箱下 337 ms 正常完成。
+这不是代码问题，别把它误读成「构建坏了」。

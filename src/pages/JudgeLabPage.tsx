@@ -10,7 +10,7 @@ import { getBackend } from '../judge'
 import { JudgeClient, type ProblemTestCase } from '../judge/client'
 import { JudgeTransportError } from '../judge/types'
 import type { BatchReport, JudgeBackend, JudgeProgress, JudgeResponse, QueueStatus, RunRequest } from '../judge/types'
-import { normalizeOutput } from '../judge/backends/base'
+import { normalizeExpected, normalizeOutput } from '../judge/backends/base'
 
 const REF_PROGRAM = [
   '#include <stdio.h>',
@@ -118,6 +118,26 @@ function lookupPrecomputed(code: string, stdin: string): string | null {
   return PRECOMPUTED[stdin.trim()] ?? null
 }
 
+/**
+ * 最后一道防线（裁决 6）：client.run / client.runTests 已把「传输故障」转成降级响应，
+ * 这里兜的是它们兜不住的未预期异常（预存查询抛错、进度回调抛错、判分纯函数抛错）。
+ * 一律归类 backend-unavailable —— 触发降级显示，且**不重试**：成因未知的异常
+ * 自动重放只会把同一个 bug 再撞一遍。
+ */
+function unexpectedError(error: unknown, expected = ''): JudgeResponse {
+  const reason = error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+  return {
+    state: 'backend-unavailable',
+    summary: `判分流程出现未预期异常（${reason}），本次不予判分，也不自动重试`,
+    expected: normalizeExpected(expected),
+    actual: '',
+    diagnostics: [],
+    compilerMessage: reason,
+    degraded: false,
+    source: 'backend',
+  }
+}
+
 export function JudgeLabPage() {
   const [presetKey, setPresetKey] = useState('ref')
   const [code, setCode] = useState(PRESETS[0]?.code ?? '')
@@ -172,6 +192,12 @@ export function JudgeLabPage() {
       setSingleMs(Math.round(performance.now() - startedAt.current))
       setSingle(res)
       note(`${STATE_LABEL[res.state]} · ${res.summary}`)
+    } catch (error) {
+      const ms = Math.round(performance.now() - startedAt.current)
+      const res = unexpectedError(error, expected)
+      setSingleMs(ms)
+      setSingle(res)
+      note(`未预期异常，已归类「${STATE_LABEL[res.state]}」· ${ms} ms（未重试）`)
     } finally {
       setBusy(false)
     }
@@ -183,10 +209,31 @@ export function JudgeLabPage() {
     setBatch(null)
     setProgress(null)
     note('提交：4 组用例串行（每请求一个执行任务，不用并发）')
+    startedAt.current = performance.now()
     try {
       const rep = await client.runTests(code, REF_CASES, setProgress)
       setBatch(rep)
       note(`串行完成：${rep.acceptedCount}/${rep.results.length} 通过，总耗时 ${rep.totalMs} ms`)
+    } catch (error) {
+      // 兜底：整批记为 backend-unavailable，不重试（裁决 6）
+      const ms = Math.round(performance.now() - startedAt.current)
+      const one = unexpectedError(error)
+      const rep: BatchReport = {
+        results: REF_CASES.map((tc, i) => ({
+          index: i + 1,
+          stdin: tc.stdin,
+          note: tc.note,
+          ms,
+          cacheHit: false,
+          response: unexpectedError(error, tc.expected),
+        })),
+        timings: REF_CASES.map(() => ms),
+        totalMs: ms,
+        acceptedCount: 0,
+        cacheHits: 0,
+      }
+      setBatch(rep)
+      note(`未预期异常 → ${REF_CASES.length} 组全记为「${STATE_LABEL[one.state]}」，未重试（${ms} ms）`)
     } finally {
       setBusy(false)
     }
