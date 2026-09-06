@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run judge:verify 生成，禁止手工编辑（verified:true 的唯一证据链）",
-  "generated_at": "2026-09-06T11:45:54.102Z",
+  "generated_at": "2026-09-06T11:51:37.348Z",
   "backend": "godbolt",
   "compiler": "cg132",
   "user_arguments": "-std=c99 -Wall -Wextra",
@@ -9,24 +9,24 @@
   "scope": "public/data/problems/*.json",
   "problems": 3,
   "requests": 9,
-  "total_wall_ms": 7271,
-  "mean_request_ms": 808,
+  "total_wall_ms": 6586,
+  "mean_request_ms": 732,
   "adopted_answer_of": [],
   "inconclusive_this_run": [],
   "last_known_good": {
     "c-ch05-cr-001": {
-      "at": "2026-09-06T11:45:54.102Z",
-      "wall_ms": 647,
+      "at": "2026-09-06T11:51:37.348Z",
+      "wall_ms": 1119,
       "requests": 1
     },
     "c-ch06-cc-001": {
-      "at": "2026-09-06T11:45:54.102Z",
-      "wall_ms": 3044,
+      "at": "2026-09-06T11:51:37.348Z",
+      "wall_ms": 2865,
       "requests": 4
     },
     "ds-ch02-pg-001": {
-      "at": "2026-09-06T11:45:54.102Z",
-      "wall_ms": 3580,
+      "at": "2026-09-06T11:51:37.348Z",
+      "wall_ms": 2602,
       "requests": 4
     }
   },
@@ -37,7 +37,7 @@
       "file": "c-ch05.json",
       "checked_field": "answer",
       "request_count": 1,
-      "wall_ms": 647,
+      "wall_ms": 1119,
       "ok": true,
       "adopted_answer": null,
       "inconclusive": false,
@@ -46,7 +46,7 @@
         {
           "index": 0,
           "stdin": "",
-          "ms": 540,
+          "ms": 1005,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -65,7 +65,7 @@
       "file": "c-ch06.json",
       "checked_field": "solution",
       "request_count": 4,
-      "wall_ms": 3044,
+      "wall_ms": 2865,
       "ok": true,
       "adopted_answer": null,
       "inconclusive": false,
@@ -74,7 +74,7 @@
         {
           "index": 0,
           "stdin": "5\n5 9 3 7 5",
-          "ms": 699,
+          "ms": 678,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -87,7 +87,7 @@
         {
           "index": 1,
           "stdin": "1\n-7",
-          "ms": 289,
+          "ms": 357,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -100,7 +100,7 @@
         {
           "index": 2,
           "stdin": "6\n4 8 2 8 1 8",
-          "ms": 937,
+          "ms": 717,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -113,7 +113,7 @@
         {
           "index": 3,
           "stdin": "4\n-1 -2 -3 -4",
-          "ms": 694,
+          "ms": 670,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -132,7 +132,7 @@
       "file": "ds-ch02.json",
       "checked_field": "reference",
       "request_count": 4,
-      "wall_ms": 3580,
+      "wall_ms": 2602,
       "ok": true,
       "adopted_answer": null,
       "inconclusive": false,
@@ -141,7 +141,7 @@
         {
           "index": 0,
           "stdin": "5 3\n1 3 2 3 4",
-          "ms": 687,
+          "ms": 692,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -154,7 +154,7 @@
         {
           "index": 1,
           "stdin": "6 1\n1 2 3 4 5 1",
-          "ms": 941,
+          "ms": 293,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -167,7 +167,7 @@
         {
           "index": 2,
           "stdin": "4 7\n7 7 7 7",
-          "ms": 809,
+          "ms": 289,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
@@ -180,7 +180,7 @@
         {
           "index": 3,
           "stdin": "7 0\n-1 0 2 0 -3 0 4",
-          "ms": 721,
+          "ms": 885,
           "http_ok": true,
           "error_class": "ok",
           "exit_code": 0,
