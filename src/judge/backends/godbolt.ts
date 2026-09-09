@@ -121,6 +121,19 @@ export function createGodboltBackend(options: GodboltOptions = {}): JudgeBackend
       const build = json.buildResult as
         | { code?: number; stderr?: RawLine[]; stdout?: RawLine[] }
         | undefined
+      // 坑 4（阶段 4 模块 1 补，用户明令断言）：Godbolt 响应是扁平的，没有 execResult 包裹层。
+      // didExecute !== true 说明后端只给了编译产物（executorRequest / filters.execute 少给一个，
+      // 或公共实例降级），此时顶层 stdout 是空数组，classify() 仍会判成 ok，再被 verdict()
+      // 静默比成「实际输出为空」的假 wrong-answer。历史事故：用 j.execResult||{} 兜底不抛错，
+      // 30/30 验证全废。故这里显式抛传输层错误，交给 client 的重试 / 降级路径处理。
+      const buildCode = typeof build?.code === 'number' ? build.code : 0
+      if (!req.compileOnly && buildCode === 0 && json.didExecute !== true) {
+        throw new JudgeTransportError(
+          'busy',
+          `Godbolt 未执行本次程序（didExecute=${String(json.didExecute)}），结果不可信`,
+          { retryable: true },
+        )
+      }
       const diagnostics = collect(build?.stderr).concat(collect(build?.stdout))
         // 编译期信息：buildResult.stderr 是真正的诊断，顶层 stderr 在编译失败时只放一句 "Build failed"
         const compilerMessage = [stripAnsi(joinTextLines(build?.stderr)), stripAnsi(joinTextLines(json.stderr))]

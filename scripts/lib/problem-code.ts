@@ -75,7 +75,10 @@ export function buildRunnableSource(p: ProblemLike): Runnable | null {
       let code = str(p, 'code')
       let answer = str(p, 'answer')
       if (!code || !answer) return null
-      return { code, cases: [{ stdin: '', expected: answer }], checkedField: 'answer' }
+      // stdin 是可选字段（2026-09-09 加进 Schema）：缺失按空串，与判分层同口径。
+      // judge:verify / verify:data / lint:code 都走本函数，故三处自动同步，不再各自硬编码空串。
+      let stdin = str(p, 'stdin')
+      return { code, cases: [{ stdin: stdin === null ? '' : stdin, expected: answer }], checkedField: 'answer' }
     }
     case 'programming': {
       let code = str(p, 'reference')

@@ -18,6 +18,23 @@ export const router = createHashRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'problems', element: <SectionPage /> },
+      // 阶段 4 题目详情页。用 problems/p/:id 而不是 problems/:id：后者会与下面的
+      // problems/:section 同层歧义（React Router 靠静态段优先级能分辨，但显式加 p 更好读）
+      //
+      // 路由级 lazy：详情页拖着判分层 + 三个 Renderer（其中程序填空还拖着整套 CodeMirror 6）。
+      // 静态 import 会让首页也付这份体积（实测主 chunk 505 kB），拆出去后首页零成本。
+      {
+        path: 'problems/p/:id',
+        lazy: async () => {
+          const mod = await import('./pages/ProblemDetailPage')
+          return { Component: mod.ProblemDetailPage }
+        },
+        // lazy 路由会让「首屏直接落在题目深链」这一次渲染变成 React Router 的 hydration，
+        // 不给 HydrateFallback 就会在控制台打一条 warning（模块 3 UI 验收实测抓到）。
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载题目页…</p>
+        ),
+      },
       { path: 'problems/:section', element: <SectionPage /> },
       { path: 'knowledge', element: <SectionPage /> },
       { path: 'knowledge/:section', element: <SectionPage /> },

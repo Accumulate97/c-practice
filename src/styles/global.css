@@ -51,3 +51,86 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ============================================================
+   代码编辑器（CodeMirror 6）令牌与空位槽样式（阶段 4 模块 3）
+   全部走 CSS 变量：深浅色主题切换时不必重建编辑器实例
+   ============================================================ */
+:root[data-theme='light'] {
+  --code-comment: #6a737d;
+  --code-keyword: #a626a4;
+  --code-string: #0a7d33;
+  --code-number: #b5660b;
+  --code-type: #0b5cad;
+  --code-func: #6f42c1;
+  --code-op: #475063;
+  --code-preproc: #9a4a00;
+  --code-line-active: #eef2f7;
+  --code-selection: #cfe0ff;
+  --code-blank-bg: #fff6dd;
+  --code-blank-border: #d97706;
+  --code-blank-focus-bg: #ffe9b0;
+  --code-blank-badge-bg: #f1f5f9;
+  --code-blank-badge-fg: #475569;
+  --code-blank-badge-active-bg: #2563eb;
+  --code-blank-badge-active-fg: #ffffff;
+}
+:root[data-theme='dark'] {
+  --code-comment: #7d8aa5;
+  --code-keyword: #c792ea;
+  --code-string: #a5e075;
+  --code-number: #f78c6c;
+  --code-type: #7fd1ff;
+  --code-func: #d6b3ff;
+  --code-op: #a8b3c7;
+  --code-preproc: #ffcb6b;
+  --code-line-active: #1b2437;
+  --code-selection: #2b4a7a;
+  --code-blank-bg: #3a2f14;
+  --code-blank-border: #f59e0b;
+  --code-blank-focus-bg: #56431a;
+  --code-blank-badge-bg: #24304a;
+  --code-blank-badge-fg: #b9c6dd;
+  --code-blank-badge-active-bg: #3b82f6;
+  --code-blank-badge-active-fg: #ffffff;
+}
+
+.cm-host { display: block; width: 100%; }
+.cm-host .cm-editor { width: 100%; }
+.cm-host[data-readonly='true'] .cm-content { cursor: default; }
+
+/* 空位槽：底色 + 下边框标出可编辑区间，聚焦时再叠一圈描边 */
+.cm-blank {
+  background-color: var(--code-blank-bg);
+  border-bottom: 2px solid var(--code-blank-border);
+  border-radius: 3px;
+}
+.cm-blank-focus {
+  background-color: var(--code-blank-focus-bg);
+  outline: 1px solid var(--code-blank-border);
+  outline-offset: 1px;
+}
+
+/* 编号徽标：空位未填时区间长度为 0，徽标是唯一可见线索，故常驻 */
+.cm-blank-badge {
+  display: inline-block;
+  min-width: 1.4em;
+  margin: 0 2px;
+  padding: 0 4px;
+  border: 1px solid var(--code-blank-border);
+  border-radius: 9999px;
+  background-color: var(--code-blank-badge-bg);
+  color: var(--code-blank-badge-fg);
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  line-height: 1.6;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+.cm-blank-badge-active {
+  background-color: var(--code-blank-badge-active-bg);
+  border-color: var(--code-blank-badge-active-bg);
+  color: var(--code-blank-badge-active-fg);
+  font-weight: 700;
+}

@@ -110,6 +110,11 @@
         "required": ["code", "answer"],
         "properties": {
           "code": { "type": "string" },
+          "stdin": {
+            "type": "string",
+            "default": "",
+            "description": "程序运行时需要喂给 stdin 的输入（含换行）。缺失按空串处理。2026-09-09 加字段：读输入的阅读题此前一律喂空串，scanf 撞 EOF 得到垃圾输出，实机对照永远失败（docs/verify-report-2026-09-08.md C/D 类 39 题）。数据填充另行安排，本次只加结构与读取口径。"
+          },
           "answer": { "type": "string", "description": "真实运行结果或功能描述" },
           "answerIsDescription": {
             "type": "boolean", "default": false,
