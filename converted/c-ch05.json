@@ -36,7 +36,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a=2,s=0,n=1,count=1;\n    while (count<=7)     {   n=n * a;    s=s+n;    ++count;   }\n    printf(\"s=%d\",s);\n    return 0;\n}",
       "answer": "s=254",
       "id": "c-ch05-cr-002",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -155,7 +155,7 @@
         }
       ],
       "id": "c-ch05-cc-001",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -189,7 +189,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i=0,x=0,y=0;\n    do\n    {   ++i;\n        if (i%2!=0)  {x=x+i;i++;}\n        y=y+i++;\n    } while (i<=7);\n    printf(\"x=%d,y=%d\\n\",x,y);\n    return 0;\n}",
       "answer": "x=1,y=20",
       "id": "c-ch05-cr-009",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -206,7 +206,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a=1,b=3,i=1;\n    do\n    {   printf(\"%d,%d,\",a,b);\n        a=(b-a) * 2+b;\n        b=(a-b) * 2+a;\n        if (i++%2==0) printf(\"\\n\");\n    } while (b<100);\n    return 0;\n}",
       "answer": "1,3,7,15,\n31,63,",
       "id": "c-ch05-cr-010",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -257,7 +257,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i,t,sum=0;\n    for(t=i=1;  i<=10;   )\n        {   sum+=t;    ++i;\n            if(i%3==0)   t=-i;\n            else   t=i;\n        }\n    printf(\"sum=%d\",sum);\n    return 0;\n}",
       "answer": "sum=19",
       "id": "c-ch05-cr-013",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -274,7 +274,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i;\n    for(i=1;i<=5;i++)\n        switch(i%2)\n        {   case 0: i++; printf(\"#\");break;\n            case 1: i+=2; printf(\"*\");\n            default: printf(\"\\n\");\n        }\n    return 0;\n}",
       "answer": "*\n#",
       "id": "c-ch05-cr-014",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -291,7 +291,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i,j=4;\n    for (i=j;i<=2 * j;i++)\n        switch (i/j)\n        {   case 0:\n            case 1: printf (\"*\");break;\n            case 2: printf (\"#\");\n        }\n    return 0;\n}",
       "answer": "****#",
       "id": "c-ch05-cr-015",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -325,7 +325,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int y=2,a=1;\n    while(y--!=-1)\n    {   do { a*=y;   a++;   } while(y--);   }\n    printf(\"%d,%d\",a,y);\n    return 0;\n}",
       "answer": "1,-2",
       "id": "c-ch05-cr-017",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -342,7 +342,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i,j;\n    for(i=0;i<=3;i++)\n    {   for (j=0;j<=5;j++)\n            if(i==0||j==0||i==3||j==5)   printf(\"*\");\n        else   printf(\"  \");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
       "answer": "******\n*        *\n*        *\n******",
       "id": "c-ch05-cr-018",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -359,7 +359,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i,j;\n    for(i=4; i>=1; i--)\n    {   for(j=1; j<=i; j++) putchar('#');\n        for(j=1; j<=4-i; j++) putchar('*');\n        putchar('\\n');\n    }\n    return 0;\n}",
       "answer": "####\n###*\n##**\n#***",
       "id": "c-ch05-cr-019",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -393,7 +393,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i=1;\n    while(i<=15)\n        if(++i%3!=2) continue;\n        else printf(\"%d \",i);\n    return 0;\n}",
       "answer": "2 5 8 11 14 ",
       "id": "c-ch05-cr-021",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -410,7 +410,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i,j,k=19;\n    while (i=k-1)\n    {   k-=3;\n        if (k%5==0) {i++; continue; }\n        else if(k<5) break;\n        i++;\n    }\n    printf(\"i=%d,k=%d\\n\",i,k);\n    return 0;\n}",
       "answer": "i=6,k=4",
       "id": "c-ch05-cr-022",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -427,7 +427,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a,y;\n    a=10; y=0;\n    do\n    {   a+=2; y+=a;\n        if(y>50) break;\n    } while(a=14);\n    printf(\"a=%d y=%d\\n\",a,y);\n    return 0;\n}",
       "answer": "a=16 y=60",
       "id": "c-ch05-cr-023",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -444,7 +444,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i=5;\n    do\n    {   switch (i%2)\n        {   case 4: i--; break;\n            case 6: i--; continue;\n        }\n        i--; i--;\n        printf(\"%d \",i);\n    } while(i>0);\n    return 0;\n}",
       "answer": "3 1 -1 ",
       "id": "c-ch05-cr-024",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -610,7 +610,7 @@
           "note": "关键用例：和不能被 n 整除，用于暴露整数除法截断"
         }
       ],
-      "verified": true
+      "verified": false
     },
     {
       "id": "c-ch05-dbg-005",
@@ -654,7 +654,7 @@
           "note": "典型：n=5，检验两位数积的排版"
         }
       ],
-      "verified": true
+      "verified": false
     },
     {
       "id": "c-ch05-dbg-006",
@@ -698,7 +698,7 @@
           "note": "边界：1 没有真因子"
         }
       ],
-      "verified": true
+      "verified": false
     }
   ]
 }

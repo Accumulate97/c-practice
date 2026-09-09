@@ -1,0 +1,1412 @@
+{
+  "category": "c",
+  "chapter": "第7章 函数",
+  "generated_at": "2026-09-08",
+  "count": 46,
+  "pending": [
+    {
+      "originalId": "题7.1",
+      "sourceBatch": "p120-131.json",
+      "page": 120,
+      "bookPage": 109,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.1（PDF p120 / 书页 p109）",
+        "difficulty": 4,
+        "stem": "【题 7.1】以下程序的运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) m=5",
+          "B) m=－6",
+          "C) m=6",
+          "D) m=－5"
+        ],
+        "code": "#include <stdio.h>\nint fun(int n)\n{ int m=0,f=-1,i;\n  for(i=1;i<=n;i++)\n    { m=m+i * f;\n      f=-f;\n    }\n  return m;\n}\nint main( )\n{ printf(\"m=%d\\n\", fun(10));\n  return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.2",
+      "sourceBatch": "p120-131.json",
+      "page": 120,
+      "bookPage": 109,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.2（PDF p120 / 书页 p109）",
+        "difficulty": 2,
+        "stem": "【题 7.2】C语言规定，简单变量作为实参时，它和对应形参之间的数据传递方式是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 地址传递",
+          "B) 单向值传递",
+          "C) 由实参传给形参，再由形参传回给实参",
+          "D) 由用户指定传递方式"
+        ]
+      }
+    },
+    {
+      "originalId": "题7.3",
+      "sourceBatch": "p120-131.json",
+      "page": 120,
+      "bookPage": 109,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.3（PDF p120 / 书页 p109）",
+        "difficulty": 3,
+        "stem": "【题 7.3】以下程序有语法性错误，有关错误原因的正确说法是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 语句 void prt_char( ); 有错，它是函数调用语句，不能用 void 说明",
+          "B) 变量名不能使用大写字母",
+          "C) 函数说明和函数调用语句之间有矛盾",
+          "D) 函数名不能使用下划线"
+        ],
+        "code": "#include <stdio.h>\nint main( )\n{   int G=5,k;\n    void prt_char( );\n    ...\n    k=prt_char(G);\n    ...\n}"
+      }
+    },
+    {
+      "originalId": "题7.4",
+      "sourceBatch": "p120-131.json",
+      "page": 121,
+      "bookPage": 110,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.4（PDF p121 / 书页 p110）",
+        "difficulty": 3,
+        "stem": "【题 7.4】以下程序的运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) －16",
+          "B) －17",
+          "C) 17",
+          "D) 16"
+        ],
+        "code": "#include <stdio.h>\nint fun(int a, int b)\n{ if(a>b) return(a+b);\n  else return(a-b);\n}\nint main( )\n{ int x=3, y=8, z=6, r;\n  r=fun(fun(x,y), 2 * z);\n  printf(\"%d\\n\", r);\n  return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.5",
+      "sourceBatch": "p120-131.json",
+      "page": 121,
+      "bookPage": 110,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.5（PDF p121 / 书页 p110）",
+        "difficulty": 3,
+        "stem": "【题 7.5】以下程序的运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) －48",
+          "B) 58",
+          "C) －58",
+          "D) 47"
+        ],
+        "code": "#include <stdio.h>\nint f(int x, int y)\n{   return (y-x) * x; }\nint main( )\n{   int a=3,b=4,c=5,d;\n    d=f(f(a,c),f(a,b)+f(c,b));\n    printf(\"%d\\n\",d);\n    return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.6",
+      "sourceBatch": "p120-131.json",
+      "page": 121,
+      "bookPage": 110,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：options（需恰好 4 项，实际 2）；answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "options（需恰好 4 项，实际 2）",
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.6（PDF p121 / 书页 p110）",
+        "difficulty": 4,
+        "stem": "【题 7.6】以下程序的功能是计算函数 F(x,y,z)=＝(x＋y)/(x－y)＋(z＋y)/(z－y)的值，请选择填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "【1】A) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y",
+          "【2】A) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y"
+        ],
+        "code": "#include <stdio.h>\n#include <math.h>\nfloat f(float,float);\nint main( )\n{   float x,y,z,sum;\n    scanf(\"%f%f%f\", &x, &y, &z);\n    sum=f(【1】)+f(【2】);\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b)\n{   float value;\n    value=a/b;\n    return(value);\n}"
+      }
+    },
+    {
+      "originalId": "题7.7",
+      "sourceBatch": "p120-131.json",
+      "page": 122,
+      "bookPage": 111,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：options（需恰好 4 项，实际 2）；answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "options（需恰好 4 项，实际 2）",
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.7（PDF p122 / 书页 p111）",
+        "difficulty": 4,
+        "stem": "【题 7.7】以下程序可选出能被3整除且至少有一位是5的两位数，打印出所有这样的数及其个数。请选择填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "【1】A) k * 10\nB) k%10\nC) k/10\nD) k * 10%10",
+          "【2】A) a2 * 10\nB) a2\nC) a2/10\nD) a2%10"
+        ],
+        "code": "#include <stdio.h>\nint sub(int k, int n)\n{   int a1,a2;\n    a2=【1】;\n    a1=k-【2】;\n    if((k%3==0 && a2==5)||(k%3==0 && a1==5))\n    {   printf(\"%d \",k);\n        n++;\n        return n;\n    }\n    else return -1;\n}\nint main( )\n{   int n=0,k,m;\n    for(k=10;k<=99;k++)\n    {   m=sub(k,n);\n        if(m!=-1) n=m;\n    }\n    printf(\"\\nn=%d\",n);\n    return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.8",
+      "sourceBatch": "p120-131.json",
+      "page": 122,
+      "bookPage": 111,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.8（PDF p122 / 书页 p111）",
+        "difficulty": 3,
+        "stem": "【题 7.8】以下是有关汉诺塔问题的程序段，若在 main 函数中有调用语句 hanoi(3,‘A’,‘B’,‘C’)；则符合程序段运行结果的选项是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) A-->C\nA-->B\nC-->B\nB-->A\nC-->B\nA-->C\nA-->B",
+          "B) A-->C\nA-->B\nC-->A\nA-->B\nB-->C\nA-->C\nA-->B",
+          "C) A-->C\nA-->B\nC-->B\nA-->C\nB-->A\nB-->C\nA-->C",
+          "D) A-->C\nA-->B\nC-->B\nA-->C\nA-->B\nB-->C\nA-->C"
+        ],
+        "code": "void move(char getone,char putone)\n{   printf(\"%c-->%c\\n\",getone,putone);\n}\n\nvoid hanoi(int n,char one,char two,char three)\n{   if(n==1) move(one,three);\n    else\n    {   hanoi(n-1,one,three,two);\n        move(one,three);\n        hanoi(n-1,two,one,three);\n    }\n}"
+      }
+    },
+    {
+      "originalId": "题7.9",
+      "sourceBatch": "p120-131.json",
+      "page": 123,
+      "bookPage": 112,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.9（PDF p123 / 书页 p112）",
+        "difficulty": 2,
+        "stem": "【题 7.9】若用数组名作为函数调用的实参，则传递给形参的是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 数组的首地址",
+          "B) 数组第一个元素的值",
+          "C) 数组中全部元素的值",
+          "D) 数组元素的个数"
+        ]
+      }
+    },
+    {
+      "originalId": "题7.10",
+      "sourceBatch": "p120-131.json",
+      "page": 123,
+      "bookPage": 112,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：options（需恰好 4 项，实际 2）；answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "options（需恰好 4 项，实际 2）",
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.10（PDF p123 / 书页 p112）",
+        "difficulty": 3,
+        "stem": "【题 7.10】折半查找法的思路是：先确定待查元素的范围，将其分成两半，然后测试位于中间点元素的值。如果该待查元素的值大于中间点元素，就缩小待查范围，只测试中点之后的元素；反之，测试中点之前的元素，测试方法同前。函数 binary 的作用是应用折半查找法从存有 10 个有序整数的 a 数组中对关键字 m 进行查找，若找到，返回其下标值；反之，返回－1。请选择填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "【1】A) high=mid－1\nB) low=mid＋1\nC) high=mid＋1\nD) low=mid－1",
+          "【2】A) high=mid－1\nB) low=mid＋1\nC) high=mid＋1\nD) low=mid－1"
+        ],
+        "code": "int binary(int a[10],int m)\n{   int low=0,high=9,mid;\n    while(low<=high)\n    {   mid=(low+high)/2;\n        if(m<a[mid])  【1】;\n        else if(m>a[mid])  【2】;\n        else return(mid);\n    }\n    return(-1);\n}"
+      }
+    },
+    {
+      "originalId": "题7.11",
+      "sourceBatch": "p120-131.json",
+      "page": 123,
+      "bookPage": 112,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.11（PDF p123 / 书页 p112）",
+        "difficulty": 4,
+        "stem": "【题 7.11】以下程序的正确运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 0 2 4 6 8 10 12 14 16 18\n0 1 2 3 4",
+          "B) 0 1 2 3 4\n0 2 4 6 8 10 12 14 16 18",
+          "C) 0 1 2 3 4 5 6 7 8 9\n0 1 2 3 4",
+          "D) 0 2 4 6 8 10 12 14 16 18\n0 2 4 6 8 10 12 14 16 18"
+        ],
+        "code": "#include <stdio.h>\n#define MAX 10\nvoid sub2( ), sub1( ), sub3(int * a);\nint a[MAX],i;\nint main( )\n{   printf(\"\\n\"); sub1( ); sub3(a); sub2( ); sub3(a);\n    return(0);\n}\nvoid sub2( )\n{   int a[MAX],i,max;\n    max=5;\n    for(i=0;i<max;i++) a[i]=i;\n}\nvoid sub1( )\n{   for(i=0;i<MAX;i++) a[i]=i+i;\n}\nvoid sub3(int a[ ])\n{   int i;\n    for(i=0; i<MAX; i++) printf(\"%d \",a[i]);\n    printf(\"\\n\");\n}"
+      }
+    },
+    {
+      "originalId": "题7.12",
+      "sourceBatch": "p120-131.json",
+      "page": 124,
+      "bookPage": 113,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.12（PDF p124 / 书页 p113）",
+        "difficulty": 4,
+        "stem": "【题 7.12】以下程序的正确运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 12,2",
+          "B) 不确定",
+          "C) 5,25",
+          "D) 1,12"
+        ],
+        "code": "#include <stdio.h>\nvoid num( )\n{   extern int x,y; int a=15,b=10;\n    x=a-b;\n    y=a+b;\n}\nint x,y;\nint main( )\n{   int a=7,b=5;\n    x=a+b;\n    y=a-b;\n    num( );\n    printf(\"%d,%d\\n\",x,y);\n    return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.13",
+      "sourceBatch": "p120-131.json",
+      "page": 125,
+      "bookPage": 114,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.13（PDF p125 / 书页 p114）",
+        "difficulty": 2,
+        "stem": "【题 7.13】在一个C源程序文件中，若要定义一个只允许本源文件中所有函数使用的全局变量，则该变量需要使用的存储类别是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) extern",
+          "B) register",
+          "C) auto",
+          "D) static"
+        ]
+      }
+    },
+    {
+      "originalId": "题7.14",
+      "sourceBatch": "p120-131.json",
+      "page": 125,
+      "bookPage": 114,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.14（PDF p125 / 书页 p114）",
+        "difficulty": 3,
+        "stem": "【题 7.14】以下程序的正确运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 7   7   7",
+          "B) 7  10  13",
+          "C) 7   9  11",
+          "D) 7   8   9"
+        ],
+        "code": "#include <stdio.h>\nint f(int a);\nint main( )\n{   int a=2,i;\n    for(i=0; i<3; i++) printf(\"%4d\",f(a));\n    return(0);\n}\nint f(int a)\n{   int b=0; static int c=3;\n    b++; c++;\n    return(a+b+c);\n}"
+      }
+    },
+    {
+      "originalId": "题7.15",
+      "sourceBatch": "p120-131.json",
+      "page": 125,
+      "bookPage": 114,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.15（PDF p125 / 书页 p114）",
+        "difficulty": 3,
+        "stem": "【题 7.15】以下程序的运行结果是________。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 20 8 2 －1",
+          "B) 2 8 20",
+          "C) 8",
+          "D) －1 2 8 20"
+        ],
+        "code": "#include <stdio.h>\nvoid fun(int x)\n{   if(x/2>0) fun(x/2-2);\n    printf(\"%d \",x);\n}\nint main( )\n{   fun(20);\n    printf(\"\\n\");\n    return(0);\n}"
+      }
+    },
+    {
+      "originalId": "题7.16",
+      "sourceBatch": "p120-131.json",
+      "page": 125,
+      "bookPage": 114,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.16（PDF p125 / 书页 p114）",
+        "difficulty": 3,
+        "stem": "【题 7.16】为使以下程序顺利运行，请在【1】中填写正确的内容；当输入的数值为 5 7 时，该程序的运行结果是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n【1】\nint main( )\n{   double x,y;\n    scanf(\"%lf%lf\", &x, &y);\n    printf(\"%lf\\n\",max(y,x));\n    return(0);\n}\ndouble max(double a,double b)\n{   return(a>b ? b-a:a-b); }",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.17",
+      "sourceBatch": "p120-131.json",
+      "page": 126,
+      "bookPage": 115,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.17（PDF p126 / 书页 p115）",
+        "difficulty": 4,
+        "stem": "【题 7.17】以下函数 fun 的功能是：将输入的大写字母，先转换为与其对应的小写字母，然后再转换成该小写字母后的第 3 个字母，返回后输出。例如，若输入的字母为 E，输出的字母则为 h；若输入的字母为 Y，输出的字母则为 b。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <string.h>\nchar fun(char c)\n{   c=【1】;\n    if(c>='a'&&c<='w') c=c+3;\n    else if(c>='x'&&c<='z')【2】;\n    return c;\n}\nint main( )\n{   char c;\n    c=getchar( );\n    c=fun(c);\n    putchar(c);\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.19",
+      "sourceBatch": "p120-131.json",
+      "page": 127,
+      "bookPage": 116,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.19（PDF p127 / 书页 p116）",
+        "difficulty": 3,
+        "stem": "【题 7.19】下面 add 函数的功能是求两个参数的和，并将和值返回调用函数。函数中错误的部分是【1】，改正后为【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "void add(float a,float b)\n{   float c;\n    c=a+b;\n    return c;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.20",
+      "sourceBatch": "p120-131.json",
+      "page": 127,
+      "bookPage": 116,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.20（PDF p127 / 书页 p116）",
+        "difficulty": 4,
+        "stem": "【题 7.20】以下函数 fun 的功能是：统计一个数中位值为零的个数，以及位值为 1 的个数。若输入 111001，则输出位值为零的个数为 2，位值为 1 的个数为 4，请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid fun(long n)\n{   int coun0=0,coun1=0,m;\n    do\n    {   m=【1】;\n        if(m==0) coun0++;\n        if(m==1) coun1++;\n        n=【2】;\n    }while(n);\n    printf(\"coun0=%d,coun1=%d\\n\",coun0,coun1);\n}\nint main( )\n{   long n;\n    printf(\"\\nninput n:\\n \"); scanf(\"%ld\",&n); printf(\"n=%ld\\n\",n);\n    fun(n);\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.21",
+      "sourceBatch": "p120-131.json",
+      "page": 127,
+      "bookPage": 116,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.21（PDF p127 / 书页 p116）",
+        "difficulty": 4,
+        "stem": "【题 7.21】以下函数 fun 的功能是：将输入的一个偶数写成两个素数之和的形式。例如，若输入数值 8，则输出 8=3+5。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <math.h>\nvoid fun(int a)\n{   int b,c,d;\n    for(b=3; b<=a/2; b=【1】)\n    {   for(c=2; c<=sqrt(b); c++) if(b%c==0) break;\n        if(c>sqrt(b)) d=【2】;\n        else break;\n        for(c=2; c<=sqrt(d); c++) if(d%c==0) break;\n        if(c>sqrt(d)) printf(\"%d=%d+%d\\n\",a,b,d);\n    }\n}\nint main( )\n{   int a;\n    printf(\"\\nninput a:\\n \"); scanf(\"%d\",&a);\n    fun(a);\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.23",
+      "sourceBatch": "p120-131.json",
+      "page": 128,
+      "bookPage": 117,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.23（PDF p128 / 书页 p117）",
+        "difficulty": 4,
+        "stem": "【题 7.23】以下程序的功能是根据输入的y(Y)与n(N)，在屏幕上分别显示出This is YES.与This is NO.。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid YesNo(char ch)\n{   switch(ch)\n    {   case 'y':\n            case 'Y': printf(\"\\nThis is YES.\\n\");【1】;\n            case 'n':\n            case 'N': printf(\"\\nThis is NO.\\n\");\n    }\n}\nint main( )\n{   char ch;\n    printf(\"\\nEnter a char 'y','Y' or 'n','N':\");\n    ch=【2】;\n    printf(\"ch: %c\",ch);\n    YesNo(ch);\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.24",
+      "sourceBatch": "p120-131.json",
+      "page": 129,
+      "bookPage": 118,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.24（PDF p129 / 书页 p118）",
+        "difficulty": 3,
+        "stem": "【题 7.24】以下 Check 函数的功能是对 value 中的值进行四舍五入，若计算后的值与 ponse 值相等，则显示 WELL DONE!!，否则显示计算后的值。已有函数调用语句 Check(ponse,value)；请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "void Check(int ponse,float value)\n{   int val;\n    val=【1】;\n    printf(\"计算后的值：\" + \"：\" + \"%d\",val);\n    if(【2】)  printf(\"\\nWELL DONE!!\\n\");\n    else  printf(\"\\nSorry the correct answer is %d\\n\",val);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.25",
+      "sourceBatch": "p120-131.json",
+      "page": 129,
+      "bookPage": 118,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.25（PDF p129 / 书页 p118）",
+        "difficulty": 4,
+        "stem": "【题 7.25】以下程序的运行结果是\"output 153 370 371 407\"，该程序的功能是【】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint f(int n)\n{   int i,j,k;\n    i=n/100; j=n/10-i * 10; k=n%10;\n    if(i * 100+j * 10+k==i * i * i+j * j * j+k * k * k) return n;\n    else return 0;\n}\nint main( )\n{   int n,k;\n    printf(\"output \");\n    for(n=100; n<1000; n++)\n    {   k=f(n);\n        if(k!=0) printf(\"%d \",k);\n    }\n    printf(\"\\n\");\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.26",
+      "sourceBatch": "p120-131.json",
+      "page": 129,
+      "bookPage": 118,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.26（PDF p129 / 书页 p118）",
+        "difficulty": 4,
+        "stem": "【题 7.26】以下程序的功能是用二分法求方程 2x³－4x²＋3x－6=0 的根，并要求绝对误差不超过 0.001。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nfloat f(float x)\n{   return(2 * x * x * x-4 * x * x+3 * x-6); }\n\nint main( )\n{   float m=-100,n=90,r;\n    r=(m+n)/2;\n    while(f(r) * f(n)!=0)\n    {   if(【1】) m=r;\n        else n=r;\n        if(【2】) break;\n        r=(m+n)/2;\n    }\n    printf(\"The fang cheng jie is %6.3f\\n\",r);\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.28",
+      "sourceBatch": "p120-131.json",
+      "page": 130,
+      "bookPage": 119,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.28（PDF p130 / 书页 p119）",
+        "difficulty": 4,
+        "stem": "【题 7.28】以下程序的功能是计算下面函数的值。请填空。\nF(x,y,z)=＝sin(x)/(sin(x－y)sin(x－z))＋sin(y)/(sin(y－z)sin(y－x))＋sin(z)/(sin(z－x)sin(z－y))",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <math.h>\nfloat f(float, float, float);\nint main( )\n{   float x,y,z,sum;\n    printf(\"\\nninput x,y,z:\\n\");\n    scanf(\"%f%f%f\",&x,&y,&z);\n    sum=【1】;\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b,float c)\n{   float value;\n    value=【2】;\n    return(value);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.29",
+      "sourceBatch": "p120-131.json",
+      "page": 131,
+      "bookPage": 120,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.29（PDF p131 / 书页 p120）",
+        "difficulty": 4,
+        "stem": "【题 7.29】已有函数 pow，现要求取消变量 i 后 pow 函数的功能不变。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "修改前的 pow 函数：\n\nint pow(int x,int y)\n{   int i,j=1;\n    for(i=1; i<=y; ++i) j=j * x;\n    return(j);\n}\n\n修改后的 pow 函数：\n\nint pow(int x,int y)\n{   int j;\n    for(【1】;【2】;【3】) j=j * x;\n    return(j);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.30",
+      "sourceBatch": "p120-131.json",
+      "page": 131,
+      "bookPage": 120,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.30（PDF p131 / 书页 p120）",
+        "difficulty": 4,
+        "stem": "【题 7.30】以下程序的运行结果是输出如下图形。请填空。\n（原书图形为 7 行星号组成的菱形：自上而下每行星号数依次为 1、3、5、7、5、3、1，星号之间隔一个空格，行首按层级缩进，第 1 行缩进最多、第 4 行星号最多）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid a(int i)\n{   int j,k;\n    for(j=0; j<=7-i; j++) printf(\" \");\n    for(k=0;k<【1】; k++) printf(\"* \");\n    printf(\"\\n\");\n}\nint main( )\n{   int i;\n    for(i=0; i<3; i++)     【2】;\n    for(i=3; i>=0; i--)    【3】;\n    return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.32",
+      "sourceBatch": "p131-142.json",
+      "page": 132,
+      "bookPage": 121,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.32（PDF p132 / 书页 p121）",
+        "difficulty": 3,
+        "stem": "【题 7.32】函数 gongyue 的作用是求整数 num1 和 num2 的最大公约数，并返回该值。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "int gongyue(int num1,int num2)\n{  int temp,a,b;\n   if(num1 【1】 num2)\n   {  temp=num1; num1=num2; num2=temp; }\n   a=num1; b=num2;\n   while(【2】)\n   {  temp=a%b; a=b; b=temp; }\n   return(a);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.34",
+      "sourceBatch": "p131-142.json",
+      "page": 133,
+      "bookPage": 122,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.34（PDF p133 / 书页 p122）",
+        "difficulty": 4,
+        "stem": "【题 7.34】下面函数 pi 的功能是：根据以下公式，返回满足精度(0.0005)要求的 π 的值。请填空。\n（原书公式为分式排版，线性化为：π/2 = 1 + 1/3 + 1/3 * 2/5 + 1/3 * 2/5 * 3/7 + 1/3 * 2/5 * 3/7 * 4/9 + …）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <conio.h>\n#include <math.h>\n#include <stdio.h>\ndouble pi(double eps)\n{  double s=0.0,t=1.0; int n;\n   for(【1】; t>eps; n++)\n   {  s+=t;\n      t=n * t/(2 * n+1);\n   }\n   return(【2】);\n}\nint main( )\n{  double x=0.0005;\n   printf(\"\\nneps=%lf，π=%lf\",x,pi(x));\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.35",
+      "sourceBatch": "p131-142.json",
+      "page": 133,
+      "bookPage": 122,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.35（PDF p133 / 书页 p122）",
+        "difficulty": 4,
+        "stem": "【题 7.35】以下程序的运行结果是【1】，fun 函数的作用是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <math.h>\nint fun(int y, int x)\n{  int z;\n   z=abs(x-y);\n   return(z);\n}\nint main( )\n{  int a=-1,b=-5,c;\n   c=fun(a,b);\n   printf(\"%d\",c);\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.37",
+      "sourceBatch": "p131-142.json",
+      "page": 134,
+      "bookPage": 123,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.37（PDF p134 / 书页 p123）",
+        "difficulty": 4,
+        "stem": "【题 7.37】下面函数 func 的功能是【 】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <conio.h>\n#include <stdio.h>\n#include <stdlib.h>\nlong func(long num)\n{  long k=1;\n   num=labs(num);\n   do\n   {  k*=num%10;\n      num/=10;\n   }while(num);\n   return(k);\n}\nint main( )\n{  long n;\n   printf(\"\\nPlease enter a number: \");\n   scanf(\"%ld\",&n);\n   printf(\"\\nThe product of its digits is %ld.\",func(n));\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.39",
+      "sourceBatch": "p131-142.json",
+      "page": 135,
+      "bookPage": 124,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.39（PDF p135 / 书页 p124）",
+        "difficulty": 3,
+        "stem": "【题 7.39】以下程序的功能是用递归方法计算 5 位学生的年龄，已知第一位学生年龄最小为 10 岁，其余学生一个比一个大 2 岁，求第 5 位学生的年龄。请填空。\n递归公式如下：\n（原书公式为分段大括号排版，线性化为：age(n) = 10（n=1）；age(n) = age(n-1)+2（n>1））",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint age(int n)\n{  int c;\n   if(n==1) c=10;\n   else c=【1】;\n   return(c);\n}\nint main( )\n{  int n=5;\n   printf(\"age: %d\\n\",【2】);\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.40",
+      "sourceBatch": "p131-142.json",
+      "page": 135,
+      "bookPage": 124,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.40（PDF p135 / 书页 p124）",
+        "difficulty": 4,
+        "stem": "【题 7.40】下面程序的功能是【1】，运行结果是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nlong fib(int g)\n{  switch(g)\n      {  case 0: return 0;\n         case 1: case 2: return 1;\n      }\n   return(fib(g-1)+fib(g-2));\n}\nint main( )\n{  long k;\n   k=fib(7);\n   printf(\"k= %d\\n\",k);\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.42",
+      "sourceBatch": "p131-142.json",
+      "page": 136,
+      "bookPage": 125,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.42（PDF p136 / 书页 p125）",
+        "difficulty": 4,
+        "stem": "【题 7.42】以下程序是应用递归算法求某数 a 的平方根，请填空。求平方根的迭代公式如下：\n（原书公式为分式排版，线性化为：x1 = 1/2 * (x0 + a / x0)）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <math.h>\ndouble mysqrt(double a,double x0)\n{  double x1,y;\n   x1=【1】;\n   if(fabs(x1-x0)>0.00001) y=mysqrt(【2】);\n   else y=x1;\n   return y;\n}\nint main( )\n{  double x;\n   printf(\"Enter x: \"); scanf(\"%lf\",&x);\n   printf(\"The sqrt of %f=%f\\n\",x,mysqrt(x,1.0));\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.45",
+      "sourceBatch": "p131-142.json",
+      "page": 137,
+      "bookPage": 126,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.45（PDF p137 / 书页 p126）",
+        "difficulty": 4,
+        "stem": "【题 7.45】阅读下面程序，完成下列问题中的填空。\n问题(1) 此程序在调用函数 f 后的运行结果是【1】。\n(2) 若将函数 f 中的 for(j=i+1; j<4; j++) 改为 for(j=0; j<3-i; j++)，则程序的运行结果是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid f(int s[ ][4])\n{  int i,j,k;\n   for(i=0; i<3; i++)\n         for(j=i+1; j<4; j++)\n         {  k=s[i][j]; s[i][j]=s[j][i]; s[j][i]=k; }\n}\nint main( )\n{  int s[4][4],i,j;\n   for(i=0;i<4;i++)\n         for(j=0;j<4;j++)  s[i][j]=i-j;\n   f(s);\n   for(i=0; i<4; i++)\n   {  printf(\"\\n\");\n      for(j=0; j<4; j++)\n            printf(\"%4d\",s[i][j]);\n   }\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.46",
+      "sourceBatch": "p131-142.json",
+      "page": 138,
+      "bookPage": 127,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.46（PDF p138 / 书页 p127）",
+        "difficulty": 4,
+        "stem": "【题 7.46】以下 search 函数的功能是利用顺序查找法从数组 a 的 10 个元素中对关键字 m 进行查找。顺序查找法的思路是：从第一个元素开始，从前向后依次与关键字比较，直到找到此元素或查找到数组尾部时结束。若找到，则返回此元素的下标；若仍未找到，则返回值－1。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint search(int a[10],int m)\n{  int i;\n   for(i=0; i<=9; i++) if(【1】) return(i);\n   return(-1);\n}\nint main( )\n{  int a[10],m,i,no;\n   ...\n   no=search(【2】);\n   if(【3】)  printf(\"\\nOK FOUND! %d \",no+1);\n   else      printf(\"\\nSorry Not Found!\");\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.47",
+      "sourceBatch": "p131-142.json",
+      "page": 138,
+      "bookPage": 127,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.47（PDF p138 / 书页 p127）",
+        "difficulty": 5,
+        "stem": "【题 7.47】已定义一个含有 30 个元素的数组 s，函数 fav1 的功能是按顺序分别赋予各元素从 2 开始的偶数，函数 fav2 则按顺序每 5 个元素求一个平均值，并将该值存放在数组 w 中。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#define SIZE 30\nvoid fav1(float s[ ])\n{  int i;\n   float k=2.0;\n   for(i=0;i<SUZE;i++)\n   {  【1】;\n      k+=2;\n   }\n}\nvoid fav2(float s[ ],float w[ ])\n{  float sum; int k,i;\n   sum=0.0;\n   for(k=0,i=0; i<SIZE; i++)\n   {  sum+=s[i];\n      if((i+1)%5==0)\n      {  w[k]=sum/5;\n         【2】;\n         k++;\n      }\n   }\n}\nint main( )\n{  float s[SIZE],w[SIZE/5]; int i;\n   fav1(s);for(i=0;i<SIZE;i++)  printf(\"%.f\",s[i]);printf(\"\\n\");\n   fav2(s,w);for(i=0;i<SIZE/5;i++)  printf(\"%.f\",w[i]);\n   return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.48",
+      "sourceBatch": "p131-142.json",
+      "page": 139,
+      "bookPage": 128,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.48（PDF p139 / 书页 p128）",
+        "difficulty": 4,
+        "stem": "【题 7.48】以下程序的运行结果是【1】，其算法是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 5,10,-7,3,7 },i,t,j;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t;\n   for(i=0; i<4; i++)\n         for(j=0; j<4-i; j++)\n               if(a[j]>a[j+1]) { t=a[j]; a[j]=a[j+1];a[j+1]=t;}\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.49",
+      "sourceBatch": "p131-142.json",
+      "page": 139,
+      "bookPage": 128,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.49（PDF p139 / 书页 p128）",
+        "difficulty": 4,
+        "stem": "【题 7.49】以下程序的运行结果是【1】，其算法是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 9,6,8,3,-1 },i;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t,p;\n   for(j=0; j<4; j++)\n   {  p=j;\n      for(i=j; i<=4; i++) if(a[i]<a[p]) p=i;\n      t=a[p]; a[p]=a[j]; a[j]=t;\n   }\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.50",
+      "sourceBatch": "p131-142.json",
+      "page": 140,
+      "bookPage": 129,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.50（PDF p140 / 书页 p129）",
+        "difficulty": 3,
+        "stem": "【题 7.50】函数 del 的作用是删除已按升序排列的数组 a 中的指定元素 x。已有调用语句 n=del(a,n,x)；其中实参 n 为删除前数组元素的个数，赋值号左边的 n 为删除后数组元素的个数。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "int del(int a[ ],int n,int x)\n{  int p,i;\n   p=0;\n   while(x>=a[p] && p<n)  【1】;\n   for(i=p-1; i<n; i++)  【2】;\n   n=n-1;\n   return n;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.52",
+      "sourceBatch": "p131-142.json",
+      "page": 140,
+      "bookPage": 129,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.52（PDF p140 / 书页 p129）",
+        "difficulty": 3,
+        "stem": "【题 7.52】函数 swap(int x,int y)可完成对 x 和 y 值的交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "a[0]=1; a[1]=2;\nswap(a[0],a[1]);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.53",
+      "sourceBatch": "p131-142.json",
+      "page": 141,
+      "bookPage": 130,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.53（PDF p141 / 书页 p130）",
+        "difficulty": 3,
+        "stem": "【题 7.53】函数 swap(arr,n)可对 arr 数组从第 1 个元素到第 n 个元素分别进行两两元素交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "a[0]=1; a[1]=2;\nswap(a,2);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.55",
+      "sourceBatch": "p131-142.json",
+      "page": 141,
+      "bookPage": 130,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.55（PDF p141 / 书页 p130）",
+        "difficulty": 3,
+        "stem": "【题 7.55】函数 yanghui 能够按以下形式构成一个杨辉三角形。请填空。\n（原书三角形为图示排版，文字化为：第1行 1；第2行 1 1；第3行 1 2 1；第4行 1 3 3 1；第5行 1 4 6 4 1；第6行 1 5 10 10 5 1；其后为省略号 …）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#define N 11\nvoid yanghui(int a[ ][N])\n{  int i,j;\n   for(i=0; i<N; i++)  { a[i][1]=1; a[i][i]=1; }\n   for(【1】; i<N; i++)\n         for(j=2;【2】; j++)  a[i][j]=【3】+a[i-1][j];\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.56",
+      "sourceBatch": "p131-142.json",
+      "page": 142,
+      "bookPage": 131,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.56（PDF p142 / 书页 p131）",
+        "difficulty": 4,
+        "stem": "【题 7.56】下面程序的功能是：从键盘输入一个整数 m(4≤m≤20)，输出如下的整数方阵(存入二维数组 aa)。例如，若输入 4 和 5，则分别输出：\n4 阶方阵（原书为图示排版，文字化为）：第1行 16 9 4 1；第2行 9 4 1 16；第3行 4 1 16 9；第4行 1 16 9 4。\n5 阶方阵：第1行 25 16 9 4 1；第2行 16 9 4 1 25；第3行 9 4 1 25 16；第4行 4 1 25 16 9；第5行 1 25 16 9 4。\n请改正程序中的错误语句，使它能得出正确的结果。改正后的语句是【1】和【2】。（注意：不得增行或删行，也不得更改程序的结构。）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#define M 20\nvoid aMatrix(int n,int xx[ ][M])\n{  int i,j;\n   for(j=0; j<n; j++) xx[0][j]=(n-j) * (n-j);\n   for(i=1; i<n; i++)\n   {  for(j=0; j<n; j++)          /* 错误语句【1】 */\n          xx[i][j]=xx[i-1][j+1];\n      xx[i][n-1]=xx[i-1][0];\n   }\n}\nint main( )\n{  int aa[M][M],i,j,m;\n   printf(\"\\nPlease enter an integer number between 4 and 20: \");\n   scanf(\"%d\",&m);\n   aMatrix(m,aa);\n   printf(\"\\nThe %d * %d matrix generated:\",m,m);\n   for(i=0;i<m;i++)\n   {  printf(\"\\n\");\n      for(j=0;j<m;j++)\n            printf(\"%4f\",aa[i][j]);        /* 错误语句【2】 */\n      return(0);\n   }\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.61",
+      "sourceBatch": "p142-151.json",
+      "page": 144,
+      "bookPage": 133,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.61（PDF p144 / 书页 p133）",
+        "difficulty": 4,
+        "stem": "【题 7.61】有一数列，第 1 项值为 2，其后每项与前一项值的差为 3，以下函数 fun 的功能是计算前 5 项的累加和，在累加过程中同时输出那些除以 4 后还余 2 的和的值。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid fun(int a,int d)\n{  int i,sum=0;\n   for(i=0;i<5;i++)\n   {  sum=sum+a;\n      a=【1】;\n      if(【2】)   printf(\"sum=%d\\n\",sum);\n   }\n}\nint main( )\n{  int a=2,d=3;\n   fun(a,d);\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题7.65",
+      "sourceBatch": "p142-151.json",
+      "page": 146,
+      "bookPage": 135,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第7章 函数",
+        "section": "7.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.65（PDF p146 / 书页 p135）",
+        "difficulty": 4,
+        "stem": "【题 7.65】以下函数 fun 的功能是：统计用数字 0～9 可以组成多少个位值相同的 3 位偶数。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint fun( )\n{  int n=0,i,j,k;\n   for(i=1;i<=9;i++)\n      for(k=0;k<=8;k=【1】)\n         for(j=0;j<=9;j++)\n            if(【2】)  n++;\n   return n;\n}\nint main( )\n{  int n;\n   n=fun( );\n   printf(\"n=%d\\n\",n);\n   return(0);\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    }
+  ]
+}

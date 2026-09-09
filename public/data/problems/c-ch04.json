@@ -1,0 +1,2277 @@
+{
+  "category": "c",
+  "chapter": "第4章 逻辑运算和分支结构",
+  "generated_at": "2026-09-08",
+  "count": 92,
+  "problems": [
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.1（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.1】逻辑运算符两侧运算对象的数据类型______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 只能是0或1",
+        "B) 只能是0或非0正数",
+        "C) 只能是整型或字符型数据",
+        "D) 可以是任何类型的数据"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.2（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.2】下列关系表达式中结果为假的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0!=1",
+        "B) 2<=8",
+        "C) (a=2*2)==2",
+        "D) y=(2+2)==4"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.3（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.3】下列运算符中优先级最低的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ?:",
+        "B) +=",
+        "C) >=",
+        "D) =="
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.4（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.4】能正确表示“当x的取值在[1,10]和[200,210]范围内为真，否则为假”的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) (x>=1)&&(x<=10)&&(x>=200)&&(x<=210)",
+        "B) (x>=1)||(x<=10)||(x>=200)||(x<=210)",
+        "C) (x>=1)&&(x<=10)||(x>=200)&&(x<=210)",
+        "D) (x>=1)||(x<=10)&&(x>=200)||(x<=210)"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.5（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.5】表示图4-1中坐标轴上阴影部分的正确表达式是______。\n图4-1（原书为插图，此处文字化描述）：一带箭头的x轴，轴上自左至右有三条竖线，下方依次标注a、b、c；a左侧的轴段为阴影，b与c之间的轴段为阴影。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) (x<=a)&&(x>=b)&&(x<=c)",
+        "B) (x<=a)||(b<=x<=c)",
+        "C) (x<=a)||(x>=b)&&(x<=c)",
+        "D) (x<=a)&&(b<=x<=c)"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.6（PDF p31 / 书页 p20）",
+      "difficulty": 2,
+      "stem": "【题 4.6】判断char型变量ch是否为大写字母的正确表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 'A'<=ch<='Z'",
+        "B) (ch>='A')&(ch<='Z')",
+        "C) (ch>='A')&&(ch<='Z')",
+        "D) ('A'<=ch)AND('Z'>=ch)"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.7（PDF p32 / 书页 p21）",
+      "difficulty": 2,
+      "stem": "【题 4.7】设x、y和z是int型变量，且x=3，y=4，z=5，则下面表达式中值为0的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 'x'&&'y'",
+        "B) x<=y",
+        "C) x||y+z&&y-z",
+        "D) !((x<y)&&!z||1)"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.8（PDF p32 / 书页 p21）",
+      "difficulty": 2,
+      "stem": "【题 4.8】设有说明语句：int x=43，y=0；char ch='A'；，则表达式(x>=y&&ch<'B'&&!y)的值是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0",
+        "B) 语法错",
+        "C) 1",
+        "D) 假"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.9（PDF p32 / 书页 p21）",
+      "difficulty": 2,
+      "stem": "【题 4.9】若希望当A的值为奇数时，表达式的值为“真”；当A的值为偶数时，表达式的值为“假”。则以下不能满足要求的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) A%2==1",
+        "B) !(A%2==0)",
+        "C) !(A%2)",
+        "D) A%2"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.10（PDF p32 / 书页 p21）",
+      "difficulty": 2,
+      "stem": "【题 4.10】设有说明语句：int a=1,b=2,c=3,d=4,m=2,n=2；，则执行(m=a>b)&&(n=c>d)后n的值为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.11（PDF p32 / 书页 p21）",
+      "difficulty": 3,
+      "stem": "【题 4.11】执行以下程序段后的输出是______。\n\n```c\nint i=-1;\nif(i<=0) printf(\"****\\n\")\nelse printf(\"%%%%\\n\");\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ****",
+        "B) 有语法错，不能正确执行",
+        "C) %%%%c",
+        "D) %%%%"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.12（PDF p32 / 书页 p21）",
+      "difficulty": 3,
+      "stem": "【题 4.12】以下程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int a,b,d=241;\n  a=d/100%9;\n  b=(-1)&&(-1);\n  printf(\"%d,%d\",a,b);\n  return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 6,1",
+        "B) 2,1",
+        "C) 6,0",
+        "D) 2,0"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.13（PDF p32 / 书页 p21）",
+      "difficulty": 2,
+      "stem": "【题 4.13】以下不能满足当c的值分别为1、3、5三个数时值是“真”，否则值是“假”的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) !((c<3)&&(c>1))&&!((c<5)&&(c>3))&&(c<=5)&&(c>=1)",
+        "B) (c==1)||(c==3)||(c==5)",
+        "C) (c!=2)&&(c>=1)&&(c<=5)",
+        "D) (c=1)||(c=3)||(c=5)"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.15（PDF p33 / 书页 p22）",
+      "difficulty": 2,
+      "stem": "【题 4.15】以下不正确的if语句形式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) if (x>y && x!=y);",
+        "B) if (x==y) x+=y;",
+        "C) if (x!=y) scanf(\"%d\", &x) else scanf(\"%d\", &y);",
+        "D) if (x<y) {x++;y++;}"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.16（PDF p33 / 书页 p22）",
+      "difficulty": 2,
+      "stem": "【题 4.16】在C语言中，紧跟在关键字if后一对圆括号里的表达式______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 只能用逻辑表达式",
+        "B) 只能用关系表达式",
+        "C) 只能用逻辑表达式或关系表达式",
+        "D) 可以是任意表达式"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.17（PDF p33 / 书页 p22）",
+      "difficulty": 3,
+      "stem": "【题 4.17】已知int x=10,y=20,z=30;执行以下语句后x、y、z的值是______。\n\n```c\nif(x>y)\nz=x;x=y;y=z;\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x=10,y=20,z=30",
+        "B) x=20,y=30,z=30",
+        "C) x=20,y=30,z=10",
+        "D) x=20,y=30,z=20"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.18（PDF p33 / 书页 p22）",
+      "difficulty": 2,
+      "stem": "【题 4.18】以下语法正确的if语句是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) if(x>0)\n       printf(\"%f\",x)\n   else    printf(\"%f\",-x);",
+        "B) if(x>0)\n       { x=x+y;printf(\"%f\",x);}\n   else    printf(\"%f\",-x);",
+        "C) if(x>0)\n       { x=x+y; printf(\"%f\",x);};\n   else printf(\"%f\",-x);",
+        "D) if(x>0)\n       { x=x+y;printf(\"%f\",x)}\n   else printf(\"%f\",-x);"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.19（PDF p33 / 书页 p22）",
+      "difficulty": 3,
+      "stem": "【题 4.19】以下程序______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int a=5,b=0,c=0;\n  if(a=b+c) printf(\"***\\n\");\n  else      printf(\"$$$\\n\");\n  return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 有语法错不能通过编译",
+        "B) 可以通过编译但不能通过连接",
+        "C) 输出 ***",
+        "D) 输出$$$"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.20（PDF p34 / 书页 p23）",
+      "difficulty": 3,
+      "stem": "【题 4.20】若变量都已正确定义，则以下程序段的输出是______。\n\n```c\na=10;b=50;c=30;\nif(a>b) a=b,\nb=c; c=a;\nprintf(\"a=%db=%dc=%d\\n\",a,b,c);\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a=10 b=30 c=10",
+        "B) a=10 b=50 c=10",
+        "C) a=50 b=30 c=10",
+        "D) a=50 b=30 c=50"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.21（PDF p34 / 书页 p23）",
+      "difficulty": 3,
+      "stem": "【题 4.21】当a=1、b=3、c=5、d=4时，执行以下程序段后x的值是______。\n\n```c\nif(a<b)\n    if(c<d) x=1;\n    else\n        if(a<c)\n            if(b<d) x=2;\n            else x=3;\n        else x=6;\n    else x=7;\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 6"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.22（PDF p34 / 书页 p23）",
+      "difficulty": 2,
+      "stem": "【题 4.22】函数关系见表4-1。\n表4-1 题4.22的函数关系\nx\ty\nx<0\tx-1\nx=0\tx\nx>0\tx+1\n以下能正确表示上面关系的程序段是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) y=x+1;\n   if(x>=0)\n      if(x==0) y=x;\n      else y=x-1;",
+        "B) y=x-1;\n   if(x!=0)\n      if(x>0) y=x+1;\n      else y=x;",
+        "C) if(x<=0)\n      if(x<0) y=x-1;\n      else y=x;\n   else y=x+1;",
+        "D) y=x;\n   if(x<=0)\n      if(x<0) y=x-1;\n      else y=x+1;"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.23（PDF p34 / 书页 p23）",
+      "difficulty": 4,
+      "stem": "【题 4.23】以下程序的输出是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int a=100,x=10,y=20 ,ok1=5,ok2=0;\n  if (x<y)\n    if(y!=10)\n      if(!ok1)\n        a=1;\n      else\n        if (ok2) a=10;\n    a=-1;\n    printf(\"%d\\n\",a);\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 0",
+        "C) -1",
+        "D) 值不确定"
+      ],
+      "answer": 2,
+      "id": "c-ch04-sc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.24（PDF p35 / 书页 p24）",
+      "difficulty": 3,
+      "stem": "【题 4.24】以下程序的输出是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int x=2,y=-1,z=2;\n    if (x<y)\n        if (y<0) z=0;\n        else     z+=1;\n    printf(\"%d\\n\",z);\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 3",
+        "B) 2",
+        "C) 1",
+        "D) 0"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.25（PDF p35 / 书页 p24）",
+      "difficulty": 2,
+      "stem": "【题 4.25】为了避免在嵌套的条件语句if-else中产生二义性,C语言规定else子句总是与______配对。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 缩排位置相同的 if",
+        "B) 其之前最近的 if",
+        "C) 其之后最近的 if",
+        "D) 同一行上的 if"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.26（PDF p35 / 书页 p24）",
+      "difficulty": 3,
+      "stem": "【题 4.26】以下程序的输出是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int x=1;\n    if(x=2)\n        printf(\"OK\");\n    else if(x<2)printf(\"%d\\n\",x);\n        else printf(\"Quit\");\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) OK",
+        "B) Quit",
+        "C) 1",
+        "D) 无输出结果"
+      ],
+      "answer": 0,
+      "id": "c-ch04-sc-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.27（PDF p35 / 书页 p24）",
+      "difficulty": 4,
+      "stem": "【题 4.27】以下程序的输出是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int a=5,b=8,c=3,max;\n    max=a;\n    if(c>b)\n        if(c>a)\n            max=c;\n    else\n        if(b>a)\n            max=b;\n    printf(\"max=%d\\n\",max);\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) max=8",
+        "B) max=5",
+        "C) max=3",
+        "D) 无输出结果"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-026",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.28（PDF p36 / 书页 p25）",
+      "difficulty": 2,
+      "stem": "【题 4.28】若有条件表达式(exp) ? a++: b--，则以下表达式中能完全等价于表达式(exp)的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) (exp==0)",
+        "B) (exp!=0)",
+        "C) (exp==1)",
+        "D) (exp!=1)"
+      ],
+      "answer": 1,
+      "id": "c-ch04-sc-027",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.29（PDF p36 / 书页 p25）",
+      "difficulty": 3,
+      "stem": "【题 4.29】若运行时为变量x输入12，则以下程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int x,y;\n    scanf(\"%d\",&x);\n    y=x>12 ? x+10: x-12;\n    printf(\"%d\\n\",y);\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0",
+        "B) 22",
+        "C) 12",
+        "D) 10"
+      ],
+      "answer": 0,
+      "id": "c-ch04-sc-028",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.30（PDF p36 / 书页 p25）",
+      "difficulty": 3,
+      "stem": "【题 4.30】以下程序所表示的分段函数是______。\n\n```c\n#include <stdio.h>\nint main( )\n{ int x,y;\n    printf(\"Enter x:\");\n    scanf(\"%d\",&x);\n    y=x>=0? 2 * x+1:0;\n    printf(\"x=%d:f(x)=%d\",x,y);\n    return 0;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) f(x)={ 0 (x≤0) ; 2x+1 (x>0)",
+        "B) f(x)={ 0 (x≥0) ; 2x+1 (x<0)",
+        "C) f(x)={ 2x+1 (x<0) ; 0 (x≥0)",
+        "D) f(x)={ 0 (x<0) ; 2x+1 (x≥0)"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-029",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.31（PDF p37 / 书页 p26）",
+      "difficulty": 3,
+      "stem": "【题 4.31】若w、x、y、z、m均为int型变量，则执行下面语句后的m值是______。\n\n```c\nw=1; x=2; y=3; z=4;\nm=(w<x)? w:x;\nm=(m<y)? m:y;\nm=(m<z)? m:z;\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
+      "answer": 0,
+      "id": "c-ch04-sc-030",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.32（PDF p37 / 书页 p26）",
+      "difficulty": 2,
+      "stem": "【题 4.32】若w=1、x=2、y=3、z=4，则条件表达式w<x? w: y<z? y: z的值是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 4",
+        "B) 3",
+        "C) 2",
+        "D) 1"
+      ],
+      "answer": 3,
+      "id": "c-ch04-sc-031",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.33（PDF p37 / 书页 p26）",
+      "difficulty": 3,
+      "stem": "【题 4.33】C语言中的switch语句形式如下所示,关键字switch后一对圆括号中表达式exp的类型______。\n\n```c\nswitch (exp)\n{ case 常量表达式 1 : 语句 1;\n    ...\n    case 常量表达式 n : 语句 n;\n    default : 语句 n+1;\n}\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 可以是整型或字符型",
+        "B) 只能是 int 类型",
+        "C) 只能是字符型",
+        "D) 只能是整型或实型"
+      ],
+      "answer": 0,
+      "id": "c-ch04-sc-032",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.34（PDF p37 / 书页 p26）",
+      "difficulty": 2,
+      "stem": "【题 4.34】若u、w、x、y均是正整型变量，则以下正确的switch语句是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) switch(x+y)\n    { case 10 : u=x+y; break;\n      case 11 : w=x-y; break;\n    }",
+        "B) switch x\n    { default: u=x+y;\n      case 10 : w=x-y; break;\n      case 11 : u=x* y; break;\n    }",
+        "C) switch (x* x+y* y)\n    { case 3:\n      case 3 : w=x+y; break;\n      case 0: w=y-x; break;\n    }",
+        "D) switch (pow(x,2)+pow(y,2))    （注：pow 是调用求幂[?]的数学函数）\n    { case 1: case 3: w=x+y; break;\n      case 0 :case 5: w=x-y;\n    }"
+      ],
+      "answer": 0,
+      "id": "c-ch04-sc-033",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.35（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.35】当a=3,b=2,c=1时;表达式f=a>b>c的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.36（PDF p38 / 书页 p27）",
+      "difficulty": 3,
+      "stem": "【题 4.36】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int x=1 , y , z ;\n    x*=3+2 ;\n    printf ( \"%d\\t\" , x ) ;\n    x*=y=z=5 ;\n    printf ( \"%d\\t\" , x ) ;\n    x=y==z ;\n    printf ( \"%d\\n\" , x ) ;\n    return 0;\n}",
+      "answer": "5\t25\t1",
+      "id": "c-ch04-cr-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.37（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.37】在C语言中,表示逻辑“真”值用【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.38（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.38】设y为int型变量,请写出描述“y是奇数”的表达式【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.39（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.39】C语言提供的3种逻辑运算符是【1】、【2】、【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.40（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.40】若x、y、z均为int型变量,则描述“x或y中有一个小于z”的表达式是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.41（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.41】若x、y均为int型变量,则描述“x、y和z中有两个为负数”的表达式是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.42（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.42】设a、b、c均为int型变量且a=7.5,b=2,c=3.6,则表达式a>b&&c>a||a<b&&!c>b的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.43（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.43】设a、b、c均为int型变量且a=6,b=4,c=2,则表达式!(a-b)+c-1&&b+c/2的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.44（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.44】设a、b均为int型变量且a=2,b=4,则表达式!(x=a)||(y=b)&&0的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.45（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.45】设a、b、c均为int型变量且a=1,b=4,c=3,则表达式!(a<b)||!c&&1的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.46（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.46】设a、b、c均为int型变量且a=6,b=4,c=3,则表达式a&&b+c||b-c的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.47（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.47】设a、b、c均为int型变量且a=5,b=2,c=1,则表达式a-b<c||b==c的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.48（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.48】设a、b、c均为int型变量且a=3,b=4,c=5,则表达式a||b+c&&b==c的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.49（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.49】若有条件“2<x<3或x<-10”，其对应的C语言表达式是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.50（PDF p38 / 书页 p27）",
+      "difficulty": 2,
+      "stem": "【题 4.50】设m、n、a、b、c均为int型变量且m=2,n=1,a=1,b=2,c=3,则执行表达式d=(m=a!=b)&&(n=b>c)后,n的值为【1】;m的值为【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.51（PDF p38 / 书页 p27）",
+      "difficulty": 3,
+      "stem": "【题 4.51】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>int main( )\n{ int x,y,z;\n    x=3;y=3;\n    z=x==y;\n    printf(\"z=%d\\n\",z);\n    return 0;\n}",
+      "answer": "",
+      "id": "c-ch04-cr-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.52（PDF p39 / 书页 p28）",
+      "difficulty": 3,
+      "stem": "【题 4.52】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a1,a2,b1,b2;\n    int i=5,j=7,k=0;\n    a1=!k;\n    a2=i!=j;\n    printf(\"a1=%d\\ta2=%d\\n\",a1,a2);\n    b1=k&&j;\n    b2=k||j;\n    printf(\"b1=%d\\tb2=%d\\n\",b1,b2);\n    return 0;\n}",
+      "answer": "a1=1\ta2=1\nb1=0\tb2=1",
+      "id": "c-ch04-cr-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.53（PDF p39 / 书页 p28）",
+      "difficulty": 2,
+      "stem": "【题 4.53】若有语句int x,y,z;且x=3、y=-4、z=5,则表达式(x&&y)==(x||z)的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.56（PDF p40 / 书页 p29）",
+      "difficulty": 2,
+      "stem": "【题 4.56】满足以下要求1的逻辑表达式是【1】;满足以下要求2的逻辑表达式是【2】。\n要求1：判断坐标为(x,y)的点，在内径为a、外径为b、中心在0点上的圆环内的表达式。\n要求2：写出x的值必须是2、4、6、7、8的判断表达式。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.57（PDF p40 / 书页 p29）",
+      "difficulty": 4,
+      "stem": "【题 4.57】以下程序的功能是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y,sum,product;\n    printf(\"Enter x and y:\");\n    scanf(\"%d,%d\",&x,&y);\n    sum=x+y;\n    product=x* y;\n    if(sum>product)\n      printf(\"(x+y)>(x* y)\");\n    else\n      printf(\"(x* y)>=(x+y)\");\n    return 0;\n}",
+      "answer": "",
+      "answerIsDescription": true,
+      "id": "c-ch04-cr-004",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.58（PDF p40 / 书页 p29）",
+      "difficulty": 2,
+      "stem": "【题 4.58】若有语句：int a=3,b=4,c=5;，则以下表达式的值为【 】。\n!(a+b)+c-1&&b+c/2",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch04-fb-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.59（PDF p40 / 书页 p29）",
+      "difficulty": 3,
+      "stem": "【题 4.59】若运行时输入：2<回车>，则以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main ( )\n{   char class ;\n    printf ( \"Enter 1 for 1st class post or 2 for 2nd post\" ) ;\n    scanf ( \"%c\" , &class ) ;\n    if ( class=='1' )\n        printf ( \"1st class postage is 19p\" ) ;\n    else\n        printf ( \"2nd class postage is 14p\" ) ;\n    return 0;\n}",
+      "answer": "Enter 1 for 1st class post or 2 for 2nd post2nd class postage is 14p",
+      "id": "c-ch04-cr-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.60（PDF p40 / 书页 p29）",
+      "difficulty": 4,
+      "stem": "【题 4.60】若运行时输入：4.4<回车>，则以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main ( )\n{   float costPrice, sellingPrice;\n    printf ( \"Enter costPrice $ : \" ) ;\n    scanf ( \"%f\", &costPrice);\n    if ( costPrice>=5 )\n        {  sellingPrice=costPrice+costPrice * 0.25;\n            printf ( \"Selling Price (0.25) $  %6.2f\" , sellingPrice) ;\n        }\n    else\n        {  sellingPrice=costPrice+costPrice * 0.30;\n            printf ( \"Selling Price (0.30) $  %6.2f\" , sellingPrice) ;\n        }\n    return 0;\n}",
+      "answer": "Enter costPrice $ : Selling Price (0.30) $    5.72",
+      "id": "c-ch04-cr-006",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.61（PDF p41 / 书页 p30）",
+      "difficulty": 4,
+      "stem": "【题 4.61】若运行以下程序时输入：1605<回车>，则程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int t,h,m;\n    scanf(\"%d\",&t);\n    h=(t/100)%12;\n    if(h==0) h=12;\n    printf(\"%d:\",h);\n    m=t%100;\n    if(m<10) printf(\"0\");\n    printf(\"%d\",m);\n    if(t<1200||t==2400)\n        printf(\" AM\");\n    else printf(\" PM\");\n    return 0;\n}",
+      "answer": "4:05 PM",
+      "id": "c-ch04-cr-007",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.63（PDF p42 / 书页 p31）",
+      "difficulty": 3,
+      "stem": "【题 4.63】若运行时输入“5999<回车>”，则以下程序的运行结果(保留小数点后一位)是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int x;\n    float y;\n    scanf(\"%d\",&x);\n    if(x>=0 && x<=2999) y=18+0.12 * x;\n    if(x>=3000 && x<=5999) y=36+0.6 * x;\n    if(x>=6000 && x<=10000) y=54+0.3 * x;\n    printf(\"%6.1f \",y);\n    return 0;\n}",
+      "answer": "3635.4 ",
+      "id": "c-ch04-cr-008",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.65（PDF p42 / 书页 p31）",
+      "difficulty": 4,
+      "stem": "【题 4.65】以下程序的功能是：输入3个整数，按从大到小的顺序进行输出。请填空。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y,z,c;\n    scanf(\"%d %d %d\",&x,&y,&z);\n    if(/*__BLANK_1__*/)\n        { c=y;y=z;z=c;}\n    if(/*__BLANK_2__*/)\n        { c=x;x=z;z=c;}\n    if(/*__BLANK_3__*/)\n        { c=x;x=y;y=c;}\n    printf(\"%d,%d,%d\",x,y,z);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "y<z",
+          "accepted": [
+            "z>y"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "x<z",
+          "accepted": [
+            "z>x"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "x<y",
+          "accepted": [
+            "y>x"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int x,y,z,c;\n    scanf(\"%d %d %d\",&x,&y,&z);\n    if(y<z)\n        { c=y;y=z;z=c;}\n    if(x<z)\n        { c=x;x=z;z=c;}\n    if(x<y)\n        { c=x;x=y;y=c;}\n    printf(\"%d,%d,%d\",x,y,z);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3\n",
+          "expected": "3,2,1",
+          "note": "典型：升序输入"
+        },
+        {
+          "stdin": "3 2 1\n",
+          "expected": "3,2,1",
+          "note": "边界：已降序，不交换"
+        },
+        {
+          "stdin": "2 2 2\n",
+          "expected": "2,2,2",
+          "note": "边界：三数相等"
+        }
+      ],
+      "id": "c-ch04-cc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.66（PDF p43 / 书页 p32）",
+      "difficulty": 3,
+      "stem": "【题 4.66】以下程序的功能是：输入一个小写字母，将字母循环后移5个位置后输出。例如'a'变成'f'，'w'变成'b'。请填空。",
+      "explanation": "小写字母循环后移 5 位要分两段处理：'a'~'u'（97~117）直接加 5 就落在 'f'~'z' 内，所以【1】填 c=c+5；'v'~'z'（118~122）加 5 会超过 'z'（122），必须绕回 'a'，也就是减 26 再加 5 = 减 21，所以【2】填 c=c-21。两个分支的临界点正好是 'u'（117+5=122='z'）和 'v'（118-21=97='a'），三组用例 a→f、u→z、w→b 分别检验普通情况、上边界和回绕。等价写法 c+=5、c-=21 同样正确：char 参与算术运算时会先整型提升为 int，运算结果再截断回 char，因为结果都落在 ASCII 范围内所以安全。另需注意原程序用 char 接收 getchar() 的返回值，对纯小写字母输入没有问题，但严格来说应该用 int 才能与 EOF 区分。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ char c;\n    c=getchar( );\n    if(c>='a' && c<='u')/*__BLANK_1__*/;\n    else if(c>='v' && c<='z')/*__BLANK_2__*/;\n    putchar(c);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "c=c+5",
+          "accepted": [
+            "c+=5"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "c=c-21",
+          "accepted": [
+            "c-=21"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ char c;\n    c=getchar( );\n    if(c>='a' && c<='u')c=c+5;\n    else if(c>='v' && c<='z')c=c-21;\n    putchar(c);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "a\n",
+          "expected": "f",
+          "note": "典型：a 后移 5 位"
+        },
+        {
+          "stdin": "u\n",
+          "expected": "z",
+          "note": "边界：'u' 是第一分支的上界，正好落到 'z'"
+        },
+        {
+          "stdin": "w\n",
+          "expected": "b",
+          "note": "边界：需要回绕，119-21=98='b'"
+        }
+      ],
+      "id": "c-ch04-cc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.67（PDF p43 / 书页 p32）",
+      "difficulty": 3,
+      "stem": "【题 4.67】以下程序的功能是：输入一个字符，如果它是一个大写字母，则把它变成小写字母；如果它是一个小写字母，则把它变成大写字母；其他字符不变。请填空。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    if(/*__BLANK_1__*/) ch=ch+32;\n    else if(ch>='a' && ch<='z')/*__BLANK_2__*/;\n    printf(\"%c\",ch);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "ch>='A'&&ch<='Z'"
+        },
+        {
+          "index": 2,
+          "answer": "ch=ch-32",
+          "accepted": [
+            "ch-=32"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    if(ch>='A'&&ch<='Z') ch=ch+32;\n    else if(ch>='a' && ch<='z')ch=ch-32;\n    printf(\"%c\",ch);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "A\n",
+          "expected": "a",
+          "note": "典型：大写字母 A → a"
+        },
+        {
+          "stdin": "z\n",
+          "expected": "Z",
+          "note": "典型：小写字母 z → Z"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "5",
+          "note": "边界：非字母字符不变"
+        }
+      ],
+      "id": "c-ch04-cc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.68（PDF p43 / 书页 p32）",
+      "difficulty": 4,
+      "stem": "【题 4.68】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a,b,c,d,x;\n    a=c=0;\n    b=1;\n    d=20;\n    if (a) d=d-10;\n    else if(!b)\n        if(!c) x=15;\n        else x=25;\n    printf(\"%d\\n\",d);\n    return 0;\n}",
+      "answer": "20",
+      "id": "c-ch04-cr-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.69（PDF p44 / 书页 p33）",
+      "difficulty": 4,
+      "stem": "【题 4.69】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main ( )\n{ int x , y=-2, z=0;\n    if ( (z=y)<0 ) x=4;\n    else if (y==0 ) x=5;\n    else x=6;\n    printf ( \"\\t%d\\t%d\\n\", x, z);\n    if ( z=(y==0)) x=5;\n    x=4;\n    printf ( \"\\t%d\\t%d\\n\", x, z);\n    if ( x=z=y) x=4;\n    printf ( \"\\t%d\\t%d\\n\", x, z);\n    return 0;\n}",
+      "answer": "\t4\t-2\n\t4\t0\n\t4\t-2",
+      "id": "c-ch04-cr-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.70（PDF p44 / 书页 p33）",
+      "difficulty": 4,
+      "stem": "【题 4.70】为了使以下程序的输出结果为t=4，输入值a和b应满足的条件是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
+      "answer": "s=2,t=4",
+      "id": "c-ch04-cr-011",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.71（PDF p44 / 书页 p33）",
+      "difficulty": 4,
+      "stem": "【题 4.71】为了使以下程序的输出结果为s=1，t=5，输入值a和b应满足的条件是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
+      "answer": "s=1,t=5",
+      "id": "c-ch04-cr-012",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.72（PDF p45 / 书页 p34）",
+      "difficulty": 3,
+      "stem": "【题 4.72】下面程序的功能是：根据表4-3中给定的函数关系，对输入的每个x值计算出相应的y值。请填空。\n表4-3 题4.72的函数关系\nx\ty\n2<x≤10\tx(x+2)\n-1<x≤2\t2x\nx≤-1\tx-1",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y;\n    scanf(\"%d\",&x);\n    if(/*__BLANK_1__*/) y=x*(x+2);\n    else if(/*__BLANK_2__*/) y=2*x;\n        else if(x<=-1) y=x-1;\n    else /*__BLANK_3__*/;\n    if(y!=-1) printf(\"%d\",y);\n    else printf(\"error\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x>2&&x<=10"
+        },
+        {
+          "index": 2,
+          "answer": "x>-1&&x<=2"
+        },
+        {
+          "index": 3,
+          "answer": "y=-1",
+          "accepted": [
+            "y=-1;"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int x,y;\n    scanf(\"%d\",&x);\n    if(x>2&&x<=10) y=x*(x+2);\n    else if(x>-1&&x<=2) y=2*x;\n        else if(x<=-1) y=x-1;\n    else y=-1;\n    if(y!=-1) printf(\"%d\",y);\n    else printf(\"error\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "35",
+          "note": "典型：2<x≤10 → x(x+2)=35"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "4",
+          "note": "边界：x=2 落 -1<x≤2 → 2x=4"
+        },
+        {
+          "stdin": "-1\n",
+          "expected": "-2",
+          "note": "边界：x=-1 落 x≤-1 → x-1=-2"
+        }
+      ],
+      "id": "c-ch04-cc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.77（PDF p47 / 书页 p36）",
+      "difficulty": 3,
+      "stem": "【题 4.77】以下程序的功能是判断输入的某个年份是否是闰年。请填空。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int y,f;\n    scanf(\"%d\",&y);\n    if(y%400==0) f=1;\n    else if(/*__BLANK_1__*/) f=1;\n    else /*__BLANK_2__*/;\n    if(f) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\\n\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "y%4==0&&y%100!=0"
+        },
+        {
+          "index": 2,
+          "answer": "f=0",
+          "accepted": [
+            "f=0;"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int y,f;\n    scanf(\"%d\",&y);\n    if(y%400==0) f=1;\n    else if(y%4==0&&y%100!=0) f=1;\n    else f=0;\n    if(f) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2024\n",
+          "expected": "2024 is a leap year",
+          "note": "典型：能被4整除且不被100整除"
+        },
+        {
+          "stdin": "1900\n",
+          "expected": "1900 is not a leap year",
+          "note": "边界：整百非400倍数 → 非闰年"
+        },
+        {
+          "stdin": "2000\n",
+          "expected": "2000 is a leap year",
+          "note": "边界：400倍数 → 闰年"
+        }
+      ],
+      "id": "c-ch04-cc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.79（PDF p48 / 书页 p37）",
+      "difficulty": 3,
+      "stem": "【题 4.79】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a=-10, b=-3;\n    printf(\"%d,\", -a%b);\n    printf(\"%d,\", (a-b, a+b));\n    printf(\"%d\\n\", a-b? a-b:a+b);\n    return 0;\n}",
+      "answer": "1,-13,-7",
+      "id": "c-ch04-cr-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.80（PDF p48 / 书页 p37）",
+      "difficulty": 3,
+      "stem": "【题 4.80】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y,z;\n    x=3;\n    y=z=4;\n    printf(\"%d,\", ( x>=y>=x )? 1:0 );\n    printf(\"%d\\n\", z>=y && y>=x);\n    return 0;\n}",
+      "answer": "0,1",
+      "id": "c-ch04-cr-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.81（PDF p48 / 书页 p37）",
+      "difficulty": 3,
+      "stem": "【题 4.81】若运行以下程序时输入：-2<回车>，则程序的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a,b;\n    scanf(\"%d\",&a);\n    b=(a>=0)? a:-a;\n    printf(\"b=%d\",b);\n    return 0;\n}",
+      "answer": "b=2",
+      "id": "c-ch04-cr-015",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.82（PDF p48 / 书页 p37）",
+      "difficulty": 3,
+      "stem": "【题 4.82】若运行以下程序时输入：100<回车>，则程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a;\n    scanf(\"%d\",&a);\n    printf(\"%s\",(a%2!=0)?\"no\":\"yes\");\n    return 0;\n}",
+      "answer": "yes",
+      "id": "c-ch04-cr-016",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.83（PDF p49 / 书页 p38）",
+      "difficulty": 3,
+      "stem": "【题 4.83】若运行以下程序时输入字符为Q，则程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    ch=(ch>='A' && ch<='Z')? (ch+32):ch;\n    ch=(ch>='a' && ch<='z')? (ch-32):ch;\n    printf(\"%c\",ch);\n    return 0;\n}",
+      "answer": "Q",
+      "id": "c-ch04-cr-017",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.84（PDF p49 / 书页 p38）",
+      "difficulty": 3,
+      "stem": "【题 4.84】若运行以下程序时输入：1992<回车>，则程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int y,t;\n    scanf(\"%d\",&y);\n    t=((y%4==0 && y%100!=0)||y%400==0)? 1:0;\n    if(t) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\");\n    return 0;\n}",
+      "answer": "1992 is a leap year",
+      "id": "c-ch04-cr-018",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.89（PDF p50 / 书页 p39）",
+      "difficulty": 3,
+      "stem": "【题 4.89】若a、b、c均已正确定义且a=0、b=2、c=3，则以下程序段的输出是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "switch (a)\n    { case 0:switch(b==2)\n        { case 1:printf(\"&\");break;\n          case 2:printf(\"%\");break;\n        }\n      case 1: switch(c)\n        { case 1:printf(\"$\");\n          case 2:printf(\"*\");break;\n          default:printf(\"#\");\n        }\n    }",
+      "answer": "&#",
+      "id": "c-ch04-cr-019",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.90（PDF p51 / 书页 p40）",
+      "difficulty": 4,
+      "stem": "【题 4.90】若运行以下程序时输入：35/<回车>，则程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ float x,y;\n    char o;\n    double r;\n    scanf(\"%f %f %c\",&x,&y,&o);\n    switch(o)\n        { case '+': r=x+y;break;\n          case '-': r=x-y;break;\n          case '*': r=x* y;break;\n          case '/': r=x/y;break;\n        }\n    printf(\"%f\",r);\n    return 0;\n}",
+      "answer": "",
+      "id": "c-ch04-cr-020",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.92（PDF p51 / 书页 p40）",
+      "difficulty": 3,
+      "stem": "【题 4.92】若有以下程序段，且grade的值为C，则输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "switch ( grade )\n    { case 'A' : printf(\"85~100\\n\");\n      case 'B' : printf(\"70~84n\");\n      case 'C' : printf(\"60~69\\n\");\n      case 'D' : printf(\"<60\\n\");\n      default : printf(\"error!\\n\");\n    }",
+      "answer": "60~69\n<60\nerror!",
+      "id": "c-ch04-cr-021",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.93（PDF p52 / 书页 p41）",
+      "difficulty": 3,
+      "stem": "【题 4.93】以下程序段的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "int x=1,y=0;\nswitch (x)\n    { case 1 :\n        switch (y)\n          { case 0 : printf(\"** 1 **\\n\"); break;\n            case 1 : printf(\"** 2 **\\n\"); break;\n          }\n      case 2 : printf(\"** 3 **\\n\");\n    }",
+      "answer": "** 1 **\n** 3 **",
+      "id": "c-ch04-cr-022",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.95（PDF p52 / 书页 p41）",
+      "difficulty": 4,
+      "stem": "【题 4.95】以下程序的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int a=2,b=7,c=5;\n    switch (a>0)\n    { case 1: switch (b<0)\n        { case 1: printf(\"@\"); break;\n          case 2: printf(\"!\"); break;\n        }\n      case 0: switch (c==5)\n        { case 0: printf(\"*\"); break;\n          case 1: printf(\"#\"); break;\n          default: printf(\"#\"); break;\n        }\n      default: printf(\"&\");\n    } printf(\"\\n\");\n  return 0;\n}",
+      "answer": "#&",
+      "id": "c-ch04-cr-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.96（PDF p53 / 书页 p42）",
+      "difficulty": 4,
+      "stem": "【题 4.96】以下程序的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y;\n    x=5;\n    switch(x)\n    { case 1:\n      case 2:\n      case 3:\n      case 4:printf(\"x<5\\n\");\n      case 5:printf(\"x=5\\n\",x);\n      default:printf(\"The value of x is unknown.\\n\");\n    }\n    return 0;\n}",
+      "answer": "x=5\nThe value of x is unknown.",
+      "id": "c-ch04-cr-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.99（PDF p55 / 书页 p44）",
+      "difficulty": 4,
+      "stem": "【题 4.99】以下程序的功能是：计算某年某月有几天。其中判别闰年的条件是：能被4整除但不能被100整除的年是闰年，能被400整除的年也是闰年。请填空。",
+      "explanation": "switch 里多个 case 标签共用同一段语句（case 1: case 3: … case 12:）是「大月统一处理」的标准写法，所以【1】填 len=31。2 月要区分闰年，题目已经把闰年条件写好了：yy%4==0 && yy%100!=0||yy%400==0 —— 由于 && 的优先级高于 ||，不加括号也是「(能被4整除且不能被100整除) 或 能被400整除」这个意思，条件成立时【2】填 len=29，否则【3】填 len=28。三组用例 2024-1（大月）、2000-2（世纪闰年）、1900-2（世纪平年）恰好各打中一个空。还要留意输出细节：printf(\"year,month=\") 末尾没有 \\n，所以提示语和后面的结果连在同一行，得到 year,month=the length of 2000 2 is29；格式串 is%d 前也没有空格。每个 case 分支都以 break 结束，不会贯穿到 default。 【数据修正】原书此处 else 与【3】之间没有留空格，直接拼装会得到 elselen=28（词法粘连、编译不过），已按 C 词法规则在 else 后补一个空格。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int yy,mm,len;\n    printf(\"year,month=\");\n    scanf(\"%d %d\",&yy,&mm);\n    switch(mm)\n      { case 1: case 3: case 5: case 7:\n        case 8: case 10: case 12:/*__BLANK_1__*/; break;\n        case 4: case 6: case 9: case 11: len=30;break;\n        case 2:\n        if(yy%4==0 && yy%100!=0||yy%400==0)/*__BLANK_2__*/;\n        else /*__BLANK_3__*/;\n        break;\n        default:printf(\"input error\");\n        break;\n      }\n    printf(\"the length of %d %d is%d\\n\",yy,mm,len);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "len=31",
+          "accepted": []
+        },
+        {
+          "index": 2,
+          "answer": "len=29",
+          "accepted": []
+        },
+        {
+          "index": 3,
+          "answer": "len=28",
+          "accepted": []
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int yy,mm,len;\n    printf(\"year,month=\");\n    scanf(\"%d %d\",&yy,&mm);\n    switch(mm)\n      { case 1: case 3: case 5: case 7:\n        case 8: case 10: case 12:len=31; break;\n        case 4: case 6: case 9: case 11: len=30;break;\n        case 2:\n        if(yy%4==0 && yy%100!=0||yy%400==0)len=29;\n        else len=28;\n        break;\n        default:printf(\"input error\");\n        break;\n      }\n    printf(\"the length of %d %d is%d\\n\",yy,mm,len);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2024 1\n",
+          "expected": "year,month=the length of 2024 1 is31",
+          "note": "典型：大月，检验【1】"
+        },
+        {
+          "stdin": "2000 2\n",
+          "expected": "year,month=the length of 2000 2 is29",
+          "note": "边界：能被 400 整除，闰年，检验【2】"
+        },
+        {
+          "stdin": "1900 2\n",
+          "expected": "year,month=the length of 1900 2 is28",
+          "note": "边界：能被 100 整除但不能被 400 整除，平年，检验【3】"
+        }
+      ],
+      "id": "c-ch04-cc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.101（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.101】编写程序实现功能：输入整数a和b，若a²+b²>100，则输出a²+b²之和的百位以上数字，否则直接输出a²+b²的和。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "3 4",
+          "expected": "25",
+          "note": "常规-不大于100"
+        },
+        {
+          "stdin": "6 8",
+          "expected": "100",
+          "note": "边界s=100"
+        },
+        {
+          "stdin": "-10 2",
+          "expected": "1",
+          "note": "负数"
+        },
+        {
+          "stdin": "12 16",
+          "expected": "4",
+          "note": "大值"
+        }
+      ],
+      "id": "c-ch04-pg-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.102（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.102】编写程序判断输入的正整数是否既是5又是7的整倍数。若是，则输出yes；否则输出no。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "35",
+          "expected": "yes",
+          "note": "既是5又是7"
+        },
+        {
+          "stdin": "10",
+          "expected": "no",
+          "note": "仅被5整除"
+        },
+        {
+          "stdin": "14",
+          "expected": "no",
+          "note": "仅被7整除"
+        },
+        {
+          "stdin": "1",
+          "expected": "no",
+          "note": "最小正整数"
+        }
+      ],
+      "id": "c-ch04-pg-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.103（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.103】编写程序实现功能：根据表4-7中的函数关系，对输入的每个x值，计算出相应的y值。\n表4-7 题4.103的函数关系\nx\ty\nx<0\t0\n0<x<=10\tx\n10<x<=20\t10\n20<x<40\t-0.5x+20",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "-3",
+          "expected": "y=0",
+          "note": "x<0"
+        },
+        {
+          "stdin": "0.5",
+          "expected": "y=0.5",
+          "note": "0<x<=10"
+        },
+        {
+          "stdin": "10",
+          "expected": "y=10",
+          "note": "边界x=10"
+        },
+        {
+          "stdin": "30",
+          "expected": "y=5",
+          "note": "20<x<40"
+        }
+      ],
+      "id": "c-ch04-pg-003",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.104（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.104】编写程序实现：输入一个整数，判断它能否分别被3、5、7整除，并输出以下信息之一：\n(1)能同时被3、5、7整除；\n(2)能被其中两数(要指出哪两个)整除；\n(3)能被其中一个数(要指出哪一个)整除；\n(4)不能被3、5、7中任一个整除。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "105",
+          "expected": "divisible by 3,5,7",
+          "note": "三数"
+        },
+        {
+          "stdin": "35",
+          "expected": "divisible by 5,7",
+          "note": "两数5和7"
+        },
+        {
+          "stdin": "-3",
+          "expected": "divisible by 3",
+          "note": "一数-负输入"
+        },
+        {
+          "stdin": "11",
+          "expected": "divisible by none",
+          "note": "任一个都不"
+        }
+      ],
+      "id": "c-ch04-pg-004",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.105（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.105】用switch语句编程实现以下函数关系：\ny={-1 (x<0)\n0 (x=0)\n1 (x>0)",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "-100",
+          "expected": "y=-1",
+          "note": "负大数"
+        },
+        {
+          "stdin": "0",
+          "expected": "y=0",
+          "note": "零"
+        },
+        {
+          "stdin": "1",
+          "expected": "y=1",
+          "note": "正最小"
+        },
+        {
+          "stdin": "999999",
+          "expected": "y=1",
+          "note": "正大数"
+        }
+      ],
+      "id": "c-ch04-pg-005",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.106（PDF p56 / 书页 p45）",
+      "difficulty": 2,
+      "stem": "【题 4.106】编写程序实现功能：读入两个运算数(data1和data2)及一个运算符(op)，计算表达式data1 op data2的值，其中op可以为＋、－、*、／四个符号中的任一种（用switch语句实现）。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "2 3 +",
+          "expected": "result=5",
+          "note": "加法"
+        },
+        {
+          "stdin": "10 4 -",
+          "expected": "result=6",
+          "note": "减法"
+        },
+        {
+          "stdin": "3 4 *",
+          "expected": "result=12",
+          "note": "乘法"
+        },
+        {
+          "stdin": "7 2 /",
+          "expected": "result=3.5",
+          "note": "除法非整"
+        }
+      ],
+      "id": "c-ch04-pg-006",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.107（PDF p57 / 书页 p46）",
+      "difficulty": 2,
+      "stem": "【题 4.107】编写程序实现功能：对于给定的一个百分制成绩，改用相应的五级分成绩表示。设：90分以上为A，80～89分为B，70～79分为C，60～69分为D，60分以下为E（要求用switch语句实现）。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "90",
+          "expected": "grade=A",
+          "note": "90边界A"
+        },
+        {
+          "stdin": "80",
+          "expected": "grade=B",
+          "note": "80边界B"
+        },
+        {
+          "stdin": "60",
+          "expected": "grade=D",
+          "note": "60边界D"
+        },
+        {
+          "stdin": "59",
+          "expected": "grade=E",
+          "note": "59边界E"
+        }
+      ],
+      "id": "c-ch04-pg-007",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.108（PDF p57 / 书页 p46）",
+      "difficulty": 2,
+      "stem": "【题 4.108】编写程序实现功能：输入一个复数，输出其共轭复数。例如，输入2＋3i＜回车＞时，输出2－3i；输入2－3i＜回车＞时，输出2＋3i。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "2+3i",
+          "expected": "2-3i",
+          "note": "正虚部"
+        },
+        {
+          "stdin": "2-3i",
+          "expected": "2+3i",
+          "note": "负虚部"
+        },
+        {
+          "stdin": "-5-7i",
+          "expected": "-5+7i",
+          "note": "实部虚部皆负"
+        },
+        {
+          "stdin": "0-1i",
+          "expected": "0+1i",
+          "note": "实部为0"
+        }
+      ],
+      "id": "c-ch04-pg-008",
+      "verified": false
+    },
+    {
+      "id": "c-ch04-dbg-001",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "source": "原创（依据大纲考点：关系运算与 if 的三种形式、赋值号与等号的区分、三数排序交换算法；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "以下程序的功能是：输入三个整数（用空格分隔），把它们按从大到小的顺序输出，数与数之间用一个空格分隔。程序中有 2 处错误，请找出并改正。改正后的程序必须能编译通过，并对任意三个整数（含负数与相等的数）都输出正确结果。",
+      "explanation": "三数排序的固定套路是「先让 x 成为最大，再让 y 成为次大」，三次两两比较交换即可。第 1 处错误把 if (x < y) 打成 if (x = y)：赋值表达式的值就是被赋的 y，所以 y 非 0 时条件恒真，且 x 先被覆盖成 y，随后的 { t = x; x = y; y = t; } 等于什么也没换——以 1 2 3 为例，第一句执行后变成 x=2、y=2、z=3，信息已经丢了原来的 1，后面再怎么排也找不回来，最终输出 3 2 2。y 为 0 时条件反而为假，交换被跳过，-5 0 5 就输出 5 0 0（丢了 -5）。第 2 处错误是第 9 行方向写反：从大到小排序要求 y 小于 z 时交换，写成 y > z 会把已经排好的 y、z 再翻回去，例如 3 1 2 会输出 2 1 1。两处都改回 x < y 与 y < z 后，三组用例分别输出 3 2 1、3 2 1、5 0 -5。这也是编译器警告 suggest parentheses around assignment used as truth value 想提醒你的地方：if 里出现单个 = 几乎总是笔误。",
+      "tags": [
+        "分支结构",
+        "关系运算",
+        "赋值与比较的区别",
+        "交换算法"
+      ],
+      "ai_generated": true,
+      "generated_at": "2026-09-08",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x = y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y > z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
+      "bugs": [
+        "第 7 行 if (x = y) 用赋值运算符 = 代替了关系运算：这里本意是「x 比 y 小就交换」，应写成 if (x < y)。写成赋值有两个后果：一是 x 被悄悄改成了 y 的值；二是整个条件表达式的值就是 y，当 y 恰好为 0 时条件为假，交换语句被整段跳过（测试用例 -5 0 5 就是这样漏排的）。",
+        "第 9 行 if (y > z) 的比较方向反了。本程序的目标是从大到小，只有当 y 比 z 小时才需要把两者交换，应写成 if (y < z)。写成 y > z 时，该交换的没交换、不该交换的反而交换了。"
+      ],
+      "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x < y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y < z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 1 2\n",
+          "expected": "3 2 1",
+          "note": "典型：最大值已在首位"
+        },
+        {
+          "stdin": "1 2 3\n",
+          "expected": "3 2 1",
+          "note": "典型：升序输入"
+        },
+        {
+          "stdin": "-5 0 5\n",
+          "expected": "5 0 -5",
+          "note": "边界：含负数与 0（if (x = y) 的条件值为 0，交换被跳过）"
+        }
+      ],
+      "verified": true
+    },
+    {
+      "id": "c-ch04-dbg-002",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "source": "原创（依据大纲考点：if / else if 多分支与短路、字符的区间判断、字符常量与整型常量的区别；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "以下程序的功能是：读入一行字符（以回车结束），分别统计其中大写字母、小写字母、数字字符和其他字符的个数，并按「大写 小写 数字 其他」的顺序输出四个整数（用一个空格分隔）。程序中有 2 处错误，请找出并改正。",
+      "explanation": "字符在 C 里就是小整数，区间判断必须两端都用同一类的字符常量。第 1 处错误把大写字母的上界写成 'z'：'A'(65) 到 'z'(122) 这段连续区间同时包含了大写字母、[ \\ ] ^ _ ` 六个符号和全部小写字母，所以 Abc 123 会被统计成 upper=3、lower=0；又因为 if / else if 是自上而下短路的，第二个分支永远轮不到，lower 恒为 0，这类「一个分支吃掉后面所有分支」的错误在 else if 链里特别常见。第 2 处错误是边界符号 > 与 >= 之差：数字字符的 ASCII 码是 48~57，c > '0' 把 48 排除了，于是输入里的字符 0 会被算进 other（用例 0AZ9 的正确结果是 2 0 2 0，错误程序给出 2 0 1 1）。另外注意 getchar() 的返回值必须用 int 接收，用 char 接收就无法与 EOF（-1）区分。三组用例改正后依次输出 1 2 3 1、2 0 2 0、2 8 4 4。",
+      "tags": [
+        "分支结构",
+        "else if 链",
+        "字符区间判断",
+        "ASCII"
+      ],
+      "ai_generated": true,
+      "generated_at": "2026-09-08",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c > '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
+      "bugs": [
+        "第 9 行 if (c >= 'A' && c <= 'z') 的区间上界误写成 'z'（应为 'Z'）。'A'~'Z' 是 65~90，'a'~'z' 是 97~122，写成 c <= 'z' 就把整个小写字母区间也囊括进来了，所有字母都计入 upper，后面的 else if 因为短路再也不会执行，lower 恒为 0。",
+        "第 11 行 else if (c > '0' && c <= '9') 的下界用了 > 而不是 >=，字符 '0'（ASCII 48）被排除在数字之外，掉进最后的 other 分支。"
+      ],
+      "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'Z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c >= '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "Abc 123\n",
+          "expected": "1 2 3 1",
+          "note": "典型：大小写、空格、数字混合"
+        },
+        {
+          "stdin": "0AZ9\n",
+          "expected": "2 0 2 0",
+          "note": "边界：含字符 0，用于暴露 c > '0' 的漏判"
+        },
+        {
+          "stdin": "Hello, World! 2026\n",
+          "expected": "2 8 4 4",
+          "note": "典型：含标点的较长一行"
+        }
+      ],
+      "verified": true
+    },
+    {
+      "id": "c-ch04-dbg-003",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "source": "原创（依据大纲考点：逻辑运算符的 || 与 &&、括号与优先级、闰年判定、switch/if 多分支；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "以下程序的功能是：输入年份 y 和月份 m（用一个空格分隔），输出该月的天数，格式为 y-m:days。闰年的判定规则是：能被 4 整除但不能被 100 整除的年是闰年，能被 400 整除的年也是闰年；闰年 2 月 29 天，平年 2 月 28 天。程序中有 3 处错误，请找出并改正。",
+      "explanation": "这道题的三处错误正好覆盖了分支结构最常见的三类失误。第一类是 && 与 || 混淆：「m 等于 1 或 3 或 5……」是析取关系，写成 && 之后条件恒假，7 月会一路落到最后的 else 输出 28 天——注意这类错误不会让程序崩溃，只会安静地给出错误答案。第二类是常量抄错：小月 30 天写成 31 天，4 月输出 31。第三类是闰年条件的完整性：只判「能被 4 整除或能被 400 整除」漏了「但不能被 100 整除」这一层，1900 年能被 4 整除，于是被判成闰年输出 29 天，而历史上 1900 年 2 月只有 28 天。闰年条件的标准写法是 (y % 4 == 0 && y % 100 != 0) || y % 400 == 0；由于 && 的优先级高于 ||，外层括号其实可以省略，但保留括号能避免读代码的人再去想优先级。三组用例改正后依次输出 2023-7:31、1900-2:28、2024-4:30。",
+      "tags": [
+        "分支结构",
+        "逻辑运算",
+        "闰年判定",
+        "边界条件"
+      ],
+      "ai_generated": true,
+      "generated_at": "2026-09-08",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int y, m, days;\n    scanf(\"%d %d\", &y, &m);\n    if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)\n        days = 31;\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        days = 31;\n    else if (y % 4 == 0 || y % 400 == 0)\n        days = 29;\n    else\n        days = 28;\n    printf(\"%d-%d:%d\\n\", y, m, days);\n    return 0;\n}",
+      "bugs": [
+        "第 7 行大月判断把 || 全部写成了 &&：if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)。一个月份不可能同时等于 1、3、5……，该条件恒为假，所有大月都掉到后面的分支去了。",
+        "第 9 行小月分支写的是 days = 31，应为 days = 30。",
+        "第 10 行闰年条件漏掉了 y % 100 != 0，写成 else if (y % 4 == 0 || y % 400 == 0)，于是 1900、2100 这类「能被 4 整除但也能被 100 整除、且不能被 400 整除」的世纪年被误判为闰年。正确写法是 else if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)。"
+      ],
+      "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int y, m, days;\n    scanf(\"%d %d\", &y, &m);\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)\n        days = 31;\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        days = 30;\n    else if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        days = 29;\n    else\n        days = 28;\n    printf(\"%d-%d:%d\\n\", y, m, days);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2023 7\n",
+          "expected": "2023-7:31",
+          "note": "典型：大月（暴露 && 恒假）"
+        },
+        {
+          "stdin": "1900 2\n",
+          "expected": "1900-2:28",
+          "note": "边界：世纪年不是闰年"
+        },
+        {
+          "stdin": "2024 4\n",
+          "expected": "2024-4:30",
+          "note": "典型：小月"
+        }
+      ],
+      "verified": true
+    }
+  ]
+}

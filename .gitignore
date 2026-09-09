@@ -31,3 +31,6 @@ Thumbs.db
 
 # 测试覆盖率
 coverage/
+
+# 验收/调试 scratch（证据与截图可再生，跑 npm run acceptance:cc 重建）
+tmp/

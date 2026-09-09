@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-09-08",
+  "withAnswers": true,
+  "sourceFiles": 33,
+  "sourceRecords": 1008,
+  "chapters": [
+    {
+      "chapter": 1,
+      "id": "c-ch01",
+      "name": "第1章 C语言概述",
+      "converted": 12,
+      "staged": 0,
+      "byType": {
+        "single_choice": 5,
+        "fill_blank": 7
+      },
+      "stagedBySubType": {}
+    },
+    {
+      "chapter": 2,
+      "id": "c-ch02",
+      "name": "第2章 数据类型、运算符与表达式",
+      "converted": 71,
+      "staged": 0,
+      "byType": {
+        "single_choice": 38,
+        "fill_blank": 33
+      },
+      "stagedBySubType": {}
+    },
+    {
+      "chapter": 3,
+      "id": "c-ch03",
+      "name": "第3章 最简单的C程序设计",
+      "converted": 51,
+      "staged": 4,
+      "byType": {
+        "single_choice": 26,
+        "code_reading": 18,
+        "fill_blank": 4,
+        "programming": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 1,
+        "multi_blank": 2,
+        "code_completion": 1
+      }
+    },
+    {
+      "chapter": 4,
+      "id": "c-ch04",
+      "name": "第4章 逻辑运算和分支结构",
+      "converted": 92,
+      "staged": 19,
+      "byType": {
+        "single_choice": 33,
+        "fill_blank": 18,
+        "code_reading": 24,
+        "code_completion": 6,
+        "programming": 8,
+        "debug": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 1,
+        "multi_blank": 6,
+        "code_completion": 12
+      }
+    },
+    {
+      "chapter": 5,
+      "id": "c-ch05",
+      "name": "第5章 循环结构",
+      "converted": 32,
+      "staged": 75,
+      "byType": {
+        "code_reading": 24,
+        "code_completion": 1,
+        "programming": 4,
+        "debug": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 54,
+        "multi_blank": 19,
+        "code_completion": 2
+      }
+    },
+    {
+      "chapter": 6,
+      "id": "c-ch06",
+      "name": "第6章 数组",
+      "converted": 58,
+      "staged": 79,
+      "byType": {
+        "fill_blank": 6,
+        "code_reading": 34,
+        "code_completion": 5,
+        "programming": 10,
+        "debug": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 51,
+        "code_completion": 27,
+        "multi_blank": 1
+      }
+    },
+    {
+      "chapter": 7,
+      "id": "c-ch07",
+      "name": "第7章 函数",
+      "converted": 35,
+      "staged": 46,
+      "byType": {
+        "code_reading": 18,
+        "code_completion": 2,
+        "short_answer": 12,
+        "debug": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 15,
+        "code_completion": 22,
+        "multi_blank": 9
+      }
+    },
+    {
+      "chapter": 8,
+      "id": "c-ch08",
+      "name": "第8章 编译预处理",
+      "converted": 24,
+      "staged": 32,
+      "byType": {
+        "code_reading": 19,
+        "programming": 5
+      },
+      "stagedBySubType": {
+        "single_choice": 27,
+        "multi_blank": 1,
+        "code_completion": 4
+      }
+    },
+    {
+      "chapter": 9,
+      "id": "c-ch09",
+      "name": "第9章 指针",
+      "converted": 77,
+      "staged": 119,
+      "byType": {
+        "code_completion": 2,
+        "code_reading": 58,
+        "fill_blank": 5,
+        "short_answer": 4,
+        "programming": 5,
+        "debug": 3
+      },
+      "stagedBySubType": {
+        "single_choice": 77,
+        "multi_blank": 40,
+        "code_completion": 2
+      }
+    },
+    {
+      "chapter": 10,
+      "id": "c-ch10",
+      "name": "第10章 结构体与共用体",
+      "converted": 24,
+      "staged": 69,
+      "byType": {
+        "code_reading": 12,
+        "code_completion": 4,
+        "programming": 7,
+        "short_answer": 1
+      },
+      "stagedBySubType": {
+        "single_choice": 45,
+        "code_completion": 23,
+        "multi_blank": 1
+      }
+    },
+    {
+      "chapter": 11,
+      "id": "c-ch11",
+      "name": "第11章 位运算",
+      "converted": 26,
+      "staged": 25,
+      "byType": {
+        "fill_blank": 9,
+        "code_reading": 16,
+        "short_answer": 1
+      },
+      "stagedBySubType": {
+        "single_choice": 23,
+        "code_completion": 2
+      }
+    },
+    {
+      "chapter": 12,
+      "id": "c-ch12",
+      "name": "第12章 文件",
+      "converted": 15,
+      "staged": 38,
+      "byType": {
+        "fill_blank": 7,
+        "code_reading": 2,
+        "programming": 6
+      },
+      "stagedBySubType": {
+        "single_choice": 24,
+        "code_completion": 13,
+        "multi_blank": 1
+      }
+    }
+  ],
+  "totals": {
+    "records": 1008,
+    "converted": 517,
+    "staged": 506,
+    "byType": {
+      "single_choice": 102,
+      "fill_blank": 89,
+      "code_reading": 225,
+      "programming": 48,
+      "code_completion": 20,
+      "debug": 15,
+      "short_answer": 18
+    },
+    "stagedBySubType": {
+      "single_choice": 318,
+      "multi_blank": 80,
+      "code_completion": 108
+    },
+    "judgeEvidence": 324,
+    "withRealExpected": 241,
+    "rescuedCodeCompletion": 20,
+    "authoredDebug": 15,
+    "authoredSkipped": 0
+  }
+}

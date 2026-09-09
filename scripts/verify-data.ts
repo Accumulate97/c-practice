@@ -31,6 +31,11 @@ const DATA = join(ROOT, 'public', 'data')
 const PROBLEM_DIR = join(DATA, 'problems')
 /** 这两个不是题目分片，别当分片读 */
 const NON_SHARD = new Set(['index.json', 'verification-report.json'])
+/** 下划线前缀 = 转换期 sidecar（_index.json 总账 / _judge-evidence.json 实机证据），不是题目分片。
+ *  当分片扫会误报 SHARD-UNKNOWN，还会被 build:index 当成 0 题分片写进索引清单；
+ *  仍留在 public/ 下，是为降级模式能 fetch 构建期预存 stdout（AGENTS.md 二·5）。 */
+const isShardName = (name: string): boolean =>
+  name.endsWith('.json') && !name.startsWith('_') && !NON_SHARD.has(name)
 
 interface AjvError { instancePath?: string; message?: string; keyword?: string }
 interface Validator { (data: unknown): boolean; errors: null | AjvError[] }
@@ -70,7 +75,7 @@ function loadShards(): ShardFile[] {
   const out: ShardFile[] = []
   if (!existsSync(PROBLEM_DIR)) throw new Error('缺 public/data/problems 目录')
   for (const name of readdirSync(PROBLEM_DIR).sort()) {
-    if (!name.endsWith('.json') || NON_SHARD.has(name)) continue
+    if (!isShardName(name)) continue
     const parsed = JSON.parse(readFileSync(join(PROBLEM_DIR, name), 'utf8')) as Record<string, unknown>
     const problems = Array.isArray(parsed.problems) ? (parsed.problems as ProblemLike[]) : []
     out.push({
@@ -107,7 +112,7 @@ function collectRefs(dir: string, fields: string[]): RefNode[] {
     for (const k of Object.keys(o)) if (k !== 'id') walk(o[k], file)
   }
   for (const name of readdirSync(dir).sort()) {
-    if (!name.endsWith('.json') || NON_SHARD.has(name)) continue
+    if (!isShardName(name)) continue
     walk(JSON.parse(readFileSync(join(dir, name), 'utf8')) as unknown, name)
   }
   return nodes

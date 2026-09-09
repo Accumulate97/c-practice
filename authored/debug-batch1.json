@@ -1,0 +1,2510 @@
+[
+  {
+    "id": "c-ch04-dbg-001",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：关系运算与 if 的三种形式、赋值号与等号的区分、三数排序交换算法；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入三个整数（用空格分隔），把它们按从大到小的顺序输出，数与数之间用一个空格分隔。程序中有 2 处错误，请找出并改正。改正后的程序必须能编译通过，并对任意三个整数（含负数与相等的数）都输出正确结果。",
+    "explanation": "三数排序的固定套路是「先让 x 成为最大，再让 y 成为次大」，三次两两比较交换即可。第 1 处错误把 if (x < y) 打成 if (x = y)：赋值表达式的值就是被赋的 y，所以 y 非 0 时条件恒真，且 x 先被覆盖成 y，随后的 { t = x; x = y; y = t; } 等于什么也没换——以 1 2 3 为例，第一句执行后变成 x=2、y=2、z=3，信息已经丢了原来的 1，后面再怎么排也找不回来，最终输出 3 2 2。y 为 0 时条件反而为假，交换被跳过，-5 0 5 就输出 5 0 0（丢了 -5）。第 2 处错误是第 9 行方向写反：从大到小排序要求 y 小于 z 时交换，写成 y > z 会把已经排好的 y、z 再翻回去，例如 3 1 2 会输出 2 1 1。两处都改回 x < y 与 y < z 后，三组用例分别输出 3 2 1、3 2 1、5 0 -5。这也是编译器警告 suggest parentheses around assignment used as truth value 想提醒你的地方：if 里出现单个 = 几乎总是笔误。",
+    "tags": [
+      "分支结构",
+      "关系运算",
+      "赋值与比较的区别",
+      "交换算法"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x = y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y > z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
+    "bugs": [
+      "第 7 行 if (x = y) 用赋值运算符 = 代替了关系运算：这里本意是「x 比 y 小就交换」，应写成 if (x < y)。写成赋值有两个后果：一是 x 被悄悄改成了 y 的值；二是整个条件表达式的值就是 y，当 y 恰好为 0 时条件为假，交换语句被整段跳过（测试用例 -5 0 5 就是这样漏排的）。",
+      "第 9 行 if (y > z) 的比较方向反了。本程序的目标是从大到小，只有当 y 比 z 小时才需要把两者交换，应写成 if (y < z)。写成 y > z 时，该交换的没交换、不该交换的反而交换了。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x < y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y < z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "3 1 2\n",
+        "expected": "3 2 1",
+        "note": "典型：最大值已在首位"
+      },
+      {
+        "stdin": "1 2 3\n",
+        "expected": "3 2 1",
+        "note": "典型：升序输入"
+      },
+      {
+        "stdin": "-5 0 5\n",
+        "expected": "5 0 -5",
+        "note": "边界：含负数与 0（if (x = y) 的条件值为 0，交换被跳过）"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "3 1 2\n",
+            "expected": "3 2 1",
+            "actual": "2 1 1",
+            "normExpected": "3 2 1",
+            "normActual": "2 1 1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 24,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1 2 3\n",
+            "expected": "3 2 1",
+            "actual": "3 2 2",
+            "normExpected": "3 2 1",
+            "normActual": "3 2 2",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 36,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "-5 0 5\n",
+            "expected": "5 0 -5",
+            "actual": "5 0 0",
+            "normExpected": "5 0 -5",
+            "normActual": "5 0 0",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 34,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "3 1 2\n",
+            "expected": "3 2 1",
+            "actual": "3 2 1",
+            "normExpected": "3 2 1",
+            "normActual": "3 2 1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1 2 3\n",
+            "expected": "3 2 1",
+            "actual": "3 2 1",
+            "normExpected": "3 2 1",
+            "normActual": "3 2 1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "-5 0 5\n",
+            "expected": "5 0 -5",
+            "actual": "5 0 -5",
+            "normExpected": "5 0 -5",
+            "normActual": "5 0 -5",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 19,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch04-dbg-002",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：if / else if 多分支与短路、字符的区间判断、字符常量与整型常量的区别；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：读入一行字符（以回车结束），分别统计其中大写字母、小写字母、数字字符和其他字符的个数，并按「大写 小写 数字 其他」的顺序输出四个整数（用一个空格分隔）。程序中有 2 处错误，请找出并改正。",
+    "explanation": "字符在 C 里就是小整数，区间判断必须两端都用同一类的字符常量。第 1 处错误把大写字母的上界写成 'z'：'A'(65) 到 'z'(122) 这段连续区间同时包含了大写字母、[ \\ ] ^ _ ` 六个符号和全部小写字母，所以 Abc 123 会被统计成 upper=3、lower=0；又因为 if / else if 是自上而下短路的，第二个分支永远轮不到，lower 恒为 0，这类「一个分支吃掉后面所有分支」的错误在 else if 链里特别常见。第 2 处错误是边界符号 > 与 >= 之差：数字字符的 ASCII 码是 48~57，c > '0' 把 48 排除了，于是输入里的字符 0 会被算进 other（用例 0AZ9 的正确结果是 2 0 2 0，错误程序给出 2 0 1 1）。另外注意 getchar() 的返回值必须用 int 接收，用 char 接收就无法与 EOF（-1）区分。三组用例改正后依次输出 1 2 3 1、2 0 2 0、2 8 4 4。",
+    "tags": [
+      "分支结构",
+      "else if 链",
+      "字符区间判断",
+      "ASCII"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c > '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
+    "bugs": [
+      "第 9 行 if (c >= 'A' && c <= 'z') 的区间上界误写成 'z'（应为 'Z'）。'A'~'Z' 是 65~90，'a'~'z' 是 97~122，写成 c <= 'z' 就把整个小写字母区间也囊括进来了，所有字母都计入 upper，后面的 else if 因为短路再也不会执行，lower 恒为 0。",
+      "第 11 行 else if (c > '0' && c <= '9') 的下界用了 > 而不是 >=，字符 '0'（ASCII 48）被排除在数字之外，掉进最后的 other 分支。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'Z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c >= '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "Abc 123\n",
+        "expected": "1 2 3 1",
+        "note": "典型：大小写、空格、数字混合"
+      },
+      {
+        "stdin": "0AZ9\n",
+        "expected": "2 0 2 0",
+        "note": "边界：含字符 0，用于暴露 c > '0' 的漏判"
+      },
+      {
+        "stdin": "Hello, World! 2026\n",
+        "expected": "2 8 4 4",
+        "note": "典型：含标点的较长一行"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "Abc 123\n",
+            "expected": "1 2 3 1",
+            "actual": "3 0 3 1",
+            "normExpected": "1 2 3 1",
+            "normActual": "3 0 3 1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "0AZ9\n",
+            "expected": "2 0 2 0",
+            "actual": "2 0 1 1",
+            "normExpected": "2 0 2 0",
+            "normActual": "2 0 1 1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 28,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "Hello, World! 2026\n",
+            "expected": "2 8 4 4",
+            "actual": "10 0 3 5",
+            "normExpected": "2 8 4 4",
+            "normActual": "10 0 3 5",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 21,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "Abc 123\n",
+            "expected": "1 2 3 1",
+            "actual": "1 2 3 1",
+            "normExpected": "1 2 3 1",
+            "normActual": "1 2 3 1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "0AZ9\n",
+            "expected": "2 0 2 0",
+            "actual": "2 0 2 0",
+            "normExpected": "2 0 2 0",
+            "normActual": "2 0 2 0",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 29,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "Hello, World! 2026\n",
+            "expected": "2 8 4 4",
+            "actual": "2 8 4 4",
+            "normExpected": "2 8 4 4",
+            "normActual": "2 8 4 4",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 28,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch04-dbg-003",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：逻辑运算符的 || 与 &&、括号与优先级、闰年判定、switch/if 多分支；变式自《C程序设计试题汇编》第4章 逻辑运算和分支结构 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入年份 y 和月份 m（用一个空格分隔），输出该月的天数，格式为 y-m:days。闰年的判定规则是：能被 4 整除但不能被 100 整除的年是闰年，能被 400 整除的年也是闰年；闰年 2 月 29 天，平年 2 月 28 天。程序中有 3 处错误，请找出并改正。",
+    "explanation": "这道题的三处错误正好覆盖了分支结构最常见的三类失误。第一类是 && 与 || 混淆：「m 等于 1 或 3 或 5……」是析取关系，写成 && 之后条件恒假，7 月会一路落到最后的 else 输出 28 天——注意这类错误不会让程序崩溃，只会安静地给出错误答案。第二类是常量抄错：小月 30 天写成 31 天，4 月输出 31。第三类是闰年条件的完整性：只判「能被 4 整除或能被 400 整除」漏了「但不能被 100 整除」这一层，1900 年能被 4 整除，于是被判成闰年输出 29 天，而历史上 1900 年 2 月只有 28 天。闰年条件的标准写法是 (y % 4 == 0 && y % 100 != 0) || y % 400 == 0；由于 && 的优先级高于 ||，外层括号其实可以省略，但保留括号能避免读代码的人再去想优先级。三组用例改正后依次输出 2023-7:31、1900-2:28、2024-4:30。",
+    "tags": [
+      "分支结构",
+      "逻辑运算",
+      "闰年判定",
+      "边界条件"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int y, m, days;\n    scanf(\"%d %d\", &y, &m);\n    if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)\n        days = 31;\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        days = 31;\n    else if (y % 4 == 0 || y % 400 == 0)\n        days = 29;\n    else\n        days = 28;\n    printf(\"%d-%d:%d\\n\", y, m, days);\n    return 0;\n}",
+    "bugs": [
+      "第 7 行大月判断把 || 全部写成了 &&：if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)。一个月份不可能同时等于 1、3、5……，该条件恒为假，所有大月都掉到后面的分支去了。",
+      "第 9 行小月分支写的是 days = 31，应为 days = 30。",
+      "第 10 行闰年条件漏掉了 y % 100 != 0，写成 else if (y % 4 == 0 || y % 400 == 0)，于是 1900、2100 这类「能被 4 整除但也能被 100 整除、且不能被 400 整除」的世纪年被误判为闰年。正确写法是 else if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int y, m, days;\n    scanf(\"%d %d\", &y, &m);\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)\n        days = 31;\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        days = 30;\n    else if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        days = 29;\n    else\n        days = 28;\n    printf(\"%d-%d:%d\\n\", y, m, days);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "2023 7\n",
+        "expected": "2023-7:31",
+        "note": "典型：大月（暴露 && 恒假）"
+      },
+      {
+        "stdin": "1900 2\n",
+        "expected": "1900-2:28",
+        "note": "边界：世纪年不是闰年"
+      },
+      {
+        "stdin": "2024 4\n",
+        "expected": "2024-4:30",
+        "note": "典型：小月"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "2023 7\n",
+            "expected": "2023-7:31",
+            "actual": "2023-7:28",
+            "normExpected": "2023-7:31",
+            "normActual": "2023-7:28",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 31,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1900 2\n",
+            "expected": "1900-2:28",
+            "actual": "1900-2:29",
+            "normExpected": "1900-2:28",
+            "normActual": "1900-2:29",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2024 4\n",
+            "expected": "2024-4:30",
+            "actual": "2024-4:31",
+            "normExpected": "2024-4:30",
+            "normActual": "2024-4:31",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 31,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "2023 7\n",
+            "expected": "2023-7:31",
+            "actual": "2023-7:31",
+            "normExpected": "2023-7:31",
+            "normActual": "2023-7:31",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1900 2\n",
+            "expected": "1900-2:28",
+            "actual": "1900-2:28",
+            "normExpected": "1900-2:28",
+            "normActual": "1900-2:28",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 28,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2024 4\n",
+            "expected": "2024-4:30",
+            "actual": "2024-4:30",
+            "normExpected": "2024-4:30",
+            "normActual": "2024-4:30",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 29,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch05-dbg-004",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第5章 循环结构",
+    "section": "5.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：for 循环与累加器初值、整数除法与强制类型转换的位置；变式自《C程序设计试题汇编》第5章 循环结构 同类题型，非原书题目）",
+    "difficulty": 2,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入一个正整数 n（1≤n≤20），再输入 n 个整数（用空格分隔），输出它们的和 sum 与平均值 avg，avg 保留两位小数，两行输出的格式分别为 sum=值 和 avg=值。程序中有 2 处错误，请找出并改正。",
+    "explanation": "第 1 处错误是累加器初值：sum 用来做加法累积，初值只能是 0，写成 1 之后所有结果都凭空多 1（n=5、数据 1 2 3 4 5 时输出 sum=16 而不是 15）。第 2 处错误是类型转换的位置，这是初学者最容易误解的一处：(double)(sum / n) 里的括号把 sum / n 圈成了一个整体，两个 int 相除在 C 里执行的是整数除法，商向零取整，11 / 4 得 2，然后再把 2 转成 double 打印出来就是 2.00，小数部分永远丢失。正确写法是 (double)sum / n：先把 sum 转成 double，C 的算术转换规则会让另一个操作数 n 也提升为 double，于是执行的是浮点除法，11 / 4 得 2.75。等价写法还有 sum / (double)n 和 1.0 * sum / n。第三组用例正是为暴露这个错误而设的——只有当和不能被 n 整除时，整数除法的截断才看得出来；如果只用 1 2 3 4 5 这类整除的数据测试，两处错误里的第二处会被完全掩盖。三组用例改正后依次输出 sum=15/avg=3.00、sum=7/avg=7.00、sum=11/avg=2.75。",
+    "tags": [
+      "循环结构",
+      "累加器",
+      "整数除法",
+      "类型转换"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, x, sum = 1;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) {\n        scanf(\"%d\", &x);\n        sum += x;\n    }\n    printf(\"sum=%d\\n\", sum);\n    printf(\"avg=%.2f\\n\", (double)(sum / n));\n    return 0;\n}",
+    "bugs": [
+      "第 5 行 int n, i, x, sum = 1; 累加器初值写成了 1，应为 0。累加器的初值必须是运算的单位元：加法的单位元是 0，乘法的单位元才是 1。",
+      "第 11 行 printf(\"avg=%.2f\\n\", (double)(sum / n)); 的强制类型转换加错了位置：sum 和 n 都是 int，sum / n 先按整数除法把小数部分截断，再转成 double 也只是给一个已经丢掉小数的整数补上 .00。应写成 (double)sum / n，让除法在 double 上做。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, x, sum = 0;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) {\n        scanf(\"%d\", &x);\n        sum += x;\n    }\n    printf(\"sum=%d\\n\", sum);\n    printf(\"avg=%.2f\\n\", (double)sum / n);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n1 2 3 4 5\n",
+        "expected": "sum=15\navg=3.00",
+        "note": "典型：n=5"
+      },
+      {
+        "stdin": "1\n7\n",
+        "expected": "sum=7\navg=7.00",
+        "note": "边界：n=1"
+      },
+      {
+        "stdin": "4\n1 2 3 5\n",
+        "expected": "sum=11\navg=2.75",
+        "note": "关键用例：和不能被 n 整除，用于暴露整数除法截断"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "sum=15\navg=3.00",
+            "actual": "sum=16\navg=3.00",
+            "normExpected": "sum=15\navg=3.00",
+            "normActual": "sum=16\navg=3.00",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 30,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n7\n",
+            "expected": "sum=7\navg=7.00",
+            "actual": "sum=8\navg=8.00",
+            "normExpected": "sum=7\navg=7.00",
+            "normActual": "sum=8\navg=8.00",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 30,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "4\n1 2 3 5\n",
+            "expected": "sum=11\navg=2.75",
+            "actual": "sum=12\navg=3.00",
+            "normExpected": "sum=11\navg=2.75",
+            "normActual": "sum=12\navg=3.00",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 48,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "sum=15\navg=3.00",
+            "actual": "sum=15\navg=3.00",
+            "normExpected": "sum=15\navg=3.00",
+            "normActual": "sum=15\navg=3.00",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 19,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n7\n",
+            "expected": "sum=7\navg=7.00",
+            "actual": "sum=7\navg=7.00",
+            "normExpected": "sum=7\navg=7.00",
+            "normActual": "sum=7\navg=7.00",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 30,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "4\n1 2 3 5\n",
+            "expected": "sum=11\navg=2.75",
+            "actual": "sum=11\navg=2.75",
+            "normExpected": "sum=11\navg=2.75",
+            "normActual": "sum=11\navg=2.75",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 19,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch05-dbg-005",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第5章 循环结构",
+    "section": "5.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：双重循环的边界、循环变量的语义、printf 实参顺序；变式自《C程序设计试题汇编》第5章 循环结构 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入正整数 n（1≤n≤9），输出下三角乘法口诀表：第 i 行有 i 个算式，每个算式形如 j*i=积，算式之间用一个空格分隔，每行末尾换行。程序中有 2 处错误，请找出并改正。",
+    "explanation": "下三角口诀表的关键是内层循环的上界依赖外层变量：第 i 行要打印 j = 1…i 共 i 个算式，所以内层必须是 j <= i。写成 j < i 时每行都少一个算式，i = 1 时条件 1 < 1 直接为假，第一行只剩一个 printf(\"\\n\") 打出的空行；n = 1 时程序一行算式都不输出，这是检验循环边界最锋利的一组数据。第 2 处错误是 printf 的实参顺序：格式串 \"%d*%d=%d \" 的三个 %d 依次对应「被乘数、乘数、积」，而口诀表的习惯写法是 1*2=2（小数在前），所以实参必须是 j, i, i * j；写成 i, j 之后每一行都变成 2*1=2、3*1=3 3*2=6 这样的倒序，积虽然算对了，式子的读法却是错的。注意这类错误编译器不会报警告，因为两个实参类型相同——只能靠输出对照发现。三组用例改正后依次输出 3 行、1 行、5 行标准口诀表。",
+    "tags": [
+      "循环结构",
+      "循环嵌套",
+      "循环边界",
+      "printf 实参顺序"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j < i; j++)\n            printf(\"%d*%d=%d \", i, j, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+    "bugs": [
+      "第 9 行内层循环写成 for (j = 1; j < i; j++)，终止条件少算了一个：下三角口诀表第 i 行应该有 i 个算式（j 从 1 到 i），写成 j < i 只有 i-1 个，第 1 行甚至一个算式都不打印，变成空行。应为 for (j = 1; j <= i; j++)。",
+      "第 10 行 printf(\"%d*%d=%d \", i, j, i * j); 的前两个实参顺序颠倒，打印出来的是 2*1=2 而不是 1*2=2。格式串里第一个 %d 对应的是被乘数 j，应写成 printf(\"%d*%d=%d \", j, i, i * j);。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= i; j++)\n            printf(\"%d*%d=%d \", j, i, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "3\n",
+        "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+        "note": "典型：n=3"
+      },
+      {
+        "stdin": "1\n",
+        "expected": "1*1=1",
+        "note": "边界：n=1，内层 j < i 一次都不执行"
+      },
+      {
+        "stdin": "5\n",
+        "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+        "note": "典型：n=5，检验两位数积的排版"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "3\n",
+            "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+            "actual": "\n2*1=2 \n3*1=3 3*2=6 ",
+            "normExpected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+            "normActual": "\n2*1=2\n3*1=3 3*2=6",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 18,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n",
+            "expected": "1*1=1",
+            "actual": "",
+            "normExpected": "1*1=1",
+            "normActual": "",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 64,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5\n",
+            "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+            "actual": "\n2*1=2 \n3*1=3 3*2=6 \n4*1=4 4*2=8 4*3=12 \n5*1=5 5*2=10 5*3=15 5*4=20 ",
+            "normExpected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+            "normActual": "\n2*1=2\n3*1=3 3*2=6\n4*1=4 4*2=8 4*3=12\n5*1=5 5*2=10 5*3=15 5*4=20",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 32,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "3\n",
+            "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+            "actual": "1*1=1 \n1*2=2 2*2=4 \n1*3=3 2*3=6 3*3=9 ",
+            "normExpected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+            "normActual": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 27,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n",
+            "expected": "1*1=1",
+            "actual": "1*1=1 ",
+            "normExpected": "1*1=1",
+            "normActual": "1*1=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5\n",
+            "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+            "actual": "1*1=1 \n1*2=2 2*2=4 \n1*3=3 2*3=6 3*3=9 \n1*4=4 2*4=8 3*4=12 4*4=16 \n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25 ",
+            "normExpected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+            "normActual": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 31,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch05-dbg-006",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第5章 循环结构",
+    "section": "5.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：因子累加的循环边界、if 条件里的赋值号、完全数判定；变式自《C程序设计试题汇编》第5章 循环结构 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入正整数 m（1≤m≤1000），判断它是否为完全数（一个数如果恰好等于它的全部真因子之和，就是完全数，例如 6 = 1 + 2 + 3；真因子指小于该数本身的正因子）。是则输出 m is a perfect number，否则输出 m is not a perfect number。程序中有 2 处错误，请找出并改正。",
+    "explanation": "完全数的定义里「真因子」三个字是核心：因子必须小于 m 本身，所以累加循环的上界是 i < m。写成 i <= m 之后 m % m == 0 恒成立，s 一定包含 m，6 的因子和会算成 1+2+3+6 = 12，任何数都「超过」自己，程序永远判不出完全数。第 2 处错误是经典的 = 与 == 混淆：if (s = m) 先把 m 赋给 s，整个表达式的值是被赋的 m，非 0 即为真，于是 else 分支成了死代码，无论输入什么都输出 is a perfect number。这里有个值得记住的教训——两处错误叠加时会互相掩盖：因为 if (s = m) 恒真，第一组用例 m = 6 的输出恰好与正确答案相同（6 is a perfect number），只看这一组数据会误以为程序没问题；必须用 m = 10、m = 1 这类非完全数才能暴露它。这也是「测试数据要覆盖正反两类」的直接理由。三组用例改正后依次输出 6 is a perfect number、10 is not a perfect number、1 is not a perfect number（1 没有真因子，s = 0，不等于 1）。",
+    "tags": [
+      "循环结构",
+      "因子求和",
+      "赋值与比较的区别",
+      "边界条件"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int m, i, s;\n    scanf(\"%d\", &m);\n    s = 0;\n    for (i = 1; i <= m; i++)\n        if (m % i == 0) s += i;\n    if (s = m)\n        printf(\"%d is a perfect number\\n\", m);\n    else\n        printf(\"%d is not a perfect number\\n\", m);\n    return 0;\n}",
+    "bugs": [
+      "第 8 行 for (i = 1; i <= m; i++) 把 m 自身也当成了因子累加进去，s 至少会比正确值多出 m，任何数都不可能再等于 s。真因子要求 i < m，应写成 for (i = 1; i < m; i++)。",
+      "第 10 行 if (s = m) 用赋值号代替了相等比较 ==：条件表达式的值就是 m（只要 m 不为 0 就恒真），而且 s 还被改写成了 m。结果是任何输入都输出 is a perfect number。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int m, i, s;\n    scanf(\"%d\", &m);\n    s = 0;\n    for (i = 1; i < m; i++)\n        if (m % i == 0) s += i;\n    if (s == m)\n        printf(\"%d is a perfect number\\n\", m);\n    else\n        printf(\"%d is not a perfect number\\n\", m);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "6\n",
+        "expected": "6 is a perfect number",
+        "note": "典型：最小的完全数（注意错误程序在这组数据上恰好蒙对）"
+      },
+      {
+        "stdin": "10\n",
+        "expected": "10 is not a perfect number",
+        "note": "典型：非完全数，因子和 1+2+5=8"
+      },
+      {
+        "stdin": "1\n",
+        "expected": "1 is not a perfect number",
+        "note": "边界：1 没有真因子"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "6\n",
+            "expected": "6 is a perfect number",
+            "actual": "6 is a perfect number",
+            "normExpected": "6 is a perfect number",
+            "normActual": "6 is a perfect number",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 18,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "10\n",
+            "expected": "10 is not a perfect number",
+            "actual": "10 is a perfect number",
+            "normExpected": "10 is not a perfect number",
+            "normActual": "10 is a perfect number",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n",
+            "expected": "1 is not a perfect number",
+            "actual": "1 is a perfect number",
+            "normExpected": "1 is not a perfect number",
+            "normActual": "1 is a perfect number",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "6\n",
+            "expected": "6 is a perfect number",
+            "actual": "6 is a perfect number",
+            "normExpected": "6 is a perfect number",
+            "normActual": "6 is a perfect number",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 27,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "10\n",
+            "expected": "10 is not a perfect number",
+            "actual": "10 is not a perfect number",
+            "normExpected": "10 is not a perfect number",
+            "normActual": "10 is not a perfect number",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 27,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n",
+            "expected": "1 is not a perfect number",
+            "actual": "1 is not a perfect number",
+            "normExpected": "1 is not a perfect number",
+            "normActual": "1 is not a perfect number",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 32,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 2/3 组用例暴露错误（1 组被掩盖，已在 note 标注）；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch06-dbg-007",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第6章 数组",
+    "section": "6.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：一维数组的遍历、最大值初值的选取、> 与 >= 对「第一次出现」的影响；变式自《C程序设计试题汇编》第6章 数组 同类题型，非原书题目）",
+    "difficulty": 2,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入正整数 n（1≤n≤20），再输入 n 个整数存入数组 a，输出数组中的最大值以及它第一次出现的下标（下标从 0 开始），格式为 max=值 pos=下标。程序中有 2 处错误，请找出并改正。",
+    "explanation": "「打擂台」求最大值时，擂主的初值必须来自数组本身（通常取 a[0]，同时 pos = 0），不能凭空写 0。写 0 相当于假定「数组里的数都是正数」，一旦输入全是负数（用例 -3 -7 -2 -9 -1），循环里 a[i] > max 一次都不成立，max 保持 0、pos 保持 0，输出 max=0 pos=0，而 0 根本不在数组里——这类错误的危险之处在于它对大部分正常数据都是对的。第 2 处错误涉及「相同最大值取哪一个」：>= 会让后来者把先来者挤下擂台，得到最后一个最大值的下标；> 则是先来者优先，得到第一次出现的下标。用例 3 7 2 7 1 5 里 7 出现了两次，正确答案是 pos=1，错误程序给出 pos=3。顺带说明为什么第二个循环从 i = 1 开始：a[0] 已经作为初值比过了，再从 0 开始虽然结果相同，但多了一次无意义的比较；反过来，如果初值写成 max = a[0]; pos = 0; 却从 i = 2 开始遍历，就会漏掉 a[1]。三组用例改正后依次输出 max=7 pos=1、max=-1 pos=4、max=4 pos=0。",
+    "tags": [
+      "数组",
+      "最大值",
+      "下标",
+      "边界条件"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    max = 0;\n    pos = 0;\n    for (i = 1; i < n; i++)\n        if (a[i] >= max) { max = a[i]; pos = i; }\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
+    "bugs": [
+      "第 9 行 max = 0; 把最大值的初值写成了常量 0，而不是数组的第一个元素 a[0]。当数组全为负数时，没有任何元素能大于 0，max 与 pos 都保持初值不变，最终输出一个数组里根本不存在的 max=0。应写成 max = a[0];。",
+      "第 11 行 if (a[i] >= max) 用了 >=：出现多个相同的最大值时 pos 会被反复覆盖，得到的是最后一个最大值的下标，而题目要求第一次出现的下标。应写成 if (a[i] > max)。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    max = a[0];\n    pos = 0;\n    for (i = 1; i < n; i++)\n        if (a[i] > max) { max = a[i]; pos = i; }\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "6\n3 7 2 7 1 5\n",
+        "expected": "max=7 pos=1",
+        "note": "典型：最大值重复出现，要求取第一个"
+      },
+      {
+        "stdin": "5\n-3 -7 -2 -9 -1\n",
+        "expected": "max=-1 pos=4",
+        "note": "边界：全为负数，暴露 max = 0 的初值错误"
+      },
+      {
+        "stdin": "3\n4 4 4\n",
+        "expected": "max=4 pos=0",
+        "note": "边界：全部相等"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "6\n3 7 2 7 1 5\n",
+            "expected": "max=7 pos=1",
+            "actual": "max=7 pos=3",
+            "normExpected": "max=7 pos=1",
+            "normActual": "max=7 pos=3",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5\n-3 -7 -2 -9 -1\n",
+            "expected": "max=-1 pos=4",
+            "actual": "max=0 pos=0",
+            "normExpected": "max=-1 pos=4",
+            "normActual": "max=0 pos=0",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n4 4 4\n",
+            "expected": "max=4 pos=0",
+            "actual": "max=4 pos=2",
+            "normExpected": "max=4 pos=0",
+            "normActual": "max=4 pos=2",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 21,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "6\n3 7 2 7 1 5\n",
+            "expected": "max=7 pos=1",
+            "actual": "max=7 pos=1",
+            "normExpected": "max=7 pos=1",
+            "normActual": "max=7 pos=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 31,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5\n-3 -7 -2 -9 -1\n",
+            "expected": "max=-1 pos=4",
+            "actual": "max=-1 pos=4",
+            "normExpected": "max=-1 pos=4",
+            "normActual": "max=-1 pos=4",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 40,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n4 4 4\n",
+            "expected": "max=4 pos=0",
+            "actual": "max=4 pos=0",
+            "normExpected": "max=4 pos=0",
+            "normActual": "max=4 pos=0",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 24,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch06-dbg-008",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第6章 数组",
+    "section": "6.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：冒泡排序的双重循环边界、比较方向决定升降序；变式自《C程序设计试题汇编》第6章 数组 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入正整数 n（1≤n≤20），再输入 n 个整数存入数组 a，用冒泡法把它们按升序排序后输出，数与数之间用一个空格分隔，行末换行。程序中有 2 处错误，请找出并改正。",
+    "explanation": "冒泡排序的两条边界公式要一起记：外层走 n - 1 趟（最后一趟只剩一个元素，无需再排），内层第 i 趟只需比较到 j < n - 1 - i，因为每趟结束后末尾已经沉淀了 i 个就位的大元素，而 j 又要访问 a[j + 1]，所以 j 的最大值是 n - 2 - i，条件便写成 j < n - 1 - i。把它少写一个变成 j < n - 2 - i，每趟就漏掉最后一次比较；最锋利的反例是 n = 2：n - 2 - i = 0，内层一次都不执行，输入 2 1 原样输出 2 1。第 2 处错误是方向：a[j] > a[j + 1] 时交换才是升序（大的往后冒），写成 < 之后小的往后冒，结果是降序。以 5 3 8 1 9 为例，错误程序输出 8 5 3 1 9——既不是升序也不是完整的降序，因为两个错误叠加后每趟都少比一次，9 根本没有机会冒到最后。调试排序程序的实用技巧是：先只用 n = 2 和 n = 3 的小数据人工走一遍，边界错误在小数据下最容易现形。三组用例改正后依次输出 1 3 5 8 9、1 2、1 2 3。",
+    "tags": [
+      "数组",
+      "冒泡排序",
+      "循环边界",
+      "排序方向"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, j, t;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 2 - i; j++)\n            if (a[j] < a[j + 1]) { t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+    "bugs": [
+      "第 10 行 if (a[j] < a[j + 1]) 的比较方向反了：冒泡升序应该在「前一个比后一个大」时交换，写成 < 会把数组排成降序。应改为 if (a[j] > a[j + 1])。",
+      "第 9 行内层循环上界写成 j < n - 2 - i，比正确的 j < n - 1 - i 少了一次比较：每趟最后一次相邻元素交换被跳过，n = 2 时内层一次都不执行，数组原样输出。"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, j, t;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) { t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n5 3 8 1 9\n",
+        "expected": "1 3 5 8 9",
+        "note": "典型：n=5 乱序"
+      },
+      {
+        "stdin": "2\n2 1\n",
+        "expected": "1 2",
+        "note": "边界：n=2，内层 j < n - 2 - i 一次都不执行"
+      },
+      {
+        "stdin": "3\n1 2 3\n",
+        "expected": "1 2 3",
+        "note": "边界：已经升序"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n5 3 8 1 9\n",
+            "expected": "1 3 5 8 9",
+            "actual": "8 5 3 1 9 ",
+            "normExpected": "1 3 5 8 9",
+            "normActual": "8 5 3 1 9",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2\n2 1\n",
+            "expected": "1 2",
+            "actual": "2 1 ",
+            "normExpected": "1 2",
+            "normActual": "2 1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 23,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n1 2 3\n",
+            "expected": "1 2 3",
+            "actual": "2 1 3 ",
+            "normExpected": "1 2 3",
+            "normActual": "2 1 3",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 32,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n5 3 8 1 9\n",
+            "expected": "1 3 5 8 9",
+            "actual": "1 3 5 8 9 ",
+            "normExpected": "1 3 5 8 9",
+            "normActual": "1 3 5 8 9",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 33,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2\n2 1\n",
+            "expected": "1 2",
+            "actual": "1 2 ",
+            "normExpected": "1 2",
+            "normActual": "1 2",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n1 2 3\n",
+            "expected": "1 2 3",
+            "actual": "1 2 3 ",
+            "normExpected": "1 2 3",
+            "normActual": "1 2 3",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 28,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch06-dbg-009",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第6章 数组",
+    "section": "6.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：strlen 的语义、字符常量与整型常量的区别、printf 实参顺序、循环越界读；变式自《C程序设计试题汇编》第6章 数组 同类题型，非原书题目）",
+    "difficulty": 4,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：读入一个不含空格的字符串（长度不超过 79），输出它的长度 len 以及其中数字字符的个数 digits，格式为 len=值 digits=值。程序中有 3 处错误，请找出并改正。",
+    "explanation": "三处错误互相纠缠，所以错误输出看起来很离奇——以 abc123 为例，正确结果是 len=6 digits=3，错误程序输出 len=1 digits=7。逐条拆开：第 1 处，strlen(\"abc123\") 返回 6，+1 得 7，这个 7 被 printf 当成 digits 的位置打印出来，同时循环也因此多跑一步读到 s[6] 也就是结尾的 '\\0'。第 2 处，字符在 C 里是整数，但「数字字符」和「数值 0 到 9」不是一回事：'0' 的编码是 48，s[i] <= 9 对所有可见字符都为假，唯独 '\\0'（编码 0）满足 0 >= 0 && 0 <= 9，于是 digits 统计到的只有那个多读进来的结尾符，恒为 1。第 3 处，printf 的实参必须与格式串里的 %d 一一对应，顺序写反之后 len 的位置打印的是 digits、digits 的位置打印的是 n。这类错误的共同点是编译器完全不会报错（三处类型都合法，只是 %d 对 strlen 返回的 size_t 会有一个警告），只能靠对照输出发现，所以调试时要养成「先单独打印中间变量」的习惯。三组用例改正后依次输出 len=6 digits=3、len=4 digits=4、len=5 digits=0。",
+    "tags": [
+      "数组",
+      "字符串",
+      "strlen",
+      "字符与整数",
+      "printf 实参顺序"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{\n    char s[80];\n    int i, n, digits = 0;\n    scanf(\"%s\", s);\n    n = strlen(s) + 1;\n    for (i = 0; i < n; i++)\n        if (s[i] >= 0 && s[i] <= 9) digits++;\n    printf(\"len=%d digits=%d\\n\", digits, n);\n    return 0;\n}",
+    "bugs": [
+      "第 8 行 n = strlen(s) + 1; 多算了一个字符。strlen 返回的是不含结尾 '\\0' 的有效字符数，+1 之后 len 的结果偏大，还让后面的循环多走一步、读到结尾的 '\\0'。应写成 n = strlen(s);。",
+      "第 9 行 if (s[i] >= 0 && s[i] <= 9) 把数字字符与整数 0~9 比较，而字符 '0'~'9' 的 ASCII 码是 48~57，条件对任何可见字符都不成立，只有字符码恰好为 0 的结尾 '\\0' 会被算成「数字」。应写成 if (s[i] >= '0' && s[i] <= '9')。",
+      "第 10 行 printf(\"len=%d digits=%d\\n\", digits, n); 的两个实参顺序颠倒，应为 n, digits。"
+    ],
+    "fixed_code": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{\n    char s[80];\n    int i, n, digits = 0;\n    scanf(\"%s\", s);\n    n = strlen(s);\n    for (i = 0; i < n; i++)\n        if (s[i] >= '0' && s[i] <= '9') digits++;\n    printf(\"len=%d digits=%d\\n\", n, digits);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "abc123\n",
+        "expected": "len=6 digits=3",
+        "note": "典型：字母与数字混合"
+      },
+      {
+        "stdin": "2026\n",
+        "expected": "len=4 digits=4",
+        "note": "典型：全数字"
+      },
+      {
+        "stdin": "hello\n",
+        "expected": "len=5 digits=0",
+        "note": "边界：不含数字字符"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "abc123\n",
+            "expected": "len=6 digits=3",
+            "actual": "len=1 digits=7",
+            "normExpected": "len=6 digits=3",
+            "normActual": "len=1 digits=7",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2026\n",
+            "expected": "len=4 digits=4",
+            "actual": "len=1 digits=5",
+            "normExpected": "len=4 digits=4",
+            "normActual": "len=1 digits=5",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 54,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "hello\n",
+            "expected": "len=5 digits=0",
+            "actual": "len=1 digits=6",
+            "normExpected": "len=5 digits=0",
+            "normActual": "len=1 digits=6",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "abc123\n",
+            "expected": "len=6 digits=3",
+            "actual": "len=6 digits=3",
+            "normExpected": "len=6 digits=3",
+            "normActual": "len=6 digits=3",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 30,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2026\n",
+            "expected": "len=4 digits=4",
+            "actual": "len=4 digits=4",
+            "normExpected": "len=4 digits=4",
+            "normActual": "len=4 digits=4",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 28,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "hello\n",
+            "expected": "len=5 digits=0",
+            "actual": "len=5 digits=0",
+            "normExpected": "len=5 digits=0",
+            "normActual": "len=5 digits=0",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 20,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch07-dbg-010",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第7章 函数",
+    "section": "7.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：函数的值传递与地址传递、通过指针参数修改实参；变式自《C程序设计试题汇编》第7章 函数 同类题型，非原书题目）",
+    "difficulty": 2,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入两个整数 a 和 b（用空格分隔），如果 a < b 就调用 swap 函数交换它们，使输出总是「较大的数 较小的数」，两个数之间用一个空格分隔。程序中有 2 处错误，请找出并改正。",
+    "explanation": "这是 C 语言里最重要的一条规则：实参传给形参时是「复制一份值」，函数内部对形参的任何修改都不会影响实参。错误程序里 swap(a, b) 把 a、b 的值复制给 p、q，函数内部确实把 p、q 交换了，但函数返回时这两个副本随栈帧一起销毁，main 里的 a、b 保持原样，于是输入 3 8 输出仍是 3 8。要真正交换，必须把「a 和 b 的地址」传进去，让函数通过指针间接访问 main 的变量：形参写成 int *p, int *q，函数体里用 *p、*q 读写，调用处写 swap(&a, &b)。两处改动是配套的——只改形参不改调用处，或只改调用处不改形参，编译器都会报类型不匹配的错误（这一点与前面几道「静默给出错误答案」的题不同，改错时要留意）。第三组用例 a = b = 5 时 if 条件为假，swap 根本不会被调用，错误程序与正确程序输出相同，这说明「函数没被调用」的数据无法检验函数内部的对错，测试时要另外准备一定会触发调用的数据。三组用例改正后依次输出 8 3、100 1、5 5。",
+    "tags": [
+      "函数",
+      "值传递",
+      "地址传递",
+      "指针作参数"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nvoid swap(int p, int q)\n{\n    int t = p;\n    p = q;\n    q = t;\n}\nint main(void)\n{\n    int a, b;\n    scanf(\"%d %d\", &a, &b);\n    if (a < b) swap(a, b);\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}",
+    "bugs": [
+      "第 2 行 void swap(int p, int q) 的形参是普通 int：C 的函数参数一律是值传递，函数体里交换的只是两个副本，main 里的 a、b 一个字节都没被改动。要让函数修改实参，形参必须是指针 void swap(int *p, int *q)，函数体里通过 *p、*q 解引用访问实参本身。",
+      "第 12 行 swap(a, b) 调用时没有取地址，应写成 swap(&a, &b)。这一处与上一处必须同时改，只改一处编译就会报错。"
+    ],
+    "fixed_code": "#include <stdio.h>\nvoid swap(int *p, int *q)\n{\n    int t = *p;\n    *p = *q;\n    *q = t;\n}\nint main(void)\n{\n    int a, b;\n    scanf(\"%d %d\", &a, &b);\n    if (a < b) swap(&a, &b);\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "3 8\n",
+        "expected": "8 3",
+        "note": "典型：需要交换"
+      },
+      {
+        "stdin": "1 100\n",
+        "expected": "100 1",
+        "note": "典型：需要交换，两数差距大"
+      },
+      {
+        "stdin": "5 5\n",
+        "expected": "5 5",
+        "note": "边界：两数相等，swap 不被调用"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "3 8\n",
+            "expected": "8 3",
+            "actual": "3 8",
+            "normExpected": "8 3",
+            "normActual": "3 8",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1 100\n",
+            "expected": "100 1",
+            "actual": "1 100",
+            "normExpected": "100 1",
+            "normActual": "1 100",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 33,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5 5\n",
+            "expected": "5 5",
+            "actual": "5 5",
+            "normExpected": "5 5",
+            "normActual": "5 5",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 40,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "3 8\n",
+            "expected": "8 3",
+            "actual": "8 3",
+            "normExpected": "8 3",
+            "normActual": "8 3",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 19,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1 100\n",
+            "expected": "100 1",
+            "actual": "100 1",
+            "normExpected": "100 1",
+            "normActual": "100 1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "5 5\n",
+            "expected": "5 5",
+            "actual": "5 5",
+            "normExpected": "5 5",
+            "normActual": "5 5",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 27,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 2/3 组用例暴露错误（1 组被掩盖，已在 note 标注）；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch07-dbg-011",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第7章 函数",
+    "section": "7.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：递归的出口与递推式、递归函数调用处的实参；变式自《C程序设计试题汇编》第7章 函数 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入非负整数 n（n≤12），用递归函数 fact 求 n! 并输出，格式为 n!=值。程序中有 2 处错误，请找出并改正。",
+    "explanation": "递归函数由两部分组成：出口（递归终止条件）和递推式（把规模 n 的问题化成规模 n-1 的问题）。这道题的出口 if (n <= 1) return 1; 是正确的——0! 和 1! 都定义为 1，写成 n <= 1 而不是 n == 1 还能顺带兜住意外传入的负数，避免无限递归把栈打穿。两处错误都在别的地方：第 1 处是递推式的运算符，阶乘的定义是 n! = n × (n-1)!，写成加号之后计算的是 1+2+…+n 这个三角数，n = 5 时得 15；第 2 处在调用处，printf 里写的是 fact(n - 1)，于是「5!=」后面打印的其实是 4 的结果，两个错误叠加后 n = 5 输出 5!=10（错误版本的 fact(4) = 4+3+2+1 = 10）。定位这类问题的有效手段是手工展开递归：fact(5) → 5 + fact(4) → 5 + (4 + fact(3)) → …，一层层写下来运算符的错误立刻显形。第三组用例 n = 0 检验出口：正确输出 0!=1，错误程序调用 fact(-1)，因为出口条件是 n <= 1 所以直接返回 1，输出同样是 0!=1，恰好蒙对——再次说明边界数据不一定能暴露错误，需要与典型数据配合使用。三组用例改正后依次输出 5!=120、3!=6、0!=1。",
+    "tags": [
+      "函数",
+      "递归",
+      "阶乘",
+      "边界条件"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nlong fact(int n)\n{\n    if (n <= 1) return 1;\n    return n + fact(n - 1);\n}\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    printf(\"%d!=%ld\\n\", n, fact(n - 1));\n    return 0;\n}",
+    "bugs": [
+      "第 5 行 return n + fact(n - 1); 把乘号写成了加号：递归式变成 n + (n-1) + … + 1，算出的是三角数而不是阶乘（n = 5 时得 15 而不是 120）。应为 return n * fact(n - 1);。",
+      "第 12 行 printf(\"%d!=%ld\\n\", n, fact(n - 1)); 调用处少传了一个 n，输出的是 (n-1)! 的值。应为 fact(n)。"
+    ],
+    "fixed_code": "#include <stdio.h>\nlong fact(int n)\n{\n    if (n <= 1) return 1;\n    return n * fact(n - 1);\n}\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    printf(\"%d!=%ld\\n\", n, fact(n));\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n",
+        "expected": "5!=120",
+        "note": "典型：n=5"
+      },
+      {
+        "stdin": "3\n",
+        "expected": "3!=6",
+        "note": "典型：n=3"
+      },
+      {
+        "stdin": "0\n",
+        "expected": "0!=1",
+        "note": "边界：0! = 1，检验递归出口"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n",
+            "expected": "5!=120",
+            "actual": "5!=10",
+            "normExpected": "5!=120",
+            "normActual": "5!=10",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n",
+            "expected": "3!=6",
+            "actual": "3!=3",
+            "normExpected": "3!=6",
+            "normActual": "3!=3",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 20,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "0\n",
+            "expected": "0!=1",
+            "actual": "0!=1",
+            "normExpected": "0!=1",
+            "normActual": "0!=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 33,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n",
+            "expected": "5!=120",
+            "actual": "5!=120",
+            "normExpected": "5!=120",
+            "normActual": "5!=120",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n",
+            "expected": "3!=6",
+            "actual": "3!=6",
+            "normExpected": "3!=6",
+            "normActual": "3!=6",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "0\n",
+            "expected": "0!=1",
+            "actual": "0!=1",
+            "normExpected": "0!=1",
+            "normActual": "0!=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 2/3 组用例暴露错误（1 组被掩盖，已在 note 标注）；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch07-dbg-012",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第7章 函数",
+    "section": "7.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：结构体作函数参数的传递方式、-> 与 . 的选用；变式自《C程序设计试题汇编》第7章 函数 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：输入一个学生的姓名（不含空格）、成绩和分数增量 d（三者用空格分隔），调用 bump 函数把该学生的成绩加上 d，然后输出姓名和新成绩（用一个空格分隔）。程序中有 2 处错误，请找出并改正。",
+    "explanation": "结构体作函数参数与 int 作参数遵循同一条规则——值传递，只是被复制的东西从一个整数变成了整个结构体。错误程序里 bump(s, d) 把 s 整体复制给形参 p，函数内 p.score += d 改的是副本，返回后 main 里的 s.score 依旧是输入的原值，所以 wang 80 5 输出的还是 wang 80 而不是 wang 85。要修改调用者的结构体，必须传地址：形参 struct student *p，调用处 bump(&s, d)。随之而来的是成员访问运算符的切换——p 是指针时用 p->score，p 是结构体变量时用 p.score；两者可以互换的写法是 (*p).score，但实践中一律用 ->。另外要留意 scanf(\"%s\", s.name) 这里没有 &：s.name 是字符数组名，本身就是数组首地址，而 s.score 是普通成员，必须写 &s.score，这一处原程序是对的，改错时不要顺手「统一」成 &s.name。第三组用例 d = 0 时，加 0 与不加的结果相同，错误程序与正确程序输出一致，无法用来检验；这说明构造测试数据时要让「操作有效果」，否则用例会失去鉴别力。三组用例改正后依次输出 wang 85、zhang 56、li 100。",
+    "tags": [
+      "函数",
+      "结构体",
+      "值传递",
+      "指针访问成员"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nstruct student {\n    char name[20];\n    int score;\n};\nvoid bump(struct student p, int d)\n{\n    p.score += d;\n}\nint main(void)\n{\n    struct student s;\n    int d;\n    scanf(\"%s %d %d\", s.name, &s.score, &d);\n    bump(s, d);\n    printf(\"%s %d\\n\", s.name, s.score);\n    return 0;\n}",
+    "bugs": [
+      "第 7 行 void bump(struct student p, int d) 用整个结构体做形参，是值传递：函数拿到的是 s 的一份完整副本，p.score += d 只改副本，函数返回后副本销毁，main 里的 s.score 保持原值。除了改不动实参，每次调用还要复制整个结构体，开销也比传指针大。应写成 void bump(struct student *p, int d)。",
+      "第 9 行 p.score += d; 与第 14 行 bump(s, d); 是上一处错误的配套写法：形参改成指针后，访问成员要用 -> 即 p->score += d;，调用处要取地址即 bump(&s, d);。"
+    ],
+    "fixed_code": "#include <stdio.h>\nstruct student {\n    char name[20];\n    int score;\n};\nvoid bump(struct student *p, int d)\n{\n    p->score += d;\n}\nint main(void)\n{\n    struct student s;\n    int d;\n    scanf(\"%s %d %d\", s.name, &s.score, &d);\n    bump(&s, d);\n    printf(\"%s %d\\n\", s.name, s.score);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "wang 80 5\n",
+        "expected": "wang 85",
+        "note": "典型：增量为正"
+      },
+      {
+        "stdin": "zhang 59 -3\n",
+        "expected": "zhang 56",
+        "note": "典型：增量为负"
+      },
+      {
+        "stdin": "li 100 0\n",
+        "expected": "li 100",
+        "note": "边界：增量为 0，值传递错误在这组数据上不可见"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "wang 80 5\n",
+            "expected": "wang 85",
+            "actual": "wang 80",
+            "normExpected": "wang 85",
+            "normActual": "wang 80",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "zhang 59 -3\n",
+            "expected": "zhang 56",
+            "actual": "zhang 59",
+            "normExpected": "zhang 56",
+            "normActual": "zhang 59",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 35,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "li 100 0\n",
+            "expected": "li 100",
+            "actual": "li 100",
+            "normExpected": "li 100",
+            "normActual": "li 100",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "wang 80 5\n",
+            "expected": "wang 85",
+            "actual": "wang 85",
+            "normExpected": "wang 85",
+            "normActual": "wang 85",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 34,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "zhang 59 -3\n",
+            "expected": "zhang 56",
+            "actual": "zhang 56",
+            "normExpected": "zhang 56",
+            "normActual": "zhang 56",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "li 100 0\n",
+            "expected": "li 100",
+            "actual": "li 100",
+            "normExpected": "li 100",
+            "normActual": "li 100",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 2/3 组用例暴露错误（1 组被掩盖，已在 note 标注）；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch09-dbg-013",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第9章 指针",
+    "section": "9.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：指针遍历数组、(*p)++ 与 *p++ 的区别、累加器、指针运算的终止条件；变式自《C程序设计试题汇编》第9章 指针 同类题型，非原书题目）",
+    "difficulty": 4,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入正整数 n（1≤n≤10），再输入 n 个整数存入数组 a；然后用指针 p 从 a 开始依次访问每个元素，把元素的值加 1，并求这些「加 1 之后」的元素之和 sum；最后先输出自增后的数组（数与数之间用一个空格分隔），再另起一行输出 sum=值。程序中有 2 处错误，请找出并改正。",
+    "explanation": "用指针遍历数组的标准写法是 for (p = a; p < a + n; p++)：a 是首元素地址，a + n 是「尾后位置」，指针比较用 < 而不是 <=，正好访问 n 个元素。错误程序写成 p < a + n - 1，少访问一个元素，输入 1 2 3 4 5 时数组变成 2 3 4 5 5（最后一个 5 没有自增），sum 也漏掉了它。第 2 处错误是累加器写成了赋值：sum = *p 每轮覆盖，循环结束后 sum 只剩最后一轮的值，与「求和」的语义完全不符，应写 sum += *p。这道题还埋着一个必须讲清楚的知识点——(*p)++ 与 *p++ 的区别：后缀 ++ 的优先级高于单目 *，所以 *p++ 被解析成 *(p++)，自增的是指针 p 本身，表达式值是 p 原来指向的元素；在 for 循环里再写一个 *p++，p 每轮前进 2，不仅元素一个都没被加 1，还会越过 a + n 读到数组之外的未初始化内存，输出不可预测。要让元素自增必须加括号写 (*p)++；等价的写法还有 ++*p（先自增再取值，本题中与 (*p)++ 的后续 sum += *p 结果相同）。三组用例改正后依次输出 2 3 4 5 6 / sum=20、8 / sum=8、1 1 1 / sum=3。",
+    "tags": [
+      "指针",
+      "指针遍历数组",
+      "累加器",
+      "循环边界"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\nint main(void)\n{\n    int a[10], n, i, sum = 0;\n    int *p;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (p = a; p < a + n - 1; p++) {\n        (*p)++;\n        sum = *p;\n    }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\nsum=%d\\n\", sum);\n    return 0;\n}",
+    "bugs": [
+      "第 11 行 sum = *p; 用赋值代替了累加：每轮都把上一轮的结果冲掉，循环结束后 sum 只是最后一个被处理元素的值。应写成 sum += *p;。",
+      "第 10 行 for (p = a; p < a + n - 1; p++) 的终止条件多减了 1，最后一个元素既没有自增也没有计入 sum。应为 p < a + n。（顺带说明：这里绝不能把 (*p)++ 写成 *p++，因为 ++ 的后缀形式优先级高于 *，*p++ 等价于 *(p++)，自增的是指针而不是元素，会让遍历步长变成 2 并读到数组外的未初始化内存。）"
+    ],
+    "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int a[10], n, i, sum = 0;\n    int *p;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (p = a; p < a + n; p++) {\n        (*p)++;\n        sum += *p;\n    }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\nsum=%d\\n\", sum);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n1 2 3 4 5\n",
+        "expected": "2 3 4 5 6\nsum=20",
+        "note": "典型：n=5"
+      },
+      {
+        "stdin": "1\n7\n",
+        "expected": "8\nsum=8",
+        "note": "边界：n=1，错误程序的循环一次都不执行"
+      },
+      {
+        "stdin": "3\n0 0 0\n",
+        "expected": "1 1 1\nsum=3",
+        "note": "边界：全 0，自增后为 1"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "2 3 4 5 6\nsum=20",
+            "actual": "2 3 4 5 5 \nsum=5",
+            "normExpected": "2 3 4 5 6\nsum=20",
+            "normActual": "2 3 4 5 5\nsum=5",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 18,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n7\n",
+            "expected": "8\nsum=8",
+            "actual": "7 \nsum=0",
+            "normExpected": "8\nsum=8",
+            "normActual": "7\nsum=0",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 40,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n0 0 0\n",
+            "expected": "1 1 1\nsum=3",
+            "actual": "1 1 0 \nsum=1",
+            "normExpected": "1 1 1\nsum=3",
+            "normActual": "1 1 0\nsum=1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 21,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "2 3 4 5 6\nsum=20",
+            "actual": "2 3 4 5 6 \nsum=20",
+            "normExpected": "2 3 4 5 6\nsum=20",
+            "normActual": "2 3 4 5 6\nsum=20",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 33,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n7\n",
+            "expected": "8\nsum=8",
+            "actual": "8 \nsum=8",
+            "normExpected": "8\nsum=8",
+            "normActual": "8\nsum=8",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 31,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "3\n0 0 0\n",
+            "expected": "1 1 1\nsum=3",
+            "actual": "1 1 1 \nsum=3",
+            "normExpected": "1 1 1\nsum=3",
+            "normActual": "1 1 1\nsum=3",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 23,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch09-dbg-014",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第9章 指针",
+    "section": "9.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：指针相减的语义（元素个数而非字节数）、指针遍历统计、负数取余；变式自《C程序设计试题汇编》第9章 指针 同类题型，非原书题目）",
+    "difficulty": 4,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入正整数 n（1≤n≤20），再输入 n 个整数存入数组 a；用 my_len 函数通过「尾后指针减首指针」求出元素个数 len，用 count_even 函数通过指针遍历统计其中偶数的个数 even，然后依次输出 len=值 和 even=值 两行。程序中有 2 处错误，请找出并改正。",
+    "explanation": "指针相减是「元素个数」运算，不是地址的字节差：p - q 的结果类型是 ptrdiff_t，值等于两者相隔多少个所指类型的元素，编译器已经自动除过了 sizeof。所以 int * 相减得到元素个数，一旦被强转成 char * 再相减，所指类型变成 1 字节，结果就是字节数——在 int 占 4 字节的 x86-64 平台上恰好是正确值的 4 倍，5 个元素会输出 len=20。这个强转看起来「无害」，实际上是把语义换掉了，是指针章最典型的陷阱之一。第 2 处错误有两层：表层是把判偶写成了判奇（% 2 == 1），深层是 == 1 这种写法对负数不成立——C99 起 % 的结果符号跟随被除数，-3 % 2 的值是 -1，既不等于 1 也不等于 0，于是 -3 在错误程序里既不算奇数（不满足 == 1）也在正确程序里不算偶数（不满足 == 0），第三组用例 -3 4 -2 7 正是为暴露这一点而设的：正确答案是 even=2（4 和 -2），错误程序输出 even=1（只有 7 满足 % 2 == 1）。判偶数请一律用 % 2 == 0，它对正负数都成立。三组用例改正后依次输出 len=5/even=2、len=1/even=1、len=4/even=2。",
+    "tags": [
+      "指针",
+      "指针运算",
+      "类型转换",
+      "偶数判定"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\n\nint my_len(int *begin, int *end)\n{\n    return (int)((char *)end - (char *)begin);\n}\n\nint count_even(int *p, int *q)\n{\n    int n = 0;\n    while (p < q) {\n        if (*p % 2 == 1) n++;\n        p++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    int a[20], n, i;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    printf(\"len=%d\\n\", my_len(a, a + n));\n    printf(\"even=%d\\n\", count_even(a, a + n));\n    return 0;\n}",
+    "bugs": [
+      "第 4 行 return (int)((char *)end - (char *)begin); 把两个 int * 强转成 char * 后再相减。指针相减的结果是「相隔多少个所指类型的元素」，转成 char * 之后所指类型变成 1 字节，得到的是字节数，在 int 占 4 字节的平台上结果被放大了 4 倍。应直接写 return (int)(end - begin);。",
+      "第 11 行 if (*p % 2 == 1) n++; 判的是奇数不是偶数，应写成 if (*p % 2 == 0) n++;。而且 == 1 这种写法对负数本身就是错的：C99 规定 % 的结果符号与被除数相同，-3 % 2 得 -1 而不是 1，所以「判奇数」的稳妥写法是 *p % 2 != 0，「判偶数」的稳妥写法是 *p % 2 == 0。"
+    ],
+    "fixed_code": "#include <stdio.h>\n\nint my_len(int *begin, int *end)\n{\n    return (int)(end - begin);\n}\n\nint count_even(int *p, int *q)\n{\n    int n = 0;\n    while (p < q) {\n        if (*p % 2 == 0) n++;\n        p++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    int a[20], n, i;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    printf(\"len=%d\\n\", my_len(a, a + n));\n    printf(\"even=%d\\n\", count_even(a, a + n));\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n1 2 3 4 5\n",
+        "expected": "len=5\neven=2",
+        "note": "典型：n=5"
+      },
+      {
+        "stdin": "1\n6\n",
+        "expected": "len=1\neven=1",
+        "note": "边界：n=1 且为偶数"
+      },
+      {
+        "stdin": "4\n-3 4 -2 7\n",
+        "expected": "len=4\neven=2",
+        "note": "边界：含负数，检验 % 2 的符号规则"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "len=5\neven=2",
+            "actual": "len=20\neven=3",
+            "normExpected": "len=5\neven=2",
+            "normActual": "len=20\neven=3",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 18,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n6\n",
+            "expected": "len=1\neven=1",
+            "actual": "len=4\neven=0",
+            "normExpected": "len=1\neven=1",
+            "normActual": "len=4\neven=0",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "4\n-3 4 -2 7\n",
+            "expected": "len=4\neven=2",
+            "actual": "len=16\neven=1",
+            "normExpected": "len=4\neven=2",
+            "normActual": "len=16\neven=1",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 26,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n1 2 3 4 5\n",
+            "expected": "len=5\neven=2",
+            "actual": "len=5\neven=2",
+            "normExpected": "len=5\neven=2",
+            "normActual": "len=5\neven=2",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 17,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n6\n",
+            "expected": "len=1\neven=1",
+            "actual": "len=1\neven=1",
+            "normExpected": "len=1\neven=1",
+            "normActual": "len=1\neven=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 27,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "4\n-3 4 -2 7\n",
+            "expected": "len=4\neven=2",
+            "actual": "len=4\neven=2",
+            "normExpected": "len=4\neven=2",
+            "normActual": "len=4\neven=2",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 3/3 组用例暴露错误；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "id": "c-ch09-dbg-015",
+    "type": "debug",
+    "category": "c",
+    "chapter": "第9章 指针",
+    "section": "9.4 程序改错题（变式生成）",
+    "source": "原创（依据大纲考点：通过指针参数带回多个结果、数组作函数参数的退化、循环边界；变式自《C程序设计试题汇编》第9章 指针 同类题型，非原书题目）",
+    "difficulty": 3,
+    "bloom": "analyze",
+    "stem": "以下程序的功能是：先输入正整数 n（1≤n≤20），再输入 n 个整数存入数组 a；调用 find_max，通过指针参数把数组中的最大值及其下标带回主函数（下标从 0 开始，若有多个最大值取第一个），然后输出 max=值 pos=下标。程序中有 2 处错误，请找出并改正。",
+    "explanation": "C 的函数只能 return 一个值，要把「最大值」和「它的下标」两个结果都带回主函数，惯用做法是加两个输出型指针参数 *m 和 *pos，函数内通过 *m = …、*pos = … 写入主函数的变量，调用时传 &max、&pos。这里还要注意形参 int *b 与实参数组 a 的关系：数组名作实参时传递的是首元素地址（数组「退化」为指针），所以函数内 b[i] 访问的就是 main 里 a[i] 本身，b 与 a 是同一块内存——这也是为什么 n 必须另外传，函数内部用 sizeof(b) 只能得到指针的大小 8，得不到数组长度。两处错误都在打擂台的循环里：一是方向反了，b[i] < *m 时更新擂台，找出来的是最小值（3 9 2 9 1 会得到 max=2 pos=2）；二是终止条件 i < n - 1 把最后一个元素排除在外，n = 2 时循环一次都不执行，max 与 pos 就停在初值 b[0]、0 上，输入 4 8 会输出 max=4 pos=0 而不是 max=8 pos=1。两个错误叠加时症状会互相干扰，定位的可靠办法是先只改一处、用最小数据（n = 2）单独观察。第三组用例 n = 1 时正确与错误程序都输出 max=5 pos=0，因为唯一元素就是初值，它只能检验「不越界」，不能检验比较逻辑。三组用例改正后依次输出 max=9 pos=1、max=8 pos=1、max=5 pos=0。",
+    "tags": [
+      "指针",
+      "函数与数组",
+      "输出型参数",
+      "循环边界"
+    ],
+    "ai_generated": true,
+    "generated_at": "2026-09-08",
+    "code": "#include <stdio.h>\n\nvoid find_max(int *b, int n, int *m, int *pos)\n{\n    int i;\n    *m = b[0];\n    *pos = 0;\n    for (i = 1; i < n - 1; i++)\n        if (b[i] < *m) { *m = b[i]; *pos = i; }\n}\n\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    find_max(a, n, &max, &pos);\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
+    "bugs": [
+      "第 8 行 if (b[i] < *m) 的比较方向反了，找出来的是最小值而不是最大值。应为 if (b[i] > *m)。",
+      "第 7 行 for (i = 1; i < n - 1; i++) 的终止条件多减了 1，最后一个元素 b[n-1] 从来没有参与比较。应为 for (i = 1; i < n; i++)。"
+    ],
+    "fixed_code": "#include <stdio.h>\n\nvoid find_max(int *b, int n, int *m, int *pos)\n{\n    int i;\n    *m = b[0];\n    *pos = 0;\n    for (i = 1; i < n; i++)\n        if (b[i] > *m) { *m = b[i]; *pos = i; }\n}\n\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    find_max(a, n, &max, &pos);\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
+    "testCases": [
+      {
+        "stdin": "5\n3 9 2 9 1\n",
+        "expected": "max=9 pos=1",
+        "note": "典型：最大值重复出现，取第一个"
+      },
+      {
+        "stdin": "2\n4 8\n",
+        "expected": "max=8 pos=1",
+        "note": "边界：n=2，错误程序的循环一次都不执行"
+      },
+      {
+        "stdin": "1\n5\n",
+        "expected": "max=5 pos=0",
+        "note": "边界：n=1，唯一元素即最大值"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；比对前经 base.normalizeOutput（CRLF→LF、逐行剥行尾空白、剥末尾空行）",
+      "buggy": {
+        "compiled": true,
+        "runs": [
+          {
+            "stdin": "5\n3 9 2 9 1\n",
+            "expected": "max=9 pos=1",
+            "actual": "max=2 pos=2",
+            "normExpected": "max=9 pos=1",
+            "normActual": "max=2 pos=2",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 22,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2\n4 8\n",
+            "expected": "max=8 pos=1",
+            "actual": "max=4 pos=0",
+            "normExpected": "max=8 pos=1",
+            "normActual": "max=4 pos=0",
+            "match": false,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 24,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n5\n",
+            "expected": "max=5 pos=0",
+            "actual": "max=5 pos=0",
+            "normExpected": "max=5 pos=0",
+            "normActual": "max=5 pos=0",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 18,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "fixed": {
+        "runs": [
+          {
+            "stdin": "5\n3 9 2 9 1\n",
+            "expected": "max=9 pos=1",
+            "actual": "max=9 pos=1",
+            "normExpected": "max=9 pos=1",
+            "normActual": "max=9 pos=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 40,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "2\n4 8\n",
+            "expected": "max=8 pos=1",
+            "actual": "max=8 pos=1",
+            "normExpected": "max=8 pos=1",
+            "normActual": "max=8 pos=1",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 32,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          },
+          {
+            "stdin": "1\n5\n",
+            "expected": "max=5 pos=0",
+            "actual": "max=5 pos=0",
+            "normExpected": "max=5 pos=0",
+            "normActual": "max=5 pos=0",
+            "match": true,
+            "errorClass": "ok",
+            "exitCode": 0,
+            "execTimeMs": 25,
+            "timedOut": false,
+            "truncated": false,
+            "didExecute": true,
+            "stderr": "",
+            "transportError": null,
+            "compileError": null,
+            "invalid": null
+          }
+        ]
+      },
+      "summary": "bug 版编译通过且 2/3 组用例暴露错误（1 组被掩盖，已在 note 标注）；fixed_code 3/3 组与 expected 逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  }
+]

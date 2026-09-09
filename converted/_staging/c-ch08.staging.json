@@ -1,0 +1,1009 @@
+{
+  "category": "c",
+  "chapter": "第8章 编译预处理",
+  "generated_at": "2026-09-08",
+  "count": 32,
+  "pending": [
+    {
+      "originalId": "题8.1",
+      "sourceBatch": "p152-163.json",
+      "page": 152,
+      "bookPage": 141,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.1（PDF p152 / 书页 p141）",
+        "difficulty": 2,
+        "stem": "【题 8.1】以下关于编译预处理的叙述中错误的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 预处理命令行必须以#开始",
+          "B) 一条有效的预处理命令必须单独占据一行",
+          "C) 预处理命令行只能位于源程序中所有语句之前",
+          "D) 预处理命令不是C语言本身的组成部分"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.2",
+      "sourceBatch": "p152-163.json",
+      "page": 152,
+      "bookPage": 141,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.2（PDF p152 / 书页 p141）",
+        "difficulty": 2,
+        "stem": "【题 8.2】以下关于宏的叙述中正确的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 宏名必须用大写字母表示",
+          "B) 宏替换时要进行语法检查",
+          "C) 宏替换不占用运行时间",
+          "D) 宏定义中不允许引用已有的宏名"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.3",
+      "sourceBatch": "p152-163.json",
+      "page": 152,
+      "bookPage": 141,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.3（PDF p152 / 书页 p141）",
+        "difficulty": 2,
+        "stem": "【题 8.3】以下叙述中正确的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 在程序的一行上可以出现多个有效的预处理命令行",
+          "B) 使用带参的宏时，参数的类型应与宏定义时的一致",
+          "C) 宏替换不占用运行时间，只占编译时间",
+          "D) 宏调用此函数调用耗费时间"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.4",
+      "sourceBatch": "p152-163.json",
+      "page": 152,
+      "bookPage": 141,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.4（PDF p152 / 书页 p141）",
+        "difficulty": 3,
+        "stem": "【题 8.4】请读程序：\n上面程序的运行结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) sum=9",
+          "B) sum=10",
+          "C) sum=12",
+          "D) sum=18"
+        ],
+        "code": "#include <stdio.h>\n#define ADD(x) x+x\nint main()\n{\n\tint m=1,n=2,k=3;\n\tint sum=ADD(m+n)*k;\n\tprintf(\"sum=%d\",sum);\n\treturn 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.5",
+      "sourceBatch": "p152-163.json",
+      "page": 152,
+      "bookPage": 141,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.5（PDF p152 / 书页 p141）",
+        "difficulty": 3,
+        "stem": "【题 8.5】有以下程序：\n程序执行后的输出结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 19",
+          "B) 17",
+          "C) 15",
+          "D) 12"
+        ],
+        "code": "#include <stdio.h>\n#define M(x,y,z) x*y+z\nint main()\n{ int a=1,b=2,c=3;\n  printf(\"%d\\n\",M(a+b,b+c,c+a));\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.6",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.6（PDF p153 / 书页 p142）",
+        "difficulty": 3,
+        "stem": "【题 8.6】以下程序的运行结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 10",
+          "B) 15",
+          "C) 100",
+          "D) 150"
+        ],
+        "code": "#include <stdio.h>\n#define MIN(x,y) (x)<(y)?(x):(y)\nint main()\n{ int i=10,j=15,k;\n  k=10*MIN(i,j);\n  printf(\"%d\\n\",k);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.7",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.7（PDF p153 / 书页 p142）",
+        "difficulty": 2,
+        "stem": "【题 8.7】在宏定义# define PI 3. 14159中，宏名PI代替的是一个______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 常量",
+          "B) 单精度数",
+          "C) 双精度数",
+          "D) 字符串"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.8",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.8（PDF p153 / 书页 p142）",
+        "difficulty": 3,
+        "stem": "【题 8.8】以下程序的运行结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 11",
+          "B) 12",
+          "C) 13",
+          "D) 15"
+        ],
+        "code": "#include <stdio.h>\n#define FUDGE(y) 2.84+y\n#define PR(a) printf(\"%d\",(int)(a))\n#define PRINT1(a) PR(a); putchar('\\n')\nint main()\n{ int x=2;\n  PRINT1(FUDGE(5)*x);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.9",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.9（PDF p153 / 书页 p142）",
+        "difficulty": 2,
+        "stem": "【题 8.9】以下有关宏替换的叙述不正确的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 宏替换不占用运行时间",
+          "B) 宏名无类型",
+          "C) 宏替换只是字符替换",
+          "D) 宏名必须用大写字母表示"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.10",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.10（PDF p153 / 书页 p142）",
+        "difficulty": 2,
+        "stem": "【题 8.10】C语言的编译系统对宏命令的处理是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 在程序运行时进行的",
+          "B) 在程序连接时进行的",
+          "C) 和C程序中的其他语句同时进行编译的",
+          "D) 在对源程序中其他成分正式编译之前进行的"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.11",
+      "sourceBatch": "p152-163.json",
+      "page": 153,
+      "bookPage": 142,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.11（PDF p153 / 书页 p142）",
+        "difficulty": 3,
+        "stem": "【题 8.11】若有宏定义如下：\n则执行以下printf语句后，输出结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 7 6",
+          "B) 12 6",
+          "C) 12 5",
+          "D) 7 5"
+        ],
+        "code": "#define X 5\n#define Y X+1\n#define Z Y*X/2\n\nint a; a=Y;\nprintf(\"%d\\n\",Z);\nprintf(\"%d\\n\",--a);"
+      }
+    },
+    {
+      "originalId": "题8.12",
+      "sourceBatch": "p152-163.json",
+      "page": 154,
+      "bookPage": 143,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.12（PDF p154 / 书页 p143）",
+        "difficulty": 3,
+        "stem": "【题 8.12】若有以下宏定义：\n则执行语句z=2 * (N＋Y(5));后的结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 语句有错误",
+          "B) z=34",
+          "C) z=70",
+          "D) z无定值"
+        ],
+        "code": "#define N 2\n#define Y(n) ((N+1)*n)"
+      }
+    },
+    {
+      "originalId": "题8.13",
+      "sourceBatch": "p152-163.json",
+      "page": 154,
+      "bookPage": 143,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.13（PDF p154 / 书页 p143）",
+        "difficulty": 3,
+        "stem": "【题 8.13】若有宏定义：# define MOD(x,y) x%y\n则执行以下语句后的输出为______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 11",
+          "B) 10",
+          "C) 6",
+          "D) 宏定义不合法"
+        ],
+        "code": "int z, a=15, b=100;\nz=MOD(b,a);\nprintf(\"%d\\n\",z++);"
+      }
+    },
+    {
+      "originalId": "题8.14",
+      "sourceBatch": "p152-163.json",
+      "page": 154,
+      "bookPage": 143,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.14（PDF p154 / 书页 p143）",
+        "difficulty": 3,
+        "stem": "【题 8.14】以下程序的运行结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) Y=3",
+          "B) 存在语法错误",
+          "C) Y=7",
+          "D) Y=0"
+        ],
+        "code": "#define MAX(A,B) (A)>(B)?(A):(B)\n#define PRINT(Y) printf(\"Y=%d\\t\",Y)\nint main()\n{ int a=1, b=2, c=3, d=4, t;\n  t=MAX(a+b,c+d);\n  PRINT(t);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.15",
+      "sourceBatch": "p152-163.json",
+      "page": 154,
+      "bookPage": 143,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.15（PDF p154 / 书页 p143）",
+        "difficulty": 2,
+        "stem": "【题 8.15】以下程序段中存在错误的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) # define array_size __100 int array1[array_size];",
+          "B) # define PI __3. 14159 # define S(r)__PI * (r) * (r) ... area=S(3.2);",
+          "C) # define PI __3. 14159 # define S(r)__PI * (r) * (r) ... area=S(a＋b);",
+          "D) # define PI __3. 14159 # define S (r)__PI * (r) * (r) ... area=S(a);"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.16",
+      "sourceBatch": "p152-163.json",
+      "page": 155,
+      "bookPage": 144,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.16（PDF p155 / 书页 p144）",
+        "difficulty": 3,
+        "stem": "【题 8.16】请读程序：\n上面程序的输出结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 12",
+          "B) 15",
+          "C) 20",
+          "D) 16"
+        ],
+        "code": "#include <stdio.h>\n#define MUL(x,y) (x)*y\nint main()\n{ int a=3,b=4,c;\n  c=MUL(a++,b++);\n  printf(\"%d\\n\",c);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.17",
+      "sourceBatch": "p152-163.json",
+      "page": 155,
+      "bookPage": 144,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.17（PDF p155 / 书页 p144）",
+        "difficulty": 2,
+        "stem": "【题 8.17】# define能做简单的替代，用宏替代计算多项式4 * x * x＋3 * x＋2之值的函数f，正确的宏定义是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) # define f(x)__4 * x * x＋3 * x＋2",
+          "B) # define f __4 * x * x＋3 * x＋2",
+          "C) # define f(a)__(4 * a * a＋3 * a＋2)",
+          "D) # define (4 * a * a＋3 * a＋2)__f(a)"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.18",
+      "sourceBatch": "p152-163.json",
+      "page": 155,
+      "bookPage": 144,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.18（PDF p155 / 书页 p144）",
+        "difficulty": 3,
+        "stem": "【题 8.18】对下面程序段：\n正确的判断是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 程序错误，不许嵌套宏定义",
+          "B) x=93",
+          "C) x=21",
+          "D) 程序错误，宏定义不允许有参数"
+        ],
+        "code": "#define A 3\n#define B(a) ((A+1)*a)\n...\nx=3*(A+B(7));"
+      }
+    },
+    {
+      "originalId": "题8.19",
+      "sourceBatch": "p152-163.json",
+      "page": 155,
+      "bookPage": 144,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：options（需恰好 4 项，实际 2）；answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "options（需恰好 4 项，实际 2）",
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.19（PDF p155 / 书页 p144）",
+        "difficulty": 3,
+        "stem": "【题 8.19】以下程序中，第一个输出值是【1】______，第二个输出值是【2】______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "【1】A) 3\nB) 4\nC) 6\nD) 8",
+          "【2】A) 17\nB) 18\nC) 30\nD) 40"
+        ],
+        "code": "#include <stdio.h>\n#define M 3\n#define N (M+1)\n#define NN N*N/2\nint main()\n{ printf(\"%d\\n\",NN);\n  printf(\"%d\",5*NN);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.20",
+      "sourceBatch": "p152-163.json",
+      "page": 156,
+      "bookPage": 145,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.20（PDF p156 / 书页 p145）",
+        "difficulty": 3,
+        "stem": "【题 8.20】以下程序的输出结果为______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 8",
+          "B) 9",
+          "C) 10",
+          "D) 11"
+        ],
+        "code": "#include <stdio.h>\n#define F(y) 3.84+y\n#define PR(a) printf(\"%d\",(int)(a))\n#define PRINT(a) PR(a); putchar('\\n')\nint main()\n{ int x=2;\n  PRINT(F(3)*x);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.21",
+      "sourceBatch": "p152-163.json",
+      "page": 156,
+      "bookPage": 145,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.21（PDF p156 / 书页 p145）",
+        "difficulty": 3,
+        "stem": "【题 8.21】以下程序的输出结果为______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 12.0",
+          "B) 9.5",
+          "C) 12.5",
+          "D) 33.5"
+        ],
+        "code": "#include <stdio.h>\n#define PT 5.5\n#define S(x) PT*x*x\nint main()\n{ int a=1,b=2;\n  printf(\"%4.1f\\n\",S(a+b));\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.22",
+      "sourceBatch": "p152-163.json",
+      "page": 156,
+      "bookPage": 145,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.22（PDF p156 / 书页 p145）",
+        "difficulty": 2,
+        "stem": "【题 8.22】以下在任何情况下计算平方数时都不会引起二义性的宏定义是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) # define POWER(x)__x * x",
+          "B) # define POWER(x)__(x) * (x)",
+          "C) # define POWER(x)__(x * x)",
+          "D) # define POWER(x)__((x) * (x))"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.23",
+      "sourceBatch": "p152-163.json",
+      "page": 156,
+      "bookPage": 145,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.23（PDF p156 / 书页 p145）",
+        "difficulty": 2,
+        "stem": "【题 8.23】在文件包含预处理命令的使用形式中，当#include后面的文件名用””（双引号）括起时，寻找被包含文件的方式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 直接按系统设定的标准方式搜索目录",
+          "B) 先在源程序所在目录搜索，再按系统设定的标准方式搜索",
+          "C) 仅搜索源程序所在目录",
+          "D) 仅搜索当前目录"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.24",
+      "sourceBatch": "p152-163.json",
+      "page": 157,
+      "bookPage": 146,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.24（PDF p157 / 书页 p146）",
+        "difficulty": 2,
+        "stem": "【题 8.24】在文件包含预处理命令的使用形式中，当#include后面的文件名用＜＞（尖括号）括起时，寻找被包含文件的方式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 仅搜索当前目录",
+          "B) 仅搜索源程序所在目录",
+          "C) 直接按系统设定的标准方式搜索目录",
+          "D) 先在源程序所在目录搜索，再按系统设定的标准方式搜索"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.25",
+      "sourceBatch": "p152-163.json",
+      "page": 157,
+      "bookPage": 146,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.25（PDF p157 / 书页 p146）",
+        "difficulty": 3,
+        "stem": "【题 8.25】程序中头文件def.h的内容如下：\n程序如下：\n程序执行后的输出结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 30",
+          "B) 25",
+          "C) 20",
+          "D) 15"
+        ],
+        "code": "#define H1 5\n#define H2 H1*2\n\n#include <stdio.h>\n#include <def.h>\n#define H3 H1*3\nint main()\n{ int n;\n  n=H3+H2;\n  printf(\"%d\\n\",n);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.26",
+      "sourceBatch": "p152-163.json",
+      "page": 157,
+      "bookPage": 146,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.26（PDF p157 / 书页 p146）",
+        "difficulty": 4,
+        "stem": "【题 8.26】请读程序：\n上面程序的运行结果是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) C Language",
+          "B) c language",
+          "C) C LANGUAGE",
+          "D) c lANGUAGE"
+        ],
+        "code": "#include <stdio.h>\n#define LETTER 0\nint main()\n{ char str[20]=\"C Language\",c;\n  int i;\n  i=0;\n  while((c=str[i])!='\\0')\n    { i++;\n      #if LETTER\n        if (c>='a'&&c<='z')\n          c=c-32;\n      #else\n        if (c>='A'&&c<='Z')\n          c=c+32;\n      #endif\n      printf(\"%c\",c);\n    }\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题8.27",
+      "sourceBatch": "p152-163.json",
+      "page": 158,
+      "bookPage": 147,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.27（PDF p158 / 书页 p147）",
+        "difficulty": 2,
+        "stem": "【题 8.27】以下正确的描述是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) C语言的预处理功能是指完成宏替换和包含文件的调用",
+          "B) 预处理指令只能位于C源程序文件的首部",
+          "C) 凡是C源程序中行首以#标识的控制行都是预处理命令",
+          "D) C语言的编译预处理就是对源程序进行初步的语法检查"
+        ]
+      }
+    },
+    {
+      "originalId": "题8.37",
+      "sourceBatch": "p152-163.json",
+      "page": 160,
+      "bookPage": 149,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.37（PDF p160 / 书页 p149）",
+        "difficulty": 3,
+        "stem": "【题 8.37】设有宏定义如下：\n则执行以下语句后，s1的值为【1】，s2的值为【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#define MIN(x,y) (x)>(y)?(x):(y)\n#define T(x,y,r) x*r*y/4\n\nint a=1,b=3,c=5,s1,s2;\ns1=MIN(a=b,b-a);\ns2=T(a++,a*++b,a+b+c);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题8.38",
+      "sourceBatch": "p152-163.json",
+      "page": 160,
+      "bookPage": 149,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.38（PDF p160 / 书页 p149）",
+        "difficulty": 3,
+        "stem": "【题 8.38】设有如下定义：\n以下程序段将通过调用宏实现变量x和y内容的交换，请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#define SWAP(T,X,Y) { T=X; X=Y; Y=T; }\n\ndouble x=2.5,y=6.4,z;\nSWAP (【】);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题8.46",
+      "sourceBatch": "p152-163.json",
+      "page": 162,
+      "bookPage": 151,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.46（PDF p162 / 书页 p151）",
+        "difficulty": 3,
+        "stem": "【题 8.46】设有以下程序，为使之正确运行，请在【 】中填入应包含的命令行。（注：try_me( )函数在 a:\\myfile.txt中有定义。）",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "【】\nint main()\n{ printf(\"\\n\");\n  try_me( );\n  printf(\"\\n\");\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题8.47",
+      "sourceBatch": "p152-163.json",
+      "page": 162,
+      "bookPage": 151,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.47（PDF p162 / 书页 p151）",
+        "difficulty": 4,
+        "stem": "【题 8.47】设有以下程序，为使之正确运行，请在【 】中填入应包含的命令行。\n注：try_me( )函数在myfile.txt中有定义，其内容如下：",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "//a.c\n【1】\n【2】\nint main()\n{ printf(\"\\n\");\n  try_me( );\t\t//函数调用\n  printf(\"\\n\");\n  return 0;\n}\n\n//myfile.txt\ntry_me( )\n  { char c;\n    if((c=getchar( ))!=\"\\n\")\n      try_me( );\n    putchar(c);\n  }",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题8.48",
+      "sourceBatch": "p152-163.json",
+      "page": 163,
+      "bookPage": 152,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第8章 编译预处理",
+        "section": "8.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.48（PDF p163 / 书页 p152）",
+        "difficulty": 3,
+        "stem": "【题 8.48】设有以下程序，为使之正确运行，请在【 】中填入应包含的命令行。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n【】\nint main()\n{ int x=2,y=3;\n  printf(\"%d\\n\",pow(x,y));\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    }
+  ]
+}

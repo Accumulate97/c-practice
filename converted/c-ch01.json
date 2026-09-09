@@ -1,0 +1,289 @@
+{
+  "category": "c",
+  "chapter": "第1章 C语言概述",
+  "generated_at": "2026-09-08",
+  "count": 12,
+  "problems": [
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.1（PDF p12 / 书页 p1）",
+      "difficulty": 2,
+      "stem": "一个C程序的执行是从______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 本程序的main函数开始，到main函数结束",
+        "B) 本程序的第一个函数开始，到本程序文件的最后一个函数结束",
+        "C) 本程序的main函数开始，到本程序文件的最后一个函数结束",
+        "D) 本程序的第一个函数开始，到本程序main函数结束"
+      ],
+      "answer": 0,
+      "id": "c-ch01-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.2（PDF p12 / 书页 p1）",
+      "difficulty": 2,
+      "stem": "以下叙述正确的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 在C程序中，main函数必须位于程序的最前面",
+        "B) C程序的每行中只能写一条语句",
+        "C) C语言本身没有输入输出语句",
+        "D) 在对一个C程序进行编译的过程中，可以发现注释中的拼写错误"
+      ],
+      "answer": 2,
+      "id": "c-ch01-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.3（PDF p12 / 书页 p1）",
+      "difficulty": 2,
+      "stem": "以下叙述不正确的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 一个C源程序可由一个或多个函数组成",
+        "B) 一个C源程序必须包含一个main函数",
+        "C) C程序的基本组成单位是函数",
+        "D) 在C程序中，注释说明只能位于一条语句的后面"
+      ],
+      "answer": 3,
+      "id": "c-ch01-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.4（PDF p12 / 书页 p1）",
+      "difficulty": 2,
+      "stem": "C语言规定：在一个源程序中，main函数的位置______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 必须在最开始",
+        "B) 必须在系统调用的库函数的后面",
+        "C) 可以任意",
+        "D) 必须在最后"
+      ],
+      "answer": 2,
+      "id": "c-ch01-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.5（PDF p12 / 书页 p1）",
+      "difficulty": 2,
+      "stem": "一个C语言程序由______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 一个主程序和若干子程序组成",
+        "B) 函数组成",
+        "C) 若干过程组成",
+        "D) 若干子程序组成"
+      ],
+      "answer": 1,
+      "id": "c-ch01-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.6（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "C语言的源程序必须通过【1】和【2】后，才能被计算机执行。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.7（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "在C语言源程序中，一个变量代表【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.8（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "C语言源程序文件的后缀是【1】；经过编译后，生成文件的后缀是【2】；经过连接后，生成文件的后缀是【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.9（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "结构化程序由【1】、【2】、【3】3种基本结构组成。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.10（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "C语言源程序的基本单位是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.11（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "一个C语言源程序由若干函数组成，其中至少应含有一个【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第1章 C语言概述 题1.12（PDF p13 / 书页 p2）",
+      "difficulty": 2,
+      "stem": "在C语言中，输入操作是由库函数【1】完成的，输出操作是由库函数【2】完成的。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch01-fb-007",
+      "verified": true
+    }
+  ]
+}

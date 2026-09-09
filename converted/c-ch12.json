@@ -1,0 +1,434 @@
+{
+  "category": "c",
+  "chapter": "第12章 文件",
+  "generated_at": "2026-09-08",
+  "count": 15,
+  "problems": [
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.25（PDF p270 / 书页 p259）",
+      "difficulty": 2,
+      "stem": "【题 12.25】在C程序中，文件可以用【1】方式存取，也可以用【2】方式存取。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.26（PDF p270 / 书页 p259）",
+      "difficulty": 2,
+      "stem": "【题 12.26】在C程序中，数据可以用【1】和【2】两种代码形式存放。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.27（PDF p270 / 书页 p259）",
+      "difficulty": 2,
+      "stem": "【题 12.27】在C语言中，文件的存取是以【1】为单位的，这种文件被称做【2】文件。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.28（PDF p270 / 书页 p259）",
+      "difficulty": 2,
+      "stem": "【题 12.28】函数调用语句fgets( buf, n, fp );的作用是从fp指向的文件中读入【1】个字符放到buf字符数组中。函数返回值为【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.29（PDF p270 / 书页 p259）",
+      "difficulty": 2,
+      "stem": "【题 12.29】将整数－1234按照文本文件(文件名为e12_29a.dat)和二进制文件(文件名为e12_29b.dat)形式存放在文件中，则在这两个文件中存储该数值时所需要的字节数分别是【1】；能用Windows中的记事本将该数显示在屏幕上的文件是【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.30（PDF p271 / 书页 p260）",
+      "difficulty": 2,
+      "stem": "【题 12.30】若要在C源程序中定义fp为指针变量，则应使用的定义形式是【1】；在该程序的开头需要加的命令行是【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.41（PDF p275 / 书页 p264）",
+      "difficulty": 4,
+      "stem": "【题 12.41】假设磁盘上有3个文本文件，其文件名和内容分别为：f1→aaa!、f2→bbb!、f3→ccc!。此外，磁盘上还有以下程序，经编译、连接后生成为e12_41.exe的可执行文件。若在系统提示符下输入：e12_42 f1 f2 f3 ＜回车＞，则程序的运行结果是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main(int argc,char * argv[ ])\n{ FILE * fp;\n  void sub( );\n  int i=1;\n  while(--argc>0)\n    if ((fp=fopen(argv[i++],\"r\"))==NULL)\n      { printf(\"Cannot open file !\\n\");\n        exit(1);}\n    else\n      { sub(fp);  fclose(fp);}\n  return 0;\n}\nvoid sub( FILE * fp)\n{ char c;\n  while((c=getc(fp))!='!') putchar(c+1);\n}",
+      "answer": "bbbcccddd",
+      "id": "c-ch12-cr-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.43（PDF p276 / 书页 p265）",
+      "difficulty": 4,
+      "stem": "【题 12.43】假设执行以下程序之前文件e12_43.txt的内容为：sample，则程序运行后的结果是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main ( )\n{ FILE * fp;\n  long position;\n  fp=fopen (\"e12_43.txt\",\"a\");\n  position=ftell(fp);\n  printf ( \"position=%ld\\n\" , position );\n  fprintf (fp ,\"sample data\\n\" );\n  position=ftell(fp);\n  printf ( \"position=%ld\\n\" , position );\n  fclose (fp);\n  return 0;\n}",
+      "answer": "position=6\nposition=18",
+      "id": "c-ch12-cr-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.47（PDF p278 / 书页 p267）",
+      "difficulty": 2,
+      "stem": "【题 12.47】当调用函数read从磁盘文件中读数据时，若函数的返回值为10，则表明【1】；若函数的返回值为0，则表示【2】；若函数的返回值为－1，则意味着【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch12-fb-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.48（PDF p278 / 书页 p267）",
+      "difficulty": 2,
+      "stem": "【题 12.48】请编写程序：主函数从命令行读入一个文件名，然后调用函数getline从文件中读入一个字符串放到字符数组str中（字符个数最多为100个）；函数返回字符串的长度。在主函数中输出字符串及其长度。\n输出格式：文件名由命令行第一个参数给出；输出一行 str=<读入的字符串>，再输出一行 len=<字符串长度>。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "Hello C file",
+          "expected": "str=Hello C file\nlen=12",
+          "note": "basic"
+        },
+        {
+          "stdin": "",
+          "expected": "str=\nlen=0",
+          "note": "empty-file"
+        },
+        {
+          "stdin": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "expected": "str=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nlen=100",
+          "note": "len-100"
+        },
+        {
+          "stdin": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "expected": "str=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\nlen=100",
+          "note": "len-105-truncated"
+        }
+      ],
+      "id": "c-ch12-pg-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.49（PDF p278 / 书页 p267）",
+      "difficulty": 2,
+      "stem": "【题 12.49】请编写程序实现文件的复制。即将源文件复制到目的文件，两个文件名均由命令行给出，源文件名在前。\n输出格式：源文件名与目的文件名依次由命令行第1、2个参数给出；输出一行 copied=<复制的字节数>，随后原样输出目的文件内容（不额外添加换行）。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "copy me",
+          "expected": "copied=7\ncopy me",
+          "note": "basic"
+        },
+        {
+          "stdin": "",
+          "expected": "copied=0",
+          "note": "empty"
+        },
+        {
+          "stdin": "line1\nline2",
+          "expected": "copied=11\nline1\nline2",
+          "note": "two-lines"
+        },
+        {
+          "stdin": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "expected": "copied=200\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "note": "200-bytes"
+        }
+      ],
+      "id": "c-ch12-pg-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.50（PDF p278 / 书页 p267）",
+      "difficulty": 2,
+      "stem": "【题 12.50】设文件number.dat中存放了一组整数。请编写程序统计并输出文件中正整数、零和负整数的个数。\n输出格式：输出一行 positive=<正整数个数> zero=<零的个数> negative=<负整数个数>（单个空格分隔）。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "1 -2 0 3 -4 5",
+          "expected": "positive=3 zero=1 negative=2",
+          "note": "mixed"
+        },
+        {
+          "stdin": "-1 -2 -3",
+          "expected": "positive=0 zero=0 negative=3",
+          "note": "all-negative"
+        },
+        {
+          "stdin": "0 0",
+          "expected": "positive=0 zero=2 negative=0",
+          "note": "all-zero"
+        },
+        {
+          "stdin": "",
+          "expected": "positive=0 zero=0 negative=0",
+          "note": "empty-file"
+        }
+      ],
+      "id": "c-ch12-pg-003",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.51（PDF p278 / 书页 p267）",
+      "difficulty": 2,
+      "stem": "【题 12.51】设文件student.dat中存放着一年级学生的基本信息，这些信息由以下结构体来描述：\nstruct student\n{ long int num;    //学号\n  char name[10];   //姓名\n  int age;         //年龄\n  char sex;        //性别\n  char speciality[20];  //专业\n  char addr[40];   //住址\n};\n请编写程序，输出学号在040101～040135之间的学生学号、姓名、年龄和性别。\n输出格式：每行四列以单个空格分隔，依次为学号（按 %06ld 输出6位）、姓名、年龄、性别；无符合条件的记录时输出一行 none。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "40101 Zhang 18 M CS Beijing 40102 Wang 19 F Math Shanghai 40201 Li 20 M Phys Tianjin",
+          "expected": "040101 Zhang 18 M\n040102 Wang 19 F",
+          "note": "two-in-range"
+        },
+        {
+          "stdin": "40100 Zhao 18 M CS Nanjing 40136 Sun 19 F Art Wuhan",
+          "expected": "none",
+          "note": "none-in-range"
+        },
+        {
+          "stdin": "40101 A 17 M X Y 40135 B 18 N P Q 40100 C 19 M R S 40136 D 20 F T U",
+          "expected": "040101 A 17 M\n040135 B 18 N",
+          "note": "boundaries"
+        },
+        {
+          "stdin": "",
+          "expected": "none",
+          "note": "empty-file"
+        }
+      ],
+      "id": "c-ch12-pg-004",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.52（PDF p279 / 书页 p268）",
+      "difficulty": 2,
+      "stem": "【题 12.52】假设A、B两名工人生产同一产品，两人每月生产的数量如下：\n1 20 23\n2 28 22\n3 21 24\n4 24 27\n5 29 20\n6 28 23\n7 26 26\n8 23 28\n9 20 22\n10 25 25\n11 26 29\n12 28 30\n其中各行的3个数据分别表示月份、A工人生产量、B工人生产量。请编写程序，将这些数据写到d盘file1文件夹中的二进制文件e12_52.dat中。\n输出格式：写入完成后重新以二进制读回，输出12行，每行三列以单个空格分隔：月份 A产量 B产量。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "1 20 23\n2 28 22\n3 21 24\n4 24 27\n5 29 20\n6 28 23\n7 26 26\n8 23 28\n9 20 22\n10 25 25\n11 26 29\n12 28 30",
+          "note": "no-stdin"
+        }
+      ],
+      "id": "c-ch12-pg-005",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.53（PDF p279 / 书页 p268）",
+      "difficulty": 2,
+      "stem": "【题 12.53】请编写程序：从键盘输入一个字符串，将其中的小写字母全部转换成大写字母，输出到磁盘文件upper.txt中保存。输入的字符串以“!”结束。然后再将文件upper.txt中的内容读出并显示在屏幕上。\n输出格式：终止符 ! 本身不写入文件；将 upper.txt 的全部内容原样输出到屏幕（不额外添加换行）。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "hello World!",
+          "expected": "HELLO WORLD",
+          "note": "mixed"
+        },
+        {
+          "stdin": "a!b",
+          "expected": "A",
+          "note": "stop-at-bang"
+        },
+        {
+          "stdin": "C Language 2012",
+          "expected": "C LANGUAGE 2012",
+          "note": "no-terminator-eof"
+        },
+        {
+          "stdin": "ABC!xyz",
+          "expected": "ABC",
+          "note": "uppercase-passthrough"
+        }
+      ],
+      "id": "c-ch12-pg-006",
+      "verified": false
+    }
+  ]
+}

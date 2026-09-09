@@ -1,0 +1,521 @@
+{
+  "category": "c",
+  "chapter": "第8章 编译预处理",
+  "generated_at": "2026-09-08",
+  "count": 24,
+  "problems": [
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.28（PDF p158 / 书页 p147）",
+      "difficulty": 3,
+      "stem": "【题 8.28】设有以下宏定义：\n则执行赋值语句：v=LENGTH * 20;（v为int型变量）后，v的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#define WIDTH 80\n#define LENGTH WIDTH+40",
+      "answer": "",
+      "id": "c-ch08-cr-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.29（PDF p158 / 书页 p147）",
+      "difficulty": 3,
+      "stem": "【题 8.29】设有以下宏定义：\n则执行赋值语句：k=LENGTH * 20;（k为int型变量）后，k的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#define WIDTH 80\n#define LENGTH (WIDTH+40)",
+      "answer": "",
+      "id": "c-ch08-cr-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.30（PDF p158 / 书页 p147）",
+      "difficulty": 3,
+      "stem": "【题 8.30】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define DOUBLE(r) r*r\nint main()\n{ int x=1, y=2, t;\n  t=DOUBLE(x+y);\n  printf(\"%d\\n\",t);\n  return 0;\n}",
+      "answer": "5",
+      "id": "c-ch08-cr-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.31（PDF p158 / 书页 p147）",
+      "difficulty": 3,
+      "stem": "【题 8.31】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define MUL(z) (z)*(z)\nint main()\n{\n\tprintf(\"%d\\n\",MUL(1+2)+3);\n\treturn 0; }",
+      "answer": "12",
+      "id": "c-ch08-cr-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.32（PDF p158 / 书页 p147）",
+      "difficulty": 3,
+      "stem": "【题 8.32】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define POWER(x) ((x)*(x))\nint main()\n{ int i=1;\n  while (i<=4) printf(\"%d\\t\",POWER(i++));\n  printf(\"\\n\");\n  return 0;\n}",
+      "answer": "2\t12\t",
+      "id": "c-ch08-cr-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.33（PDF p159 / 书页 p148）",
+      "difficulty": 3,
+      "stem": "【题 8.33】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define EXCH( a, b ) { int t; t=a; a=b; b=t; }\nint main()\n{ int x=5, y=9;\n  EXCH( x,y );\n  printf(\"x=%d, y=%d\\n\",x, y);\n  return 0;\n}",
+      "answer": "x=9, y=5",
+      "id": "c-ch08-cr-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.34（PDF p159 / 书页 p148）",
+      "difficulty": 3,
+      "stem": "【题 8.34】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define MAX(a,b,c) ((a)>(b)?((a)>(c)?(a):(c)):((b)>(c)?(b):(c)))\nint main()\n{ int x, y, z;\n  x=1; y=2; z=3;\n  printf(\"%d,\",MAX(x,y,z));\n  printf(\"%d,\",MAX(x+y,y,y+x));\n  printf(\"%d\\n\",MAX(x,y+z,z));\n  return 0;\n}",
+      "answer": "3,3,5",
+      "id": "c-ch08-cr-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.35（PDF p159 / 书页 p148）",
+      "difficulty": 3,
+      "stem": "【题 8.35】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define SELECT(a, b) a<b ? a : b\nint main()\n{ int m=2,n=4;\n  printf(\"%d\\n\",SELECT(m,n));\n  return 0;\n}",
+      "answer": "2",
+      "id": "c-ch08-cr-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.36（PDF p159 / 书页 p148）",
+      "difficulty": 3,
+      "stem": "【题 8.36】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define MAX(a, b) (a>b ? a : b)+1\nint main()\n{ int i=6,j=8,k;\n  printf(\"%d\\n\",MAX(i,j));\n  return 0;\n}",
+      "answer": "9",
+      "id": "c-ch08-cr-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.39（PDF p160 / 书页 p149）",
+      "difficulty": 4,
+      "stem": "【题 8.39】下面程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define PR(ar) printf(\"%d\",ar)\nint main()\n{ int j,a[]={1,3,5,7,9,11,13,15},i=5;\n  for(j=3;j;j--)\n  { switch(j)\n    { case 1:\n      case 2: PR(a[i++]); break;\n      case 3: PR(a[--i]);\n    }\n  }\n  return 0;\n}",
+      "answer": "9911",
+      "id": "c-ch08-cr-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.40（PDF p160 / 书页 p149）",
+      "difficulty": 3,
+      "stem": "【题 8.40】有以下程序：\n程序执行后的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define M 5\n#define f(x) x*x\n#define ff(x) (x*x)\nint main()\n{ int n1,n2;\n  n1=100/f(M);\n  n2=100/ff(M);\n  printf(\"n1=%d,n2=%d\\n\",n1,n2);\n  return 0;\n}",
+      "answer": "n1=100,n2=4",
+      "id": "c-ch08-cr-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.41（PDF p161 / 书页 p150）",
+      "difficulty": 3,
+      "stem": "【题 8.41】有以下程序：\n程序执行后的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define MA(a) 2*a\n#define MB(a,b) 2*MA(b)+a\nint main()\n{ int x=3,y=4;\n  printf(\"%d\\n\",MB(y,MA(x)));\n  return 0;\n}",
+      "answer": "28",
+      "id": "c-ch08-cr-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.42（PDF p161 / 书页 p150）",
+      "difficulty": 3,
+      "stem": "【题 8.42】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define A 4\n#define B(x) A*x/2\nint main()\n{ float c,a=4.5;\n  c=B(a);\n  printf(\"%5.1f\\n\",c);\n  return 0;\n}",
+      "answer": "  9.0",
+      "id": "c-ch08-cr-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.43（PDF p161 / 书页 p150）",
+      "difficulty": 3,
+      "stem": "【题 8.43】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define sw(x,y) { x=y; y=x; x=y; }\nint main()\n{ int a=10,b=01;\n  sw(a,b);\n  printf(\"%d,%d\\n\",a,b);\n  return 0;\n}",
+      "answer": "1,1",
+      "id": "c-ch08-cr-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.44（PDF p161 / 书页 p150）",
+      "difficulty": 3,
+      "stem": "【题 8.44】以下程序的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define PR(a) printf(\"%d\\t\",(int)(a))\n#define PRINT(a) PR(a); printf(\"ok!\")\nint main()\n{ int i,a=1;\n  for( i=0; i<3; i++)\n    PRINT(a+i);\n  printf(\"\\n\");\n  return 0;\n}",
+      "answer": "1\t2\t3\tok!",
+      "id": "c-ch08-cr-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.45（PDF p162 / 书页 p151）",
+      "difficulty": 4,
+      "stem": "【题 8.45】以下程序的输出结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main()\n{\n\tint b=5;\n\t#define b 2\n\t#define f(x) b*(x)\n\tint y=3;\n\tprintf(\"%d\\n\",f(y+1));\n\t#undef b\n\tprintf(\"%d\\n\",f(y+1));\n\t#define b 3\n\tprintf(\"%d\\n\",f(y+1));\n\treturn 0;\n}",
+      "answer": "8\n20\n12",
+      "id": "c-ch08-cr-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.49（PDF p163 / 书页 p152）",
+      "difficulty": 3,
+      "stem": "【题 8.49】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\nint main()\n{ int a=10,b=20,c;\n  c=a/b;\n  #ifdef DEBUG\n    printf(\"a=%d,b=%d,\",a,b);\n  #endif\n  printf(\"c=%d\\n\",c);\n  return 0;\n}",
+      "answer": "c=0",
+      "id": "c-ch08-cr-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.50（PDF p163 / 书页 p152）",
+      "difficulty": 3,
+      "stem": "【题 8.50】以下程序的运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define DEBUG\nint main()\n{ int a=14,b=15,c;\n  c=a/b;\n  #ifdef DEBUG\n    printf(\"a=%o,b=%o,\",a,b);\n  #endif\n  printf(\"c=%d\\n\",c);\n  return 0;\n}",
+      "answer": "a=16,b=17,c=0",
+      "id": "c-ch08-cr-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.51（PDF p163 / 书页 p152）",
+      "difficulty": 3,
+      "stem": "【题 8.51】以下程序运行结果是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_reading",
+      "bloom": "analyze",
+      "code": "#include <stdio.h>\n#define DEBUG\nint main( )\n{ int a=20,b=10,c;\n  c=a/b;\n  #ifndef DEBUG\n    printf(\"a=%o,b=%o,\",a,b);\n  #endif\n  printf(\"c=%d\\n\",c);\n  return 0;\n}",
+      "answer": "c=2",
+      "id": "c-ch08-cr-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.52（PDF p164 / 书页 p153）",
+      "difficulty": 2,
+      "stem": "【题 8.52】输入两个整数，求它们相除的余数。用带参的宏编程来实现。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "10 3",
+          "expected": "remainder=1",
+          "note": "常规-有余数"
+        },
+        {
+          "stdin": "3 10",
+          "expected": "remainder=3",
+          "note": "被除数小于除数"
+        },
+        {
+          "stdin": "-10 3",
+          "expected": "remainder=-1",
+          "note": "边界-负数取余"
+        },
+        {
+          "stdin": "14 7",
+          "expected": "remainder=0",
+          "note": "边界-整除余0"
+        }
+      ],
+      "id": "c-ch08-pg-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.53（PDF p164 / 书页 p153）",
+      "difficulty": 2,
+      "stem": "【题 8.53】试定义一个带参的宏 swap(x,y)，以实现两个整数之间的交换，并利用它将一维数组 a 和 b 的值进行交换。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "3\n1 2 3\n4 5 6",
+          "expected": "4 5 6\n1 2 3",
+          "note": "常规-n=3"
+        },
+        {
+          "stdin": "1\n7\n-3",
+          "expected": "-3\n7",
+          "note": "边界-n=1"
+        },
+        {
+          "stdin": "4\n1 1 2 2\n3 4 5 6",
+          "expected": "3 4 5 6\n1 1 2 2",
+          "note": "边界-重复元素"
+        },
+        {
+          "stdin": "5\n-1 -2 -3 -4 -5\n5 4 3 2 1",
+          "expected": "5 4 3 2 1\n-1 -2 -3 -4 -5",
+          "note": "边界-全负数"
+        }
+      ],
+      "id": "c-ch08-pg-002",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.54（PDF p164 / 书页 p153）",
+      "difficulty": 2,
+      "stem": "【题 8.54】定义一个带参数的宏，用来判断一个字符是否为字母。编写主函数，从键盘输入一个字符，调用上述宏输出判断结果。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "a",
+          "expected": "yes",
+          "note": "小写字母"
+        },
+        {
+          "stdin": "Z",
+          "expected": "yes",
+          "note": "大写字母"
+        },
+        {
+          "stdin": "9",
+          "expected": "no",
+          "note": "边界-数字"
+        },
+        {
+          "stdin": "#",
+          "expected": "no",
+          "note": "边界-标点"
+        }
+      ],
+      "id": "c-ch08-pg-003",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.55（PDF p164 / 书页 p153）",
+      "difficulty": 2,
+      "stem": "【题 8.55】定义一个带参的宏，用以判断整数 n 是否能被 x 整除。编写程序，从终端输入一个整数，调用宏验证其是否能同时被 3 和 7 整除。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "21",
+          "expected": "yes",
+          "note": "常规-21"
+        },
+        {
+          "stdin": "0",
+          "expected": "yes",
+          "note": "边界-零"
+        },
+        {
+          "stdin": "7",
+          "expected": "no",
+          "note": "边界-仅被7整除"
+        },
+        {
+          "stdin": "-21",
+          "expected": "yes",
+          "note": "边界-负数"
+        }
+      ],
+      "id": "c-ch08-pg-004",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.56（PDF p164 / 书页 p153）",
+      "difficulty": 2,
+      "stem": "【题 8.56】已知计算三角形面积的公式为：area=√(s(s-a)(s-b)(s-c))，其中 s=1/2(a+b+c)，这里 a、b、c 分别为三角形的三条边。请编写程序：定义两个带参的宏，分别实现上述两个公式，并引用所定义的宏计算三角形面积。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "programming",
+      "bloom": "apply",
+      "reference": "",
+      "testCases": [
+        {
+          "stdin": "3 4 5",
+          "expected": "area=6.00",
+          "note": "常规-直角三角形"
+        },
+        {
+          "stdin": "5 5 6",
+          "expected": "area=12.00",
+          "note": "常规-等腰三角形"
+        },
+        {
+          "stdin": "1 1 1",
+          "expected": "area=0.43",
+          "note": "边界-等边三角形"
+        },
+        {
+          "stdin": "1 2 3",
+          "expected": "area=0.00",
+          "note": "边界-退化三角形"
+        }
+      ],
+      "id": "c-ch08-pg-005",
+      "verified": false
+    }
+  ]
+}

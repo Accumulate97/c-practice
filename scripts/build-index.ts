@@ -22,6 +22,11 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const DATA = join(ROOT, 'public', 'data')
 const PROBLEM_DIR = join(DATA, 'problems')
 const NON_SHARD = new Set(['index.json', 'verification-report.json'])
+/** 下划线前缀 = 转换期 sidecar（_index.json 总账 / _judge-evidence.json 实机证据），不是题目分片。
+ *  当分片扫会误报 SHARD-UNKNOWN，还会被 build:index 当成 0 题分片写进索引清单；
+ *  仍留在 public/ 下，是为降级模式能 fetch 构建期预存 stdout（AGENTS.md 二·5）。 */
+const isShardName = (name: string): boolean =>
+  name.endsWith('.json') && !name.startsWith('_') && !NON_SHARD.has(name)
 const GENERATED = 'GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）'
 
 const require = createRequire(import.meta.url)
@@ -37,7 +42,7 @@ function readJson(path: string): unknown {
 function loadProblemShards(): Shard[] {
   const out: Shard[] = []
   for (const name of readdirSync(PROBLEM_DIR).sort()) {
-    if (!name.endsWith('.json') || NON_SHARD.has(name)) continue
+    if (!isShardName(name)) continue
     const parsed = readJson(join(PROBLEM_DIR, name)) as Record<string, unknown>
     out.push({
       file: name,
@@ -79,7 +84,7 @@ function collectIds(dir: string, key: string): ProblemLike[] {
   if (!existsSync(dir)) return []
   const out: ProblemLike[] = []
   for (const name of readdirSync(dir).sort()) {
-    if (!name.endsWith('.json') || NON_SHARD.has(name)) continue
+    if (!isShardName(name)) continue
     walk(readJson(join(dir, name)))
   }
   return out

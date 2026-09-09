@@ -190,7 +190,7 @@
         }
       ],
       "id": "c-ch06-cc-001",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -275,7 +275,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a[10]={ 7,3,5,2,9,1,0,6,8,4 },i=0,j=9,t;\n    while( i<j )\n    {   t=a[i];    a[i]=a[j]; a[j]=t;\n        i+=2;    j-=2;\n    }\n    for( i=0;i<10;i+=2 ) printf(\"%d \",a[i]);\n    return 0;\n}",
       "answer": "4 6 1 0 8 ",
       "id": "c-ch06-cr-006",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -326,7 +326,7 @@
         }
       ],
       "id": "c-ch06-cc-002",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -360,7 +360,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a[10]={1,2,2,3,4,3,4,5,1,5};\n    int n=0,i,j,c,k;\n    for(i=0;i<10-n;i++)\n    {   c=a[i];\n        for(j=i+1;j<10-n;j++)\n            if(a[j]==c)\n            {   for(k=j;k<10-n;k++)\n                    a[k]=a[k+1];\n                n++;\n            }\n    }\n    for(i=0;i<(10-n);i++)\n        printf(\"%d \",a[i]);\n    return 0;\n}",
       "answer": "1 2 3 4 5 ",
       "id": "c-ch06-cr-008",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -408,7 +408,7 @@
         }
       ],
       "id": "c-ch06-cc-003",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -472,7 +472,7 @@
         }
       ],
       "id": "c-ch06-cc-004",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -489,7 +489,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i=1,n=3,j , k=3, a[5]={1,4,5};\n    while(i<=n && k>a[i]) i++;\n    for(j=n-1;j>=i;j--)\n        a[j+1]=a[j];\n    a[i]=k;\n    for(i=0;i<=n;i++)   printf(\"%3d\",a[i]);\n    return 0;\n}",
       "answer": "  1  3  4  5",
       "id": "c-ch06-cr-010",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -506,7 +506,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int num_list[ ]={6,7,8,9},k,j,b,u=0,m=4,w;\n    w=m-1;\n    while(u<=w)\n    {   j=num_list[u];\n        k=2; b=1;\n        while(k<=j/2 && b)\n        {   ++k; b=j%k; }\n        if(b)\n        {   printf(\"%d\\n\",num_list[u]); u++; }\n        else\n        {   num_list[u]=num_list[w];\n            num_list[w]=j; w--;\n        }\n    }\n    return 0;\n}",
       "answer": "7",
       "id": "c-ch06-cr-011",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -523,7 +523,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int i, j, row, col, min;\n    int a[3][4]= { {1,2,3,4},{9,8,7,6},{-1,-2,0,5}};\n    min=a[0][0];\n    for( i=0; i<3; i++)\n        for( j=0; j<4; j++)\n            if( a[i][j] < min )\n                { min=a[i][j]; row=i; col=j; }\n    printf( \"min=%d, row=%d, col=%d\\n\",min,row,col);\n    return 0;\n}",
       "answer": "min=-2, row=2, col=1",
       "id": "c-ch06-cr-012",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -557,7 +557,7 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a[9]={0,6,12,18,42,44,52,67,94};\n    int x=52, i, n=9,m;\n    i=n/2+1;\n    m=n/2;\n    while(m!=0)\n        if(x<a[i])\n            {   i=i-m/2-1; m=m/2; }\n        else if(x>a[i])\n            {   i=i+m/2+1; m=m/2; }\n        else break;\n    printf(\"The index is: %d\\n\",i);\n    return 0;\n}",
       "answer": "The index is: 6",
       "id": "c-ch06-cr-014",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -608,7 +608,7 @@
         }
       ],
       "id": "c-ch06-cc-005",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -659,7 +659,7 @@
       "code": "#include <stdio.h>\nint main( )\n{ int a[10]={1,2,3,4,5,6,7,8,9,10},i,k;\n  k=a[8];\n  for(i=8;i>=3;i--)\n      a[i+1]=a[i];\n  a[3]=k;\n  for(i=0;i<10;i+=2)  printf(\"%d \",a[i] );\n  return 0;\n}",
       "answer": "1 3 4 6 8 ",
       "id": "c-ch06-cr-017",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -744,7 +744,7 @@
       "code": "#include <stdio.h>\nint main( )\n{ int x=117,i=0; char a[5];\n  do\n  { switch(x%16)\n      { case 10: a[i]='A'; break;\n        case 11: a[i]='B'; break;\n        case 12: a[i]='C'; break;\n        case 13: a[i]='D'; break;\n        case 14: a[i]='E'; break;\n        case 15: a[i]='F'; break;\n        default: a[i]='0'+x%16; break;\n      }\n    i++;\n    x=x/16;\n  } while(x!=0);\n  for(x=i-1; x>=0; x--) printf(\"%c\",a[x]);\n  return 0;\n}",
       "answer": "75",
       "id": "c-ch06-cr-022",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -816,7 +816,7 @@
       "code": "#include <stdio.h>\nint main( )\n{  int i;\n  char a[]=\"Time\" ,b[]=\"Tom\" ;\n  for(i=0; a[i]!='\\0'&&b[i]!='\\0'; i++)\n        if(a[i]==b[i])\n            if(a[i]>='a'&&a[i]<='z')\n                  printf(\"%c\",a[i]-32);\n            else printf(\"%c\",a[i]+32);\n        else printf(\"*\");\n  return 0;\n}",
       "answer": "t*M",
       "id": "c-ch06-cr-025",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -833,7 +833,7 @@
       "code": "#include <stdio.h>\nint main( )\n{  char a[2][6]={\"Sun\",\"Moon\"}; int i,j,len[2];\n  for(i=0; i<2; i++)\n  {  for(j=0; j<6; j++)\n        if(a[i][j]=='\\0')\n        { len[i]=j;   break;   }\n      printf(\"%6s:%d\\n\",a[i],len[i]);\n  }\n  return 0;\n}",
       "answer": "   Sun:3\n  Moon:4",
       "id": "c-ch06-cr-026",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -850,7 +850,7 @@
       "code": "#include <stdio.h>\nint main( )\n{  int i,r;\n  char s1[80]=\"bus\", s2[80]=\"book\";\n  for(i=r=0;s1[i]!='\\0'&&s2[i]!='\\0';i++)\n        if(s1[i]==s2[i]) i++;\n        else   { r=s1[i]-s2[i]; break; }\n  printf(\"%d\",r);\n  return 0;\n}",
       "answer": "4",
       "id": "c-ch06-cr-027",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -867,7 +867,7 @@
       "code": "#include <stdio.h>\n#define LEN 4\nint main( )\n{  int j,c;\n  char n[2][LEN+1]={\"8980\",\"9198\"};\n  for(j=LEN-1; j>=0; j--)\n  {  c=n[0][j]+n[1][j]-2*'0';\n      n[0][j]=c%10+'0';\n  }\n  for(j=0; j<=1; j++)   puts(n[j]);\n  return 0;\n}",
       "answer": "7078\n9198",
       "id": "c-ch06-cr-028",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -918,7 +918,7 @@
       "code": "#include <stdio.h>\nint main( )\n{  char s[]=\"ABCCDA\"; int k; char c;\n  for(k=1; (c=s[k])!='\\0'; k++)\n  {  switch(c)\n      { case 'A':putchar('%');continue;\n        case 'B':++k;break;\n        default:putchar('*');\n        case 'C':putchar('&');continue;\n      }\n      putchar('#');\n  }\n  return 0;\n}",
       "answer": "#&*&%",
       "id": "c-ch06-cr-031",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -935,7 +935,7 @@
       "code": "#include <stdio.h>\nint main( )\n{ int i=0;\n  char a[]=\"abm\",b[]=\"aqid\",c[10] ;\n  while(a[i]!='\\0' && b[i]!='\\0')\n  { if(a[i]>=b[i])   c[i]=a[i]-32;\n     else   c[i]=b[i]-32;\n    ++i;\n   }\n  c[i]='\\0';\n  puts(c);\n  return 0;\n}",
       "answer": "AQM",
       "id": "c-ch06-cr-032",
-      "verified": true
+      "verified": false
     },
     {
       "category": "c",
@@ -1328,7 +1328,7 @@
           "note": "边界：全部相等"
         }
       ],
-      "verified": true
+      "verified": false
     },
     {
       "id": "c-ch06-dbg-008",
@@ -1372,7 +1372,7 @@
           "note": "边界：已经升序"
         }
       ],
-      "verified": true
+      "verified": false
     },
     {
       "id": "c-ch06-dbg-009",
@@ -1418,7 +1418,7 @@
           "note": "边界：不含数字字符"
         }
       ],
-      "verified": true
+      "verified": false
     }
   ]
 }

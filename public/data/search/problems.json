@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "62e39cb8c83b4427",
+  "content_sha": "600e4d6def68677d",
   "fields": [
     "title",
     "tags",
@@ -10,36 +10,5252 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 3,
+  "count": 518,
   "docs": [
+    {
+      "id": "c-ch01-sc-001",
+      "file": "c-ch01.json",
+      "title": "一个C程序的执行是从______",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-002",
+      "file": "c-ch01.json",
+      "title": "以下叙述正确的是______",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-003",
+      "file": "c-ch01.json",
+      "title": "以下叙述不正确的是______",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-004",
+      "file": "c-ch01.json",
+      "title": "C语言规定",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-005",
+      "file": "c-ch01.json",
+      "title": "一个C语言程序由______",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-001",
+      "file": "c-ch01.json",
+      "title": "C语言的源程序必须通过【1】和【2】后",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-002",
+      "file": "c-ch01.json",
+      "title": "在C语言源程序中",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-003",
+      "file": "c-ch01.json",
+      "title": "C语言源程序文件的后缀是【1】",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-004",
+      "file": "c-ch01.json",
+      "title": "结构化程序由【1】、【2】、【3】3种基本结构组成",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-005",
+      "file": "c-ch01.json",
+      "title": "C语言源程序的基本单位是【 】",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-006",
+      "file": "c-ch01.json",
+      "title": "一个C语言源程序由若干函数组成",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-007",
+      "file": "c-ch01.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第1章 C语言概述",
+      "section": "1.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-001",
+      "file": "c-ch02.json",
+      "title": "下列4组选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-002",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-003",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-004",
+      "file": "c-ch02.json",
+      "title": "C语言中的标识符只能由字母、数字和下划线3种字符组成",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-005",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-006",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-007",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-008",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-009",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-010",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-011",
+      "file": "c-ch02.json",
+      "title": "下面正确的字符常量是______",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-012",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-013",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-014",
+      "file": "c-ch02.json",
+      "title": "下面4个选项中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-015",
+      "file": "c-ch02.json",
+      "title": "下面不正确的字符串常量是______",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-016",
+      "file": "c-ch02.json",
+      "title": "对应以下各代数式中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-017",
+      "file": "c-ch02.json",
+      "title": "若有代数式3ae/bc",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-018",
+      "file": "c-ch02.json",
+      "title": "以下表达式值为3的是______",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-019",
+      "file": "c-ch02.json",
+      "title": "设有说明语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-020",
+      "file": "c-ch02.json",
+      "title": "若x、i、j和k都是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-021",
+      "file": "c-ch02.json",
+      "title": "假设所有变量均为整型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-022",
+      "file": "c-ch02.json",
+      "title": "已知各变量的类型说明如下",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-023",
+      "file": "c-ch02.json",
+      "title": "已知各变量的类型说明如下",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-024",
+      "file": "c-ch02.json",
+      "title": "以下不正确的叙述是______",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-025",
+      "file": "c-ch02.json",
+      "title": "以下正确的叙述是______",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-026",
+      "file": "c-ch02.json",
+      "title": "已知字母A的ASCII码为十进制数65",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-027",
+      "file": "c-ch02.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-028",
+      "file": "c-ch02.json",
+      "title": "若有说明语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-029",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-030",
+      "file": "c-ch02.json",
+      "title": "sizeof",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-031",
+      "file": "c-ch02.json",
+      "title": "设变量a是整型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-032",
+      "file": "c-ch02.json",
+      "title": "设以下变量均为int类型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-033",
+      "file": "c-ch02.json",
+      "title": "若有代数式√",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-034",
+      "file": "c-ch02.json",
+      "title": "若有代数式|x^3+log10 x|",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-035",
+      "file": "c-ch02.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-036",
+      "file": "c-ch02.json",
+      "title": "设变量n为float类型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-037",
+      "file": "c-ch02.json",
+      "title": "表达式18/4*sqrt",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-038",
+      "file": "c-ch02.json",
+      "title": "设有说明语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-001",
+      "file": "c-ch02.json",
+      "title": "若采用十进制数的表示形式",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-002",
+      "file": "c-ch02.json",
+      "title": "C语言中的标识符可分为关键字、【1】和【2】3类",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-003",
+      "file": "c-ch02.json",
+      "title": "C语言中的标识符只能由3种字符组成",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-004",
+      "file": "c-ch02.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-005",
+      "file": "c-ch02.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-006",
+      "file": "c-ch02.json",
+      "title": "设a、b、c均为int类型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-007",
+      "file": "c-ch02.json",
+      "title": "在C语言中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-008",
+      "file": "c-ch02.json",
+      "title": "运算符%两侧运算量的数据类型必须都是【1】",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-009",
+      "file": "c-ch02.json",
+      "title": "在C语言的赋值表达式中",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-010",
+      "file": "c-ch02.json",
+      "title": "表达式x=6应当读做【 】",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-011",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-012",
+      "file": "c-ch02.json",
+      "title": "在C语言中的实型变量分为两种类型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-013",
+      "file": "c-ch02.json",
+      "title": "C语言所提供的基本数据类型包括",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-014",
+      "file": "c-ch02.json",
+      "title": "已知字母a的ASCII码为十进制数97",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-015",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-016",
+      "file": "c-ch02.json",
+      "title": "若a是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-017",
+      "file": "c-ch02.json",
+      "title": "若x和a均是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-018",
+      "file": "c-ch02.json",
+      "title": "若a、b和c均是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-019",
+      "file": "c-ch02.json",
+      "title": "若a是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-020",
+      "file": "c-ch02.json",
+      "title": "若a是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-021",
+      "file": "c-ch02.json",
+      "title": "若x和n均是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-022",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-023",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-024",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-025",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-026",
+      "file": "c-ch02.json",
+      "title": "若x和n均是int型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-027",
+      "file": "c-ch02.json",
+      "title": "假设变量a、b均为整型",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-028",
+      "file": "c-ch02.json",
+      "title": "把以下多项式写成只含7次乘法运算",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-029",
+      "file": "c-ch02.json",
+      "title": "若x和y都是double型变量",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-030",
+      "file": "c-ch02.json",
+      "title": "若有定义语句",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-031",
+      "file": "c-ch02.json",
+      "title": "表达式8/4*",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-032",
+      "file": "c-ch02.json",
+      "title": "表达式pow",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-033",
+      "file": "c-ch02.json",
+      "title": "假设m是一个3位数",
+      "tags": [],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-001",
+      "file": "c-ch03.json",
+      "title": "以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-002",
+      "file": "c-ch03.json",
+      "title": "设有以下程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-003",
+      "file": "c-ch03.json",
+      "title": "有定义语句int a",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-004",
+      "file": "c-ch03.json",
+      "title": "设有如下程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-005",
+      "file": "c-ch03.json",
+      "title": "【题 3.5】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-006",
+      "file": "c-ch03.json",
+      "title": "【题 3.6】以下程序的输出结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-007",
+      "file": "c-ch03.json",
+      "title": "【题 3.7】已有定义int a=-2",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-008",
+      "file": "c-ch03.json",
+      "title": "【题 3.8】以下C程序的运行结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-009",
+      "file": "c-ch03.json",
+      "title": "【题 3.9】以下C程序的运行结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-010",
+      "file": "c-ch03.json",
+      "title": "【题 3.10】以下C程序的运行结果是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-011",
+      "file": "c-ch03.json",
+      "title": "【题 3.11】若x",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-012",
+      "file": "c-ch03.json",
+      "title": "【题 3.12】已有如下定义和输入语句",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-013",
+      "file": "c-ch03.json",
+      "title": "【题 3.14】根据以下定义语句和数据的输入方式",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-014",
+      "file": "c-ch03.json",
+      "title": "【题 3.15】阅读以下程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-015",
+      "file": "c-ch03.json",
+      "title": "【题 3.16】设有以下程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-016",
+      "file": "c-ch03.json",
+      "title": "【题 3.17】以下针对scanf函数的叙述中",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-017",
+      "file": "c-ch03.json",
+      "title": "【题 3.18】根据下面的程序及数据的输入方式和输出形式",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-018",
+      "file": "c-ch03.json",
+      "title": "【题 3.19】有输入语句",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-019",
+      "file": "c-ch03.json",
+      "title": "【题 3.20】以下不符合C语法的赋值语句是______",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-020",
+      "file": "c-ch03.json",
+      "title": "【题 3.21】以下能正确地定义整型变量a",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-021",
+      "file": "c-ch03.json",
+      "title": "【题 3.22】已知ch是字符型变量",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-022",
+      "file": "c-ch03.json",
+      "title": "【题 3.23】已知ch是字符型变量",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-023",
+      "file": "c-ch03.json",
+      "title": "【题 3.24】若有以下定义",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-024",
+      "file": "c-ch03.json",
+      "title": "【题 3.25】设x、y均为float型变量",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-025",
+      "file": "c-ch03.json",
+      "title": "【题 3.26】设x、y和z均为int型变量",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-026",
+      "file": "c-ch03.json",
+      "title": "【题 3.27】设有说明",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-001",
+      "file": "c-ch03.json",
+      "title": "【题 3.28】以下程序的输出结果为【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-002",
+      "file": "c-ch03.json",
+      "title": "【题 3.29】以下程序的输出结果为【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-003",
+      "file": "c-ch03.json",
+      "title": "【题 3.30】以下程序的输出结果为【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-004",
+      "file": "c-ch03.json",
+      "title": "【题 3.31】已有定义 int d=-2",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-005",
+      "file": "c-ch03.json",
+      "title": "【题 3.32】已有定义 int d=-2",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-006",
+      "file": "c-ch03.json",
+      "title": "【题 3.33】已有定义 float d1=3.5",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-007",
+      "file": "c-ch03.json",
+      "title": "【题 3.34】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-008",
+      "file": "c-ch03.json",
+      "title": "【题 3.35】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-009",
+      "file": "c-ch03.json",
+      "title": "【题 3.36】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-010",
+      "file": "c-ch03.json",
+      "title": "【题 3.39】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-011",
+      "file": "c-ch03.json",
+      "title": "【题 3.40】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-012",
+      "file": "c-ch03.json",
+      "title": "【题 3.41】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-013",
+      "file": "c-ch03.json",
+      "title": "【题 3.42】有以下程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-014",
+      "file": "c-ch03.json",
+      "title": "【题 3.43】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-015",
+      "file": "c-ch03.json",
+      "title": "【题 3.44】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-016",
+      "file": "c-ch03.json",
+      "title": "【题 3.46】已知字母 A 的 ASCII 码值为 65",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-001",
+      "file": "c-ch03.json",
+      "title": "【题 3.47】假设变量 a 和 b 均为整型",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-002",
+      "file": "c-ch03.json",
+      "title": "【题 3.48】假设变量 a、b 和 c 均为整型",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-003",
+      "file": "c-ch03.json",
+      "title": "【题 3.49】设有一输入函数 scanf",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-004",
+      "file": "c-ch03.json",
+      "title": "【题 3.50】已有定义 int a",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-017",
+      "file": "c-ch03.json",
+      "title": "【题 3.51】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-018",
+      "file": "c-ch03.json",
+      "title": "【题 3.52】执行以下程序时",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-001",
+      "file": "c-ch03.json",
+      "title": "【题 3.53】编写程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-002",
+      "file": "c-ch03.json",
+      "title": "【题 3.54】编写程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-003",
+      "file": "c-ch03.json",
+      "title": "【题 3.55】编写程序",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.1】逻辑运算符两侧运算对象的数据类型______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.2】下列关系表达式中结果为假的是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-003",
+      "file": "c-ch04.json",
+      "title": "【题 4.3】下列运算符中优先级最低的是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-004",
+      "file": "c-ch04.json",
+      "title": "【题 4.4】能正确表示“当x的取值在[1",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-005",
+      "file": "c-ch04.json",
+      "title": "【题 4.5】表示图4-1中坐标轴上阴影部分的正确表达式是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-006",
+      "file": "c-ch04.json",
+      "title": "【题 4.6】判断char型变量ch是否为大写字母的正确表达式是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-007",
+      "file": "c-ch04.json",
+      "title": "【题 4.7】设x、y和z是int型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-008",
+      "file": "c-ch04.json",
+      "title": "【题 4.8】设有说明语句",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-009",
+      "file": "c-ch04.json",
+      "title": "【题 4.9】若希望当A的值为奇数时",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-010",
+      "file": "c-ch04.json",
+      "title": "【题 4.10】设有说明语句",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-011",
+      "file": "c-ch04.json",
+      "title": "【题 4.11】执行以下程序段后的输出是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-012",
+      "file": "c-ch04.json",
+      "title": "【题 4.12】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-013",
+      "file": "c-ch04.json",
+      "title": "【题 4.13】以下不能满足当c的值分别为1、3、5三个数时值是“真”",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-014",
+      "file": "c-ch04.json",
+      "title": "【题 4.15】以下不正确的if语句形式是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-015",
+      "file": "c-ch04.json",
+      "title": "【题 4.16】在C语言中",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-016",
+      "file": "c-ch04.json",
+      "title": "【题 4.17】已知int x=10",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-017",
+      "file": "c-ch04.json",
+      "title": "【题 4.18】以下语法正确的if语句是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-018",
+      "file": "c-ch04.json",
+      "title": "【题 4.19】以下程序______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-019",
+      "file": "c-ch04.json",
+      "title": "【题 4.20】若变量都已正确定义",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-020",
+      "file": "c-ch04.json",
+      "title": "【题 4.21】当a=1、b=3、c=5、d=4时",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-021",
+      "file": "c-ch04.json",
+      "title": "【题 4.22】函数关系见表4-1",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-022",
+      "file": "c-ch04.json",
+      "title": "【题 4.23】以下程序的输出是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-023",
+      "file": "c-ch04.json",
+      "title": "【题 4.24】以下程序的输出是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-024",
+      "file": "c-ch04.json",
+      "title": "【题 4.25】为了避免在嵌套的条件语句if-else中产生二义性",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-025",
+      "file": "c-ch04.json",
+      "title": "【题 4.26】以下程序的输出是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-026",
+      "file": "c-ch04.json",
+      "title": "【题 4.27】以下程序的输出是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-027",
+      "file": "c-ch04.json",
+      "title": "【题 4.28】若有条件表达式",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-028",
+      "file": "c-ch04.json",
+      "title": "【题 4.29】若运行时为变量x输入12",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-029",
+      "file": "c-ch04.json",
+      "title": "【题 4.30】以下程序所表示的分段函数是______",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-030",
+      "file": "c-ch04.json",
+      "title": "【题 4.31】若w、x、y、z、m均为int型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-031",
+      "file": "c-ch04.json",
+      "title": "【题 4.32】若w=1、x=2、y=3、z=4",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-032",
+      "file": "c-ch04.json",
+      "title": "【题 4.33】C语言中的switch语句形式如下所示",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sc-033",
+      "file": "c-ch04.json",
+      "title": "【题 4.34】若u、w、x、y均是正整型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.35】当a=3",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.36】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.37】在C语言中",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-003",
+      "file": "c-ch04.json",
+      "title": "【题 4.38】设y为int型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-004",
+      "file": "c-ch04.json",
+      "title": "【题 4.39】C语言提供的3种逻辑运算符是【1】、【2】、【3】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-005",
+      "file": "c-ch04.json",
+      "title": "【题 4.40】若x、y、z均为int型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-006",
+      "file": "c-ch04.json",
+      "title": "【题 4.41】若x、y均为int型变量",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-007",
+      "file": "c-ch04.json",
+      "title": "【题 4.42】设a、b、c均为int型变量且a=7.5",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-008",
+      "file": "c-ch04.json",
+      "title": "【题 4.43】设a、b、c均为int型变量且a=6",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-009",
+      "file": "c-ch04.json",
+      "title": "【题 4.44】设a、b均为int型变量且a=2",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-010",
+      "file": "c-ch04.json",
+      "title": "【题 4.45】设a、b、c均为int型变量且a=1",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-011",
+      "file": "c-ch04.json",
+      "title": "【题 4.46】设a、b、c均为int型变量且a=6",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-012",
+      "file": "c-ch04.json",
+      "title": "【题 4.47】设a、b、c均为int型变量且a=5",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-013",
+      "file": "c-ch04.json",
+      "title": "【题 4.48】设a、b、c均为int型变量且a=3",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-014",
+      "file": "c-ch04.json",
+      "title": "【题 4.49】若有条件“2<x<3或x<-10”",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-015",
+      "file": "c-ch04.json",
+      "title": "【题 4.50】设m、n、a、b、c均为int型变量且m=2",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.51】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-003",
+      "file": "c-ch04.json",
+      "title": "【题 4.52】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-016",
+      "file": "c-ch04.json",
+      "title": "【题 4.53】若有语句int x",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-017",
+      "file": "c-ch04.json",
+      "title": "【题 4.56】满足以下要求1的逻辑表达式是【1】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-004",
+      "file": "c-ch04.json",
+      "title": "【题 4.57】以下程序的功能是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-018",
+      "file": "c-ch04.json",
+      "title": "【题 4.58】若有语句",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-005",
+      "file": "c-ch04.json",
+      "title": "【题 4.59】若运行时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-006",
+      "file": "c-ch04.json",
+      "title": "【题 4.60】若运行时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-007",
+      "file": "c-ch04.json",
+      "title": "【题 4.61】若运行以下程序时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-008",
+      "file": "c-ch04.json",
+      "title": "【题 4.63】若运行时输入“5999<回车>”",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.65】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.66】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-003",
+      "file": "c-ch04.json",
+      "title": "【题 4.67】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-009",
+      "file": "c-ch04.json",
+      "title": "【题 4.68】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-010",
+      "file": "c-ch04.json",
+      "title": "【题 4.69】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-011",
+      "file": "c-ch04.json",
+      "title": "【题 4.70】为了使以下程序的输出结果为t=4",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-012",
+      "file": "c-ch04.json",
+      "title": "【题 4.71】为了使以下程序的输出结果为s=1",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-004",
+      "file": "c-ch04.json",
+      "title": "【题 4.72】下面程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-005",
+      "file": "c-ch04.json",
+      "title": "【题 4.77】以下程序的功能是判断输入的某个年份是否是闰年",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-013",
+      "file": "c-ch04.json",
+      "title": "【题 4.79】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-014",
+      "file": "c-ch04.json",
+      "title": "【题 4.80】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-015",
+      "file": "c-ch04.json",
+      "title": "【题 4.81】若运行以下程序时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-016",
+      "file": "c-ch04.json",
+      "title": "【题 4.82】若运行以下程序时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-017",
+      "file": "c-ch04.json",
+      "title": "【题 4.83】若运行以下程序时输入字符为Q",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-018",
+      "file": "c-ch04.json",
+      "title": "【题 4.84】若运行以下程序时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-019",
+      "file": "c-ch04.json",
+      "title": "【题 4.89】若a、b、c均已正确定义且a=0、b=2、c=3",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-020",
+      "file": "c-ch04.json",
+      "title": "【题 4.90】若运行以下程序时输入",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-021",
+      "file": "c-ch04.json",
+      "title": "【题 4.92】若有以下程序段",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-022",
+      "file": "c-ch04.json",
+      "title": "【题 4.93】以下程序段的输出结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-023",
+      "file": "c-ch04.json",
+      "title": "【题 4.95】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cr-024",
+      "file": "c-ch04.json",
+      "title": "【题 4.96】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-006",
+      "file": "c-ch04.json",
+      "title": "【题 4.99】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.101】编写程序实现功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.102】编写程序判断输入的正整数是否既是5又是7的整倍数",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-003",
+      "file": "c-ch04.json",
+      "title": "【题 4.103】编写程序实现功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-004",
+      "file": "c-ch04.json",
+      "title": "【题 4.104】编写程序实现",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-005",
+      "file": "c-ch04.json",
+      "title": "【题 4.105】用switch语句编程实现以下函数关系",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-006",
+      "file": "c-ch04.json",
+      "title": "【题 4.106】编写程序实现功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-007",
+      "file": "c-ch04.json",
+      "title": "【题 4.107】编写程序实现功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-pg-008",
+      "file": "c-ch04.json",
+      "title": "【题 4.108】编写程序实现功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-dbg-001",
+      "file": "c-ch04.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "分支结构",
+        "关系运算",
+        "赋值与比较的区别",
+        "交换算法"
+      ],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-dbg-002",
+      "file": "c-ch04.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "分支结构",
+        "else if 链",
+        "字符区间判断",
+        "ASCII"
+      ],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-dbg-003",
+      "file": "c-ch04.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "分支结构",
+        "逻辑运算",
+        "闰年判定",
+        "边界条件"
+      ],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
     {
       "id": "c-ch05-cr-001",
       "file": "c-ch05.json",
-      "title": "阅读下列程序",
+      "title": "【题 5.59】当运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-002",
+      "file": "c-ch05.json",
+      "title": "【题 5.60】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-003",
+      "file": "c-ch05.json",
+      "title": "【题 5.61】当运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-004",
+      "file": "c-ch05.json",
+      "title": "【题 5.62】执行下面程序段后",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-005",
+      "file": "c-ch05.json",
+      "title": "【题 5.63】下面程序段中循环体的执行次数是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-006",
+      "file": "c-ch05.json",
+      "title": "【题 5.64】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-007",
+      "file": "c-ch05.json",
+      "title": "【题 5.65】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-001",
+      "file": "c-ch05.json",
+      "title": "【题 5.68】等差数列的第一项a=2",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-008",
+      "file": "c-ch05.json",
+      "title": "【题 5.70】当运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-009",
+      "file": "c-ch05.json",
+      "title": "【题 5.71】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-010",
+      "file": "c-ch05.json",
+      "title": "【题 5.72】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-011",
+      "file": "c-ch05.json",
+      "title": "【题 5.73】当运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-012",
+      "file": "c-ch05.json",
+      "title": "【题 5.76】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-013",
+      "file": "c-ch05.json",
+      "title": "【题 5.80】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-014",
+      "file": "c-ch05.json",
+      "title": "【题 5.81】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-015",
+      "file": "c-ch05.json",
+      "title": "【题 5.82】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-016",
+      "file": "c-ch05.json",
+      "title": "【题 5.88】若从键盘输入65 14<回车>",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-017",
+      "file": "c-ch05.json",
+      "title": "【题 5.89】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-018",
+      "file": "c-ch05.json",
+      "title": "【题 5.90】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-019",
+      "file": "c-ch05.json",
+      "title": "【题 5.91】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-020",
+      "file": "c-ch05.json",
+      "title": "【题 5.92】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-021",
+      "file": "c-ch05.json",
+      "title": "【题 5.97】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-022",
+      "file": "c-ch05.json",
+      "title": "【题 5.98】下面程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-023",
+      "file": "c-ch05.json",
+      "title": "【题 5.99】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-024",
+      "file": "c-ch05.json",
+      "title": "【题 5.100】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-001",
+      "file": "c-ch05.json",
+      "title": "【题 5.101】每个苹果 0.8 元",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-002",
+      "file": "c-ch05.json",
+      "title": "【题 5.102】试编程序",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-003",
+      "file": "c-ch05.json",
+      "title": "【题 5.103】假设 x",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-004",
+      "file": "c-ch05.json",
+      "title": "【题 5.104】编写程序",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-004",
+      "file": "c-ch05.json",
+      "title": "以下程序的功能是",
       "tags": [
-        "while循环",
-        "continue",
-        "循环变量",
-        "执行流追踪"
+        "循环结构",
+        "累加器",
+        "整数除法",
+        "类型转换"
       ],
-      "chapter": "第5章 循环结构程序设计",
-      "section": "5.7.2 用continue语句提前结束本次循环",
+      "chapter": "第5章 循环结构",
+      "section": "5.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-005",
+      "file": "c-ch05.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "循环结构",
+        "循环嵌套",
+        "循环边界",
+        "printf 实参顺序"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-006",
+      "file": "c-ch05.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "循环结构",
+        "因子求和",
+        "赋值与比较的区别",
+        "边界条件"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-001",
+      "file": "c-ch06.json",
+      "title": "【题 6.52】若有定义 float a[3][5]",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-002",
+      "file": "c-ch06.json",
+      "title": "【题 6.53】在 C 语言中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-003",
+      "file": "c-ch06.json",
+      "title": "【题 6.54】若有定义",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-004",
+      "file": "c-ch06.json",
+      "title": "【题 6.55】假设 M 为已经声明的符号常量",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-005",
+      "file": "c-ch06.json",
+      "title": "【题 6.56】若有定义",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-001",
+      "file": "c-ch06.json",
+      "title": "【题 6.57】若有以下输入",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
       "type": "code_reading",
       "category": "c"
     },
     {
       "id": "c-ch06-cc-001",
       "file": "c-ch06.json",
-      "title": "程序功能",
-      "tags": [
-        "一维数组",
-        "求最大值",
-        "逆序输出",
-        "下标与位置换算"
-      ],
-      "chapter": "第6章 利用数组处理批量数据",
-      "section": "6.1 怎样定义和引用一维数组",
+      "title": "【题 6.58】下面程序给 a 数组输入数据并以每行 4 个数据的形式输出",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-002",
+      "file": "c-ch06.json",
+      "title": "【题 6.60】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-003",
+      "file": "c-ch06.json",
+      "title": "【题 6.62】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-004",
+      "file": "c-ch06.json",
+      "title": "【题 6.63】下面程序 wdm 的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-005",
+      "file": "c-ch06.json",
+      "title": "【题 6.66】若有以下输入",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-006",
+      "file": "c-ch06.json",
+      "title": "【题 6.67】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-002",
+      "file": "c-ch06.json",
+      "title": "【题 6.68】数组 a 包括 10 个整型元素",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-007",
+      "file": "c-ch06.json",
+      "title": "【题 6.71】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-008",
+      "file": "c-ch06.json",
+      "title": "【题 6.72】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-003",
+      "file": "c-ch06.json",
+      "title": "【题 6.73】下面程序的功能是给一维数组 a 输入 6 个任意整数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-009",
+      "file": "c-ch06.json",
+      "title": "【题 6.75】当从键盘输入 18 时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-004",
+      "file": "c-ch06.json",
+      "title": "【题 6.77】下面程序的功能是统计年龄在 16~31 岁之间的学生人数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-010",
+      "file": "c-ch06.json",
+      "title": "【题 6.80】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-011",
+      "file": "c-ch06.json",
+      "title": "【题 6.81】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-012",
+      "file": "c-ch06.json",
+      "title": "【题 6.88】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-013",
+      "file": "c-ch06.json",
+      "title": "【题 6.89】运行程序时若输入“52<回车>”",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-014",
+      "file": "c-ch06.json",
+      "title": "【题 6.90】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-005",
+      "file": "c-ch06.json",
+      "title": "【题 6.92】下面程序用“快速顺序查找法”判断数组 a 中是否存在某一数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-015",
+      "file": "c-ch06.json",
+      "title": "【题 6.95】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-016",
+      "file": "c-ch06.json",
+      "title": "【题 6.96】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-017",
+      "file": "c-ch06.json",
+      "title": "【题 6.97】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-018",
+      "file": "c-ch06.json",
+      "title": "【题 6.98】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-019",
+      "file": "c-ch06.json",
+      "title": "【题 6.99】运行程序时若输入“32 25 20 23 35 52 87 22 48 30 0＜回车＞”",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-020",
+      "file": "c-ch06.json",
+      "title": "【题 6.100】若有以下输入",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-021",
+      "file": "c-ch06.json",
+      "title": "【题 6.101】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-022",
+      "file": "c-ch06.json",
+      "title": "【题 6.103】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-006",
+      "file": "c-ch06.json",
+      "title": "【题 6.104】字符串 “ab\\n\\\\012\\\\\\”” 的长度是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-023",
+      "file": "c-ch06.json",
+      "title": "【题 6.105】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-024",
+      "file": "c-ch06.json",
+      "title": "【题 6.107】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-025",
+      "file": "c-ch06.json",
+      "title": "【题 6.115】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-026",
+      "file": "c-ch06.json",
+      "title": "【题 6.116】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-027",
+      "file": "c-ch06.json",
+      "title": "【题 6.117】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-028",
+      "file": "c-ch06.json",
+      "title": "【题 6.118】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-029",
+      "file": "c-ch06.json",
+      "title": "【题 6.119】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-030",
+      "file": "c-ch06.json",
+      "title": "【题 6.120】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-031",
+      "file": "c-ch06.json",
+      "title": "【题 6.121】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-032",
+      "file": "c-ch06.json",
+      "title": "【题 6.122】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-033",
+      "file": "c-ch06.json",
+      "title": "【题 6.123】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-034",
+      "file": "c-ch06.json",
+      "title": "【题 6.124】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-001",
+      "file": "c-ch06.json",
+      "title": "【题 6.125】从键盘输入若干整数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-002",
+      "file": "c-ch06.json",
+      "title": "【题 6.126】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-003",
+      "file": "c-ch06.json",
+      "title": "【题 6.127】定义一个含有 30 个整型元素的数组",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-004",
+      "file": "c-ch06.json",
+      "title": "【题 6.128】通过赋初值按行顺序给 2×3 的二维数组赋予 2、4、6、…等偶数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-005",
+      "file": "c-ch06.json",
+      "title": "【题 6.129】通过循环按行顺序为一个 5×5 的二维数组 a 赋 1～25 的自然数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-006",
+      "file": "c-ch06.json",
+      "title": "【题 6.130】下面是一个 5 阶的螺旋方阵",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-007",
+      "file": "c-ch06.json",
+      "title": "【题 6.131】数组 a 包括 10 个整数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-008",
+      "file": "c-ch06.json",
+      "title": "【题 6.132】从键盘输入一个字符",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-009",
+      "file": "c-ch06.json",
+      "title": "【题 6.133】从键盘输入两个字符串 a 和 b",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-010",
+      "file": "c-ch06.json",
+      "title": "【题 6.134】从键盘输入一个字符串 a",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-007",
+      "file": "c-ch06.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "数组",
+        "最大值",
+        "下标",
+        "边界条件"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-008",
+      "file": "c-ch06.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "数组",
+        "冒泡排序",
+        "循环边界",
+        "排序方向"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-009",
+      "file": "c-ch06.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "数组",
+        "字符串",
+        "strlen",
+        "字符与整数",
+        "printf 实参顺序"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-001",
+      "file": "c-ch07.json",
+      "title": "【题 7.18】若输入的值是－125",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-002",
+      "file": "c-ch07.json",
+      "title": "【题 7.22】以下程序的运行结果是【】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-003",
+      "file": "c-ch07.json",
+      "title": "【题 7.27】若输入一个整数 10",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-001",
+      "file": "c-ch07.json",
+      "title": "【题 7.31】以下程序的功能是求 3 个数的最小公倍数",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-004",
+      "file": "c-ch07.json",
+      "title": "【题 7.33】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-005",
+      "file": "c-ch07.json",
+      "title": "【题 7.36】函数 f 中的形参 a 为一个 10×10 的二维数组",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-006",
+      "file": "c-ch07.json",
+      "title": "【题 7.38】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-007",
+      "file": "c-ch07.json",
+      "title": "【题 7.41】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-008",
+      "file": "c-ch07.json",
+      "title": "【题 7.43】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-009",
+      "file": "c-ch07.json",
+      "title": "【题 7.44】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-010",
+      "file": "c-ch07.json",
+      "title": "【题 7.51】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-002",
+      "file": "c-ch07.json",
+      "title": "【题 7.54】以下程序可计算 1 门课程中 10 名学生成绩的平均分",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-011",
+      "file": "c-ch07.json",
+      "title": "【题 7.57】以下程序运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-012",
+      "file": "c-ch07.json",
+      "title": "【题 7.58】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-013",
+      "file": "c-ch07.json",
+      "title": "【题 7.59】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-014",
+      "file": "c-ch07.json",
+      "title": "【题 7.60】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-015",
+      "file": "c-ch07.json",
+      "title": "【题 7.62】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-016",
+      "file": "c-ch07.json",
+      "title": "【题 7.63】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-017",
+      "file": "c-ch07.json",
+      "title": "【题 7.64】当输入的数值 x 为 4",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-018",
+      "file": "c-ch07.json",
+      "title": "【题 7.66】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-001",
+      "file": "c-ch07.json",
+      "title": "【题 7.67】以下程序的功能是【 】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-002",
+      "file": "c-ch07.json",
+      "title": "【题 7.68】函数 fun 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-003",
+      "file": "c-ch07.json",
+      "title": "【题 7.69】已有变量定义和函数调用语句 int x=57",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-004",
+      "file": "c-ch07.json",
+      "title": "【题 7.70】已有变量定义和函数调用语句 int a",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-005",
+      "file": "c-ch07.json",
+      "title": "【题 7.71】已有变量定义语句 double a=5.0",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-006",
+      "file": "c-ch07.json",
+      "title": "【题 7.72】以下程序的功能是用牛顿法求解方程 f",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-007",
+      "file": "c-ch07.json",
+      "title": "【题 7.73】以下函数 fun 的功能是从 3 个红球",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-008",
+      "file": "c-ch07.json",
+      "title": "【题 7.74】以下程序的功能是应用弦截法求方程 x3-5x2+16x-80=0 的根",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-009",
+      "file": "c-ch07.json",
+      "title": "【题 7.75】以下函数 p 的功能是用递归方法计算 x 的 n 阶勒让德多项式的值",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-010",
+      "file": "c-ch07.json",
+      "title": "【题 7.76】以下程序的功能是应用下面的近似公式计算 e 的 n 次方",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-011",
+      "file": "c-ch07.json",
+      "title": "【题 7.77】a 是一个 2×4 的整型数组",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-012",
+      "file": "c-ch07.json",
+      "title": "【题 7.78】输入若干整数",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-010",
+      "file": "c-ch07.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "函数",
+        "值传递",
+        "地址传递",
+        "指针作参数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-011",
+      "file": "c-ch07.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "函数",
+        "递归",
+        "阶乘",
+        "边界条件"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-012",
+      "file": "c-ch07.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "函数",
+        "结构体",
+        "值传递",
+        "指针访问成员"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-001",
+      "file": "c-ch08.json",
+      "title": "【题 8.28】设有以下宏定义",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-002",
+      "file": "c-ch08.json",
+      "title": "【题 8.29】设有以下宏定义",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-003",
+      "file": "c-ch08.json",
+      "title": "【题 8.30】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-004",
+      "file": "c-ch08.json",
+      "title": "【题 8.31】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-005",
+      "file": "c-ch08.json",
+      "title": "【题 8.32】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-006",
+      "file": "c-ch08.json",
+      "title": "【题 8.33】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-007",
+      "file": "c-ch08.json",
+      "title": "【题 8.34】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-008",
+      "file": "c-ch08.json",
+      "title": "【题 8.35】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-009",
+      "file": "c-ch08.json",
+      "title": "【题 8.36】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-010",
+      "file": "c-ch08.json",
+      "title": "【题 8.39】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-011",
+      "file": "c-ch08.json",
+      "title": "【题 8.40】有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-012",
+      "file": "c-ch08.json",
+      "title": "【题 8.41】有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-013",
+      "file": "c-ch08.json",
+      "title": "【题 8.42】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-014",
+      "file": "c-ch08.json",
+      "title": "【题 8.43】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-015",
+      "file": "c-ch08.json",
+      "title": "【题 8.44】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-016",
+      "file": "c-ch08.json",
+      "title": "【题 8.45】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-017",
+      "file": "c-ch08.json",
+      "title": "【题 8.49】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-018",
+      "file": "c-ch08.json",
+      "title": "【题 8.50】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-cr-019",
+      "file": "c-ch08.json",
+      "title": "【题 8.51】以下程序运行结果是【 】",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-pg-001",
+      "file": "c-ch08.json",
+      "title": "【题 8.52】输入两个整数",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-pg-002",
+      "file": "c-ch08.json",
+      "title": "【题 8.53】试定义一个带参的宏 swap",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-pg-003",
+      "file": "c-ch08.json",
+      "title": "【题 8.54】定义一个带参数的宏",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-pg-004",
+      "file": "c-ch08.json",
+      "title": "【题 8.55】定义一个带参的宏",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-pg-005",
+      "file": "c-ch08.json",
+      "title": "【题 8.56】已知计算三角形面积的公式为",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.78】以下程序是用递归方法求数组中的最大值及其下标值",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.79】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.80】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.81】以下程序的功能是",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.82】请填空",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.83】若输入的值分别是 1",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.84】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-005",
+      "file": "c-ch09.json",
+      "title": "【题 9.85】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-006",
+      "file": "c-ch09.json",
+      "title": "【题 9.86】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-007",
+      "file": "c-ch09.json",
+      "title": "【题 9.87】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-008",
+      "file": "c-ch09.json",
+      "title": "【题 9.88】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-009",
+      "file": "c-ch09.json",
+      "title": "【题 9.89】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-010",
+      "file": "c-ch09.json",
+      "title": "【题 9.90】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-011",
+      "file": "c-ch09.json",
+      "title": "【题 9.91】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-012",
+      "file": "c-ch09.json",
+      "title": "【题 9.92】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-013",
+      "file": "c-ch09.json",
+      "title": "【题 9.93】当运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-014",
+      "file": "c-ch09.json",
+      "title": "【题 9.94】下面程序段的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-015",
+      "file": "c-ch09.json",
+      "title": "【题 9.105】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-016",
+      "file": "c-ch09.json",
+      "title": "【题 9.106】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-017",
+      "file": "c-ch09.json",
+      "title": "【题 9.107】当运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-018",
+      "file": "c-ch09.json",
+      "title": "【题 9.108】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-019",
+      "file": "c-ch09.json",
+      "title": "【题 9.109】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-020",
+      "file": "c-ch09.json",
+      "title": "【题 9.110】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-021",
+      "file": "c-ch09.json",
+      "title": "【题 9.111】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-022",
+      "file": "c-ch09.json",
+      "title": "【题 9.112】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-023",
+      "file": "c-ch09.json",
+      "title": "【题 9.113】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sa-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.114】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-024",
+      "file": "c-ch09.json",
+      "title": "【题 9.115】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-025",
+      "file": "c-ch09.json",
+      "title": "【题 9.116】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-026",
+      "file": "c-ch09.json",
+      "title": "【题 9.117】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-027",
+      "file": "c-ch09.json",
+      "title": "【题 9.118】运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-028",
+      "file": "c-ch09.json",
+      "title": "【题 9.120】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-029",
+      "file": "c-ch09.json",
+      "title": "【题 9.121】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-030",
+      "file": "c-ch09.json",
+      "title": "【题 9.123】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-031",
+      "file": "c-ch09.json",
+      "title": "【题 9.124】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-032",
+      "file": "c-ch09.json",
+      "title": "【题 9.125】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-033",
+      "file": "c-ch09.json",
+      "title": "【题 9.126】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-034",
+      "file": "c-ch09.json",
+      "title": "【题 9.132】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-035",
+      "file": "c-ch09.json",
+      "title": "【题 9.133】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-036",
+      "file": "c-ch09.json",
+      "title": "【题 9.134】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-037",
+      "file": "c-ch09.json",
+      "title": "【题 9.135】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.137】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-038",
+      "file": "c-ch09.json",
+      "title": "【题 9.140】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-039",
+      "file": "c-ch09.json",
+      "title": "【题 9.142】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-040",
+      "file": "c-ch09.json",
+      "title": "【题 9.144】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-041",
+      "file": "c-ch09.json",
+      "title": "【题 9.145】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-042",
+      "file": "c-ch09.json",
+      "title": "【题 9.146】若有以下输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-043",
+      "file": "c-ch09.json",
+      "title": "【题 9.151】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-044",
+      "file": "c-ch09.json",
+      "title": "【题 9.152】若有以下输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-045",
+      "file": "c-ch09.json",
+      "title": "【题 9.158】若有以下输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-046",
+      "file": "c-ch09.json",
+      "title": "【题 9.159】若有输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-047",
+      "file": "c-ch09.json",
+      "title": "【题 9.160】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-048",
+      "file": "c-ch09.json",
+      "title": "【题 9.161】若有以下输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-049",
+      "file": "c-ch09.json",
+      "title": "【题 9.162】若有以下输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-050",
+      "file": "c-ch09.json",
+      "title": "【题 9.166】下面程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-051",
+      "file": "c-ch09.json",
+      "title": "【题 9.167】若以下 main 函数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.169】设 main 函数的说明为",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-052",
+      "file": "c-ch09.json",
+      "title": "【题 9.170】设有以下 main 函数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-053",
+      "file": "c-ch09.json",
+      "title": "【题 9.171】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-054",
+      "file": "c-ch09.json",
+      "title": "【题 9.172】若从键盘输入",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-055",
+      "file": "c-ch09.json",
+      "title": "【题 9.173】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-056",
+      "file": "c-ch09.json",
+      "title": "【题 9.174】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-057",
+      "file": "c-ch09.json",
+      "title": "【题 9.177】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.178】已有一维数组 a",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-005",
+      "file": "c-ch09.json",
+      "title": "【题 9.183】定义语句int * f",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cr-058",
+      "file": "c-ch09.json",
+      "title": "【题 9.184】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-pg-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.186】编写程序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-pg-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.187】编写程序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-pg-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.188】从键盘输入一个字符串",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-pg-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.189】设有一个数列",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sa-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.190】编写程序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-pg-005",
+      "file": "c-ch09.json",
+      "title": "【题 9.191】通过指针数组 p 和一维数组 a 构成一个 3×2 的二维数组",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sa-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.192】有 4 名学生",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sa-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.193】下面 findmax 函数将计算数组中的最大元素及其下标值和地址值",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-dbg-013",
+      "file": "c-ch09.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "指针",
+        "指针遍历数组",
+        "累加器",
+        "循环边界"
+      ],
+      "chapter": "第9章 指针",
+      "section": "9.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-dbg-014",
+      "file": "c-ch09.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "指针",
+        "指针运算",
+        "类型转换",
+        "偶数判定"
+      ],
+      "chapter": "第9章 指针",
+      "section": "9.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-dbg-015",
+      "file": "c-ch09.json",
+      "title": "以下程序的功能是",
+      "tags": [
+        "指针",
+        "函数与数组",
+        "输出型参数",
+        "循环边界"
+      ],
+      "chapter": "第9章 指针",
+      "section": "9.4 程序改错题（变式生成）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.47】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-002",
+      "file": "c-ch10.json",
+      "title": "【题 10.48】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.49】以下程序用以输出结构体变量 bt 所占内存单元的字节数",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-003",
+      "file": "c-ch10.json",
+      "title": "【题 10.50】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-004",
+      "file": "c-ch10.json",
+      "title": "【题 10.51】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-005",
+      "file": "c-ch10.json",
+      "title": "【题 10.54】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-002",
+      "file": "c-ch10.json",
+      "title": "【题 10.56】设有3人的姓名和年龄存在结构数组中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-003",
+      "file": "c-ch10.json",
+      "title": "【题 10.58】以下程序的功能是计算并打印复数的差",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-006",
+      "file": "c-ch10.json",
+      "title": "【题 10.60】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-004",
+      "file": "c-ch10.json",
+      "title": "【题 10.61】结构数组中存有3人的姓名和年龄",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-007",
+      "file": "c-ch10.json",
+      "title": "【题 10.62】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-008",
+      "file": "c-ch10.json",
+      "title": "【题 10.74】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-009",
+      "file": "c-ch10.json",
+      "title": "【题 10.76】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-010",
+      "file": "c-ch10.json",
+      "title": "【题 10.77】以下程序的运行结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-011",
+      "file": "c-ch10.json",
+      "title": "【题 10.78】以下程序的输出结果为【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-012",
+      "file": "c-ch10.json",
+      "title": "【题 10.80】以下程序的输出结果是【 】",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.86】试利用结构体类型编制一个程序",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-002",
+      "file": "c-ch10.json",
+      "title": "【题 10.87】试利用指向结构体的指针编制一个程序",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-003",
+      "file": "c-ch10.json",
+      "title": "【题 10.88】请编程序建立一个带有头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-004",
+      "file": "c-ch10.json",
+      "title": "【题 10.89】已知head指向双向链表的第一个结点",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-005",
+      "file": "c-ch10.json",
+      "title": "【题 10.90】已知head指向一个带头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-006",
+      "file": "c-ch10.json",
+      "title": "【题 10.91】已知head指向一个带头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-007",
+      "file": "c-ch10.json",
+      "title": "【题 10.92】设有一个unsigned long型整数",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sa-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.93】请定义枚举类型money",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 编程题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-001",
+      "file": "c-ch11.json",
+      "title": "【题 11.24】在C语言中",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-002",
+      "file": "c-ch11.json",
+      "title": "【题 11.25】与表达式 x^=y－2 等价的另一书写形式是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-001",
+      "file": "c-ch11.json",
+      "title": "【题 11.26】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-003",
+      "file": "c-ch11.json",
+      "title": "【题 11.27】设有 char a",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-004",
+      "file": "c-ch11.json",
+      "title": "【题 11.28】测试 char 型变量 a 第 6 位是否为 1 的表达式是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-005",
+      "file": "c-ch11.json",
+      "title": "【题 11.29】设 x 的二进制数是 11001101",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-002",
+      "file": "c-ch11.json",
+      "title": "【题 11.30】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-003",
+      "file": "c-ch11.json",
+      "title": "【题 11.31】有以下程序",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-004",
+      "file": "c-ch11.json",
+      "title": "【题 11.32】有以下程序",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-005",
+      "file": "c-ch11.json",
+      "title": "【题 11.33】有以下程序",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-006",
+      "file": "c-ch11.json",
+      "title": "【题 11.34】设 x 是一个整数",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-007",
+      "file": "c-ch11.json",
+      "title": "【题 11.35】设 x=10100011",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-006",
+      "file": "c-ch11.json",
+      "title": "【题 11.36】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-007",
+      "file": "c-ch11.json",
+      "title": "【题 11.37】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-008",
+      "file": "c-ch11.json",
+      "title": "【题 11.38】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-009",
+      "file": "c-ch11.json",
+      "title": "【题 11.39】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-010",
+      "file": "c-ch11.json",
+      "title": "【题 11.40】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-011",
+      "file": "c-ch11.json",
+      "title": "【题 11.41】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-008",
+      "file": "c-ch11.json",
+      "title": "【题 11.42】若 x=0123",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-012",
+      "file": "c-ch11.json",
+      "title": "【题 11.43】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-013",
+      "file": "c-ch11.json",
+      "title": "【题 11.44】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-014",
+      "file": "c-ch11.json",
+      "title": "【题 11.45】下面程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-009",
+      "file": "c-ch11.json",
+      "title": "【题 11.46】把 int 类型变量 low 中的低字节及变量 high 中的高字节放入变量 s 中的表达式是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-015",
+      "file": "c-ch11.json",
+      "title": "【题 11.47】以下程序的运行结果是【 】",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-016",
+      "file": "c-ch11.json",
+      "title": "【题 11.50】请读以下函数",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sa-001",
+      "file": "c-ch11.json",
+      "title": "【题 11.51】设 x 为无符号整数",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-001",
+      "file": "c-ch12.json",
+      "title": "【题 12.25】在C程序中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-002",
+      "file": "c-ch12.json",
+      "title": "【题 12.26】在C程序中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-003",
+      "file": "c-ch12.json",
+      "title": "【题 12.27】在C语言中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-004",
+      "file": "c-ch12.json",
+      "title": "【题 12.28】函数调用语句fgets",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-005",
+      "file": "c-ch12.json",
+      "title": "【题 12.29】将整数－1234按照文本文件",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-006",
+      "file": "c-ch12.json",
+      "title": "【题 12.30】若要在C源程序中定义fp为指针变量",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-001",
+      "file": "c-ch12.json",
+      "title": "【题 12.41】假设磁盘上有3个文本文件",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-002",
+      "file": "c-ch12.json",
+      "title": "【题 12.43】假设执行以下程序之前文件e12_43.txt的内容为",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-007",
+      "file": "c-ch12.json",
+      "title": "【题 12.47】当调用函数read从磁盘文件中读数据时",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-001",
+      "file": "c-ch12.json",
+      "title": "【题 12.48】请编写程序",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-002",
+      "file": "c-ch12.json",
+      "title": "【题 12.49】请编写程序实现文件的复制",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-003",
+      "file": "c-ch12.json",
+      "title": "【题 12.50】设文件number.dat中存放了一组整数",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-004",
+      "file": "c-ch12.json",
+      "title": "【题 12.51】设文件student.dat中存放着一年级学生的基本信息",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-005",
+      "file": "c-ch12.json",
+      "title": "【题 12.52】假设A、B两名工人生产同一产品",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-006",
+      "file": "c-ch12.json",
+      "title": "【题 12.53】请编写程序",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.3 编程题",
+      "type": "programming",
       "category": "c"
     },
     {

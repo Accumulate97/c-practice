@@ -1,0 +1,1613 @@
+{
+  "category": "c",
+  "chapter": "第2章 数据类型、运算符与表达式",
+  "generated_at": "2026-09-08",
+  "count": 71,
+  "problems": [
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.1（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下列4组选项中，不是C语言关键字的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) define\nIF\ntype",
+        "B) getc\nchar\nprintf",
+        "C) include\nscanf\ncase",
+        "D) while\ngo\npow"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.2（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是C语言关键字的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) auto\nenum\ninclude",
+        "B) switch\ntypedef\ncontinue",
+        "C) signed\nunion\nscanf",
+        "D) if\nstruct\ntype"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.3（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是不合法的用户标识符的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) A\nP_0\ndo",
+        "B) float\n1a0\n_A",
+        "C) b-a\ngoto\nint",
+        "D) _123\ntemp\nINT"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.4（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "C语言中的标识符只能由字母、数字和下划线3种字符组成，且第一个字符______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 必须为字母",
+        "B) 必须为下划线",
+        "C) 必须为字母或下划线",
+        "D) 可以是字母、数字和下划线中任一种字符"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.5（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是合法整型常量的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 160\n−0xffff\n011",
+        "B) −0xcd\n01a\n0xe",
+        "C) −01\n986,012\n0668",
+        "D) −0x48a\n2e5\n0x"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.6（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是不合法的整型常量的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) −−0f1\n−0xffff\n0011",
+        "B) −0Xcdf\n017\n12,456",
+        "C) −018\n999\n5e2",
+        "D) −0x48eg\n−068\n03f"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.7（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是不合法的浮点数的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 160.\n0.12\ne3",
+        "B) 123\n2e4.2\n.e5",
+        "C) −.18\n123e4\n0.0",
+        "D) −e3\n.234\n1e3"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.8（PDF p14 / 书页 p3）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是合法浮点数的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) +1e+1\n5e−9.4\n03e2",
+        "B) −.60\n12e−4\n−8e5",
+        "C) 123e\n1.2e−.4\n+2e−1",
+        "D) −e3\n.8e−4\n5.e−0"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.9（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是合法转义字符的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) '\\''\n'\\\\'\n'\\n'",
+        "B) '\\'\n'\\017'\n'\\\"'",
+        "C) '\\018'\n'\\f'\n'xab'",
+        "D) '\\\\0'\n'\\101'\n'x1f'"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.10（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是不合法的转义字符的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) '\\\"'\n'\\\\'\n'\\xf'",
+        "B) '\\1011'\n'\\'\n'\\a'",
+        "C) '\\011'\n'\\f'\n'\\}'",
+        "D) '\\abc'\n'\\101'\n'x1f'"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.11（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面正确的字符常量是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) \"c\"",
+        "B) \"\\\\\"",
+        "C) 'W'",
+        "D) ''"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.12（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是正确的八进制数或十六进制数的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) −10\n0x8f\n−011",
+        "B) 0abc\n−017\n0xc",
+        "C) 0010\n−0x11\n0xf1",
+        "D) 0a12\n−0x123\n−0xa"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.13（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是正确的数值常量或字符常量的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0.0\n0f\n8.9e\n'&'",
+        "B) \"a\"\n3.9E−2.5\n1e1\n'\\\"'",
+        "C) '3'\n011\n0xFF00\n0a",
+        "D) +001\n0xabcd\n2e2\n50."
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.14（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面4个选项中，是非法常量的选项是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 'as'\n−0fff\n'\\0xa'",
+        "B) '\\\\'\n'\\01'\n12,456",
+        "C) −0x18\n01177\n0xf",
+        "D) 0xabc\n'\\0'\n\"a\""
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.15（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "下面不正确的字符串常量是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 'abc'",
+        "B) \"12'12\"",
+        "C) \"0\"",
+        "D) \" \""
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.16（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "对应以下各代数式中，若变量a和x均为double类型，则不正确的C语言表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 代数式: e^(x^2/2)/√(2π)\nC语言表达式: exp(x*x/2)/sqrt(2*3.14159)",
+        "B) 代数式: 1/2(ax+(a+x)/4a)\nC语言表达式: 1.0/2.0*(a*x+(a+x)/(4*a))",
+        "C) 代数式: √((sinx)^2.5)\nC语言表达式: sqrt((pow(sin(x*3.14159/180),2.5))",
+        "D) 代数式: x^2-e^5\nC语言表达式: x*x-exp(5.0)"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.17（PDF p15 / 书页 p4）",
+      "difficulty": 2,
+      "stem": "若有代数式3ae/bc，则不正确的C语言表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a/b/c*e*3",
+        "B) 3*a*e/b/c",
+        "C) 3*a*e/b*c",
+        "D) a*e/c/b*3"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.18（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "以下表达式值为3的是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 16-13%10",
+        "B) 2+3/2",
+        "C) 14/3-2",
+        "D) (2+6)/(12-9)"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.19（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "设有说明语句：int k=7,x=12;则以下能使值为3的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x%=(k%=5)",
+        "B) x%=(k-k%5)",
+        "C) x%=k-k%5",
+        "D) (x%=k)-(k%=5)"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.20（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "若x、i、j和k都是int型变量，则执行表达式x=(i=4,j=16,k=32)后x的值为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 4",
+        "B) 16",
+        "C) 32",
+        "D) 52"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.21（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "假设所有变量均为整型，则表达式(a=2,b=5,b++,a+b)的值是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 7",
+        "B) 8",
+        "C) 6",
+        "D) 2"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.22（PDF p16 / 书页 p5）",
+      "difficulty": 3,
+      "stem": "已知各变量的类型说明如下：\nint      k, a, b;\nunsigned long w=5;\ndouble      x=1.42;\n则以下不正确的表达式是______。\n\n```c\nint      k, a, b;\nunsigned long w=5;\ndouble      x=1.42;\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x%(−3)",
+        "B) w+=−2",
+        "C) k=(a=2,b=3,a+b)",
+        "D) a+=a-=(b=4)*(a=3)"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.23（PDF p16 / 书页 p5）",
+      "difficulty": 3,
+      "stem": "已知各变量的类型说明如下：\nint i=8,k,a,b;\nunsigned long w=5;\ndouble x=1.42,y=5.2;\n则以下正确的表达式是______。\n\n```c\nint i=8,k,a,b;\nunsigned long w=5;\ndouble x=1.42,y=5.2;\n```",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a+=a-=(b=4)*(a=3)",
+        "B) a=a*3=2",
+        "C) x%(−3)",
+        "D) y=float(i)"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.24（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "以下不正确的叙述是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 在C程序中，逗号运算符的优先级最低",
+        "B) 在C程序中，APH和aph是两个不同的变量",
+        "C) 若a和b类型相同，在执行了赋值表达式a=b后b中的值将放入a中，而b中的值不变",
+        "D) 当从键盘输入数据时，对于整型变量只能输入整型数值，对于实型变量只能输入实型数值"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.25（PDF p16 / 书页 p5）",
+      "difficulty": 2,
+      "stem": "以下正确的叙述是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 在C程序中，每行中只能写一条语句",
+        "B) 若a是实型变量，C程序中允许赋值a=10，因此实型变量中允许存放整型数",
+        "C) 在C程序中，无论是整数还是实数，都能被准确无误地表示",
+        "D) 在C程序中，%是只能用于整数运算的运算符"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.26（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "已知字母A的ASCII码为十进制数65，且定义c2为字符型变量，则执行语句c2='A'+'6'-'3';后，c2中的值为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) D",
+        "B) 68",
+        "C) 不确定的值",
+        "D) C"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-026",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.27（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "在C语言中，要求运算数必须是整型的运算符是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) /",
+        "B) ++",
+        "C) !=",
+        "D) %"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-027",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.28（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "若有说明语句：char c='\\72';则变量c______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 包含1个字符",
+        "B) 包含2个字符",
+        "C) 包含3个字符",
+        "D) 说明不合法，c的值不确定"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-028",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.29（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int a=7;float x=2.5,y=4.7;则表达式x+a%3*(int)(x+y)%2/4的值是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 2.500000",
+        "B) 2.750000",
+        "C) 3.500000",
+        "D) 0.000000"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-029",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.30（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "sizeof(float)是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 一个双精度型表达式",
+        "B) 一个整型表达式",
+        "C) 一种函数调用",
+        "D) 一个不合法的表达式"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-030",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.31（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "设变量a是整型，f是实型，i是双精度型，则表达式10+'a'+i*f值的数据类型为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int",
+        "B) float",
+        "C) double",
+        "D) 不确定"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-031",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.32（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "设以下变量均为int类型，则值不等于7的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) (x=y=6,x+y,x+1)",
+        "B) (x=y=6,x+y,y+1)",
+        "C) (x=6,x+1,y=6,x+y)",
+        "D) (y=6,y+1,x=y,x+1)"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-032",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.33（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "若有代数式√(y^x+lgy)，则正确的C语言表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) sqrt(fabs(pow(y,x)+log(y)))",
+        "B) sqrt(abs(pow(y,x)+log(y)))",
+        "C) sqrt(fabs(pow(x,y)+log(y)))",
+        "D) sqrt(abs(pow(x,y)+log(y)))"
+      ],
+      "answer": 0,
+      "id": "c-ch02-sc-033",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.34（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "若有代数式|x^3+log10 x|，则正确的C语言表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) fabs(x*3+log(x))",
+        "B) abs(pow(x,3)+log(x))",
+        "C) abs(pow(x,3.0)+log(x))",
+        "D) fabs(pow(x,3.0)+log(x))"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-034",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.35（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "在C语言中，char型数据在内存中的存储形式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 补码",
+        "B) 反码",
+        "C) 原码",
+        "D) ASCII码"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-035",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.36（PDF p17 / 书页 p6）",
+      "difficulty": 2,
+      "stem": "设变量n为float类型，m为int类型，则以下能实现将n中的数值保留小数点后两位，第三位进行四舍五入运算的表达式是______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) n=(n*100+0.5)/100.0",
+        "B) m=n*100+0.5,n=m/100.0",
+        "C) n=n*100+0.5/100.0",
+        "D) n=(n/100+0.5)*100.0"
+      ],
+      "answer": 1,
+      "id": "c-ch02-sc-036",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.37（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "表达式18/4*sqrt(4.0)/8值的数据类型为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int",
+        "B) float",
+        "C) double",
+        "D) 不确定"
+      ],
+      "answer": 2,
+      "id": "c-ch02-sc-037",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.38（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "设有说明语句：char w;int x;float y;double z;则表达式w*x+z-y值的数据类型为______。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) float",
+        "B) char",
+        "C) int",
+        "D) double"
+      ],
+      "answer": 3,
+      "id": "c-ch02-sc-038",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.39（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若采用十进制数的表示形式，则077为【1】，0111为【2】，0xab为【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.40（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "C语言中的标识符可分为关键字、【1】和【2】3类。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.41（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "C语言中的标识符只能由3种字符组成，它们是【1】、【2】和【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.42（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "在C语言中，用\"\\\"开头的字符序列称为转义字符。转义字符\"\\n\"的功能是【1】；转义字符\"\\r\"的功能是【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.43（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "在C语言中，用关键字【1】定义单精度实型变量，用关键字【2】定义双精度实型变量，用关键字【3】定义字符型变量。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.44（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "设a、b、c均为int类型变量，请用C语言的表达式描述以下命题。\n(1)a或b中有一个大于c\t【1】\n(2)a、b和c中只有2个为正数\t【2】\n(3)c是偶数\t【3】",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.45（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "在C语言中，&作为双目运算符时表示的是【1】，而作为单目运算符时表示的是【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.46（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "运算符%两侧运算量的数据类型必须都是【1】；运算符++和--的运算量必须是【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.47（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "在C语言的赋值表达式中，赋值号左边必须是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.48（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "表达式x=6应当读做【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.49（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int m=5,y=2;则执行表达式y+=y-=m*=y后的y值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.50（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "在C语言中的实型变量分为两种类型，它们是【1】和【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.51（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "C语言所提供的基本数据类型包括：单精度型、双精度型、【1】、【2】和【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.52（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "已知字母a的ASCII码为十进制数97，且设ch为字符型变量，则表达式ch='a'+'8'-'3'的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.53（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int s=6;则表达式s%2+(s+1)%2的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.54（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若a是int型变量，则表达式(a=4*5,a*2),a+6的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.55（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若x和a均是int型变量，则执行表达式(1)后的x值为【1】，执行表达式(2)后的x值为【2】。\n(1)x=(a=4,6*2)\n(2)x=a=4,6*2",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.56（PDF p18 / 书页 p7）",
+      "difficulty": 2,
+      "stem": "若a、b和c均是int型变量，则执行表达式a=(b=4)+(c=2)后a的值为【1】，b的值为【2】，c的值为【3】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        },
+        {
+          "index": 3,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.57（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若a是int型变量，且a的初值为6，则执行表达式a+=a-=a*a后a的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.58（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若a是int型变量，则执行表达式a=25/3%3后a的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.59（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若x和n均是int型变量，且x和n的初值均为5，则执行表达式x+=n++后x的值为【1】，n的值为【2】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        },
+        {
+          "index": 2,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.60（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int b=7;float a=2.5,c=4.7;则表达式a+(int)(b/3*(int)(a+c)/2)%4的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.61（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int a=2,b=3;float x=3.5,y=2.5;则表达式(float)(a+b)/2+(int)x%(int)y的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.62（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若有定义语句：char c='\\010';则变量c中包含的字符个数为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.63（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int x=3,y=2;float a=2.5,b=3.5;则表达式(x+y)%2+(int)a/(int)b的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.64（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若x和n均是int型变量，且x的初值为12，n的初值为5，则执行表达式x%=(n%=2)后x的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-026",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.65（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "假设变量a、b均为整型，则表达式(a=2,b=5,a++,b++,a+b)的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-027",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.66（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "把以下多项式写成只含7次乘法运算，其余皆为加、减运算的C语言表达式为【 】。\n5x^7+3x^6-4x^5+2x^4+x^3-6x^2+x+10",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-028",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.67（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若x和y都是double型变量，且x的初值为3.0，y的初值为2.0，则表达式pow(y,fabs(x))的值为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-029",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.68（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "若有定义语句：int e=1,f=4,g=2;float m=10.5,n=4.0,k;，则执行表达式k=(e+f)/g+sqrt((double)n)*1.2/g+m后k的值是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-030",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.69（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "表达式8/4*(int)2.5/(int)(1.25*(3.7+2.3))值的数据类型为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-031",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.70（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "表达式pow(2.8,sqrt(double(x)))值的数据类型为【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-032",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第2章 数据类型、运算符与表达式 题2.71（PDF p19 / 书页 p8）",
+      "difficulty": 2,
+      "stem": "假设m是一个3位数，从左到右依次用a、b、c表示各位的数字，则从左到右各位数字是b、a、c的3位数的表达式是【 】。",
+      "explanation": "",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "fill_blank",
+      "bloom": "remember",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ""
+        }
+      ],
+      "id": "c-ch02-fb-033",
+      "verified": true
+    }
+  ]
+}

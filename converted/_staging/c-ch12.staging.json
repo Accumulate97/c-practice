@@ -1,0 +1,1176 @@
+{
+  "category": "c",
+  "chapter": "第12章 文件",
+  "generated_at": "2026-09-08",
+  "count": 38,
+  "pending": [
+    {
+      "originalId": "题12.1",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.1（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.1】设fp是指向某个文件的指针，且已读到文件末尾，则库函数feof(fp)的返回值是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) EOF",
+          "B) －1",
+          "C) 非零值",
+          "D) NULL"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.2",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.2（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.2】若要指定打开c盘上子目录myfile的二进制文件test.bin，在调用函数fopen时，第一个参数的正确格式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) ″c:myfile\\test.bin″",
+          "B) ″c:\\myfile\\\\test.bin″",
+          "C) ″c:\\\\myfile\\\\test.bin″",
+          "D) ″c:\\myfile\\test.bin″"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.3",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.3（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.3】若执行fopen函数时发生错误，则函数的返回值是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 地址值",
+          "B) 0",
+          "C) 1",
+          "D) EOF"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.4",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.4（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.4】若要用fopen函数打开一个新的二进制文件，该文件既要能读也要能写，则文件方式字符串应是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) ″ab＋″",
+          "B) ″wb＋″",
+          "C) ″rb＋″",
+          "D) ″ab″"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.5",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.5（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.5】若以″a＋″方式打开一个已存在的文件，则以下叙述正确的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 文件打开时，原有文件内容不被删除，位置指针移到文件末尾，可作添加和读操作",
+          "B) 文件打开时，原有文件内容不被删除，位置指针移到文件开头，可作重写和读操作",
+          "C) 文件打开时，原有文件内容被删除，只可作写操作",
+          "D) 以上各种说法皆不正确"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.6",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.6（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.6】正常执行文件关闭操作时，fclose函数的返回值是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) －1",
+          "B) TRUE",
+          "C) 0",
+          "D) 1"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.7",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.7（PDF p266 / 书页 p255）",
+        "difficulty": 2,
+        "stem": "【题 12.7】已知函数的调用形式是：fread(buffer,size,count,fp)；其中buffer代表的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 一个整型变量，代表要读入的数据项总数",
+          "B) 一个文件指针，指向要读的文件",
+          "C) 一个指针，指向要读入数据的存放地址",
+          "D) 一个存储区，存放要读的数据项"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.8",
+      "sourceBatch": "p266-277.json",
+      "page": 266,
+      "bookPage": 255,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.8（PDF p266 / 书页 p255）",
+        "difficulty": 3,
+        "stem": "【题 12.8】若有下列定义和说明：则以下不能将文件内容读入数组a中的语句组是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) for( i=0; i＜30; i＋＋ )\n  fread( &a[i], sizeof( struct std ), 1L, fp )；",
+          "B) for( i=0; i＜30; i＋＋ ,i＋＋ )\n  fread( &a[i], sizeof( struct std ), 2L, fp )；",
+          "C) fread( a, sizeof( struct std ), 30L, fp )；",
+          "D) for( i=0; i＜30; i＋＋ )\n  fread( a[i], sizeof( struct std ), 1L, fp )；"
+        ],
+        "code": "#include <stdio.h>\nstruct std\n{ char num[6];\n  char name[8];\n  float mark[4];\n} a[30];\nFILE * fp;"
+      }
+    },
+    {
+      "originalId": "题12.9",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.9（PDF p267 / 书页 p256）",
+        "difficulty": 2,
+        "stem": "【题 12.9】fscanf函数的正确调用形式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) fscanf(fp,格式字符串,输出表列);",
+          "B) fscanf(格式字符串,输出表列,fp);",
+          "C) fscanf(格式字符串,文件指针,输出表列);",
+          "D) fscanf(文件指针,格式字符串,输入表列);"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.10",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.10（PDF p267 / 书页 p256）",
+        "difficulty": 2,
+        "stem": "【题 12.10】fwrite函数的一般调用形式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) fwrite(buffer,count,size,fp);",
+          "B) fwrite(fp,size,count,buffer);",
+          "C) fwrite(fp,coutn,size,buffer);",
+          "D) fwrite(buffer,size,count,fp);"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.11",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.11（PDF p267 / 书页 p256）",
+        "difficulty": 2,
+        "stem": "【题 12.11】fgetc函数的作用是从指定文件读入一个字符，该文件的打开方式必须是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 只写",
+          "B) 追加",
+          "C) 读或读写",
+          "D) 答案B和C都正确"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.12",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.12（PDF p267 / 书页 p256）",
+        "difficulty": 2,
+        "stem": "【题 12.12】若调用fputc函数输出字符成功，则其返回值是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) EOF",
+          "B) 1",
+          "C) 0",
+          "D) 输出的字符"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.13",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.13（PDF p267 / 书页 p256）",
+        "difficulty": 2,
+        "stem": "【题 12.13】标准库函数fgets(p1,k,f1)的功能是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 从f1所指的文件中读取长度为k的字符串存入指针p1所指的内存",
+          "B) 从f1所指的文件中读取长度不超过k－1的字符串存入指针p1所指的内存",
+          "C) 从f1所指的文件中读取k个字符串存入指针p1所指的内存",
+          "D) 从f1所指的文件中读取长度为k－1的字符串存入指针p1所指的内存"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.14",
+      "sourceBatch": "p266-277.json",
+      "page": 267,
+      "bookPage": 256,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.14（PDF p267 / 书页 p256）",
+        "difficulty": 3,
+        "stem": "【题 12.14】设有以下结构体类型：且结构体数组student中的元素都已赋值，若要将这些元素值写到文件fp中，以下不正确的形式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) fwrite( student, sizeof( struct st ), 50, fp )；",
+          "B) fwrite( student, 50 * sizeof( struct st ), 1, fp )；",
+          "C) fwrite( student, 25 * sizeof( struct st ), 25, fp )；",
+          "D) for( i=0; i<50; i++)\n  fwrite( student, sizeof( struct st ), 1, fp )；"
+        ],
+        "code": "struct st\n{ char name[8];\n  int num;\n  float s[4];\n} student[50];"
+      }
+    },
+    {
+      "originalId": "题12.15",
+      "sourceBatch": "p266-277.json",
+      "page": 268,
+      "bookPage": 257,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.15（PDF p268 / 书页 p257）",
+        "difficulty": 4,
+        "stem": "【题 12.15】阅读以下程序及对程序功能的描述，其中正确的描述是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 程序的功能是：将磁盘文件的信息在屏幕上显示",
+          "B) 程序的功能是：将两个磁盘文件合二为一",
+          "C) 程序的功能是：将一个磁盘文件复制到另一个磁盘文件中",
+          "D) 程序的功能是：将两个磁盘文件合并，且在屏幕上输出"
+        ],
+        "code": "#include <stdio.h>\nint main( )\n{ FILE * in, * out;\n  char ch,infile[10],outfile[10];\n  printf(\"Enter the infile name :\\n\");\n  scanf(\"%s\",infile);\n  printf(\"Enter the outfile name :\\n\");\n  scanf(\"%s\",outfile);\n  if((in=fopen(infile,\"r\"))==NULL)\n  { printf(\"Cannot open infile!\\n\");\n    exit(0);}\n  if((out=fopen(outfile,\"w\"))==NULL)\n  { printf(\"Cannot open outfile!\\n\");\n    exit(0);}\n  while(!feof(in))fputc(fgetc(in),out);\n  fclose(in);\n  fclose(out);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题12.16",
+      "sourceBatch": "p266-277.json",
+      "page": 268,
+      "bookPage": 257,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.16（PDF p268 / 书页 p257）",
+        "difficulty": 2,
+        "stem": "【题 12.16】函数调用语句fseek(fp,－20L,2);的含义是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 将文件位置指针移到距离文件头20个字节处",
+          "B) 将文件位置指针从当前位置向后移动20个字节",
+          "C) 将文件位置指针从文件末尾处向后退20个字节",
+          "D) 将文件位置指针移到离当前位置20个字节处"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.17",
+      "sourceBatch": "p266-277.json",
+      "page": 268,
+      "bookPage": 257,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.17（PDF p268 / 书页 p257）",
+        "difficulty": 2,
+        "stem": "【题 12.17】利用fseek函数可实现的操作是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 改变文件的位置指针",
+          "B) 文件的顺序读写",
+          "C) 文件的随机读写",
+          "D) 以上答案均正确"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.18",
+      "sourceBatch": "p266-277.json",
+      "page": 269,
+      "bookPage": 258,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.18（PDF p269 / 书页 p258）",
+        "difficulty": 2,
+        "stem": "【题 12.18】fseek·函数的正确调用形式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) fseek(文件类型指针，起始点，位移量);",
+          "B) fseek(fp，位移量，起始点);",
+          "C) fseek(位移量，起始点，fp);",
+          "D) fseek(起始点，位移量，文件类型指针);"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.19",
+      "sourceBatch": "p266-277.json",
+      "page": 269,
+      "bookPage": 258,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.19（PDF p269 / 书页 p258）",
+        "difficulty": 2,
+        "stem": "【题 12.19】函数rewind的作用是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 使位置指针重新返回文件的开头",
+          "B) 将位置指针指向文件中所要求的特定位置",
+          "C) 使位置指针指向文件的末尾",
+          "D) 使位置指针自动移至下一个[?]符位置"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.20",
+      "sourceBatch": "p266-277.json",
+      "page": 269,
+      "bookPage": 258,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.20（PDF p269 / 书页 p258）",
+        "difficulty": 2,
+        "stem": "【题 12.20】函数ftell(fp)的作用是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) 得到流式文件中的当前位置",
+          "B) 移动流式文件的位置指针",
+          "C) 初始化流式文件的位置指针",
+          "D) 以上答案均正确"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.21",
+      "sourceBatch": "p266-277.json",
+      "page": 269,
+      "bookPage": 258,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：options（需恰好 4 项，实际 3）；answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "options（需恰好 4 项，实际 3）",
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.21（PDF p269 / 书页 p258）",
+        "difficulty": 5,
+        "stem": "【题 12.21】下面程序的功能是实现人员登录。即每当从键盘接收一个姓名，便在文件member.dat中进行查找。若此姓名已存在，则显示相应信息；若文件中没有该姓名，则将其存入文件(若文件member.dat不存在，应在磁盘上建立一个新文件)。当输入姓名时按＜回车＞键或处理过程中出现错误时程序结束。请选择填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "【1】A) \"w\"\nB) \"w＋\"\nC) \"r＋\"\nD) \"a＋\"",
+          "【2】A) fgets(name)\nB) gets(name)\nC) scanf(name)\nD) getc(name)",
+          "【3】A) ferror(fp)==0\nB) ferror(fp)==1\nC) ferror(fp)!=0\nD) !(ferror(fp)==0)"
+        ],
+        "code": "#include <stdio.h>\nint main( )\n{ FILE * fp;\n  int flag;\n  char name[20], data[20];\n  if ( (fp=fopen( \"member.dat\",【1】) ) == NULL )\n  { printf( \"Cannot open file !\\n\" );\n    exit(0);}\n  do\n  { printf( \"Enter name: \" );\n    【2】;\n    if ( strlen(name) == 0 )\n      break;\n    strcat ( name, \"\\n\" );\n    rewind( fp );\n    flag=1;\n    while ( flag && ( ( fgets( data, 30, fp ) !=NULL) ) )\n      if ( strcmp( data, name ) == 0 )\n        flag=0;\n        if ( flag)\n          fputs(name,fp);\n        else\n          printf( \"\\tThis name has been existed!\\n\" );\n    }\n  while (【3】); /*  读写正确就循环  */\n  fclose(fp);\n  return 0;\n}"
+      }
+    },
+    {
+      "originalId": "题12.22",
+      "sourceBatch": "p266-277.json",
+      "page": 270,
+      "bookPage": 259,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.22（PDF p270 / 书页 p259）",
+        "difficulty": 2,
+        "stem": "【题 12.22】在执行fopen函数时，ferror函数的初值是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) TRUE",
+          "B) －1",
+          "C) 1",
+          "D) 0"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.23",
+      "sourceBatch": "p266-277.json",
+      "page": 270,
+      "bookPage": 259,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.23（PDF p270 / 书页 p259）",
+        "difficulty": 2,
+        "stem": "【题 12.23】在以下read函数的调用形式中，参数类型正确的是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) read(int fd,char * buf,int count)",
+          "B) read(int * buf,int fd,int count)",
+          "C) read(int fd,int count,char * buf)",
+          "D) read(int count,char * buf,int fd)"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.24",
+      "sourceBatch": "p266-277.json",
+      "page": 270,
+      "bookPage": 259,
+      "subType": "single_choice",
+      "_pendingReason": "single_choice 不满足 schema：answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）",
+      "_missing": [
+        "answer（需 int 0-3；答案回填属收尾②，本轮明令推迟，已开 --with-answers 仍不可判）"
+      ],
+      "_unlockHint": "收尾② 答案回填后重跑本脚本（或加 --with-answers，现成 _answers 覆盖 ch1–ch4）即可解锁；answer = 字母 A/B/C/D → 0/1/2/3",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.1 选择题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.24（PDF p270 / 书页 p259）",
+        "difficulty": 2,
+        "stem": "【题 12.24】函数lseek用来移动文件的位置指针，其调用形式是______。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "single_choice",
+        "bloom": "understand",
+        "options": [
+          "A) lseek(位移方向,位移量,文件号);",
+          "B) lseek(文件号,位移量,起始点);",
+          "C) lseek(文件号,起始点,位移量);",
+          "D) lseek(文件号,位移方向,位移量);"
+        ]
+      }
+    },
+    {
+      "originalId": "题12.31",
+      "sourceBatch": "p266-277.json",
+      "page": 271,
+      "bookPage": 260,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.31（PDF p271 / 书页 p260）",
+        "difficulty": 4,
+        "stem": "【题 12.31】以下程序的功能是：统计文件letter.txt中小写字母c的个数。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ char ch;\n  long n=0;\n  FILE * fp;\n  if((fp=fopen(\"letter.txt\",\"r\"))==NULL);\n    { printf(\"Cannot open file!\\n\");\n      exit(0);}\n  while(【1】)\n    { m=【2】;\n      if(ch=='c') n++;}\n  printf(\"n= %ld\\n\",n);\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.32",
+      "sourceBatch": "p266-277.json",
+      "page": 271,
+      "bookPage": 260,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.32（PDF p271 / 书页 p260）",
+        "difficulty": 4,
+        "stem": "【题 12.32】设文件num.dat中存放了一组整数。以下程序的功能是：统计并输出文件num.dat中正整数、零和负整数的个数。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ int p=0,n=0,z=0,temp;\n  FILE * fp;\n  fp=【1】;\n  if(fp==NULL)\n    printf(\"Cannot open file!\\n\");\n  else\n    { while(!feof(fp))\n      { fscanf(【2】);\n        if(temp>0) p++;\n        else if(temp<0) n++;\n        else【3】;\n      }\n    }\n  fclose(fp);\n  printf(\"positive=%d,negative=%d,zero=%d\\n\",p,n,z);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.33",
+      "sourceBatch": "p266-277.json",
+      "page": 271,
+      "bookPage": 260,
+      "subType": "multi_blank",
+      "_pendingReason": "multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.33（PDF p271 / 书页 p260）",
+        "difficulty": 3,
+        "stem": "【题 12.33】执行以下程序段后，文件e12_33.dat中的内容是【1】，屏幕上的输出结果是【2】。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "char b='F';\nint a=1;\nFILE * fp;\nfp=fopen(\"e12_33.dat\",\"w\");\nfprintf(fp,\"%d,%c\",a,b);\nprintf(\"a=%d,b=%c\\n\",a,b);\nfclose(fp);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.34",
+      "sourceBatch": "p266-277.json",
+      "page": 272,
+      "bookPage": 261,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.34（PDF p272 / 书页 p261）",
+        "difficulty": 4,
+        "stem": "【题 12.34】下面程序的功能是：用变量count统计文件letter.dat中字符的个数。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ FILE * fp;\n  long count=0;\n  if ( (fp=fopen(\"letter.dat\",【1】) )==NULL )\n    { printf(\"Cannot open file!\\n\");\n      exit(0); }\n  while (!feof(fp))\n    { 【2】; 【3】; }\n  printf(\"count=%ld\\n\",count);\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.35",
+      "sourceBatch": "p266-277.json",
+      "page": 272,
+      "bookPage": 261,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.35（PDF p272 / 书页 p261）",
+        "difficulty": 4,
+        "stem": "【题 12.35】下面程序的功能是：由终端键盘输入字符，存放到文件fname中，用\"!\"结束输入。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ FILE * fp;\n  char ch, fname[10];\n  printf(\"Input name of file;\\n\"); gets( fname );\n  if( (fp=fopen(fname,\"w\"))==NULL )\n    { printf(\"Cannot open file!\\n\"); exit(0);}\n  printf(\"Enter data :\\n\");\n  while(【1】!= '!' )\n    fputc(【2】);\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.36",
+      "sourceBatch": "p266-277.json",
+      "page": 272,
+      "bookPage": 261,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.36（PDF p272 / 书页 p261）",
+        "difficulty": 4,
+        "stem": "【题 12.36】下面程序的功能是：从一个二进制文件e12_36.dat中读入结构体数据，并把该数据显示在终端屏幕上。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nstruct rec\n{ int num;\n  float total;\n}\nint main( )\n{ FILE * fp;\n  fp=fopen(\"e12_36.dat\",\"rb\" );\n  reout( fp );\n  fclose( fp );\n  return 0;\n}\nreout(【1】)\n{ struct rec r;\n  while (!feof(fp))\n  { fread( &r,【2】,1,fp );\n    printf( \"%d,%f\\n\",【3】);\n  }\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.37",
+      "sourceBatch": "p266-277.json",
+      "page": 273,
+      "bookPage": 262,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.37（PDF p273 / 书页 p262）",
+        "difficulty": 5,
+        "stem": "【题 12.37】以下程序的功能是输入4名学生的姓名、学号、年龄、住址并存入文件stu_list.dat中。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#define SIZE 4\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char addr[15];\n  }\nstud[SIZE];\nvoid save( )\n{ FILE * fp;\n  int i;\n  if((fp=fopen(\"stu_list.dat\",\"wb\"))==NULL)\n  { printf(\"Cannot open file !\\n\");\n    return;}\n  for(i=0;i<SIZE;i++)\n    if(fwrite(【1】) !=1)\n      printf(\"File-writing error!\\n\");\n}\nint main( )\n{ int i;\n  for (i=0;i<SIZE; i++)\n    scanf(\"%s,%d,%d,%s\",stud[i].name,【2】,【3】,stud[i].addr);\n  save( );\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.38",
+      "sourceBatch": "p266-277.json",
+      "page": 274,
+      "bookPage": 263,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.38（PDF p274 / 书页 p263）",
+        "difficulty": 4,
+        "stem": "【题 12.38】设在e12_38.dat文件中已存放若干工人的姓名、生产数量、产品等级。以下程序段的功能是：将生产数量低于50或产品等级为C的所有工人信息显示在屏幕上。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "char name[10],a;\nint n;\nFILE * fp;\nfp=fopen(【1】);\nif(fp==0)\n{ printf(\"Cannot open file !\\n\");\n  exit(0);}\nwhile(feof(fp)==0)\n{fscanf(【2】\"%s%d%c\",name,&n,&a);\n  if(n<50||a=='C')\n    printf(\"姓名：%s  生产数量：%d  产品等级：%c\\n\",name,n,a);\n}\nfclose(fp);",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.39",
+      "sourceBatch": "p266-277.json",
+      "page": 274,
+      "bookPage": 263,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.39（PDF p274 / 书页 p263）",
+        "difficulty": 4,
+        "stem": "【题 12.39】以下程序的功能是：将5道题的题号和正确答案写到correct.txt文件中，将学生答案按照相同顺序存放在answer.txt文件中。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ FILE * fp, * fq;\n  【1】=fopen(\"correct.txt\",\"w\");\n  【2】=fopen(\"answer.txt\",\"w\");\n  if(fp==NULL)\n  { printf(\"文件 correct.txt 打开错误!\\n\");\n    exit(0);}\n  if(fq==NULL)\n  { printf(\"文件 answer.txt 打开错误!\\n\");\n    exit(0);}\n  fprintf(fp,\"%3d%2c\\n\",1,'A');fprintf(fq,\"%3d%2c\\n\",1,'B');\n  fprintf(fp,\"%3d%2c\\n\",2,'C');fprintf(fq,\"%3d%2c\\n\",2,'C');\n  fprintf(fp,\"%3d%2c\\n\",3,'B');fprintf(fq,\"%3d%2c\\n\",3,'B');\n  fprintf(fp,\"%3d%2c\\n\",4,'D');fprintf(fq,\"%3d%2c\\n\",4,'A');\n  fprintf(fp,\"%3d%2c\\n\",5,'D');fprintf(fq,\"%3d%2c\\n\",5,'D');\n  【3】\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.40",
+      "sourceBatch": "p266-277.json",
+      "page": 274,
+      "bookPage": 263,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.40（PDF p274 / 书页 p263）",
+        "difficulty": 3,
+        "stem": "【题 12.40】以下程序的功能是：将数组a的4个元素和数组b的6个元素写到名为letter.dat的二进制文件中。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ char a[4]=\"1357\",b[6]=\"abcdef\";\n  FILE * fp;\n  if((fp=fopen(【1]))==NULL)\n    exit(0);\n  fwrite(a,sizeof(char),4,fp);\n  fwrite(b,【2】,1,fp);\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.42",
+      "sourceBatch": "p266-277.json",
+      "page": 275,
+      "bookPage": 264,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.42（PDF p275 / 书页 p264）",
+        "difficulty": 4,
+        "stem": "【题 12.42】以下程序的功能是：将2～10之间的所有素数输出到d盘file1文件夹的文件e12_42.dat中，同时也在屏幕上显示。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\n#include <math.h>\nint myprime(int a)\n{ int i,end;\n  end=(int)sqrt((double)a);\n  for(i=2;i<=end;i++)\n    if(a%i==0) return 0;\n  return 1;\n}\nint main( )\n{ int i;\n  FILE * fp;\n  fp=【1】;\n  if(fp==NULL)\n  { printf(\"文件打开错误!\\n\");\n    exit(0);}\n  for(i=2;i<=20;i++)\n    if(【2】)\n    { fprintf(【3],\"%3d\",i);\n      printf(\"%3d\",i);}\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.44",
+      "sourceBatch": "p266-277.json",
+      "page": 276,
+      "bookPage": 265,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.44（PDF p276 / 书页 p265）",
+        "difficulty": 3,
+        "stem": "【题 12.44】以下程序的功能是将文件file1.c的内容输出到屏幕上并复制到文件file2.c中。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nint main( )\n{ FILE【1】;\n  fp1=fopen(\"file1.c\",\"r\");\n  fp2=fopen(\"file2.c\",\"w\");\n  while(!feof(fp1)) putchar(getc(fp1));\n  【2】\n  while(!feof(fp1)) putc(【3】);\n  fclose(fp1);\n  fclose(fp2);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.45",
+      "sourceBatch": "p266-277.json",
+      "page": 277,
+      "bookPage": 266,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.45（PDF p277 / 书页 p266）",
+        "difficulty": 5,
+        "stem": "【题 12.45】以下程序的功能是：将磁盘中的一个文本文件逐行逆序复制到另一个文本文件中，两个文件名均在命令行中给出。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nvoid reverse(void);\nFILE * file1, * file2;\nint main(int argc, char * * argv)\n{ char ch1;\n  if (argc<【1])\n   {printf(\"Error!\\n\");\n     exit(0);\n   }\n  if((file1=fopen(argv[1],【2]))==NULL)\n   {printf(\"Can't open the file !\\n\");\n     exit(0);\n   }\n  if((file2=fopen(argv[2],【3]))==NULL)\n   {printf(\"Can't open the file !\\n\");\n     exit(0);\n   }\n  while(feof(file2)==NULL)\n   {reverse( )\n     fputc('\\n',file1);\n   }\n  fclose(file1);\n  fclose(file2);\n  return 0;\n}\nvoid reverse(void)\n{ char ch2;\n  if((!feof(file2))&&((ch2=fgetc(file2))!='\\n'))\n   {reverse ( )\n     fputc(ch2,file1);\n   }\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    },
+    {
+      "originalId": "题12.46",
+      "sourceBatch": "p266-277.json",
+      "page": 277,
+      "bookPage": 266,
+      "subType": "code_completion",
+      "_pendingReason": "code_completion 缺 solution（补全后的完整代码）与 testCases；两者都属收尾② 答案回填范畴，本轮明令推迟",
+      "_missing": [
+        "solution",
+        "testCases"
+      ],
+      "_unlockHint": "收尾② 补 solution（把 【n】 换成真实答案）+ 收尾③ 补 testCases 后即可转 code_completion",
+      "partial": {
+        "category": "c",
+        "chapter": "第12章 文件",
+        "section": "12.2 填空题",
+        "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.46（PDF p277 / 书页 p266）",
+        "difficulty": 4,
+        "stem": "【题 12.46】以下程序的功能是：将文件stud_dat中第i个学生的姓名、学号、年龄、性别进行输出。请填空。",
+        "explanation": "",
+        "ai_generated": false,
+        "generated_at": "2026-09-08",
+        "type": "code_completion",
+        "bloom": "apply",
+        "code": "#include <stdio.h>\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char sex;\n} stud[10];\nint main( )\n{ int i;\n  FILE【1】;\n  if((fp=fopen(\"stud_dat\",\"rb\"))==NULL)\n   { printf(\"cannot open file\\n\");\n     exit(0);}\n  scanf(\"%d\",&i);\n  fseek(【2】);\n  fread(【3】,sizeof(struct student_type),1,fp);\n  printf(\"%s%d%d%c\\n\",stud[i].name,\n     stud[i].num,stud[i].age,stud[i].sex);\n  fclose(fp);\n  return 0;\n}",
+        "blanks": [],
+        "solution": "",
+        "testCases": []
+      }
+    }
+  ]
+}

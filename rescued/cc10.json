@@ -1,0 +1,918 @@
+[
+  {
+    "originalId": "题4.65",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.2 填空题",
+    "sourceBatch": "c-ch04.staging.json",
+    "page": 42,
+    "bookPage": 31,
+    "code": "#include <stdio.h>\nint main( )\n{ int x,y,z,c;\n    scanf(\"%d %d %d\",&x,&y,&z);\n    if(/*__BLANK_1__*/)\n        { c=y;y=z;z=c;}\n    if(/*__BLANK_2__*/)\n        { c=x;x=z;z=c;}\n    if(/*__BLANK_3__*/)\n        { c=x;x=y;y=c;}\n    printf(\"%d,%d,%d\",x,y,z);\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{ int x,y,z,c;\n    scanf(\"%d %d %d\",&x,&y,&z);\n    if(y<z)\n        { c=y;y=z;z=c;}\n    if(x<z)\n        { c=x;x=z;z=c;}\n    if(x<y)\n        { c=x;x=y;y=c;}\n    printf(\"%d,%d,%d\",x,y,z);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "y<z",
+        "accepted": [
+          "z>y"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "x<z",
+        "accepted": [
+          "z>x"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "x<y",
+        "accepted": [
+          "y>x"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3\n",
+        "expected": "3,2,1",
+        "note": "典型：升序输入"
+      },
+      {
+        "stdin": "3 2 1\n",
+        "expected": "3,2,1",
+        "note": "边界：已降序，不交换"
+      },
+      {
+        "stdin": "2 2 2\n",
+        "expected": "2,2,2",
+        "note": "边界：三数相等"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "1 2 3\n",
+          "expected": "3,2,1",
+          "predicted": "3,2,1",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 26,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "3 2 1\n",
+          "expected": "3,2,1",
+          "predicted": "3,2,1",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 37,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "2 2 2\n",
+          "expected": "2,2,2",
+          "predicted": "2,2,2",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 43,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题4.67",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.2 填空题",
+    "sourceBatch": "c-ch04.staging.json",
+    "page": 43,
+    "bookPage": 32,
+    "code": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    if(/*__BLANK_1__*/) ch=ch+32;\n    else if(ch>='a' && ch<='z')/*__BLANK_2__*/;\n    printf(\"%c\",ch);\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    if(ch>='A'&&ch<='Z') ch=ch+32;\n    else if(ch>='a' && ch<='z')ch=ch-32;\n    printf(\"%c\",ch);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "ch>='A'&&ch<='Z'"
+      },
+      {
+        "index": 2,
+        "answer": "ch=ch-32",
+        "accepted": [
+          "ch-=32"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "A\n",
+        "expected": "a",
+        "note": "典型：大写字母 A → a"
+      },
+      {
+        "stdin": "z\n",
+        "expected": "Z",
+        "note": "典型：小写字母 z → Z"
+      },
+      {
+        "stdin": "5\n",
+        "expected": "5",
+        "note": "边界：非字母字符不变"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "A\n",
+          "expected": "a",
+          "predicted": "a",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 25,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "z\n",
+          "expected": "Z",
+          "predicted": "Z",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 39,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "5\n",
+          "expected": "5",
+          "predicted": "5",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 22,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题4.72",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.2 填空题",
+    "sourceBatch": "c-ch04.staging.json",
+    "page": 45,
+    "bookPage": 34,
+    "code": "#include <stdio.h>\nint main( )\n{ int x,y;\n    scanf(\"%d\",&x);\n    if(/*__BLANK_1__*/) y=x*(x+2);\n    else if(/*__BLANK_2__*/) y=2*x;\n        else if(x<=-1) y=x-1;\n    else /*__BLANK_3__*/;\n    if(y!=-1) printf(\"%d\",y);\n    else printf(\"error\");\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{ int x,y;\n    scanf(\"%d\",&x);\n    if(x>2&&x<=10) y=x*(x+2);\n    else if(x>-1&&x<=2) y=2*x;\n        else if(x<=-1) y=x-1;\n    else y=-1;\n    if(y!=-1) printf(\"%d\",y);\n    else printf(\"error\");\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "x>2&&x<=10"
+      },
+      {
+        "index": 2,
+        "answer": "x>-1&&x<=2"
+      },
+      {
+        "index": 3,
+        "answer": "y=-1",
+        "accepted": [
+          "y=-1;"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5\n",
+        "expected": "35",
+        "note": "典型：2<x≤10 → x(x+2)=35"
+      },
+      {
+        "stdin": "2\n",
+        "expected": "4",
+        "note": "边界：x=2 落 -1<x≤2 → 2x=4"
+      },
+      {
+        "stdin": "-1\n",
+        "expected": "-2",
+        "note": "边界：x=-1 落 x≤-1 → x-1=-2"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "5\n",
+          "expected": "35",
+          "predicted": "35",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 47,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "2\n",
+          "expected": "4",
+          "predicted": "4",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 31,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "-1\n",
+          "expected": "-2",
+          "predicted": "-2",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 23,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题4.77",
+    "chapter": "第4章 逻辑运算和分支结构",
+    "section": "4.2 填空题",
+    "sourceBatch": "c-ch04.staging.json",
+    "page": 47,
+    "bookPage": 36,
+    "code": "#include <stdio.h>\nint main( )\n{ int y,f;\n    scanf(\"%d\",&y);\n    if(y%400==0) f=1;\n    else if(/*__BLANK_1__*/) f=1;\n    else /*__BLANK_2__*/;\n    if(f) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\\n\");\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{ int y,f;\n    scanf(\"%d\",&y);\n    if(y%400==0) f=1;\n    else if(y%4==0&&y%100!=0) f=1;\n    else f=0;\n    if(f) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\\n\");\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "y%4==0&&y%100!=0"
+      },
+      {
+        "index": 2,
+        "answer": "f=0",
+        "accepted": [
+          "f=0;"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "2024\n",
+        "expected": "2024 is a leap year",
+        "note": "典型：能被4整除且不被100整除"
+      },
+      {
+        "stdin": "1900\n",
+        "expected": "1900 is not a leap year",
+        "note": "边界：整百非400倍数 → 非闰年"
+      },
+      {
+        "stdin": "2000\n",
+        "expected": "2000 is a leap year",
+        "note": "边界：400倍数 → 闰年"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "2024\n",
+          "expected": "2024 is a leap year",
+          "predicted": "2024 is a leap year",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 41,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "1900\n",
+          "expected": "1900 is not a leap year",
+          "predicted": "1900 is not a leap year",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 36,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "2000\n",
+          "expected": "2000 is a leap year",
+          "predicted": "2000 is a leap year",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 28,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题6.58",
+    "chapter": "第6章 数组",
+    "section": "6.2 填空题",
+    "sourceBatch": "c-ch06.staging.json",
+    "page": 96,
+    "bookPage": 85,
+    "code": "#include <stdio.h>\n#define N 20\nint main( )\n{   int a[N], i ;\n    for( i=0; i<N; i++) scanf(\"%d\",/*__BLANK_1__*/);\n    for( i=0; i<N; i++)\n    {   if (/*__BLANK_2__*/)   /*__BLANK_3__*/\n        printf(\"%3d \", a[i] );\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "solution": "#include <stdio.h>\n#define N 20\nint main( )\n{   int a[N], i ;\n    for( i=0; i<N; i++) scanf(\"%d\",&a[i]);\n    for( i=0; i<N; i++)\n    {   if (i%4==0)   printf(\"\\n\");\n        printf(\"%3d \", a[i] );\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "&a[i]",
+        "accepted": [
+          "a+i"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "i%4==0",
+        "accepted": [
+          "(i%4==0)"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "printf(\"\\n\");"
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n",
+        "expected": "\n  1   2   3   4 \n  5   6   7   8 \n  9  10  11  12 \n 13  14  15  16 \n 17  18  19  20 ",
+        "note": "典型：1..20，每行4个"
+      },
+      {
+        "stdin": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+        "expected": "\n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 ",
+        "note": "边界：全 0"
+      },
+      {
+        "stdin": "-1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16 -17 -18 -19 -20\n",
+        "expected": "\n -1  -2  -3  -4 \n -5  -6  -7  -8 \n -9 -10 -11 -12 \n-13 -14 -15 -16 \n-17 -18 -19 -20 ",
+        "note": "边界：负数占满 %3d 宽度"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n",
+          "expected": "\n  1   2   3   4 \n  5   6   7   8 \n  9  10  11  12 \n 13  14  15  16 \n 17  18  19  20 ",
+          "predicted": "\n  1   2   3   4 \n  5   6   7   8 \n  9  10  11  12 \n 13  14  15  16 \n 17  18  19  20 ",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 40,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+          "expected": "\n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 ",
+          "predicted": "\n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 \n  0   0   0   0 ",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 47,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "-1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16 -17 -18 -19 -20\n",
+          "expected": "\n -1  -2  -3  -4 \n -5  -6  -7  -8 \n -9 -10 -11 -12 \n-13 -14 -15 -16 \n-17 -18 -19 -20 ",
+          "predicted": "\n -1  -2  -3  -4 \n -5  -6  -7  -8 \n -9 -10 -11 -12 \n-13 -14 -15 -16 \n-17 -18 -19 -20 ",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 33,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题6.68",
+    "chapter": "第6章 数组",
+    "section": "6.2 填空题",
+    "sourceBatch": "c-ch06.staging.json",
+    "page": 100,
+    "bookPage": 89,
+    "code": "#include <stdio.h>\nint main( )\n{   int a[10],b[10],i;\n    for(i=0;i<10;i++)\n        scanf(\"%d\",&a[i]);\n    for(/*__BLANK_1__*/; i<10; i++)\n        /*__BLANK_2__*/\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if(/*__BLANK_3__*/==0) printf(\"\\n\");\n    }\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{   int a[10],b[10],i;\n    for(i=0;i<10;i++)\n        scanf(\"%d\",&a[i]);\n    for(i=1; i<10; i++)\n        b[i]=a[i-1]+a[i];\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if(i%3==0) printf(\"\\n\");\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i=1"
+      },
+      {
+        "index": 2,
+        "answer": "b[i]=a[i-1]+a[i];",
+        "accepted": [
+          "b[i]=a[i]+a[i-1];"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "i%3"
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3 4 5 6 7 8 9 10\n",
+        "expected": "  3  5  7\n  9 11 13\n 15 17 19",
+        "note": "典型：1..10，相邻和每行3个"
+      },
+      {
+        "stdin": "0 0 0 0 0 0 0 0 0 0\n",
+        "expected": "  0  0  0\n  0  0  0\n  0  0  0",
+        "note": "边界：全 0"
+      },
+      {
+        "stdin": "-1 -2 -3 -4 -5 -6 -7 -8 -9 -10\n",
+        "expected": " -3 -5 -7\n -9-11-13\n-15-17-19",
+        "note": "边界：负数和（%3d 无间隔）"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "1 2 3 4 5 6 7 8 9 10\n",
+          "expected": "  3  5  7\n  9 11 13\n 15 17 19",
+          "predicted": "  3  5  7\n  9 11 13\n 15 17 19",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 46,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "0 0 0 0 0 0 0 0 0 0\n",
+          "expected": "  0  0  0\n  0  0  0\n  0  0  0",
+          "predicted": "  0  0  0\n  0  0  0\n  0  0  0",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 27,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "-1 -2 -3 -4 -5 -6 -7 -8 -9 -10\n",
+          "expected": " -3 -5 -7\n -9-11-13\n-15-17-19",
+          "predicted": " -3 -5 -7\n -9-11-13\n-15-17-19",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 37,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题6.77",
+    "chapter": "第6章 数组",
+    "section": "6.2 填空题",
+    "sourceBatch": "c-ch06.staging.json",
+    "page": 104,
+    "bookPage": 93,
+    "code": "#include <stdio.h>\nint main( )\n{   int a[30], n , age, i ;\n    for(i=0;i<30;i++) a[i]=0;\n    printf(\"Enter the number of the students(<30)\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter the age of each student:\\n\");\n    for(i=0;i<n;i++)\n    {   scanf(\"%d\",&age); /*__BLANK_1__*/; }\n    printf(\"the result is\\n\");\n    printf(\" age number\\n\");\n    for(/*__BLANK_2__*/i++)\n        printf(\"%3d   %6d\\n\",i,a[i-16]);\n    return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{   int a[30], n , age, i ;\n    for(i=0;i<30;i++) a[i]=0;\n    printf(\"Enter the number of the students(<30)\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter the age of each student:\\n\");\n    for(i=0;i<n;i++)\n    {   scanf(\"%d\",&age); if(age>=16&&age<=31) a[age-16]++; }\n    printf(\"the result is\\n\");\n    printf(\" age number\\n\");\n    for(i=16;i<=31;i++)\n        printf(\"%3d   %6d\\n\",i,a[i-16]);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "if(age>=16&&age<=31) a[age-16]++",
+        "accepted": [
+          "if(age>=16&&age<=31)a[age-16]++"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "i=16;i<=31;"
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5\n16 20 31 15 32\n",
+        "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        1\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        1",
+        "note": "典型：含区间外 15/32（不计入，且不越界），边界值 16/31 计入"
+      },
+      {
+        "stdin": "1\n16\n",
+        "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+        "note": "边界：仅 1 人且为下界 16"
+      },
+      {
+        "stdin": "0\n",
+        "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        0\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+        "note": "边界：0 名学生，全 0 表"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "5\n16 20 31 15 32\n",
+          "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        1\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        1",
+          "predicted": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        1\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        1",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 41,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "1\n16\n",
+          "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+          "predicted": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        1\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 22,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "0\n",
+          "expected": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        0\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+          "predicted": "Enter the number of the students(<30)\nEnter the age of each student:\nthe result is\n age number\n 16        0\n 17        0\n 18        0\n 19        0\n 20        0\n 21        0\n 22        0\n 23        0\n 24        0\n 25        0\n 26        0\n 27        0\n 28        0\n 29        0\n 30        0\n 31        0",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 21,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题6.92",
+    "chapter": "第6章 数组",
+    "section": "6.2 填空题",
+    "sourceBatch": "c-ch06.staging.json",
+    "page": 109,
+    "bookPage": 98,
+    "code": "#include <stdio.h>\nint main( )\n{ int a[9]={25,57,48,37,12,92,86,33}, i,x;\n  scanf(\"%d\",&x);\n  /*__BLANK_1__*/; i=0;\n  while(a[i]!=x) i++;\n  if(/*__BLANK_2__*/) printf(\"Found! The index is :%d\\n\", i );\n  else printf(\"Can't found!\\n\");\n  return 0;\n}",
+    "solution": "#include <stdio.h>\nint main( )\n{ int a[9]={25,57,48,37,12,92,86,33}, i,x;\n  scanf(\"%d\",&x);\n  a[8]=x; i=0;\n  while(a[i]!=x) i++;\n  if(i<8) printf(\"Found! The index is :%d\\n\", i );\n  else printf(\"Can't found!\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "a[8]=x",
+        "accepted": [
+          "a[8]=x;"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "i<8",
+        "accepted": [
+          "i!=8",
+          "8>i"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "12\n",
+        "expected": "Found! The index is :4",
+        "note": "典型：命中 a[4]=12"
+      },
+      {
+        "stdin": "100\n",
+        "expected": "Can't found!",
+        "note": "典型：未命中，走哨兵位 a[8]"
+      },
+      {
+        "stdin": "0\n",
+        "expected": "Can't found!",
+        "note": "边界：x=0 与 a[8] 初值相同，仍判未找到"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "12\n",
+          "expected": "Found! The index is :4",
+          "predicted": "Found! The index is :4",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 23,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "100\n",
+          "expected": "Can't found!",
+          "predicted": "Can't found!",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 26,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "0\n",
+          "expected": "Can't found!",
+          "predicted": "Can't found!",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 24,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题7.54",
+    "chapter": "第7章 函数",
+    "section": "7.2 填空题",
+    "sourceBatch": "c-ch07.staging.json",
+    "page": 141,
+    "bookPage": 130,
+    "code": "#include <stdio.h>\nfloat average(float array[10])\n{  int i; float aver,sum=array[0];\n   for(i=1;/*__BLANK_1__*/;i++) sum+=/*__BLANK_2__*/;\n   aver=sum/10;\n   return(aver);\n}\nint main( )\n{  float score[10],aver; int i;\n   printf(\"\\ninput 10 scores:\");\n   for(i=0; i<10; i++) scanf(\"%f\",&score[i]);\n   aver=/*__BLANK_3__*/;\n   printf(\"\\naverage score is %5.2f\\n\",aver);\n   return(0);\n}",
+    "solution": "#include <stdio.h>\nfloat average(float array[10])\n{  int i; float aver,sum=array[0];\n   for(i=1;i<10;i++) sum+=array[i];\n   aver=sum/10;\n   return(aver);\n}\nint main( )\n{  float score[10],aver; int i;\n   printf(\"\\ninput 10 scores:\");\n   for(i=0; i<10; i++) scanf(\"%f\",&score[i]);\n   aver=average(score);\n   printf(\"\\naverage score is %5.2f\\n\",aver);\n   return(0);\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i<10"
+      },
+      {
+        "index": 2,
+        "answer": "array[i]"
+      },
+      {
+        "index": 3,
+        "answer": "average(score)",
+        "accepted": [
+          "average(score);"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "90 80 70 60 50 40 30 20 10 5\n",
+        "expected": "\ninput 10 scores:\naverage score is 45.50",
+        "note": "典型：和 455，平均 45.50"
+      },
+      {
+        "stdin": "100 100 100 100 100 100 100 100 100 100\n",
+        "expected": "\ninput 10 scores:\naverage score is 100.00",
+        "note": "边界：满分 100.00"
+      },
+      {
+        "stdin": "0 0 0 0 0 0 0 0 0 0\n",
+        "expected": "\ninput 10 scores:\naverage score is  0.00",
+        "note": "边界：全 0（%5.2f 前导空格）"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "90 80 70 60 50 40 30 20 10 5\n",
+          "expected": "\ninput 10 scores:\naverage score is 45.50",
+          "predicted": "\ninput 10 scores:\naverage score is 45.50",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 44,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "100 100 100 100 100 100 100 100 100 100\n",
+          "expected": "\ninput 10 scores:\naverage score is 100.00",
+          "predicted": "\ninput 10 scores:\naverage score is 100.00",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 45,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "0 0 0 0 0 0 0 0 0 0\n",
+          "expected": "\ninput 10 scores:\naverage score is  0.00",
+          "predicted": "\ninput 10 scores:\naverage score is  0.00",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 25,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  },
+  {
+    "originalId": "题9.81",
+    "chapter": "第9章 指针",
+    "section": "9.2 填空题",
+    "sourceBatch": "c-ch09.staging.json",
+    "page": 188,
+    "bookPage": 177,
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nint main( )\n{   int * a, * b, * c,num,x,y,z;\n    a=&x;  b=&y;  c=&z;\n    printf(\"输入 3 个整数：\");\n    scanf(\"%d%d%d\",a,b,c);\n    printf(\"%d,%d,%d\\n\", * a, * b, * c);\n    num= * a;\n    if( * a> * b)  /*__BLANK_1__*/;\n    if(num> * c)  /*__BLANK_2__*/;\n    printf(\"输出最小整数：%d\\n\",num);\n    return(0);\n}",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main( )\n{   int * a, * b, * c,num,x,y,z;\n    a=&x;  b=&y;  c=&z;\n    printf(\"输入 3 个整数：\");\n    scanf(\"%d%d%d\",a,b,c);\n    printf(\"%d,%d,%d\\n\", * a, * b, * c);\n    num= * a;\n    if( * a> * b)  num=*b;\n    if(num> * c)  num=*c;\n    printf(\"输出最小整数：%d\\n\",num);\n    return(0);\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "num=*b",
+        "accepted": [
+          "num=*b;"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "num=*c",
+        "accepted": [
+          "num=*c;"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "3 1 2\n",
+        "expected": "输入 3 个整数：3,1,2\n输出最小整数：1",
+        "note": "典型：最小值在中间"
+      },
+      {
+        "stdin": "1 2 3\n",
+        "expected": "输入 3 个整数：1,2,3\n输出最小整数：1",
+        "note": "典型：最小值在首位"
+      },
+      {
+        "stdin": "2 2 2\n",
+        "expected": "输入 3 个整数：2,2,2\n输出最小整数：2",
+        "note": "边界：三数相等"
+      }
+    ],
+    "verification": {
+      "backend": "Godbolt cg132 (gcc 13.2)",
+      "userArguments": "-std=c99 -w -O0",
+      "date": "2026-09-08",
+      "stdoutNormalization": "Godbolt 返回 stdout[].text 按行数组；expected 存 join('\\n') 结果（末尾换行被后端丢弃）",
+      "runs": [
+        {
+          "stdin": "3 1 2\n",
+          "expected": "输入 3 个整数：3,1,2\n输出最小整数：1",
+          "predicted": "输入 3 个整数：3,1,2\n输出最小整数：1",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 25,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "1 2 3\n",
+          "expected": "输入 3 个整数：1,2,3\n输出最小整数：1",
+          "predicted": "输入 3 个整数：1,2,3\n输出最小整数：1",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 25,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        },
+        {
+          "stdin": "2 2 2\n",
+          "expected": "输入 3 个整数：2,2,2\n输出最小整数：2",
+          "predicted": "输入 3 个整数：2,2,2\n输出最小整数：2",
+          "predMatch": true,
+          "exitCode": 0,
+          "execTimeMs": 26,
+          "timedOut": false,
+          "truncated": false,
+          "stderr": "",
+          "transportError": null,
+          "compileError": null
+        }
+      ],
+      "summary": "3/3 组用例实机编译+执行通过，stdout 与独立模型预测逐字一致（Godbolt cg132 gcc13.2 -std=c99 -w -O0，2026-09-08）"
+    }
+  }
+]
