@@ -382,7 +382,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nstruct student\n{\n    double midterm;\n    double finalterm;\n    double average;\n};\n\nint main(void)\n{\n    struct student s;\n\n    if (scanf(\"%lf %lf\", &s.midterm, &s.finalterm) != 2)\n        return 1;\n\n    s.average = (s.midterm + s.finalterm) / 2;\n    printf(\"average=%.2f\\n\", s.average);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "80 90",
@@ -401,7 +401,7 @@
         }
       ],
       "id": "c-ch10-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -415,7 +415,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nstruct student\n{\n    int num;\n    double midterm;\n    double finalterm;\n    double average;\n};\n\n/* 用指向结构体的指针读入一名学生并算平均分 */\nvoid read_one(struct student *p)\n{\n    if (scanf(\"%d %lf %lf\", &p->num, &p->midterm, &p->finalterm) != 3)\n        p->num = -1;\n    p->average = (p->midterm + p->finalterm) / 2;\n}\n\nint main(void)\n{\n    struct student s[3];\n    struct student *p;\n    int i;\n\n    for (i = 0; i < 3; i++)\n        read_one(&s[i]);\n\n    for (p = s; p < s + 3; p++)\n        printf(\"%d %.2f %.2f %.2f\\n\", p->num, p->midterm, p->finalterm, p->average);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1 80 90\n2 70 85\n3 60 100",
@@ -434,7 +434,7 @@
         }
       ],
       "id": "c-ch10-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -448,7 +448,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node\n{\n    int data;\n    struct node *next;\n};\n\nint main(void)\n{\n    struct node *ph, *p, *tail;\n    int x;\n\n    /* 带头结点：ph->data 不放数据，表空的条件是 ph->next == NULL */\n    ph = (struct node *)malloc(sizeof(struct node));\n    if (ph == NULL)\n        return 1;\n    ph->next = NULL;\n    tail = ph;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct node *)malloc(sizeof(struct node));\n        if (p == NULL)\n            return 1;\n        p->data = x;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n\n    if (ph->next == NULL) {\n        printf(\"NULL\\n\");\n    }\n    else {\n        for (p = ph->next; p != NULL; p = p->next)\n            printf(\"%d\\n\", p->data);\n    }\n\n    while (ph != NULL) {\n        p = ph->next;\n        free(ph);\n        ph = p;\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1 2 3 -1",
@@ -467,7 +467,7 @@
         }
       ],
       "id": "c-ch10-pg-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -481,7 +481,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node\n{\n    int info;\n    struct node *next;\n    struct node *pre;\n};\n\n/* 从头至尾输出双向链表 */\nvoid printl(struct node *head)\n{\n    struct node *p = head;\n    int first = 1;\n\n    while (p != NULL) {\n        if (!first)\n            printf(\" \");\n        printf(\"%d\", p->info);\n        first = 0;\n        p = p->next;\n    }\n    printf(\"\\n\");\n}\n\nint main(void)\n{\n    struct node *head = NULL, *tail = NULL, *p, *q;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 0 || n > 1000)\n        return 1;\n\n    for (i = 0; i < n; i++) {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        p = (struct node *)malloc(sizeof(struct node));\n        if (p == NULL)\n            return 1;\n        p->info = x;\n        p->next = NULL;\n        p->pre = tail;\n        if (tail == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n\n    printl(head);\n\n    p = head;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "3\n1 2 3",
@@ -500,7 +500,7 @@
         }
       ],
       "id": "c-ch10-pg-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -514,7 +514,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node\n{\n    char data;\n    struct node *next;\n};\n\n/* 在值为 a 的结点前插入值为 key 的结点；若没有值为 a 的结点，则插在链表最后 */\nvoid insert(struct node *head, char a, char key)\n{\n    struct node *p = head;\n    struct node *s;\n\n    while (p->next != NULL && p->next->data != a)\n        p = p->next;\n\n    s = (struct node *)malloc(sizeof(struct node));\n    if (s == NULL)\n        return;\n    s->data = key;\n    s->next = p->next;\n    p->next = s;\n}\n\nint main(void)\n{\n    struct node *head, *tail, *p, *q;\n    char ch, a, key;\n    int first;\n\n    head = (struct node *)malloc(sizeof(struct node));\n    if (head == NULL)\n        return 1;\n    head->next = NULL;\n    tail = head;\n\n    /* 第一行：字符序列，以 $ 结束 */\n    while (scanf(\"%c\", &ch) == 1 && ch != '$') {\n        if (ch == '\\n' || ch == '\\r' || ch == ' ' || ch == '\\t')\n            continue;\n        p = (struct node *)malloc(sizeof(struct node));\n        if (p == NULL)\n            return 1;\n        p->data = ch;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n\n    /* 第二行：a 与 key */\n    if (scanf(\" %c %c\", &a, &key) != 2)\n        return 1;\n    insert(head, a, key);\n\n    first = 1;\n    for (p = head->next; p != NULL; p = p->next) {\n        if (!first)\n            printf(\" \");\n        printf(\"%c\", p->data);\n        first = 0;\n    }\n    printf(\"\\n\");\n\n    p = head;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "abc$\na x",
@@ -533,7 +533,7 @@
         }
       ],
       "id": "c-ch10-pg-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -547,7 +547,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct node\n{\n    char data;\n    struct node *next;\n};\n\n/* 头结点位置不变，其后数据结点次序完全反转：逐个摘下再头插 */\nvoid reverse_list(struct node *head)\n{\n    struct node *p = head->next;\n    struct node *q;\n\n    head->next = NULL;\n    while (p != NULL) {\n        q = p->next;\n        p->next = head->next;\n        head->next = p;\n        p = q;\n    }\n}\n\nint main(void)\n{\n    struct node *head, *tail, *p, *q;\n    char ch;\n    int first;\n\n    head = (struct node *)malloc(sizeof(struct node));\n    if (head == NULL)\n        return 1;\n    head->next = NULL;\n    tail = head;\n\n    while (scanf(\"%c\", &ch) == 1 && ch != '$') {\n        if (ch == '\\n' || ch == '\\r' || ch == ' ' || ch == '\\t')\n            continue;\n        p = (struct node *)malloc(sizeof(struct node));\n        if (p == NULL)\n            return 1;\n        p->data = ch;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n\n    reverse_list(head);\n\n    first = 1;\n    for (p = head->next; p != NULL; p = p->next) {\n        if (!first)\n            printf(\" \");\n        printf(\"%c\", p->data);\n        first = 0;\n    }\n    printf(\"\\n\");\n\n    p = head;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "abcd$",
@@ -566,7 +566,7 @@
         }
       ],
       "id": "c-ch10-pg-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -580,7 +580,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n/* 把 unsigned long 的低 16 位与高 16 位当作两个 unsigned int 输出 */\nvoid partition(unsigned long n)\n{\n    unsigned int low, high;\n\n    low = (unsigned int)(n & 0xFFFFUL);\n    high = (unsigned int)((n >> 16) & 0xFFFFUL);\n    printf(\"%u %u\\n\", low, high);\n}\n\nint main(void)\n{\n    unsigned long n;\n\n    if (scanf(\"%lu\", &n) != 1)\n        return 1;\n    partition(n);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "305419896",
@@ -599,7 +599,7 @@
         }
       ],
       "id": "c-ch10-pg-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

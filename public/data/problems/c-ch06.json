@@ -256,9 +256,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\n#define   M   50\nint main( )\n{   int a[M], c[5], i, n=0, x;\n    printf(\"Enter 0 or 1 or 2 or 3 or 4, to end with -1\\n\");\n    scanf(\"%d\",&x);\n    while( x!=-1)\n    {   if( x>=0 && x<=4)\n        { a[n]=x; n++; }\n        scanf(\"%d\",&x);\n    }\n    for( i=0;i<5;i++)   c[i]=0;\n    for( i=0;i<n;i++)   c[a[i]]++;\n    printf(\"The result is :\\n\");\n    for( i=1;i<=4;i++) printf(\"%d:%d\\n\",i,c[i]);\n    return 0;\n}",
+      "stdin": "1 4 2 3 3 4 1 2 3 3 2 2 2 3 3 1 1 1 4 1 1 1 -1\n",
       "answer": "Enter 0 or 1 or 2 or 3 or 4, to end with -1\nThe result is :\n1:8\n2:5\n3:6\n4:3",
       "id": "c-ch06-cr-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -423,9 +424,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int x,y,i,a[8],j,u;\n    scanf(\"%d\",&x);\n    y=x; i=0;\n    do\n    {   u=y/2;\n        a[i]=y%2;\n        i++ ; y=u;\n    } while(y>=1);\n    for(j=i-1;j>=0;j--)\n        printf(\"%d\",a[j]);\n    return 0;\n}",
+      "stdin": "18\n",
       "answer": "10010",
       "id": "c-ch06-cr-009",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -538,9 +540,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int a[8]={6,12,18,42,44,52,67,94};\n    int low=0,mid,high=7,found=0,x;\n    scanf(\"%d\",&x);\n    while((low<=high)&& (found==0))\n    {   mid=(low+high)/2;\n        if(x>a[mid]) low=mid+1;\n        else if(x<a[mid]) high=mid-1;\n        else   { found=1; break; }\n    }\n    if(found==1)\n        printf(\"Search Successful!The index is:%d\\n\",mid);\n    else printf(\"Can't search !\\n\");\n    return 0;\n}",
+      "stdin": "52\n",
       "answer": "Search Successful!The index is:5",
       "id": "c-ch06-cr-013",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -691,9 +694,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int  a[4]={0}, x, i;\n  scanf(\"%d\",&x );\n  while( x!=0 )\n  {  if( x%5==0) a[1]+=2;\n      else if(x/10==2) a[2]+=x;\n      else a[3]+=1;\n      scanf(\"%d\",&x );\n  }\n  for( i=1; i<=3; i++)   printf(\"%4d\",a[i]);\n  return 0;\n}",
+      "stdin": "32 25 20 23 35 52 87 22 48 30 0\n",
       "answer": "   8  45   4",
       "id": "c-ch06-cr-019",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -708,9 +712,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\n#define M 10\nint main( )\n{  int a[M],x,i,n;\n  printf(\"Enter n (n<10):\");scanf(\"%d\",&n);\n  for(i=1;i<=n;i++) scanf(\"%d\",a+i);\n  printf(\"Enter x:\"); scanf(\"%d\",&x);\n  a[0]=x;i=n;\n  while(x>a[i]) {a[i+1]=a[i];i--;}\n  a[i+1]=x;\n  n++;\n  for(i=1;i<=n;i++) printf(\"%3d\",a[i]);\n  return 0;\n}",
+      "stdin": "5\n9 7 5 3 1\n5\n",
       "answer": "Enter n (n<10):Enter x:  9  7  5  5  3  1",
       "id": "c-ch06-cr-020",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -899,9 +904,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{  char s[80]; int i=0;\n  gets(s);\n  while(s[i]!='\\0')\n  {  if(s[i]<='z'&&s[i]>='a')\n        s[i]='z'+'a'-s[i];\n      i++;\n  }\n  puts(s);\n  return 0;\n}",
+      "stdin": "AabD\n",
       "answer": "AzyD",
       "id": "c-ch06-cr-030",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -950,9 +956,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{ int i;\n  char str[10],temp[10]=\"Control\";\n  for(i=0; i<4; i++)\n  { gets(str);\n    if(strcmp(temp,str)<0) strcpy(temp,str);\n   }\n  puts(temp);\n  return 0;\n}",
+      "stdin": "BOOK\nCUT\nGAME\nPAGE\n",
       "answer": "PAGE",
       "id": "c-ch06-cr-033",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -967,9 +974,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{  char a[2][80],t; int i,j,m,n,l,max;\n  for(i=0; i<=1; i++)    gets(a[i]);\n  t=a[0][0];\n  for(i=0; i<=1; i++)\n  {  l=strlen(a[i]);\n      for(j=0;j<=l;j++)\n          if(a[i][j]>t)\n          {  max=a[i][j]; m=i; n=j; }\n  }\n  printf(\"%c %d %d\\n\",max,m,n);\n  return 0;\n}",
+      "stdin": "girl\nboy\n",
       "answer": "y 1 2",
       "id": "c-ch06-cr-034",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -983,7 +991,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int cnt[5] = { 0, 0, 0, 0, 0 };\n    int x, i, total = 0;\n\n    /* -1 结束；没有 -1 时读到文件末尾也结束；0~4 之外的值不计数 */\n    while (scanf(\"%d\", &x) == 1) {\n        if (x == -1)\n            break;\n        if (x >= 0 && x <= 4) {\n            cnt[x] = cnt[x] + 1;\n            total = total + 1;\n        }\n    }\n\n    for (i = 0; i <= 4; i++)\n        printf(\"%d:%d\\n\", i, cnt[i]);\n    printf(\"total:%d\\n\", total);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1 2 3 2 1 4 0 -1",
@@ -1007,7 +1015,7 @@
         }
       ],
       "id": "c-ch06-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1021,7 +1029,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = { { 1, 2, 3 }, { 4, 5, 6 } };\n    int b[3][2];\n    int i, j;\n\n    /* 行列互换：a 的第 i 行第 j 列 -> b 的第 j 行第 i 列 */\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[j][i] = a[i][j];\n\n    for (i = 0; i < 3; i++) {\n        for (j = 0; j < 2; j++) {\n            if (j > 0)\n                printf(\" \");\n            printf(\"%d\", b[i][j]);\n        }\n        printf(\"\\n\");\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -1030,7 +1038,7 @@
         }
       ],
       "id": "c-ch06-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1044,7 +1052,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[30], b[6];\n    int i, j, sum;\n\n    for (i = 0; i < 30; i++)\n        a[i] = 2 * (i + 1);\n\n    for (i = 0; i < 6; i++) {\n        sum = 0;\n        for (j = 0; j < 5; j++)\n            sum = sum + a[i * 5 + j];\n        b[i] = sum / 5;\n    }\n\n    for (i = 0; i < 6; i++) {\n        if (i > 0)\n            printf(\" \");\n        printf(\"%d\", b[i]);\n    }\n    printf(\"\\n\");\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -1053,7 +1061,7 @@
         }
       ],
       "id": "c-ch06-pg-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1067,7 +1075,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = { { 2, 4, 6 }, { 8, 10, 12 } };\n    int i, j;\n\n    /* 按列输出：外层循环列号，内层循环行号 */\n    for (j = 0; j < 3; j++)\n        for (i = 0; i < 2; i++)\n            printf(\"%d\\n\", a[i][j]);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -1076,7 +1084,7 @@
         }
       ],
       "id": "c-ch06-pg-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1090,7 +1098,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5][5];\n    int i, j;\n\n    /* 按行顺序赋 1~25 */\n    for (i = 0; i < 5; i++)\n        for (j = 0; j < 5; j++)\n            a[i][j] = i * 5 + j + 1;\n\n    /* 左下三角：第 i 行只输出前 i+1 个元素 */\n    for (i = 0; i < 5; i++) {\n        for (j = 0; j <= i; j++)\n            printf(\"%4d\", a[i][j]);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -1099,7 +1107,7 @@
         }
       ],
       "id": "c-ch06-pg-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1113,7 +1121,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[9][9];\n    int n, i, j, num;\n    int top, bottom, left, right;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 1 || n > 9)\n        return 1;\n\n    /* 一圈一圈顺时针填数：上边 -> 右边 -> 下边 -> 左边 */\n    top = 0;\n    bottom = n - 1;\n    left = 0;\n    right = n - 1;\n    num = 1;\n    while (top <= bottom && left <= right) {\n        for (j = left; j <= right; j++)\n            a[top][j] = num++;\n        top = top + 1;\n        for (i = top; i <= bottom; i++)\n            a[i][right] = num++;\n        right = right - 1;\n        if (top <= bottom) {\n            for (j = right; j >= left; j--)\n                a[bottom][j] = num++;\n            bottom = bottom - 1;\n        }\n        if (left <= right) {\n            for (i = bottom; i >= top; i--)\n                a[i][left] = num++;\n            left = left + 1;\n        }\n    }\n\n    for (i = 0; i < n; i++) {\n        for (j = 0; j < n; j++)\n            printf(\"%4d\", a[i][j]);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "5",
@@ -1137,7 +1145,7 @@
         }
       ],
       "id": "c-ch06-pg-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1151,7 +1159,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a[10], b[9];\n    int i;\n\n    for (i = 0; i < 10; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n\n    /* 后项除以前项，商取整；前项为 0 时商记 0，避免除零 */\n    for (i = 0; i < 9; i++) {\n        if (a[i] != 0)\n            b[i] = a[i + 1] / a[i];\n        else\n            b[i] = 0;\n    }\n\n    /* 每行 3 个元素 */\n    for (i = 0; i < 9; i++) {\n        printf(\"%4d\", b[i]);\n        if (i % 3 == 2)\n            printf(\"\\n\");\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1 2 4 8 16 32 64 128 256 512",
@@ -1170,7 +1178,7 @@
         }
       ],
       "id": "c-ch06-pg-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1178,13 +1186,13 @@
       "section": "6.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.132（PDF p119 / 书页 p108）",
       "difficulty": 2,
-      "stem": "【题 6.132】从键盘输入一个字符，用折半查找法找出该字符在已排序的字符串 a 中的位置。若该字符不在 a 中，则打印出 **。试编程。",
+      "stem": "【题 6.132】从键盘输入一个字符，用折半查找法找出该字符在已排序的字符串 a 中的位置。若该字符不在 a 中，则打印出 **。试编程。 输出格式：已排序字符串 a 固定为 \"ABEFGHJZ\"（8 个字符，下标 0~7）——原题面只说\"已排序的字符串 a\"而未给出具体串，此处按测试用例把它钉死，避免答案不唯一；命中时只输出该字符的下标（十进制，单独一行），未命中时只输出 **，均不加提示语。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    /* 题面未给出具体串，按测试用例固定为 8 个已排序字符（见 stem 的输出格式说明） */\n    char a[] = \"ABEFGHJZ\";\n    char key;\n    int low, high, mid, pos = -1;\n\n    if (scanf(\"%c\", &key) != 1)\n        return 1;\n\n    low = 0;\n    high = (int)(sizeof(a) - 2);\n    while (low <= high) {\n        mid = (low + high) / 2;\n        if (a[mid] == key) {\n            pos = mid;\n            break;\n        }\n        else if (a[mid] < key) {\n            low = mid + 1;\n        }\n        else {\n            high = mid - 1;\n        }\n    }\n\n    if (pos >= 0)\n        printf(\"%d\\n\", pos);\n    else\n        printf(\"**\\n\");\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "E",
@@ -1208,7 +1216,7 @@
         }
       ],
       "id": "c-ch06-pg-008",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1222,7 +1230,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    char a[80], b[80];\n    int i, j;\n\n    if (scanf(\"%79s %79s\", a, b) != 2)\n        return 1;\n\n    /* 先找到 a 的末尾 */\n    j = 0;\n    while (a[j] != '\\0')\n        j = j + 1;\n\n    /* 不用 strcat：把 b 的前 5 个字符（不足 5 个则全部）接到 a 后面 */\n    for (i = 0; i < 5 && b[i] != '\\0'; i++) {\n        a[j] = b[i];\n        j = j + 1;\n    }\n    a[j] = '\\0';\n\n    printf(\"%s\\n\", a);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "hello world",
@@ -1246,7 +1254,7 @@
         }
       ],
       "id": "c-ch06-pg-009",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1260,7 +1268,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    char a[80], b[] = \"ab\";\n    char r[160];\n    int i, k, len = 0, pos = 0;\n    char max;\n\n    if (scanf(\"%79s\", a) != 1)\n        return 1;\n\n    while (a[len] != '\\0')\n        len = len + 1;\n    if (len == 0)\n        return 1;\n\n    /* 找最大元素（首次出现的位置） */\n    max = a[0];\n    for (i = 1; i < len; i++) {\n        if (a[i] > max) {\n            max = a[i];\n            pos = i;\n        }\n    }\n\n    /* a[0..pos] + b + a 的剩余部分 */\n    k = 0;\n    for (i = 0; i <= pos; i++)\n        r[k++] = a[i];\n    for (i = 0; b[i] != '\\0'; i++)\n        r[k++] = b[i];\n    for (i = pos + 1; i < len; i++)\n        r[k++] = a[i];\n    r[k] = '\\0';\n\n    printf(\"%s\\n\", r);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "cabd",
@@ -1284,7 +1292,7 @@
         }
       ],
       "id": "c-ch06-pg-010",
-      "verified": false
+      "verified": true
     },
     {
       "id": "c-ch06-dbg-007",
@@ -1307,8 +1315,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    max = 0;\n    pos = 0;\n    for (i = 1; i < n; i++)\n        if (a[i] >= max) { max = a[i]; pos = i; }\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
       "bugs": [
-        "第 9 行 max = 0; 把最大值的初值写成了常量 0，而不是数组的第一个元素 a[0]。当数组全为负数时，没有任何元素能大于 0，max 与 pos 都保持初值不变，最终输出一个数组里根本不存在的 max=0。应写成 max = a[0];。",
-        "第 11 行 if (a[i] >= max) 用了 >=：出现多个相同的最大值时 pos 会被反复覆盖，得到的是最后一个最大值的下标，而题目要求第一次出现的下标。应写成 if (a[i] > max)。"
+        "第 7 行 max = 0; 把最大值的初值写成了常量 0，而不是数组的第一个元素 a[0]。当数组全为负数时，没有任何元素能大于 0，max 与 pos 都保持初值不变，最终输出一个数组里根本不存在的 max=0。应写成 max = a[0];。",
+        "第 10 行 if (a[i] >= max) 用了 >=：出现多个相同的最大值时 pos 会被反复覆盖，得到的是最后一个最大值的下标，而题目要求第一次出现的下标。应写成 if (a[i] > max)。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, max, pos;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    max = a[0];\n    pos = 0;\n    for (i = 1; i < n; i++)\n        if (a[i] > max) { max = a[i]; pos = i; }\n    printf(\"max=%d pos=%d\\n\", max, pos);\n    return 0;\n}",
       "testCases": [
@@ -1351,8 +1359,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, j, t;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 2 - i; j++)\n            if (a[j] < a[j + 1]) { t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
       "bugs": [
-        "第 10 行 if (a[j] < a[j + 1]) 的比较方向反了：冒泡升序应该在「前一个比后一个大」时交换，写成 < 会把数组排成降序。应改为 if (a[j] > a[j + 1])。",
-        "第 9 行内层循环上界写成 j < n - 2 - i，比正确的 j < n - 1 - i 少了一次比较：每趟最后一次相邻元素交换被跳过，n = 2 时内层一次都不执行，数组原样输出。"
+        "第 9 行 if (a[j] < a[j + 1]) 的比较方向反了：冒泡升序应该在「前一个比后一个大」时交换，写成 < 会把数组排成降序。应改为 if (a[j] > a[j + 1])。",
+        "第 8 行内层循环上界写成 j < n - 2 - i，比正确的 j < n - 1 - i 少了一次比较：每趟最后一次相邻元素交换被跳过，n = 2 时内层一次都不执行，数组原样输出。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int a[20], n, i, j, t;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) { t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
       "testCases": [
@@ -1397,8 +1405,8 @@
       "code": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{\n    char s[80];\n    int i, n, digits = 0;\n    scanf(\"%s\", s);\n    n = strlen(s) + 1;\n    for (i = 0; i < n; i++)\n        if (s[i] >= 0 && s[i] <= 9) digits++;\n    printf(\"len=%d digits=%d\\n\", digits, n);\n    return 0;\n}",
       "bugs": [
         "第 8 行 n = strlen(s) + 1; 多算了一个字符。strlen 返回的是不含结尾 '\\0' 的有效字符数，+1 之后 len 的结果偏大，还让后面的循环多走一步、读到结尾的 '\\0'。应写成 n = strlen(s);。",
-        "第 9 行 if (s[i] >= 0 && s[i] <= 9) 把数字字符与整数 0~9 比较，而字符 '0'~'9' 的 ASCII 码是 48~57，条件对任何可见字符都不成立，只有字符码恰好为 0 的结尾 '\\0' 会被算成「数字」。应写成 if (s[i] >= '0' && s[i] <= '9')。",
-        "第 10 行 printf(\"len=%d digits=%d\\n\", digits, n); 的两个实参顺序颠倒，应为 n, digits。"
+        "第 10 行 if (s[i] >= 0 && s[i] <= 9) 把数字字符与整数 0~9 比较，而字符 '0'~'9' 的 ASCII 码是 48~57，条件对任何可见字符都不成立，只有字符码恰好为 0 的结尾 '\\0' 会被算成「数字」。应写成 if (s[i] >= '0' && s[i] <= '9')。",
+        "第 11 行 printf(\"len=%d digits=%d\\n\", digits, n); 的两个实参顺序颠倒，应为 n, digits。"
       ],
       "fixed_code": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{\n    char s[80];\n    int i, n, digits = 0;\n    scanf(\"%s\", s);\n    n = strlen(s);\n    for (i = 0; i < n; i++)\n        if (s[i] >= '0' && s[i] <= '9') digits++;\n    printf(\"len=%d digits=%d\\n\", n, digits);\n    return 0;\n}",
       "testCases": [

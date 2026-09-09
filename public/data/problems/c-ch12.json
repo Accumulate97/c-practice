@@ -223,13 +223,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.48（PDF p278 / 书页 p267）",
       "difficulty": 2,
-      "stem": "【题 12.48】请编写程序：主函数从命令行读入一个文件名，然后调用函数getline从文件中读入一个字符串放到字符数组str中（字符个数最多为100个）；函数返回字符串的长度。在主函数中输出字符串及其长度。\n输出格式：文件名由命令行第一个参数给出；输出一行 str=<读入的字符串>，再输出一行 len=<字符串长度>。",
+      "stem": "【题 12.48】请编写程序：主函数从命令行读入一个文件名，然后调用函数getline从文件中读入一个字符串放到字符数组str中（字符个数最多为100个）；函数返回字符串的长度。在主函数中输出字符串及其长度。\n输出格式：文件名由命令行第一个参数给出；输出一行 str=<读入的字符串>，再输出一行 len=<字符串长度>。 判分约定：判分环境不传命令行参数，约定文件名固定为程序当前工作目录下的 input.txt；程序启动时先把标准输入的全部内容写入 input.txt（即测试用例的 stdin 就是这个文件的原始内容），再按题意从该文件读取。另：glibc 的 <stdio.h> 已占用 getline 这个名字（POSIX 的 ssize_t getline(char **, size_t *, FILE *)），与题面要求的 int getline(char *, int, FILE *) 类型冲突，故参考实现把该函数改名为 get_line。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define FILE_NAME \"input.txt\"\n#define MAX_LEN 100\n\n/* 判分环境下先把标准输入的全部内容写成 input.txt，充当题面里\"命令行给出的那个文件\" */\nstatic void prepare_file(void)\n{\n    FILE *fp = fopen(FILE_NAME, \"w\");\n    int ch;\n\n    if (fp == NULL)\n        return;\n    while ((ch = getchar()) != EOF)\n        fputc(ch, fp);\n    fclose(fp);\n}\n\n/* 从 fp 中读入一行（最多 max 个字符，不含换行符），返回读入的字符个数 */\nint get_line(char *str, int max, FILE *fp)\n{\n    int n = 0;\n    int ch;\n\n    while (n < max && (ch = fgetc(fp)) != EOF && ch != '\\n') {\n        str[n] = (char)ch;\n        n = n + 1;\n    }\n    str[n] = '\\0';\n\n    return n;\n}\n\nint main(void)\n{\n    char str[MAX_LEN + 1];\n    FILE *fp;\n    int len;\n\n    prepare_file();\n\n    fp = fopen(FILE_NAME, \"r\");\n    if (fp == NULL) {\n        printf(\"str=\\nlen=0\\n\");\n        return 0;\n    }\n    len = get_line(str, MAX_LEN, fp);\n    fclose(fp);\n\n    printf(\"str=%s\\n\", str);\n    printf(\"len=%d\\n\", len);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "Hello C file",
@@ -253,7 +253,7 @@
         }
       ],
       "id": "c-ch12-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -261,13 +261,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.49（PDF p278 / 书页 p267）",
       "difficulty": 2,
-      "stem": "【题 12.49】请编写程序实现文件的复制。即将源文件复制到目的文件，两个文件名均由命令行给出，源文件名在前。\n输出格式：源文件名与目的文件名依次由命令行第1、2个参数给出；输出一行 copied=<复制的字节数>，随后原样输出目的文件内容（不额外添加换行）。",
+      "stem": "【题 12.49】请编写程序实现文件的复制。即将源文件复制到目的文件，两个文件名均由命令行给出，源文件名在前。\n输出格式：源文件名与目的文件名依次由命令行第1、2个参数给出；输出一行 copied=<复制的字节数>，随后原样输出目的文件内容（不额外添加换行）。 判分约定：判分环境不传命令行参数，约定源文件为程序当前工作目录下的 input.txt、目的文件为 output.txt；程序启动时先把标准输入的全部内容写入 input.txt（即测试用例的 stdin 就是源文件的原始内容），再执行复制。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define SRC_NAME \"input.txt\"\n#define DST_NAME \"output.txt\"\n\n/* 判分环境下先把标准输入的全部内容写成源文件 input.txt */\nstatic void prepare_src(void)\n{\n    FILE *fp = fopen(SRC_NAME, \"w\");\n    int ch;\n\n    if (fp == NULL)\n        return;\n    while ((ch = getchar()) != EOF)\n        fputc(ch, fp);\n    fclose(fp);\n}\n\nint main(void)\n{\n    FILE *in, *out;\n    int ch;\n    long copied = 0;\n\n    prepare_src();\n\n    in = fopen(SRC_NAME, \"rb\");\n    if (in == NULL) {\n        printf(\"copied=0\\n\");\n        return 0;\n    }\n    out = fopen(DST_NAME, \"wb\");\n    if (out == NULL) {\n        fclose(in);\n        printf(\"copied=0\\n\");\n        return 0;\n    }\n\n    /* 逐字节复制 */\n    while ((ch = fgetc(in)) != EOF) {\n        fputc(ch, out);\n        copied = copied + 1;\n    }\n    fclose(in);\n    fclose(out);\n\n    printf(\"copied=%ld\\n\", copied);\n\n    /* 原样回显目的文件内容，不额外添加换行 */\n    out = fopen(DST_NAME, \"rb\");\n    if (out != NULL) {\n        while ((ch = fgetc(out)) != EOF)\n            putchar(ch);\n        fclose(out);\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "copy me",
@@ -291,7 +291,7 @@
         }
       ],
       "id": "c-ch12-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -299,13 +299,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.50（PDF p278 / 书页 p267）",
       "difficulty": 2,
-      "stem": "【题 12.50】设文件number.dat中存放了一组整数。请编写程序统计并输出文件中正整数、零和负整数的个数。\n输出格式：输出一行 positive=<正整数个数> zero=<零的个数> negative=<负整数个数>（单个空格分隔）。",
+      "stem": "【题 12.50】设文件number.dat中存放了一组整数。请编写程序统计并输出文件中正整数、零和负整数的个数。\n输出格式：输出一行 positive=<正整数个数> zero=<零的个数> negative=<负整数个数>（单个空格分隔）。 判分约定：判分环境无法预先放置 number.dat，约定程序启动时先把标准输入的全部内容写入当前工作目录下的 number.dat（即测试用例的 stdin 就是这个文件的原始内容，整数以空白分隔），再按题意统计。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define FILE_NAME \"number.dat\"\n\n/* 判分环境下先把标准输入的全部内容写成 number.dat */\nstatic void prepare_file(void)\n{\n    FILE *fp = fopen(FILE_NAME, \"w\");\n    int ch;\n\n    if (fp == NULL)\n        return;\n    while ((ch = getchar()) != EOF)\n        fputc(ch, fp);\n    fclose(fp);\n}\n\nint main(void)\n{\n    FILE *fp;\n    int x;\n    int positive = 0, zero = 0, negative = 0;\n\n    prepare_file();\n\n    fp = fopen(FILE_NAME, \"r\");\n    if (fp != NULL) {\n        while (fscanf(fp, \"%d\", &x) == 1) {\n            if (x > 0)\n                positive = positive + 1;\n            else if (x < 0)\n                negative = negative + 1;\n            else\n                zero = zero + 1;\n        }\n        fclose(fp);\n    }\n\n    printf(\"positive=%d zero=%d negative=%d\\n\", positive, zero, negative);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1 -2 0 3 -4 5",
@@ -329,7 +329,7 @@
         }
       ],
       "id": "c-ch12-pg-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -337,13 +337,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.51（PDF p278 / 书页 p267）",
       "difficulty": 2,
-      "stem": "【题 12.51】设文件student.dat中存放着一年级学生的基本信息，这些信息由以下结构体来描述：\nstruct student\n{ long int num;    //学号\n  char name[10];   //姓名\n  int age;         //年龄\n  char sex;        //性别\n  char speciality[20];  //专业\n  char addr[40];   //住址\n};\n请编写程序，输出学号在040101～040135之间的学生学号、姓名、年龄和性别。\n输出格式：每行四列以单个空格分隔，依次为学号（按 %06ld 输出6位）、姓名、年龄、性别；无符合条件的记录时输出一行 none。",
+      "stem": "【题 12.51】设文件student.dat中存放着一年级学生的基本信息，这些信息由以下结构体来描述：\nstruct student\n{ long int num;    //学号\n  char name[10];   //姓名\n  int age;         //年龄\n  char sex;        //性别\n  char speciality[20];  //专业\n  char addr[40];   //住址\n};\n请编写程序，输出学号在040101～040135之间的学生学号、姓名、年龄和性别。\n输出格式：每行四列以单个空格分隔，依次为学号（按 %06ld 输出6位）、姓名、年龄、性别；无符合条件的记录时输出一行 none。 判分约定：判分环境无法预先放置 student.dat，约定程序启动时先按「学号 姓名 年龄 性别 专业 住址」的字段顺序（空白分隔）从标准输入读入若干条记录，以二进制结构体形式写入当前工作目录下的 student.dat，再按题意从该文件读出并筛选。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define FILE_NAME \"student.dat\"\n\nstruct student\n{\n    long int num;        /* 学号 */\n    char name[10];       /* 姓名 */\n    int age;             /* 年龄 */\n    char sex;            /* 性别 */\n    char speciality[20]; /* 专业 */\n    char addr[40];       /* 住址 */\n};\n\n/* 判分环境下先按字段顺序从标准输入建好二进制文件 student.dat */\nstatic void prepare_file(void)\n{\n    FILE *fp = fopen(FILE_NAME, \"wb\");\n    struct student s;\n\n    if (fp == NULL)\n        return;\n    while (scanf(\"%ld %9s %d %c %19s %39s\", &s.num, s.name, &s.age, &s.sex,\n                 s.speciality, s.addr) == 6)\n        fwrite(&s, sizeof(s), 1, fp);\n    fclose(fp);\n}\n\nint main(void)\n{\n    FILE *fp;\n    struct student s;\n    int found = 0;\n\n    prepare_file();\n\n    fp = fopen(FILE_NAME, \"rb\");\n    if (fp == NULL) {\n        printf(\"none\\n\");\n        return 0;\n    }\n    while (fread(&s, sizeof(s), 1, fp) == 1) {\n        if (s.num >= 40101 && s.num <= 40135) {\n            printf(\"%06ld %s %d %c\\n\", s.num, s.name, s.age, s.sex);\n            found = 1;\n        }\n    }\n    fclose(fp);\n\n    if (!found)\n        printf(\"none\\n\");\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "40101 Zhang 18 M CS Beijing 40102 Wang 19 F Math Shanghai 40201 Li 20 M Phys Tianjin",
@@ -367,7 +367,7 @@
         }
       ],
       "id": "c-ch12-pg-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -375,13 +375,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.52（PDF p279 / 书页 p268）",
       "difficulty": 2,
-      "stem": "【题 12.52】假设A、B两名工人生产同一产品，两人每月生产的数量如下：\n1 20 23\n2 28 22\n3 21 24\n4 24 27\n5 29 20\n6 28 23\n7 26 26\n8 23 28\n9 20 22\n10 25 25\n11 26 29\n12 28 30\n其中各行的3个数据分别表示月份、A工人生产量、B工人生产量。请编写程序，将这些数据写到d盘file1文件夹中的二进制文件e12_52.dat中。\n输出格式：写入完成后重新以二进制读回，输出12行，每行三列以单个空格分隔：月份 A产量 B产量。",
+      "stem": "【题 12.52】假设A、B两名工人生产同一产品，两人每月生产的数量如下：\n1 20 23\n2 28 22\n3 21 24\n4 24 27\n5 29 20\n6 28 23\n7 26 26\n8 23 28\n9 20 22\n10 25 25\n11 26 29\n12 28 30\n其中各行的3个数据分别表示月份、A工人生产量、B工人生产量。请编写程序，将这些数据写到d盘file1文件夹中的二进制文件e12_52.dat中。\n输出格式：写入完成后重新以二进制读回，输出12行，每行三列以单个空格分隔：月份 A产量 B产量。 判分约定：判分环境没有 d 盘 file1 目录，约定写入程序当前工作目录下的二进制文件 e12_52.dat；写入后重新以二进制读回并按输出格式打印。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define FILE_NAME \"e12_52.dat\"\n\nstruct output\n{\n    int month; /* 月份 */\n    int a;     /* A 工人生产量 */\n    int b;     /* B 工人生产量 */\n};\n\nint main(void)\n{\n    struct output data[12] = {\n        { 1, 20, 23 }, { 2, 28, 22 }, { 3, 21, 24 }, { 4, 24, 27 },\n        { 5, 29, 20 }, { 6, 28, 23 }, { 7, 26, 26 }, { 8, 23, 28 },\n        { 9, 20, 22 }, { 10, 25, 25 }, { 11, 26, 29 }, { 12, 28, 30 }\n    };\n    struct output x;\n    FILE *fp;\n    int i;\n\n    /* 以二进制形式写入 */\n    fp = fopen(FILE_NAME, \"wb\");\n    if (fp == NULL)\n        return 1;\n    fwrite(data, sizeof(struct output), 12, fp);\n    fclose(fp);\n\n    /* 重新以二进制读回并输出 */\n    fp = fopen(FILE_NAME, \"rb\");\n    if (fp == NULL)\n        return 1;\n    for (i = 0; i < 12; i++) {\n        if (fread(&x, sizeof(x), 1, fp) != 1)\n            break;\n        printf(\"%d %d %d\\n\", x.month, x.a, x.b);\n    }\n    fclose(fp);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -390,7 +390,7 @@
         }
       ],
       "id": "c-ch12-pg-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -398,13 +398,13 @@
       "section": "12.3 编程题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.53（PDF p279 / 书页 p268）",
       "difficulty": 2,
-      "stem": "【题 12.53】请编写程序：从键盘输入一个字符串，将其中的小写字母全部转换成大写字母，输出到磁盘文件upper.txt中保存。输入的字符串以“!”结束。然后再将文件upper.txt中的内容读出并显示在屏幕上。\n输出格式：终止符 ! 本身不写入文件；将 upper.txt 的全部内容原样输出到屏幕（不额外添加换行）。",
+      "stem": "【题 12.53】请编写程序：从键盘输入一个字符串，将其中的小写字母全部转换成大写字母，输出到磁盘文件upper.txt中保存。输入的字符串以“!”结束。然后再将文件upper.txt中的内容读出并显示在屏幕上。\n输出格式：终止符 ! 本身不写入文件；将 upper.txt 的全部内容原样输出到屏幕（不额外添加换行）。 判分约定：upper.txt 写在程序当前工作目录；终止符 ! 不写入文件，回显时不额外添加换行。",
       "explanation": "",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n#include <ctype.h>\n\n#define FILE_NAME \"upper.txt\"\n\nint main(void)\n{\n    FILE *fp;\n    int ch;\n\n    /* 从键盘读入，遇 ! 结束，小写转大写后写入文件（! 本身不写入） */\n    fp = fopen(FILE_NAME, \"w\");\n    if (fp == NULL)\n        return 1;\n    while ((ch = getchar()) != EOF && ch != '!')\n        fputc(toupper(ch), fp);\n    fclose(fp);\n\n    /* 再把文件内容读出并原样显示，不额外添加换行 */\n    fp = fopen(FILE_NAME, \"r\");\n    if (fp == NULL)\n        return 1;\n    while ((ch = fgetc(fp)) != EOF)\n        putchar(ch);\n    fclose(fp);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "hello World!",
@@ -428,7 +428,7 @@
         }
       ],
       "id": "c-ch12-pg-006",
-      "verified": false
+      "verified": true
     }
   ]
 }

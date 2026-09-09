@@ -53,6 +53,8 @@ interface CaseRecord {
 }
 interface ProblemRecord {
   id: string; type: string; file: string; checked_field: string
+  /** 本题实际用的编译器：libm 题会被路由到 g132，其余是配置里的 cg132 */
+  compiler?: string
   request_count: number; wall_ms: number; ok: boolean; adopted_answer: string | null
   /** inconclusive = 本轮遇到后端抖动（5xx/网络），根本没拿到判定；attempts = 本轮为这道题跑了几遍 */
   inconclusive: boolean; attempts: number
@@ -84,6 +86,27 @@ const asDoc04 = process.argv.includes('--doc04')
 const simulate5xx = process.argv.includes('--simulate-5xx')
 const DOC04 = '04_题型规范与样例.md'
 
+/**
+ * libm 路由。实测（tmp/probe-math.mjs，2026-09-09）：cg132 的执行链路不吃 userArguments 里的
+ * -lm，含 sqrt 的源码必然 undefined reference → didExecute=false；换 g132 能链上。
+ * 代价：g132 是 C++ 前端，被路由过去的参考实现必须是「C++ 也能编译的 C」
+ * （malloc 返回值要显式强转）。全库只有 2 道题走这条支路，故只在构建期脚本里做，
+ * 线上判分后端不动 —— 这条前端缺口已登记，留给阶段 5。
+ */
+const MATH_COMPILER = 'g132'
+const MATH_LIB_RE = /\b(sqrt|pow|sin|cos|tan|asin|acos|atan|atan2|log|log10|exp|fabs|floor|ceil|fmod|hypot|sinh|cosh|tanh)\s*\(/
+
+/**
+ * --only=<id 或 id 前缀>[,...]：只跑子集。内容返工时逐批改数据用，
+ * 免得每批都重跑 300+ 个真实请求。子集跑的报告会与上一份报告合并（见文件末尾），
+ * 未跑的题原样带下去，否则 verify-data 的 VERIFIED-NO-PROOF 会把它们全判成无证。
+ */
+const onlyArg = process.argv.find((a) => a.startsWith('--only=')) ?? ''
+const onlyTokens = onlyArg.slice('--only='.length).split(',').map((x) => x.trim()).filter(Boolean)
+function wanted(id: string): boolean {
+  return onlyTokens.length === 0 || onlyTokens.some((t) => id === t || id.startsWith(t))
+}
+
 console.log('启动 Vite SSR 以加载应用真实的判分后端…')
 const boot = Date.now()
 const server = await createServer({
@@ -94,6 +117,8 @@ const server = await createServer({
   optimizeDeps: { noDiscovery: true },
 })
 let backend: Backend
+/** libm 专用后端（g132）。只有 needsMathLib 命中的题会走它。 */
+let backendMath: Backend | null = null
 let normalize: Norm
 let cfg: { godboltCompiler: string; userArguments: string }
 try {
@@ -101,6 +126,7 @@ try {
   const base = (await server.ssrLoadModule('/src/judge/backends/base.ts')) as { normalizeOutput: Norm }
   const conf = (await server.ssrLoadModule('/src/app/config.ts')) as { judge: typeof cfg }
   backend = mod.createGodboltBackend({})
+  backendMath = mod.createGodboltBackend({ compiler: MATH_COMPILER })
   normalize = base.normalizeOutput
   cfg = conf.judge
   if (simulate5xx) {
@@ -108,6 +134,7 @@ try {
       id: 'simulate-5xx', maxConcurrency: 1, minIntervalMs: 0, timeoutMs: 1000,
       execute: async (): Promise<ExecResult> => { throw new Error('HTTP 502 Bad Gateway（--simulate-5xx 负例对照，不是真实请求）') },
     }
+    backendMath = backend
     console.log('!! --simulate-5xx：后端已换成必然 5xx 的替身，只用于验证「未判定」路径')
   }
 } finally {
@@ -115,6 +142,17 @@ try {
 }
 console.log('后端就绪（' + (Date.now() - boot) + 'ms）id=' + backend.id + ' compiler=' + cfg.godboltCompiler +
   ' args="' + cfg.userArguments + '" minIntervalMs=' + backend.minIntervalMs + ' timeoutMs=' + backend.timeoutMs)
+if (onlyTokens.length) console.log('--only 子集：' + onlyTokens.join(', ') + '（报告将与上一份合并，未跑的题原样带下去）')
+
+function needsMathLib(code: string): boolean {
+  return MATH_LIB_RE.test(code)
+}
+function backendFor(code: string): Backend {
+  return needsMathLib(code) && backendMath !== null ? backendMath : backend
+}
+function compilerOf(be: Backend): string {
+  return backendMath !== null && be === backendMath ? MATH_COMPILER : cfg.godboltCompiler
+}
 
 interface Target { file: string; problem: Problem; runnable: Runnable }
 
@@ -127,6 +165,7 @@ function targetsFromShards(): Target[] {
   for (const name of shardNames()) {
     const parsed = JSON.parse(readFileSync(join(PROBLEM_DIR, name), 'utf8')) as { problems?: Problem[] }
     for (const p of parsed.problems ?? []) {
+      if (!wanted(String(p.id))) continue
       const r = buildRunnableSource(p as never)
       if (r) out.push({ file: name, problem: p, runnable: r })
     }
@@ -147,17 +186,17 @@ function targetsFromDoc04(): Target[] {
   return out
 }
 
-async function verifyOne(code: string, cases: Array<{ stdin: string; expected: string }>): Promise<CaseRecord[]> {
+async function verifyOne(code: string, cases: Array<{ stdin: string; expected: string }>, be: Backend = backend): Promise<CaseRecord[]> {
   const out: CaseRecord[] = []
   for (let i = 0; i < cases.length; i++) {
     const tc = cases[i]
     const expected = normalize(tc.expected)
-    await sleep(backend.minIntervalMs)
+    await sleep(be.minIntervalMs)
     const t0 = Date.now()
     let res: ExecResult | null = null
     let boom = ''
     try {
-      res = await backend.execute({ code, stdin: tc.stdin, compileOnly: false })
+      res = await be.execute({ code, stdin: tc.stdin, compileOnly: false })
     } catch (e) {
       boom = e instanceof Error ? e.message : String(e)
     }
@@ -225,7 +264,8 @@ async function adoptAnswer(t: Target): Promise<string | null> {
   const raw = String(t.problem.answer ?? '')
   if (t.runnable.checkedField !== 'answer' || raw.trim() !== PLACEHOLDER) return null
   const c0 = t.runnable.cases[0]
-  const first = await verifyOne(t.runnable.code, [{ stdin: c0.stdin, expected: PLACEHOLDER }])
+  const be = backendFor(t.runnable.code)
+  const first = await verifyOne(t.runnable.code, [{ stdin: c0.stdin, expected: PLACEHOLDER }], be)
   const a = first[0]
   if (!a || a.error_class !== 'ok' || a.observed === '') {
     console.log('  ✗ ' + String(t.problem.id) + ' 取不到真实 stdout：class=' + String(a?.error_class) + ' exit=' + String(a?.exit_code) + ' ms=' + String(a?.ms))
@@ -234,8 +274,8 @@ async function adoptAnswer(t: Target): Promise<string | null> {
     return null
   }
   console.log('  第一遍真实 stdout = ' + JSON.stringify(a.observed) + '（' + a.ms + 'ms）')
-  await sleep(backend.minIntervalMs)
-  const second = await verifyOne(t.runnable.code, [{ stdin: c0.stdin, expected: a.observed }])
+  await sleep(be.minIntervalMs)
+  const second = await verifyOne(t.runnable.code, [{ stdin: c0.stdin, expected: a.observed }], be)
   const b = second[0]
   if (!b || !b.match) {
     console.log('  ✗ 拒绝回填：第二遍 = ' + JSON.stringify(String(b?.observed)) + '，与第一遍不一致')
@@ -322,8 +362,12 @@ for (const r of prevReport.results ?? []) {
 
 const MAX_ATTEMPTS = 2
 const results: ProblemRecord[] = []
+/** 本轮真正跑过的 id：--only 子集模式下，合并进来的历史记录不算本轮结果 */
+const ranIds = new Set<string>()
 for (const t of finalTargets) {
   const id = String(t.problem.id)
+  const be = backendFor(t.runnable.code)
+  ranIds.add(id)
   let cases: CaseRecord[] = []
   let wall = 0
   let attempts = 0
@@ -333,7 +377,7 @@ for (const t of finalTargets) {
       await sleep(1500)
     }
     const start = Date.now()
-    cases = await verifyOne(t.runnable.code, t.runnable.cases)
+    cases = await verifyOne(t.runnable.code, t.runnable.cases, be)
     wall += Date.now() - start
     attempts += 1
     if (!isInconclusive(cases)) break
@@ -343,6 +387,7 @@ for (const t of finalTargets) {
   const carried = inc && Boolean(prev)
   const rec: ProblemRecord = {
     id, type: String(t.problem.type), file: t.file, checked_field: t.runnable.checkedField,
+    compiler: compilerOf(be),
     request_count: attempts * cases.length, wall_ms: wall,
     // 未判定 + 有上一次成功证据 → 沿用旧结论（verified 不动，报告不丢证据）；没有旧证据就是硬失败
     ok: inc ? Boolean(carried) : cases.length > 0 && cases.every((c) => c.match),
@@ -364,7 +409,20 @@ for (const t of finalTargets) {
   for (const c of cases) if (!c.match && c.http_ok) console.log('    用例' + (c.index + 1) + ' 期望=' + JSON.stringify(c.expected) + ' 实际=' + JSON.stringify(c.observed) + ' class=' + c.error_class + ' exit=' + c.exit_code + ' http=' + c.http_ok)
   if (rec.diagnostics_preview) console.log('    编译诊断: ' + rec.diagnostics_preview)
 }
-const inconclusiveCount = results.filter((r) => r.inconclusive).length
+/**
+ * --only 子集模式必须合并报告：verification-report.json 是 verified:true 的唯一证据链，
+ * 只写本轮结果会让未跑的已验证题在 verify-data 里变成 VERIFIED-NO-PROOF（error）。
+ * 合并规则：本轮跑过的以本轮为准，没跑的原样带下去（含 ok / inconclusive / cases）。
+ */
+if (onlyTokens.length > 0) {
+  const carried = (prevReport.results ?? []).filter((r) => !ranIds.has(r.id))
+  results.push(...carried)
+  results.sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
+  console.log('\n--only 子集：本轮实跑 ' + ranIds.size + ' 道，从上一份报告带入 ' + carried.length + ' 道历史结果')
+}
+/** 本轮结论只统计真跑过的题；带入的历史记录不参与退出码 */
+const ranResults = results.filter((r) => ranIds.has(r.id))
+const inconclusiveCount = ranResults.filter((r) => r.inconclusive).length
 // 本轮真实跑通的，立刻刷新 last_known_good；未判定沿用的不算新证据，保留原始时刻。
 for (const r of results) {
   if (r.ok && !r.inconclusive) prevGood.set(r.id, { at: nowIso, wall_ms: r.wall_ms, requests: r.request_count })
@@ -403,6 +461,7 @@ if (!noWrite) {
       for (const r of list) {
         const p = parsed.problems.find((x) => String(x.id) === r.id)
         if (!p) continue
+        if (!ranIds.has(r.id)) continue                       // --only 带入的历史记录：数据一个字都不动
         if (r.inconclusive) continue                          // 未判定：verified 一个字都不动
         if (Boolean(p.verified) !== r.ok) { p.verified = r.ok; dirty = true }
         if (r.ok) flipped.push(r.id)
@@ -422,6 +481,7 @@ writeFileSync(reportPath, JSON.stringify({
   backend: backend.id, compiler: cfg.godboltCompiler, user_arguments: cfg.userArguments,
   serial_only: true, min_interval_ms: backend.minIntervalMs,
   scope: asDoc04 ? DOC04 : 'public/data/problems/*.json',
+  only: onlyTokens.length ? onlyTokens : undefined,
   problems: results.length, requests: totalReqs, total_wall_ms: totalMs,
   mean_request_ms: totalReqs ? Math.round(totalMs / totalReqs) : 0,
   adopted_answer_of: [...adopted.keys()],
@@ -436,16 +496,16 @@ console.log('\n存档 ' + reportPath.replace(ROOT + '\\', '').replace(ROOT + '/'
   '  题目=' + results.length + ' 请求=' + totalReqs + ' 总墙钟=' + totalMs + 'ms 均值=' +
   (totalReqs ? Math.round(totalMs / totalReqs) : 0) + 'ms/请求')
 
-const passed = results.filter((r) => r.ok).length
-const hardFailed = results.filter((r) => !r.ok).length
-const carriedCount = results.filter((r) => r.carried_over).length
-console.log('通过 ' + passed + '/' + results.length +
+const passed = ranResults.filter((r) => r.ok).length
+const hardFailed = ranResults.filter((r) => !r.ok).length
+const carriedCount = ranResults.filter((r) => r.carried_over).length
+console.log('通过 ' + passed + '/' + ranResults.length + (onlyTokens.length ? '（本轮 --only 子集；报告共存档 ' + results.length + ' 道）' : '') +
   // 「沿用旧证据」不是本轮复核，别让它看起来像绿灯
   (carriedCount ? '（⚠ 其中 ' + carriedCount + ' 道是沿用 last_known_good 的旧证据，本轮未实机复核）' : '') +
   (flipped.length ? '  已置 verified:true → ' + flipped.join(', ') : ''))
 if (inconclusiveCount > 0) {
   console.log('🚩 本轮 ' + inconclusiveCount + ' 道因后端抖动（HTTP 5xx / 网络）未判定：' +
-    results.filter((r) => r.inconclusive).map((r) => r.id + (r.carried_over ? '(沿用旧证据)' : '(无旧证据)')).join(', ') +
+    ranResults.filter((r) => r.inconclusive).map((r) => r.id + (r.carried_over ? '(沿用旧证据)' : '(无旧证据)')).join(', ') +
     ' —— 这些数据文件未被改动，请复跑本命令复核')
 }
 process.exit(hardFailed === 0 && inconclusiveCount === 0 ? 0 : 1)

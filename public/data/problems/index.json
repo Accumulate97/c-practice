@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "a9017c174306572c",
+  "content_sha": "2acac8c237a3fbeb",
   "schema_version": 1,
   "data_version": "0.1.0",
   "count": 518,
@@ -1680,7 +1680,7 @@
       "section": "3.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.42】有以下程序",
       "file": "c-ch03.json"
@@ -1810,7 +1810,7 @@
       "section": "3.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.53】编写程序",
       "file": "c-ch03.json"
@@ -1823,7 +1823,7 @@
       "section": "3.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.54】编写程序",
       "file": "c-ch03.json"
@@ -1836,7 +1836,7 @@
       "section": "3.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.55】编写程序",
       "file": "c-ch03.json"
@@ -2577,7 +2577,7 @@
       "section": "4.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.60】若运行时输入",
       "file": "c-ch04.json"
@@ -2590,7 +2590,7 @@
       "section": "4.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.61】若运行以下程序时输入",
       "file": "c-ch04.json"
@@ -2603,7 +2603,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.63】若运行时输入“5999<回车>”",
       "file": "c-ch04.json"
@@ -2759,7 +2759,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.81】若运行以下程序时输入",
       "file": "c-ch04.json"
@@ -2772,7 +2772,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.82】若运行以下程序时输入",
       "file": "c-ch04.json"
@@ -2785,7 +2785,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.83】若运行以下程序时输入字符为Q",
       "file": "c-ch04.json"
@@ -2798,7 +2798,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.84】若运行以下程序时输入",
       "file": "c-ch04.json"
@@ -2902,7 +2902,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.101】编写程序实现功能",
       "file": "c-ch04.json"
@@ -2915,7 +2915,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.102】编写程序判断输入的正整数是否既是5又是7的整倍数",
       "file": "c-ch04.json"
@@ -2928,7 +2928,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.103】编写程序实现功能",
       "file": "c-ch04.json"
@@ -2941,7 +2941,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.104】编写程序实现",
       "file": "c-ch04.json"
@@ -2954,7 +2954,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.105】用switch语句编程实现以下函数关系",
       "file": "c-ch04.json"
@@ -2967,7 +2967,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.106】编写程序实现功能",
       "file": "c-ch04.json"
@@ -2980,7 +2980,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.107】编写程序实现功能",
       "file": "c-ch04.json"
@@ -2993,7 +2993,7 @@
       "section": "4.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.108】编写程序实现功能",
       "file": "c-ch04.json"
@@ -3060,7 +3060,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.59】当运行以下程序时",
       "file": "c-ch05.json"
@@ -3086,7 +3086,7 @@
       "section": "5.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.61】当运行以下程序时",
       "file": "c-ch05.json"
@@ -3164,7 +3164,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.70】当运行以下程序时",
       "file": "c-ch05.json"
@@ -3203,7 +3203,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.73】当运行以下程序时",
       "file": "c-ch05.json"
@@ -3268,7 +3268,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.88】若从键盘输入65 14<回车>",
       "file": "c-ch05.json"
@@ -3385,7 +3385,7 @@
       "section": "5.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.101】每个苹果 0.8 元",
       "file": "c-ch05.json"
@@ -3398,7 +3398,7 @@
       "section": "5.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.102】试编程序",
       "file": "c-ch05.json"
@@ -3411,7 +3411,7 @@
       "section": "5.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.103】假设 x",
       "file": "c-ch05.json"
@@ -3424,7 +3424,7 @@
       "section": "5.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.104】编写程序",
       "file": "c-ch05.json"
@@ -3621,7 +3621,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.66】若有以下输入",
       "file": "c-ch06.json"
@@ -3699,7 +3699,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.75】当从键盘输入 18 时",
       "file": "c-ch06.json"
@@ -3764,7 +3764,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.89】运行程序时若输入“52<回车>”",
       "file": "c-ch06.json"
@@ -3855,7 +3855,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.99】运行程序时若输入“32 25 20 23 35 52 87 22 48 30 0＜回车＞”",
       "file": "c-ch06.json"
@@ -3868,7 +3868,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.100】若有以下输入",
       "file": "c-ch06.json"
@@ -4011,7 +4011,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.120】当运行以下程序时",
       "file": "c-ch06.json"
@@ -4050,7 +4050,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.123】当运行以下程序时",
       "file": "c-ch06.json"
@@ -4063,7 +4063,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.124】当运行以下程序时",
       "file": "c-ch06.json"
@@ -4076,7 +4076,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.125】从键盘输入若干整数",
       "file": "c-ch06.json"
@@ -4089,7 +4089,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.126】若有说明",
       "file": "c-ch06.json"
@@ -4102,7 +4102,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.127】定义一个含有 30 个整型元素的数组",
       "file": "c-ch06.json"
@@ -4115,7 +4115,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.128】通过赋初值按行顺序给 2×3 的二维数组赋予 2、4、6、…等偶数",
       "file": "c-ch06.json"
@@ -4128,7 +4128,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.129】通过循环按行顺序为一个 5×5 的二维数组 a 赋 1～25 的自然数",
       "file": "c-ch06.json"
@@ -4141,7 +4141,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.130】下面是一个 5 阶的螺旋方阵",
       "file": "c-ch06.json"
@@ -4154,7 +4154,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.131】数组 a 包括 10 个整数",
       "file": "c-ch06.json"
@@ -4167,7 +4167,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.132】从键盘输入一个字符",
       "file": "c-ch06.json"
@@ -4180,7 +4180,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.133】从键盘输入两个字符串 a 和 b",
       "file": "c-ch06.json"
@@ -4193,7 +4193,7 @@
       "section": "6.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.134】从键盘输入一个字符串 a",
       "file": "c-ch06.json"
@@ -4261,7 +4261,7 @@
       "section": "7.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 7.18】若输入的值是－125",
       "file": "c-ch07.json"
@@ -4287,7 +4287,7 @@
       "section": "7.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 7.27】若输入一个整数 10",
       "file": "c-ch07.json"
@@ -4495,7 +4495,7 @@
       "section": "7.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 7.64】当输入的数值 x 为 4",
       "file": "c-ch07.json"
@@ -4978,7 +4978,7 @@
       "section": "8.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.52】输入两个整数",
       "file": "c-ch08.json"
@@ -4991,7 +4991,7 @@
       "section": "8.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.53】试定义一个带参的宏 swap",
       "file": "c-ch08.json"
@@ -5004,7 +5004,7 @@
       "section": "8.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.54】定义一个带参数的宏",
       "file": "c-ch08.json"
@@ -5017,7 +5017,7 @@
       "section": "8.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.55】定义一个带参的宏",
       "file": "c-ch08.json"
@@ -5030,7 +5030,7 @@
       "section": "8.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.56】已知计算三角形面积的公式为",
       "file": "c-ch08.json"
@@ -5056,7 +5056,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.79】以下程序的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5108,7 +5108,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.83】若输入的值分别是 1",
       "file": "c-ch09.json"
@@ -5290,7 +5290,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.107】当运行以下程序时",
       "file": "c-ch09.json"
@@ -5329,7 +5329,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.110】运行以下程序时",
       "file": "c-ch09.json"
@@ -5342,7 +5342,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.111】运行以下程序时",
       "file": "c-ch09.json"
@@ -5394,7 +5394,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.115】运行以下程序时",
       "file": "c-ch09.json"
@@ -5420,7 +5420,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.117】运行以下程序时",
       "file": "c-ch09.json"
@@ -5433,7 +5433,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.118】运行以下程序时",
       "file": "c-ch09.json"
@@ -5641,7 +5641,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.146】若有以下输入",
       "file": "c-ch09.json"
@@ -5667,7 +5667,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.152】若有以下输入",
       "file": "c-ch09.json"
@@ -5680,7 +5680,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.158】若有以下输入",
       "file": "c-ch09.json"
@@ -5693,7 +5693,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.159】若有输入",
       "file": "c-ch09.json"
@@ -5719,7 +5719,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.161】若有以下输入",
       "file": "c-ch09.json"
@@ -5732,7 +5732,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.162】若有以下输入",
       "file": "c-ch09.json"
@@ -5810,7 +5810,7 @@
       "section": "9.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.172】若从键盘输入",
       "file": "c-ch09.json"
@@ -5901,7 +5901,7 @@
       "section": "9.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.186】编写程序",
       "file": "c-ch09.json"
@@ -5914,7 +5914,7 @@
       "section": "9.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.187】编写程序",
       "file": "c-ch09.json"
@@ -5927,7 +5927,7 @@
       "section": "9.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.188】从键盘输入一个字符串",
       "file": "c-ch09.json"
@@ -5940,7 +5940,7 @@
       "section": "9.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.189】设有一个数列",
       "file": "c-ch09.json"
@@ -5966,7 +5966,7 @@
       "section": "9.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.191】通过指针数组 p 和一维数组 a 构成一个 3×2 的二维数组",
       "file": "c-ch09.json"
@@ -6267,7 +6267,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.86】试利用结构体类型编制一个程序",
       "file": "c-ch10.json"
@@ -6280,7 +6280,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.87】试利用指向结构体的指针编制一个程序",
       "file": "c-ch10.json"
@@ -6293,7 +6293,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.88】请编程序建立一个带有头结点的单向链表",
       "file": "c-ch10.json"
@@ -6306,7 +6306,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.89】已知head指向双向链表的第一个结点",
       "file": "c-ch10.json"
@@ -6319,7 +6319,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.90】已知head指向一个带头结点的单向链表",
       "file": "c-ch10.json"
@@ -6332,7 +6332,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.91】已知head指向一个带头结点的单向链表",
       "file": "c-ch10.json"
@@ -6345,7 +6345,7 @@
       "section": "10.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 10.92】设有一个unsigned long型整数",
       "file": "c-ch10.json"
@@ -6826,7 +6826,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.48】请编写程序",
       "file": "c-ch12.json"
@@ -6839,7 +6839,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.49】请编写程序实现文件的复制",
       "file": "c-ch12.json"
@@ -6852,7 +6852,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.50】设文件number.dat中存放了一组整数",
       "file": "c-ch12.json"
@@ -6865,7 +6865,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.51】设文件student.dat中存放着一年级学生的基本信息",
       "file": "c-ch12.json"
@@ -6878,7 +6878,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.52】假设A、B两名工人生产同一产品",
       "file": "c-ch12.json"
@@ -6891,7 +6891,7 @@
       "section": "12.3 编程题",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.53】请编写程序",
       "file": "c-ch12.json"

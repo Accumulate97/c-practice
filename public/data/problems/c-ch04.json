@@ -1206,6 +1206,7 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main ( )\n{   char class ;\n    printf ( \"Enter 1 for 1st class post or 2 for 2nd post\" ) ;\n    scanf ( \"%c\" , &class ) ;\n    if ( class=='1' )\n        printf ( \"1st class postage is 19p\" ) ;\n    else\n        printf ( \"2nd class postage is 14p\" ) ;\n    return 0;\n}",
+      "stdin": "2\n",
       "answer": "Enter 1 for 1st class post or 2 for 2nd post2nd class postage is 14p",
       "id": "c-ch04-cr-005",
       "verified": true
@@ -1223,9 +1224,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main ( )\n{   float costPrice, sellingPrice;\n    printf ( \"Enter costPrice $ : \" ) ;\n    scanf ( \"%f\", &costPrice);\n    if ( costPrice>=5 )\n        {  sellingPrice=costPrice+costPrice * 0.25;\n            printf ( \"Selling Price (0.25) $  %6.2f\" , sellingPrice) ;\n        }\n    else\n        {  sellingPrice=costPrice+costPrice * 0.30;\n            printf ( \"Selling Price (0.30) $  %6.2f\" , sellingPrice) ;\n        }\n    return 0;\n}",
+      "stdin": "4.4\n",
       "answer": "Enter costPrice $ : Selling Price (0.30) $    5.72",
       "id": "c-ch04-cr-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1240,9 +1242,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int t,h,m;\n    scanf(\"%d\",&t);\n    h=(t/100)%12;\n    if(h==0) h=12;\n    printf(\"%d:\",h);\n    m=t%100;\n    if(m<10) printf(\"0\");\n    printf(\"%d\",m);\n    if(t<1200||t==2400)\n        printf(\" AM\");\n    else printf(\" PM\");\n    return 0;\n}",
+      "stdin": "1605\n",
       "answer": "4:05 PM",
       "id": "c-ch04-cr-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1257,9 +1260,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int x;\n    float y;\n    scanf(\"%d\",&x);\n    if(x>=0 && x<=2999) y=18+0.12 * x;\n    if(x>=3000 && x<=5999) y=36+0.6 * x;\n    if(x>=6000 && x<=10000) y=54+0.3 * x;\n    printf(\"%6.1f \",y);\n    return 0;\n}",
+      "stdin": "5999\n",
       "answer": "3635.4 ",
       "id": "c-ch04-cr-008",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1456,13 +1460,14 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.70（PDF p44 / 书页 p33）",
       "difficulty": 4,
       "stem": "【题 4.70】为了使以下程序的输出结果为t=4，输入值a和b应满足的条件是【 】。",
-      "explanation": "",
+      "explanation": "本题问的是「输入值 a 和 b 应满足的条件」，答案是条件描述而不是程序输出，逐字符比对 stdout 没有意义，故不进自动判分（answer 字段原误存了对应的输出串 s=2,t=4，现已清空并标记 answerIsDescription）。逐分支推演：初始 s=1、t=1；第 7 行 if (a>0) s=s+1 决定 s 是否变成 2；第 8~10 行是三分支：a>b 时 t=s+t，a==b 时 t=5，a<b 时 t=2*s。要使 t=4，只能走 else 分支 t=2*s=4，这要求 s=2，即 a>0；同时走 else 分支要求 a>b 与 a==b 都不成立，即 a<b。所以条件是 a>0 且 a<b（即 0<a<b，例如输入 2,5）。此时程序完整输出为 s=2,t=4。注意 scanf 格式串是 \"%d,%d\"，两个输入值之间要用逗号分隔。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
-      "answer": "s=2,t=4",
+      "answer": "",
+      "answerIsDescription": true,
       "id": "c-ch04-cr-011",
       "verified": false
     },
@@ -1473,13 +1478,14 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.71（PDF p44 / 书页 p33）",
       "difficulty": 4,
       "stem": "【题 4.71】为了使以下程序的输出结果为s=1，t=5，输入值a和b应满足的条件是【 】。",
-      "explanation": "",
+      "explanation": "本题问的是「输入值 a 和 b 应满足的条件」，答案是条件描述而不是程序输出，逐字符比对 stdout 没有意义，故不进自动判分（answer 字段原误存了对应的输出串 s=1,t=5，现已清空并标记 answerIsDescription）。逐分支推演：初始 s=1、t=1；要使 s=1 保持不变，第 7 行 if (a>0) 必须不成立，即 a<=0；要使 t=5，必须命中第 9 行 else if (a==b) t=5 分支，即 a==b（此时第 8 行 a>b 自然不成立，第 10 行 else 也到不了）。所以条件是 a==b 且 a<=0（a 与 b 相等且都不为正，例如输入 -3,-3 或 0,0）。此时程序完整输出为 s=1,t=5。注意 scanf 格式串是 \"%d,%d\"，两个输入值之间要用逗号分隔。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
-      "answer": "s=1,t=5",
+      "answer": "",
+      "answerIsDescription": true,
       "id": "c-ch04-cr-012",
       "verified": false
     },
@@ -1628,9 +1634,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int a,b;\n    scanf(\"%d\",&a);\n    b=(a>=0)? a:-a;\n    printf(\"b=%d\",b);\n    return 0;\n}",
+      "stdin": "-2\n",
       "answer": "b=2",
       "id": "c-ch04-cr-015",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1645,9 +1652,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int a;\n    scanf(\"%d\",&a);\n    printf(\"%s\",(a%2!=0)?\"no\":\"yes\");\n    return 0;\n}",
+      "stdin": "100\n",
       "answer": "yes",
       "id": "c-ch04-cr-016",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1662,9 +1670,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ char ch;\n    scanf(\"%c\",&ch);\n    ch=(ch>='A' && ch<='Z')? (ch+32):ch;\n    ch=(ch>='a' && ch<='z')? (ch-32):ch;\n    printf(\"%c\",ch);\n    return 0;\n}",
+      "stdin": "Q",
       "answer": "Q",
       "id": "c-ch04-cr-017",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1679,9 +1688,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int y,t;\n    scanf(\"%d\",&y);\n    t=((y%4==0 && y%100!=0)||y%400==0)? 1:0;\n    if(t) printf(\"%d is\",y);\n    else printf(\"%d is not\",y);\n    printf(\" a leap year\");\n    return 0;\n}",
+      "stdin": "1992\n",
       "answer": "1992 is a leap year",
       "id": "c-ch04-cr-018",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1848,7 +1858,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, s;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n\n    s = a * a + b * b;\n    if (s > 100)\n        printf(\"%d\\n\", s / 100);\n    else\n        printf(\"%d\\n\", s);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "3 4",
@@ -1872,7 +1882,7 @@
         }
       ],
       "id": "c-ch04-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1886,7 +1896,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n % 5 == 0 && n % 7 == 0)\n        printf(\"yes\\n\");\n    else\n        printf(\"no\\n\");\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "35",
@@ -1910,7 +1920,7 @@
         }
       ],
       "id": "c-ch04-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1924,7 +1934,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n\n    if (x <= 0)\n        y = 0;\n    else if (x <= 10)\n        y = x;\n    else if (x <= 20)\n        y = 10;\n    else\n        y = -0.5 * x + 20;\n\n    printf(\"y=%g\\n\", y);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "-3",
@@ -1948,7 +1958,7 @@
         }
       ],
       "id": "c-ch04-pg-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1962,7 +1972,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int n, d3, d5, d7, cnt;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n\n    d3 = (n % 3 == 0);\n    d5 = (n % 5 == 0);\n    d7 = (n % 7 == 0);\n    cnt = d3 + d5 + d7;\n\n    if (cnt == 3) {\n        printf(\"divisible by 3,5,7\\n\");\n    }\n    else if (cnt == 2) {\n        if (d3 && d5)\n            printf(\"divisible by 3,5\\n\");\n        else if (d3 && d7)\n            printf(\"divisible by 3,7\\n\");\n        else\n            printf(\"divisible by 5,7\\n\");\n    }\n    else if (cnt == 1) {\n        if (d3)\n            printf(\"divisible by 3\\n\");\n        else if (d5)\n            printf(\"divisible by 5\\n\");\n        else\n            printf(\"divisible by 7\\n\");\n    }\n    else {\n        printf(\"divisible by none\\n\");\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "105",
@@ -1986,7 +1996,7 @@
         }
       ],
       "id": "c-ch04-pg-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -2000,7 +2010,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n\n    switch (x) {\n        case 0:\n            y = 0;\n            break;\n        default:\n            if (x > 0)\n                y = 1;\n            else\n                y = -1;\n            break;\n    }\n\n    printf(\"y=%d\\n\", y);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "-100",
@@ -2024,7 +2034,7 @@
         }
       ],
       "id": "c-ch04-pg-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -2038,7 +2048,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    double data1, data2, result;\n    char op;\n\n    if (scanf(\"%lf %lf %c\", &data1, &data2, &op) != 3)\n        return 1;\n\n    switch (op) {\n        case '+': result = data1 + data2; break;\n        case '-': result = data1 - data2; break;\n        case '*': result = data1 * data2; break;\n        case '/': result = data1 / data2; break;\n        default:\n            printf(\"operator error\\n\");\n            return 1;\n    }\n\n    printf(\"result=%g\\n\", result);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "2 3 +",
@@ -2062,7 +2072,7 @@
         }
       ],
       "id": "c-ch04-pg-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -2076,7 +2086,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int score;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n\n    switch (score / 10) {\n        case 10:\n        case 9:\n            printf(\"grade=A\\n\");\n            break;\n        case 8:\n            printf(\"grade=B\\n\");\n            break;\n        case 7:\n            printf(\"grade=C\\n\");\n            break;\n        case 6:\n            printf(\"grade=D\\n\");\n            break;\n        default:\n            printf(\"grade=E\\n\");\n            break;\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "90",
@@ -2100,7 +2110,7 @@
         }
       ],
       "id": "c-ch04-pg-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -2114,7 +2124,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    char s[64];\n    int re, im;\n    char op, tail;\n\n    if (scanf(\"%63s\", s) != 1)\n        return 1;\n    if (sscanf(s, \"%d%c%d%c\", &re, &op, &im, &tail) != 4)\n        return 1;\n\n    /* 共轭复数：实部不变，虚部取相反符号 */\n    if (op == '+')\n        printf(\"%d-%di\\n\", re, im);\n    else\n        printf(\"%d+%di\\n\", re, im);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "2+3i",
@@ -2138,7 +2148,7 @@
         }
       ],
       "id": "c-ch04-pg-008",
-      "verified": false
+      "verified": true
     },
     {
       "id": "c-ch04-dbg-001",
@@ -2150,7 +2160,7 @@
       "difficulty": 3,
       "bloom": "analyze",
       "stem": "以下程序的功能是：输入三个整数（用空格分隔），把它们按从大到小的顺序输出，数与数之间用一个空格分隔。程序中有 2 处错误，请找出并改正。改正后的程序必须能编译通过，并对任意三个整数（含负数与相等的数）都输出正确结果。",
-      "explanation": "三数排序的固定套路是「先让 x 成为最大，再让 y 成为次大」，三次两两比较交换即可。第 1 处错误把 if (x < y) 打成 if (x = y)：赋值表达式的值就是被赋的 y，所以 y 非 0 时条件恒真，且 x 先被覆盖成 y，随后的 { t = x; x = y; y = t; } 等于什么也没换——以 1 2 3 为例，第一句执行后变成 x=2、y=2、z=3，信息已经丢了原来的 1，后面再怎么排也找不回来，最终输出 3 2 2。y 为 0 时条件反而为假，交换被跳过，-5 0 5 就输出 5 0 0（丢了 -5）。第 2 处错误是第 9 行方向写反：从大到小排序要求 y 小于 z 时交换，写成 y > z 会把已经排好的 y、z 再翻回去，例如 3 1 2 会输出 2 1 1。两处都改回 x < y 与 y < z 后，三组用例分别输出 3 2 1、3 2 1、5 0 -5。这也是编译器警告 suggest parentheses around assignment used as truth value 想提醒你的地方：if 里出现单个 = 几乎总是笔误。",
+      "explanation": "三数排序的固定套路是「先让 x 成为最大，再让 y 成为次大」，三次两两比较交换即可。第 1 处错误把 if (x < y) 打成 if (x = y)：赋值表达式的值就是被赋的 y，所以 y 非 0 时条件恒真，且 x 先被覆盖成 y，随后的 { t = x; x = y; y = t; } 等于什么也没换——以 1 2 3 为例，第一句执行后变成 x=2、y=2、z=3，信息已经丢了原来的 1，后面再怎么排也找不回来，最终输出 3 2 2。y 为 0 时条件反而为假，交换被跳过，-5 0 5 就输出 5 0 0（丢了 -5）。第 2 处错误是第 8 行方向写反：从大到小排序要求 y 小于 z 时交换，写成 y > z 会把已经排好的 y、z 再翻回去，例如 3 1 2 会输出 2 1 1。两处都改回 x < y 与 y < z 后，三组用例分别输出 3 2 1、3 2 1、5 0 -5。这也是编译器警告 suggest parentheses around assignment used as truth value 想提醒你的地方：if 里出现单个 = 几乎总是笔误。",
       "tags": [
         "分支结构",
         "关系运算",
@@ -2161,8 +2171,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x = y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y > z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
       "bugs": [
-        "第 7 行 if (x = y) 用赋值运算符 = 代替了关系运算：这里本意是「x 比 y 小就交换」，应写成 if (x < y)。写成赋值有两个后果：一是 x 被悄悄改成了 y 的值；二是整个条件表达式的值就是 y，当 y 恰好为 0 时条件为假，交换语句被整段跳过（测试用例 -5 0 5 就是这样漏排的）。",
-        "第 9 行 if (y > z) 的比较方向反了。本程序的目标是从大到小，只有当 y 比 z 小时才需要把两者交换，应写成 if (y < z)。写成 y > z 时，该交换的没交换、不该交换的反而交换了。"
+        "第 6 行 if (x = y) 用赋值运算符 = 代替了关系运算：这里本意是「x 比 y 小就交换」，应写成 if (x < y)。写成赋值有两个后果：一是 x 被悄悄改成了 y 的值；二是整个条件表达式的值就是 y，当 y 恰好为 0 时条件为假，交换语句被整段跳过（测试用例 -5 0 5 就是这样漏排的）。",
+        "第 8 行 if (y > z) 的比较方向反了。本程序的目标是从大到小，只有当 y 比 z 小时才需要把两者交换，应写成 if (y < z)。写成 y > z 时，该交换的没交换、不该交换的反而交换了。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int x, y, z, t;\n    scanf(\"%d %d %d\", &x, &y, &z);\n    if (x < y) { t = x; x = y; y = t; }\n    if (x < z) { t = x; x = z; z = t; }\n    if (y < z) { t = y; y = z; z = t; }\n    printf(\"%d %d %d\\n\", x, y, z);\n    return 0;\n}",
       "testCases": [
@@ -2205,8 +2215,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c > '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
       "bugs": [
-        "第 9 行 if (c >= 'A' && c <= 'z') 的区间上界误写成 'z'（应为 'Z'）。'A'~'Z' 是 65~90，'a'~'z' 是 97~122，写成 c <= 'z' 就把整个小写字母区间也囊括进来了，所有字母都计入 upper，后面的 else if 因为短路再也不会执行，lower 恒为 0。",
-        "第 11 行 else if (c > '0' && c <= '9') 的下界用了 > 而不是 >=，字符 '0'（ASCII 48）被排除在数字之外，掉进最后的 other 分支。"
+        "第 7 行 if (c >= 'A' && c <= 'z') 的区间上界误写成 'z'（应为 'Z'）。'A'~'Z' 是 65~90，'a'~'z' 是 97~122，写成 c <= 'z' 就把整个小写字母区间也囊括进来了，所有字母都计入 upper，后面的 else if 因为短路再也不会执行，lower 恒为 0。",
+        "第 9 行 else if (c > '0' && c <= '9') 的下界用了 > 而不是 >=，字符 '0'（ASCII 48）被排除在数字之外，掉进最后的 other 分支。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int c;\n    int upper = 0, lower = 0, digit = 0, other = 0;\n    while ((c = getchar()) != '\\n' && c != EOF) {\n        if (c >= 'A' && c <= 'Z') upper++;\n        else if (c >= 'a' && c <= 'z') lower++;\n        else if (c >= '0' && c <= '9') digit++;\n        else other++;\n    }\n    printf(\"%d %d %d %d\\n\", upper, lower, digit, other);\n    return 0;\n}",
       "testCases": [
@@ -2249,7 +2259,7 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int y, m, days;\n    scanf(\"%d %d\", &y, &m);\n    if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)\n        days = 31;\n    else if (m == 4 || m == 6 || m == 9 || m == 11)\n        days = 31;\n    else if (y % 4 == 0 || y % 400 == 0)\n        days = 29;\n    else\n        days = 28;\n    printf(\"%d-%d:%d\\n\", y, m, days);\n    return 0;\n}",
       "bugs": [
-        "第 7 行大月判断把 || 全部写成了 &&：if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)。一个月份不可能同时等于 1、3、5……，该条件恒为假，所有大月都掉到后面的分支去了。",
+        "第 6 行大月判断把 || 全部写成了 &&：if (m == 1 && m == 3 && m == 5 && m == 7 && m == 8 && m == 10 && m == 12)。一个月份不可能同时等于 1、3、5……，该条件恒为假，所有大月都掉到后面的分支去了。",
         "第 9 行小月分支写的是 days = 31，应为 days = 30。",
         "第 10 行闰年条件漏掉了 y % 100 != 0，写成 else if (y % 4 == 0 || y % 400 == 0)，于是 1900、2100 这类「能被 4 整除但也能被 100 整除、且不能被 400 整除」的世纪年被误判为闰年。正确写法是 else if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)。"
       ],

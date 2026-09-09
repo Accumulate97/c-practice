@@ -793,9 +793,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int k=0; char c1='a',c2='b';\n  scanf(\"%d%c%c\",&k,&c1,&c2);\n  printf(\"%d,%c,%c\\n\",k,c1,c2);\n  return 0;\n }",
+      "stdin": "55 A B\n",
       "answer": "55, ,A",
       "id": "c-ch03-cr-013",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -998,7 +999,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\n#define PI 3.1415926535897932\n\nint main(void)\n{\n    double r, h;\n    double cl, cs, cvz;\n\n    if (scanf(\"%lf %lf\", &r, &h) != 2)\n        return 1;\n\n    cl = 2 * PI * r;\n    cs = PI * r * r;\n    cvz = cs * h;\n\n    printf(\"cl=%.2f\\n\", cl);\n    printf(\"cs=%.2f\\n\", cs);\n    printf(\"cvz=%.2f\\n\", cvz);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "1.5 3",
@@ -1017,7 +1018,7 @@
         }
       ],
       "id": "c-ch03-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1031,7 +1032,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    char ch;\n\n    printf(\"Please input a letter:\\n\");\n    if (scanf(\"%c\", &ch) != 1)\n        return 1;\n    printf(\"The ASCII code of %c is %d\\n\", ch, ch);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "A",
@@ -1050,7 +1051,7 @@
         }
       ],
       "id": "c-ch03-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1064,7 +1065,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"quotient=%.2f remainder=%d\\n\", (double)a / b, a % b);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "7 2",
@@ -1083,7 +1084,7 @@
         }
       ],
       "id": "c-ch03-pg-003",
-      "verified": false
+      "verified": true
     }
   ]
 }

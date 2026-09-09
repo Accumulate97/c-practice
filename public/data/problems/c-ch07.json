@@ -16,10 +16,11 @@
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\n#include <math.h>\nvoid fun(int n)\nint main( )\n{   int n;\n    scanf(\"%d\",&n);\n    printf(\"%d=\",n);\n    if(n<0) printf(\"-\");\n    n=abs(n);\n    fun(n);\n    return(0);\n}\nvoid fun(int n)\n{   int k,r;\n    for(k=2; k<=sqrt(n); k++)\n    {   r=n%k;\n        while(r==0)\n        {   printf(\"%d\",k);\n            n=n/k;\n            if(n>1) printf(\"*\");\n            r=n%k;\n        }\n    }\n    if(n!=1) printf(\"%d\\n\",n);\n}",
+      "code": "#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\nvoid fun(int n);\nint main( )\n{   int n;\n    scanf(\"%d\",&n);\n    printf(\"%d=\",n);\n    if(n<0) printf(\"-\");\n    n=abs(n);\n    fun(n);\n    return(0);\n}\nvoid fun(int n)\n{   int k,r;\n    for(k=2; k<=sqrt(n); k++)\n    {   r=n%k;\n        while(r==0)\n        {   printf(\"%d\",k);\n            n=n/k;\n            if(n>1) printf(\"*\");\n            r=n%k;\n        }\n    }\n    if(n!=1) printf(\"%d\\n\",n);\n}",
+      "stdin": "-125\n",
       "answer": "-125=-5*5*5",
       "id": "c-ch07-cr-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -51,9 +52,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint sub(int a);\nint main( )\n{   int a,e[10],c,i=0;\n    printf(\"输入一整数\\n\");\n    scanf(\"%d\",&a);\n    while(a!=0)\n    {   c=sub(a);\n        a=a/2;\n        e[i]=c;\n        i++;\n    }\n    for(; i>0; i--) printf(\"%d\",e[i-1]);\n    return(0);\n}\nint sub(int a)\n{   int c;\n    c=a%2;\n    return c;\n}",
+      "stdin": "10\n",
       "answer": "输入一整数\n1010",
       "id": "c-ch07-cr-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -390,9 +392,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nlong fun(long x,long y)\n{  int i; long t=1;\n   for(i=1;i<=y;i++) t=t * x%100;\n   return t;\n}\nint main( )\n{  long x,y,t;\n   printf(\"\\nninput x and y:\\n \"); scanf(\"%ld%ld\",&x,&y);\n   t=fun(x,y);\n   printf(\"\\nx=%ld,y=%ld,last=%ld\\n\",x,y,t);\n   return(0);\n}",
+      "stdin": "4 3\n",
       "answer": "\nninput x and y:\n \nx=4,y=3,last=64",
       "id": "c-ch07-cr-017",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -681,7 +684,7 @@
       "code": "#include <stdio.h>\nlong fact(int n)\n{\n    if (n <= 1) return 1;\n    return n + fact(n - 1);\n}\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    printf(\"%d!=%ld\\n\", n, fact(n - 1));\n    return 0;\n}",
       "bugs": [
         "第 5 行 return n + fact(n - 1); 把乘号写成了加号：递归式变成 n + (n-1) + … + 1，算出的是三角数而不是阶乘（n = 5 时得 15 而不是 120）。应为 return n * fact(n - 1);。",
-        "第 12 行 printf(\"%d!=%ld\\n\", n, fact(n - 1)); 调用处少传了一个 n，输出的是 (n-1)! 的值。应为 fact(n)。"
+        "第 11 行 printf(\"%d!=%ld\\n\", n, fact(n - 1)); 调用处少传了一个 n，输出的是 (n-1)! 的值。应为 fact(n)。"
       ],
       "fixed_code": "#include <stdio.h>\nlong fact(int n)\n{\n    if (n <= 1) return 1;\n    return n * fact(n - 1);\n}\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    printf(\"%d!=%ld\\n\", n, fact(n));\n    return 0;\n}",
       "testCases": [
@@ -724,8 +727,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nstruct student {\n    char name[20];\n    int score;\n};\nvoid bump(struct student p, int d)\n{\n    p.score += d;\n}\nint main(void)\n{\n    struct student s;\n    int d;\n    scanf(\"%s %d %d\", s.name, &s.score, &d);\n    bump(s, d);\n    printf(\"%s %d\\n\", s.name, s.score);\n    return 0;\n}",
       "bugs": [
-        "第 7 行 void bump(struct student p, int d) 用整个结构体做形参，是值传递：函数拿到的是 s 的一份完整副本，p.score += d 只改副本，函数返回后副本销毁，main 里的 s.score 保持原值。除了改不动实参，每次调用还要复制整个结构体，开销也比传指针大。应写成 void bump(struct student *p, int d)。",
-        "第 9 行 p.score += d; 与第 14 行 bump(s, d); 是上一处错误的配套写法：形参改成指针后，访问成员要用 -> 即 p->score += d;，调用处要取地址即 bump(&s, d);。"
+        "第 6 行 void bump(struct student p, int d) 用整个结构体做形参，是值传递：函数拿到的是 s 的一份完整副本，p.score += d 只改副本，函数返回后副本销毁，main 里的 s.score 保持原值。除了改不动实参，每次调用还要复制整个结构体，开销也比传指针大。应写成 void bump(struct student *p, int d)。",
+        "第 8 行 p.score += d; 与第 15 行 bump(s, d); 是上一处错误的配套写法：形参改成指针后，访问成员要用 -> 即 p->score += d;，调用处要取地址即 bump(&s, d);。"
       ],
       "fixed_code": "#include <stdio.h>\nstruct student {\n    char name[20];\n    int score;\n};\nvoid bump(struct student *p, int d)\n{\n    p->score += d;\n}\nint main(void)\n{\n    struct student s;\n    int d;\n    scanf(\"%s %d %d\", s.name, &s.score, &d);\n    bump(&s, d);\n    printf(\"%s %d\\n\", s.name, s.score);\n    return 0;\n}",
       "testCases": [

@@ -17,9 +17,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   char c ;\n    while((c=getchar( ))!='?') putchar(++c);\n    return 0;\n}",
+      "stdin": "right?\n",
       "answer": "sjhiu",
       "id": "c-ch05-cr-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -51,9 +52,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int v1=0, v2=0; char ch;\n    while((ch=getchar( ))!='#')\n    switch(ch)\n    {   case 'a':\n        case 'h':\n            default: v1++;\n        case 'o':v2++;\n    }\n    printf(\"%d,%d\\n\",v1,v2);\n    return 0;\n}",
+      "stdin": "China#\n",
       "answer": "5,5",
       "id": "c-ch05-cr-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -170,9 +172,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int k=0, n;\n    do\n    {   scanf(\"%d\",&n ); k+=n;\n    }   while (n!=-1);\n    printf(\"k=%d n=%d\\n\",k,n);\n    return 0;\n}",
+      "stdin": "1 2 3 4 5 -1\n",
       "answer": "k=14 n=-1",
       "id": "c-ch05-cr-008",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -221,9 +224,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int a,b,m=1,n=1;\n    scanf(\"%d%d\",&a,&b);\n    do\n    {   if(a>0) { m=2 * n;   b++; }\n        else  { n=m+n;   a+=2;   b++; }\n    } while (a==b);\n    printf (\"m=%d n=%d\",m,n);\n    return 0;\n}",
+      "stdin": "-1 0\n",
       "answer": "m=4 n=2",
       "id": "c-ch05-cr-011",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -306,9 +310,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{   int m,n;\n    printf(\"Enter m,n:\");\n    scanf(\"%d%d\",&m,&n);\n    while(m!=n)\n    {   while(m>n) m-=n;\n        while(n>m) n-=m;\n    }\n    printf(\"m=%d\\n\",m);\n    return 0;\n}",
+      "stdin": "65 14\n",
       "answer": "Enter m,n:m=1",
       "id": "c-ch05-cr-016",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -458,7 +463,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int day, count = 0, days = 0;\n    double money;\n\n    /* 每天买前一天的 2 倍，直到不超过 100 的最大个数为止：2,4,8,16,32,64 */\n    for (day = 2; day <= 100; day = day * 2) {\n        count = count + day;\n        days = days + 1;\n    }\n\n    money = count * 0.8;\n    printf(\"%.2f\\n\", money / days);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -467,7 +472,7 @@
         }
       ],
       "id": "c-ch05-pg-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -481,7 +486,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int i, m;\n\n    for (i = 1; i <= 99; i++) {\n        /* 一位数看平方后的末 1 位，两位数看末 2 位 */\n        if (i < 10)\n            m = 10;\n        else\n            m = 100;\n        if (i * i % m == i)\n            printf(\"%3d\", i);\n    }\n    printf(\"\\n\");\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "",
@@ -490,7 +495,7 @@
         }
       ],
       "id": "c-ch05-pg-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -504,7 +509,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y, i, r = 1;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n\n    /* 只保留最后 3 位：每乘一次就取模，避免溢出 */\n    x = ((x % 1000) + 1000) % 1000;\n    for (i = 0; i < y; i++)\n        r = r * x % 1000;\n\n    printf(\"%03d\\n\", r);\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "2 10",
@@ -528,7 +533,7 @@
         }
       ],
       "id": "c-ch05-pg-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -542,7 +547,7 @@
       "generated_at": "2026-09-08",
       "type": "programming",
       "bloom": "apply",
-      "reference": "",
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int i, j, score;\n    double sum;\n\n    for (i = 1; i <= 6; i++) {\n        sum = 0;\n        for (j = 0; j < 5; j++) {\n            if (scanf(\"%d\", &score) != 1)\n                return 1;\n            sum = sum + score;\n        }\n        printf(\"No.%d:%.2f\\n\", i, sum / 5);\n    }\n\n    return 0;\n}\n",
       "testCases": [
         {
           "stdin": "80 85 90 78 92\n70 72 75 78 80\n60 60 60 60 60\n90 90 90 90 90\n75 80 85 90 95\n66 77 88 99 55",
@@ -566,7 +571,7 @@
         }
       ],
       "id": "c-ch05-pg-004",
-      "verified": false
+      "verified": true
     },
     {
       "id": "c-ch05-dbg-004",
@@ -589,7 +594,7 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, x, sum = 1;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) {\n        scanf(\"%d\", &x);\n        sum += x;\n    }\n    printf(\"sum=%d\\n\", sum);\n    printf(\"avg=%.2f\\n\", (double)(sum / n));\n    return 0;\n}",
       "bugs": [
-        "第 5 行 int n, i, x, sum = 1; 累加器初值写成了 1，应为 0。累加器的初值必须是运算的单位元：加法的单位元是 0，乘法的单位元才是 1。",
+        "第 4 行 int n, i, x, sum = 1; 累加器初值写成了 1，应为 0。累加器的初值必须是运算的单位元：加法的单位元是 0，乘法的单位元才是 1。",
         "第 11 行 printf(\"avg=%.2f\\n\", (double)(sum / n)); 的强制类型转换加错了位置：sum 和 n 都是 int，sum / n 先按整数除法把小数部分截断，再转成 double 也只是给一个已经丢掉小数的整数补上 .00。应写成 (double)sum / n，让除法在 double 上做。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, x, sum = 0;\n    scanf(\"%d\", &n);\n    for (i = 0; i < n; i++) {\n        scanf(\"%d\", &x);\n        sum += x;\n    }\n    printf(\"sum=%d\\n\", sum);\n    printf(\"avg=%.2f\\n\", (double)sum / n);\n    return 0;\n}",
@@ -633,8 +638,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j < i; j++)\n            printf(\"%d*%d=%d \", i, j, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
       "bugs": [
-        "第 9 行内层循环写成 for (j = 1; j < i; j++)，终止条件少算了一个：下三角口诀表第 i 行应该有 i 个算式（j 从 1 到 i），写成 j < i 只有 i-1 个，第 1 行甚至一个算式都不打印，变成空行。应为 for (j = 1; j <= i; j++)。",
-        "第 10 行 printf(\"%d*%d=%d \", i, j, i * j); 的前两个实参顺序颠倒，打印出来的是 2*1=2 而不是 1*2=2。格式串里第一个 %d 对应的是被乘数 j，应写成 printf(\"%d*%d=%d \", j, i, i * j);。"
+        "第 7 行内层循环写成 for (j = 1; j < i; j++)，终止条件少算了一个：下三角口诀表第 i 行应该有 i 个算式（j 从 1 到 i），写成 j < i 只有 i-1 个，第 1 行甚至一个算式都不打印，变成空行。应为 for (j = 1; j <= i; j++)。",
+        "第 8 行 printf(\"%d*%d=%d \", i, j, i * j); 的前两个实参顺序颠倒，打印出来的是 2*1=2 而不是 1*2=2。格式串里第一个 %d 对应的是被乘数 j，应写成 printf(\"%d*%d=%d \", j, i, i * j);。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= i; j++)\n            printf(\"%d*%d=%d \", j, i, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
       "testCases": [
@@ -677,8 +682,8 @@
       "generated_at": "2026-09-08",
       "code": "#include <stdio.h>\nint main(void)\n{\n    int m, i, s;\n    scanf(\"%d\", &m);\n    s = 0;\n    for (i = 1; i <= m; i++)\n        if (m % i == 0) s += i;\n    if (s = m)\n        printf(\"%d is a perfect number\\n\", m);\n    else\n        printf(\"%d is not a perfect number\\n\", m);\n    return 0;\n}",
       "bugs": [
-        "第 8 行 for (i = 1; i <= m; i++) 把 m 自身也当成了因子累加进去，s 至少会比正确值多出 m，任何数都不可能再等于 s。真因子要求 i < m，应写成 for (i = 1; i < m; i++)。",
-        "第 10 行 if (s = m) 用赋值号代替了相等比较 ==：条件表达式的值就是 m（只要 m 不为 0 就恒真），而且 s 还被改写成了 m。结果是任何输入都输出 is a perfect number。"
+        "第 7 行 for (i = 1; i <= m; i++) 把 m 自身也当成了因子累加进去，s 至少会比正确值多出 m，任何数都不可能再等于 s。真因子要求 i < m，应写成 for (i = 1; i < m; i++)。",
+        "第 9 行 if (s = m) 用赋值号代替了相等比较 ==：条件表达式的值就是 m（只要 m 不为 0 就恒真），而且 s 还被改写成了 m。结果是任何输入都输出 is a perfect number。"
       ],
       "fixed_code": "#include <stdio.h>\nint main(void)\n{\n    int m, i, s;\n    scanf(\"%d\", &m);\n    s = 0;\n    for (i = 1; i < m; i++)\n        if (m % i == 0) s += i;\n    if (s == m)\n        printf(\"%d is a perfect number\\n\", m);\n    else\n        printf(\"%d is not a perfect number\\n\", m);\n    return 0;\n}",
       "testCases": [
