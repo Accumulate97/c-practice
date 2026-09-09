@@ -21,6 +21,7 @@ import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient, runStdinTests, toProblemTestCases } from '../grading/stdin-run'
 import type { RunProgress } from '../grading/stdin-run'
 import { STATE_COLOR, STATE_LABEL, isInconclusive } from '../verdict-meta'
+import { recordBatchAttempt } from '../progress/store'
 
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
@@ -135,9 +136,12 @@ export function DebugRenderer({ problem }: Props) {
     const outcome = await runStdinTests(getClient(), code, cases, (p) => setProgress(p))
     setRunning(false)
     setProgress(null)
-    if (outcome.kind === 'done') setReport(outcome.report)
-    else setFatal(outcome.summary)
-  }, [cases, code, getClient, running])
+    if (outcome.kind === 'done') {
+      setReport(outcome.report)
+      // 模块 5：判分结论落盘（口径同 ProgrammingRenderer，未判定不写记录）
+      recordBatchAttempt(problem.id, outcome.report.results)
+    } else setFatal(outcome.summary)
+  }, [cases, code, getClient, problem.id, running])
 
   const reset = useCallback(() => {
     if (running) return

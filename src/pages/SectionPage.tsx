@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { PhasePlaceholder } from '../components/common/PhasePlaceholder'
 
 const MAP: Record<string, { name: string; phase: string; todo: string[] }> = {
@@ -34,7 +34,12 @@ const MAP: Record<string, { name: string; phase: string; todo: string[] }> = {
 
 export function SectionPage() {
   const { section = '' } = useParams()
-  const info = MAP[section] ?? { name: section, phase: '后续阶段', todo: [] }
+  // MAP 的键是路由顶层段（knowledge / viz / problems），而 :section 是它下面的子节。
+  // 顶层入口 /#/knowledge、/#/viz 没有 :section 参数，只认 section 会永远落到通用占位，
+  // 把写好的「阶段 6 / 阶段 7–9 + 待办清单」变成够不着的死代码。故用 pathname 首段定位板块。
+  const top = useLocation().pathname.replace(/^\/+/, '').split('/')[0] ?? ''
+  const key = MAP[top] ? top : section
+  const info = MAP[key] ?? { name: section || top, phase: '后续阶段', todo: [] }
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">{info.name}</h1>

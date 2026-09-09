@@ -7,6 +7,7 @@ import type { LoadedProblem } from '../modules/problems/data/loader'
 import { CodeReadingRenderer } from '../modules/problems/renderers/CodeReadingRenderer'
 import { ProgrammingRenderer } from '../modules/problems/renderers/ProgrammingRenderer'
 import { DebugRenderer } from '../modules/problems/renderers/DebugRenderer'
+import { difficultyStars, typeLabel } from '../modules/problems/type-meta'
 
 /**
  * 题目详情页（阶段 4 模块 1 最简版）。
@@ -23,20 +24,6 @@ type Phase =
   | { kind: 'error'; message: string }
   | { kind: 'ready'; data: LoadedProblem }
 
-const TYPE_LABEL: Record<string, string> = {
-  programming: '编程题',
-  code_reading: '程序阅读写结果',
-  code_completion: '程序填空',
-  debug: '程序改错',
-  single_choice: '选择题',
-  true_false: '判断题',
-  fill_blank: '填空题',
-  code_ordering: '程序排序',
-  complexity: '复杂度分析',
-  short_answer: '简答题',
-  matching: '匹配题',
-}
-
 /**
  * 程序填空渲染器按需加载：它拖着整套 CodeMirror 6
  * （@codemirror/state|view|language|commands|autocomplete + lang-cpp + @lezer/*），
@@ -51,11 +38,6 @@ const CodeCompletionRenderer = lazy(() =>
 
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
-
-function stars(difficulty: number): string {
-  const d = Math.min(5, Math.max(1, Math.round(difficulty) || 1))
-  return '★'.repeat(d) + '☆'.repeat(5 - d)
-}
 
 export function ProblemDetailPage() {
   const { id = '' } = useParams()
@@ -132,10 +114,10 @@ function Ready({ data }: { data: LoadedProblem }) {
       <header className="rounded-xl border p-4" style={panel}>
         <div className="flex flex-wrap items-center gap-2 text-xs" style={muted}>
           <span className="rounded-full border px-2 py-0.5" style={{ borderColor: 'var(--border)' }}>
-            {TYPE_LABEL[problem.type] ?? problem.type}
+            {typeLabel(problem.type)}
           </span>
           <span className="rounded-full border px-2 py-0.5" style={{ borderColor: 'var(--border)' }}>
-            难度 {stars(problem.difficulty)}
+            难度 {difficultyStars(problem.difficulty)}
           </span>
           <span
             className="rounded-full border px-2 py-0.5"
@@ -169,9 +151,11 @@ function Ready({ data }: { data: LoadedProblem }) {
             <p className="text-sm whitespace-pre-wrap">{problem.stem}</p>
           </section>
           <PhasePlaceholder
-            phase="阶段 4 模块 5"
+            phase="阶段 5"
             todo={[
-              '模块 5：题目列表页（章节 / 难度 / 题型筛选）',
+              '七个辅助题型的作答与判分：选择题 / 判断题 / 填空题 / 程序排序 / 复杂度分析 / 简答题 / 匹配题',
+              '错题本、收藏、按章节统计与进度导出导入',
+              '当前可回列表页（✍️ 在线刷题）按题型筛选，四类主力题型已能在线判分',
             ]}
           />
         </>

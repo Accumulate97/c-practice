@@ -21,6 +21,7 @@ import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient, runStdinTests, toProblemTestCases } from '../grading/stdin-run'
 import type { RunProgress } from '../grading/stdin-run'
 import { STATE_COLOR, STATE_LABEL, isInconclusive } from '../verdict-meta'
+import { recordBatchAttempt } from '../progress/store'
 
 /**
  * 48 道编程题的 reference 全是空串、也没有 code_starter 字段（提取阶段的既成事实，
@@ -102,9 +103,12 @@ export function ProgrammingRenderer({ problem }: Props) {
     const outcome = await runStdinTests(getClient(), code, cases, (p) => setProgress(p))
     setRunning(false)
     setProgress(null)
-    if (outcome.kind === 'done') setReport(outcome.report)
-    else setFatal(outcome.summary)
-  }, [running, cases, code, getClient])
+    if (outcome.kind === 'done') {
+      setReport(outcome.report)
+      // 模块 5：判分结论落盘（全绿→已通过；确证失败→尝试过未通过；整批未判定→一个字节都不写）
+      recordBatchAttempt(problem.id, outcome.report.results)
+    } else setFatal(outcome.summary)
+  }, [running, cases, code, getClient, problem.id])
 
   const reset = useCallback(() => {
     setCode(initialCode(problem))

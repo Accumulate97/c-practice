@@ -21,6 +21,7 @@ import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient } from '../grading/stdin-run'
 import { gradeExact, readingTarget, runReadingSelfCheck } from '../grading/exact'
 import type { ExactGrade, SelfCheckOutcome } from '../grading/exact'
+import { recordAttempt } from '../progress/store'
 
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
@@ -79,8 +80,11 @@ export function CodeReadingRenderer({ problem }: Props) {
 
   const submit = useCallback(() => {
     if (!gradeable) return
-    setGrade(gradeExact(answer, expected))
-  }, [answer, expected, gradeable])
+    const next = gradeExact(answer, expected)
+    setGrade(next)
+    // 模块 5：本地归一化比对（无网络）也算一次有结论的判分，落盘后列表页才有三色状态
+    recordAttempt(problem.id, next.state === 'accepted')
+  }, [answer, expected, gradeable, problem.id])
 
   const reset = useCallback(() => {
     setAnswer('')

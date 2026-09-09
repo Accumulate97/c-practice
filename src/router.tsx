@@ -17,7 +17,19 @@ export const router = createHashRouter([
     element: <AppShell />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'problems', element: <SectionPage /> },
+      // 阶段 4 模块 5：刷题入口 /#/problems（原先指向 SectionPage 占位）。
+      // 列表页只 fetch 索引（518 条 / 190 KB），本体不含判分层与 CodeMirror，但仍走路由级 lazy：
+      // 与详情页同一口径 —— 首页不为刷题页付一分钱体积。
+      {
+        path: 'problems',
+        lazy: async () => {
+          const mod = await import('./pages/ProblemListPage')
+          return { Component: mod.ProblemListPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载题库索引…</p>
+        ),
+      },
       // 阶段 4 题目详情页。用 problems/p/:id 而不是 problems/:id：后者会与下面的
       // problems/:section 同层歧义（React Router 靠静态段优先级能分辨，但显式加 p 更好读）
       //

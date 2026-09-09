@@ -35,6 +35,7 @@ import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient, runStdinTests, toProblemTestCases } from '../grading/stdin-run'
 import type { RunProgress } from '../grading/stdin-run'
 import { STATE_COLOR, STATE_LABEL, isInconclusive } from '../verdict-meta'
+import { recordBatchAttempt } from '../progress/store'
 import { assembleCompletion, completionTarget, gradeBlanks } from '../grading/blank-match'
 import type { BlankGrade, BlankMatch } from '../grading/blank-match'
 
@@ -150,9 +151,12 @@ export function CodeCompletionRenderer({ problem }: Props) {
     const outcome = await runStdinTests(getClient(), assembled, cases, (p) => setProgress(p))
     setRunning(false)
     setProgress(null)
-    if (outcome.kind === 'done') setReport(outcome.report)
-    else setFatal(outcome.summary)
-  }, [running, blocked, values, target, cases, getClient])
+    if (outcome.kind === 'done') {
+      setReport(outcome.report)
+      // 模块 5：判分结论落盘。空位没填 / 没有测试用例时上面已 return，不产生「未判定」记录
+      recordBatchAttempt(problem.id, outcome.report.results)
+    } else setFatal(outcome.summary)
+  }, [running, blocked, values, target, cases, getClient, problem.id])
 
   const reset = useCallback(() => {
     setValues({})
