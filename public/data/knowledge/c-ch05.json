@@ -1,0 +1,1338 @@
+{
+  "category": "c",
+  "chapter": "第5章 循环结构",
+  "generated_at": "2026-09-09",
+  "count": 30,
+  "cards": [
+    {
+      "id": "c-ch05-01",
+      "title": "循环三要素与循环结构",
+      "section": "5.1 为什么需要循环控制",
+      "summary": "循环由「控制变量初始化、循环继续条件、控制变量更新」三要素构成，缺一就会出现不执行、多执行或永不结束。",
+      "content": "### 语法速查\n```c\n/* 三要素骨架：任何循环都能拆成这三行 */\ni = 1;                 /* 1 初始化：给控制变量一个起点   */\nwhile (i <= 100) {     /* 2 条件：为真则继续，为假则退出 */\n    sum = sum + i;     /*    循环体：重复做的事          */\n    i = i + 1;         /* 3 更新：让条件终有一天为假     */\n}\n```\n\n### 执行流程\n初始化 → 判条件 →（真）执行循环体 → 更新 → 回到判条件；（假）跳出循环，执行循环之后的语句。\n\n循环次数由「初值、终值、步长」共同决定：i 从 1 到 100 步长 1 是 100 次，步长 2 就是 50 次。\n条件第一次就为假时，while 与 for 的循环体一次也不执行。",
+      "keyPoints": [
+        "三要素：初始化（起点）、循环条件（是否继续）、更新（向终点推进）",
+        "执行顺序是「先判条件，后执行循环体」，条件为假则循环体零次执行",
+        "循环次数 = f(初值, 终值, 步长)，改动任一项都会改变次数",
+        "循环体必须是「能推动条件走向为假」的操作，否则就是死循环"
+      ],
+      "pitfalls": [
+        "忘记写更新语句（如漏掉 i++），条件永远为真 → 死循环",
+        "条件方向写反（i <= 100 写成 i >= 100）→ 一次不执行或次数全错",
+        "把更新语句写在循环体外面，循环体内状态永不改变"
+      ],
+      "examples": [
+        {
+          "title": "三要素齐备：求 1+2+…+100",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sum = 0;\n    for (i = 1; i <= 100; i++) {   /* 初始化 i=1；条件 i<=100；更新 i++ */\n        sum = sum + i;             /* 循环体：累加 */\n    }\n    printf(\"sum=%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sum=5050",
+          "note": "三要素分别写在 for 的三个位置，一眼可核对：起点 1、终点 100、步长 1，共 100 次。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-dbg-004",
+        "c-ch05-cr-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-02",
+        "c-ch05-05",
+        "c-ch05-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 1
+    },
+    {
+      "id": "c-ch05-02",
+      "title": "用 while 语句实现循环",
+      "section": "5.2 用while语句实现循环",
+      "summary": "while 是「先判断、后执行」的当型循环：条件为真就执行循环体，为假立即结束，循环体可能一次都不执行。",
+      "content": "### 语法速查\n```c\nwhile (表达式)  语句            /* 单语句可省略花括号 */\nwhile (表达式) { 语句序列 }      /* 推荐总是加花括号 */\n```\n\n### 语义\n1. 计算「表达式」，值为非 0（真）→ 执行循环体，然后回到第 1 步；\n2. 值为 0（假）→ 结束循环，执行 while 之后的语句。\n\n关键：判断在循环体之前，所以初值就让条件为假时，循环体执行 0 次。\n\n### 常见写法：条件里直接放输入函数\n```c\nwhile (scanf(\"%d\", &x) == 1) {   /* 读不到整数就退出 */\n    /* ... */\n}\n```",
+      "keyPoints": [
+        "while 是当型循环：先判条件，条件为真才执行循环体",
+        "条件为假时循环体执行 0 次，这是它与 do…while 的根本区别",
+        "循环体内必须有让条件趋向为假的语句，否则死循环",
+        "while (1) 是刻意的无限循环，需靠 break 退出"
+      ],
+      "pitfalls": [
+        "写成 while (x = 1) —— 赋值表达式恒为 1，变成死循环（本意通常是 x == 1）",
+        "循环体有多条语句却漏掉花括号，只有第一条属于循环体",
+        "while 后面多写分号 while (i < 10); 循环体变成空语句，i 永不更新"
+      ],
+      "examples": [
+        {
+          "title": "while 求不超过 1000 的最大的 2 的整数次幂",
+          "code": "#include <stdio.h>\nint main(void) {\n    int p = 1;\n    while (p * 2 <= 1000) {   /* 只要再乘 2 不越界就继续 */\n        p = p * 2;\n    }\n    printf(\"%d\\n\", p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "512",
+          "note": "条件写成 p*2 <= 1000 而不是 p <= 1000，才能保证退出时 p 是「不超过 1000 的最大值」。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-016",
+        "c-ch05-cr-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-01",
+        "c-ch05-03",
+        "c-ch05-04"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 2
+    },
+    {
+      "id": "c-ch05-03",
+      "title": "用 do…while 语句实现循环",
+      "section": "5.3 用do…while语句实现循环",
+      "summary": "do…while 是「先执行、后判断」的直到型循环：循环体至少执行一次，直到条件为假才结束。",
+      "content": "### 语法速查\n```c\ndo {\n    语句序列\n} while (表达式);      /* 注意：这里的分号不能省 */\n```\n\n### 语义\n先无条件执行一次循环体，再计算表达式：非 0 → 回到循环体继续；0 → 结束循环。\n\n### 什么时候非用 do…while 不可\n「至少要先做一次才知道要不要继续」的场景：\n- 求整数的位数（0 也是 1 位，必须先除一次）\n- 先读入一个数据再判断它是不是结束标志\n- 菜单程序：先显示菜单再读选择\n\n### 与 while 的等价改写\n```c\ndo { B } while (C);    等价于    B; while (C) { B; }\n```",
+      "keyPoints": [
+        "do…while 先执行循环体再判条件，循环体至少执行 1 次",
+        "while (表达式) 后面的分号是语法的一部分，漏写会编译报错",
+        "适合「至少做一次」的任务：数位分解、哨兵输入、菜单循环",
+        "任何 do…while 都能改写成 while（把循环体抄一份到前面），反之不总成立"
+      ],
+      "pitfalls": [
+        "写成 do {…} while (表达式) 漏掉末尾分号 → 编译错误",
+        "误以为 do…while 与 while 次数相同：条件初值为假时二者相差 1 次",
+        "循环体内忘记更新条件涉及的变量，同样会死循环"
+      ],
+      "examples": [
+        {
+          "title": "do…while 统计整数的位数（n=0 时应输出 1）",
+          "code": "#include <stdio.h>\nint main(void) {\n    int n = 0, k = 0;\n    do {                 /* 先做一次，所以 n=0 也能得到 1 位 */\n        k++;\n        n = n / 10;\n    } while (n != 0);\n    printf(\"%d\\n\", k);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1",
+          "note": "若改用 while (n != 0)，n=0 时循环体一次不执行，k 会错成 0 —— 这正是 do…while 的用武之地。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-cr-006",
+        "c-ch05-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-02",
+        "c-ch05-04",
+        "c-ch05-30"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 3
+    },
+    {
+      "id": "c-ch05-04",
+      "title": "while 与 do…while 的区别",
+      "section": "5.6 几种循环的比较",
+      "summary": "两者唯一区别是判条件的时机：while 先判后做（可能 0 次），do…while 先做后判（至少 1 次）。",
+      "content": "### 语法速查\n```c\nwhile (C) { B }         /* 判 → 做 → 判 → 做 … */\ndo { B } while (C);     /* 做 → 判 → 做 → 判 … */\n```\n\n### 次数差恒为 0 或 1\n- 第一次判条件就为真 → 两者次数完全相同；\n- 第一次判条件就为假 → while 执行 0 次，do…while 执行 1 次。\n\n考试里「下面程序段的运行结果」常考这一点：把初值设在条件之外，看差的那一次。\n\n### 选择原则\n条件可能在进入前就不成立、且此时不该做任何事 → 用 while；\n必须至少做一次（如先取数据再判断结束标志）→ 用 do…while。",
+      "keyPoints": [
+        "while 先判后做，循环体可执行 0 次；do…while 先做后判，至少执行 1 次",
+        "当首次条件为真时两者执行次数相同，差异只在「首次条件为假」这一种情况",
+        "do…while 末尾的分号不可省，while 语句末尾不加分号",
+        "解题时先问「循环体允许执行 0 次吗」，答案决定选哪个"
+      ],
+      "pitfalls": [
+        "把 do…while 当 while 用，多执行了一次循环体，累加结果偏大",
+        "把 while 当 do…while 用，n=0 之类的边界情况一次都不执行，结果偏小",
+        "do {…} while (x) 少写分号导致编译失败"
+      ],
+      "examples": [
+        {
+          "title": "同一个初值让两种循环次数相差 1",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i = 10, a = 0, b = 0;\n    while (i < 5) { a++; i++; }     /* 10 < 5 为假 → 0 次 */\n    i = 10;\n    do { b++; i++; } while (i < 5); /* 先做一次 → 1 次 */\n    printf(\"while=%d do-while=%d\\n\", a, b);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "while=0 do-while=1",
+          "note": "初值 i=10 已使条件 i<5 为假，这一组输出把「判条件时机」的差别暴露得最清楚。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-004",
+        "c-ch05-cr-005",
+        "c-ch05-cr-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-02",
+        "c-ch05-03",
+        "c-ch05-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 4
+    },
+    {
+      "id": "c-ch05-05",
+      "title": "用 for 语句实现循环",
+      "section": "5.4 用for语句实现循环",
+      "summary": "for 把初始化、条件、更新集中在一行，是次数已知时最常用的循环；执行顺序为「初始化一次 → 判条件 → 循环体 → 更新」。",
+      "content": "### 语法速查\n```c\nfor (表达式1; 表达式2; 表达式3)  语句\n      初始化      条件      更新\n```\n\n### 执行顺序（务必背下来）\n1. 表达式1（整个循环只执行一次）\n2. 表达式2：非 0 → 执行循环体；0 → 结束循环\n3. 表达式3（更新）\n4. 回到第 2 步\n\n### 要点\n- 表达式1 只跑一次，即使循环体里改了控制变量也不会重跑；\n- 表达式2 省略即视为真；表达式3 省略则必须在循环体内自己更新；\n- 两个分号永远存在，for (;;) 就是无限循环。",
+      "keyPoints": [
+        "for(初始化; 条件; 更新) 三处写在一行，适合循环次数已知的场景",
+        "执行顺序：初始化只一次 → 判条件 → 循环体 → 更新 → 再判条件",
+        "更新表达式在循环体之后、下一次判条件之前执行",
+        "循环结束时控制变量的值是「第一个使条件为假的值」，常被考到"
+      ],
+      "pitfalls": [
+        "以为表达式1 每轮都执行 —— 它只执行一次",
+        "在 for 后多写分号 for (i=0;i<n;i++); 使循环体变空语句",
+        "循环体内又修改控制变量 i，与表达式3 的更新叠加，次数难以预测"
+      ],
+      "examples": [
+        {
+          "title": "for 的执行轨迹与退出时 i 的值",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i;\n    for (i = 0; i < 3; i++) {\n        printf(\"%d \", i);\n    }\n    printf(\"| i=%d\\n\", i);   /* 退出时 i 是第一个让条件为假的值 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1 2 | i=3",
+          "note": "循环体打印 0、1、2；第三次更新后 i=3，条件 3<3 为假退出，所以循环外 i 等于 3。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-012",
+        "c-ch05-cr-013",
+        "c-ch05-dbg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-01",
+        "c-ch05-06",
+        "c-ch05-10"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 5
+    },
+    {
+      "id": "c-ch05-06",
+      "title": "for 语句的省略形式与无限循环",
+      "section": "5.4 用for语句实现循环",
+      "summary": "for 的三个表达式都可省略（分号必须保留）：省表达式2 即条件恒真，配合 break 可写出结构清晰的无限循环。",
+      "content": "### 语法速查\n```c\nfor (i = 0; i < n; i++) { }      /* 完整形式                 */\nfor (i = 0; ; i++)        { }      /* 省条件：恒真，需 break   */\nfor (; i < n; i++)        { }      /* 省初始化：i 已在外面赋值 */\nfor (; i < n; )           { i++; } /* 省更新：在循环体里更新   */\nfor (;;)                  { }      /* 全省：等价 while(1)      */\n```\n\n### 三种「无限循环」写法完全等价\n```c\nfor (;;) { }     while (1) { }     do { } while (1);\n```\n\n### 使用建议\n无限循环一定要有明确出口：break、return 或 exit()。\n「不知道要循环多少次，但知道什么时候该停」的问题（找第一个满足条件的数、哨兵输入）\n用 for (;;) 加 if 判断 break，比硬凑一个 while 条件更直白。",
+      "keyPoints": [
+        "for 的三个表达式都可省略，但两个分号必须保留",
+        "省略表达式2（条件）等价于条件恒为真，形成无限循环",
+        "for(;;)、while(1)、do…while(1) 三者语义等价",
+        "无限循环必须靠 break / return / exit 提供出口，否则程序挂死"
+      ],
+      "pitfalls": [
+        "省略条件又没写 break，程序看起来「卡住了」",
+        "写成 for (i = 0, i < n, i++) —— 用逗号代替分号，语法错误",
+        "省略初始化但变量未赋初值，读到的是不确定的垃圾值"
+      ],
+      "examples": [
+        {
+          "title": "for(;;) + break：找大于 100 的第一个 7 的倍数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int n = 100;\n    for (;;) {                 /* 条件省略 → 恒真 */\n        n = n + 1;\n        if (n % 7 == 0) break; /* 唯一出口 */\n    }\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "105",
+          "note": "循环次数事先不知道，只知道停止条件，这正是 for(;;) + break 的典型用途。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-014",
+        "c-ch05-cr-023",
+        "c-ch05-cr-024"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-05",
+        "c-ch05-14",
+        "c-ch05-19"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 6
+    },
+    {
+      "id": "c-ch05-07",
+      "title": "逗号表达式与 for 的双变量控制",
+      "section": "5.4 用for语句实现循环",
+      "summary": "逗号表达式从左到右求值、整体取最右边表达式的值，常用于 for 中同时控制两个变量（如两端向中间靠拢）。",
+      "content": "### 语法速查\n```c\n表达式1, 表达式2, …, 表达式n     /* 值 = 表达式n 的值，优先级最低 */\nfor (i = 0, j = 10; i < j; i++, j--) { }\n```\n\n### 两条规则\n1. 求值顺序：从左到右依次求值，前面的副作用先完成；\n2. 整体取值：只取最右边那个表达式的值。\n\n所以 x = (1, 2, 3) 使 x 等于 3；if (a++, b > 0) 判的是 b > 0，但 a 已被加过。\n\n### 与「逗号分隔符」区分\nint i, j; 与 f(a, b) 里的逗号是分隔符，不是逗号运算符；\n只有出现在表达式位置上的逗号才是逗号表达式。\n\n### for 中的典型用法\n两端夹逼（i 从头、j 从尾向中间走）、同时维护计数与累加值。",
+      "keyPoints": [
+        "逗号表达式从左到右求值，整体的值等于最右边表达式的值",
+        "逗号运算符优先级最低，比赋值还低，必要时要用括号",
+        "for 的表达式1 与表达式3 可以是逗号表达式，从而同时控制两个变量",
+        "声明与函数参数里的逗号是分隔符，不是逗号运算符"
+      ],
+      "pitfalls": [
+        "误以为逗号表达式取最左边的值，把 x = (1, 2) 当成 x=1",
+        "把 for 的条件位置写成逗号表达式，条件被换成了别的值",
+        "忘记逗号表达式优先级最低，写出 a = b, c; 实际是 (a=b), c;"
+      ],
+      "examples": [
+        {
+          "title": "双变量夹逼：i 从头、j 从尾同时移动",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, j, s = 0;\n    for (i = 0, j = 10; i < j; i++, j--) {\n        s = s + i * j;\n    }\n    printf(\"s=%d i=%d j=%d\\n\", s, i, j);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "s=70 i=5 j=5",
+          "note": "每轮同时 i++、j--；当 i=j=5 时条件 5<5 为假退出，累加了 0*10+1*9+2*8+3*7+4*6=70。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-018",
+        "c-ch05-cr-019"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-05",
+        "c-ch05-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 7
+    },
+    {
+      "id": "c-ch05-08",
+      "title": "循环控制变量的设计与步长",
+      "section": "5.1 为什么需要循环控制",
+      "summary": "循环控制变量决定循环次数：初值、终值、步长三者组合出次数，步长可为负、可大于 1，也可在循环体内被修改。",
+      "content": "### 语法速查\n```c\nfor (i = a; i <= b; i += k)  /* 次数 = 满足 a + t*k <= b 的 t 的个数 */\nfor (i = b; i >= a; i -= k)  /* 递减：条件与更新方向必须一致         */\n```\n\n### 次数的算法\n递增且步长为 k、条件为 i <= b 时，次数 = (b - a) / k + 1（整数除法向下取整）；\n条件改成 i < b 时，次数 = 向上取整的 (b - a) / k。\n递减循环只要把符号反过来，最容易错的是「条件写 <=、更新却是 i--」这种方向不匹配。\n\n### 循环体内修改控制变量\n合法但危险：for (i = 1; i <= 10; i++) 里再写 i += 2，实际步长是 3。\n教材题常这样出，读题时要把两处更新叠加起来算。\n\n### 设计建议\n控制变量只承担一个职责（计数或下标），不要在循环体里再改它。",
+      "keyPoints": [
+        "循环次数由初值、终值（条件）、步长共同决定，改任一项都会改次数",
+        "步长可以为负数或大于 1，条件方向必须与步长方向匹配",
+        "循环体内再次修改控制变量会与更新表达式叠加，实际步长变大",
+        "循环退出后控制变量保留「第一个使条件为假的值」，可用于后续判断"
+      ],
+      "pitfalls": [
+        "递减循环写成 for (i = 10; i <= 1; i--)，条件一开始就为假，0 次",
+        "条件用 <= 而步长为 2，最后一次可能跳过终值，次数比预想少 1",
+        "在循环体内 i++ 又在 for 里 i++，实际步长变成 2 却以为是 1"
+      ],
+      "examples": [
+        {
+          "title": "负步长：i 从 10 每次减 3",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sum = 0;\n    for (i = 10; i >= 1; i -= 3) {\n        sum = sum + i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "22",
+          "note": "i 依次取 10、7、4、1，和为 22；退出时 i=-2。条件是 i>=1，与负步长方向一致。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-012",
+        "c-ch05-cr-010",
+        "c-ch05-cr-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-05",
+        "c-ch05-10",
+        "c-ch05-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 8
+    },
+    {
+      "id": "c-ch05-09",
+      "title": "三种循环语句的比较与选择",
+      "section": "5.6 几种循环的比较",
+      "summary": "while、do…while、for 功能等价可互相改写，区别在判条件时机与三要素的书写位置，次数已知优先用 for。",
+      "content": "### 语法速查\n```c\nwhile (C)       { B }             /* 先判后做，三要素分散     */\ndo              { B } while (C);  /* 先做后判，至少 1 次      */\nfor (E1; C; E3) { B }             /* 三要素集中一行           */\n```\n\n### 选择口诀\n- 次数已知、有明确计数变量 → for\n- 次数未知、靠条件退出、允许 0 次 → while\n- 至少要做一次才知道要不要继续 → do…while\n\n### 互相改写\n```c\nfor (E1; C; E3) B   等价于   E1; while (C) { B; E3; }\nwhile (C) B         等价于   if (C) { do { B } while (C); }\n```",
+      "tables": [
+        {
+          "caption": "三种循环语句对比",
+          "header": [
+            "对比项",
+            "while",
+            "do…while",
+            "for"
+          ],
+          "rows": [
+            [
+              "判条件时机",
+              "循环体之前",
+              "循环体之后",
+              "循环体之前"
+            ],
+            [
+              "最少执行次数",
+              "0 次",
+              "1 次",
+              "0 次"
+            ],
+            [
+              "三要素位置",
+              "分散（初值、条件、更新写在三处）",
+              "分散",
+              "集中在括号内"
+            ],
+            [
+              "末尾分号",
+              "不加分号",
+              "while(…) 后必须加分号",
+              "不加分号"
+            ],
+            [
+              "典型场景",
+              "条件驱动、次数未知",
+              "数位分解、菜单、哨兵输入",
+              "计数循环、遍历数组"
+            ]
+          ]
+        }
+      ],
+      "keyPoints": [
+        "三种循环在功能上等价，任何 for/while 都能改写成 do…while（需外加一次判断）",
+        "区别只有两点：判条件的时机、三要素的书写位置",
+        "次数已知选 for，条件驱动选 while，至少一次选 do…while",
+        "do…while 是唯一在 while 后必须写分号的循环语句"
+      ],
+      "pitfalls": [
+        "改写 while → do…while 时忘记先判一次，条件初值为假时会多执行一次",
+        "把 for 的更新表达式搬进循环体却又保留表达式3，步长翻倍",
+        "三种循环都可能出现死循环，改写不能修复「缺少更新」这个根本问题"
+      ],
+      "examples": [
+        {
+          "title": "同一任务用三种循环实现，结果必须一致",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i = 1, a = 0, b = 0, c = 0;\n    while (i <= 5) { a += i; i++; }\n    i = 1;\n    do { b += i; i++; } while (i <= 5);\n    for (i = 1; i <= 5; i++) c += i;\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "15 15 15",
+          "note": "首次条件为真时三种循环次数完全相同，结果都是 1+2+3+4+5=15。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-006",
+        "c-ch05-cr-007",
+        "c-ch05-cr-017"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-02",
+        "c-ch05-03",
+        "c-ch05-05"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 9
+    },
+    {
+      "id": "c-ch05-10",
+      "title": "循环体执行次数的计算",
+      "section": "5.6 几种循环的比较",
+      "summary": "次数由初值、终值、步长与比较符（小于还是小于等于）共同决定，可用「最后一个合法取值」倒推，或直接模拟几轮。",
+      "content": "### 语法速查\n```c\nfor (i = a; i <= b; i++)   /* b - a + 1 次 */\nfor (i = a; i <  b; i++)   /* b - a     次 */\nfor (i = a; i <= b; i+=k)  /* (b - a) / k + 1 次（整除向下取整） */\nfor (i = b; i >= a; i--)   /* b - a + 1 次 */\n```\n\n### 三步法\n1. 写出控制变量的取值序列（a, a+k, a+2k, …）；\n2. 找出最后一个仍使条件为真的值；\n3. 数个数。\n\n### 易被忽略的两种情况\n- 循环体内也改了控制变量 → 实际步长 = 表达式3 的步长 + 体内的增量；\n- 有 break 或 continue → break 会截断次数，continue 不减次数只跳过本轮剩余语句。\n\n数据规模小（少于 20 次）时，直接在草稿上逐轮模拟比套公式更可靠。",
+      "keyPoints": [
+        "递增循环次数：条件是 <= 时为 b-a+1，是 < 时为 b-a",
+        "步长为 k 时用 (b-a)/k 整除后再加 1（对应 <= 条件）",
+        "循环体内修改控制变量时，实际步长要与表达式3 叠加计算",
+        "break 减少实际执行次数，continue 不减少次数只跳过本轮剩余语句"
+      ],
+      "pitfalls": [
+        "把 < 当成 <= 多算一次，或反之少算一次（off-by-one）",
+        "忘记循环体内的 i += 2，仍按 for 的 i++ 计算次数",
+        "初值已使条件为假时仍套公式，实际是 0 次"
+      ],
+      "examples": [
+        {
+          "title": "步长为 3 时不同 n 的执行次数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int n, i, k;\n    for (n = 7; n <= 10; n++) {\n        k = 0;\n        for (i = 0; i < n; i += 3) k++;\n        printf(\"n=%d k=%d\\n\", n, k);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "n=7 k=3\nn=8 k=3\nn=9 k=3\nn=10 k=4",
+          "note": "i 取 0,3,6,9…；n=9 时 i=9 不满足 9<9，所以仍是 3 次 —— 条件是 < 时次数为 n/3 向上取整。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-cr-012",
+        "c-ch05-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-05",
+        "c-ch05-08",
+        "c-ch05-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 10
+    },
+    {
+      "id": "c-ch05-11",
+      "title": "循环的嵌套",
+      "section": "5.5 循环的嵌套",
+      "summary": "一个循环体内再包含完整的循环叫嵌套；外层转一圈，内层要从头到尾跑完一遍，总次数是各层次数的乘积或求和。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= m; i++) {        /* 外层：m 圈 */\n    for (j = 1; j <= n; j++) {    /* 内层：每圈都跑 n 次 */\n        /* 共执行 m * n 次 */\n    }\n}\n```\n\n### 三条规则\n1. 内层循环必须**完整地**写在外层循环体之内，不能交叉；\n2. 外层每执行一次，内层都要从初值重新跑到条件为假；\n3. 内外层必须用**不同的**控制变量（都用 i 会互相干扰）。\n\n### 次数怎么算\n- 内层次数与外层无关 → 总次数 = 外层次数 × 内层次数；\n- 内层条件含外层变量（如 j <= i）→ 总次数 = 各圈次数之和，例如 1+2+…+m = m(m+1)/2。\n\n三种循环可以任意互相嵌套，for 嵌 while、while 嵌 do…while 都合法。",
+      "keyPoints": [
+        "嵌套循环中，外层转一圈，内层完整执行一遍",
+        "内外层次数独立时总次数为乘积，内层条件依赖外层变量时总次数为求和",
+        "内外层必须使用不同的控制变量，否则内层会破坏外层的计数",
+        "for、while、do…while 可以任意组合嵌套，层数没有语法限制"
+      ],
+      "pitfalls": [
+        "内外层都用 i，内层结束时 i 已被改写，外层次数全乱",
+        "把 j 的初始化写到内层循环之外，第二圈开始时 j 已越界，内层不再执行",
+        "内层循环体漏花括号，导致本该在内层的语句跑到外层去执行"
+      ],
+      "examples": [
+        {
+          "title": "内层条件依赖外层变量：总次数为 1+2+3",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, j, k = 0;\n    for (i = 1; i <= 3; i++) {\n        for (j = 1; j <= i; j++) {   /* 内层次数随 i 变化 */\n            k++;\n        }\n    }\n    printf(\"k=%d\\n\", k);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "k=6",
+          "note": "i=1 时内层 1 次，i=2 时 2 次，i=3 时 3 次，合计 6 次，即 3*4/2。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-018",
+        "c-ch05-cr-019",
+        "c-ch05-dbg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-10",
+        "c-ch05-12",
+        "c-ch05-17"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 11
+    },
+    {
+      "id": "c-ch05-12",
+      "title": "用嵌套循环打印图形",
+      "section": "5.8 循环程序举例",
+      "summary": "打印图形的通用套路是「外层控制行、内层控制列」，每行再由「空格段 + 字符段」两个并列内层循环拼成。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= n; i++) {              /* 行 */\n    for (j = 1; j <= n - i; j++) printf(\" \");      /* 前导空格 */\n    for (j = 1; j <= 2 * i - 1; j++) printf(\"*\");  /* 星号 */\n    printf(\"\\n\");                                    /* 换行 */\n}\n```\n\n### 解题四步\n1. 数清总行数 n，外层循环跑 n 圈；\n2. 对第 i 行找出「空格个数」与「字符个数」关于 i 的表达式；\n3. 用两个并列的内层循环分别打印；\n4. 行末 printf(\"\\n\") 换行。\n\n### 常见表达式（n 行金字塔）\n- 空格数 = n - i；星号数 = 2i - 1\n- 倒三角：空格数 = i - 1；星号数 = 2(n - i) + 1\n- 矩形：两个都是常数 n",
+      "keyPoints": [
+        "外层循环控制行号 i，内层循环控制该行的列",
+        "每行通常拆成「空格段」与「字符段」两个并列的内层循环",
+        "关键是把空格数与字符数写成 i 的表达式",
+        "每行结束必须输出换行符，否则所有字符挤在一行"
+      ],
+      "pitfalls": [
+        "换行语句写进了内层循环，导致每个字符都换行",
+        "空格段与字符段的边界算错，图形歪斜（差一个空格）",
+        "内层控制变量 j 在两个并列循环之间没有重新从初值开始（把 j 的定义放在循环外且未复位）"
+      ],
+      "examples": [
+        {
+          "title": "4 行星号金字塔",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, j;\n    for (i = 1; i <= 4; i++) {\n        for (j = 1; j <= 4 - i; j++) printf(\" \");\n        for (j = 1; j <= 2 * i - 1; j++) printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "   *\n  ***\n *****\n*******",
+          "note": "第 i 行有 4-i 个空格、2i-1 个星号；两个内层循环并列，换行在最外层。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-019",
+        "c-ch05-dbg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-11",
+        "c-ch05-13"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 12
+    },
+    {
+      "id": "c-ch05-13",
+      "title": "嵌套循环应用：乘法口诀表",
+      "section": "5.8 循环程序举例",
+      "summary": "下三角口诀表是嵌套循环的经典应用：外层控制行 i，内层 j 从 1 到 i，输出格式用 printf 的宽度控制对齐。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= 9; i++) {                 /* 行：被乘数 */\n    for (j = 1; j <= i; j++)               /* 列：j 不超过 i 才是下三角 */\n        printf(\"%d*%d=%-2d \", j, i, j * i);\n    printf(\"\\n\");\n}\n```\n\n### 三个考点\n1. **内层上界是 i 而不是 9** —— 这一条决定了「下三角」形状；\n2. **%-2d** 表示左对齐、至少占 2 列，个位数后补一个空格，使各列对齐；\n3. 换行只在外层做，一行打印完 i 个算式。\n\n### 变式\n- 上三角：for (j = i; j <= 9; j++)\n- 矩形（完整九九表）：for (j = 1; j <= 9; j++)\n- 每行前加缩进：先跑一个打印空格的循环",
+      "keyPoints": [
+        "下三角口诀表的内层条件是 j <= i，外层条件是 i <= 9",
+        "printf 的 %-2d 实现左对齐占两列，是表格对齐的关键",
+        "换行符 printf(\"\\n\") 必须写在外层循环体内、内层循环之外",
+        "改变内层的起止范围即可得到上三角、矩形等变体"
+      ],
+      "pitfalls": [
+        "内层写成 j <= 9，输出变成 9×9 的完整矩形而不是下三角",
+        "不用宽度修饰（%-2d），个位与两位数的积混在一起，列不对齐",
+        "把 printf(\"\\n\") 写进内层循环，每个算式各占一行"
+      ],
+      "examples": [
+        {
+          "title": "下三角口诀表（前 4 行）",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, j;\n    for (i = 1; i <= 4; i++) {\n        for (j = 1; j <= i; j++) printf(\"%d*%d=%d \", j, i, j * i);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1*1=1 \n1*2=2 2*2=4 \n1*3=3 2*3=6 3*3=9 \n1*4=4 2*4=8 3*4=12 4*4=16 ",
+          "note": "第 i 行有 i 个算式；把 %d 换成 %-2d 可让列严格对齐，行尾仍有一个空格。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-dbg-005",
+        "c-ch05-cr-018"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-11",
+        "c-ch05-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 13
+    },
+    {
+      "id": "c-ch05-14",
+      "title": "用 break 语句提前终止循环",
+      "section": "5.7.1 用break语句提前终止循环",
+      "summary": "break 使程序立即跳出「最近的一层」switch 或循环，其后的循环体语句与剩余轮次都不再执行。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= n; i++) {\n    if (找到目标) break;   /* 立刻结束整个循环，i 保持当前值 */\n    /* ... */\n}\n```\n\n### 语义要点\n- break 只能用在 **循环语句** 和 **switch** 中，用在别处是语法错误；\n- 它跳出的是**包含它的那一层**，外层循环继续；\n- 跳出后控制变量的值是「break 那一刻的值」，不会再执行更新表达式；\n- 常见用途：查到即停（查找）、发现非法输入即停、把「条件复杂」的循环写成无限循环 + break。\n\n### 与 goto 的对比\n多层循环一次性跳出，标准 C 只能用标志变量或 goto；break 做不到。",
+      "keyPoints": [
+        "break 立即终止最近一层循环或 switch，剩余轮次不再执行",
+        "break 之后控制变量保留当前值，不执行本轮的更新表达式",
+        "在嵌套循环中 break 只跳出内层，外层继续下一圈",
+        "典型用途：查找命中即停、把复杂条件改写成无限循环加 break"
+      ],
+      "pitfalls": [
+        "以为 break 能一次跳出所有层次的循环",
+        "在 if 之外误写 break，导致循环第一轮就结束",
+        "break 跳出后仍按「跑满全部轮次」计算累加结果"
+      ],
+      "examples": [
+        {
+          "title": "累加到超过 20 就 break",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sum = 0;\n    for (i = 1; i <= 10; i++) {\n        if (sum > 20) break;   /* 判断在累加之前 */\n        sum += i;\n    }\n    printf(\"i=%d sum=%d\\n\", i, sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "i=7 sum=21",
+          "note": "i=6 时 sum 由 15 变 21；i=7 时判断 21>20 成立立即 break，所以 sum 停在 21、i 停在 7。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-014",
+        "c-ch05-cr-015",
+        "c-ch05-cr-023"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-15",
+        "c-ch05-16",
+        "c-ch05-17"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 14
+    },
+    {
+      "id": "c-ch05-15",
+      "title": "用 continue 语句提前结束本次循环",
+      "section": "5.7.2 用continue语句提前结束本次循环",
+      "summary": "continue 只结束「本轮」循环：跳过循环体中它后面的语句，直接进入下一轮的条件判断或更新。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= n; i++) {\n    if (i % 3 == 0) continue;  /* 本轮到此为止，i++ 照常执行 */\n    sum += i;                  /* 3 的倍数被跳过 */\n}\n```\n\n### 语义要点\n- continue 不结束循环，只结束**本次**循环；\n- 对 for：跳到表达式3（更新）再判条件；对 while / do…while：跳到判条件；\n- 循环总轮数**不变**，只是某些轮次少做了事；\n- 常见用途：过滤掉不合格的数据（跳过负数、跳过非法字符）。\n\n### 危险之处\n在 while 循环里用 continue 时，如果更新语句写在 continue 之后，就会永远跳不到更新 → 死循环。",
+      "keyPoints": [
+        "continue 只结束本轮循环，循环的总轮数不变",
+        "对 for 语句，continue 会先执行更新表达式再判条件",
+        "对 while / do…while，continue 直接跳到条件判断",
+        "典型用途是「过滤」：不符合条件的数据跳过不处理"
+      ],
+      "pitfalls": [
+        "把 continue 当 break 用，以为循环会结束，结果只是空转",
+        "while 循环里更新语句写在 continue 之后，永远执行不到更新 → 死循环",
+        "continue 写在循环体最后一句，什么也不做（无害但冗余）"
+      ],
+      "examples": [
+        {
+          "title": "跳过 3 的倍数求和",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sum = 0;\n    for (i = 1; i <= 10; i++) {\n        if (i % 3 == 0) continue;   /* 3、6、9 被跳过 */\n        sum += i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "37",
+          "note": "1 到 10 的和是 55，减去 3+6+9=18 得 37；循环仍然跑了 10 轮。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-020",
+        "c-ch05-cr-021",
+        "c-ch05-cr-022"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-14",
+        "c-ch05-16",
+        "c-ch05-19"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 15
+    },
+    {
+      "id": "c-ch05-16",
+      "title": "break 语句和 continue 语句的区别",
+      "section": "5.7.3 break语句和continue语句的区别",
+      "summary": "break 终止整个循环、剩余轮次全部作废；continue 只终止本轮、后面的轮次照常进行，总轮数不变。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= 6; i++) { if (i == 4) break;    sum += i; }  /* sum = 1+2+3   */\nfor (i = 1; i <= 6; i++) { if (i == 4) continue; sum += i; }  /* sum = 1+2+3+5+6 */\n```\n\n### 一句话记忆\n- break：**整个循环到此结束**，i 停在 4，第 5、6 轮不再发生；\n- continue：**本轮到此结束**，i 继续走到 5、6，只是第 4 轮少做了事。\n\n### 判断结果的通用方法\n1. 先算「没有这条语句」时的总和；\n2. break：减去从命中轮到最后一轮的全部贡献；\n3. continue：只减去命中那一轮的贡献。",
+      "tables": [
+        {
+          "caption": "break 与 continue 对比",
+          "header": [
+            "对比项",
+            "break",
+            "continue"
+          ],
+          "rows": [
+            [
+              "作用范围",
+              "终止整个循环",
+              "终止本次循环"
+            ],
+            [
+              "剩余轮次",
+              "全部不执行",
+              "照常执行"
+            ],
+            [
+              "循环总次数",
+              "减少",
+              "不变"
+            ],
+            [
+              "能否用于 switch",
+              "能",
+              "不能（对 switch 无意义）"
+            ],
+            [
+              "跳出后的控制变量",
+              "停在命中时的值",
+              "继续按更新表达式变化"
+            ]
+          ]
+        }
+      ],
+      "keyPoints": [
+        "break 结束整个循环，continue 只结束当前这一轮",
+        "break 会减少循环的实际执行次数，continue 不改变总次数",
+        "break 可用于循环和 switch，continue 只能用于循环",
+        "两者都只作用于包含它的最内层循环"
+      ],
+      "pitfalls": [
+        "把 continue 误当 break，程序多跑了很多轮，累加结果偏大",
+        "把 break 误当 continue，循环提前结束，结果偏小",
+        "在 switch 里写 continue 试图跳过外层循环的本轮 —— 语法上合法但作用在外层循环，极易读错"
+      ],
+      "examples": [
+        {
+          "title": "同一个 if 分别配 break 与 continue",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, a = 0, b = 0;\n    for (i = 1; i <= 6; i++) {\n        if (i == 4) continue;\n        a += i;\n    }\n    for (i = 1; i <= 6; i++) {\n        if (i == 4) break;\n        b += i;\n    }\n    printf(\"continue:%d break:%d\\n\", a, b);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "continue:17 break:6",
+          "note": "continue 版跳过 4，得 1+2+3+5+6=17；break 版在 4 处结束，只得 1+2+3=6。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-022",
+        "c-ch05-cr-024",
+        "c-ch05-cr-020"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-14",
+        "c-ch05-15",
+        "c-ch05-17"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 16
+    },
+    {
+      "id": "c-ch05-17",
+      "title": "break 与 continue 在嵌套循环中的作用范围",
+      "section": "5.7 改变循环执行的状态",
+      "summary": "break / continue 只作用于直接包含它的那一层循环；要从多层循环中整体退出，需要标志变量或 goto。",
+      "content": "### 语法速查\n```c\nfor (i = 1; i <= 3; i++) {\n    for (j = 1; j <= 3; j++) {\n        if (j == 2) break;    /* 只结束内层，外层 i 继续 */\n    }\n}\n```\n\n### 用标志变量整体退出\n```c\nint found = 0;\nfor (i = 0; i < n && !found; i++)\n    for (j = 0; j < n; j++)\n        if (a[i] == a[j] && i != j) { found = 1; break; }\n```\n\n### 分析套路\n1. 先确定 break / continue 属于哪一层（找最近的循环关键字）；\n2. 内层被 break 后，外层的更新与条件照常进行；\n3. 想「一次跳出多层」，标准做法是标志变量 + 外层条件里判断，或 goto。",
+      "keyPoints": [
+        "break 与 continue 只影响直接包含它们的那一层循环",
+        "内层 break 之后外层循环继续执行下一圈",
+        "要从多层循环整体退出，用标志变量配合外层循环条件，或用 goto",
+        "continue 作用于内层时，只跳过内层本轮剩余语句"
+      ],
+      "pitfalls": [
+        "以为内层的 break 能同时结束外层循环",
+        "外层条件里忘了判断标志变量，跳出内层后外层仍继续跑",
+        "把 continue 写在外层，误以为能跳过内层的当前轮次"
+      ],
+      "examples": [
+        {
+          "title": "内层 break 不影响外层圈数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, j, k = 0;\n    for (i = 1; i <= 3; i++) {\n        for (j = 1; j <= 3; j++) {\n            if (j == 2) break;   /* 内层每圈只执行 j=1 这一次 */\n            k++;\n        }\n    }\n    printf(\"k=%d\\n\", k);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "k=3",
+          "note": "内层每次都在 j=2 处 break，只贡献 1 次计数；外层跑满 3 圈，所以 k=3 而不是 9。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-024",
+        "c-ch05-cr-023",
+        "c-ch05-cr-015"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-11",
+        "c-ch05-14",
+        "c-ch05-16"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 17
+    },
+    {
+      "id": "c-ch05-18",
+      "title": "getchar 驱动的字符循环",
+      "section": "5.8 循环程序举例",
+      "summary": "用 while ((ch = getchar()) != 结束符) 逐个读字符，是统计字符、加密、大小写转换等题的标准骨架。",
+      "content": "### 语法速查\n```c\nchar ch;\nwhile ((ch = getchar()) != '\\n') {   /* 括号不能省：先赋值再比较 */\n    /* 对每个字符做处理 */\n}\n```\n\n### 三个必考点\n1. **括号**：ch = getchar() != '\\n' 会先比较再赋值，ch 得到 0 或 1；\n2. **结束符**：读到 '\\n'（回车）停止，或读到 '#'、EOF 停止；\n3. **字符分类**：用 ch >= 'a' && ch <= 'z' 判断小写字母，\n   大小写转换靠 'A' 与 'a' 相差 32（ch - 32 或 ch + 32）。\n\n### 常见变体\n- 统计各类字符个数：字母、数字、空格、其他\n- 凯撒加密：ch = ch + k，越过 'z' 要回绕（ch - 26）\n- 逆序输出：先存后放，或用递归",
+      "keyPoints": [
+        "标准骨架是 while ((ch = getchar()) != 结束符)，赋值表达式必须用括号括起",
+        "getchar 每次只读一个字符，包括空格；遇回车换行符 \\n 结束",
+        "判断字符类别用 ASCII 区间比较，如 ch >= 48 && ch <= 57 判数字",
+        "大小写字母相差 32，转换用加 32 或减 32"
+      ],
+      "pitfalls": [
+        "漏掉括号写成 while (ch = getchar() != 10)，ch 永远只是 0 或 1",
+        "用 scanf(\"%c\") 读字符时忘记处理前一个输入留下的换行符",
+        "把 ch 声明为 char 却与 EOF（-1）比较，可能永远不相等"
+      ],
+      "examples": [
+        {
+          "title": "统计一行中的字符总数与元音个数",
+          "code": "#include <stdio.h>\nint main(void) {\n    char ch;\n    int total = 0, vowel = 0;\n    while ((ch = getchar()) != '\\n') {   /* 读到回车为止 */\n        total++;\n        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') vowel++;\n    }\n    printf(\"total=%d vowel=%d\\n\", total, vowel);\n    return 0;\n}",
+          "stdin": "programming\n",
+          "expected": "total=11 vowel=3",
+          "note": "输入 programming 共 11 个字符，其中 o、a、i 三个元音；换行符本身不计入。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-001",
+        "c-ch05-cr-003",
+        "c-ch06-dbg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-02",
+        "c-ch05-30",
+        "c-ch06-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 18
+    },
+    {
+      "id": "c-ch05-19",
+      "title": "死循环的成因与避免",
+      "section": "5.7 改变循环执行的状态",
+      "summary": "死循环指条件永远为真的循环，成因是「缺少更新、更新方向错误、条件恒真」，靠检查三要素与设置出口来避免。",
+      "content": "### 语法速查\n```c\nwhile (i <= 10) { sum += i; }        /* 错：忘了 i++，死循环     */\nwhile (i <= 10) { sum += i; i++; }   /* 对：更新写在循环体内     */\nwhile (1) { … if (完成) break; }     /* 有意的无限循环，有出口   */\n```\n\n### 四类成因\n1. 漏写更新语句；\n2. 更新方向与条件相反（i-- 配 i <= 10）；\n3. 条件恒真：while (x = 1)、while (1) 却无 break；\n4. 浮点累加永远达不到精确终值（如 x != 0.1）。\n\n### 避免办法\n- 写完循环先只检查三要素是否齐备、方向是否一致；\n- 有意的无限循环必须能在有限步内命中 break；\n- 调试时给循环加一个「最大轮数保险」：if (++cnt > 100000) break;",
+      "keyPoints": [
+        "死循环的本质是循环条件永远为真，程序无法推进到循环之后",
+        "最常见成因是漏写更新语句，其次是更新方向与条件方向相反",
+        "while (x = 1) 这类「把赋值当比较」的写法会造成恒真条件",
+        "刻意写的无限循环必须有 break / return / exit 出口"
+      ],
+      "pitfalls": [
+        "把更新语句写在 if 分支里，某些输入下永远走不到更新",
+        "浮点数做循环控制变量，因精度问题条件永不成立",
+        "嵌套循环中内层修改了外层的控制变量，使外层无法收敛"
+      ],
+      "examples": [
+        {
+          "title": "错误写法与正确写法的对比（示例只运行正确版本）",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i = 1, sum = 0;\n    /* 错误写法：while (i <= 10) { sum += i; }  漏了 i++，永远退不出 */\n    while (i <= 10) {\n        sum += i;\n        i++;              /* 更新必须写在循环体内，且方向与条件一致 */\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "55",
+          "note": "把 i++ 删掉就是典型死循环：i 永远是 1，条件 1<=10 恒真。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-011"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-01",
+        "c-ch05-06",
+        "c-ch05-21"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 19
+    },
+    {
+      "id": "c-ch05-20",
+      "title": "循环边界与 off-by-one 错误",
+      "section": "5.8 循环程序举例",
+      "summary": "off-by-one 指多循环或少循环一次，根源是「下标起点、条件比较符、次数」三者不匹配，检查首末两轮即可发现。",
+      "content": "### 语法速查\n```c\nfor (i = 0; i < n; i++)     /* 遍历 n 个元素，下标 0..n-1，正确 */\nfor (i = 0; i <= n; i++)    /* 多一次：a[n] 越界，未定义行为   */\nfor (i = 1; i <= n; i++)    /* 计数 1..n，正确                 */\nfor (i = 1; i < n; i++)     /* 少一次：漏掉第 n 个             */\n```\n\n### 自检方法：只看首轮与末轮\n- 首轮：i 的初值是否合法（下标是否从 0 开始）；\n- 末轮：最后一次执行时 i 是多少，退出后 i 又是多少；\n- 两者都对，中间的轮次不会错。\n\n### 与数组配合的口诀\n「下标从 0 起，条件用 <，次数正好 n」；\n「计数从 1 起，条件用 <=，次数也是 n」。两套不要混用。",
+      "keyPoints": [
+        "off-by-one 指实际循环次数比预期多 1 或少 1",
+        "下标型循环用 i = 0; i < n，计数型循环用 i = 1; i <= n",
+        "检查方法是单独验证首轮与末轮两个边界情况",
+        "数组越界访问属于未定义行为，编译期通常不报错，运行期才暴露"
+      ],
+      "pitfalls": [
+        "遍历 n 个元素写成 i <= n，最后一次访问 a[n] 越界",
+        "从 1 开始计数却写 i < n，漏掉最后一个数据",
+        "嵌套循环里内层边界用了外层的 n 而不是 i，图形或表格形状错"
+      ],
+      "examples": [
+        {
+          "title": "下标型循环遍历 5 个元素",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5] = {1, 2, 3, 4, 5};\n    int i, sum = 0, cnt = 0;\n    for (i = 0; i < 5; i++) {      /* 若写 i <= 5 就会访问 a[5] 越界 */\n        sum += a[i];\n        cnt++;\n    }\n    printf(\"cnt=%d sum=%d\\n\", cnt, sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "cnt=5 sum=15",
+          "note": "条件是 i < 5，i 取 0..4 共 5 轮，正好覆盖全部元素且不越界。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-dbg-004",
+        "c-ch06-dbg-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-08",
+        "c-ch05-10",
+        "c-ch06-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 20
+    },
+    {
+      "id": "c-ch05-21",
+      "title": "循环条件中误用赋值号 =",
+      "section": "5.8 循环程序举例",
+      "summary": "赋值表达式的值就是被赋的那个值，非 0 即为真，所以 while (x = 1) 是恒真条件；比较必须写 ==。",
+      "content": "### 语法速查\n```c\nwhile (x == 1) { }   /* 比较：x 等于 1 时继续 */\nwhile (x = 1)  { }   /* 赋值：把 1 存进 x，条件值恒为 1 → 死循环 */\nwhile (x = 0)  { }   /* 赋值：条件值恒为 0 → 循环体一次也不执行 */\n```\n\n### 为什么编译器不拦\n赋值本身是合法表达式，C 允许「在条件里赋值」这种写法（如 while ((c = getchar()) != EOF)）。\ngcc 在 -Wall 下会给出提示：suggest parentheses around assignment used as truth value，\n但这只是警告，不是错误。\n\n### 判别口诀\n- 想「判断相等」→ 必须两个等号；\n- 想「边赋值边判断」→ 赋值必须**额外加一层括号**，外面再写比较。\n\n### 一个记忆技巧\n把 == 读成「等于吗」，把 = 读成「变成」；条件位置需要的是问句。",
+      "keyPoints": [
+        "赋值表达式的值等于被赋的值，非 0 即视为真",
+        "while (x = 1) 是恒真条件，会造成死循环；while (x = 0) 则一次也不执行",
+        "比较相等必须写 ==，= 只用于赋值",
+        "需要「先赋值再判断」时，赋值部分必须用括号括起，如 (c = getchar()) != EOF"
+      ],
+      "pitfalls": [
+        "把 if (n % 2 == 0) 写成 if (n % 2 = 0) —— 这不是逻辑错而是编译错（左值不可赋值）",
+        "while (x = 1) 只被编译器警告，测试时不报错，上线后程序挂死",
+        "把 (ch = getchar()) 的括号省掉，变成 ch = (getchar() != EOF)，ch 只得到 0 或 1"
+      ],
+      "examples": [
+        {
+          "title": "赋值表达式的值就是被赋的值",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i = 0, k = 0, t;\n    while (i < 3) {\n        i++;\n        t = (k = i);   /* k = i 这个表达式整体的值就是 i */\n        printf(\"i=%d t=%d k=%d\\n\", i, t, k);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "i=1 t=1 k=1\ni=2 t=2 k=2\ni=3 t=3 k=3",
+          "note": "若把 while (i < 3) 误写成 while (i = 3)，条件值恒为 3（真），i 被反复赋成 3，循环永不结束。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-016"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-19",
+        "c-ch05-22",
+        "c-ch05-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 21
+    },
+    {
+      "id": "c-ch05-22",
+      "title": "条件表达式中的自增自减副作用",
+      "section": "5.8 循环程序举例",
+      "summary": "while (n-- > 0) 这类写法先用旧值比较、再改值，退出循环后控制变量会比「最后一个合法值」再走一步。",
+      "content": "### 语法速查\n```c\nwhile (n-- > 0) { }   /* 后置：用 n 的旧值比较，然后 n 减 1 */\nwhile (--n > 0) { }   /* 前置：先减 1，再用新值比较       */\nwhile (i++ < 5)  { }   /* 后置自增，退出后 i 比 5 大 1     */\n```\n\n### 求值顺序（唯一需要记的东西）\n后置 ++/-- ：**先取值参与运算，再修改**；\n前置 ++/-- ：**先修改，再取值参与运算**。\n无论哪种，修改本身在这条表达式求值完成前一定会发生。\n\n### 退出后的值怎么算\n以 n 初值 3、条件 n-- > 0 为例：\n比较用 3、2、1、0 —— 前三次为真，第四次为假；\n每次比较后 n 都减了 1，共减 4 次，所以退出时 n = 3 - 4 = -1。\n**多减的那一次来自「让条件为假的那轮」**，这正是考试爱考的点。",
+      "keyPoints": [
+        "后置自增自减先用旧值参与比较，再修改变量",
+        "前置自增自减先修改变量，再用新值参与比较",
+        "循环退出后控制变量的值包含了「使条件为假的那一次修改」",
+        "while (n-- > 0) 与 for (i = n - 1; i >= 0; i--) 是等价的倒计数写法"
+      ],
+      "pitfalls": [
+        "算退出后的值时少算一次修改，把 -1 答成 0",
+        "在同一条表达式里对同一变量修改两次（如 i++ + ++i），这是未定义行为",
+        "把 --n 与 n-- 混用，导致循环次数相差 1"
+      ],
+      "examples": [
+        {
+          "title": "while (n-- > 0) 的次数与退出后的 n",
+          "code": "#include <stdio.h>\nint main(void) {\n    int n = 3, k = 0;\n    while (n-- > 0) {     /* 比较用 3、2、1、0，共比较 4 次 */\n        k++;\n    }\n    printf(\"k=%d n=%d\\n\", k, n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "k=3 n=-1",
+          "note": "循环体执行 3 次；第 4 次比较用 0（假）但仍把 n 减成 -1，所以退出后 n=-1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-009",
+        "c-ch05-cr-010",
+        "c-ch05-cr-017"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-21",
+        "c-ch05-10",
+        "c-ch05-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 22
+    },
+    {
+      "id": "c-ch05-23",
+      "title": "累加求和与符号交替",
+      "section": "5.8 循环程序举例",
+      "summary": "累加器 sum 初值必须为 0，每轮 sum += 项；符号交替用 sign = -sign 或 (-1) 的幂来实现。",
+      "content": "### 语法速查\n```c\nint sum = 0;                       /* 累加器初值必须是 0 */\nfor (i = 1; i <= n; i++) sum += i;\n\nint sign = 1;                      /* 交替符号 */\nfor (i = 1; i <= n; i++) { sum += sign * i; sign = -sign; }\n```\n\n### 三种常见变形\n1. **条件累加**：只累加满足条件的项 —— if (i % 2 == 0) sum += i;\n2. **符号交替**：1-2+3-4+… —— 用 sign 变量翻转，比算 pow(-1, i) 快且不出错；\n3. **分段累加**：正数累加到 pos、负数累加到 neg，用两个累加器。\n\n### 平均值\navg = (double)sum / n，**必须先转 double 再除**，否则整数除法把小数部分截掉。",
+      "keyPoints": [
+        "累加器初值为 0，每轮执行 sum += 项",
+        "符号交替用 sign = -sign 翻转，不要用浮点幂函数",
+        "求平均值时要先把 sum 或除数强制转换成 double，避免整数除法截断",
+        "条件累加时，if 只包住累加语句，控制变量的更新仍要每轮执行"
+      ],
+      "pitfalls": [
+        "累加器忘记初始化为 0，结果是「垃圾值 + 真实和」",
+        "写 sum / n 求平均值，两个 int 相除丢掉小数部分",
+        "符号翻转语句写进了 if 分支，导致某些轮次符号没翻"
+      ],
+      "examples": [
+        {
+          "title": "交替符号求和 1-2+3-4+…-10",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sign = 1, sum = 0;\n    for (i = 1; i <= 10; i++) {\n        sum += sign * i;\n        sign = -sign;         /* 每轮翻转一次 */\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "-5",
+          "note": "每两项一组 (1-2)+(3-4)+…+(9-10) = -1 × 5 = -5。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-dbg-004",
+        "c-ch05-pg-004",
+        "c-ch05-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-24",
+        "c-ch05-25",
+        "c-ch05-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 23
+    },
+    {
+      "id": "c-ch05-24",
+      "title": "累乘求阶乘与阶乘和",
+      "section": "5.8 循环程序举例",
+      "summary": "累乘器初值必须为 1（不是 0），p *= i 逐轮累积；求 1!+2!+…+n! 时不要每轮重算阶乘，应复用上一轮的结果。",
+      "content": "### 语法速查\n```c\nlong p = 1;                        /* 累乘器初值必须是 1 */\nfor (i = 1; i <= n; i++) p *= i;   /* p = n! */\n\nlong p = 1, sum = 0;               /* 阶乘和：复用 p */\nfor (i = 1; i <= n; i++) { p *= i; sum += p; }\n```\n\n### 溢出边界（必背）\n- int（32 位）：12! = 479001600 还行，13! = 6227020800 已溢出；\n- long long：20! = 2432902008176640000 是极限，21! 溢出。\n超出范围时结果会「回绕」成负数或错值，且不报错 —— 这是未定义/实现相关行为。\n\n### 效率要点\n求 1!+2!+…+n! 用嵌套循环重算每个阶乘是 O(n²)；\n用「p 在轮间复用」是 O(n)，也是教材标准答案的写法。",
+      "keyPoints": [
+        "累乘器初值为 1，写成 0 会让结果永远是 0",
+        "n! 用 p *= i 逐轮累积，i 从 1 到 n",
+        "求阶乘和时应在轮间复用 p，避免嵌套循环重算",
+        "int 最多算到 12!，long long 最多算到 20!，超出即溢出"
+      ],
+      "pitfalls": [
+        "累乘器初值写成 0，任何数乘 0 都是 0",
+        "计算 13! 仍用 int，结果溢出却不报错",
+        "把 p = 1 写进循环体内，每轮都重置，最终 p 只等于 n"
+      ],
+      "examples": [
+        {
+          "title": "一次循环同时得到 5! 与 1!+2!+…+5!",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, p = 1, sum = 0;\n    for (i = 1; i <= 5; i++) {\n        p *= i;          /* 本轮结束时 p = i! */\n        sum += p;        /* 累加当前的阶乘 */\n    }\n    printf(\"p=%d sum=%d\\n\", p, sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "p=120 sum=153",
+          "note": "p 依次为 1、2、6、24、120，和为 1+2+6+24+120=153；全程只用一层循环。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-pg-001",
+        "c-ch05-pg-003",
+        "c-ch07-dbg-011"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-23",
+        "c-ch05-27"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 24
+    },
+    {
+      "id": "c-ch05-25",
+      "title": "计数与频数统计",
+      "section": "5.8 循环程序举例",
+      "summary": "计数用独立变量分类累加（if / else if 保证互斥），频数统计用「下标即取值」的计数数组一次遍历完成。",
+      "content": "### 语法速查\n```c\n/* 分类计数：分支必须互斥 */\nif (x > 0) pos++;\nelse if (x < 0) neg++;\nelse zero++;\n\n/* 频数统计（计数数组 / 桶）：下标就是取值 */\nint cnt[5] = {0};\nwhile (scanf(\"%d\", &x) == 1 && x != -1) cnt[x - 1]++;\n```\n\n### 两种做法的取舍\n- 类别少且判据是区间 → 用几个计数变量 + else if；\n- 取值范围小且离散（如 1~4 的成绩、0~9 的数字）→ 用计数数组，\n  一遍读入即可，输出时再遍历数组，时间 O(n)。\n\n### 互斥的重要性\n写成三个独立的 if 时，x = 0 会同时被 neg 和 zero 统计（若条件是 x <= 0），\n计数总和就会大于数据个数，这是判卷时最容易发现的漏洞。",
+      "keyPoints": [
+        "分类计数应使用 if / else if / else 保证各类互斥",
+        "频数统计用计数数组：以取值为下标，cnt[x]++ 一次遍历完成",
+        "各类计数之和应等于数据总个数，可用这一点自检",
+        "计数数组必须先全部初始化为 0，C 中 int cnt[5] = {0} 即可"
+      ],
+      "pitfalls": [
+        "用多个独立 if 造成重复计数，总和大于数据个数",
+        "计数数组忘记清零，统计结果里混入垃圾值",
+        "计数数组下标忘了偏移（取值 1~4 应对应下标 0~3），造成越界或错位"
+      ],
+      "examples": [
+        {
+          "title": "统计 7 个整数中正数、负数、零的个数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, x, pos = 0, neg = 0, zero = 0;\n    for (i = 0; i < 7; i++) {\n        scanf(\"%d\", &x);\n        if (x > 0) pos++;\n        else if (x < 0) neg++;\n        else zero++;\n    }\n    printf(\"pos=%d neg=%d zero=%d\\n\", pos, neg, zero);\n    return 0;\n}",
+          "stdin": "3 -1 0 5 -2 0 7\n",
+          "expected": "pos=3 neg=2 zero=2",
+          "note": "3+2+2=7 正好等于数据个数，说明三类互斥且无遗漏。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-003",
+        "c-ch06-cr-005",
+        "c-ch07-sa-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-23",
+        "c-ch05-30",
+        "c-ch06-32"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 25
+    },
+    {
+      "id": "c-ch05-26",
+      "title": "穷举法（枚举）",
+      "section": "5.8 循环程序举例",
+      "summary": "穷举法用循环把所有候选解逐一枚举并用 if 筛选，适合解空间有限、判据明确的题（同构数、百钱百鸡、组合计数）。",
+      "content": "### 语法速查\n```c\nfor (i = 下界; i <= 上界; i++) {\n    if (满足条件) printf(\"%d \", i);   /* 命中就输出或计数 */\n}\n```\n\n### 解题三步\n1. **确定枚举对象与范围**：范围要恰好覆盖所有可能解，宁宽勿漏；\n2. **写出判据**：把题意翻译成可计算的布尔表达式（常用 % 取余、/ 取位）；\n3. **决定输出形式**：全部解、解的个数、还是最大/最小解。\n\n### 多变量穷举的剪枝\n两三重循环枚举时，可用「由等式解出第三个变量」减少一层循环：\nx + y + z = 8 → 只枚举 x、y，z = 8 - x - y，再判 z 是否合法。\n把三重循环降成两重，是这类题的标准优化。",
+      "keyPoints": [
+        "穷举法的骨架是「循环枚举 + if 筛选」",
+        "枚举范围必须覆盖全部可能解，边界宁宽勿漏",
+        "多变量问题可用等式消元减少一层循环（剪枝）",
+        "取余 % 与整除 / 是把题意转成判据的主力工具"
+      ],
+      "pitfalls": [
+        "枚举上界取小了漏解（如找同构数只枚举到 9）",
+        "判据写反：把「平方数的右端等于 i」写成「i 的右端等于平方数」",
+        "消元后忘记检查第三个变量的取值范围，把非法解也算进去"
+      ],
+      "examples": [
+        {
+          "title": "穷举 1~99 的同构数（出现在自己平方数右端）",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, sq;\n    for (i = 1; i <= 99; i++) {\n        sq = i * i;\n        if (i < 10) {\n            if (sq % 10 == i) printf(\"%d \", i);      /* 一位数看末 1 位 */\n        } else {\n            if (sq % 100 == i) printf(\"%d \", i);     /* 两位数看末 2 位 */\n        }\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 5 6 25 76 ",
+          "note": "5*5=25 末位是 5，25*25=625 末两位是 25，76*76=5776 末两位是 76，共 5 个同构数。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-pg-002",
+        "c-ch05-dbg-006",
+        "c-ch07-sa-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-29",
+        "c-ch05-27",
+        "c-ch05-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 26
+    },
+    {
+      "id": "c-ch05-27",
+      "title": "迭代与递推",
+      "section": "5.8 循环程序举例",
+      "summary": "递推是从已知的初始项出发、用同一公式由前项算后项；迭代是它的程序实现，用少量变量滚动保存前几项。",
+      "content": "### 语法速查\n```c\nint a = 1, b = 1, c;               /* 保存前两项 */\nfor (i = 3; i <= n; i++) {\n    c = a + b;                     /* 由前两项算出当前项 */\n    a = b;                         /* 滚动：丢掉最旧的一项 */\n    b = c;\n}\n```\n\n### 递推三要素\n1. **初始项**（边界）：如 f(1) = f(2) = 1；\n2. **递推公式**：如 f(i) = f(i-1) + f(i-2)；\n3. **推进方向**：从初始项一路算到目标项。\n\n### 迭代 vs 递归\n同一递推公式，用循环「自底向上」算是迭代（O(n) 时间、O(1) 空间）；\n用函数「自顶向下」算是递归（斐波那契的朴素递归是 O(2ⁿ)，会重复计算）。\n能用迭代就不要用朴素递归。\n\n### 常见模型\n兔子繁殖、上楼梯走法、逐年本息、日期推算、数组前缀和。",
+      "keyPoints": [
+        "递推需要初始项与递推公式两个条件，缺一不可",
+        "迭代实现只用两三个变量滚动保存前几项，空间 O(1)",
+        "滚动赋值的顺序必须是「先算新值，再依次前移」",
+        "同一问题迭代是 O(n)，朴素递归可能是指数级"
+      ],
+      "pitfalls": [
+        "滚动赋值顺序写反（先 a = b 再 c = a + b），算出的是 2b 而不是 a+b",
+        "初始项设错（把 f(1) 当 0），整条数列全部偏移",
+        "循环从 i = 1 开始而不是 i = 3，重复计算已有项"
+      ],
+      "examples": [
+        {
+          "title": "迭代求斐波那契数列前 10 项",
+          "code": "#include <stdio.h>\nint main(void) {\n    int i, a = 1, b = 1, c;\n    printf(\"%d %d \", a, b);\n    for (i = 3; i <= 10; i++) {\n        c = a + b;             /* 新项 = 前两项之和 */\n        printf(\"%d \", c);\n        a = b;                 /* 滚动前移 */\n        b = c;\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 1 2 3 5 8 13 21 34 55 ",
+          "note": "只用 a、b、c 三个变量就算出任意多项，空间是常数级；换成递归会重复计算大量子问题。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-pg-001",
+        "c-ch05-pg-003",
+        "c-ch06-cr-019"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-24",
+        "c-ch05-26",
+        "c-ch06-34"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 27
+    },
+    {
+      "id": "c-ch05-28",
+      "title": "辗转相除法求最大公约数",
+      "section": "5.8 循环程序举例",
+      "summary": "gcd(m,n) = gcd(n, m%n)，反复用余数替换直到余数为 0，此时的除数就是最大公约数；最小公倍数 = m*n/gcd。",
+      "content": "### 语法速查\n```c\nint a = m, b = n, r;\nwhile (b != 0) {          /* 余数为 0 时结束 */\n    r = a % b;\n    a = b;\n    b = r;\n}\n/* 循环结束时 a 就是最大公约数 */\nlcm = m * n / a;          /* 最小公倍数 */\n```\n\n### 为什么正确\n若 d 整除 a 与 b，则 d 也整除 a % b，所以 gcd(a, b) = gcd(b, a % b)；\n余数严格递减，必在有限步内变成 0，此时 gcd(a, 0) = a。\n\n### 三个细节\n1. 循环条件是「余数不为 0」，不是「a != b」（那是辗转相减法）；\n2. m、n 大小顺序无关，若 m < n，第一轮就自动交换；\n3. lcm 用 m * n / gcd 时，m*n 可能溢出，稳妥写法是 m / gcd * n。",
+      "keyPoints": [
+        "gcd(a, b) = gcd(b, a % b)，直到 b 为 0 时 a 即答案",
+        "循环条件是余数不为 0，每轮做「r=a%b; a=b; b=r」三步替换",
+        "两数大小顺序不影响结果，第一轮会自动完成交换",
+        "最小公倍数 lcm = m / gcd * n，先除后乘可避免溢出"
+      ],
+      "pitfalls": [
+        "循环条件写成 a != b 却用取余更新，可能永远不相等而死循环",
+        "三步替换顺序写错（先 b = r 再 r = a % b），用了未更新的值",
+        "直接写 m * n / gcd，两数较大时乘法先溢出"
+      ],
+      "examples": [
+        {
+          "title": "求 60 与 24 的最大公约数和最小公倍数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int m = 60, n = 24, a, b, r;\n    a = m; b = n;\n    while (b != 0) {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"gcd=%d lcm=%d\\n\", a, m / a * n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "gcd=12 lcm=120",
+          "note": "60%24=12 → 24%12=0，余数为 0 时 a=12；lcm 用先除后乘的 60/12*24=120。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-011",
+        "c-ch07-cc-001",
+        "c-ch05-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-27",
+        "c-ch05-29",
+        "c-ch05-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 28
+    },
+    {
+      "id": "c-ch05-29",
+      "title": "素数判定与试除法",
+      "section": "5.8 循环程序举例",
+      "summary": "试除法用 2 到 √m 之间的整数去除 m，一旦整除即非素数并用 break 提前退出；m 小于 2 时须单独判定。",
+      "content": "### 语法速查\n```c\nint prime = 1;\nif (m < 2) prime = 0;                 /* 0 和 1 都不是素数 */\nfor (i = 2; i * i <= m; i++) {        /* 只试到 sqrt(m) */\n    if (m % i == 0) { prime = 0; break; }\n}\n```\n\n### 为什么试到 √m 就够\n若 m = a * b 且 a ≤ b，则 a ≤ √m；所以只要有因子，必有一个不超过 √m。\n用 i * i <= m 代替 i <= sqrt(m) 可以不调用 math.h，也避免浮点误差。\n\n### 判定框架的两个层次\n- 判单个数：试除 + break，最坏 O(√m)；\n- 判一批数（如 100~200 的素数）：外层枚举 + 内层试除，配合计数输出。\n\n### 输出格式\n教材题常要求「每行 10 个」，用 if (cnt % 10 == 0) printf(\"\\n\") 控制换行。",
+      "keyPoints": [
+        "试除法只需检查 2 到 √m，用 i * i <= m 作为循环条件",
+        "找到因子立即 prime = 0 并 break，避免无谓的继续试除",
+        "m 小于 2 时不是素数，必须单独处理这个边界",
+        "批量输出时用计数器控制每行个数"
+      ],
+      "pitfalls": [
+        "忘记处理 m = 1，把 1 判成素数",
+        "循环上界写成 i <= m / 2 虽正确但慢；写成 i < m 更慢",
+        "找到因子后忘记 break，白跑剩余轮次；或忘记置标志，结果仍是「素数」"
+      ],
+      "examples": [
+        {
+          "title": "判断 97 是否为素数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int m = 97, i, prime = 1;\n    if (m < 2) prime = 0;\n    for (i = 2; i * i <= m; i++) {     /* i 只试到 9 */\n        if (m % i == 0) { prime = 0; break; }\n    }\n    printf(\"%d\\n\", prime);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1",
+          "note": "i*i <= 97 使 i 只取 2..9，都不能整除 97，所以 prime 保持 1（是素数）。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-dbg-006",
+        "c-ch07-sa-003",
+        "c-ch06-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-26",
+        "c-ch05-14",
+        "c-ch05-28"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 29
+    },
+    {
+      "id": "c-ch05-30",
+      "title": "哨兵控制的输入循环",
+      "section": "5.8 循环程序举例",
+      "summary": "数据个数未知时用哨兵值（如 -1）标记结束，写法有「预读 + 循环末尾再读」与 do…while 两种，关键是哨兵不参与统计。",
+      "content": "### 语法速查\n```c\n/* 写法一：预读 + 循环末尾再读（while） */\nscanf(\"%d\", &x);\nwhile (x != -1) {\n    sum += x; n++;\n    scanf(\"%d\", &x);\n}\n\n/* 写法二：do…while，至少读一次 */\ndo {\n    scanf(\"%d\", &x);\n    if (x != -1) { sum += x; n++; }\n} while (x != -1);\n```\n\n### 两条铁律\n1. **哨兵不计入统计**：累加与计数都必须在「确认不是哨兵」之后进行；\n2. **每轮只读一次**：循环体里出现两个 scanf 会一次吞掉两个数据。\n\n### 哨兵值怎么选\n必须是不可能出现的合法数据。成绩统计里 -1 合适（成绩非负），\n但统计「任意整数」时就不能用 -1，应改用 scanf 的返回值：\nwhile (scanf(\"%d\", &x) == 1) { … }（读到 EOF 或非法输入时返回非 1）。",
+      "keyPoints": [
+        "数据个数未知时用哨兵值标记输入结束，哨兵必须是合法数据中不可能出现的值",
+        "标准写法是「循环前预读一次 + 循环体末尾再读一次」",
+        "哨兵值本身不参与累加和计数",
+        "没有合适哨兵时改用 scanf 返回值判断，while (scanf(\"%d\", &x) == 1)"
+      ],
+      "pitfalls": [
+        "把哨兵也累加进去，sum 偏小（哨兵为 -1 时）",
+        "循环体内写了两个 scanf，一次读掉两个数据，统计结果少一半",
+        "用 do…while 却没有在累加前判断哨兵，导致哨兵被统计"
+      ],
+      "examples": [
+        {
+          "title": "以 -1 结束，统计个数与总和",
+          "code": "#include <stdio.h>\nint main(void) {\n    int x, n = 0, sum = 0;\n    scanf(\"%d\", &x);            /* 预读第一个 */\n    while (x != -1) {\n        sum += x;\n        n++;\n        scanf(\"%d\", &x);        /* 循环末尾读下一个 */\n    }\n    printf(\"n=%d sum=%d\\n\", n, sum);\n    return 0;\n}",
+          "stdin": "1 2 3 4 5 -1\n",
+          "expected": "n=5 sum=15",
+          "note": "哨兵 -1 使循环退出但不计入，所以 n=5、sum=15 而不是 n=6、sum=14。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch05-cr-008",
+        "c-ch05-cr-011",
+        "c-ch06-cr-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch05-03",
+        "c-ch05-18",
+        "c-ch05-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "order": 30
+    }
+  ]
+}

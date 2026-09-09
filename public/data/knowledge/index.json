@@ -1,6 +1,1072 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "3443e5310891623b",
-  "count": 0,
-  "cards": []
+  "content_sha": "ba127a0ab9d5bd14",
+  "count": 90,
+  "cards": [
+    {
+      "id": "c-ch05-01",
+      "chapter": "第5章 循环结构",
+      "section": "5.1 为什么需要循环控制",
+      "title": "循环三要素与循环结构",
+      "relatedProblems": [
+        "c-ch05-dbg-004",
+        "c-ch05-cr-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-02",
+      "chapter": "第5章 循环结构",
+      "section": "5.2 用while语句实现循环",
+      "title": "用 while 语句实现循环",
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-016",
+        "c-ch05-cr-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-03",
+      "chapter": "第5章 循环结构",
+      "section": "5.3 用do…while语句实现循环",
+      "title": "用 do…while 语句实现循环",
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-cr-006",
+        "c-ch05-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-04",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 几种循环的比较",
+      "title": "while 与 do…while 的区别",
+      "relatedProblems": [
+        "c-ch05-cr-004",
+        "c-ch05-cr-005",
+        "c-ch05-cr-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-05",
+      "chapter": "第5章 循环结构",
+      "section": "5.4 用for语句实现循环",
+      "title": "用 for 语句实现循环",
+      "relatedProblems": [
+        "c-ch05-cr-012",
+        "c-ch05-cr-013",
+        "c-ch05-dbg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-06",
+      "chapter": "第5章 循环结构",
+      "section": "5.4 用for语句实现循环",
+      "title": "for 语句的省略形式与无限循环",
+      "relatedProblems": [
+        "c-ch05-cr-014",
+        "c-ch05-cr-023",
+        "c-ch05-cr-024"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-07",
+      "chapter": "第5章 循环结构",
+      "section": "5.4 用for语句实现循环",
+      "title": "逗号表达式与 for 的双变量控制",
+      "relatedProblems": [
+        "c-ch05-cr-018",
+        "c-ch05-cr-019"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-08",
+      "chapter": "第5章 循环结构",
+      "section": "5.1 为什么需要循环控制",
+      "title": "循环控制变量的设计与步长",
+      "relatedProblems": [
+        "c-ch05-cr-012",
+        "c-ch05-cr-010",
+        "c-ch05-cr-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-09",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 几种循环的比较",
+      "title": "三种循环语句的比较与选择",
+      "relatedProblems": [
+        "c-ch05-cr-006",
+        "c-ch05-cr-007",
+        "c-ch05-cr-017"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-10",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 几种循环的比较",
+      "title": "循环体执行次数的计算",
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-cr-012",
+        "c-ch05-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-11",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 循环的嵌套",
+      "title": "循环的嵌套",
+      "relatedProblems": [
+        "c-ch05-cr-018",
+        "c-ch05-cr-019",
+        "c-ch05-dbg-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-12",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "用嵌套循环打印图形",
+      "relatedProblems": [
+        "c-ch05-cr-019",
+        "c-ch05-dbg-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-13",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "嵌套循环应用：乘法口诀表",
+      "relatedProblems": [
+        "c-ch05-dbg-005",
+        "c-ch05-cr-018"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-14",
+      "chapter": "第5章 循环结构",
+      "section": "5.7.1 用break语句提前终止循环",
+      "title": "用 break 语句提前终止循环",
+      "relatedProblems": [
+        "c-ch05-cr-014",
+        "c-ch05-cr-015",
+        "c-ch05-cr-023"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-15",
+      "chapter": "第5章 循环结构",
+      "section": "5.7.2 用continue语句提前结束本次循环",
+      "title": "用 continue 语句提前结束本次循环",
+      "relatedProblems": [
+        "c-ch05-cr-020",
+        "c-ch05-cr-021",
+        "c-ch05-cr-022"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-16",
+      "chapter": "第5章 循环结构",
+      "section": "5.7.3 break语句和continue语句的区别",
+      "title": "break 语句和 continue 语句的区别",
+      "relatedProblems": [
+        "c-ch05-cr-022",
+        "c-ch05-cr-024",
+        "c-ch05-cr-020"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-17",
+      "chapter": "第5章 循环结构",
+      "section": "5.7 改变循环执行的状态",
+      "title": "break 与 continue 在嵌套循环中的作用范围",
+      "relatedProblems": [
+        "c-ch05-cr-024",
+        "c-ch05-cr-023",
+        "c-ch05-cr-015"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-18",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "getchar 驱动的字符循环",
+      "relatedProblems": [
+        "c-ch05-cr-001",
+        "c-ch05-cr-003",
+        "c-ch06-dbg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-19",
+      "chapter": "第5章 循环结构",
+      "section": "5.7 改变循环执行的状态",
+      "title": "死循环的成因与避免",
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-011"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-20",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "循环边界与 off-by-one 错误",
+      "relatedProblems": [
+        "c-ch05-cr-005",
+        "c-ch05-dbg-004",
+        "c-ch06-dbg-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-21",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "循环条件中误用赋值号 =",
+      "relatedProblems": [
+        "c-ch05-cr-002",
+        "c-ch05-cr-016"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-22",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "条件表达式中的自增自减副作用",
+      "relatedProblems": [
+        "c-ch05-cr-009",
+        "c-ch05-cr-010",
+        "c-ch05-cr-017"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-23",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "累加求和与符号交替",
+      "relatedProblems": [
+        "c-ch05-dbg-004",
+        "c-ch05-pg-004",
+        "c-ch05-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-24",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "累乘求阶乘与阶乘和",
+      "relatedProblems": [
+        "c-ch05-pg-001",
+        "c-ch05-pg-003",
+        "c-ch07-dbg-011"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-25",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "计数与频数统计",
+      "relatedProblems": [
+        "c-ch05-cr-003",
+        "c-ch06-cr-005",
+        "c-ch07-sa-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-26",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "穷举法（枚举）",
+      "relatedProblems": [
+        "c-ch05-pg-002",
+        "c-ch05-dbg-006",
+        "c-ch07-sa-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-27",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "迭代与递推",
+      "relatedProblems": [
+        "c-ch05-pg-001",
+        "c-ch05-pg-003",
+        "c-ch06-cr-019"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-28",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "辗转相除法求最大公约数",
+      "relatedProblems": [
+        "c-ch05-cr-011",
+        "c-ch07-cc-001",
+        "c-ch05-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-29",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "素数判定与试除法",
+      "relatedProblems": [
+        "c-ch05-dbg-006",
+        "c-ch07-sa-003",
+        "c-ch06-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch05-30",
+      "chapter": "第5章 循环结构",
+      "section": "5.8 循环程序举例",
+      "title": "哨兵控制的输入循环",
+      "relatedProblems": [
+        "c-ch05-cr-008",
+        "c-ch05-cr-011",
+        "c-ch06-cr-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-01",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "一维数组的定义",
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-02",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "一维数组的初始化",
+      "relatedProblems": [
+        "c-ch06-cr-002",
+        "c-ch06-cr-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-03",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "数组元素的引用与下标越界",
+      "relatedProblems": [
+        "c-ch06-cr-004",
+        "c-ch06-dbg-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-04",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "数组的内存布局与 sizeof",
+      "relatedProblems": [
+        "c-ch06-fb-001",
+        "c-ch06-fb-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-05",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "一维数组的输入与输出",
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-001",
+        "c-ch05-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-06",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "数组元素的移动：插入与删除",
+      "relatedProblems": [
+        "c-ch06-cr-009",
+        "c-ch06-pg-010"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-07",
+      "chapter": "第6章 数组",
+      "section": "6.1 怎样定义和引用一维数组",
+      "title": "数组逆置与去重",
+      "relatedProblems": [
+        "c-ch06-cr-010",
+        "c-ch06-cr-011",
+        "c-ch06-cr-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-08",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "二维数组的定义与引用",
+      "relatedProblems": [
+        "c-ch06-fb-003",
+        "c-ch06-cr-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-09",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "二维数组的行主序存储",
+      "relatedProblems": [
+        "c-ch06-fb-002",
+        "c-ch06-fb-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-10",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "二维数组的初始化",
+      "relatedProblems": [
+        "c-ch06-fb-005",
+        "c-ch06-fb-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-11",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "二维数组的遍历与按行加工",
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-pg-004",
+        "c-ch06-pg-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-12",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "矩阵转置",
+      "relatedProblems": [
+        "c-ch06-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-13",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "方阵的主对角线与副对角线",
+      "relatedProblems": [
+        "c-ch06-cc-003",
+        "c-ch06-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-14",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "在数组中求最值及其位置",
+      "relatedProblems": [
+        "c-ch06-dbg-007",
+        "c-ch06-pg-010",
+        "c-ch07-sa-011"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-15",
+      "chapter": "第6章 数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "title": "杨辉三角与递推型二维数组",
+      "relatedProblems": [
+        "c-ch06-cc-003",
+        "c-ch06-pg-002",
+        "c-ch06-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-16",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "字符数组的定义与三种输出方式",
+      "relatedProblems": [
+        "c-ch06-cr-013",
+        "c-ch06-cr-023",
+        "c-ch06-dbg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-17",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "字符串结束标志与 strlen、sizeof 的区别",
+      "relatedProblems": [
+        "c-ch06-fb-006",
+        "c-ch06-cr-015",
+        "c-ch06-dbg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-18",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "字符串的输入：scanf、getchar 与 fgets",
+      "relatedProblems": [
+        "c-ch06-cr-019",
+        "c-ch06-cr-030",
+        "c-ch06-cr-033",
+        "c-ch06-pg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-19",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "转义字符与字符串长度的计算",
+      "relatedProblems": [
+        "c-ch06-fb-006",
+        "c-ch06-cr-012",
+        "c-ch06-cr-021"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-20",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "字符串处理库函数（string.h）",
+      "relatedProblems": [
+        "c-ch06-cr-025",
+        "c-ch06-cr-027",
+        "c-ch06-cr-034",
+        "c-ch06-pg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-21",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "自己动手写 strlen、strcpy、strcmp",
+      "relatedProblems": [
+        "c-ch06-pg-009",
+        "c-ch06-cr-025",
+        "c-ch06-cr-027",
+        "c-ch06-dbg-009"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-22",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "字符串数组：一批字符串的存放与处理",
+      "relatedProblems": [
+        "c-ch06-cr-033",
+        "c-ch06-cr-034",
+        "c-ch06-cr-022"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-23",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "数字字符串与数值的相互转换",
+      "relatedProblems": [
+        "c-ch06-cr-013",
+        "c-ch06-dbg-009",
+        "c-ch06-cr-028"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-24",
+      "chapter": "第6章 数组",
+      "section": "6.3 字符数组与字符串",
+      "title": "进制转换：用数组暂存逆序结果",
+      "relatedProblems": [
+        "c-ch06-cr-009",
+        "c-ch06-cr-020",
+        "c-ch06-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-25",
+      "chapter": "第6章 数组",
+      "section": "6.4 数组作函数参数",
+      "title": "一维数组作函数参数",
+      "relatedProblems": [
+        "c-ch06-pg-001",
+        "c-ch06-pg-003",
+        "c-ch06-cc-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-26",
+      "chapter": "第6章 数组",
+      "section": "6.4 数组作函数参数",
+      "title": "二维数组作函数参数",
+      "relatedProblems": [
+        "c-ch06-pg-002",
+        "c-ch07-cr-005",
+        "c-ch07-sa-011"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-27",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "冒泡排序",
+      "relatedProblems": [
+        "c-ch06-dbg-008",
+        "c-ch06-cr-019"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-28",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "选择排序",
+      "relatedProblems": [
+        "c-ch06-dbg-008",
+        "c-ch06-cr-020"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-29",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "插入排序与有序表插入",
+      "relatedProblems": [
+        "c-ch06-cr-020",
+        "c-ch06-dbg-008",
+        "c-ch06-cc-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-30",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "顺序查找与哨兵技巧",
+      "relatedProblems": [
+        "c-ch06-cc-005",
+        "c-ch06-dbg-007",
+        "c-ch06-cr-019"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-31",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "折半查找（二分查找）",
+      "relatedProblems": [
+        "c-ch06-pg-008",
+        "c-ch06-cc-005",
+        "c-ch06-cr-020"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-32",
+      "chapter": "第6章 数组",
+      "section": "6.5 数组的排序与查找",
+      "title": "计数数组：统计频数与分组",
+      "relatedProblems": [
+        "c-ch06-pg-001",
+        "c-ch06-cc-004",
+        "c-ch06-cr-005",
+        "c-ch07-sa-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-33",
+      "chapter": "第6章 数组",
+      "section": "6.6 数组名与地址",
+      "title": "数组名与地址：a[i] 与 *(a+i) 等价",
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-002",
+        "c-ch06-cr-010"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-34",
+      "chapter": "第6章 数组",
+      "section": "6.7 数组应用举例",
+      "title": "数组应用：斐波那契数列与分组加工",
+      "relatedProblems": [
+        "c-ch06-pg-003",
+        "c-ch06-cr-006"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch06-35",
+      "chapter": "第6章 数组",
+      "section": "6.7 数组应用举例",
+      "title": "数组应用：高精度大整数",
+      "relatedProblems": [
+        "c-ch06-pg-006",
+        "c-ch06-pg-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-01",
+      "chapter": "第7章 函数",
+      "section": "7.1 为什么需要函数",
+      "title": "为什么需要函数：模块化程序设计",
+      "relatedProblems": [
+        "c-ch07-sa-010",
+        "c-ch07-cc-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-02",
+      "chapter": "第7章 函数",
+      "section": "7.2 函数的定义与调用",
+      "title": "函数定义的一般形式",
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-sa-003",
+        "c-ch07-cr-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-03",
+      "chapter": "第7章 函数",
+      "section": "7.2 函数的定义与调用",
+      "title": "函数调用的三种形式",
+      "relatedProblems": [
+        "c-ch07-cr-017",
+        "c-ch07-sa-007",
+        "c-ch07-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-04",
+      "chapter": "第7章 函数",
+      "section": "7.2 函数的定义与调用",
+      "title": "函数声明（原型）与定义的位置关系",
+      "relatedProblems": [
+        "c-ch07-cr-004",
+        "c-ch07-sa-005",
+        "c-ch07-sa-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-05",
+      "chapter": "第7章 函数",
+      "section": "7.3 函数的参数与返回值",
+      "title": "return 语句与函数返回值",
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-sa-003",
+        "c-ch07-cr-011"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-06",
+      "chapter": "第7章 函数",
+      "section": "7.3 函数的参数与返回值",
+      "title": "void 类型：无参数与无返回值",
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-cr-012",
+        "c-ch07-dbg-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-07",
+      "chapter": "第7章 函数",
+      "section": "7.3 函数的参数与返回值",
+      "title": "值传递的单向性",
+      "relatedProblems": [
+        "c-ch07-dbg-010",
+        "c-ch07-dbg-012",
+        "c-ch07-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-08",
+      "chapter": "第7章 函数",
+      "section": "7.3 函数的参数与返回值",
+      "title": "形参与实参的一一对应",
+      "relatedProblems": [
+        "c-ch07-cr-017",
+        "c-ch07-cr-008",
+        "c-ch07-sa-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-09",
+      "chapter": "第7章 函数",
+      "section": "7.2 函数的定义与调用",
+      "title": "函数的嵌套调用与层层分解",
+      "relatedProblems": [
+        "c-ch07-cc-001",
+        "c-ch07-sa-010",
+        "c-ch07-sa-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-10",
+      "chapter": "第7章 函数",
+      "section": "7.4 函数的递归调用",
+      "title": "递归的两个必备条件",
+      "relatedProblems": [
+        "c-ch07-cr-001",
+        "c-ch07-cr-002",
+        "c-ch07-cr-003",
+        "c-ch07-cr-006"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-11",
+      "chapter": "第7章 函数",
+      "section": "7.4 函数的递归调用",
+      "title": "递归经典：求阶乘",
+      "relatedProblems": [
+        "c-ch07-dbg-011",
+        "c-ch07-sa-004",
+        "c-ch07-cr-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-12",
+      "chapter": "第7章 函数",
+      "section": "7.4 函数的递归调用",
+      "title": "递归斐波那契与重复计算",
+      "relatedProblems": [
+        "c-ch07-cr-001",
+        "c-ch07-cr-006",
+        "c-ch07-cr-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-13",
+      "chapter": "第7章 函数",
+      "section": "7.4 函数的递归调用",
+      "title": "递归的执行过程与栈帧",
+      "relatedProblems": [
+        "c-ch07-cr-002",
+        "c-ch07-cr-007",
+        "c-ch07-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-14",
+      "chapter": "第7章 函数",
+      "section": "7.4 函数的递归调用",
+      "title": "递归与迭代的相互转换",
+      "relatedProblems": [
+        "c-ch07-cr-011",
+        "c-ch07-cr-015",
+        "c-ch07-sa-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-15",
+      "chapter": "第7章 函数",
+      "section": "7.5 数组作函数参数",
+      "title": "一维数组作函数参数（函数篇）",
+      "relatedProblems": [
+        "c-ch07-cc-002",
+        "c-ch07-sa-012",
+        "c-ch07-dbg-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-16",
+      "chapter": "第7章 函数",
+      "section": "7.5 数组作函数参数",
+      "title": "二维数组作函数参数（函数篇）",
+      "relatedProblems": [
+        "c-ch07-sa-011",
+        "c-ch07-cr-005",
+        "c-ch07-cr-009",
+        "c-ch07-cr-010"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-17",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "局部变量与全局变量",
+      "relatedProblems": [
+        "c-ch07-cr-012",
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-18",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "作用域嵌套与同名遮蔽",
+      "relatedProblems": [
+        "c-ch07-cr-013",
+        "c-ch07-cr-016",
+        "c-ch07-cr-018"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-19",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "auto 变量：默认的局部存储类别",
+      "relatedProblems": [
+        "c-ch07-cr-014",
+        "c-ch07-cr-015",
+        "c-ch07-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-20",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "static 局部变量：跨调用保留值",
+      "relatedProblems": [
+        "c-ch07-sa-001",
+        "c-ch07-sa-004",
+        "c-ch07-cr-014",
+        "c-ch07-cr-018"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-21",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "static 全局变量与 extern 声明",
+      "relatedProblems": [
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-22",
+      "chapter": "第7章 函数",
+      "section": "7.6 变量的作用域与存储类别",
+      "title": "四种存储类别的对比总表",
+      "relatedProblems": [
+        "c-ch07-cr-014",
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-23",
+      "chapter": "第7章 函数",
+      "section": "7.7 模块化与库函数",
+      "title": "内部函数与外部函数",
+      "relatedProblems": [
+        "c-ch07-cr-004",
+        "c-ch07-sa-003",
+        "c-ch07-sa-010"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-24",
+      "chapter": "第7章 函数",
+      "section": "7.7 模块化与库函数",
+      "title": "库函数与头文件的正确用法",
+      "relatedProblems": [
+        "c-ch07-sa-005",
+        "c-ch07-sa-006",
+        "c-ch07-sa-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch07-25",
+      "chapter": "第7章 函数",
+      "section": "7.7 模块化与库函数",
+      "title": "函数的综合应用：牛顿法、弦截法与递归多项式",
+      "relatedProblems": [
+        "c-ch07-sa-006",
+        "c-ch07-sa-008",
+        "c-ch07-sa-009",
+        "c-ch07-sa-005"
+      ],
+      "relatedViz": []
+    }
+  ]
 }

@@ -1,0 +1,1464 @@
+{
+  "category": "c",
+  "chapter": "第6章 数组",
+  "generated_at": "2026-09-09",
+  "count": 35,
+  "cards": [
+    {
+      "id": "c-ch06-01",
+      "title": "一维数组的定义",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "一维数组是同类型数据的有序集合，定义形式为「类型名 数组名[常量表达式]」，长度必须是编译期常量。",
+      "content": "### 语法速查\n```c\nint a[10];              /* 10 个 int，下标 0..9        */\nfloat b[5], c[5];       /* 一条语句定义两个数组        */\n#define N 10\nint d[N];               /* 用符号常量指定长度，推荐    */\nint e[n];               /* C99 变长数组：n 是变量，不推荐用于考试 */\n```\n\n### 三条规则\n1. 方括号里必须是**常量表达式**（字面量、const 宏、枚举值），不能是普通变量（C99 的 VLA 除外）；\n2. 数组名是**标识符**，遵循变量命名规则，且不能与同作用域的其他变量重名；\n3. 定义后数组长度固定，不能改变，也不能整体赋值（a = b 非法）。\n\n### 元素个数的可移植求法\n(int)(sizeof(a) / sizeof(a[0]))，比硬写 10 更不容易在改长度时漏改。",
+      "keyPoints": [
+        "定义形式：类型名 数组名[常量表达式]，长度在编译期确定",
+        "下标从 0 开始，长度为 n 的数组合法下标是 0 到 n-1",
+        "数组不能整体赋值、不能整体比较，只能逐个元素操作",
+        "用 sizeof(a)/sizeof(a[0]) 求元素个数，避免硬编码长度"
+      ],
+      "pitfalls": [
+        "用变量做长度 int a[n];（C99 的变长数组），很多教材与考试按 C89 判为错误",
+        "定义时长度写成 10 却按 a[10] 访问，越界",
+        "写 a = b 试图整体复制数组，编译报错"
+      ],
+      "examples": [
+        {
+          "title": "定义数组并遍历全部元素",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5] = {1, 2, 3, 4, 5};\n    int n = (int)(sizeof(a) / sizeof(a[0]));   /* 元素个数：改长度不用改代码 */\n    int i;\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"| n=%d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 4 5 | n=5",
+          "note": "sizeof(a) 是整个数组的字节数，sizeof(a[0]) 是一个元素的字节数，相除即元素个数。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-02",
+        "c-ch06-03",
+        "c-ch06-04"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 1
+    },
+    {
+      "id": "c-ch06-02",
+      "title": "一维数组的初始化",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "初始化用花括号列出初值，个数不足时其余元素自动补 0；全部补 0 可写 = {0}；初值个数多于长度则是编译错误。",
+      "content": "### 语法速查\n```c\nint a[5] = {1, 2, 3, 4, 5};   /* 全部指定           */\nint b[5] = {1, 2};            /* 部分指定：其余为 0 */\nint c[5] = {0};               /* 全 0 的简写        */\nint d[] = {1, 2, 3};          /* 省略长度：自动为 3 */\nint e[5];                     /* 未初始化：值不确定 */\n```\n\n### 四条规则\n1. 初值个数 **少于** 长度 → 剩余元素自动初始化为 0；\n2. 初值个数 **等于** 长度 → 可省略长度，由编译器数出来；\n3. 初值个数 **多于** 长度 → 编译错误；\n4. 只定义不初始化 → 元素值是**不确定的垃圾值**（全局数组与 static 数组例外，它们自动为 0）。\n\n### 指定初始化器（C99）\nint f[5] = {[3] = 9}; → 只有 f[3] 是 9，其余为 0。考试少见，但读开源代码会遇到。",
+      "keyPoints": [
+        "初值个数少于数组长度时，剩余元素自动初始化为 0",
+        "初值个数等于长度时可以省略长度，写成 int a[] = {1,2,3}",
+        "初值个数多于长度是编译错误",
+        "局部数组不初始化时其值不确定，全局与 static 数组自动清零"
+      ],
+      "pitfalls": [
+        "以为未初始化的局部数组是 0，读到的是栈上的垃圾值",
+        "写 int a[3] = {1,2,3,4}; 初值过多，编译不通过",
+        "= {0} 与 = {} 混用：C 语言不支持空花括号 {}"
+      ],
+      "examples": [
+        {
+          "title": "部分初始化：未指定的元素自动为 0",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[6] = {1, 2, 3};\n    int i;\n    for (i = 0; i < 6; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 0 0 0 ",
+          "note": "只给了 3 个初值，a[3]、a[4]、a[5] 被自动初始化为 0，而不是随机值。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-002",
+        "c-ch06-cr-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-01",
+        "c-ch06-10"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 2
+    },
+    {
+      "id": "c-ch06-03",
+      "title": "数组元素的引用与下标越界",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "数组元素用「数组名[下标]」引用，下标必须是 0 到 n-1 的整型表达式；越界访问是未定义行为，编译期不报错。",
+      "content": "### 语法速查\n```c\nint a[5];\na[0] = 10;          /* 下标可以是常量 */\na[i] = a[i - 1] * 2;/* 也可以是整型表达式 */\na[2 + 1] = 5;       /* 等价 a[3] */\n```\n\n### 下标越界的真相\nC 语言**不做下标检查**。a[5]（长度 5 的数组）访问的是数组之后紧邻的内存：\n- 可能读到垃圾值；\n- 可能悄悄改写别的变量（尤其相邻的局部变量）；\n- 可能触发段错误崩溃；\n- 也可能「看起来正常」，换个编译器/优化等级就出错。\n\n这是**未定义行为**，以 -O0 的实测结果为准，但正确做法是从源头上不越界。\n\n### 三类高频越界\n1. 循环条件写 i <= n；\n2. 用「个数」当下标（第 5 个元素是 a[4]）；\n3. 字符串处理时忘记为 '\\0' 预留一个位置。",
+      "keyPoints": [
+        "元素引用形式是 数组名[下标]，下标可以是整型常量或表达式",
+        "长度为 n 的数组，合法下标范围是 0 到 n-1",
+        "C 语言不检查下标越界，越界属于未定义行为",
+        "越界可能读垃圾值、改写相邻变量或崩溃，不能依赖「碰巧能跑」"
+      ],
+      "pitfalls": [
+        "for (i = 0; i <= n; i++) 多访问一个元素，越界",
+        "把「第 k 个」直接当下标写成 a[k]，实际应是 a[k-1]",
+        "字符数组装字符串时长度忘记 +1，「\u0000」写到了数组外"
+      ],
+      "examples": [
+        {
+          "title": "合法下标范围内的引用与整体加工",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5] = {10, 20, 30, 40, 50};\n    int i;\n    printf(\"%d %d\\n\", a[0], a[4]);      /* 首元素与末元素 */\n    for (i = 0; i < 5; i++) a[i] = a[i] * 2;\n    printf(\"%d %d %d\\n\", a[0], a[2], a[4]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 50\n20 60 100",
+          "note": "下标只取 0..4；若写成 for (i = 0; i <= 5; i++) 就会访问 a[5]，那是数组之外的内存。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-004",
+        "c-ch06-dbg-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-01",
+        "c-ch06-04",
+        "c-ch05-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 3
+    },
+    {
+      "id": "c-ch06-04",
+      "title": "数组的内存布局与 sizeof",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "数组元素在内存中连续存放，元素地址差恒为 1 个元素；sizeof(数组名) 给整个数组字节数，是求元素个数的依据。",
+      "content": "### 语法速查\n```c\nint a[5];\n&a[1] - &a[0]            /* 结果为 1（以元素为单位，不是字节） */\nsizeof(a)                /* 整个数组的字节数 = 5 * sizeof(int) */\nsizeof(a) / sizeof(a[0]) /* 元素个数 */\n```\n\n### 三个要点\n1. **连续性**：一维数组占用一段连续内存，a[i] 与 a[i+1] 相邻；\n2. **指针差的单位**：两个同类型指针相减，结果是「相隔多少个元素」，不是字节数；\n3. **sizeof 的两副面孔**：作用于数组名得到整个数组大小；作用于函数形参（已退化成指针）只得到一个指针的大小。\n\n### 二维数组的布局\n按**行主序**存放：先存完第 0 行的所有列，再存第 1 行。\n所以 a[i][j] 的线性序号是 i * 列数 + j。",
+      "keyPoints": [
+        "数组元素在内存中连续存放，相邻元素地址相差一个元素的大小",
+        "指针相减的结果以「元素个数」为单位，不是字节数",
+        "sizeof(数组名) 是整个数组的字节数，除以 sizeof(元素) 得元素个数",
+        "数组作为函数参数时会退化成指针，此时 sizeof 只得到指针大小"
+      ],
+      "pitfalls": [
+        "在函数内对形参数组用 sizeof 求元素个数，得到的是指针大小（64 位平台为 8）",
+        "以为指针相减得到字节数，把结果又乘以 sizeof 造成重复放大",
+        "以为二维数组按列存放（那是 Fortran 的规则）"
+      ],
+      "examples": [
+        {
+          "title": "用地址差验证元素连续存放",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5] = {0};\n    printf(\"%d %d\\n\", (int)(&a[1] - &a[0]), (int)(&a[4] - &a[0]));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 4",
+          "note": "地址差以元素为单位：a[1] 与 a[0] 相差 1 个元素，a[4] 与 a[0] 相差 4 个元素，证明存放是连续的。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-001",
+        "c-ch06-fb-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-01",
+        "c-ch06-09",
+        "c-ch06-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 4
+    },
+    {
+      "id": "c-ch06-05",
+      "title": "一维数组的输入与输出",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "数组只能逐元素输入输出：scanf 要加取地址符 &a[i]，printf 直接写 a[i]，两者都靠循环遍历下标。",
+      "content": "### 语法速查\n```c\nfor (i = 0; i < n; i++) scanf(\"%d\", &a[i]);   /* 必须加 & */\nfor (i = 0; i < n; i++) printf(\"%d \", a[i]);  /* 不能加 & */\n```\n\n### 输入格式与分隔\nscanf(\"%d\") 会自动跳过空格、制表符和换行，所以「1 2 3」「1<回车>2<回车>3」都能正确读入。\n读字符时 scanf(\"%c\") **不跳过空白**，会读到上次输入残留的换行符，这是最常见的坑。\n\n### 输出格式控制\n- 每行 k 个：if ((i + 1) % k == 0) printf(\"\\n\");\n- 对齐：printf(\"%4d\", a[i]) 右对齐占 4 列，printf(\"%-4d\", a[i]) 左对齐；\n- 不要输出数组名（printf(\"%d\", a) 打印的是地址，不是内容）。",
+      "keyPoints": [
+        "数组必须逐元素输入输出，没有整体读写一个数组的语法",
+        "scanf 的参数是地址，必须写 &a[i]；printf 的参数是值，写 a[i]",
+        "scanf(\"%d\") 自动跳过空白符，scanf(\"%c\") 不跳过",
+        "控制输出格式用宽度修饰符与计数器换行"
+      ],
+      "pitfalls": [
+        "scanf(\"%d\", a[i]) 漏掉 &，运行期崩溃或读到错误数据",
+        "printf(\"%d\", a) 打印数组首地址而不是元素值",
+        "混用 scanf(\"%d\") 与 scanf(\"%c\") 时，残留的换行符被 %c 读走"
+      ],
+      "examples": [
+        {
+          "title": "读入 5 个整数后逆序输出",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5], i;\n    for (i = 0; i < 5; i++) scanf(\"%d\", &a[i]);   /* 注意 & */\n    for (i = 4; i >= 0; i--) printf(\"%d \", a[i]); /* 倒着遍历 */\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "1 2 3 4 5\n",
+          "expected": "5 4 3 2 1 ",
+          "note": "逆序输出只需把循环改成从 n-1 递减到 0，不必真的反转数组。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-001",
+        "c-ch05-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-01",
+        "c-ch06-03",
+        "c-ch06-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 5
+    },
+    {
+      "id": "c-ch06-06",
+      "title": "数组元素的移动：插入与删除",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "删除是把后面的元素依次前移，插入是把后面的元素依次后移，两者都必须从正确的方向开始移动以免覆盖数据。",
+      "content": "### 语法速查\n```c\n/* 删除下标 k 处的元素：从 k 开始向前覆盖 */\nfor (i = k; i < n - 1; i++) a[i] = a[i + 1];\nn--;\n\n/* 在下标 k 处插入 x：必须从后往前挪，否则覆盖 */\nfor (i = n - 1; i >= k; i--) a[i + 1] = a[i];\na[k] = x;\nn++;\n```\n\n### 方向为什么不能反\n插入若从前往后挪（a[k+1] = a[k]; a[k+2] = a[k+1]; …），\n第二次赋值时 a[k+1] 已被覆盖成新值，结果是 a[k] 被复制了一整串。\n**口诀：插入从后往前，删除从前往后。**\n\n### 前提\n数组声明的长度必须留有余量（如 int a[100] 而实际只用 n 个），\n否则插入时 a[n] 越界。",
+      "keyPoints": [
+        "删除元素：从被删位置开始，把后面的元素依次前移一格，最后 n--",
+        "插入元素：从末尾开始，把插入点之后的元素依次后移一格，再写入新值，最后 n++",
+        "移动方向不能反，否则会覆盖还未搬走的数据",
+        "数组声明长度必须预留余量，插入才不会越界"
+      ],
+      "pitfalls": [
+        "插入时从前往后移动，导致插入点之后的元素全变成同一个值",
+        "删除后忘记 n--，末尾残留一个重复元素",
+        "循环边界写成 i < n 而不是 i < n - 1，删除时读取 a[n] 越界"
+      ],
+      "examples": [
+        {
+          "title": "删除下标 2 处的元素",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[6] = {1, 2, 3, 4, 5, 6};\n    int n = 6, k = 2, i;\n    for (i = k; i < n - 1; i++) a[i] = a[i + 1];  /* 从前往后覆盖 */\n    n--;\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 4 5 6 ",
+          "note": "a[2] 被 a[3] 覆盖，a[3] 被 a[4] 覆盖……最后一个元素只搬不读，长度减 1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-009",
+        "c-ch06-pg-010"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-07",
+        "c-ch06-05",
+        "c-ch06-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 6
+    },
+    {
+      "id": "c-ch06-07",
+      "title": "数组逆置与去重",
+      "section": "6.1 怎样定义和引用一维数组",
+      "summary": "逆置用双下标 i、j 从两端向中间交换，只需 n/2 轮；去重则对每个元素检查它前面是否已出现过。",
+      "content": "### 语法速查\n```c\n/* 原地逆置：两端夹逼 */\nfor (i = 0, j = n - 1; i < j; i++, j--) {\n    t = a[i]; a[i] = a[j]; a[j] = t;\n}\n\n/* 保序去重：只看前面有没有 */\nm = 0;\nfor (i = 0; i < n; i++) {\n    int dup = 0;\n    for (j = 0; j < m; j++) if (b[j] == a[i]) { dup = 1; break; }\n    if (!dup) b[m++] = a[i];\n}\n```\n\n### 逆置的两个细节\n1. 条件是 i < j（不是 i <= j），中间元素无需与自己交换；\n2. 交换必须借助临时变量 t，写 a[i] = a[j]; a[j] = a[i]; 会丢失数据。\n\n### 去重的复杂度\n上面这种「双重循环比对」是 O(n²)，n 小时够用；\n取值范围有限时改用计数数组（桶），可降到 O(n)。",
+      "keyPoints": [
+        "原地逆置用两个下标从两端向中间交换，循环条件是 i < j",
+        "交换两个元素必须使用临时变量，否则第一个值会被覆盖丢失",
+        "保序去重的判据是「该值在已保留的部分中是否出现过」",
+        "双重循环去重是 O(n²)，取值范围小时可用计数数组优化到 O(n)"
+      ],
+      "pitfalls": [
+        "逆置循环写成 i <= n - 1，交换两遍等于没换",
+        "不用临时变量直接互相赋值，结果两个位置都是同一个值",
+        "去重时把比较范围写成整个原数组，导致所有元素都被判为重复"
+      ],
+      "examples": [
+        {
+          "title": "双下标原地逆置",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[6] = {1, 2, 3, 4, 5, 6};\n    int i = 0, j = 5, t;\n    while (i < j) {\n        t = a[i]; a[i] = a[j]; a[j] = t;\n        i++; j--;\n    }\n    for (i = 0; i < 6; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "6 5 4 3 2 1 ",
+          "note": "只交换 3 轮（n/2）；当 i 与 j 相遇或交错时停止，中间元素保持不动。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-010",
+        "c-ch06-cr-011",
+        "c-ch06-cr-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-06",
+        "c-ch06-32",
+        "c-ch05-07"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 7
+    },
+    {
+      "id": "c-ch06-08",
+      "title": "二维数组的定义与引用",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "二维数组用「数组名[行下标][列下标]」引用，行、列下标都从 0 开始，可看作「元素本身也是一维数组」的数组。",
+      "content": "### 语法速查\n```c\nint a[3][4];        /* 3 行 4 列，共 12 个元素 */\na[1][2] = 5;        /* 第 2 行第 3 列 */\nint b[3][4], c[2][2];\n```\n\n### 理解模型\na[3][4] 可以看成「3 个一维数组 a[0]、a[1]、a[2]，每个含 4 个 int」。\n所以 a[1] 是第 2 行（一个一维数组名），a[1][2] 是这一行的第 3 个元素。\n\n### 下标范围\n行下标 0..2，列下标 0..3。行数 = 第一维长度，列数 = 第二维长度。\n「第 i 行第 j 列」在代码里是 a[i-1][j-1]。\n\n### 元素总数与字节数\n元素个数 = 行数 × 列数；字节数 = 行数 × 列数 × sizeof(元素类型)。",
+      "keyPoints": [
+        "二维数组定义形式为 类型名 数组名[行数][列数]",
+        "引用形式为 a[行下标][列下标]，两个下标都从 0 开始",
+        "a[i] 表示第 i 行（一个一维数组），a[i][j] 才是具体元素",
+        "元素总数 = 行数 × 列数"
+      ],
+      "pitfalls": [
+        "把「第 2 行第 3 列」写成 a[2][3]，实际是第 3 行第 4 列且可能越界",
+        "定义 int a[3][4] 却访问 a[3][0]，行下标越界",
+        "写 a[1, 2] —— 逗号表达式使下标变成 2，等价于 a[2]，语义完全错"
+      ],
+      "examples": [
+        {
+          "title": "二维数组元素的引用",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    printf(\"%d %d\\n\", a[0][2], a[1][0]);   /* 第 1 行末、第 2 行首 */\n    printf(\"%d\\n\", a[1][1] + a[0][0]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "3 4\n6",
+          "note": "a[0][2] 是第 1 行第 3 列（值 3），a[1][0] 是第 2 行第 1 列（值 4）。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-003",
+        "c-ch06-cr-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-09",
+        "c-ch06-10",
+        "c-ch06-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 8
+    },
+    {
+      "id": "c-ch06-09",
+      "title": "二维数组的行主序存储",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "C 语言二维数组按行主序连续存放：先存完第 0 行的所有列再存第 1 行，a[i][j] 的线性序号为 i×列数+j。",
+      "content": "### 语法速查\n```c\nint a[2][3];\n/* 内存顺序：a[0][0] a[0][1] a[0][2] a[1][0] a[1][1] a[1][2] */\n/* 线性序号：i * 列数 + j                                     */\n```\n\n### 为什么「列数」这么重要\n编译器要靠列数把 a[i][j] 换算成偏移量 i * 列数 + j。\n所以**二维数组作函数参数时列数不能省**（行数可以省），\n否则编译器无法计算地址。\n\n### 与一维数组的等价关系\n把 a[2][3] 拉直就是一个长度 6 的一维数组，\n可以用一重循环遍历：for (k = 0; k < 6; k++) 处理第 k 个元素，\n其行列坐标是 i = k / 3、j = k % 3。\n\n### 常见考点\n- 「二维数组元素在内存中的存放顺序」→ 按行存放（行主序）；\n- 已知 a[0][0] 的地址与元素大小，求 a[i][j] 的地址 → 首地址 + (i*列数+j)*元素大小。",
+      "keyPoints": [
+        "C 语言二维数组按行主序存放：先行后列，整段内存连续",
+        "a[i][j] 的线性序号 = i × 列数 + j",
+        "列数决定地址换算，因此二维数组作参数时列数不可省略",
+        "二维数组可以用一重循环拉直遍历，坐标由除法与取余还原"
+      ],
+      "pitfalls": [
+        "以为按列存放（Fortran 的行规），把地址计算算错",
+        "函数形参写 int a[][]，缺列数导致编译错误",
+        "拉直遍历时用 i = k % 列数、j = k / 列数，行列颠倒"
+      ],
+      "examples": [
+        {
+          "title": "把二维数组拉直成一维顺序",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int i, j, k;\n    for (k = 0; k < 6; k++) {\n        i = k / 3;                 /* 行 = 序号 / 列数 */\n        j = k % 3;                 /* 列 = 序号 % 列数 */\n        printf(\"%d \", a[i][j]);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 4 5 6 ",
+          "note": "一重循环就按内存顺序走完全部元素，i = k/列数、j = k%列数 还原坐标。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-002",
+        "c-ch06-fb-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-08",
+        "c-ch06-26",
+        "c-ch06-04"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 9
+    },
+    {
+      "id": "c-ch06-10",
+      "title": "二维数组的初始化",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "二维数组可以分行初始化 {{…},{…}} 或连续初始化 {…}，未给足的元素一律补 0；只有「分行初始化」时行数才可以省略。",
+      "content": "### 语法速查\n```c\nint a[3][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};  /* 分行，最清晰 */\nint b[3][4] = {1,2,3,4,5,6,7,8,9,10,11,12};        /* 连续，按行主序填 */\nint c[3][4] = {{1,2},{5},{9,10,11}};               /* 部分：缺的补 0 */\nint d[][4]  = {{1,2},{5,6}};                       /* 分行时可省行数 */\nint e[3][4] = {0};                                 /* 全 0 */\n```\n\n### 三条规则\n1. **部分初始化按行补齐**：每行内缺的补 0，整行没写的也全为 0；\n2. **省略行数只允许在分行初始化时**（编译器数花括号），连续初始化必须写行数；\n3. **列数永远不能省** —— 它决定地址换算。\n\n### 常考形式\nint a[3][4] = {{1,2},{0},{4,6,8,10}};\n→ a[0] = {1,2,0,0}，a[1] = {0,0,0,0}，a[2] = {4,6,8,10}，\n所以 a[1][2] = 0、a[2][3] = 10。",
+      "keyPoints": [
+        "二维数组可用分行初始化 {{…},{…}}，也可用连续初始化 {…}（按行主序填入）",
+        "初值不足时，行内缺的元素与整行未写的元素都自动补 0",
+        "只有分行初始化才能省略行数，列数在任何情况下都不能省",
+        "int a[3][4] = {0} 是把全部 12 个元素清零的简写"
+      ],
+      "pitfalls": [
+        "连续初始化时省略行数 int a[][4] = {1,2,3}; 编译错误",
+        "误以为 {{1,2},{0}} 的第二行第一个元素是上一行溢出的值，其实是 0，其余也是 0",
+        "省略列数 int a[3][] = {{1},{2}}; 编译错误"
+      ],
+      "examples": [
+        {
+          "title": "部分初始化的补齐结果（题 6.56 同款）",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[3][4] = {{1, 2}, {0}, {4, 6, 8, 10}};\n    printf(\"%d %d %d\\n\", a[0][2], a[1][2], a[2][3]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 0 10",
+          "note": "第 0 行只给 2 个初值，a[0][2] 补 0；第 1 行只给了一个 0，a[1][2] 也是 0；第 2 行给满 4 个，a[2][3]=10。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-005",
+        "c-ch06-fb-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-02",
+        "c-ch06-08",
+        "c-ch06-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 10
+    },
+    {
+      "id": "c-ch06-11",
+      "title": "二维数组的遍历与按行加工",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "二维数组用双重循环遍历，外层走行、内层走列；「按行输出、每行末尾换行」是考试最常见的输出格式。",
+      "content": "### 语法速查\n```c\n#define M 2\n#define N 3\nint a[M][N] = {{1, 2, 3}, {4, 5, 6}};\nint i, j;\nfor (i = 0; i < M; i++) {          /* 外层：行 */\n    for (j = 0; j < N; j++)        /* 内层：列 */\n        printf(\"%d \", a[i][j]);\n    printf(\"\\n\");                  /* 一行结束才换行 */\n}\n```\n\n### 三个要点\n1. 行下标范围 0..M-1、列下标范围 0..N-1，两个循环变量**不能共用一个**；\n2. 行主序存储意味着「先换行再换列」的遍历顺序与内存顺序一致，缓存友好；反过来写（外层列、内层行）结果仍正确，但访问是跳跃的；\n3. 累加、求平均、找最值这类**整体加工**都套在这个双重循环骨架上，只改循环体。\n\n### 常见变形\n- 只遍历上三角：内层写成 for (j = i; j < N; j++)；\n- 只遍历下三角：内层写成 for (j = 0; j <= i; j++)；\n- 每行输出个数由数据决定：内层循环上限用变量而不是常量。",
+      "keyPoints": [
+        "双重循环遍历：外层控制行、内层控制列，循环上限分别是行数与列数",
+        "换行语句写在外层循环体内、内层循环之外，才能实现「每行 N 个」",
+        "求和、求最值、按行统计都在同一个双重循环骨架上改循环体",
+        "两个循环变量必须独立，共用一个会漏掉大部分元素"
+      ],
+      "pitfalls": [
+        "把 printf(\"\\n\") 写进内层循环，结果每个数占一行",
+        "内外层都用 i 做循环变量，内层把 i 改掉后外层逻辑全乱",
+        "行数与列数写反（i < N、j < M），非方阵时越界"
+      ],
+      "examples": [
+        {
+          "title": "按行输出并求全部元素之和",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int i, j, sum = 0;\n    for (i = 0; i < 2; i++) {\n        for (j = 0; j < 3; j++) {\n            printf(\"%d \", a[i][j]);\n            sum += a[i][j];\n        }\n        printf(\"| \");\n    }\n    printf(\"sum=%d\\n\", sum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 | 4 5 6 | sum=21",
+          "note": "用「| 」代替换行只是本题的显示需要；真实考试格式通常是每行末尾 printf(\"\\n\")。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-pg-004",
+        "c-ch06-pg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-08",
+        "c-ch06-09",
+        "c-ch06-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 11
+    },
+    {
+      "id": "c-ch06-12",
+      "title": "矩阵转置",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "转置就是把 a[i][j] 搬到 b[j][i]，行数与列数互换；方阵可以只用一个辅助变量原地交换上三角与下三角。",
+      "content": "### 语法速查\n```c\n/* 非方阵：必须另开数组，行列数互换 */\nint a[2][3] = {{1, 2, 3}, {4, 5, 6}}, b[3][2];\nfor (i = 0; i < 2; i++)\n    for (j = 0; j < 3; j++)\n        b[j][i] = a[i][j];\n\n/* 方阵：原地交换，只遍历上三角 */\nint t;\nfor (i = 0; i < n; i++)\n    for (j = i + 1; j < n; j++) {\n        t = a[i][j]; a[i][j] = a[j][i]; a[j][i] = t;\n    }\n```\n\n### 关键点\n1. 转置后原第 i 行变成第 i 列，所以目标数组的声明是 b[列数][行数]；\n2. 方阵原地转置时内层必须从 j = i + 1 开始，否则每对元素被交换两次，等于没转；\n3. 对角线元素 a[i][i] 在转置中不动。",
+      "keyPoints": [
+        "核心赋值：b[j][i] = a[i][j]，行变列、列变行",
+        "目标数组的形状是 [原列数][原行数]，行列数互换",
+        "方阵原地转置只交换上三角（j 从 i+1 起），对角线不变",
+        "二维数组整体不能赋值，转置必须逐元素搬"
+      ],
+      "pitfalls": [
+        "写成 b[i][j] = a[j][i] 却仍用原行列数声明 b，非方阵直接越界",
+        "方阵原地转置内层从 j = 0 开始，交换两次等于没交换",
+        "把二维数组当一维用 a[i*3+j] 时列数写错"
+      ],
+      "examples": [
+        {
+          "title": "2×3 矩阵转置为 3×2 并输出",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int b[3][2];\n    int i, j;\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[j][i] = a[i][j];\n    for (i = 0; i < 3; i++) {\n        for (j = 0; j < 2; j++) printf(\"%d \", b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 4 \n2 5 \n3 6 ",
+          "note": "b 的第一行 {1,4} 正是 a 的第一列。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-11",
+        "c-ch06-13"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 12
+    },
+    {
+      "id": "c-ch06-13",
+      "title": "方阵的主对角线与副对角线",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "n 阶方阵中主对角线满足 i == j，副对角线满足 i + j == n - 1，求和只需要一个单层循环。",
+      "content": "### 语法速查\n```c\nint d = 0, ud = 0, n = 3;\nfor (i = 0; i < n; i++) {\n    d  += a[i][i];            /* 主对角线：行号 == 列号     */\n    ud += a[i][n - 1 - i];    /* 副对角线：行号 + 列号 == n-1 */\n}\n```\n\n### 判定条件速记\n| 区域 | 条件 |\n|---|---|\n| 主对角线 | i == j |\n| 副对角线 | i + j == n - 1 |\n| 上三角（含主对角线） | i <= j |\n| 下三角（含主对角线） | i >= j |\n\n### 说明\n- n 为奇数时两条对角线在中心元素相交，该元素会被计入两次，题目若要求「两条对角线之和」通常就是这样；\n- 这些条件也常用来判断某元素是否落在指定三角区，是二维数组读程序题的高频考点。",
+      "keyPoints": [
+        "主对角线元素下标特征：i == j",
+        "副对角线元素下标特征：i + j == n - 1，即 a[i][n-1-i]",
+        "求对角线和只需单层循环，不必遍历整个方阵",
+        "上三角 i <= j、下三角 i >= j，是同一组条件的变形"
+      ],
+      "pitfalls": [
+        "副对角线写成 a[i][n-i]，越界一格",
+        "n 为奇数时忘记中心元素被两条对角线各算一次",
+        "用非方阵套用对角线概念（对角线只对方阵有意义）"
+      ],
+      "examples": [
+        {
+          "title": "求 3 阶方阵两条对角线元素之和",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n    int i, n = 3, d = 0, ud = 0;\n    for (i = 0; i < n; i++) {\n        d  += a[i][i];\n        ud += a[i][n - 1 - i];\n    }\n    printf(\"d=%d ud=%d\\n\", d, ud);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "d=15 ud=15",
+          "note": "主对角线 1+5+9=15；副对角线 3+5+7=15，中心元素 5 各计一次。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-003",
+        "c-ch06-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-11",
+        "c-ch06-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 13
+    },
+    {
+      "id": "c-ch06-14",
+      "title": "在数组中求最值及其位置",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "求最值的正确套路是「记下标不记值」：先用第 0 个元素做擂主，比较时更新下标，最后由下标取值。",
+      "content": "### 语法速查\n```c\n/* 一维：记位置 */\nint k = 0;\nfor (i = 1; i < n; i++)\n    if (a[i] > a[k]) k = i;\nprintf(\"max=%d at %d\\n\", a[k], k);\n\n/* 二维：记行列 */\nint mi = 0, mj = 0;\nfor (i = 0; i < M; i++)\n    for (j = 0; j < N; j++)\n        if (a[i][j] > a[mi][mj]) { mi = i; mj = j; }\n```\n\n### 为什么「记下标」而不是「记值」\n- 记值只能得到最大值本身，无法回答「在第几个」；\n- 记值时若初值写成 0，遇到全负数组会得到错误答案；记下标用 a[0] 做初值天然正确；\n- 有多个相同最值时，用严格大于 > 保留**第一次**出现的位置，用 >= 则保留最后一次。\n\n### 边界\n- n == 0 时不存在最值，必须先判空再进循环；\n- 二维数组的「位置」是一对下标，输出格式常写成 at(行,列)。",
+      "keyPoints": [
+        "擂台法：以第 0 个元素为初值，从下标 1 开始逐个比较",
+        "记录的是下标（位置）而不是值，最后再用下标取值",
+        "用 > 得到第一次出现的位置，用 >= 得到最后一次出现的位置",
+        "二维要同时记录行下标与列下标两个变量"
+      ],
+      "pitfalls": [
+        "初值写成 int max = 0，全负数组时结果错误",
+        "比较写成 if (a[i] > max) 却忘了同步更新位置变量",
+        "二维找最值只更新 mi 不更新 mj，位置张冠李戴"
+      ],
+      "examples": [
+        {
+          "title": "求 2×3 矩阵的最大值及其行列位置",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{3, 1, 9}, {7, 2, 5}};\n    int i, j, mi = 0, mj = 0;\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            if (a[i][j] > a[mi][mj]) { mi = i; mj = j; }\n    printf(\"max=%d at(%d,%d)\\n\", a[mi][mj], mi, mj);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "max=9 at(0,2)",
+          "note": "初值取 a[0][0]，即使全是负数也能得到正确答案。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-dbg-007",
+        "c-ch06-pg-010",
+        "c-ch07-sa-011"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-11",
+        "c-ch06-30"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 14
+    },
+    {
+      "id": "c-ch06-15",
+      "title": "杨辉三角与递推型二维数组",
+      "section": "6.2 怎样定义和引用二维数组",
+      "summary": "杨辉三角的每一项由上一行相邻两项相加得到：a[i][j] = a[i-1][j-1] + a[i-1][j]，每行首项为 1，是典型的二维递推。",
+      "content": "### 语法速查\n```c\nint a[5][5] = {{0}};            /* 全 0，越界的「不存在项」按 0 参与计算 */\nfor (i = 0; i < 5; i++) {\n    a[i][0] = 1;                /* 每行第一个是 1 */\n    for (j = 1; j <= i; j++)\n        a[i][j] = a[i - 1][j - 1] + a[i - 1][j];\n    for (j = 0; j <= i; j++) printf(\"%d \", a[i][j]);\n    printf(\"\\n\");\n}\n```\n\n### 递推三要素\n1. **初值**：第 0 行只有 a[0][0] = 1；\n2. **递推式**：a[i][j] = a[i-1][j-1] + a[i-1][j]；\n3. **边界处理**：每行末尾「不存在的项」靠数组预置的 0 自然补齐，所以必须先用 = {{0}} 清零。\n\n### 输出格式\n第 i 行只有 i+1 个数，所以输出循环的上限是 j <= i，不是固定的列数——这就是「按行变长输出」。\n\n### 同类题型\n斐波那契数列、兔子繁殖、走楼梯计数都是「一维递推」，杨辉三角是它的二维版本。",
+      "keyPoints": [
+        "递推式 a[i][j] = a[i-1][j-1] + a[i-1][j]，第 i 行有 i+1 个元素",
+        "数组必须先整体清 0，缺失项才能按 0 参与加法",
+        "每行首元素 a[i][0] 恒为 1，是递推的初值",
+        "输出时内层上限用 j <= i 实现变长行"
+      ],
+      "pitfalls": [
+        "数组未清零，a[i-1][j] 读到垃圾值导致后面全错",
+        "内层从 j = 0 开始递推，a[i][-1] 越界",
+        "输出循环上限写成固定列数，把 0 也打印出来"
+      ],
+      "examples": [
+        {
+          "title": "输出杨辉三角前 5 行",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5][5] = {{0}};\n    int i, j;\n    for (i = 0; i < 5; i++) {\n        a[i][0] = 1;\n        for (j = 1; j <= i; j++)\n            a[i][j] = a[i - 1][j - 1] + a[i - 1][j];\n        for (j = 0; j <= i; j++) printf(\"%d \", a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 \n1 1 \n1 2 1 \n1 3 3 1 \n1 4 6 4 1 ",
+          "note": "a[4][2] = a[3][1] + a[3][2] = 3 + 3 = 6。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-003",
+        "c-ch06-pg-002",
+        "c-ch06-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-10",
+        "c-ch06-11",
+        "c-ch06-34"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 15
+    },
+    {
+      "id": "c-ch06-16",
+      "title": "字符数组的定义与三种输出方式",
+      "section": "6.3 字符数组与字符串",
+      "summary": "字符数组可以逐字符初始化，也可以用字符串常量初始化；输出时可以 %c 逐个打印，也可以 %s 整体打印，二者对结束符的要求不同。",
+      "content": "### 语法速查\n```c\nchar s1[6] = {'C','h','i','n','a','\\0'};  /* 逐字符，手动放结束符 */\nchar s2[6] = \"China\";                     /* 字符串常量，自动补 \\0 */\nchar s3[]  = \"China\";                     /* 长度自动算成 6 */\nchar s4[5] = {'C','h','i','n','a'};       /* 只有字符，不是字符串！ */\n\nprintf(\"%s\\n\", s2);                       /* 整体输出，遇 \\0 停止 */\nfor (i = 0; s2[i] != '\\0'; i++)           /* 逐个输出，自己控制终点 */\n    printf(\"%c\", s2[i]);\n```\n\n### 两条关键区别\n1. 用字符串常量初始化时，编译系统**自动**在最后加一个结束符，长度 = 字符数 + 1；\n2. 逐字符初始化且长度刚好等于字符数时，数组里**没有**结束符，它只是一个字符数组、不是字符串，只能用 %c 配下标输出。\n\n### 使用 %s 的规则\n- %s 对应的实参是**数组名**（首地址），不是数组元素，写 printf(\"%s\", s[0]) 是错的；\n- %s 从给定地址开始一直输出到遇见结束符为止，数组后面是什么就输出什么，因此必须保证有结束符。",
+      "keyPoints": [
+        "字符数组用 char 定义，可逐字符初始化，也可用字符串常量初始化",
+        "字符串常量初始化会自动在末尾补结束符，数组长度至少是字符数 + 1",
+        "%s 输出以结束符为终点，%c 配下标可以精确控制输出范围",
+        "%s 的实参必须是数组名（地址），不能是某个元素"
+      ],
+      "pitfalls": [
+        "char s[5] 装 5 个字符后没有结束符，用 %s 输出会一直读到随机的结束符（UB）",
+        "写 printf(\"%s\", s[0]) 把一个字符当地址用，运行崩溃",
+        "长度只写字符个数，忘了给结束符留位置"
+      ],
+      "examples": [
+        {
+          "title": "字符串常量与纯字符数组的输出差别",
+          "code": "#include <stdio.h>\nint main(void) {\n    char s[] = \"China\";\n    char t[5] = {'C', 'h', 'i', 'n', 'a'};   /* 没有结束符 */\n    int i;\n    for (i = 0; s[i] != '\\0'; i++) printf(\"%c \", s[i]);\n    printf(\"| %s | %d\\n\", s, i);\n    for (i = 0; i < 5; i++) printf(\"%c\", t[i]);   /* 只能逐个输出 */\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "C h i n a | China | 5\nChina",
+          "note": "t 只有 5 个字符且无结束符，绝不能用 %s 输出它。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-013",
+        "c-ch06-cr-023",
+        "c-ch06-dbg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-17",
+        "c-ch06-18",
+        "c-ch06-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 16
+    },
+    {
+      "id": "c-ch06-17",
+      "title": "字符串结束标志与 strlen、sizeof 的区别",
+      "section": "6.3 字符数组与字符串",
+      "summary": "字符串长度指结束符之前的字符个数，strlen 返回它；sizeof 返回数组占用的总字节数，包含结束符，也包含未使用的空间。",
+      "content": "### 语法速查\n```c\nchar s[] = \"China\";     /* 占 6 字节：C h i n a 和结束符 */\nchar t[10] = \"China\";   /* 占 10 字节，后 4 个由系统补 0 */\n\nstrlen(s);   /* 5  —— 只数到结束符之前 */\nsizeof(s);   /* 6  —— 整个数组的字节数 */\nsizeof(t);   /* 10 —— 与内容多少无关，只看定义时的长度 */\n```\n\n### 三点结论\n1. strlen 是**函数**（在 string.h 中），返回类型是 size_t，统计的是有效字符个数，不含结束符；\n2. sizeof 是**运算符**，在编译期求数组总字节数，char 数组的字节数等于元素个数；\n3. 对指针使用 sizeof 得到的是指针本身的大小（4 或 8 字节），不是字符串长度——这是读程序题的经典陷阱。\n\n### 记忆口诀\n「strlen 数内容，sizeof 数空间」。",
+      "keyPoints": [
+        "字符串长度 = 结束符之前的字符个数，strlen 返回的就是它",
+        "sizeof 返回数组占用的总字节数，char 数组中等于元素个数",
+        "char s[] = \"China\" 时 strlen(s) 是 5、sizeof(s) 是 6",
+        "数组名作函数参数后退化为指针，此时 sizeof 只能得到指针大小"
+      ],
+      "pitfalls": [
+        "把 sizeof 的结果当字符串长度，多数一个结束符",
+        "在函数内对形参数组用 sizeof，得到的是指针字节数而非数组长度",
+        "char t[10] = \"China\" 时以为 strlen 是 10"
+      ],
+      "examples": [
+        {
+          "title": "strlen 与 sizeof 的对照",
+          "code": "#include <stdio.h>\n#include <string.h>\nint main(void) {\n    char s[] = \"China\";\n    char t[10] = \"China\";\n    printf(\"%d %d\\n\", (int)strlen(s), (int)sizeof(s));\n    printf(\"%d %d\\n\", (int)strlen(t), (int)sizeof(t));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5 6\n5 10",
+          "note": "两个数组内容相同，strlen 都是 5；sizeof 取决于定义时给的长度。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-006",
+        "c-ch06-cr-015",
+        "c-ch06-dbg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-16",
+        "c-ch06-19",
+        "c-ch06-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 17
+    },
+    {
+      "id": "c-ch06-18",
+      "title": "字符串的输入：scanf、getchar 与 fgets",
+      "section": "6.3 字符数组与字符串",
+      "summary": "scanf(\"%s\") 遇空白即停、只能读一个单词；fgets 读整行并保留换行符；标准 C 没有 gets，本项目一律禁用它。",
+      "content": "### 语法速查\n```c\nchar word[20], line[20];\n\nscanf(\"%s\", word);                  /* 读一个单词：跳过前导空白，遇空白停止 */\ngetchar();                          /* 吃掉 word 之后残留的那个空白字符 */\nfgets(line, sizeof(line), stdin);   /* 读一整行，含换行符 */\nline[strcspn(line, \"\\n\")] = '\\0';   /* 手动去掉换行符 */\n```\n\n### 三个函数的行为对照\n| 写法 | 读到哪里停 | 是否保留换行 | 是否自动补结束符 |\n|---|---|---|---|\n| scanf(\"%s\", s) | 空白字符 | 不读入 | 是 |\n| getchar() | 一次只读 1 个字符 | 视输入而定 | 否（返回 int） |\n| fgets(s, n, stdin) | 读满 n-1 个或遇换行 | 保留 | 是 |\n\n### 为什么不用 gets\ngets 不接受长度参数，无法防止缓冲区溢出，C11 已把它从标准中删除。**本项目禁用 gets**，需要读整行就用 fgets。\n\n### 混用时的坑\nscanf(\"%d\") 之后紧跟 fgets，会把数字后面的换行符当成一整行读走，必须先用 getchar() 清掉。",
+      "keyPoints": [
+        "scanf(\"%s\") 跳过前导空白、遇空白停止，一次只能读一个单词",
+        "scanf 系列的 %s 实参是数组名，不需要再加取地址符",
+        "fgets 读整行、保留换行符并自动补结束符，需要手动去掉换行",
+        "gets 已被 C11 删除，属于非标准且危险的函数，一律禁用"
+      ],
+      "pitfalls": [
+        "用 scanf(\"%s\") 读带空格的句子，只读到第一个空格前",
+        "fgets 之后忘记去掉换行符，strlen 比预期多 1",
+        "数字输入后直接 fgets，读到的是残留的空行",
+        "缓冲区长度不够，fgets 只读半行，剩下的留在输入流里影响下一次读取"
+      ],
+      "examples": [
+        {
+          "title": "先读一个单词，再读剩下的整行",
+          "code": "#include <stdio.h>\n#include <string.h>\nint main(void) {\n    char word[20], line[20];\n    scanf(\"%s\", word);                  /* 读到 abc 就停在空格前 */\n    getchar();                          /* 吃掉那个空格 */\n    fgets(line, sizeof(line), stdin);   /* 读走 def 和换行 */\n    line[strcspn(line, \"\\n\")] = '\\0';   /* 去掉换行符 */\n    printf(\"%s %s\\n%d\\n\", word, line, (int)strlen(word) + (int)strlen(line));\n    return 0;\n}",
+          "stdin": "abc def\n",
+          "expected": "abc def\n6",
+          "note": "输入是「abc def」加换行；word 得 abc，line 得 def，总长 6。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-019",
+        "c-ch06-cr-030",
+        "c-ch06-cr-033",
+        "c-ch06-pg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-16",
+        "c-ch06-17",
+        "c-ch06-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 18
+    },
+    {
+      "id": "c-ch06-19",
+      "title": "转义字符与字符串长度的计算",
+      "section": "6.3 字符数组与字符串",
+      "summary": "一个转义序列只算一个字符：换行、制表、反斜杠、单引号各占 1 位，八进制与十六进制转义也只占 1 位。",
+      "content": "### 常用转义字符\n```c\n'\\n'  换行        '\\t'  水平制表      '\\0'  空字符（结束符）\n'\\\\'  反斜杠      '\\''  单引号        '\\\"'  双引号\n'\\101' 八进制转义，值 101(8) = 65 = 字符 A\n'\\x41' 十六进制转义，值 0x41 = 65 = 字符 A\n```\n\n### 长度计算规则\n1. 数长度时**一个转义序列算一个字符**，不是按书写时的字符个数；\n2. 反斜杠本身要写成两个反斜杠，所以字符串里的一个反斜杠只算 1；\n3. strlen 不计结束符，sizeof 要把结束符加上。\n\n### 例题示范\n字符串 \"ab\\n\\\\012\\\\\\\\\"\" 的长度：a、b、换行、反斜杠、0、1、2、反斜杠、双引号 = 9 个字符。\n注意这里 012 前面是反斜杠转义后的**普通反斜杠**，所以 0、1、2 是三个独立字符，不构成八进制转义。",
+      "keyPoints": [
+        "一个转义序列在内存中只占 1 个字节，长度按 1 计",
+        "反斜杠要写成两个，双引号在字符串中要写成转义形式",
+        "八进制转义由 1 到 3 位八进制数字组成，十六进制转义由 \\x 加若干位十六进制数字组成",
+        "strlen 不含结束符，sizeof 含结束符，两者相差 1（内容正好装满时）"
+      ],
+      "pitfalls": [
+        "按书写字符个数数长度，把换行算成 2 个字符",
+        "把「反斜杠 + 数字」误当成八进制转义，忽略了前面的反斜杠已被转义",
+        "忘记 sizeof 还要加一个结束符字节"
+      ],
+      "examples": [
+        {
+          "title": "三种转义写法的 strlen 与 sizeof",
+          "code": "#include <stdio.h>\n#include <string.h>\nint main(void) {\n    char s1[] = \"A\\n\";      /* A 和换行，2 个字符 + 结束符 */\n    char s2[] = \"a\\\\b\";     /* a、反斜杠、b，3 个字符 + 结束符 */\n    char s3[] = \"\\101B\";    /* 八进制 101 是 A，共 2 个字符 + 结束符 */\n    printf(\"%d %d %d\\n\", (int)strlen(s1), (int)strlen(s2), (int)strlen(s3));\n    printf(\"%d %d %d\\n\", (int)sizeof(s1), (int)sizeof(s2), (int)sizeof(s3));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2 3 2\n3 4 3",
+          "note": "s2 里的两个反斜杠在内存中只是一个反斜杠字符。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-fb-006",
+        "c-ch06-cr-012",
+        "c-ch06-cr-021"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-17",
+        "c-ch06-16"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 19
+    },
+    {
+      "id": "c-ch06-20",
+      "title": "字符串处理库函数（string.h）",
+      "section": "6.3 字符数组与字符串",
+      "summary": "strlen 求长度、strcpy 复制、strcat 连接、strcmp 比较是四个必须掌握的库函数；比较返回的是正负号，不能假定一定是 1 或 -1。",
+      "content": "### 语法速查\n```c\n#include <string.h>\n\nsize_t strlen(const char *s);                        /* 长度，不含结束符 */\nchar  *strcpy(char *dst, const char *src);           /* 整体复制，含结束符 */\nchar  *strncpy(char *dst, const char *src, size_t n);/* 最多复制 n 个字符 */\nchar  *strcat(char *dst, const char *src);           /* 把 src 接到 dst 末尾 */\nint    strcmp(const char *s1, const char *s2);       /* 逐字符比较 ASCII */\n```\n\n### strcmp 的返回值\n- s1 < s2 返回**负整数**，s1 == s2 返回 0，s1 > s2 返回**正整数**；\n- 标准只保证符号，不保证一定是 -1 / 1，判题时用 > 0、== 0、< 0 判断最稳妥；\n- 比较按字典序逐字符比 ASCII 码，遇到不同字符或某个串先结束就出结果。\n\n### 使用前提\n1. 目标数组必须**足够大**，strcpy / strcat 都不做长度检查，写不下就是溢出；\n2. 字符串不能用 = 赋值、不能用 == 比较，必须借助这些函数；\n3. strncpy 复制 n 个字符时，若源串长度 ≥ n，目标串**不会**自动补结束符，要自己加。",
+      "keyPoints": [
+        "四个基本函数：strlen 求长、strcpy 复制、strcat 连接、strcmp 比较",
+        "strcmp 只保证返回值的符号，判断相等必须写 == 0",
+        "字符串不能用 == 比较、不能用 = 赋值，必须调用库函数",
+        "目标数组容量必须够，strcpy 与 strcat 不做越界检查"
+      ],
+      "pitfalls": [
+        "写 if (strcmp(a, b)) 想判断相等，实际含义是「不相等」",
+        "假定 strcmp 一定返回 -1 或 1，在不同实现下判分出错",
+        "strcat 前目标数组没放结束符，连接位置错乱",
+        "用了 strncpy 却忘记手动补结束符"
+      ],
+      "examples": [
+        {
+          "title": "strcat、strcmp、strcpy 的组合使用",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstatic int sgn(int x) { return (x > 0) - (x < 0); }   /* 只取符号，避免依赖具体返回值 */\n\nint main(void) {\n    char a[20] = \"abc\", b[] = \"de\", d[20];\n    strcat(a, b);\n    printf(\"%s %d\\n\", a, (int)strlen(a));\n    printf(\"%d %d %d\\n\", sgn(strcmp(\"abc\", \"abd\")),\n                         sgn(strcmp(\"abc\", \"abc\")),\n                         sgn(strcmp(\"b\", \"a\")));\n    strcpy(d, a);\n    printf(\"%s\\n\", d);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "abcde 5\n-1 0 1\nabcde",
+          "note": "a 的容量是 20，装下 abcde 加结束符绰绰有余；容量不够就是溢出。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-025",
+        "c-ch06-cr-027",
+        "c-ch06-cr-034",
+        "c-ch06-pg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-17",
+        "c-ch06-21",
+        "c-ch06-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 20
+    },
+    {
+      "id": "c-ch06-21",
+      "title": "自己动手写 strlen、strcpy、strcmp",
+      "section": "6.3 字符数组与字符串",
+      "summary": "三个库函数的核心都是「用下标扫描到结束符」：strlen 计数、strcpy 边复制边判断、strcmp 逐字符比差值。",
+      "content": "### 三个函数的手写模板\n```c\nint my_strlen(const char s[]) {\n    int n = 0;\n    while (s[n] != '\\0') n++;\n    return n;\n}\n\nvoid my_strcpy(char dst[], const char src[]) {\n    int i = 0;\n    while ((dst[i] = src[i]) != '\\0') i++;   /* 赋值 + 判断一步完成，结束符也被复制 */\n}\n\nint my_strcmp(const char a[], const char b[]) {\n    int i = 0;\n    while (a[i] != '\\0' && a[i] == b[i]) i++;\n    return a[i] - b[i];                      /* 相等时为 0，否则是两字符的差 */\n}\n```\n\n### 为什么这样写\n1. 循环条件都围绕**结束符**：它是字符串的唯一终点标记；\n2. strcpy 的关键是「先赋值、再用赋值结果判断」，这样结束符也会一起搬过去；\n3. strcmp 退出循环有两种情形：某串先到结束符，或遇到不同字符；两种情形下 a[i] - b[i] 的符号都正好符合要求。\n\n### 考试中常见的等价问法\n「不用库函数 strcat，把串 b 的前 5 个字符接到串 a 后面」——先 my_strlen(a) 找到接点，再从接点开始逐个搬 b 的字符，最后补结束符。",
+      "keyPoints": [
+        "手写字符串函数的通用骨架：int i = 0; 循环扫描到结束符为止",
+        "strlen 用计数器累加，不含结束符",
+        "strcpy 边复制边判断，必须把结束符一起复制过去",
+        "strcmp 返回两字符之差，符号即大小关系，相等时为 0"
+      ],
+      "pitfalls": [
+        "strcpy 忘记复制结束符，目标串后面接的是垃圾",
+        "strcmp 的循环条件漏掉「某串先结束」的判断，短串是长串前缀时越界",
+        "手写 strcat 时从下标 0 开始覆盖，而不是从目标串的末尾开始"
+      ],
+      "examples": [
+        {
+          "title": "三个手写函数协同工作",
+          "code": "#include <stdio.h>\n\nstatic int my_strlen(const char s[]) {\n    int n = 0;\n    while (s[n] != '\\0') n++;\n    return n;\n}\n\nstatic void my_strcpy(char dst[], const char src[]) {\n    int i = 0;\n    while ((dst[i] = src[i]) != '\\0') i++;\n}\n\nstatic int my_strcmp(const char a[], const char b[]) {\n    int i = 0;\n    while (a[i] != '\\0' && a[i] == b[i]) i++;\n    return a[i] - b[i];\n}\n\nint main(void) {\n    char d[20];\n    my_strcpy(d, \"hello\");\n    printf(\"%d %s %d\\n\", my_strlen(d), d, my_strcmp(\"abc\", \"abd\"));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5 hello -1",
+          "note": "my_strcmp(\"abc\",\"abd\") 在 i=2 处退出，返回 c 减 d 的差 -1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-009",
+        "c-ch06-cr-025",
+        "c-ch06-cr-027",
+        "c-ch06-dbg-009"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-20",
+        "c-ch06-17",
+        "c-ch06-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 21
+    },
+    {
+      "id": "c-ch06-22",
+      "title": "字符串数组：一批字符串的存放与处理",
+      "section": "6.3 字符数组与字符串",
+      "summary": "若干字符串可以用二维字符数组存放，每行一个串、长度取最长者；处理时对行下标循环，每行当成一个独立字符串使用。",
+      "content": "### 语法速查\n```c\nchar name[3][10] = {\"Li\", \"Wang\", \"Zhang\"};  /* 3 个串，每个最多 9 字符 + 结束符 */\nchar word[4][6]  = {{'B','O','O','K','\\0'},   /* 逐字符初始化时必须自己放结束符 */\n                    {'C','U','T','\\0'}};      /* 未写的行自动全 0 */\n\nprintf(\"%s\\n\", name[1]);      /* name[1] 是第 1 行的首地址，即一个字符串 */\nfor (i = 0; i < 3; i++) printf(\"%s\\n\", name[i]);\n```\n\n### 理解要点\n1. 二维字符数组可以看成「一维数组，其元素是字符数组」，name[i] 就是第 i 个字符串；\n2. 第二维的长度必须 ≥ 最长字符串的字符数 + 1，短串后面的空间由系统补 0；\n3. 输出用 %s 配 name[i]，**不要**写成 name[i][0]（那只是一个字符）。\n\n### 典型算法\n- 找最长串：循环比较 my_strlen(name[i])；\n- 排序：交换整行内容需要逐字符搬（或用 strcpy 配临时数组），不能写 name[i] = name[j]；\n- 统计以某字母开头的串：只看 name[i][0]。",
+      "keyPoints": [
+        "二维字符数组每行存一个字符串，第二维长度 = 最长串字符数 + 1",
+        "name[i] 表示第 i 个字符串（行首地址），name[i][j] 表示其中的第 j 个字符",
+        "用字符串常量列表初始化时，未写满的行自动补 0",
+        "交换两行必须逐字符搬或用 strcpy，数组名之间不能直接赋值"
+      ],
+      "pitfalls": [
+        "第二维长度只按最长字符数写，忘了结束符那一格",
+        "printf(\"%s\", name[i][0]) 把字符当地址用",
+        "写 name[0] = name[1] 试图整体复制一行，编译报错"
+      ],
+      "examples": [
+        {
+          "title": "遍历输出三个名字",
+          "code": "#include <stdio.h>\nint main(void) {\n    char name[3][10] = {\"Li\", \"Wang\", \"Zhang\"};\n    int i;\n    for (i = 0; i < 3; i++) printf(\"%s\\n\", name[i]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Li\nWang\nZhang",
+          "note": "name[i] 直接作为 %s 的实参，它是第 i 行的首地址。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-033",
+        "c-ch06-cr-034",
+        "c-ch06-cr-022"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-16",
+        "c-ch06-08",
+        "c-ch06-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 22
+    },
+    {
+      "id": "c-ch06-23",
+      "title": "数字字符串与数值的相互转换",
+      "section": "6.3 字符数组与字符串",
+      "summary": "串转数用 n = n*10 + (s[i] - 0字符)，数转串用逐位取余加 0字符再逆序输出，关键是字符与数字之间相差一个 0 字符的编码。",
+      "content": "### 语法速查\n```c\n/* 数字字符串 → 整数（等价于 atoi） */\nint n = 0, i;\nfor (i = 0; s[i] != '\\0'; i++)\n    n = n * 10 + (s[i] - '0');\n\n/* 整数 → 数字字符串（等价于 itoa 的十进制版） */\nint m = 5678, k = 0;\nchar t[12];\ndo {\n    t[k++] = (char)(m % 10 + '0');   /* 先得到的是个位，顺序是反的 */\n    m /= 10;\n} while (m > 0);\nt[k] = '\\0';                         /* 别忘了结束符 */\n```\n\n### 核心原理\n字符 0 到 9 的 ASCII 码是连续的 48 到 57，所以：\n- 数字字符转数值：减去字符 0；\n- 数值转数字字符：加上字符 0。\n\n### 为什么数转串要逆序\n取余得到的第一位是**个位**，而字符串的高位在前面，所以要么逆序输出，要么先存进数组再从后往前打印。\n\n### 扩展\n- 判断字符是否为数字：s[i] 大于等于字符 0 且小于等于字符 9；\n- 统计串中数字字符个数就是这个判断的计数版。",
+      "keyPoints": [
+        "数字字符与数值之间相差一个字符 0 的编码，互转靠加减完成",
+        "串转数：n = n * 10 + (s[i] - 字符 0)，从左到右扫描",
+        "数转串：逐位取余加字符 0，得到的是逆序，必须反转或逆序输出",
+        "数转串结束后必须补结束符，否则不是合法字符串"
+      ],
+      "pitfalls": [
+        "直接用字符本身参与算术，忘了减去字符 0，结果大得离谱",
+        "数转串忘记补结束符，输出时带出垃圾字符",
+        "输入是 0 时 do-while 只跑一次的写法被换成 while，结果一个字符都不产生"
+      ],
+      "examples": [
+        {
+          "title": "串转数与数转串的往返",
+          "code": "#include <stdio.h>\nint main(void) {\n    char s[10] = \"1234\";\n    char t[12];\n    int n = 0, m = 5678, i, k = 0;\n\n    for (i = 0; s[i] != '\\0'; i++) n = n * 10 + (s[i] - '0');\n    printf(\"%d\\n\", n);\n\n    do {\n        t[k++] = (char)(m % 10 + '0');\n        m /= 10;\n    } while (m > 0);\n    t[k] = '\\0';\n    for (i = k - 1; i >= 0; i--) printf(\"%c\", t[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1234\n5678",
+          "note": "第二段的输出循环从 k-1 递减到 0，正好把逆序的数位翻回来。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-013",
+        "c-ch06-dbg-009",
+        "c-ch06-cr-028"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-24",
+        "c-ch06-17",
+        "c-ch06-07"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 23
+    },
+    {
+      "id": "c-ch06-24",
+      "title": "进制转换：用数组暂存逆序结果",
+      "section": "6.3 字符数组与字符串",
+      "summary": "十进制转 r 进制的算法是「除 r 取余、逆序排列」，余数产生的顺序与输出顺序相反，正好用数组暂存后倒着打印。",
+      "content": "### 语法速查\n```c\nint n = 13, a[32], k = 0, i;\nif (n == 0) a[k++] = 0;          /* 0 的特例：一位都不产生会输出空 */\nwhile (n > 0) {\n    a[k++] = n % 2;              /* 余数入栈（数组当栈用） */\n    n /= 2;\n}\nfor (i = k - 1; i >= 0; i--) printf(\"%d\", a[i]);   /* 逆序输出 */\n```\n\n### 算法步骤\n1. 用 n 除以 r 取余，余数是**最低位**；\n2. n 整除 r，继续取余，得到次低位；\n3. 直到 n 为 0；\n4. 把得到的余数序列**倒过来**输出。\n\n### 为什么要数组\n余数的产生顺序（低位到高位）与书写顺序（高位到低位）正好相反。数组在这里充当**栈**：后进先出。这也是「用数组解决逆序问题」的典型例子。\n\n### 位数上限\nint 转二进制最多 32 位，转八进制最多 11 位，数组开到 32 就够用。",
+      "keyPoints": [
+        "除 r 取余、逆序排列是十进制转 r 进制的通用算法",
+        "余数产生顺序与输出顺序相反，用数组暂存再倒序打印",
+        "n 为 0 是特例，必须单独处理成一位 0",
+        "数组容量按最长进制（二进制 32 位）预留即可"
+      ],
+      "pitfalls": [
+        "正着输出余数，结果完全颠倒",
+        "忘记 n == 0 的特例，输出为空",
+        "循环条件写成 n >= 0，对 0 多跑一轮"
+      ],
+      "examples": [
+        {
+          "title": "把 13 转成二进制",
+          "code": "#include <stdio.h>\nint main(void) {\n    int n = 13, a[32], k = 0, i;\n    if (n == 0) a[k++] = 0;\n    while (n > 0) {\n        a[k++] = n % 2;\n        n /= 2;\n    }\n    for (i = k - 1; i >= 0; i--) printf(\"%d\", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1101",
+          "note": "余数依次是 1、0、1、1（低位在前），倒过来就是 1101。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-009",
+        "c-ch06-cr-020",
+        "c-ch06-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-23",
+        "c-ch06-07",
+        "c-ch06-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 24
+    },
+    {
+      "id": "c-ch06-25",
+      "title": "一维数组作函数参数",
+      "section": "6.4 数组作函数参数",
+      "summary": "数组名作实参时传给函数的是首地址，形参写成 int a[] 或 int a[10] 完全等价；函数内改动形参数组会直接影响实参数组。",
+      "content": "### 语法速查\n```c\nint sum(int a[], int n);        /* 声明：[] 里的数字可写可不写，都会被忽略 */\nint sum(int a[10], int n);      /* 与上一行等价 */\n\nint sum(int a[], int n) {       /* 定义 */\n    int i, s = 0;\n    for (i = 0; i < n; i++) s += a[i];\n    return s;\n}\n\nsum(a, 5);                      /* 调用：实参是数组名，不加 & 也不加 [] */\nsum(&a[0], 5);                  /* 等价写法 */\n```\n\n### 三条结论\n1. **地址传递**：实参把首地址交给形参，两者指向同一段内存，所以函数里 a[i] = 0 会改掉主调函数的数组；\n2. **长度必须另传**：形参不是真正的数组，函数内 sizeof(a) 得到的是指针大小，所以要把元素个数 n 一起传进去；\n3. **形参写法**：int a[] 与 int a[10] 等价，中括号里的数字只起注释作用，编译器不检查。\n\n### 与值传递的对比\n普通变量作参数是「拷贝一份，改了不影响外面」；数组作参数是「共享同一份，改了立刻生效」。这是本章最容易考的区别。",
+      "keyPoints": [
+        "数组名作实参传递的是首地址，属于地址传递",
+        "形参 int a[] 与 int a[10] 等价，中括号里的长度不起约束作用",
+        "函数内修改形参数组元素会改变实参数组，这是与值传递的本质区别",
+        "数组长度必须作为另一个参数传入，函数内 sizeof 形参得不到数组大小"
+      ],
+      "pitfalls": [
+        "在函数内用 sizeof(a)/sizeof(a[0]) 求元素个数，得到的是指针长度除以元素长度",
+        "以为数组也是值传递，写代码时不敢在函数里修改元素",
+        "调用时写 sum(a[5], 5) 或 sum(&a, 5)，实参类型不对"
+      ],
+      "examples": [
+        {
+          "title": "函数求数组元素之和",
+          "code": "#include <stdio.h>\n\nstatic int sum(int a[], int n) {\n    int i, s = 0;\n    for (i = 0; i < n; i++) s += a[i];\n    return s;\n}\n\nint main(void) {\n    int a[5] = {1, 2, 3, 4, 5};\n    printf(\"%d\\n\", sum(a, 5));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "15",
+          "note": "sum 收到的是 a 的首地址，它访问的就是 main 里那个数组。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-001",
+        "c-ch06-pg-003",
+        "c-ch06-cc-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-26",
+        "c-ch06-17",
+        "c-ch06-33"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 25
+    },
+    {
+      "id": "c-ch06-26",
+      "title": "二维数组作函数参数",
+      "section": "6.4 数组作函数参数",
+      "summary": "二维数组作参数时可以省略行数，但列数必须写明，因为编译器要靠列数把 a[i][j] 换算成地址偏移。",
+      "content": "### 语法速查\n```c\nint total(int a[][3], int m);    /* 正确：第一维可省，第二维必须写 */\nint total(int a[2][3], int m);   /* 等价，第一维的数字被忽略 */\nint total(int a[][3], int m) {   /* 定义 */\n    int i, j, s = 0;\n    for (i = 0; i < m; i++)\n        for (j = 0; j < 3; j++) s += a[i][j];\n    return s;\n}\ntotal(a, 2);                     /* 调用：实参直接写二维数组名 */\n```\n\n### 为什么列数不能省\n二维数组按行主序连续存放，a[i][j] 的地址是「首地址 + (i × 列数 + j) × 元素大小」。列数未知就无法计算偏移，所以**列数是编译期必需的信息**；行数只在遍历时用到，可以由另一个参数传入。\n\n### 三条结论\n1. 形参第一维写不写数字都行，第二维必须写且要与实参一致；\n2. 行数一般作为普通参数另传，函数就能处理不同行数的同列数矩阵；\n3. 同样是地址传递，函数内修改元素会影响实参数组。",
+      "keyPoints": [
+        "形参可写成 int a[][3]，省略的是行数，列数必须保留",
+        "列数决定地址换算公式中的行长度，缺了就无法定位元素",
+        "行数通常另用一个 int 参数传入，使函数更通用",
+        "二维数组作参数同样是地址传递，函数内修改会影响实参"
+      ],
+      "pitfalls": [
+        "写成 int a[][]，两个维度都省，编译报错",
+        "形参列数与实参不一致，元素错位但不报错，结果全乱",
+        "以为省略的行数也参与类型检查，实参传 3 行数组给声明 2 行的形参"
+      ],
+      "examples": [
+        {
+          "title": "函数求 2×3 矩阵所有元素之和",
+          "code": "#include <stdio.h>\n\nstatic int total(int a[][3], int m) {\n    int i, j, s = 0;\n    for (i = 0; i < m; i++)\n        for (j = 0; j < 3; j++) s += a[i][j];\n    return s;\n}\n\nint main(void) {\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    printf(\"%d\\n\", total(a, 2));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "21",
+          "note": "形参只写了列数 3，行数 2 由参数 m 传入。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-002",
+        "c-ch07-cr-005",
+        "c-ch07-sa-011"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-25",
+        "c-ch06-09",
+        "c-ch06-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 26
+    },
+    {
+      "id": "c-ch06-27",
+      "title": "冒泡排序",
+      "section": "6.5 数组的排序与查找",
+      "summary": "冒泡排序每一趟把相邻两个元素比较并交换，大的往后冒；n 个数需要 n-1 趟，第 i 趟只需比较 n-1-i 次。",
+      "content": "### 语法速查\n```c\nvoid bubble(int a[], int n) {\n    int i, j, t;\n    for (i = 0; i < n - 1; i++)              /* 趟数：n-1 趟 */\n        for (j = 0; j < n - 1 - i; j++)      /* 本趟比较次数逐趟减少 */\n            if (a[j] > a[j + 1]) {           /* 升序：前面大就交换 */\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n            }\n}\n```\n\n### 两个循环上限的来历\n- 外层 n-1：n 个数最多需要 n-1 趟就能全部就位，最后一趟没有可比较的对象；\n- 内层 n-1-i：每完成一趟，末尾就多一个已就位的最大元素，不必再动它。\n\n### 升序与降序\n只改比较符：a[j] > a[j+1] 是升序，a[j] < a[j+1] 是降序。\n\n### 复杂度与稳定性\n- 比较次数固定为 n(n-1)/2，时间复杂度 O(n²)；\n- 只有「严格大于才交换」，相等元素不会互换位置，所以冒泡排序是**稳定**的；\n- 加一个 flag 记录本趟是否发生交换，无交换即可提前结束（最好情况 O(n)）。",
+      "keyPoints": [
+        "外层控制趟数 n-1，内层做相邻元素的比较与交换",
+        "内层上限 n-1-i，因为每趟结束后末尾已有一个最大元素就位",
+        "比较符决定升序还是降序，其余代码不变",
+        "只有相邻元素比较，时间复杂度 O(n²)，且是稳定排序"
+      ],
+      "pitfalls": [
+        "内层上限写成 n-1，每趟都去碰已就位的末尾元素，虽不算错但多做无用功",
+        "内层上限写成 n，访问 a[n] 越界",
+        "交换时忘记用临时变量，写成 a[j] = a[j+1]; a[j+1] = a[j]; 结果两个都变成同一个值"
+      ],
+      "examples": [
+        {
+          "title": "冒泡升序排序",
+          "code": "#include <stdio.h>\n\nstatic void bubble(int a[], int n) {\n    int i, j, t;\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) { t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; }\n}\n\nint main(void) {\n    int a[6] = {5, 2, 9, 1, 7, 3}, i;\n    bubble(a, 6);\n    for (i = 0; i < 6; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 5 7 9 ",
+          "note": "排序函数直接修改 main 里的数组，这是地址传递的效果。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-dbg-008",
+        "c-ch06-cr-019"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-28",
+        "c-ch06-29",
+        "c-ch06-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 27
+    },
+    {
+      "id": "c-ch06-28",
+      "title": "选择排序",
+      "section": "6.5 数组的排序与查找",
+      "summary": "选择排序每趟从无序区选出最小的元素，与无序区的第一个位置交换；交换次数最多 n-1 次，比冒泡少得多。",
+      "content": "### 语法速查\n```c\nvoid select_sort(int a[], int n) {\n    int i, j, k, t;\n    for (i = 0; i < n - 1; i++) {\n        k = i;                                  /* 假定当前位置就是最小值所在 */\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;             /* 只记下标，不搬数据 */\n        if (k != i) { t = a[i]; a[i] = a[k]; a[k] = t; }\n    }\n}\n```\n\n### 算法结构\n1. 外层 i 表示「无序区的起点」，i 从 0 到 n-2；\n2. 内层在 i+1..n-1 中找出最小值的**下标** k；\n3. 一趟结束后只做一次交换：a[i] 与 a[k]；\n4. k == i 说明本来就有序，可以不交换。\n\n### 与冒泡的对比\n| | 冒泡 | 选择 |\n|---|---|---|\n| 交换次数 | 可能很多次 | 每趟最多 1 次 |\n| 比较次数 | n(n-1)/2 | n(n-1)/2 |\n| 稳定性 | 稳定 | 不稳定 |\n\n选择排序不稳定的例子：序列 5、5、2，第一趟把第一个 5 与 2 交换，两个相等的 5 前后顺序就颠倒了。",
+      "keyPoints": [
+        "每趟在无序区中找最小值的下标，再与无序区首元素交换一次",
+        "内层只比较和记下标，不搬动数据，交换次数最多 n-1 次",
+        "比较次数与冒泡相同，都是 n(n-1)/2，时间复杂度 O(n²)",
+        "选择排序是不稳定排序"
+      ],
+      "pitfalls": [
+        "内层里直接交换 a[i] 与 a[j]，退化成另一种低效写法且可能出错",
+        "内层从 j = i 开始，多做一次无意义的自比较",
+        "忘记 k != i 的判断不是错误但会多一次自赋值，写反条件则是错误"
+      ],
+      "examples": [
+        {
+          "title": "选择排序升序",
+          "code": "#include <stdio.h>\n\nstatic void select_sort(int a[], int n) {\n    int i, j, k, t;\n    for (i = 0; i < n - 1; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;\n        if (k != i) { t = a[i]; a[i] = a[k]; a[k] = t; }\n    }\n}\n\nint main(void) {\n    int a[6] = {5, 2, 9, 1, 7, 3}, i;\n    select_sort(a, 6);\n    for (i = 0; i < 6; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 5 7 9 ",
+          "note": "第一趟在 6 个数中找到最小值 1，与 a[0] 的 5 交换。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-dbg-008",
+        "c-ch06-cr-020"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-27",
+        "c-ch06-29",
+        "c-ch06-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 28
+    },
+    {
+      "id": "c-ch06-29",
+      "title": "插入排序与有序表插入",
+      "section": "6.5 数组的排序与查找",
+      "summary": "插入排序把数组分成有序区和无序区，每次取无序区第一个元素，在有序区中从后往前找位置并后移元素；「在有序表中插入一个数保持有序」是它的单步版本。",
+      "content": "### 语法速查\n```c\nvoid insert_sort(int a[], int n) {\n    int i, j, t;\n    for (i = 1; i < n; i++) {          /* 第 0 个元素天然有序 */\n        t = a[i];                      /* 取出待插入的元素 */\n        j = i - 1;\n        while (j >= 0 && a[j] > t) {   /* 从后往前找插入点，边找边后移 */\n            a[j + 1] = a[j];\n            j--;\n        }\n        a[j + 1] = t;\n    }\n}\n\n/* 单步版：在长度为 n 的升序表中插入 x，返回新长度 */\nint insert(int a[], int n, int x) {\n    int j = n - 1;\n    while (j >= 0 && a[j] > x) { a[j + 1] = a[j]; j--; }\n    a[j + 1] = x;\n    return n + 1;\n}\n```\n\n### 关键点\n1. 外层从 i = 1 开始，因为单个元素已经是有序的；\n2. 待插入元素必须先存进临时变量 t，否则后移时会被覆盖；\n3. while 条件里 j >= 0 必须写在前面，利用短路求值避免 a[-1] 越界；\n4. 循环结束时 j 指向最后一个不大于 t 的元素，插入位置是 j + 1。\n\n### 特点\n数据基本有序时效率很高（比较次数接近 n），最坏情况仍是 O(n²)；相等元素不后移，所以是**稳定**排序。",
+      "keyPoints": [
+        "数组被分成有序区与无序区，每趟把无序区首元素插入有序区的合适位置",
+        "待插入元素必须先存入临时变量，防止被后移的元素覆盖",
+        "后移方向是从后往前，循环条件要先判 j 大于等于 0 再访问 a[j]",
+        "插入排序是稳定排序，基本有序时效率明显优于冒泡"
+      ],
+      "pitfalls": [
+        "先把 a[i] 覆盖掉再找位置，数据丢失",
+        "while 条件顺序写成 a[j] > t 在前，j 为 -1 时越界访问",
+        "插入位置写成 a[j] 而不是 a[j+1]，覆盖掉一个元素"
+      ],
+      "examples": [
+        {
+          "title": "插入排序升序",
+          "code": "#include <stdio.h>\n\nstatic void insert_sort(int a[], int n) {\n    int i, j, t;\n    for (i = 1; i < n; i++) {\n        t = a[i];\n        j = i - 1;\n        while (j >= 0 && a[j] > t) { a[j + 1] = a[j]; j--; }\n        a[j + 1] = t;\n    }\n}\n\nint main(void) {\n    int a[6] = {5, 2, 9, 1, 7, 3}, i;\n    insert_sort(a, 6);\n    for (i = 0; i < 6; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 5 7 9 ",
+          "note": "第二趟把 9 插入 {2,5} 之后，9 比它们都大，一次都不用后移。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cr-020",
+        "c-ch06-dbg-008",
+        "c-ch06-cc-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-27",
+        "c-ch06-28",
+        "c-ch06-06"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 29
+    },
+    {
+      "id": "c-ch06-30",
+      "title": "顺序查找与哨兵技巧",
+      "section": "6.5 数组的排序与查找",
+      "summary": "顺序查找从头到尾逐个比对，找到返回下标、找不到返回 -1；把待查值放进 a[0] 作哨兵，可以从后往前找而省去每次的越界判断。",
+      "content": "### 语法速查\n```c\n/* 普通顺序查找 */\nint seq_search(int a[], int n, int key) {\n    int i;\n    for (i = 0; i < n; i++)\n        if (a[i] == key) return i;\n    return -1;                    /* 约定：找不到返回 -1 */\n}\n\n/* 哨兵法（快速顺序查找）：a[0] 不用来存数据 */\nint guard_search(int a[], int n, int key) {\n    int i;\n    a[0] = key;                   /* 放下哨兵，保证循环一定会停 */\n    for (i = n; a[i] != key; i--) /* 从后往前，不需要判 i >= 0 */\n        ;\n    return i;                     /* i == 0 表示没找到 */\n}\n```\n\n### 两种写法的差别\n1. 普通写法每次循环要做**两次**判断：越界判断和相等判断；\n2. 哨兵写法把待查值放在表头，从后往前扫描，即使数据中没有该值，最终也一定会在 a[0] 处命中，因此只需一次判断；\n3. 哨兵法的代价是 a[0] 被占用，数据要从 a[1] 开始存，返回值 0 代表「没找到」。\n\n### 适用场景\n顺序查找对表是否有序**没有要求**，平均查找长度约 (n+1)/2；表已排序时应改用折半查找。",
+      "keyPoints": [
+        "顺序查找逐个比对，找到返回下标，找不到返回约定值 -1",
+        "对数据是否有序没有要求，平均查找长度约 (n+1)/2",
+        "哨兵法把待查值存入 a[0]，从后往前找，省掉每次的越界判断",
+        "哨兵法返回 0 表示未找到，数据必须从 a[1] 开始存放"
+      ],
+      "pitfalls": [
+        "找不到时返回 0，与「第 0 个元素就是要找的值」混淆",
+        "循环写成 i <= n，越界访问 a[n]",
+        "哨兵法忘了先执行 a[0] = key，循环可能一路越界扫出数组"
+      ],
+      "examples": [
+        {
+          "title": "顺序查找：命中与未命中",
+          "code": "#include <stdio.h>\n\nstatic int seq_search(int a[], int n, int key) {\n    int i;\n    for (i = 0; i < n; i++)\n        if (a[i] == key) return i;\n    return -1;\n}\n\nint main(void) {\n    int a[6] = {5, 2, 9, 1, 7, 3};\n    printf(\"%d %d\\n\", seq_search(a, 6, 7), seq_search(a, 6, 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "4 -1",
+          "note": "7 在下标 4 处命中；4 不在表中，返回约定的 -1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-005",
+        "c-ch06-dbg-007",
+        "c-ch06-cr-019"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-31",
+        "c-ch06-14",
+        "c-ch06-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 30
+    },
+    {
+      "id": "c-ch06-31",
+      "title": "折半查找（二分查找）",
+      "section": "6.5 数组的排序与查找",
+      "summary": "折半查找要求表已排序，每次用中间元素与待查值比较，把查找区间缩小一半，最多比较 log2(n)+1 次。",
+      "content": "### 语法速查\n```c\nint bin_search(int a[], int n, int key) {\n    int low = 0, high = n - 1, mid;\n    while (low <= high) {                 /* 区间非空就继续 */\n        mid = (low + high) / 2;\n        if (a[mid] == key) return mid;    /* 命中 */\n        else if (a[mid] > key) high = mid - 1;   /* 目标在左半区 */\n        else low = mid + 1;                      /* 目标在右半区 */\n    }\n    return -1;\n}\n```\n\n### 三个变量的含义\n- low、high 是当前查找区间的**闭区间**端点；\n- mid 是中点，(low + high) / 2 向下取整；\n- 区间为空的条件是 low > high，所以循环条件写 low <= high。\n\n### 前提与代价\n1. **必须是有序表**，无序表要先排序，否则结论完全错误；\n2. 每比较一次区间减半，n 个元素最多比较 ⌈log2(n+1)⌉ 次，平均查找长度约 log2(n+1) - 1；\n3. 折半查找只能用**顺序存储**（数组），链表无法随机访问中点，不适用。\n\n### 判定表\n折半查找过程可以画成判定树，树的高度就是最大比较次数，这是概念题的常考点。",
+      "keyPoints": [
+        "前提是表已按序排列，无序表不能用折半查找",
+        "循环条件是 low <= high，区间为空即查找失败",
+        "每次比较后区间减半，最大比较次数约为 log2(n) 加 1",
+        "只适用于数组这类可随机访问的顺序存储结构"
+      ],
+      "pitfalls": [
+        "循环条件写成 low < high，最后一个元素可能查不到",
+        "缩小边界时写成 high = mid 或 low = mid，区间不缩小区间导致死循环",
+        "对无序表直接折半查找，结果错误却不报错"
+      ],
+      "examples": [
+        {
+          "title": "在有序表中折半查找",
+          "code": "#include <stdio.h>\n\nstatic int bin_search(int a[], int n, int key) {\n    int low = 0, high = n - 1, mid;\n    while (low <= high) {\n        mid = (low + high) / 2;\n        if (a[mid] == key) return mid;\n        else if (a[mid] > key) high = mid - 1;\n        else low = mid + 1;\n    }\n    return -1;\n}\n\nint main(void) {\n    int a[7] = {1, 3, 5, 7, 9, 11, 13};\n    printf(\"%d %d\\n\", bin_search(a, 7, 9), bin_search(a, 7, 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "4 -1",
+          "note": "查 9：mid=3 得 7 小于 9，low 变 4；mid=4 命中。查 4：区间最终变空，返回 -1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-008",
+        "c-ch06-cc-005",
+        "c-ch06-cr-020"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-30",
+        "c-ch06-27"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 31
+    },
+    {
+      "id": "c-ch06-32",
+      "title": "计数数组：统计频数与分组",
+      "section": "6.5 数组的排序与查找",
+      "summary": "当取值范围有限时，用「下标表示取值、元素表示出现次数」的计数数组，可以一趟扫描完成统计，这就是桶式统计。",
+      "content": "### 语法速查\n```c\nint c[10] = {0};                 /* c[k] 记录数值 k 出现的次数 */\nfor (i = 0; i < n; i++)\n    c[a[i]]++;                   /* 用数据本身当下标 */\n\nfor (i = 0; i < 10; i++)\n    if (c[i] != 0) printf(\"%d:%d \", i, c[i]);\n```\n\n### 适用前提\n1. 数据取值范围**已知且不大**（如 0~9、年龄 16~31、成绩 0~100）；\n2. 数组下标不能为负，若数据可能为负数要先平移（如 c[a[i] + 50]）；\n3. 计数数组必须先清 0，否则初值是垃圾。\n\n### 三种常见问法\n- **统计频数**：输出每个值出现了几次；\n- **分组统计**：统计落在某区间的个数，如年龄 16~31 岁的人数；\n- **众数**：找计数数组中最大的那个下标。\n\n### 与排序的关系\n计数数组统计完再按下标顺序输出，等价于完成了一次**计数排序**，时间复杂度 O(n + 值域)，远快于 O(n²) 的冒泡。",
+      "keyPoints": [
+        "计数数组用下标表示取值、用元素值表示该取值出现的次数",
+        "一趟扫描即可完成统计，时间复杂度 O(n + 值域)",
+        "使用前必须整体清 0，取值范围有负数时要先平移下标",
+        "统计区间个数、求众数、计数排序都是它的变形"
+      ],
+      "pitfalls": [
+        "计数数组没有清 0，统计结果里混入垃圾值",
+        "数据是负数或超出计数数组长度，下标越界",
+        "输出时遍历原数组而不是计数数组，重复打印"
+      ],
+      "examples": [
+        {
+          "title": "统计每个数值出现的次数",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[8] = {3, 7, 1, 3, 9, 3, 0, 1};\n    int c[10] = {0};\n    int i;\n    for (i = 0; i < 8; i++) c[a[i]]++;\n    for (i = 0; i < 10; i++)\n        if (c[i] != 0) printf(\"%d:%d \", i, c[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0:1 1:2 3:3 7:1 9:1 ",
+          "note": "3 出现 3 次，是这组数据的众数。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-001",
+        "c-ch06-cc-004",
+        "c-ch06-cr-005",
+        "c-ch07-sa-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-27",
+        "c-ch06-14",
+        "c-ch06-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 32
+    },
+    {
+      "id": "c-ch06-33",
+      "title": "数组名与地址：a[i] 与 *(a+i) 等价",
+      "section": "6.6 数组名与地址",
+      "summary": "数组名代表首元素的地址，a + i 是第 i 个元素的地址，*(a + i) 与 a[i] 完全等价；但数组名是地址常量，不能赋值或自增。",
+      "content": "### 等价关系\n```c\nint a[5] = {10, 20, 30, 40, 50};\n\na        ==  &a[0]      /* 首元素地址，是个常量 */\na + i    ==  &a[i]      /* 第 i 个元素的地址 */\n*(a + i) ==  a[i]       /* 第 i 个元素的值 */\n```\n\n### 为什么下标从 0 开始\n地址换算公式是「首地址 + i × 元素大小」，i = 0 时正好落在首元素上，所以 a[0] 是第一个元素，这也解释了为什么长度为 n 的数组合法下标是 0..n-1。\n\n### 数组名不能当变量用\n- a = a + 1 非法：数组名是地址**常量**，不能被赋值；\n- a++ 非法：同理，不能自增；\n- 需要移动位置时用一个指针变量 p，写 p = a; p++（指针部分在第 8 章展开）。\n\n### sizeof 的两种结果\n- sizeof(a) 是整个数组的字节数（编译期可知）；\n- 数组名作函数实参后，函数内的形参是指针，sizeof 得到指针大小，这是第 6.4 节强调过的陷阱。",
+      "keyPoints": [
+        "数组名是首元素的地址，属于地址常量，不能赋值也不能自增",
+        "a + i 与 &a[i] 等价，*(a + i) 与 a[i] 等价",
+        "地址换算公式是首地址加 i 乘元素大小，这解释了为什么下标从 0 开始",
+        "sizeof 数组名得到整个数组大小，但作函数参数后退化为指针大小"
+      ],
+      "pitfalls": [
+        "写 a++ 或 a = a + 1，编译报错：数组名不是左值",
+        "把 *(a + i) 误算成 *(a) + i，运算优先级搞错",
+        "在函数内对形参数组用 sizeof 求元素个数"
+      ],
+      "examples": [
+        {
+          "title": "用 *(a+i) 遍历并对照 a[i]",
+          "code": "#include <stdio.h>\nint main(void) {\n    int a[5] = {10, 20, 30, 40, 50};\n    int i;\n    for (i = 0; i < 5; i++) printf(\"%d \", *(a + i));\n    printf(\"\\n%d %d\\n\", a[2], *(a + 2));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 20 30 40 50 \n30 30",
+          "note": "两种写法输出完全相同，编译器生成的代码也几乎一样。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-cc-001",
+        "c-ch06-cr-002",
+        "c-ch06-cr-010"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-04",
+        "c-ch06-25",
+        "c-ch06-17"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 33
+    },
+    {
+      "id": "c-ch06-34",
+      "title": "数组应用：斐波那契数列与分组加工",
+      "section": "6.7 数组应用举例",
+      "summary": "斐波那契数列用数组保存全部项，靠 f[i] = f[i-1] + f[i-2] 递推；配合「每 5 个换行」的下标取模技巧，是数组综合题的标准模板。",
+      "content": "### 语法速查\n```c\nint f[20], i;\nf[0] = 1; f[1] = 1;                       /* 前两项是初值 */\nfor (i = 2; i < 20; i++)\n    f[i] = f[i - 1] + f[i - 2];           /* 递推式 */\n\nfor (i = 0; i < 20; i++) {\n    printf(\"%6d\", f[i]);                  /* 右对齐占 6 列 */\n    if ((i + 1) % 5 == 0) printf(\"\\n\");   /* 每 5 个换行 */\n}\n```\n\n### 两个通用技巧\n1. **递推**：初值 + 递推式 + 循环，能用递推就不要用递归，数组存中间结果避免重复计算；\n2. **每 m 个换行**：判断条件是 (i + 1) % m == 0，因为 i 从 0 开始，第 m 个元素的下标是 m-1。\n\n### 为什么必须用数组\n如果只要求最后一项，用两个变量滚动即可；但题目常要求「输出全部项」「求第 k 项」「找出其中能被 7 整除的项」，这时必须把每一项都存下来，数组就是为此而生。\n\n### 同类分组加工题\n「30 个偶数，每 5 个求一个平均值存入另一个数组」——外层控制组号，内层控制组内 5 个元素，源数组下标是 组号 * 5 + 组内序号。",
+      "keyPoints": [
+        "斐波那契数列的递推式是 f[i] = f[i-1] + f[i-2]，前两项为初值",
+        "循环从下标 2 开始，因为前两项已由初值给定",
+        "每 m 个元素换行的判断条件是 (i + 1) % m == 0",
+        "分组加工时源数组下标 = 组号 × 组内元素个数 + 组内序号"
+      ],
+      "pitfalls": [
+        "递推循环从 i = 0 开始，访问 f[-1] 与 f[-2] 越界",
+        "换行条件写成 i % 5 == 0，结果第一行只有 1 个数",
+        "printf 的宽度写成 %-6d 变成左对齐，与题目要求的格式不符"
+      ],
+      "examples": [
+        {
+          "title": "输出斐波那契数列前 20 项，每行 5 个",
+          "code": "#include <stdio.h>\nint main(void) {\n    int f[20], i;\n    f[0] = 1;\n    f[1] = 1;\n    for (i = 2; i < 20; i++) f[i] = f[i - 1] + f[i - 2];\n    for (i = 0; i < 20; i++) {\n        printf(\"%6d\", f[i]);\n        if ((i + 1) % 5 == 0) printf(\"\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "     1     1     2     3     5\n     8    13    21    34    55\n    89   144   233   377   610\n   987  1597  2584  4181  6765",
+          "note": "数组 f[20] 存的是下标 0..19 共 20 项，最大 6765；项数再多 int 就会溢出，需要改用 long 或高精度数组。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-003",
+        "c-ch06-cr-006"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-15",
+        "c-ch06-23",
+        "c-ch06-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 34
+    },
+    {
+      "id": "c-ch06-35",
+      "title": "数组应用：高精度大整数",
+      "section": "6.7 数组应用举例",
+      "summary": "超出 int 范围的数（如 20!）可以用数组按位存储，低位放在下标 0，运算时逐位计算并处理进位，这是数组最重要的应用之一。",
+      "content": "### 存储约定\n```c\nint d[64] = {0};     /* d[0] 存个位，d[1] 存十位，……低位在前 */\nint len = 1;         /* 当前有效位数 */\nd[0] = 1;            /* 初始值为 1 */\n```\n\n### 乘以一个小整数的模板\n```c\nfor (i = 2; i <= 20; i++) {          /* 依次乘 2、3、…、20 */\n    carry = 0;\n    for (j = 0; j < len; j++) {\n        int t = d[j] * i + carry;    /* 本位乘积加进位 */\n        d[j] = t % 10;               /* 留下的部分 */\n        carry = t / 10;              /* 进到下一位 */\n    }\n    while (carry > 0) {              /* 最高位还有进位，扩展位数 */\n        d[len++] = carry % 10;\n        carry /= 10;\n    }\n}\n```\n\n### 输出\n低位在前，所以打印时要**从 len-1 递减到 0** 倒着输出。\n\n### 要点归纳\n1. 数组长度按结果的位数上限预估：20! 有 19 位，50! 有 65 位，开 100 就够用；\n2. 每一位都必须是 0~9，进位处理不能漏；\n3. 同一个套路可以做高精度加法、乘法和阶乘，只改内层的运算式。",
+      "keyPoints": [
+        "大整数按位存进数组，约定低位在下标 0，用一个变量记录当前位数",
+        "逐位运算：本位结果对 10 取余留下，除以 10 作为进位传给下一位",
+        "最高位产生的进位要继续扩展位数，不能丢弃",
+        "输出时从最高位向最低位倒序打印"
+      ],
+      "pitfalls": [
+        "数组开得太小，高位进位时越界",
+        "忘记处理最高位的进位，结果少了前面几位",
+        "正序输出，得到的数字完全颠倒",
+        "把每位当成整个数参与运算，超出了 int 的表示范围"
+      ],
+      "examples": [
+        {
+          "title": "用数组计算 20 的阶乘",
+          "code": "#include <stdio.h>\nint main(void) {\n    int d[64] = {0};\n    int len = 1, i, j, carry, t;\n    d[0] = 1;\n    for (i = 2; i <= 20; i++) {\n        carry = 0;\n        for (j = 0; j < len; j++) {\n            t = d[j] * i + carry;\n            d[j] = t % 10;\n            carry = t / 10;\n        }\n        while (carry > 0) {\n            d[len++] = carry % 10;\n            carry /= 10;\n        }\n    }\n    for (i = len - 1; i >= 0; i--) printf(\"%d\", d[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2432902008176640000",
+          "note": "20! 有 19 位，早已超出 int 的 10 位范围，只能靠数组逐位存。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch06-pg-006",
+        "c-ch06-pg-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-34",
+        "c-ch06-24",
+        "c-ch06-23"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第6章 数组",
+      "order": 35
+    }
+  ]
+}

@@ -1,0 +1,1069 @@
+{
+  "category": "c",
+  "chapter": "第7章 函数",
+  "generated_at": "2026-09-09",
+  "count": 25,
+  "cards": [
+    {
+      "id": "c-ch07-01",
+      "title": "为什么需要函数：模块化程序设计",
+      "section": "7.1 为什么需要函数",
+      "summary": "函数把一段完成特定任务的代码封装起来并起个名字，需要时调用即可；模块化让程序可读、可复用、可分工、可单独测试。",
+      "content": "### 一个直观对比\n```c\n/* 没有函数：同样的分隔线要写三遍 */\nprintf(\"----------\\n\");\nprintf(\"%d\\n\", 3 * 3);\nprintf(\"----------\\n\");\nprintf(\"%d\\n\", 4 * 4);\nprintf(\"----------\\n\");\n\n/* 有函数：定义一次，反复调用 */\nvoid line(void)  { printf(\"----------\\n\"); }\nint  square(int x) { return x * x; }\n\nline(); printf(\"%d\\n\", square(3));\nline(); printf(\"%d\\n\", square(4));\nline();\n```\n\n### 模块化的四个好处\n1. **避免重复**：同一段逻辑只写一次，改一处即全部生效；\n2. **降低复杂度**：把大问题拆成若干小问题，逐个解决（自顶向下、逐步细化）；\n3. **便于协作与测试**：每个人负责一个函数，可以单独验证；\n4. **可复用**：写好的函数可以搬到别的程序里，C 标准库就是别人写好的函数集合。\n\n### 一个 C 程序的构成\n- 有且仅有一个 main 函数，程序总是从 main 开始执行；\n- 其余函数地位平等，可以互相调用，但**不能嵌套定义**（不能在一个函数体内再定义函数）；\n- main 也是函数，不能被其他函数调用，也不能自己调用自己。",
+      "keyPoints": [
+        "函数是完成特定任务的代码封装，是 C 程序的基本组成单位",
+        "一个 C 程序由一个 main 函数和若干其他函数构成，执行总是从 main 开始",
+        "模块化带来复用、降低复杂度、便于分工与单独测试",
+        "C 语言不允许函数嵌套定义，但允许函数嵌套调用"
+      ],
+      "pitfalls": [
+        "在一个函数体内部定义另一个函数，编译报错",
+        "以为程序从第一个定义的函数开始执行，实际只从 main 开始",
+        "把所有代码堆在 main 里，题目一变形就得整段重写"
+      ],
+      "examples": [
+        {
+          "title": "用函数把重复的输出与计算封装起来",
+          "code": "#include <stdio.h>\n\nvoid line(void) { printf(\"----------\\n\"); }\nint square(int x) { return x * x; }\n\nint main(void) {\n    line();\n    printf(\"%d %d\\n\", square(3), square(4));\n    line();\n    return 0;\n}",
+          "stdin": "",
+          "expected": "----------\n9 16\n----------",
+          "note": "line 和 square 各定义一次，main 里想用几次就调用几次。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-010",
+        "c-ch07-cc-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-02",
+        "c-ch07-03",
+        "c-ch07-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 1
+    },
+    {
+      "id": "c-ch07-02",
+      "title": "函数定义的一般形式",
+      "section": "7.2 函数的定义与调用",
+      "summary": "函数定义由「返回类型 函数名(参数列表)」加函数体组成；无参数要写 void，无返回值时返回类型写 void。",
+      "content": "### 语法速查\n```c\n返回类型  函数名(参数类型 参数名, ...)\n{\n    声明部分\n    语句部分\n}\n\nint max2(int a, int b)      /* 有参有返回值 */\n{\n    return a > b ? a : b;\n}\n\nvoid greet(void)            /* 无参无返回值，参数表写 void */\n{\n    printf(\"Hello\\n\");\n}\n```\n\n### 四个组成部分\n1. **返回类型**：返回值的数据类型；不返回任何值时写 void；\n2. **函数名**：标识符，遵循命名规则，见名知意；\n3. **参数列表**：形参的类型与名字，多个用逗号分隔；无参数写 void（老式写法空括号 () 也合法但不推荐）；\n4. **函数体**：花括号内的声明与语句，函数体内不能再定义函数。\n\n### 老式定义（K&R 风格）\n教材中偶尔出现「int max2(a, b) int a, b; { ... }」这种把参数类型写在参数表外面的形式，属于 C89 之前的遗留写法，新代码一律用原型式定义。",
+      "keyPoints": [
+        "定义格式：返回类型 函数名(参数列表) { 函数体 }",
+        "无返回值时返回类型写 void，无参数时参数表写 void",
+        "形参必须在参数表中逐个写明类型，不能共用一个类型",
+        "函数体内部不能再定义函数，只能调用函数"
+      ],
+      "pitfalls": [
+        "参数表写成 int a, b，漏掉 b 的类型",
+        "函数没有返回值却写了 int 类型，或忘了写 return",
+        "main 写成 void main()，标准 C 中 main 的返回类型应为 int"
+      ],
+      "examples": [
+        {
+          "title": "有参有返回值与无参无返回值两种函数",
+          "code": "#include <stdio.h>\n\nint max2(int a, int b) { return a > b ? a : b; }\n\nvoid greet(void) { printf(\"Hello\\n\"); }\n\nint main(void) {\n    greet();\n    printf(\"%d\\n\", max2(3, 7));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Hello\n7",
+          "note": "greet 没有返回值，所以调用时只当语句用，不参与表达式。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-sa-003",
+        "c-ch07-cr-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-01",
+        "c-ch07-05",
+        "c-ch07-06"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 2
+    },
+    {
+      "id": "c-ch07-03",
+      "title": "函数调用的三种形式",
+      "section": "7.2 函数的定义与调用",
+      "summary": "函数调用可以出现在表达式中、作为 printf 等函数的实参、或者单独作为一条语句；返回值类型是 void 时只能当语句用。",
+      "content": "### 三种调用形式\n```c\nint add(int a, int b) { return a + b; }\n\ns = add(x, y);              /* 1. 函数值参加表达式运算 */\nprintf(\"%d\\n\", add(x, y));  /* 2. 函数调用作为另一个函数的实参 */\nadd(x, y);                  /* 3. 单独作为一条语句（返回值被丢弃） */\n```\n\n### 调用的一般过程\n1. 实参求值（表达式的值先算出来）；\n2. 把实参的值传给形参（值传递是复制一份）；\n3. 为被调函数的局部变量分配存储单元，执行函数体；\n4. 遇到 return 或函数体结束时，把返回值带回调用处；\n5. 释放被调函数的存储空间，回到调用点继续执行。\n\n### void 函数的限制\n返回类型为 void 的函数**不能**出现在表达式中，也不能作为需要值的实参；只能以「函数名(实参表);」的形式单独调用。",
+      "keyPoints": [
+        "三种调用形式：参加表达式、作为其他函数的实参、单独作语句",
+        "调用时先对实参求值，再把值传给形参",
+        "void 函数只能作为语句调用，不能出现在表达式中",
+        "函数执行到 return 或函数体末尾就返回调用点"
+      ],
+      "pitfalls": [
+        "把 void 函数写进 printf 的参数表或赋值号右边",
+        "调用有返回值的函数却不接收返回值，等于白算一遍",
+        "写成 add(x, y) 漏掉分号，或把调用写成了定义"
+      ],
+      "examples": [
+        {
+          "title": "同一个函数的三种调用写法",
+          "code": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\n\nint main(void) {\n    int x = 3, y = 4, s;\n    s = add(x, y);                    /* 参加赋值表达式 */\n    printf(\"%d\\n\", s);\n    printf(\"%d\\n\", add(x, y) * 2);    /* 作为 printf 的实参并继续运算 */\n    add(x, y);                        /* 单独作语句，返回值被丢弃 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7\n14",
+          "note": "第三次调用的返回值没有接收者，编译器不报错，但这次调用没有产生任何效果。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-017",
+        "c-ch07-sa-007",
+        "c-ch07-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-02",
+        "c-ch07-05",
+        "c-ch07-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 3
+    },
+    {
+      "id": "c-ch07-04",
+      "title": "函数声明（原型）与定义的位置关系",
+      "section": "7.2 函数的定义与调用",
+      "summary": "若函数定义出现在调用之后，必须在调用前给出函数声明；声明就是去掉函数体的原型，形参名可以省略，末尾要加分号。",
+      "content": "### 语法速查\n```c\nint cube(int x);       /* 声明（函数原型），注意结尾的分号 */\nint cube(int);         /* 等价写法：声明时形参名可省略 */\n\nint main(void) {\n    printf(\"%d\\n\", cube(3));    /* 调用点在定义之前，所以必须先声明 */\n    return 0;\n}\n\nint cube(int x) { return x * x * x; }   /* 定义可以放在后面 */\n```\n\n### 什么时候必须声明\n- 被调函数的定义**出现在主调函数之后** → 必须在调用前声明（或写在文件开头）；\n- 定义出现在调用之前 → 不需要再声明；\n- 调用标准库函数 → 必须 #include 对应的头文件，头文件里就是这些函数的声明。\n\n### 声明与定义的区别\n| | 声明 | 定义 |\n|---|---|---|\n| 是否有函数体 | 无 | 有 |\n| 结尾 | 分号 | 花括号 |\n| 形参名 | 可省略 | 必须有 |\n| 作用 | 告诉编译器函数长什么样，用于类型检查 | 分配实体、生成代码 |\n\n### 不声明的后果\n在旧标准下编译器会「隐式声明」为返回 int 的函数，类型不匹配也不报错；现代编译器会给出警告甚至错误，考试中也一律要求写出声明。",
+      "keyPoints": [
+        "函数定义在调用点之后时，必须先在调用前写出函数声明",
+        "声明即函数原型加分号，形参名可以省略",
+        "标准库函数通过 #include 头文件获得声明",
+        "声明只做类型检查，不产生函数实体"
+      ],
+      "pitfalls": [
+        "声明末尾漏了分号，或误加了函数体",
+        "声明的类型与定义的类型不一致，编译报错",
+        "依赖隐式声明调用返回 double 的函数，返回值被当成 int 解释导致结果错误"
+      ],
+      "examples": [
+        {
+          "title": "先声明后定义",
+          "code": "#include <stdio.h>\n\nint cube(int x);                 /* 声明放在 main 之前 */\n\nint main(void) {\n    printf(\"%d\\n\", cube(3));\n    return 0;\n}\n\nint cube(int x) {                /* 定义放在 main 之后 */\n    return x * x * x;\n}\n",
+          "stdin": "",
+          "expected": "27",
+          "note": "没有第一行的声明，编译器在 main 里遇到 cube(3) 时还不知道它是什么。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-004",
+        "c-ch07-sa-005",
+        "c-ch07-sa-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-02",
+        "c-ch07-24",
+        "c-ch07-23"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 4
+    },
+    {
+      "id": "c-ch07-05",
+      "title": "return 语句与函数返回值",
+      "section": "7.3 函数的参数与返回值",
+      "summary": "return 结束函数执行并把值带回调用处；一个函数可以有多个 return，但一次调用只会执行其中一个；返回值类型应与 return 表达式一致。",
+      "content": "### 语法速查\n```c\nreturn 表达式;         /* 带值返回 */\nreturn (表达式);       /* 括号可加可不加 */\nreturn;                /* 只用于 void 函数，表示提前结束 */\n```\n\n### 三条规则\n1. **一次调用只返回一个值**：函数里可以写多个 return，执行到哪一个就从哪里返回，后面的代码不再执行；\n2. **类型以函数声明的返回类型为准**：return 表达式的类型若与之不同，会自动转换成返回类型（double 转 int 会截断小数）；\n3. **return 之后的语句是死代码**，不会被执行。\n\n### 从循环中间返回\n查找类函数常在循环里直接 return 下标，循环结束后再 return -1，这样写比用标志变量更简洁：\n```c\nfor (i = 0; i < n; i++)\n    if (a[i] < 0) return i;   /* 找到就立刻返回 */\nreturn -1;                    /* 循环走完说明没找到 */\n```\n\n### 与 main 的关系\nmain 也是函数，return 0 表示程序正常结束，非 0 表示异常，这个值可以被操作系统或脚本读取。",
+      "keyPoints": [
+        "return 的作用是结束函数执行并把值带回调用处",
+        "一个函数可以有多个 return，一次调用只执行其中一个",
+        "返回值类型由函数声明的返回类型决定，表达式类型不同会自动转换",
+        "非 void 函数的每条执行路径都应该有 return，否则返回值不确定"
+      ],
+      "pitfalls": [
+        "函数声明为 int 却在某条分支上忘记 return，返回值是垃圾",
+        "return 一个 double 表达式给 int 返回类型，小数部分被悄悄截断",
+        "在 return 后面继续写语句，那些语句永远不会执行"
+      ],
+      "examples": [
+        {
+          "title": "多个 return 与从循环中间返回",
+          "code": "#include <stdio.h>\n\nint absdiff(int a, int b) {\n    if (a > b) return a - b;\n    return b - a;\n}\n\nint first_neg(int a[], int n) {\n    int i;\n    for (i = 0; i < n; i++)\n        if (a[i] < 0) return i;\n    return -1;\n}\n\nint main(void) {\n    int a[4] = {3, -2, 5, 1};\n    printf(\"%d %d %d\\n\", absdiff(3, 8), absdiff(8, 3), first_neg(a, 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5 5 1",
+          "note": "absdiff 有两个 return，一次调用只走其中一条；first_neg 在下标 1 处提前返回。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-sa-003",
+        "c-ch07-cr-011"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-06",
+        "c-ch07-03",
+        "c-ch07-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 5
+    },
+    {
+      "id": "c-ch07-06",
+      "title": "void 类型：无参数与无返回值",
+      "section": "7.3 函数的参数与返回值",
+      "summary": "void 表示「空」：作返回类型说明函数不返回值，作参数表说明函数不接收参数，作强制类型转换说明有意丢弃返回值。",
+      "content": "### void 的三种用法\n```c\nvoid show(int n);        /* 1. 无返回值，但有参数 */\nvoid hello(void);        /* 2. 无返回值，也无参数 */\nint  rand_num(void);     /* 3. 有返回值，无参数 */\n\n(void)printf(\"x\");       /* 4. 强制转换成 void，明确表示丢弃返回值 */\n```\n\n### 要点\n1. **无返回值**：函数体内可以写 return; （不带值）用于提前结束，也可以完全不写；\n2. **无参数**：参数表写 void 最规范；写成空括号 () 在 C 里表示「参数个数未指定」，与 C++ 含义不同，考试中按「无参数」理解即可；\n3. **void 函数不能被当值使用**：x = hello(); 是错的；\n4. **void 指针**（第 8 章内容）表示「不指定类型的地址」，与此处的 void 是同一个关键字的不同用法。\n\n### 什么时候该用 void 函数\n- 只负责输出、打印菜单、清屏等副作用操作；\n- 修改通过参数传进来的数组（数组是地址传递，不需要返回值也能改到实参）。",
+      "keyPoints": [
+        "void 作返回类型表示函数不返回任何值",
+        "void 作参数表表示函数不接收任何参数",
+        "void 函数的调用只能作为语句，不能出现在表达式中",
+        "(void) 强制转换用来明确表示有意忽略某个返回值"
+      ],
+      "pitfalls": [
+        "给 void 函数写 return 1;，编译报错",
+        "把 void 函数的调用放进 printf 的参数或赋值号右边",
+        "参数表留空 () 与写 (void) 混用，在严格编译器下含义不同"
+      ],
+      "examples": [
+        {
+          "title": "无参无返回值与有参无返回值",
+          "code": "#include <stdio.h>\n\nvoid hello(void) { printf(\"hello\\n\"); }\n\nvoid show(int n) { printf(\"n=%d\\n\", n); }\n\nint main(void) {\n    hello();\n    show(5);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "hello\nn=5",
+          "note": "两个函数都没有返回值，所以只能以语句形式调用。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-002",
+        "c-ch07-cr-012",
+        "c-ch07-dbg-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-05",
+        "c-ch07-02",
+        "c-ch07-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 6
+    },
+    {
+      "id": "c-ch07-07",
+      "title": "值传递的单向性",
+      "section": "7.3 函数的参数与返回值",
+      "summary": "普通变量作参数时是值传递：形参得到实参的一份副本，函数内修改形参不会影响实参，数据只能由实参流向形参。",
+      "content": "### 实验代码\n```c\nvoid try_change(int x) {   /* x 是 a 的副本 */\n    x = 100;\n    printf(\"in func: %d\\n\", x);\n}\n\nint main(void) {\n    int a = 1;\n    try_change(a);\n    printf(\"in main: %d\\n\", a);   /* 仍然是 1 */\n    return 0;\n}\n```\n\n### 为什么改不动\n1. 调用时系统为形参 x **另外分配**存储单元，把 a 的值复制进去；\n2. x 与 a 是两个不同的变量，只是初值相同；\n3. 函数结束时 x 的单元被释放，a 从头到尾没被碰过；\n4. 所以数据流向是**单向**的：实参 → 形参，反向不通。\n\n### 想改到实参怎么办\n- **数组作参数**：传的是地址，函数内改元素就是改实参数组（见 7.5 节）；\n- **指针作参数**：把变量的地址传进去，通过地址间接修改（见第 8 章）；\n- **用返回值**：函数算出新值 return 出来，由调用方自己赋值回去。\n\n### 考试常见陷阱\n「交换两个数的 swap(int a, int b)」是永远交换不成功的经典错误题，必须改成传地址或改用数组。",
+      "keyPoints": [
+        "值传递时形参是实参的副本，占用独立的存储单元",
+        "数据只能由实参传给形参，函数内修改形参不影响实参",
+        "函数调用结束后形参单元被释放",
+        "要修改实参只能借助数组、指针或返回值"
+      ],
+      "pitfalls": [
+        "以为 swap(int a, int b) 能交换主调函数里的两个变量",
+        "在函数里给形参赋新值，指望外面能看到变化",
+        "混淆值传递与地址传递：数组作参数时是地址传递，能改到实参"
+      ],
+      "examples": [
+        {
+          "title": "形参修改不影响实参",
+          "code": "#include <stdio.h>\n\nvoid try_change(int x) {\n    x = 100;\n    printf(\"in func: %d\\n\", x);\n}\n\nint main(void) {\n    int a = 1;\n    try_change(a);\n    printf(\"in main: %d\\n\", a);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "in func: 100\nin main: 1",
+          "note": "函数里 x 确实变成了 100，但 main 里的 a 仍是 1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-dbg-010",
+        "c-ch07-dbg-012",
+        "c-ch07-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-08",
+        "c-ch07-15",
+        "c-ch07-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 7
+    },
+    {
+      "id": "c-ch07-08",
+      "title": "形参与实参的一一对应",
+      "section": "7.3 函数的参数与返回值",
+      "summary": "调用时实参与形参按位置一一对应，个数必须相同、类型兼容；实参可以是常量、变量或表达式，求值后才把结果传给形参。",
+      "content": "### 对应规则\n```c\nvoid show3(int a, int b, int c) { printf(\"%d %d %d\\n\", a, b, c); }\n\nshow3(1, 2, 3);              /* 1→a, 2→b, 3→c */\nshow3(3, 2, 1);              /* 3→a, 2→b, 1→c，顺序决定对应关系 */\nshow3(1 + 1, 2 * 2, 9 / 3);  /* 实参是表达式，先求值再传递：2 4 3 */\n```\n\n### 三条要求\n1. **个数相同**：多写或少写实参都会编译报错；\n2. **顺序对应**：C 语言按位置匹配，不按名字，也没有默认参数；\n3. **类型兼容**：类型不同时会按形参类型自动转换，例如把 double 传给 int 形参会截断小数，把 int 传给 double 形参会转成浮点。\n\n### 实参可以是什么\n常量、变量、数组元素、表达式、函数调用（其返回值）都可以作实参；**数组名**作实参时传的是地址，属于地址传递，是唯一的例外。\n\n### 求值顺序的坑\nprintf(\"%d %d\", f(), g()) 这类写法中，两个实参的求值顺序由编译器决定，**不要写依赖求值顺序的代码**（如 i++ 与 i 同时出现），那是未定义或不可移植行为。",
+      "keyPoints": [
+        "实参与形参按位置一一对应，C 语言不按名字匹配",
+        "实参个数必须与形参个数相同，类型不同时自动转换为形参类型",
+        "实参可以是常量、变量、表达式或函数调用，先求值再传递",
+        "数组名作实参是地址传递，与普通变量的值传递不同"
+      ],
+      "pitfalls": [
+        "实参顺序写反，两个 int 类型相同编译器不会报错，结果却错了",
+        "把 double 传给 int 形参，小数部分被截断而毫不知情",
+        "在同一次调用里对同一变量使用 i++ 与 i，结果依赖编译器的求值顺序"
+      ],
+      "examples": [
+        {
+          "title": "顺序与表达式实参的对应关系",
+          "code": "#include <stdio.h>\n\nvoid show3(int a, int b, int c) { printf(\"%d %d %d\\n\", a, b, c); }\n\nint main(void) {\n    show3(1, 2, 3);\n    show3(3, 2, 1);\n    show3(1 + 1, 2 * 2, 9 / 3);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3\n3 2 1\n2 4 3",
+          "note": "第三次调用的实参都是表达式，先各自求值再按位置传给形参。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-017",
+        "c-ch07-cr-008",
+        "c-ch07-sa-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-07",
+        "c-ch07-03",
+        "c-ch07-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 8
+    },
+    {
+      "id": "c-ch07-09",
+      "title": "函数的嵌套调用与层层分解",
+      "section": "7.2 函数的定义与调用",
+      "summary": "C 不允许嵌套定义函数，但允许嵌套调用：一个函数在执行过程中调用另一个函数，这是把复杂问题逐层分解的基本手段。",
+      "content": "### 嵌套调用的结构\n```c\nint lcm2(int a, int b);            /* 两个数的最小公倍数 */\n\nint lcm3(int a, int b, int c) {    /* 三个数的最小公倍数 */\n    return lcm2(lcm2(a, b), c);    /* 调用点里面还有调用 */\n}\n```\n\n### 分解思路\n求三个数的最小公倍数 → 先求前两个的 → 再与第三个求。数学依据是 lcm(a,b,c) = lcm(lcm(a,b), c)，最大公约数同理。\n\n### 嵌套调用与嵌套定义的区别\n- **嵌套定义**（在函数体里再写一个函数定义）：C 语言**禁止**；\n- **嵌套调用**（函数体里调用别的函数）：完全合法，且是常规做法；\n- 函数也可以调用自己，那就是递归（见 7.4 节）。\n\n### 分层设计的好处\n底层函数只解决最小问题（求两个数的最大公约数），中层函数组合它们（求最小公倍数），main 只负责组织流程。每一层都可以单独测试。",
+      "keyPoints": [
+        "C 语言禁止函数的嵌套定义，允许函数的嵌套调用",
+        "嵌套调用就是把大问题拆成小问题，逐层求解",
+        "lcm(a,b,c) = lcm(lcm(a,b),c)，gcd 也满足同样的结合性质",
+        "分层设计使每个函数职责单一，便于单独测试与复用"
+      ],
+      "pitfalls": [
+        "在一个函数体内部写另一个函数的定义，编译报错",
+        "嵌套层数过深却不写声明，导致某一层找不到函数",
+        "把嵌套调用与递归混淆，以为嵌套调用一定会调用自己"
+      ],
+      "examples": [
+        {
+          "title": "用嵌套调用求三个数的最小公倍数",
+          "code": "#include <stdio.h>\n\nint lcm2(int a, int b) {\n    int x = a, y = b, t;\n    while (y != 0) { t = x % y; x = y; y = t; }   /* 辗转相除求最大公约数 */\n    return a / x * b;                              /* 先除后乘，避免中间结果溢出 */\n}\n\nint lcm3(int a, int b, int c) {\n    return lcm2(lcm2(a, b), c);                    /* 嵌套调用 */\n}\n\nint main(void) {\n    printf(\"%d\\n\", lcm3(4, 6, 10));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "60",
+          "note": "lcm(4,6)=12，再 lcm(12,10)=60。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cc-001",
+        "c-ch07-sa-010",
+        "c-ch07-sa-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-01",
+        "c-ch07-10",
+        "c-ch07-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 9
+    },
+    {
+      "id": "c-ch07-10",
+      "title": "递归的两个必备条件",
+      "section": "7.4 函数的递归调用",
+      "summary": "递归必须同时具备「递归出口」和「规模递减的递归体」：出口让调用能够终止，递减保证每次调用都离出口更近一步。",
+      "content": "### 骨架\n```c\nint f(int n) {\n    if (n == 1) return 1;        /* 条件 1：递归出口（基本情况） */\n    return n + f(n - 1);         /* 条件 2：递归体，且 n-1 比 n 更接近出口 */\n}\n```\n\n### 两个条件缺一不可\n1. **出口**：至少有一种情况不需要再递归就能直接给出答案，否则永远调下去；\n2. **收敛**：每次递归调用时，问题的规模必须**朝着出口的方向**变化（n 递减、区间减半、串变短）。\n\n### 递归的两阶段\n- **递推（去）**：f(5) → f(4) → f(3) → f(2) → f(1)，一层层压栈；\n- **回归（回）**：f(1) 返回 1，再逐层算出 f(2)=3、f(3)=6、f(4)=10、f(5)=15。\n\n### 什么时候适合用递归\n问题本身可以自然地定义为「同类的更小问题」：阶乘、斐波那契、汉诺塔、二分查找、树的遍历。简单循环能解决的（求和、遍历数组）不必用递归。\n\n### 代价\n每层调用都要保存返回地址与局部变量，层数太深会**栈溢出**；斐波那契的朴素递归还有大量重复计算。",
+      "keyPoints": [
+        "递归的两个条件：有递归出口，且每次调用问题规模向出口收敛",
+        "递归过程分为递推（层层深入）与回归（层层返回）两个阶段",
+        "缺少出口或参数不收敛都会导致无限递归，最终栈溢出",
+        "适合用递归的问题：能自然分解为同类的更小子问题"
+      ],
+      "pitfalls": [
+        "只写递归体忘了出口，程序运行时崩溃（栈溢出）",
+        "递归调用时参数没有变化或变化方向背离出口，同样无限递归",
+        "对简单问题滥用递归，效率远低于循环版本"
+      ],
+      "examples": [
+        {
+          "title": "用递归求 1 到 n 的和",
+          "code": "#include <stdio.h>\n\nint f(int n) {\n    if (n == 1) return 1;          /* 出口 */\n    return n + f(n - 1);           /* 规模递减 */\n}\n\nint main(void) {\n    printf(\"%d\\n\", f(5));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "15",
+          "note": "递推到 f(1) 得到 1，回归时逐层相加得 15。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-001",
+        "c-ch07-cr-002",
+        "c-ch07-cr-003",
+        "c-ch07-cr-006"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-11",
+        "c-ch07-12",
+        "c-ch07-13"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 10
+    },
+    {
+      "id": "c-ch07-11",
+      "title": "递归经典：求阶乘",
+      "section": "7.4 函数的递归调用",
+      "summary": "阶乘的递归定义是 0! = 1、n! = n × (n-1)!，出口是 n 等于 0 或 1，递归体把规模减 1，是最标准的递归例题。",
+      "content": "### 代码模板\n```c\nlong fac(int n) {\n    if (n == 0 || n == 1) return 1;    /* 出口：0! = 1! = 1 */\n    return n * fac(n - 1);             /* 递归体 */\n}\n```\n\n### 展开过程（以 fac(4) 为例）\n```text\nfac(4) = 4 * fac(3)\n       = 4 * (3 * fac(2))\n       = 4 * (3 * (2 * fac(1)))\n       = 4 * (3 * (2 * 1))     ← 到出口后开始回归\n       = 24\n```\n\n### 三个易被扣分的地方\n1. **出口要覆盖 0**：题目若可能传入 0，只写 n == 1 会让 fac(0) 继续递归到负数；\n2. **返回类型**：13! 已经超出 int 的范围（约 21 亿），阶乘题一般用 long；\n3. **参数必须递减**：fac(n + 1) 或 fac(n) 都是无限递归。\n\n### 变形\n- 求 1! + 2! + … + n!：在 main 里循环累加 fac(i)，不要每次从头重算；\n- 用递归求 n 的 k 次方：出口 k == 0 返回 1，递归体 x * power(x, k-1)。",
+      "keyPoints": [
+        "阶乘的递归定义：0! 与 1! 都是 1，n! = n × (n-1)!",
+        "出口必须包含 n == 0，否则输入 0 时无限递归",
+        "阶乘增长极快，13! 已超出 int 范围，应使用 long 类型",
+        "递归调用时参数必须是 n-1，保证向出口收敛"
+      ],
+      "pitfalls": [
+        "出口只写 n == 1，传入 0 或负数时栈溢出",
+        "用 int 存较大阶乘，结果溢出变成负数",
+        "递归体写成 n * fac(n)，参数没有减小"
+      ],
+      "examples": [
+        {
+          "title": "输出 0! 到 6!",
+          "code": "#include <stdio.h>\n\nlong fac(int n) {\n    if (n == 0 || n == 1) return 1;\n    return n * fac(n - 1);\n}\n\nint main(void) {\n    int i;\n    for (i = 0; i <= 6; i++) printf(\"%d! = %ld\\n\", i, fac(i));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0! = 1\n1! = 1\n2! = 2\n3! = 6\n4! = 24\n5! = 120\n6! = 720",
+          "note": "出口同时写了 n == 0 与 n == 1，两种输入都能正确返回 1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-dbg-011",
+        "c-ch07-sa-004",
+        "c-ch07-cr-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-10",
+        "c-ch07-12",
+        "c-ch07-13"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 11
+    },
+    {
+      "id": "c-ch07-12",
+      "title": "递归斐波那契与重复计算",
+      "section": "7.4 函数的递归调用",
+      "summary": "斐波那契的朴素递归有两个递归调用，同一子问题被反复计算，调用次数约为 2×fib(n)-1，效率远低于用数组递推的版本。",
+      "content": "### 朴素递归\n```c\nint fib(int n) {\n    if (n == 1 || n == 2) return 1;    /* 两个出口 */\n    return fib(n - 1) + fib(n - 2);    /* 两个分支 */\n}\n```\n\n### 为什么会重复计算\n求 fib(5) 需要 fib(4) 和 fib(3)，而 fib(4) 又要 fib(3) 和 fib(2)——fib(3) 被算了两次。层数越深，重复越多。调用总次数满足 C(n) = 2·fib(n) − 1，例如 fib(20) 需要 13529 次调用，而结果只是 6765。\n\n### 两种改进\n1. **数组递推**（第 6 章做法）：f[i] = f[i-1] + f[i-2]，只算 n 次，O(n)；\n2. **滚动变量**：只用两个变量保存前两项，空间 O(1)。\n\n### 什么时候朴素递归还能用\n教学演示递归思想、n 很小（≤ 20）、或者题目明确要求「用递归实现」。工程中应当避免。\n\n### 与单分支递归的区别\n阶乘只有一条递归链（单分支），斐波那契是**双分支**递归，这是它指数级复杂度的根源。",
+      "keyPoints": [
+        "斐波那契递归需要两个出口：n == 1 与 n == 2 都返回 1",
+        "递归体有两条分支，同一子问题被重复计算",
+        "朴素递归的调用次数约为 2×fib(n) − 1，是指数级增长",
+        "改用数组递推或滚动变量可把复杂度降到 O(n)"
+      ],
+      "pitfalls": [
+        "只写一个出口 n == 1，fib(2) 会去调用 fib(1) 与 fib(0)，fib(0) 再调 fib(-1)，无限递归",
+        "用朴素递归算 fib(40) 以上，程序长时间不返回",
+        "把双分支递归的复杂度当成 O(n)"
+      ],
+      "examples": [
+        {
+          "title": "递归输出斐波那契数列",
+          "code": "#include <stdio.h>\n\nint fib(int n) {\n    if (n == 1 || n == 2) return 1;\n    return fib(n - 1) + fib(n - 2);\n}\n\nint main(void) {\n    int i;\n    for (i = 1; i <= 8; i++) printf(\"%d \", fib(i));\n    printf(\"\\n%d\\n\", fib(20));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 1 2 3 5 8 13 21 \n6765",
+          "note": "fib(20) 这一行背后是 13529 次函数调用，用数组递推只需要 20 次。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-001",
+        "c-ch07-cr-006",
+        "c-ch07-cr-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-10",
+        "c-ch07-14",
+        "c-ch06-34"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 12
+    },
+    {
+      "id": "c-ch07-13",
+      "title": "递归的执行过程与栈帧",
+      "section": "7.4 函数的递归调用",
+      "summary": "每次函数调用都会建立一个新的栈帧保存参数、局部变量和返回地址；递归时栈帧层层压入，返回时层层弹出，各层的同名变量互不干扰。",
+      "content": "### 带打印的递归，看清「去」与「回」\n```c\nint f(int n) {\n    printf(\"enter %d\\n\", n);\n    if (n == 1) { printf(\"exit 1 -> 1\\n\"); return 1; }\n    r = n * f(n - 1);\n    printf(\"exit %d -> %d\\n\", n, r);\n    return r;\n}\n```\n\n### 栈帧里装了什么\n1. 实参传给形参后的值；\n2. 该层自己的局部变量（每一层都是**独立的一份**）；\n3. 返回地址，用于知道算完后回到哪里继续。\n\n### 关键结论\n- f(3) 里的 n 与 f(2) 里的 n 是**两个不同的变量**，只是名字相同；\n- 「enter」全部打印完才开始打印「exit」，因为必须先到达出口才能返回；\n- 递归层数太深时栈空间耗尽，出现栈溢出（stack overflow）。\n\n### 与循环的等价性\n任何递归都能改写成循环加显式栈；单分支递归（如阶乘、求和）改写成循环尤其直接，见下一张卡片。",
+      "keyPoints": [
+        "每次调用都建立一个栈帧，保存形参、局部变量与返回地址",
+        "递归各层的同名局部变量是相互独立的副本",
+        "执行顺序是先一路深入（压栈）到出口，再一路返回（弹栈）",
+        "递归层数过深会导致栈溢出"
+      ],
+      "pitfalls": [
+        "以为递归过程中只有一个 n 在被修改，实际每层各有自己的 n",
+        "把「进入」与「返回」的打印顺序写反，误判执行流程",
+        "在递归函数里定义大数组，每层都占栈空间，很快就溢出"
+      ],
+      "examples": [
+        {
+          "title": "打印递归的进入与返回过程",
+          "code": "#include <stdio.h>\n\nint f(int n) {\n    int r;\n    printf(\"enter %d\\n\", n);\n    if (n == 1) { printf(\"exit 1 -> 1\\n\"); return 1; }\n    r = n * f(n - 1);\n    printf(\"exit %d -> %d\\n\", n, r);\n    return r;\n}\n\nint main(void) {\n    printf(\"result %d\\n\", f(3));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "enter 3\nenter 2\nenter 1\nexit 1 -> 1\nexit 2 -> 2\nexit 3 -> 6\nresult 6",
+          "note": "三条 enter 先打印完，说明必须先到出口才能开始返回。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-002",
+        "c-ch07-cr-007",
+        "c-ch07-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-10",
+        "c-ch07-11",
+        "c-ch07-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 13
+    },
+    {
+      "id": "c-ch07-14",
+      "title": "递归与迭代的相互转换",
+      "section": "7.4 函数的递归调用",
+      "summary": "单分支递归都可以用一个累加变量加循环改写：把「回归时才做的运算」提前到「递推时就做」，即从自顶向下改成自底向上。",
+      "content": "### 同一问题的两种写法\n```c\n/* 递归：先深入到底，返回时再乘 */\nint fac_rec(int n) { return n <= 1 ? 1 : n * fac_rec(n - 1); }\n\n/* 迭代：从 1 开始一路乘上去 */\nint fac_it(int n) {\n    int i, r = 1;\n    for (i = 2; i <= n; i++) r *= i;\n    return r;\n}\n```\n\n### 转换口诀\n1. 找到递归的**出口值**，把它作为循环变量的初值（阶乘的出口是 1）；\n2. 把递归的**递推方向反过来**：递归从 n 走向 1，迭代就从 1 走向 n；\n3. 用一个变量保存中间结果，替代每层栈帧里的部分结果。\n\n### 两种写法的取舍\n| | 递归 | 迭代 |\n|---|---|---|\n| 代码可读性 | 更接近数学定义 | 略啰嗦 |\n| 时间开销 | 每层一次函数调用 | 只有一次循环 |\n| 空间开销 | O(n) 个栈帧 | O(1) |\n| 风险 | 深度大时栈溢出 | 无 |\n\n### 不适合改迭代的情况\n树、图的深度优先遍历、汉诺塔等**天然分叉**的递归，改迭代需要自己维护栈，代码反而更复杂。",
+      "keyPoints": [
+        "单分支递归都能改写成循环加一个累加变量",
+        "迭代版把出口值作为初值，递推方向与递归相反",
+        "迭代版空间 O(1)、无栈溢出风险，通常效率更高",
+        "天然分叉的递归（树遍历、汉诺塔）改迭代需要显式栈"
+      ],
+      "pitfalls": [
+        "迭代版循环起点写成 1 而初值也是 1，多做一次无用乘法（不影响结果但易混淆）",
+        "把递归的递推方向照搬到迭代里，算出完全不同的结果",
+        "认为递归一定比迭代「高级」，在简单求和题上强行递归"
+      ],
+      "examples": [
+        {
+          "title": "递归版与迭代版结果一致",
+          "code": "#include <stdio.h>\n\nint fac_rec(int n) { return n <= 1 ? 1 : n * fac_rec(n - 1); }\n\nint fac_it(int n) {\n    int i, r = 1;\n    for (i = 2; i <= n; i++) r *= i;\n    return r;\n}\n\nint main(void) {\n    printf(\"%d %d\\n\", fac_rec(7), fac_it(7));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5040 5040",
+          "note": "递归版用了 7 个栈帧，迭代版只用一个循环变量。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-011",
+        "c-ch07-cr-015",
+        "c-ch07-sa-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-10",
+        "c-ch07-13",
+        "c-ch07-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 14
+    },
+    {
+      "id": "c-ch07-15",
+      "title": "一维数组作函数参数（函数篇）",
+      "section": "7.5 数组作函数参数",
+      "summary": "数组名作实参传的是首地址，函数内可以像操作自己的数组一样读写它；因为拿不到长度，元素个数必须作为另一个参数传入。",
+      "content": "### 三种典型形参写法\n```c\ndouble average(int a[], int n);      /* 只读统计 */\nvoid   bump(int a[], int n, int d);  /* 就地修改，会影响实参 */\nint    search(int a[], int n, int key);\n```\n\n### 为什么必须多传一个 n\n形参 a 实际上是**指针**，函数内 sizeof(a) 得到的是指针的字节数（4 或 8），不是数组长度，所以长度只能由调用者告知。\n\n### 就地修改的意义\nbump(s, 10, 5) 会把 main 里数组的每个元素都加 5，不需要返回值——这是数组作参数与普通变量作参数最大的区别（对比 7.3 节的值传递）。\n\n### 防止函数误改数据\n只读用途时可以把形参写成 const int a[]，函数内一旦试图修改就会编译报错，这是很好的自我保护手段。\n\n### 与第 6 章的呼应\n第 6 章讲的是「数组这一侧」的规则（列数不能省、地址如何换算），本节讲的是「函数这一侧」的用法（如何声明、如何传长度、如何用 const 保护）。",
+      "keyPoints": [
+        "数组名作实参传递首地址，形参与实参指向同一段内存",
+        "函数内修改形参数组的元素会直接影响实参数组",
+        "数组长度必须作为另一个参数传入，函数内 sizeof 形参得到的是指针大小",
+        "只读场景把形参声明为 const，可让编译器帮忙防止误改"
+      ],
+      "pitfalls": [
+        "在函数内用 sizeof(a)/sizeof(a[0]) 求元素个数",
+        "以为数组是值传递，写函数时把结果存进局部副本，main 里看不到变化",
+        "实参写成 a[0] 或 &a，类型与形参不匹配"
+      ],
+      "examples": [
+        {
+          "title": "求平均分并就地修改数组",
+          "code": "#include <stdio.h>\n\ndouble average(const int a[], int n) {\n    int i, s = 0;\n    for (i = 0; i < n; i++) s += a[i];\n    return (double)s / n;\n}\n\nvoid bump(int a[], int n, int d) {\n    int i;\n    for (i = 0; i < n; i++) a[i] += d;\n}\n\nint main(void) {\n    int s[10] = {80, 90, 70, 85, 95, 60, 75, 88, 92, 65};\n    printf(\"%.1f\\n\", average(s, 10));\n    bump(s, 10, 5);\n    printf(\"%.1f\\n\", average(s, 10));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "80.0\n85.0",
+          "note": "bump 直接改动了 main 里的数组，所以第二次求平均分变成 85.0。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cc-002",
+        "c-ch07-sa-012",
+        "c-ch07-dbg-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-25",
+        "c-ch07-16",
+        "c-ch07-07"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 15
+    },
+    {
+      "id": "c-ch07-16",
+      "title": "二维数组作函数参数（函数篇）",
+      "section": "7.5 数组作函数参数",
+      "summary": "二维数组作参数时形参可以省略行数，但列数必须写明；行数与列数一般各用一个 int 参数传入，函数才能处理不同规模的矩阵。",
+      "content": "### 语法速查\n```c\nint max_value(int a[][4], int m, int n);   /* 列数 4 必须写，行数可省 */\nint max_value(int a[2][4], int m, int n);  /* 等价：第一维的数字被忽略 */\n\nint max_value(int a[][4], int m, int n) {\n    int i, j, mx = a[0][0];\n    for (i = 0; i < m; i++)\n        for (j = 0; j < n; j++)\n            if (a[i][j] > mx) mx = a[i][j];\n    return mx;\n}\n\nmax_value(a, 2, 4);        /* 实参直接写二维数组名 */\n```\n\n### 为什么列数不能省\n地址换算公式是「首地址 + (i × 列数 + j) × 元素大小」，列数是公式的一部分，编译期必须知道；行数只是循环上限，可以运行时传入。\n\n### 教材常见考法\n「函数 f 的形参 a 是 10×10 的二维数组，实参数组是 5×5，n 传 5」——这时形参声明的 10 与实参的 5 **不一致**，元素定位会错位，是典型的错误代码；正确做法是让形参列数与实参一致，或把列数也作为参数传入。\n\n### 常见任务\n求矩阵最大值及其位置、按行求和、转置、输出上三角或下三角，都是在这个形参骨架上改循环体。",
+      "keyPoints": [
+        "形参可写 int a[][4]，省略的是行数，列数必须保留",
+        "列数参与地址换算，缺失或不一致都会导致元素错位",
+        "行数与列数通常各用一个 int 参数传入，使函数更通用",
+        "二维数组作参数是地址传递，函数内修改会影响实参矩阵"
+      ],
+      "pitfalls": [
+        "形参写成 int a[][]，两个维度都省略，编译报错",
+        "形参列数与实参列数不一致，程序不报错但结果全乱",
+        "在函数内用 sizeof(a) 求矩阵总字节数，得到的是指针大小"
+      ],
+      "examples": [
+        {
+          "title": "求 2×4 矩阵的最大元素",
+          "code": "#include <stdio.h>\n\nint max_value(int a[][4], int m, int n) {\n    int i, j, mx = a[0][0];\n    for (i = 0; i < m; i++)\n        for (j = 0; j < n; j++)\n            if (a[i][j] > mx) mx = a[i][j];\n    return mx;\n}\n\nint main(void) {\n    int a[2][4] = {{1, 8, 3, 4}, {5, 6, 7, 2}};\n    printf(\"%d\\n\", max_value(a, 2, 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "8",
+          "note": "形参的列数 4 必须与实参数组一致，行数 2 由参数 m 传入。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-011",
+        "c-ch07-cr-005",
+        "c-ch07-cr-009",
+        "c-ch07-cr-010"
+      ],
+      "relatedKnowledge": [
+        "c-ch06-26",
+        "c-ch07-15",
+        "c-ch06-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 16
+    },
+    {
+      "id": "c-ch07-17",
+      "title": "局部变量与全局变量",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "在函数或复合语句内定义的是局部变量，只在本范围内有效；在所有函数之外定义的是全局变量，从定义处到文件末尾都有效。",
+      "content": "### 两类变量的对照\n```c\nint g = 10;                 /* 全局变量：作用域从定义处到文件末尾 */\n\nvoid f(int a) {             /* a 是形参，也属于局部变量 */\n    int b = 5;              /* 局部变量：只在 f 内有效 */\n    g += a + b;             /* 函数内可以直接使用全局变量 */\n}\n\nint main(void) {\n    f(1);                   /* g 变成 16 */\n    printf(\"%d\\n\", g);\n    return 0;\n}\n```\n\n### 局部变量\n- 定义位置：函数体内、复合语句内、函数形参表；\n- 作用域：从定义处到所在的右花括号；\n- 生存期：进入时分配、离开时释放（auto 型）；\n- 未初始化时值是**不确定的垃圾**。\n\n### 全局变量\n- 定义位置：所有函数之外；\n- 作用域：从定义处到源文件末尾（可以被 extern 扩展到其他文件）；\n- 生存期：整个程序运行期间；\n- 未初始化时系统**自动置 0**。\n\n### 使用建议\n全局变量会让函数之间产生隐式耦合，降低可移植性与可测试性，**能不用就不用**；确实需要跨函数共享时，优先考虑用参数传递或返回值。",
+      "keyPoints": [
+        "局部变量定义在函数体或复合语句内，作用域限于该范围",
+        "全局变量定义在所有函数之外，作用域从定义处到文件末尾",
+        "局部变量未初始化时值不确定，全局变量与 static 变量自动为 0",
+        "全局变量占用静态存储区、生存期为整个程序运行期间"
+      ],
+      "pitfalls": [
+        "在函数外使用某函数内定义的局部变量，编译报错",
+        "以为局部变量未初始化就是 0，实际是垃圾值",
+        "滥用全局变量传递数据，使函数无法独立测试"
+      ],
+      "examples": [
+        {
+          "title": "函数内修改全局变量",
+          "code": "#include <stdio.h>\n\nint g = 10;\n\nvoid f(int a) {\n    int b = 5;\n    g += a + b;\n    printf(\"%d %d %d\\n\", a, b, g);\n}\n\nint main(void) {\n    f(1);\n    printf(\"%d\\n\", g);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 5 16\n16",
+          "note": "全局变量 g 被 f 改动后，main 里看到的也是 16。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-012",
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-18",
+        "c-ch07-19",
+        "c-ch07-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 17
+    },
+    {
+      "id": "c-ch07-18",
+      "title": "作用域嵌套与同名遮蔽",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "内层作用域中出现与外层同名的变量时，内层变量遮蔽外层变量；在内层只能访问内层的同名变量，出了内层又恢复访问外层的。",
+      "content": "### 遮蔽规则\n```c\nint x = 1;                  /* 全局 x */\n\nvoid f(void) {\n    int x = 2;              /* 局部 x 遮蔽全局 x */\n    printf(\"%d \", x);       /* 2 */\n    {\n        int x = 3;          /* 更内层的 x 又遮蔽一层 */\n        printf(\"%d \", x);   /* 3 */\n    }\n    printf(\"%d \", x);       /* 2，内层 x 已经失效 */\n}\n\nint main(void) { f(); printf(\"%d\\n\", x); return 0; }   /* 1 */\n```\n\n### 三条规则\n1. 同名变量在**不同作用域**中是**不同的变量**，各自占用独立的存储单元；\n2. 查找名字时由内向外，第一个匹配的就是被使用的；\n3. 内层变量失效后，外层同名变量重新可见。\n\n### 想在内层使用被遮蔽的外层变量\nC 语言没有类似其他语言的作用域限定符（C++ 可以用 ::），唯一可靠的办法是**改名**：把全局变量写成带前缀的名字（如 g_x），或在需要时先把它复制到一个不同名的局部变量。\n\n### 考试常见考法\n给出一段嵌套作用域的代码，问各次 printf 输出的是哪个变量的值——按「就近原则」逐层判断即可。",
+      "keyPoints": [
+        "内层作用域的同名变量会遮蔽外层变量",
+        "名字查找由内向外，就近原则",
+        "不同作用域的同名变量是相互独立的对象",
+        "内层块结束后，外层同名变量重新可见"
+      ],
+      "pitfalls": [
+        "以为在函数内修改局部 x 也改了全局 x",
+        "故意用同名变量制造混淆，代码难以维护",
+        "在复合语句中定义变量却期望它在外层仍然有效"
+      ],
+      "examples": [
+        {
+          "title": "三层同名变量的遮蔽关系",
+          "code": "#include <stdio.h>\n\nint x = 1;\n\nvoid f(void) {\n    int x = 2;\n    printf(\"%d \", x);\n    {\n        int x = 3;\n        printf(\"%d \", x);\n    }\n    printf(\"%d \", x);\n}\n\nint main(void) {\n    f();\n    printf(\"%d\\n\", x);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2 3 2 1",
+          "note": "四个输出分别来自局部 x、块内 x、局部 x 和全局 x。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-013",
+        "c-ch07-cr-016",
+        "c-ch07-cr-018"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-17",
+        "c-ch07-19",
+        "c-ch07-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 18
+    },
+    {
+      "id": "c-ch07-19",
+      "title": "auto 变量：默认的局部存储类别",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "auto 是局部变量的默认存储类别，表示「进入作用域时分配、离开时释放」，写在函数内的普通变量都是 auto 变量，关键字 auto 通常省略。",
+      "content": "### 语法速查\n```c\nvoid f(void) {\n    auto int n = 0;   /* 显式写 auto，与下一行完全等价 */\n    int m = 0;        /* 默认的存储类别就是 auto */\n}\n```\n\n### auto 变量的四个特征\n1. **存储位置**：栈区（动态存储区）；\n2. **生存期**：进入定义它的块时分配，离开块时释放，值不保留；\n3. **作用域**：从定义处到所在块的结束；\n4. **初值**：不显式初始化时值是不确定的垃圾。\n\n### 为什么每次调用都「归零」\n函数被调用时才为 auto 变量分配单元，返回后单元被回收，下一次调用重新分配、重新初始化。所以每次调用 f() 里的计数器都从 0 开始，这也是「想跨调用保留值必须用 static」的原因。\n\n### 关于 C11 的 auto\nC++ 里 auto 用于类型推导，C11 中它仍然只是存储类别关键字，**没有类型推导功能**；C23 才引入了类似用法。本项目一律按传统含义理解，且实际代码中不必写 auto。",
+      "keyPoints": [
+        "auto 是局部变量的默认存储类别，关键字通常省略不写",
+        "auto 变量存放在栈区，进入块时分配、离开块时释放",
+        "每次函数调用都重新分配并初始化，值不跨调用保留",
+        "未初始化的 auto 变量值是不确定的，绝不能直接使用"
+      ],
+      "pitfalls": [
+        "以为 auto 变量会自动清零，实际是垃圾值",
+        "指望 auto 计数器在多次调用之间累加",
+        "把 C++ 的 auto 类型推导热带进 C 代码"
+      ],
+      "examples": [
+        {
+          "title": "auto 变量每次调用都重新开始",
+          "code": "#include <stdio.h>\n\nvoid f(void) {\n    auto int n = 0;    /* auto 可省略，含义不变 */\n    n++;\n    printf(\"%d \", n);\n}\n\nint main(void) {\n    f(); f(); f();\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 1 1 ",
+          "note": "三次调用输出都是 1，说明 n 没有跨调用保留，对比 static 版本即见差别。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-014",
+        "c-ch07-cr-015",
+        "c-ch07-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-20",
+        "c-ch07-17",
+        "c-ch07-22"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 19
+    },
+    {
+      "id": "c-ch07-20",
+      "title": "static 局部变量：跨调用保留值",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "static 局部变量存放在静态存储区，只在第一次进入函数时初始化一次，函数返回后单元不释放，值保留到下一次调用；作用域仍限于本函数。",
+      "content": "### 语法速查\n```c\nint count_static(void) {\n    static int c = 0;    /* 只在程序启动时初始化一次 */\n    return ++c;\n}\n```\n\n### static 局部变量的特征\n1. **存储位置**：静态存储区，与全局变量同一区域；\n2. **生存期**：整个程序运行期间，函数返回后单元**不释放**；\n3. **作用域**：仍然只在定义它的函数内有效，出了函数看不见；\n4. **初始化**：只执行一次（第一次进入函数时），后续调用不再重新赋初值；\n5. **默认值**：不写初值时系统自动置 0。\n\n### 与 auto 的对照\n| | auto 局部 | static 局部 |\n|---|---|---|\n| 存储区 | 栈 | 静态存储区 |\n| 生存期 | 一次调用 | 整个程序 |\n| 初始化次数 | 每次调用 | 一次 |\n| 未初始化时 | 垃圾值 | 0 |\n| 作用域 | 本函数 | 本函数 |\n\n### 典型用途\n- 统计函数被调用了多少次；\n- 累加器：如「每次调用把传入的数加到总和上」（题 7.70 的 sum 函数）；\n- 缓存上一次计算的结果。\n\n### 注意\nstatic 局部变量降低了函数的可重入性与可测试性（两次调用之间有隐藏状态），只在确实需要保留状态时使用。",
+      "keyPoints": [
+        "static 局部变量存放在静态存储区，生存期为整个程序运行期间",
+        "初始化只发生一次，函数返回后值被保留",
+        "作用域仍限于定义它的函数内部",
+        "未显式初始化时自动为 0，这与 auto 变量不同"
+      ],
+      "pitfalls": [
+        "以为 static 局部变量能被其他函数访问（作用域仍是本函数）",
+        "以为每次调用都会重新执行 static 变量的初始化语句",
+        "在 static 变量的初值里使用普通局部变量，编译报错（初值必须是常量表达式）"
+      ],
+      "examples": [
+        {
+          "title": "auto 与 static 计数器的对比",
+          "code": "#include <stdio.h>\n\nint count_auto(void) { int c = 0; return ++c; }\n\nint count_static(void) { static int c = 0; return ++c; }\n\nint main(void) {\n    int i;\n    for (i = 0; i < 3; i++) printf(\"%d \", count_auto());\n    printf(\"| \");\n    for (i = 0; i < 3; i++) printf(\"%d \", count_static());\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 1 1 | 1 2 3 ",
+          "note": "左边每次都重新初始化，右边的 static 变量把值留到了下一次调用。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-001",
+        "c-ch07-sa-004",
+        "c-ch07-cr-014",
+        "c-ch07-cr-018"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-19",
+        "c-ch07-21",
+        "c-ch07-22"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 20
+    },
+    {
+      "id": "c-ch07-21",
+      "title": "static 全局变量与 extern 声明",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "全局变量加 static 后只在本文件内可见（内部链接）；其他文件要使用本文件的普通全局变量，必须用 extern 声明。",
+      "content": "### 语法速查\n```c\n/* file1.c */\nstatic int private_cnt = 1;   /* 静态全局：只有 file1.c 能用 */\nint shared = 2;               /* 普通全局：其他文件可以 extern 引用 */\n\n/* file2.c */\nextern int shared;            /* 声明：告诉编译器这个变量定义在别处 */\nvoid use(void) { shared += 20; }\n```\n\n### 静态全局变量的特点\n1. 存储位置与生存期和普通全局变量**完全一样**（静态存储区、整个程序期间）；\n2. 唯一区别是**作用域被限制在本源文件内**，别的文件即使写 extern 也链接不到；\n3. 好处是避免不同文件中同名全局变量互相冲突，隐藏实现细节。\n\n### extern 的两种用法\n- **扩展作用域**：在同一文件中，把全局变量的定义写在后面、前面用 extern 声明，可把作用域扩展到声明处；\n- **多文件共享**：一个文件定义、其他文件 extern 声明后使用。\n\n### extern 与定义的区别\nextern int x; 是**声明**，不分配存储；int x; 是**定义**，分配存储。整个程序中一个变量只能定义一次，但可以声明多次。",
+      "keyPoints": [
+        "静态全局变量的作用域限于本源文件，其他文件无法访问",
+        "静态全局变量的存储位置与生存期与普通全局变量相同",
+        "extern 用于声明别处定义的全局变量，不分配存储空间",
+        "一个变量在程序中只能定义一次，但可以多次声明"
+      ],
+      "pitfalls": [
+        "在另一个文件里 extern 一个 static 全局变量，链接时找不到符号",
+        "把 extern int x = 5; 当作定义使用（带初值的 extern 实际是定义，容易混淆）",
+        "以为 static 会让全局变量的值在运行中改变，其实 static 只影响可见性"
+      ],
+      "examples": [
+        {
+          "title": "静态全局与普通全局的可见性差别",
+          "code": "#include <stdio.h>\n\nstatic int local_to_file = 1;   /* 只在本文件可见 */\nint shared = 2;                 /* 可被其他文件 extern 引用 */\n\nvoid f(void) {\n    local_to_file += 10;\n    shared += 20;\n}\n\nint main(void) {\n    f();\n    printf(\"%d %d\\n\", local_to_file, shared);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "11 22",
+          "note": "两个变量的存储方式相同，差别只在于能否被其他源文件访问。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-17",
+        "c-ch07-20",
+        "c-ch07-23"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 21
+    },
+    {
+      "id": "c-ch07-22",
+      "title": "四种存储类别的对比总表",
+      "section": "7.6 变量的作用域与存储类别",
+      "summary": "C 语言按存储类别把变量分成 auto、static、register、extern 四种，区别集中在存储位置、生存期、作用域和默认初值四个方面。",
+      "content": "### 对比总表\n```text\n类别            存储区        生存期        作用域            未初始化时\nauto（默认）    栈            一次调用      本块内            垃圾值\nstatic 局部     静态存储区    整个程序      本函数内          自动为 0\nstatic 全局     静态存储区    整个程序      本源文件内        自动为 0\nextern          （引用别处）  同被引用者    从声明处到文件末  同被引用者\nregister        CPU 寄存器    一次调用      本块内            垃圾值\n```\n\n### 记忆要点\n1. **静态存储区**的变量（static 局部、static 全局、普通全局）都自动初始化为 0，生存期贯穿整个程序；\n2. **栈区**的变量（auto、形参）生存期只有一次调用，未初始化是垃圾；\n3. extern 不是一种独立的存储方式，它只是**引用**别处已定义的变量；\n4. register 建议编译器把变量放进寄存器，现代编译器会自动优化，取地址（&）是不允许的，实际编程中很少手写。\n\n### 判断题目的一般步骤\n先看变量定义在**哪里**（函数内 / 函数外），再看有没有 **static / extern** 修饰，最后按上表确定生存期、作用域与初值。",
+      "keyPoints": [
+        "存储类别决定变量的存储位置、生存期、作用域和默认初值",
+        "静态存储区的变量未初始化时自动为 0，栈区变量未初始化是垃圾值",
+        "extern 只是引用别处定义的变量，本身不分配存储",
+        "register 变量不能取地址，现代编译器一般自动处理"
+      ],
+      "pitfalls": [
+        "把 extern 当成一种新的存储分配方式",
+        "对 register 变量使用取地址运算符",
+        "混淆 static 修饰局部变量（延长生存期）与修饰全局变量或函数（限制可见性）的两种不同作用"
+      ],
+      "examples": [
+        {
+          "title": "全局、静态全局与静态局部的默认值",
+          "code": "#include <stdio.h>\n\nint g;                /* 普通全局：未初始化自动为 0 */\nstatic int s;         /* 静态全局：同样自动为 0 */\n\nvoid f(void) {\n    int a;            /* auto：值是垃圾，绝不打印它 */\n    static int b;     /* 静态局部：自动为 0 */\n    b++;\n    printf(\"%d %d\\n\", g, b);\n    (void)a;          /* 只是让编译器知道 a 被有意忽略 */\n    s++;\n}\n\nint main(void) {\n    f();\n    f();\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1\n0 2\n2",
+          "note": "两次调用中 b 保留了值，所以打印 1 和 2；g 从未被赋值，始终是 0。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-014",
+        "c-ch07-cr-016",
+        "c-ch07-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-19",
+        "c-ch07-20",
+        "c-ch07-21"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 22
+    },
+    {
+      "id": "c-ch07-23",
+      "title": "内部函数与外部函数",
+      "section": "7.7 模块化与库函数",
+      "summary": "用 static 修饰的函数是内部函数，只能被本源文件中的函数调用；不加 static（或写 extern）的是外部函数，可以被其他文件调用。",
+      "content": "### 语法速查\n```c\nstatic int helper(int x);      /* 内部函数：本文件私有 */\nint api(int x);                /* 外部函数：默认可被其他文件调用 */\nextern int api(int x);         /* 显式写法，与上一行等价 */\n\n/* 在其他文件中调用 api 之前，先声明 */\nextern int api(int x);\n```\n\n### 两类函数的对照\n| | 内部函数（static） | 外部函数（默认） |\n|---|---|---|\n| 可见范围 | 本源文件 | 整个程序（需 extern 声明） |\n| 命名冲突 | 不同文件可以有同名 static 函数 | 全程序内名字必须唯一 |\n| 典型用途 | 实现细节、辅助函数 | 对外提供的接口 |\n\n### 为什么推荐把辅助函数写成 static\n1. 避免与其他文件的同名函数在链接阶段冲突；\n2. 让「对外接口」一目了然，读者只需关注非 static 函数；\n3. 给编译器更多优化空间（知道没有其他调用者）。\n\n### 与全局变量的类比\nstatic 修饰函数与 static 修饰全局变量的作用是同一个：**把可见性限制在本源文件内**。这也是「static 在 C 里有两种含义」这一考点的来源——修饰局部变量时是延长生存期，修饰全局变量或函数时是限制作用域。",
+      "keyPoints": [
+        "static 修饰的函数是内部函数，只能在定义它的源文件中调用",
+        "不加 static 的函数默认是外部函数，可被其他文件通过 extern 声明后调用",
+        "不同源文件可以有同名的 static 函数而互不冲突",
+        "static 修饰局部变量是延长生存期，修饰全局变量或函数是限制可见性"
+      ],
+      "pitfalls": [
+        "把只在本文件使用的辅助函数写成外部函数，链接时与其他文件的同名函数冲突",
+        "在其他文件调用前忘了写 extern 声明",
+        "以为 static 函数每次调用会保留局部变量的值（那要另外用 static 局部变量）"
+      ],
+      "examples": [
+        {
+          "title": "内部函数配合外部函数构成一个模块",
+          "code": "#include <stdio.h>\n\nint helper(int x) { return x * 2; }   /* 实现细节，本应写成 static */\nstatic int helper2(int x) { return helper(x) + 1; }\n\nint api(int x) { return helper2(x); }  /* 对外接口 */\n\nint main(void) {\n    printf(\"%d\\n\", api(5));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "11",
+          "note": "api 是对外接口，helper 与 helper2 是实现细节，可以写成 static 隐藏起来。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-cr-004",
+        "c-ch07-sa-003",
+        "c-ch07-sa-010"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-21",
+        "c-ch07-24",
+        "c-ch07-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 23
+    },
+    {
+      "id": "c-ch07-24",
+      "title": "库函数与头文件的正确用法",
+      "section": "7.7 模块化与库函数",
+      "summary": "调用库函数必须包含对应头文件，头文件里是函数的声明；数学函数在 math.h，输入输出在 stdio.h，字符串在 string.h，编译时数学库可能需要 -lm。",
+      "content": "### 常用头文件速查\n```c\n#include <stdio.h>    /* printf scanf getchar putchar fgets */\n#include <math.h>     /* sqrt pow fabs sin cos exp log ceil floor */\n#include <string.h>   /* strlen strcpy strcat strcmp */\n#include <ctype.h>    /* isalpha isdigit isspace toupper tolower */\n#include <stdlib.h>   /* abs rand srand malloc free atoi exit */\n```\n\n### 三条使用规则\n1. **先包含头文件再调用**：头文件提供声明，编译器据此检查参数与返回值类型；不包含也能「编译过」的情况是隐式声明，属于错误做法；\n2. **返回类型要看清**：math.h 里的函数几乎都返回 double，用 int 接收会丢失精度；\n3. **链接参数**：在 Linux 下用 gcc 编译含数学函数的程序通常要加 -lm；Windows 的 MinGW 一般不需要。\n\n### 常用数学函数\n| 函数 | 含义 | 示例 |\n|---|---|---|\n| sqrt(x) | 平方根 | sqrt(2.0) = 1.414… |\n| pow(x, y) | x 的 y 次方 | pow(2.0, 10) = 1024.0 |\n| fabs(x) | 浮点绝对值 | fabs(-3.5) = 3.5 |\n| ceil(x) / floor(x) | 向上 / 向下取整 | ceil(2.1)=3, floor(2.9)=2 |\n\n### 自己写库\n把函数定义放在 mylib.c、声明放在 mylib.h，使用方 #include \"mylib.h\"（自己的头文件用双引号），编译时把两个 .c 文件一起交给编译器。",
+      "keyPoints": [
+        "调用库函数前必须 #include 对应头文件，头文件提供函数声明",
+        "系统头文件用尖括号，自己写的头文件用双引号",
+        "math.h 中的函数返回 double，接收变量类型要匹配",
+        "Linux 下使用数学函数通常需要在编译命令中加 -lm"
+      ],
+      "pitfalls": [
+        "用 math.h 的函数却不包含头文件，依赖隐式声明导致返回值被当成 int",
+        "把 fabs 与 abs 混用：abs 在 stdlib.h 中只处理整数",
+        "用 int 变量接收 sqrt 的结果，小数部分丢失"
+      ],
+      "examples": [
+        {
+          "title": "常用数学函数的返回值",
+          "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void) {\n    printf(\"%.2f %.2f %.2f\\n\", sqrt(2.0), pow(2.0, 10), fabs(-3.5));\n    printf(\"%d %d\\n\", (int)ceil(2.1), (int)floor(2.9));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1.41 1024.00 3.50\n3 2",
+          "note": "这三个函数都返回 double，所以用 %.2f 输出；ceil 与 floor 也返回 double，需要时才强制转成 int。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-005",
+        "c-ch07-sa-006",
+        "c-ch07-sa-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-04",
+        "c-ch07-23",
+        "c-ch07-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 24
+    },
+    {
+      "id": "c-ch07-25",
+      "title": "函数的综合应用：牛顿法、弦截法与递归多项式",
+      "section": "7.7 模块化与库函数",
+      "summary": "把「求方程的根」拆成 f、导函数 f1 和迭代主循环三个函数，是函数分工与嵌套调用的典型工程范例；勒让德多项式则用递归定义直接翻译成递归函数。",
+      "content": "### 牛顿迭代法\n```c\ndouble f(double x)  { return cos(x) - x; }        /* 原方程 */\ndouble f1(double x) { return -sin(x) - 1; }       /* 导函数 */\n\ndouble newton(double x0) {\n    double x1;\n    do {\n        x1 = x0 - f(x0) / f1(x0);                 /* 迭代公式 */\n        if (fabs(x1 - x0) < 1e-5) break;          /* 精度满足就退出 */\n        x0 = x1;\n    } while (1);\n    return x1;\n}\n```\n\n### 弦截法\n不需要导数，用两点连线的斜率代替：\n```c\nx = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0));\n```\n同样以「两次迭代值之差的绝对值小于给定精度」作为终止条件。\n\n### 勒让德多项式（递归定义的直接翻译）\n```c\ndouble p(int n, double x) {\n    if (n == 0) return 1;\n    if (n == 1) return x;\n    return ((2 * n - 1) * x * p(n - 1, x) - (n - 1) * p(n - 2, x)) / n;\n}\n```\n数学上的分段定义与代码一一对应：两个基本情况 + 一个递推式。\n\n### 分工原则\n- 一个函数只做一件事：f 负责算函数值，f1 负责算导数，newton 负责迭代；\n- 换方程时只改 f 和 f1，迭代框架完全不用动，这正是模块化的价值。",
+      "keyPoints": [
+        "牛顿迭代公式：x1 = x0 - f(x0) / f1(x0)，f1 是导函数",
+        "弦截法用两点连线斜率代替导数，不需要求导",
+        "两类迭代都以「相邻两次结果之差小于给定精度」作为终止条件",
+        "递归定义的数学公式可以逐行翻译成递归函数，基本情况对应出口"
+      ],
+      "pitfalls": [
+        "终止条件写成 f(x1) 小于精度而不是 |x1 - x0| 小于精度，与题目要求不符",
+        "do-while 写成 while，第一次比较时 x1 还未赋值",
+        "勒让德递归漏掉 n == 0 或 n == 1 的出口，导致无限递归",
+        "除法写成整数除法，精度全丢"
+      ],
+      "examples": [
+        {
+          "title": "牛顿法求 cos(x) - x = 0 的根",
+          "code": "#include <stdio.h>\n#include <math.h>\n\ndouble f(double x)  { return cos(x) - x; }\ndouble f1(double x) { return -sin(x) - 1; }\n\ndouble newton(double x0) {\n    double x1;\n    do {\n        x1 = x0 - f(x0) / f1(x0);\n        if (fabs(x1 - x0) < 1e-5) break;\n        x0 = x1;\n    } while (1);\n    return x1;\n}\n\nint main(void) {\n    printf(\"%.4f\\n\", newton(3.1415 / 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0.7391",
+          "note": "初值 3.1415/4 约 0.7854，四次迭代后收敛到 0.739085。",
+          "runnable": true
+        },
+        {
+          "title": "递归计算勒让德多项式",
+          "code": "#include <stdio.h>\n\ndouble p(int n, double x) {\n    if (n == 0) return 1;\n    if (n == 1) return x;\n    return ((2 * n - 1) * x * p(n - 1, x) - (n - 1) * p(n - 2, x)) / n;\n}\n\nint main(void) {\n    printf(\"%.3f %.3f %.3f\\n\", p(0, 2.0), p(1, 2.0), p(2, 2.0));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1.000 2.000 5.500",
+          "note": "p(2,x) = (3x² - 1) / 2，x = 2 时为 (12 - 1) / 2 = 5.5。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch07-sa-006",
+        "c-ch07-sa-008",
+        "c-ch07-sa-009",
+        "c-ch07-sa-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch07-10",
+        "c-ch07-09",
+        "c-ch07-24"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第7章 函数",
+      "order": 25
+    }
+  ]
+}
