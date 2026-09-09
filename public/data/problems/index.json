@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "b042da9a740c8488",
+  "content_sha": "24e6a465ecd637b8",
   "schema_version": 1,
   "data_version": "0.1.0",
   "count": 518,
@@ -2486,7 +2486,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.51】以下程序的运行结果是【 】",
       "file": "c-ch04.json"
@@ -2824,7 +2824,7 @@
       "section": "4.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.90】若运行以下程序时输入",
       "file": "c-ch04.json"
@@ -3595,7 +3595,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.62】下面程序的运行结果是【 】",
       "file": "c-ch06.json"
@@ -3881,7 +3881,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.101】下面程序的运行结果是【 】",
       "file": "c-ch06.json"
@@ -4326,7 +4326,7 @@
       "section": "7.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 7.36】函数 f 中的形参 a 为一个 10×10 的二维数组",
       "file": "c-ch07.json"
@@ -4378,7 +4378,7 @@
       "section": "7.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 7.44】以下程序的运行结果是【 】",
       "file": "c-ch07.json"
@@ -4731,7 +4731,7 @@
       "section": "8.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.28】设有以下宏定义",
       "file": "c-ch08.json"
@@ -4744,7 +4744,7 @@
       "section": "8.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 8.29】设有以下宏定义",
       "file": "c-ch08.json"
@@ -5160,7 +5160,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.87】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5173,7 +5173,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.88】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5186,7 +5186,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.89】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5199,7 +5199,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.90】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5225,7 +5225,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.92】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5238,7 +5238,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.93】当运行以下程序时",
       "file": "c-ch09.json"
@@ -5251,7 +5251,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.94】下面程序段的运行结果是【 】",
       "file": "c-ch09.json"
@@ -5524,7 +5524,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.132】若有定义",
       "file": "c-ch09.json"
@@ -6916,6 +6916,6 @@
     }
   ],
   "defects": {
-    "codeReadingNoAnswer": 21
+    "codeReadingNoAnswer": 5
   }
 }

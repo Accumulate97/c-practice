@@ -19,11 +19,17 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "顺序",
+          "accepted": [
+            "随机"
+          ]
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "随机",
+          "accepted": [
+            "顺序"
+          ]
         }
       ],
       "id": "c-ch12-fb-001",
@@ -44,11 +50,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "二进制"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "ASCII"
         }
       ],
       "id": "c-ch12-fb-002",
@@ -69,11 +75,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "字符"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "流式"
         }
       ],
       "id": "c-ch12-fb-003",
@@ -94,11 +100,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "n-1"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "buf 的首地址"
         }
       ],
       "id": "c-ch12-fb-004",
@@ -119,11 +125,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "5 和 2"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "e12_29a.dat"
         }
       ],
       "id": "c-ch12-fb-005",
@@ -144,11 +150,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "FILE *fp"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "#include <stdio.h>"
         }
       ],
       "id": "c-ch12-fb-006",
@@ -203,15 +209,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "读入了 10 个字符"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "遇到了文件结束符"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "读文件出错"
         }
       ],
       "id": "c-ch12-fb-007",

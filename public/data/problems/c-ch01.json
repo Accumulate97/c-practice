@@ -129,11 +129,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "编译"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "连接"
         }
       ],
       "id": "c-ch01-fb-001",
@@ -154,7 +154,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "内存中的一个存储单元"
         }
       ],
       "id": "c-ch01-fb-002",
@@ -175,15 +175,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": ".c"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": ".obj"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": ".exe"
         }
       ],
       "id": "c-ch01-fb-003",
@@ -204,15 +204,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "顺序结构"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "选择结构"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "循环结构"
         }
       ],
       "id": "c-ch01-fb-004",
@@ -233,7 +233,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "函数"
         }
       ],
       "id": "c-ch01-fb-005",
@@ -254,7 +254,10 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "主函数",
+          "accepted": [
+            "main 函数"
+          ]
         }
       ],
       "id": "c-ch01-fb-006",
@@ -275,11 +278,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "scanf"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "printf"
         }
       ],
       "id": "c-ch01-fb-007",

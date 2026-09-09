@@ -149,15 +149,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "char a, *p;"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "scanf(\"%c\",&a);"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "p=&a;"
         }
       ],
       "id": "c-ch09-fb-001",
@@ -239,15 +239,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.87（PDF p190 / 书页 p179）",
       "difficulty": 3,
       "stem": "【题 9.87】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "strcpy(s,sp) 把字面量 \"HELLO!\" 拷入数组 s 并返回 s，sp 改指 s；s[0]='h' 后串为 \"hELLO!\"，puts(sp) 输出 hELLO!（书末答案题 9.87 同）。注：原书为程序段，按仓库惯例补头文件与 main 包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char s[80], * sp=\"HELLO!\";\nsp=strcpy(s,sp);\ns[0]='h';\nputs(sp);",
-      "answer": "",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[80], * sp=\"HELLO!\";\n    sp=strcpy(s,sp);\n    s[0]='h';\n    puts(sp);\n    return 0;\n}",
+      "answer": "hELLO!",
       "id": "c-ch09-cr-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -256,15 +256,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.88（PDF p190 / 书页 p179）",
       "difficulty": 3,
       "stem": "【题 9.88】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "sp 先指向 s+1 即 \"bcd\"；strcat(sp,\"ABCD\") 从 sp 处把 \"ABCD\" 接到 \"bcd\" 后，s 变为 \"bcdABCD\"；puts 自 sp 起输出 bcdABCD（书末答案题 9.88 同）。注：原书为程序段，按仓库惯例包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char s[20]=\"abcd\";\nchar  * sp=s;\nsp++;\nputs(strcat(sp,\"ABCD\"));",
-      "answer": "",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20]=\"abcd\";\n    char  * sp=s;\n    sp++;\n    puts(strcat(sp,\"ABCD\"));\n    return 0;\n}",
+      "answer": "bcdABCD",
       "id": "c-ch09-cr-008",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -273,15 +273,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.89（PDF p190 / 书页 p179）",
       "difficulty": 3,
       "stem": "【题 9.89】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "s1++ 后指向 \"bcdEf\"；strcmp 首字符 'b'(98) 与 'a'(97) 比较即分出大小，结果 >0，关系表达式取 1，故 t=1（书末答案题 9.89 同）。注：原书为程序段，按仓库惯例包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char  * s1=\"AbcdEf\", * s2=\"aB\";   int t;\ns1++;\nt=(strcmp(s1,s2)>0);\nprintf(\"%d\\n\",t);",
-      "answer": "",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char  * s1=\"AbcdEf\", * s2=\"aB\";   int t;\n    s1++;\n    t=(strcmp(s1,s2)>0);\n    printf(\"%d\\n\",t);\n    return 0;\n}",
+      "answer": "1",
       "id": "c-ch09-cr-009",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -290,15 +290,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.90（PDF p190 / 书页 p179）",
       "difficulty": 3,
       "stem": "【题 9.90】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "循环把数字串逐字符转整数：s=10*s+(*p-'0')，依次得 1、12、123、1234、12345，最终输出 12345（书末答案题 9.90 同）。注：原书为程序段，按仓库惯例包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char a[ ]=\"12345\", * p;\nint s=0;\nfor (p=a; * p!='\\0';p++)    s=10 * s+ * p-'0';\nprintf(\"%d\\n\",s);",
-      "answer": "",
+      "code": "#include <stdio.h>\nint main( )\n{   char a[ ]=\"12345\", * p;\n    int s=0;\n    for (p=a; * p!='\\0';p++)    s=10 * s+ * p-'0';\n    printf(\"%d\\n\",s);\n    return 0;\n}",
+      "answer": "12345",
       "id": "c-ch09-cr-010",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -324,15 +324,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.92（PDF p191 / 书页 p180）",
       "difficulty": 3,
       "stem": "【题 9.92】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "\"PDP1-0\" 中只有 '1'(i=3) 与 '0'(i=5) 是数字字符，isdigit 返回非 0，依次按 \"%c* \" 输出，得 1* 0*（行尾空格按判分归一化去除；书末答案题 9.92 的「1 * 0 *」即此输出的排版）。注：原书为程序段，按仓库惯例包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char  * p=\"PDP1-0\";\nint i,d;\nfor(i=0; i<7; i++)\n{   d=isdigit( * (p+i));\n    if(d!=0)    printf(\"%c* \", * (p+i));\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\n#include <ctype.h>\nint main( )\n{   char  * p=\"PDP1-0\";\n    int i,d;\n    for(i=0; i<7; i++)\n    {   d=isdigit( * (p+i));\n        if(d!=0)    printf(\"%c* \", * (p+i));\n    }\n    return 0;\n}",
+      "answer": "1* 0*",
       "id": "c-ch09-cr-012",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -341,15 +341,16 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.93（PDF p191 / 书页 p180）",
       "difficulty": 3,
       "stem": "【题 9.93】当运行以下程序时，从键盘输入  book＜回车＞\nbook□＜回车＞\n（□表示空格），则下面程序段的运行结果是【 】。",
-      "explanation": "【代码改写说明】原书用 gets 读入一行。gets 无法限制读入长度、C11 已将其移除，本项目禁用清单亦明令禁止，故改写为 fgets 限定长度读入 + strcspn 去掉行尾换行，与 gets 语义等价。本段是程序段（无 main、无 #include），属残留 R1「不可独立编译」类，改写不涉及可编译性。",
+      "explanation": "两行输入分别为 \"book\" 与 \"book \"（第二行行尾有一个空格）；strcmp 比较不等（长度不同），走 else 输出 #；strcat 拼接后为 \"bookbook \"，strlen=9，再输出 9，合起来即 #9（书末答案题 9.93 的「# 9」即此输出的排版）。注：原书为程序段且用 gets 读入，阶段 5 裁决 R4 已改写为 fgets；按仓库惯例包装成完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char a1[80], a2[80], * s1=a1, * s2=a2;\nfgets(s1, 80, stdin); s1[strcspn(s1, \"\\n\")] = '\\0';\nfgets(s2, 80, stdin); s2[strcspn(s2, \"\\n\")] = '\\0';\nif(!strcmp(s1,s2))   printf(\"* \");\nelse printf(\"#\");\nprintf(\"%d\",strlen(strcat(s1,s2)));",
-      "answer": "",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a1[80], a2[80], * s1=a1, * s2=a2;\n    fgets(s1, 80, stdin); s1[strcspn(s1, \"\\n\")] = '\\0';\n    fgets(s2, 80, stdin); s2[strcspn(s2, \"\\n\")] = '\\0';\n    if(!strcmp(s1,s2))   printf(\"* \");\n    else printf(\"#\");\n    printf(\"%d\",strlen(strcat(s1,s2)));\n    return 0;\n}",
+      "answer": "#9",
       "id": "c-ch09-cr-013",
-      "verified": false
+      "verified": true,
+      "stdin": "book\nbook \n"
     },
     {
       "category": "c",
@@ -358,15 +359,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.94（PDF p191 / 书页 p180）",
       "difficulty": 3,
       "stem": "【题 9.94】下面程序段的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "循环把下标为偶数（0,2,4,6,8）的字符替换为 '*'，\"123456789\" 变为 \"*2*4*6*8*\"，即运行结果（书末答案题 9.94 的「* 2 * 4 * 6 * 8 *」即此串的排版）。注：原书程序段不含输出语句，按仓库惯例补一条输出数组 a 的 printf 后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char a[ ]=\"123456789\", * p;\nint i=0;\np=a;\nwhile( * p)\n{   if(i%2==0)  * p='*';\n    p++; i++;\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\nint main( )\n{   char a[ ]=\"123456789\", * p;\n    int i=0;\n    p=a;\n    while( * p)\n    {   if(i%2==0)  * p='*';\n        p++; i++;\n    }\n    printf(\"%s\\n\",a);\n    return 0;\n}",
+      "answer": "*2*4*6*8*",
       "id": "c-ch09-cr-014",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -721,15 +722,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.132（PDF p205 / 书页 p194）",
       "difficulty": 3,
       "stem": "【题 9.132】若有定义：int a[  ]={2,4,6,8,10,12,14,16,18,20,22,24}，* q[3]，k；则下面程序段的输出是【 】。",
-      "explanation": "",
+      "explanation": "q[k]=&a[k*4] 使 q[0..2] 分别指向 a[0]、a[4]、a[8]；q[2][3] 即 a[8+3]=a[11]=24（书末答案题 9.132 同）。注：数组与指针数组的定义在题面「若有定义」中，按仓库惯例与程序段合并为完整程序后实机取证。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "for ( k=0;k<3;k++)   q[k]=&a[k * 4];\nprintf ( \"%d\\n\",q[2][3] );",
-      "answer": "",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[ ]={2,4,6,8,10,12,14,16,18,20,22,24}, * q[3], k;\n    for ( k=0;k<3;k++)   q[k]=&a[k * 4];\n    printf ( \"%d\\n\",q[2][3] );\n    return 0;\n}",
+      "answer": "24",
       "id": "c-ch09-cr-034",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -797,15 +798,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "(*(m+i))[j]"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "*(m[i]+j)"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "*(&m[0][0]+6*i+j)"
         }
       ],
       "id": "c-ch09-fb-002",
@@ -1070,11 +1071,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "4"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch09-fb-003",
@@ -1198,15 +1199,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "process(a,n,arr_add);"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "process(a,n,odd_add);"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "process(a,n,arr_ave);"
         }
       ],
       "id": "c-ch09-fb-004",
@@ -1227,11 +1228,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "返回一个指向整型值的指针的函数。"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "指向一个返回整型值的函数的指针。"
         }
       ],
       "id": "c-ch09-fb-005",

@@ -745,7 +745,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch04-fb-001",
@@ -783,7 +783,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "非 0 的数字"
         }
       ],
       "id": "c-ch04-fb-002",
@@ -804,7 +804,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "(y % 2)==1"
         }
       ],
       "id": "c-ch04-fb-003",
@@ -825,15 +825,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "&&"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "||"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "!"
         }
       ],
       "id": "c-ch04-fb-004",
@@ -854,7 +854,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "x<z || y<z"
         }
       ],
       "id": "c-ch04-fb-005",
@@ -875,7 +875,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "((x<0)&& (y<0)) || ((x<0)&& (z<0)) || ((y<0)&& (z<0))"
         }
       ],
       "id": "c-ch04-fb-006",
@@ -896,7 +896,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch04-fb-007",
@@ -917,7 +917,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-008",
@@ -938,7 +938,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch04-fb-009",
@@ -959,7 +959,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch04-fb-010",
@@ -980,7 +980,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-011",
@@ -1001,7 +1001,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch04-fb-012",
@@ -1022,7 +1022,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-013",
@@ -1043,7 +1043,10 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "x>2 && x<3 || x<－10",
+          "accepted": [
+            "((x>2) && (x<3)) || (x<－10)"
+          ]
         }
       ],
       "id": "c-ch04-fb-014",
@@ -1064,11 +1067,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-015",
@@ -1081,15 +1084,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.51（PDF p38 / 书页 p27）",
       "difficulty": 3,
       "stem": "【题 4.51】以下程序的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "x=3、y=3，z=(x==y)：关系表达式成立取 1，故 printf 输出 z=1。书末答案题 4.51 为 z=1，与实机 stdout 一致（judge:verify 取证）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>int main( )\n{ int x,y,z;\n    x=3;y=3;\n    z=x==y;\n    printf(\"z=%d\\n\",z);\n    return 0;\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,y,z;\n    x=3;y=3;\n    z=x==y;\n    printf(\"z=%d\\n\",z);\n    return 0;\n}",
+      "answer": "z=1",
       "id": "c-ch04-cr-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1123,7 +1126,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-016",
@@ -1144,11 +1147,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "(x*x+y*y>a*a)&& (x*x+y*y<b*b)"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "((x==2||x==4)&& (x>=6&& x<=8))"
         }
       ],
       "id": "c-ch04-fb-017",
@@ -1161,7 +1164,7 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.57（PDF p40 / 书页 p29）",
       "difficulty": 4,
       "stem": "【题 4.57】以下程序的功能是【 】。",
-      "explanation": "",
+      "explanation": "本题问的是「程序的功能」，答案是功能描述而非固定 stdout，故不进自动判分（已标记 answerIsDescription）。推演：读入两个整数 x、y（格式 \"%d,%d\"，须以逗号分隔），分别计算 sum=x+y 与 product=x*y，若 sum>product 输出 (x+y)>(x*y)，否则输出 (x*y)>=(x+y)；即功能为「输入两个数，比较 x+y 与 x*y 哪个大」（书末答案题 4.57 同）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
@@ -1187,7 +1190,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch04-fb-018",
@@ -1716,16 +1719,17 @@
       "section": "4.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.90（PDF p51 / 书页 p40）",
       "difficulty": 4,
-      "stem": "【题 4.90】若运行以下程序时输入：35/<回车>，则程序的运行结果是【 】。",
-      "explanation": "",
+      "stem": "【题 4.90】若运行以下程序时输入：3□5□/＜回车＞（□表示空格），则程序的运行结果是【 】。",
+      "explanation": "scanf 按 \"%f %f %c\" 依次读 x、y、o：输入 3□5□/ 得 x=3、y=5、o='/'；switch 走 '/' 分支 r=x/y=0.6，%f 默认 6 位小数输出 0.600000（书末答案题 4.90 同）。注：原书题面输入行印作「35/」，漏排空格——该输入下第二个 %f 与 %c 均无法匹配（y、o 读不到），与书末答案 0.600000 矛盾，故按答案反推补空格并在题面注明。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ float x,y;\n    char o;\n    double r;\n    scanf(\"%f %f %c\",&x,&y,&o);\n    switch(o)\n        { case '+': r=x+y;break;\n          case '-': r=x-y;break;\n          case '*': r=x* y;break;\n          case '/': r=x/y;break;\n        }\n    printf(\"%f\",r);\n    return 0;\n}",
-      "answer": "",
+      "answer": "0.600000",
       "id": "c-ch04-cr-020",
-      "verified": false
+      "verified": true,
+      "stdin": "3 5 /\n"
     },
     {
       "category": "c",

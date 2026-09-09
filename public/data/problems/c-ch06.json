@@ -19,11 +19,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "15"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "60"
         }
       ],
       "id": "c-ch06-fb-001",
@@ -44,7 +44,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "按行主顺序存放"
         }
       ],
       "id": "c-ch06-fb-002",
@@ -65,11 +65,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "4"
         }
       ],
       "id": "c-ch06-fb-003",
@@ -90,7 +90,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "double a[M][M]={0};"
         }
       ],
       "id": "c-ch06-fb-004",
@@ -111,11 +111,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "6"
         }
       ],
       "id": "c-ch06-fb-005",
@@ -216,15 +216,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.62（PDF p97 / 书页 p86）",
       "difficulty": 4,
       "stem": "【题 6.62】下面程序的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "先按行优先把 a[5][5] 填为 1..25，再对每行 i 输出列 0..i 的下三角，%4d 右对齐宽 4。注：原书源码行 printf(\" \"%4d\",...) 多一对引号、无法通过编译（印刷缺陷），按意图修正为 printf(\"%4d\",...)；书末答案的三角数值（1／6 7／11 12 13／16 17 18 19／21 22 23 24 25）与实机 stdout 一致（judge:verify 取证）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\nint main( )\n{   int a[5][5], i, j, n=1;\n    for( i=0; i<5; i++)\n        for( j=0; j<5; j++)\n            a[i][j]=n++;\n    printf(\"The result is :\\n\");\n    for( i=0; i<5; i++)\n    {   for ( j=0; j<=i; j++)\n            printf (\" \"%4d\",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[5][5], i, j, n=1;\n    for( i=0; i<5; i++)\n        for( j=0; j<5; j++)\n            a[i][j]=n++;\n    printf(\"The result is :\\n\");\n    for( i=0; i<5; i++)\n    {   for ( j=0; j<=i; j++)\n            printf(\"%4d\",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "answer": "The result is :\n   1\n   6   7\n  11  12  13\n  16  17  18  19\n  21  22  23  24  25",
       "id": "c-ch06-cr-003",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -724,15 +724,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.101（PDF p112 / 书页 p101）",
       "difficulty": 4,
       "stem": "【题 6.101】下面程序的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "a[i] 依次取偶数 2,4,…,60；每累满 5 个求平均存入 b[k]，得 6、16、26、36、46、56，再以 %5.2f 连排输出。注：原书源码 if((i+1)%5==5) 余数取值 0..4、条件永假（印刷缺陷），b 将永不赋值；书末答案 6.00~56.00 证明意图为 ==0，据此修正（judge:verify 实机取证与书末答案一致）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\n#define SIZE 30\nint main( )\n{ float a[SIZE], b[SIZE/5], sum; int i,k;\n  for( k=2,i=0;i<SIZE; i++)\n  { a[i]=k; k+=2; }\n  sum=0;\n  for( k=0,i=0;i<SIZE;i++)\n  { sum+=a[i];\n      if(( i+1)%5==5)\n      { b[k]=sum/5;\n          sum=0;\n          k++;\n      }\n  }\n  printf(\"The result is:\\n\");\n  for(i=0;i<SIZE/5;i++)  printf(\"%5.2f\",b[i]);\n  return 0;\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\n#define SIZE 30\nint main( )\n{ float a[SIZE], b[SIZE/5], sum; int i,k;\n  for( k=2,i=0;i<SIZE; i++)\n  { a[i]=k; k+=2; }\n  sum=0;\n  for( k=0,i=0;i<SIZE;i++)\n  { sum+=a[i];\n      if(( i+1)%5==0)\n      { b[k]=sum/5;\n          sum=0;\n          k++;\n      }\n  }\n  printf(\"The result is:\\n\");\n  for(i=0;i<SIZE/5;i++)  printf(\"%5.2f\",b[i]);\n  return 0;\n}",
+      "answer": "The result is:\n 6.0016.0026.0036.0046.0056.00",
       "id": "c-ch06-cr-021",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -766,7 +766,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "9"
         }
       ],
       "id": "c-ch06-fb-006",

@@ -10,6 +10,10 @@
  *   E. 04 第〇节的两条文本纪律：expected 与 answer 不得带末尾换行或 CRLF
  *   F. verified 的可信度：代码类 verified:true 必须有 verification-report.json 的 ok:true 背书；
  *      非代码类按 Schema 说明「固定 true」，缺了就报错
+ *   F2. 非代码题的「可判分性」：verified:true 却缺判分内容 = 「已验证」语义被架空，不得静默通过。
+ *      自动判分型（单选/判断/概念填空/复杂度/匹配）缺 answer 或 blanks[].answer 为空 → error；
+ *      简答型设计上不自动判分（自评），缺 reference_answer 与 grading_points → warn（可见但不拦闸门）。
+ *      背景：2026-09 补答案轮之前，89 道 fill_blank verified:true 但答案全空，统计与验收被污染
  *   G. source 字段必填（版权纪律：原题只作风格参考，出处要如实注明）
  *
  * 用法：
@@ -17,7 +21,7 @@
  *   node scripts/verify-data.ts --strict   只把「代码题未实机验证」升级为 error（阶段 3 的硬闸门）。
  *                                      知识卡片/演示语料为空是阶段 5、6 的正常状态，不参与升级
  *   node scripts/verify-data.ts --doc04    连 04 的 11 个样例一起过 Schema
- *   node scripts/verify-data.ts --self-test 造 11 个已知坏样本，证明每条闸门都真会拦
+ *   node scripts/verify-data.ts --self-test 造 13 个已知坏样本，证明每条闸门都真会拦
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -139,6 +143,43 @@ function hasBadLineEnd(text: string): boolean {
   return text.endsWith('\n') || text.endsWith('\r')
 }
 
+/** F2 闸门：返回非代码题的判分内容缺口；answerIsDescription:true（描述性答案，退出自动判分）豁免 */
+function nonCodeAnswerGap(p: ProblemLike): { level: Level; msg: string } | null {
+  if (p.answerIsDescription === true) return null
+  const isBlank = (v: unknown): boolean =>
+    v === undefined || v === null || v === '' || (typeof v === 'string' && v.trim() === '')
+  if (p.type === 'short_answer') {
+    const hasRef = !isBlank(p.reference_answer)
+    const gp = Array.isArray(p.grading_points) ? (p.grading_points as unknown[]).filter((g) => !isBlank(g)) : []
+    if (!hasRef && gp.length === 0) {
+      return { level: 'warn', msg: 'short_answer 缺 reference_answer 且 grading_points 为空，自评无内容可显示（不自动判分，记 warn）' }
+    }
+    return null
+  }
+  if (p.type === 'fill_blank') {
+    const blanks = Array.isArray(p.blanks) ? (p.blanks as Array<Record<string, unknown>>) : []
+    if (blanks.length === 0) return { level: 'error', msg: 'fill_blank 无 blanks，verified:true 却无法判分' }
+    const empty = blanks.map((b, i) => ({ b, i })).filter(({ b }) => isBlank(b.answer))
+    if (empty.length > 0) {
+      return { level: 'error', msg: 'fill_blank 的 blanks[].answer 为空：' + empty.map(({ i }) => 'blanks[' + i + ']').join('、') + '，verified:true 却无法判分' }
+    }
+    return null
+  }
+  if (p.type === 'single_choice') {
+    if (isBlank(p.answer)) return { level: 'error', msg: 'single_choice 缺 answer，verified:true 却无法判分' }
+    if (typeof p.answer === 'number') {
+      const n = Array.isArray(p.options) ? (p.options as unknown[]).length : 0
+      if (p.answer < 0 || p.answer >= n) {
+        return { level: 'error', msg: 'single_choice answer=' + String(p.answer) + ' 超出 options 索引范围 0..' + String(n - 1) }
+      }
+    }
+    return null
+  }
+  // true_false / complexity / matching 等其余非代码型：answer 必须有内容（布尔 false 是合法答案）
+  if (isBlank(p.answer)) return { level: 'error', msg: String(p.type) + ' 缺 answer，verified:true 却无法判分' }
+  return null
+}
+
 function checkAll(shards: ShardFile[], strict: boolean): Issue[] {
   const issues: Issue[] = []
   const add = (level: Level, code: string, where: string, msg: string): void => {
@@ -248,8 +289,12 @@ function checkAll(shards: ShardFile[], strict: boolean): Issue[] {
         } else {
           add('warn', 'NOT-VERIFIED', where, '代码题尚未实机验证（跑 npm run judge:verify）')
         }
-      } else if (p.verified !== true) {
-        add('error', 'NONCODE-VERIFIED', where, '非代码题按 Schema 说明 verified 固定 true')
+      } else {
+        if (p.verified !== true) {
+          add('error', 'NONCODE-VERIFIED', where, '非代码题按 Schema 说明 verified 固定 true')
+        }
+        const gap = nonCodeAnswerGap(p)
+        if (gap) add(gap.level, 'NONCODE-ANSWER-MISSING', where, gap.msg)
       }
     }
   }
@@ -345,6 +390,8 @@ function selfTest(): number {
     { name: '缺 source', mutate: (s) => { delete s[0].problems[0].source }, expect: 'SOURCE' },
     { name: '非代码题 verified 不为 true', mutate: (s) => { s[0].problems[0].verified = false }, expect: 'NONCODE-VERIFIED' },
     { name: '代码题 verified:true 但报告里没有实机记录', mutate: (s) => { const p = s[0].problems[0]; p.type = 'code_reading'; p.code = String.fromCharCode(35) + 'include <stdio.h>'; p.answer = 'x' }, expect: 'VERIFIED-NO-PROOF' },
+    { name: '非代码题 verified:true 但 answer 为空', mutate: (s) => { s[0].problems[0].answer = '' }, expect: 'NONCODE-ANSWER-MISSING' },
+    { name: 'fill_blank verified:true 但 blanks[].answer 为空', mutate: (s) => { const p = s[0].problems[0]; p.type = 'fill_blank'; delete p.answer; p.blanks = [{ index: 1, answer: '  ' }] }, expect: 'NONCODE-ANSWER-MISSING' },
   ]
 
   const baseline = codesOf(base())

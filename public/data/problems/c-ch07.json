@@ -131,15 +131,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.36（PDF p134 / 书页 p123）",
       "difficulty": 4,
       "stem": "【题 7.36】函数 f 中的形参 a 为一个 10×10 的二维数组，n 的值为 5，以下程序的运行结果为【 】。",
-      "explanation": "",
+      "explanation": "f 用「罗伯法」把 1..25 填入 a[1..5][1..5] 成 5 阶幻方：从第 1 行中间列起放 1，之后每步向右上移动；越上界回卷到第 n 行、越右界回卷到第 1 列、右上已被占用则回落到原位置下方一格。注：原书题面只给函数 f、未给 main（书末答案却含输出），按仓库惯例补 main：数组清 0、调用 f(a,5)，再按书末答案页版式输出首行「打印 5 阶幻方：」与 5 行 %4d 方阵（judge:verify 实机取证与书末答案数值一致）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "void f(int a[10][10],int n)\n{  int i,j,k;\n   j=n/2+1; a[1][j]=1; i=1;\n   for(k=2; k<=n * n; k++)\n   {  i=i-1; j=j+1;\n      if((i<1)&&(j>n))   { i=i+2; j=j-1; }\n      else\n         {  if(i<1)  i=n;\n            if(j>n)  j=1;\n         }\n      if(a[i][j]==0) a[i][j]=k;\n      else { i=i+2; j=j-1; a[i][j]=k; }\n   }\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\nvoid f(int a[10][10],int n)\n{  int i,j,k;\n   j=n/2+1; a[1][j]=1; i=1;\n   for(k=2; k<=n * n; k++)\n   {  i=i-1; j=j+1;\n      if((i<1)&&(j>n))   { i=i+2; j=j-1; }\n      else\n         {  if(i<1)  i=n;\n            if(j>n)  j=1;\n         }\n      if(a[i][j]==0) a[i][j]=k;\n      else { i=i+2; j=j-1; a[i][j]=k; }\n   }\n}\nint main( )\n{   int a[10][10]={0}, i, j;\n    f(a,5);\n    printf(\"打印 5 阶幻方：\\n\");\n    for(i=1; i<=5; i++)\n    {   for(j=1; j<=5; j++)   printf(\"%4d\",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "answer": "打印 5 阶幻方：\n  17  24   1   8  15\n  23   5   7  14  16\n   4   6  13  20  22\n  10  12  19  21   3\n  11  18  25   2   9",
       "id": "c-ch07-cr-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -199,15 +199,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.44（PDF p137 / 书页 p126）",
       "difficulty": 4,
       "stem": "【题 7.44】以下程序的运行结果是【 】。",
-      "explanation": "",
+      "explanation": "func 先把 a[i][j] 覆写为 i+j，再累加对角线（i==j）元素：0+2+4=6；main 中 printf(\"\\nsum=%d\\n\",sum) 输出换行后 sum=6。注：原书原型行 int func(int a[ ][3] 缺右括号与分号（印刷缺陷），补 \");\" 使其可编译；实机 stdout 与书末答案 sum=6 一致（judge:verify 取证）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\nint func(int a[ ][3]\nint main( )\n{  int a[3][3]={1,3,5,7,9,11,13,15,17}; int sum;\n   sum=func(a);\n   printf(\"\\nsum=%d\\n\",sum);\n   return(0);\n}\nint func(int a[ ][3])\n{  int i,j,sum=0;\n   for(i=0; i<3; i++)\n         for(j=0; j<3; j++)\n         {  a[i][j]=i+j;\n            if(i==j)  sum=sum+a[i][j];\n         }\n   return(sum);\n}",
-      "answer": "",
+      "code": "#include <stdio.h>\nint func(int a[ ][3]);\nint main( )\n{  int a[3][3]={1,3,5,7,9,11,13,15,17}; int sum;\n   sum=func(a);\n   printf(\"\\nsum=%d\\n\",sum);\n   return(0);\n}\nint func(int a[ ][3])\n{  int i,j,sum=0;\n   for(i=0; i<3; i++)\n         for(j=0; j<3; j++)\n         {  a[i][j]=i+j;\n            if(i==j)  sum=sum+a[i][j];\n         }\n   return(sum);\n}",
+      "answer": "\nsum=6",
       "id": "c-ch07-cr-009",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

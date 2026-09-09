@@ -855,15 +855,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "63"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "73"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "171"
         }
       ],
       "id": "c-ch02-fb-001",
@@ -884,11 +884,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "用户标识符"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "预定义标识符"
         }
       ],
       "id": "c-ch02-fb-002",
@@ -909,15 +909,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "字母"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "数字"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "下划线"
         }
       ],
       "id": "c-ch02-fb-003",
@@ -938,11 +938,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "换行"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "回车"
         }
       ],
       "id": "c-ch02-fb-004",
@@ -963,15 +963,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "float"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "double"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "char"
         }
       ],
       "id": "c-ch02-fb-005",
@@ -992,15 +992,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "a>c||b>c"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "((a>0&&b>0&&c<0))||((a>0&&c>0&&b<0))||((c>0&&b>0&&a<0))"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "(c%2)==0"
         }
       ],
       "id": "c-ch02-fb-006",
@@ -1021,11 +1021,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "按位与"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "地址与"
         }
       ],
       "id": "c-ch02-fb-007",
@@ -1046,11 +1046,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "整型"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "变量"
         }
       ],
       "id": "c-ch02-fb-008",
@@ -1071,7 +1071,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "变量"
         }
       ],
       "id": "c-ch02-fb-009",
@@ -1092,7 +1092,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "将常量 6 赋给变量 x"
         }
       ],
       "id": "c-ch02-fb-010",
@@ -1113,7 +1113,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "－16"
         }
       ],
       "id": "c-ch02-fb-011",
@@ -1134,11 +1134,17 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "单精度型",
+          "accepted": [
+            "float 型"
+          ]
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "双精度型",
+          "accepted": [
+            "double 型"
+          ]
         }
       ],
       "id": "c-ch02-fb-012",
@@ -1159,15 +1165,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "整型"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "字符型"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "枚举型"
         }
       ],
       "id": "c-ch02-fb-013",
@@ -1188,7 +1194,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "f"
         }
       ],
       "id": "c-ch02-fb-014",
@@ -1209,7 +1215,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch02-fb-015",
@@ -1230,7 +1236,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "26"
         }
       ],
       "id": "c-ch02-fb-016",
@@ -1251,11 +1257,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "12"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "4"
         }
       ],
       "id": "c-ch02-fb-017",
@@ -1276,15 +1282,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "6"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "4"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "2"
         }
       ],
       "id": "c-ch02-fb-018",
@@ -1305,7 +1311,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "－60"
         }
       ],
       "id": "c-ch02-fb-019",
@@ -1326,7 +1332,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "2"
         }
       ],
       "id": "c-ch02-fb-020",
@@ -1347,11 +1353,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "10"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "6"
         }
       ],
       "id": "c-ch02-fb-021",
@@ -1372,7 +1378,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "5.500000"
         }
       ],
       "id": "c-ch02-fb-022",
@@ -1393,7 +1399,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "3.500000"
         }
       ],
       "id": "c-ch02-fb-023",
@@ -1414,7 +1420,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch02-fb-024",
@@ -1435,7 +1441,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "1"
         }
       ],
       "id": "c-ch02-fb-025",
@@ -1456,7 +1462,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "0"
         }
       ],
       "id": "c-ch02-fb-026",
@@ -1477,7 +1483,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "9"
         }
       ],
       "id": "c-ch02-fb-027",
@@ -1498,7 +1504,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "X * (X * (X * (X * (X * (X * (5 * X＋3)－4)＋2)＋1)－6)＋1)＋10"
         }
       ],
       "id": "c-ch02-fb-028",
@@ -1519,7 +1525,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "8.000000"
         }
       ],
       "id": "c-ch02-fb-029",
@@ -1540,7 +1546,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "13.700000"
         }
       ],
       "id": "c-ch02-fb-030",
@@ -1561,7 +1567,10 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "整型",
+          "accepted": [
+            "int 型"
+          ]
         }
       ],
       "id": "c-ch02-fb-031",
@@ -1582,7 +1591,10 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "双精度型",
+          "accepted": [
+            "double 型"
+          ]
         }
       ],
       "id": "c-ch02-fb-032",
@@ -1603,7 +1615,7 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "m/10%10*100＋m/100*10＋m%10"
         }
       ],
       "id": "c-ch02-fb-033",

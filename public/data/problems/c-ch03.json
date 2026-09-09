@@ -864,15 +864,15 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "b"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "b"
         },
         {
           "index": 3,
-          "answer": ""
+          "answer": "b"
         }
       ],
       "id": "c-ch03-fb-001",
@@ -893,11 +893,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "t=a"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "c=t"
         }
       ],
       "id": "c-ch03-fb-002",
@@ -918,11 +918,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "格式控制符与变量类型不匹配。scanf 语句的正确形式应该是：scanf(\"%f\",&k);"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "未指明变量 k 的地址。"
         }
       ],
       "id": "c-ch03-fb-003",
@@ -943,11 +943,11 @@
       "blanks": [
         {
           "index": 1,
-          "answer": ""
+          "answer": "scanf(\"%d%f%f%c%c\",&a,&b,&c1,&c2);"
         },
         {
           "index": 2,
-          "answer": ""
+          "answer": "3 6.5 12.6aA<回车>"
         }
       ],
       "id": "c-ch03-fb-004",
@@ -960,7 +960,7 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第3章 最简单的C程序设计 题3.51（PDF p30 / 书页 p19）",
       "difficulty": 3,
       "stem": "【题 3.51】若有以下定义和语句，为使变量 c1 得到字符'A'，变量 c2 得到字符'B'，正确的输入形式是【 】。",
-      "explanation": "",
+      "explanation": "本题问的是「正确的输入形式」，答案是输入形式描述而非程序输出，故不进自动判分（标记 answerIsDescription）。推演：scanf(\"%4c%4c\",&c1,&c2) 中两个 %4c 各连续读 4 个字符、从 &c1/&c2 起存放，c1、c2 各取本字段首字符；要使 c1='A'、c2='B'，输入须为 A 后跟 3 个字符、再 B 后跟 3 个字符，即 A□□□B□□□＜回车＞（□表示空格，书末答案题 3.51 同）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
@@ -968,7 +968,8 @@
       "code": "char c1,c2;\nscanf(\"%4c%4c\",&c1,&c2);",
       "answer": "",
       "id": "c-ch03-cr-017",
-      "verified": false
+      "verified": false,
+      "answerIsDescription": true
     },
     {
       "category": "c",
@@ -977,7 +978,7 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第3章 最简单的C程序设计 题3.52（PDF p30 / 书页 p19）",
       "difficulty": 3,
       "stem": "【题 3.52】执行以下程序时，若从第一列开始输入数据，为使变量 a=3、b=7、x=8.5、y=71.82、c1='A'、c2='a'，正确的数据输入形式是【 】。",
-      "explanation": "",
+      "explanation": "本题问的是「正确的数据输入形式」，答案是输入形式描述而非程序输出，故不进自动判分（标记 answerIsDescription）。推演：scanf 格式串中的普通字符须原样输入——第 1 条要求 a=3□b=7（格式中空格匹配输入空格）；第 2 条格式以 x= 开头，而 %d 遇 'x' 即停止读取，故 7 与 x= 可紧连：x=8.5□y=71.82；第 3 条 c1=%c c2=%c 中 %c 不跳空白、格式中的空格会跳过输入中的空格：c1=A□c2=a。三段相接即 a=3□b=7x=8.5□y=71.82c1=A□c2=a＜回车＞（书末答案题 3.52 同）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
@@ -985,7 +986,8 @@
       "code": "#include <stdio.h>\nint main( )\n{ int a,b; float x,y; char c1,c2;\n  scanf(\"a=%d b=%d\",&a,&b);\n  scanf(\"x=%f y=%f\",&x,&y);\n  scanf(\"c1=%c c2=%c\",&c1,&c2);\n  printf(\"a=%d,b=%d,x=%f,y=%f,c1=%c,c2=%c\",a,b,x,y,c1,c2);\n  return 0;\n }",
       "answer": "",
       "id": "c-ch03-cr-018",
-      "verified": false
+      "verified": false,
+      "answerIsDescription": true
     },
     {
       "category": "c",

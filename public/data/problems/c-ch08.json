@@ -11,15 +11,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.28（PDF p158 / 书页 p147）",
       "difficulty": 3,
       "stem": "【题 8.28】设有以下宏定义：\n则执行赋值语句：v=LENGTH * 20;（v为int型变量）后，v的值是【 】。",
-      "explanation": "",
+      "explanation": "宏是纯文本替换：v=LENGTH*20 展开为 v=WIDTH+40*20=80+800=880（乘法先结合，括号缺失使结果不是 2400）。注：原书题面只给宏定义与赋值语句，按仓库惯例补 main 输出 v（书末答案题 8.28 为 880，judge:verify 实机取证一致）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#define WIDTH 80\n#define LENGTH WIDTH+40",
-      "answer": "",
+      "code": "#include <stdio.h>\n#define WIDTH 80\n#define LENGTH WIDTH+40\nint main( )\n{   int v;\n    v=LENGTH * 20;\n    printf(\"%d\\n\",v);\n    return 0;\n}",
+      "answer": "880",
       "id": "c-ch08-cr-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -28,15 +28,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.29（PDF p158 / 书页 p147）",
       "difficulty": 3,
       "stem": "【题 8.29】设有以下宏定义：\n则执行赋值语句：k=LENGTH * 20;（k为int型变量）后，k的值是【 】。",
-      "explanation": "",
+      "explanation": "LENGTH 带括号：k=LENGTH*20 展开为 k=(WIDTH+40)*20=120*20=2400，与题 8.28 的无括号版本形成对照。注：原书题面只给宏定义与赋值语句，按仓库惯例补 main 输出 k（书末答案题 8.29 为 2400，judge:verify 实机取证一致）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#define WIDTH 80\n#define LENGTH (WIDTH+40)",
-      "answer": "",
+      "code": "#include <stdio.h>\n#define WIDTH 80\n#define LENGTH (WIDTH+40)\nint main( )\n{   int k;\n    k=LENGTH * 20;\n    printf(\"%d\\n\",k);\n    return 0;\n}",
+      "answer": "2400",
       "id": "c-ch08-cr-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

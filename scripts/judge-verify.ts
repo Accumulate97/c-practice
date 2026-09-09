@@ -28,7 +28,7 @@ import type { Runnable } from './lib/problem-code.ts'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const PROBLEM_DIR = join(ROOT, 'public', 'data', 'problems')
-const NON_SHARD = new Set(['index.json', 'verification-report.json'])
+const NON_SHARD = new Set(['index.json', 'verification-report.json', '_index.json', '_judge-evidence.json'])
 const GENERATED = 'GENERATED — 由 npm run judge:verify 生成，禁止手工编辑（verified:true 的唯一证据链）'
 const PLACEHOLDER = 'PENDING-REAL-STDOUT'
 const FENCE = String.fromCharCode(96, 96, 96)
