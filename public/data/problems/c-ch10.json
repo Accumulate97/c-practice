@@ -608,13 +608,17 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第10章 结构体与共用体 题10.93（PDF p257 / 书页 p246）",
       "difficulty": 2,
       "stem": "【题 10.93】请定义枚举类型money，用枚举元素代表人民币的面值。包括1、2、5分；1、2、5角；1、2、5、10、50、100元。",
-      "explanation": "",
+      "explanation": "枚举元素本质是整型常量，默认从 0 顺序取值；本题用\"名字\"表达面值语义即可，若需元素值等于面额数字，须逐个显式赋值。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "short_answer",
       "bloom": "understand",
-      "reference_answer": "",
-      "grading_points": [],
+      "reference_answer": "enum money {one_cent,two_cent,five_cent,one_jiao,two_jiao,five_jiao,one_yuan,two_yuan,five_yuan,ten_yuan,fifty_yuan,hundred_yuan}; —— 12 个枚举元素依次代表 1、2、5 分，1、2、5 角，1、2、5、10、50、100 元（元素命名可不同，语义一一对应即可）。",
+      "grading_points": [
+        "用 enum 定义类型 money，花括号列出全部元素",
+        "12 种面值一个不漏，含 1/2/5 分、1/2/5 角、1/2/5/10/50/100 元",
+        "元素命名清晰表达面值与单位"
+      ],
       "id": "c-ch10-sa-001",
       "verified": true
     }
