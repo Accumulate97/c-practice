@@ -6,6 +6,7 @@ import { ProblemNotFound, loadProblem } from '../modules/problems/data/loader'
 import type { LoadedProblem } from '../modules/problems/data/loader'
 import { CodeReadingRenderer } from '../modules/problems/renderers/CodeReadingRenderer'
 import { ProgrammingRenderer } from '../modules/problems/renderers/ProgrammingRenderer'
+import { DebugRenderer } from '../modules/problems/renderers/DebugRenderer'
 
 /**
  * 题目详情页（阶段 4 模块 1 最简版）。
@@ -160,15 +161,16 @@ function Ready({ data }: { data: LoadedProblem }) {
         <Suspense fallback={<p className="text-sm" style={muted}>正在加载程序填空编辑器…</p>}>
           <CodeCompletionRenderer problem={problem} />
         </Suspense>
+      ) : problem.type === 'debug' ? (
+        <DebugRenderer problem={problem} />
       ) : (
         <>
           <section className="rounded-xl border p-4" style={panel}>
             <p className="text-sm whitespace-pre-wrap">{problem.stem}</p>
           </section>
           <PhasePlaceholder
-            phase="阶段 4 模块 4-5"
+            phase="阶段 4 模块 5"
             todo={[
-              '模块 4：debug（程序改错）',
               '模块 5：题目列表页（章节 / 难度 / 题型筛选）',
             ]}
           />

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "acceptance:cc": "node scripts/acceptance-cc.ts",
+    "acceptance:dbg": "node scripts/acceptance-dbg.ts",
     "build": "tsc -b && vite build",
     "build:index": "node scripts/build-index.ts",
     "dev": "vite",
@@ -17,7 +18,8 @@
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
     "verify:data": "node scripts/verify-data.ts",
-    "verify:pages": "node scripts/verify-pages-dist.mjs"
+    "verify:pages": "node scripts/verify-pages-dist.mjs",
+    "acceptance:dbg-ui": "node scripts/acceptance-dbg-ui.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.3",
