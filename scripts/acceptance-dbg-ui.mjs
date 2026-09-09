@@ -3,7 +3,8 @@
  *
  * Node 侧验收（scripts/acceptance-dbg.ts）已经证了判分链路本身；这里只补浏览器里才看得见的四件事：
  *   ① 教学口径：默认 0 泄露（bugs 原文 / fixed_code / 行号都不出现），三级提示逐级点开才展开
- *   ② 第 2 级提示给的是**现算的真实差异行**，不是 bugs 文本里那套（15 道里 14 道写错了的）行号
+ *   ② 第 2 级提示给的是**现算的真实差异行**，不是 bugs 文本里那套行号
+ *      （那套行号曾大面积写错，内容返工后仍有部分题不符，故一律现算；逐题对照见 acceptance-dbg.ts 日志）
  *   ③ 不改代码直接提交 → 判分失败面板；改出语法错 → 「编译错误」人话而不是白屏
  *   ④ 控制台 error / warning 必须为空
  * 用 playwright-core + 本机已装的 Chrome（仓库不下载浏览器，与模块 3 UI 验收同一套）。
@@ -63,7 +64,8 @@ async function submitAndWait(page, verdictRe, timeout = 150000) {
 async function main() {
   await waitPreview()
   console.log(`vite preview 就绪 → ${BASE}  题目 ${ID}`)
-  console.log(`  真实差异行 [${BUG_LINES}]  bugs prose 声称 [${PROSE_LINES}]`)
+  const same = JSON.stringify([...BUG_LINES].sort((x, y) => x - y)) === JSON.stringify([...PROSE_LINES].sort((x, y) => x - y))
+  console.log(`  真实差异行 [${BUG_LINES}]  bugs prose [${PROSE_LINES}]（本题两者${same ? '一致' : '不一致'}；harness 一律以现算的真实差异行为准）`)
   const browser = await chromium.launch({ channel: 'chrome', headless: true })
   const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } })
   page.on('console', (m) => consoleMsgs.push({ type: m.type(), text: m.text() }))

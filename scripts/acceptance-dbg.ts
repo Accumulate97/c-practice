@@ -98,11 +98,24 @@ function proseLines(p: Problem): number[] {
 
 /**
  * 真实需要改动的行：逐行**大小写敏感**比对 code 与 fixed_code。
- * 2026-09-09 全量扫描：15 道 debug 题里 14 道的 prose 行号与真实差异行不符（偏移 ±1~±2，
- * 个别指向非错误行）。上一版 harness 按 prose 行做「部分修正」，把一条**没有 bug 的行**
- * 原样换回去，结果退化成完全正确的代码 → 3/3 全通过 → partial / partial-scan 假 FAIL。
- * 现在一律以 diff 行为准（缺陷本身登记在 docs/待办-backlog.md TODO 3，属内容阶段返工）。
+ *
+ * 为什么不用 bugs 文本里的行号（proseLines）：2026-09-09 全量扫描曾发现 15 道 debug 题里
+ * 14 道的 prose 行号与真实差异行不符（偏移 ±1~±2，个别指向非错误行）。上一版 harness
+ * 按 prose 行做「部分修正」，把一条**没有 bug 的行**原样换回去，结果退化成完全正确的
+ * 代码 → 3/3 全通过 → partial / partial-scan 假 FAIL。
+ *
+ * 内容返工（commit 4dac8d1）已修正大部分行号：2026-09-09 复扫为 15 道中 10 道 prose 与 diff
+ * 逐字一致，仍有 5 道不符（c-ch06-dbg-008 / c-ch09-dbg-013 / c-ch09-dbg-015 仅顺序不同，
+ * c-ch07-dbg-010 / c-ch07-dbg-012 缺行）。所以口径不变：**一律以 diff 行为准**，
+ * prose 只当取证对照；下面的日志逐题如实报一致/不一致，不再写死「不符」。
  */
+/** prose 行号与真实差异行是否一致（忽略顺序）—— 只用于日志取证，不影响判定 */
+function sameLines(diff: number[], prose: number[]): string {
+  const norm = (xs: number[]): string => [...xs].sort((a, b) => a - b).join(',')
+  if (norm(diff) === norm(prose)) return diff.join(',') === prose.join(',') ? '逐字一致' : '一致（仅顺序不同）'
+  return '不一致'
+}
+
 function diffLines(p: Problem): number[] {
   const a = p.code.split('\n')
   const b = p.fixed_code.split('\n')
@@ -204,7 +217,7 @@ async function main(): Promise<void> {
   const part = partialCode(p1, lines1[lines1.length - 1])
   const pr = await runOnce(sr, client, part, sr.toProblemTestCases(p1.testCases))
   row('partial', p1.id, pr.report.acceptedCount < pr.report.results.length ? 'PASS' : 'FAIL',
-    `真实差异行 [${lines1}]（prose 声称 [${prose1}]，不符）、只保留第 ${lines1[lines1.length - 1]} 行 → 实机 ${pr.report.acceptedCount}/${pr.report.results.length} states=${statesOf(pr.report)}`,
+    `真实差异行 [${lines1}]（prose [${prose1}]，本题两者${sameLines(lines1, prose1)}）、只保留第 ${lines1[lines1.length - 1]} 行 → 实机 ${pr.report.acceptedCount}/${pr.report.results.length} states=${statesOf(pr.report)}`,
     pr.ms, pr.retries)
 
   // partial-scan：每章一道，只保留最后一个 bug
@@ -216,7 +229,7 @@ async function main(): Promise<void> {
     const all = r.report.acceptedCount === r.report.results.length
     const mixed = r.report.acceptedCount > 0 && !all
     row('partial-scan', id, all ? 'FAIL' : 'PASS',
-      `真实差异行 [${lines}]（prose [${proseLines(p)}]）、保留第 ${keep} 行 → 实机 ${r.report.acceptedCount}/${r.report.results.length}` +
+      `真实差异行 [${lines}]（prose [${proseLines(p)}]，本题两者${sameLines(lines, proseLines(p))}）、保留第 ${keep} 行 → 实机 ${r.report.acceptedCount}/${r.report.results.length}` +
       (mixed ? '（混合：部分用例通过部分失败）' : '') +
       (all ? ' ← 该 bug 未被任何用例覆盖（数据弱点）' : ''), r.ms, r.retries)
   }

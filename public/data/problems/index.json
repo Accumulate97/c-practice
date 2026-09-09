@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "2acac8c237a3fbeb",
+  "content_sha": "b042da9a740c8488",
   "schema_version": 1,
   "data_version": "0.1.0",
   "count": 518,
@@ -6914,5 +6914,8 @@
       "title": "已知顺序表 L 中元素个数为 length",
       "file": "ds-ch02.json"
     }
-  ]
+  ],
+  "defects": {
+    "codeReadingNoAnswer": 21
+  }
 }

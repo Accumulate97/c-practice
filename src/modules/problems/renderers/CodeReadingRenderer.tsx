@@ -9,14 +9,16 @@
  * 诚实性红线（AGENTS.md 二·5）：
  *   · 主判分是纯文本比对、不联网，所以不存在「后端挂了就假装通过」的可能；
  *   · 实机对照失败一律显示「本次未判定」+ 降级自评材料，不计正确率、不置 verified；
- *   · 19 道 answer 为空的题直接判「无法判分（数据缺陷）」，提交按钮禁用，绝不用空串当期望输出
- *     （否则学生交白卷会被判成「通过」）。
+ *   · answer 为空的题（构建期实测 defects.codeReadingNoAnswer，R3 之前文案硬编码「19 道」已过时）
+ *     直接判「无法判分（数据缺陷）」，提交按钮禁用，绝不用空串当期望输出（否则交白卷会被判成「通过」）。
  */
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { MONO_FONT } from '../../../components/common/CodeEditor'
 import { judge } from '../../../app/config'
 import type { JudgeClient } from '../../../judge/client'
+import { backendIdForCode } from '../../../judge/math-lib'
+import { loadDefectCount } from '../data/loader'
 import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient } from '../grading/stdin-run'
 import { gradeExact, readingTarget, runReadingSelfCheck } from '../grading/exact'
@@ -68,11 +70,47 @@ export function CodeReadingRenderer({ problem }: Props) {
   const [showSpaces, setShowSpaces] = useState(true)
   const [checking, setChecking] = useState(false)
   const [selfCheck, setSelfCheck] = useState<SelfCheckOutcome | null>(null)
-  const clientRef = useRef<JudgeClient | null>(null)
+  /**
+   * 阶段 5 · R5：按源码分流后端 —— 含 sqrt 一类数学函数的代码走 libm 支路
+   * （默认 cg132 链不上 libm，选型证据见 src/judge/math-lib.ts 文件头）。
+   * client.ts 的结果缓存键与跨标签页锁名都含 backend.id，所以每条支路必须各持一个
+   * client 实例：这里用 Map 按后端 id 分桶，而不是单个 ref。
+   */
+  const clientsRef = useRef<Map<string, JudgeClient> | null>(null)
 
-  const getClient = useCallback(() => {
-    clientRef.current ??= createJudgeClient()
-    return clientRef.current
+  /**
+   * R3：全站有多少道同类缺陷题，从 index.json 的 defects 动态读，不写死数字。
+   * 只有真落到「缺 answer」分支才发这次读取（复用 loadIndex 的单飞缓存，实际不多一个请求）。
+   */
+  const needsDefectCount = target.kind === 'no-answer' && !target.isDescription
+  const [defectCount, setDefectCount] = useState<number | null>(null)
+  useEffect(() => {
+    if (!needsDefectCount) return
+    let alive = true
+    loadDefectCount('codeReadingNoAnswer').then(
+      (n) => {
+        if (alive) setDefectCount(n)
+      },
+      () => {
+        // 索引读不到就保持 null，文案会说「查不到确切数字」，绝不假装是 0
+        if (alive) setDefectCount(null)
+      },
+    )
+    return () => {
+      alive = false
+    }
+  }, [needsDefectCount])
+
+  /** 按题目自带的只读代码挑后端：实机对照是可选的二次结论，也不能因链不上 libm 而报假编译错误 */
+  const getClient = useCallback((source: string): JudgeClient => {
+    const buckets = (clientsRef.current ??= new Map<string, JudgeClient>())
+    const key = backendIdForCode(source)
+    let client = buckets.get(key)
+    if (!client) {
+      client = createJudgeClient({ code: source })
+      buckets.set(key, client)
+    }
+    return client
   }, [])
 
   const gradeable = target.kind === 'ok'
@@ -83,7 +121,8 @@ export function CodeReadingRenderer({ problem }: Props) {
     const next = gradeExact(answer, expected)
     setGrade(next)
     // 模块 5：本地归一化比对（无网络）也算一次有结论的判分，落盘后列表页才有三色状态
-    recordAttempt(problem.id, next.state === 'accepted')
+    // 阶段 5：存学生写的预测输出，错题本里能直接对照「我当时以为输出什么」
+    recordAttempt(problem.id, next.state === 'accepted', { text: answer, kind: 'text' })
   }, [answer, expected, gradeable, problem.id])
 
   const reset = useCallback(() => {
@@ -96,7 +135,7 @@ export function CodeReadingRenderer({ problem }: Props) {
     if (!gradeable || target.kind !== 'ok' || !target.runnableLive || checking) return
     setChecking(true)
     setSelfCheck(null)
-    const outcome = await runReadingSelfCheck(getClient(), target.code, target.expected, target.stdin)
+    const outcome = await runReadingSelfCheck(getClient(target.code), target.code, target.expected, target.stdin)
     setChecking(false)
     setSelfCheck(outcome)
   }, [checking, getClient, gradeable, target])
@@ -120,7 +159,11 @@ export function CodeReadingRenderer({ problem }: Props) {
           body={
             target.isDescription
               ? '这类题问的是结论/理由而不是 stdout，逐字符比对没有意义，故不提供自动判分；请自行作答后对照教材。'
-              : '没有 expected 就无法判分。绝不用空串当期望输出 —— 那样交白卷也会被判成「通过」。全站 225 道阅读题里有 19 道属此类，已登记进 judge:verify 报告，等人工补 answer。'
+              : `没有 expected 就无法判分。绝不用空串当期望输出 —— 那样交白卷也会被判成「通过」。${
+                  defectCount === null
+                    ? '全站还有若干道阅读题属此类（索引里查不到确切数字）'
+                    : `全站阅读题里有 ${defectCount} 道属此类`
+                }，已登记进 judge:verify 报告，等人工补 answer。`
           }
           code={target.code}
         />
@@ -328,9 +371,14 @@ function Block({ title, body, tone }: { title: string; body: string; tone?: stri
   )
 }
 
+/**
+ * data-role="defect" 是阶段 5 起全站统一的验收契约（concept-shared 的 DefectPanel 同名同义），
+ * 阅读题这块是自己写的一份，缺了这个钩子 R3「缺陷文案动态读 index.json」就验不到。
+ * 只加属性，判分与渲染逻辑一行没动。
+ */
 function DefectPanel({ title, body, code }: { title: string; body: string; code?: string }) {
   return (
-    <section className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR.unknown }}>
+    <section className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR.unknown }} data-role="defect">
       <p className="text-sm font-semibold" style={{ color: TONE_COLOR.unknown }}>{title}</p>
       <p className="mt-2 text-sm" style={muted}>{body}</p>
       {code && code.trim().length > 0 && (

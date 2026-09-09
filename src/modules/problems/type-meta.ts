@@ -54,13 +54,43 @@ export function shortId(id: string): string {
 }
 
 /**
- * 阶段 4 已交付渲染器、能在详情页真作答 + 判分的题型（其余七个辅助题型属阶段 5）。
- * 列表页用它把「点进去只是占位」的题型标出来，不让学生白点。
- * 新增渲染器时在这里加一项即可 —— 只有这一处清单，详情页的分派逻辑各自独立。
+ * 详情页已交付渲染器、能真作答 + 判分的题型。
+ * 阶段 4 交付四类主力（走 Godbolt 实机判分），阶段 5 补齐七类辅助（一律前端即时判定，不发请求）。
+ * 列表页用它把「点进去只是占位」的题型标出来，不让学生白点；现在十一型全在表内，
+ * 故后续新增题型时这里默认**不加**，等渲染器真写完了再加 —— 只有这一处清单，详情页的分派逻辑各自独立。
+ * 注：true_false / code_ordering / complexity / matching 四型当前库内 0 题，
+ * 渲染器已实现并经本地 fixture 验证，数据一进库即可作答（不需再改前端）。
  */
 export const RENDERABLE_TYPES: ReadonlySet<string> = new Set([
   'programming',
   'code_reading',
   'code_completion',
   'debug',
+  'single_choice',
+  'true_false',
+  'fill_blank',
+  'code_ordering',
+  'complexity',
+  'short_answer',
+  'matching',
 ])
+
+/**
+ * 题型的展示顺序：任务书第三节的主力四型在前，辅助七型在后。
+ * 列表页筛选面板与进度页「按题型统计」共用这一份 —— 顺序表只允许有一处，
+ * 否则两个页面的题型排序会各自漂移（阶段 4 它原本写在 ProblemListPage 里，阶段 5 下沉）。
+ * 表外类型（历史数据 / 将来新增题型）由调用方按题量降序追加，不要因为查不到就丢掉。
+ */
+export const TYPE_ORDER: readonly string[] = [
+  'code_completion',
+  'debug',
+  'code_reading',
+  'programming',
+  'single_choice',
+  'fill_blank',
+  'short_answer',
+  'true_false',
+  'code_ordering',
+  'complexity',
+  'matching',
+]

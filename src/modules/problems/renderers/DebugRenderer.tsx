@@ -16,6 +16,7 @@ import type { CSSProperties } from 'react'
 import { CodeEditor, MONO_FONT } from '../../../components/common/CodeEditor'
 import { firstDiffLine, formatDiagnostics } from '../../../judge/backends/base'
 import type { JudgeClient } from '../../../judge/client'
+import { backendIdForCode } from '../../../judge/math-lib'
 import type { BatchReport, TestCaseResult } from '../../../judge/types'
 import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient, runStdinTests, toProblemTestCases } from '../grading/stdin-run'
@@ -120,11 +121,24 @@ export function DebugRenderer({ problem }: Props) {
   const [progress, setProgress] = useState<RunProgress | null>(null)
   const [report, setReport] = useState<BatchReport | null>(null)
   const [fatal, setFatal] = useState<string | null>(null)
-  const clientRef = useRef<JudgeClient | null>(null)
+  /**
+   * 阶段 5 · R5：按源码分流后端 —— 含 sqrt 一类数学函数的代码走 libm 支路
+   * （默认 cg132 链不上 libm，选型证据见 src/judge/math-lib.ts 文件头）。
+   * client.ts 的结果缓存键与跨标签页锁名都含 backend.id，所以每条支路必须各持一个
+   * client 实例：这里用 Map 按后端 id 分桶，而不是单个 ref。
+   */
+  const clientsRef = useRef<Map<string, JudgeClient> | null>(null)
 
-  const getClient = useCallback(() => {
-    clientRef.current ??= createJudgeClient()
-    return clientRef.current
+  /** 按修正后的全文挑后端（口径同 ProgrammingRenderer） */
+  const getClient = useCallback((source: string): JudgeClient => {
+    const buckets = (clientsRef.current ??= new Map<string, JudgeClient>())
+    const key = backendIdForCode(source)
+    let client = buckets.get(key)
+    if (!client) {
+      client = createJudgeClient({ code: source })
+      buckets.set(key, client)
+    }
+    return client
   }, [])
 
   const submit = useCallback(async () => {
@@ -133,13 +147,14 @@ export function DebugRenderer({ problem }: Props) {
     setFatal(null)
     setReport(null)
     setProgress({ caseIndex: 1, total: cases.length, status: { running: 0, waiting: 0, ahead: 0, concurrency: 0 } })
-    const outcome = await runStdinTests(getClient(), code, cases, (p) => setProgress(p))
+    const outcome = await runStdinTests(getClient(code), code, cases, (p) => setProgress(p))
     setRunning(false)
     setProgress(null)
     if (outcome.kind === 'done') {
       setReport(outcome.report)
       // 模块 5：判分结论落盘（口径同 ProgrammingRenderer，未判定不写记录）
-      recordBatchAttempt(problem.id, outcome.report.results)
+      // 阶段 5：存修正后的全文，回看时能看到自己当时怎么改的
+      recordBatchAttempt(problem.id, outcome.report.results, { text: code, kind: 'code' })
     } else setFatal(outcome.summary)
   }, [cases, code, getClient, problem.id, running])
 

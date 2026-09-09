@@ -12,6 +12,13 @@ export const dataUrl = (rel: string): string =>
 export const judge = {
   backend: import.meta.env.VITE_JUDGE_BACKEND ?? 'godbolt',
   godboltCompiler: import.meta.env.VITE_GODBOLT_COMPILER ?? 'cg132',
+  /**
+   * libm 支路的编译器 id（阶段 5 · R5）。cg132 链不上 libm，含 sqrt 的代码会报
+   * undefined reference；cicc191 = x86-64 icc 19.0.1，是 Godbolt C 编译器列表里
+   * 实测既能链 libm、又不拒绝 C 专属写法（malloc 不强转 / _Bool）的那一个。
+   * 选型证据与被否决的 g132 见 src/judge/math-lib.ts 文件头表格，勿凭感觉改。
+   */
+  godboltMathCompiler: import.meta.env.VITE_GODBOLT_MATH_COMPILER ?? 'cicc191',
   /** ADR-0001 4.3：并发 20 时完成速率从 1.36 跌到 0.52 QPS —— 并发必须压到 2 */
   maxConcurrency: 2,
   /**

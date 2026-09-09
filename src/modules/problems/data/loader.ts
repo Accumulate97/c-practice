@@ -32,11 +32,22 @@ export interface ProblemIndexEntry {
   file: string
 }
 
+/**
+ * build-index.ts 构建期实测的数据缺口计数。字段一律可选：
+ * 老索引（阶段 4 生成的）没有这个对象，读到的必须是 null 而不是 0 —— 0 等于宣称「没有缺陷」。
+ */
+export interface ProblemIndexDefects {
+  /** type=code_reading、code 非空但 answer 为空的题数：这些题必然走「无法判分（数据缺陷）」 */
+  codeReadingNoAnswer?: number
+}
+
 export interface ProblemIndex {
   count: number
   shard_count: number
   shards: ShardMeta[]
   problems: ProblemIndexEntry[]
+  /** 阶段 5 新增（R3）：数据缺口计数。可选，缺失时前端如实说「查不到确切数字」 */
+  defects?: ProblemIndexDefects
   content_sha?: string
   schema_version?: number
   data_version?: string
@@ -101,6 +112,17 @@ export function loadIndex(): Promise<ProblemIndex> {
     })
   }
   return indexPromise
+}
+
+/**
+ * 读某个数据缺口的构建期实测计数（R3：前端文案不再硬编码「19 道」）。
+ * 复用 loadIndex() 的单飞缓存 —— 详情页本来就是先 loadIndex 再取分片，这里不产生额外请求。
+ * 返回 null 表示索引里没有该字段（老索引 / 手工改过），调用方必须自己兜底，不能当 0 显示。
+ */
+export async function loadDefectCount(key: keyof ProblemIndexDefects): Promise<number | null> {
+  const index = await loadIndex()
+  const value = index.defects?.[key]
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null
 }
 
 export function loadShard(file: string): Promise<ProblemRecord[]> {

@@ -13,6 +13,7 @@
  * 依据 ADR-0001 4.3：Godbolt 并发越高吞吐越低，并发 20 时从 1.36 跌到 0.52 QPS。
  */
 import { getBackend } from '../../../judge'
+import { backendForCode } from '../../../judge/math-lib'
 import { JudgeClient } from '../../../judge/client'
 import type { PrecomputedLookup, ProblemTestCase } from '../../../judge/client'
 import { JudgeTransportError } from '../../../judge/types'
@@ -40,13 +41,24 @@ export interface JudgeClientOptions {
   /** 构建期预存输出的查询函数；缺省表示本题没有降级数据（48 道编程题 reference 全空即属此类） */
   precomputed?: PrecomputedLookup
   onStatus?: (status: QueueStatus) => void
-  /** 单测/联调注入替身后端；缺省走 getBackend() 读 config.judge.backend */
+  /** 单测/联调注入替身后端；优先级最高，给了就不再按源码分流（替身必须拿到全部题目） */
   backend?: JudgeBackend
+  /**
+   * 待判分的源码（阶段 5 · R5）。给了就按 libm 需要挑编译器：含 sqrt 一类数学函数的代码
+   * 走 judge.godboltMathCompiler，其余仍走 config.judge.backend 指定的默认后端。
+   * 这只是「交给哪个编译器」的路由，判分逻辑一行都不在这里。
+   */
+  code?: string
 }
 
-/** 一个题目页持有一个 client：结果缓存跨提交复用，同一份代码重复提交不再打网络 */
+/**
+ * 一个题目页持有一个 client：结果缓存跨提交复用，同一份代码重复提交不再打网络。
+ * 缓存键含 backend.id，所以 libm 支路必须是**另一个 client 实例**（渲染器侧按 backendIdForCode 分桶），
+ * 不能拿同一个 client 换着编译器用。
+ */
 export function createJudgeClient(options: JudgeClientOptions = {}): JudgeClient {
-  return new JudgeClient(options.backend ?? getBackend(), {
+  const backend = options.backend ?? (options.code !== undefined ? backendForCode(options.code) : getBackend())
+  return new JudgeClient(backend, {
     precomputed: options.precomputed,
     onStatus: options.onStatus,
   })

@@ -54,6 +54,34 @@ function loadProblemShards(): Shard[] {
   return out
 }
 
+/**
+ * 构建期实测的数据缺口计数，写进 index.json 的 defects 字段供前端文案读取。
+ *
+ * 为什么要落进数据而不是写在前端注释里：阶段 4 的 CodeReadingRenderer 与 grading/exact.ts
+ * 都硬编码了「19 道 answer 为空」，而 4dac8d1 那轮补参考实现之后实测已经是 21 道 ——
+ * 数字写在文案里就一定会烂，写在生成物里才会跟着数据一起变。
+ *
+ * 口径与 grading/exact.ts 的 readingTarget() 完全一致：type=code_reading、code 非空、
+ * answer 去空白后为空 → 该题必然走「无法判分（数据缺陷）」分支，不进判分。
+ */
+interface DefectTally {
+  codeReadingNoAnswer: number
+}
+
+function computeDefects(list: Shard[]): DefectTally {
+  let codeReadingNoAnswer = 0
+  for (const s of list) {
+    for (const p of s.problems) {
+      if (p.type !== 'code_reading') continue
+      const code = typeof p.code === 'string' ? p.code : ''
+      const answer = typeof p.answer === 'string' ? p.answer : ''
+      if (code.trim().length === 0) continue
+      if (answer.trim().length === 0) codeReadingNoAnswer += 1
+    }
+  }
+  return { codeReadingNoAnswer }
+}
+
 /** 卡片摘要：列表页只认这些字段，正文与代码留在分片里按需加载 */
 function cardOf(p: ProblemLike, file: string): Record<string, unknown> {
   const tags = Array.isArray(p.tags) ? p.tags : []
@@ -123,6 +151,7 @@ const problemIndex = {
     url: 'data/problems/' + s.file,
   })),
   problems: cards,
+  defects: computeDefects(shards),
 }
 
 const searchDocs = cards.map((c) => ({
@@ -194,3 +223,4 @@ emit(join('search', 'problems.json'), searchIndex)
 emit(join('knowledge', 'index.json'), knowledgeIndexShaped())
 emit(join('viz', 'index.json'), vizIndexShaped())
 console.log('题目 ' + cards.length + ' 道 / 分片 ' + shards.length + ' 个；知识卡片与演示当前为 0，属预期（阶段 5、6 交付）')
+console.log('数据缺口：code_reading 缺 answer ' + problemIndex.defects.codeReadingNoAnswer + ' 道（不进判分，前端文案从这里读）')

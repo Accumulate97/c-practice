@@ -1,12 +1,21 @@
 import { Suspense, lazy, useCallback, useEffect, useState } from 'react'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ComponentType } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { PhasePlaceholder } from '../components/common/PhasePlaceholder'
 import { ProblemNotFound, loadProblem } from '../modules/problems/data/loader'
-import type { LoadedProblem } from '../modules/problems/data/loader'
+import type { LoadedProblem, ProblemRecord } from '../modules/problems/data/loader'
 import { CodeReadingRenderer } from '../modules/problems/renderers/CodeReadingRenderer'
 import { ProgrammingRenderer } from '../modules/problems/renderers/ProgrammingRenderer'
 import { DebugRenderer } from '../modules/problems/renderers/DebugRenderer'
+// 七个概念题渲染器（阶段 5）：都不含编辑器与判分后端，静态 import 不会把 Godbolt 那一套拖进首屏
+import { SingleChoiceRenderer } from '../modules/problems/renderers/SingleChoiceRenderer'
+import { TrueFalseRenderer } from '../modules/problems/renderers/TrueFalseRenderer'
+import { FillBlankRenderer } from '../modules/problems/renderers/FillBlankRenderer'
+import { CodeOrderingRenderer } from '../modules/problems/renderers/CodeOrderingRenderer'
+import { ComplexityRenderer } from '../modules/problems/renderers/ComplexityRenderer'
+import { ShortAnswerRenderer } from '../modules/problems/renderers/ShortAnswerRenderer'
+import { MatchingRenderer } from '../modules/problems/renderers/MatchingRenderer'
+import { ProgressPanel } from '../modules/problems/progress/ProgressPanel'
 import { difficultyStars, typeLabel } from '../modules/problems/type-meta'
 
 /**
@@ -16,7 +25,11 @@ import { difficultyStars, typeLabel } from '../modules/problems/type-meta'
  * （SectionPage 占位），两者同层会产生歧义匹配。
  *
  * 数据流：index.json（唯一索引入口）→ 定位分片 file → 取分片 → 取单题 → 按 type 分派 Renderer。
- * 模块 1-2 接 programming / code_reading，其余题型显示占位（模块 3/4/5 逐个补）。
+ *
+ * 阶段 5 起十一个题型全部有渲染器：四类主力（编程 / 阅读 / 程序填空 / 改错）走 Godbolt 实机判分，
+ * 七类辅助（选择 / 判断 / 填空 / 排序 / 复杂度 / 简答 / 匹配）一律前端即时判定，一个请求都不发。
+ * 每个题型下面都挂同一张 ProgressPanel（收藏 / 笔记 / 错题本 / 回看上次提交），
+ * 它是题型无关的，放在详情页而不是各渲染器里，十一处就不会漂移。
  */
 type Phase =
   | { kind: 'loading' }
@@ -135,31 +148,54 @@ function Ready({ data }: { data: LoadedProblem }) {
         <p className="text-xs" style={muted}>{entry.section}{entry.title ? ` · ${entry.title}` : ''}</p>
       </header>
 
-      {problem.type === 'programming' ? (
-        <ProgrammingRenderer problem={problem} />
-      ) : problem.type === 'code_reading' ? (
-        <CodeReadingRenderer problem={problem} />
-      ) : problem.type === 'code_completion' ? (
-        <Suspense fallback={<p className="text-sm" style={muted}>正在加载程序填空编辑器…</p>}>
-          <CodeCompletionRenderer problem={problem} />
-        </Suspense>
-      ) : problem.type === 'debug' ? (
-        <DebugRenderer problem={problem} />
-      ) : (
-        <>
-          <section className="rounded-xl border p-4" style={panel}>
-            <p className="text-sm whitespace-pre-wrap">{problem.stem}</p>
-          </section>
-          <PhasePlaceholder
-            phase="阶段 5"
-            todo={[
-              '七个辅助题型的作答与判分：选择题 / 判断题 / 填空题 / 程序排序 / 复杂度分析 / 简答题 / 匹配题',
-              '错题本、收藏、按章节统计与进度导出导入',
-              '当前可回列表页（✍️ 在线刷题）按题型筛选，四类主力题型已能在线判分',
-            ]}
-          />
-        </>
-      )}
+      <TypeRenderer problem={problem} />
+
+      <ProgressPanel problemId={problem.id} />
+    </>
+  )
+}
+
+/**
+ * type → 渲染器。七个概念题渲染器形状完全一致（{ problem }），故用一张表分派；
+ * 四类主力渲染器各自有 lazy / Suspense 等差异，仍走 if 明写，不为了整齐而强行同构。
+ */
+const CONCEPT_RENDERERS: Record<string, ComponentType<{ problem: ProblemRecord }>> = {
+  single_choice: SingleChoiceRenderer,
+  true_false: TrueFalseRenderer,
+  fill_blank: FillBlankRenderer,
+  code_ordering: CodeOrderingRenderer,
+  complexity: ComplexityRenderer,
+  short_answer: ShortAnswerRenderer,
+  matching: MatchingRenderer,
+}
+
+function TypeRenderer({ problem }: { problem: ProblemRecord }) {
+  if (problem.type === 'programming') return <ProgrammingRenderer problem={problem} />
+  if (problem.type === 'code_reading') return <CodeReadingRenderer problem={problem} />
+  if (problem.type === 'debug') return <DebugRenderer problem={problem} />
+  if (problem.type === 'code_completion') {
+    return (
+      <Suspense fallback={<p className="text-sm" style={muted}>正在加载程序填空编辑器…</p>}>
+        <CodeCompletionRenderer problem={problem} />
+      </Suspense>
+    )
+  }
+  const Concept = CONCEPT_RENDERERS[problem.type]
+  if (Concept !== undefined) return <Concept problem={problem} />
+  // 表外类型（历史数据 / 将来新增题型）：如实说明还没实现，不静默渲染成「已支持」
+  return (
+    <>
+      <section className="rounded-xl border p-4" style={panel}>
+        <p className="text-sm whitespace-pre-wrap">{problem.stem}</p>
+      </section>
+      <PhasePlaceholder
+        phase={`未实现的题型：${problem.type}`}
+        todo={[
+          '本站已支持十一个题型（四类主力走 Godbolt 实机判分，七类辅助前端即时判定），这一型不在其中',
+          '这不是数据损坏：index.json 与分片一致，只是前端还没有这一型的作答界面',
+          '可以先回列表页（✍️ 在线刷题）按题型筛选，做其余题目',
+        ]}
+      />
     </>
   )
 }

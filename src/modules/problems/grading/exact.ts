@@ -45,7 +45,12 @@ export function needsStdin(code: string): boolean {
 
 export type ReadingTarget =
   | { kind: 'ok'; code: string; expected: string; stdin: string; runnableLive: boolean; blockedReason?: string }
-  /** 19 道 answer 为空（含 c-ch04-cr-004 的 answerIsDescription）：没有 expected 就无法判分 */
+  /**
+   * answer 为空（含 c-ch04-cr-004 一类的 answerIsDescription）：没有 expected 就无法判分。
+   * 这一类有多少道不写死在这里 —— 构建期由 build-index.ts 实测后写进 index.json 的
+   * defects.codeReadingNoAnswer，前端经 loadDefectCount() 读取（R3：原注释写「19 道」，
+   * 补参考实现那轮之后实际已是 21 道，硬编码数字就是这么烂掉的）。
+   */
   | { kind: 'no-answer'; code: string; isDescription: boolean }
   | { kind: 'no-code' }
 

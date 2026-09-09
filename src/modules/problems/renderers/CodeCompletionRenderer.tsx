@@ -30,6 +30,7 @@ import { MONO_FONT } from '../../../components/common/CodeEditor'
 import { judge } from '../../../app/config'
 import { firstDiffLine, formatDiagnostics } from '../../../judge/backends/base'
 import type { JudgeClient } from '../../../judge/client'
+import { backendIdForCode } from '../../../judge/math-lib'
 import type { BatchReport, TestCaseResult } from '../../../judge/types'
 import type { ProblemRecord } from '../data/loader'
 import { createJudgeClient, runStdinTests, toProblemTestCases } from '../grading/stdin-run'
@@ -111,12 +112,24 @@ export function CodeCompletionRenderer({ problem }: Props) {
   const [fatal, setFatal] = useState<string | null>(null)
   const [resetKey, setResetKey] = useState(0)
   const editorRef = useRef<BlankEditorHandle>(null)
-  const clientRef = useRef<JudgeClient | null>(null)
+  /**
+   * 阶段 5 · R5：按源码分流后端 —— 含 sqrt 一类数学函数的代码走 libm 支路
+   * （默认 cg132 链不上 libm，选型证据见 src/judge/math-lib.ts 文件头）。
+   * client.ts 的结果缓存键与跨标签页锁名都含 backend.id，所以每条支路必须各持一个
+   * client 实例：这里用 Map 按后端 id 分桶，而不是单个 ref。
+   */
+  const clientsRef = useRef<Map<string, JudgeClient> | null>(null)
 
-  // 一个题目页持有一个 client：结果缓存跨提交复用，同一份拼装代码重复提交不再打网络
-  const getClient = useCallback(() => {
-    clientRef.current ??= createJudgeClient()
-    return clientRef.current
+  /** 按空位拼装出的完整程序挑后端（不是按单个空位的值） */
+  const getClient = useCallback((source: string): JudgeClient => {
+    const buckets = (clientsRef.current ??= new Map<string, JudgeClient>())
+    const key = backendIdForCode(source)
+    let client = buckets.get(key)
+    if (!client) {
+      client = createJudgeClient({ code: source })
+      buckets.set(key, client)
+    }
+    return client
   }, [])
 
   const blocked = target.blocking
@@ -148,13 +161,14 @@ export function CodeCompletionRenderer({ problem }: Props) {
     setRunning(true)
     const assembled = assembleCompletion(target.template, current)
     setProgress({ caseIndex: 1, total: cases.length, status: { running: 0, waiting: 0, ahead: 0, concurrency: 0 } })
-    const outcome = await runStdinTests(getClient(), assembled, cases, (p) => setProgress(p))
+    const outcome = await runStdinTests(getClient(assembled), assembled, cases, (p) => setProgress(p))
     setRunning(false)
     setProgress(null)
     if (outcome.kind === 'done') {
       setReport(outcome.report)
       // 模块 5：判分结论落盘。空位没填 / 没有测试用例时上面已 return，不产生「未判定」记录
-      recordBatchAttempt(problem.id, outcome.report.results)
+      // 阶段 5：存拼装后的完整程序（不是单个空位的值），回看时才能直接读
+      recordBatchAttempt(problem.id, outcome.report.results, { text: assembled, kind: 'code' })
     } else setFatal(outcome.summary)
   }, [running, blocked, values, target, cases, getClient, problem.id])
 

@@ -44,6 +44,12 @@ function classify(json: Record<string, unknown>): ExecutionResult['errorClass'] 
   return 'ok'
 }
 export interface GodboltOptions {
+  /**
+   * 后端 id，默认 'godbolt'。它进 client.ts 的结果缓存键与跨标签页锁名，
+   * 所以**同一个适配器换一个编译器时必须同时换 id**，否则两条支路的结果会互相顶掉
+   * （libm 支路见 src/judge/math-lib.ts）。
+   */
+  id?: string
   /** 编译器 id，默认 cg132 = GCC 13.2 x86-64 */
   compiler?: string
   /** 编译参数，默认 -std=c99 -Wall -Wextra */
@@ -55,7 +61,7 @@ export function createGodboltBackend(options: GodboltOptions = {}): JudgeBackend
   const args = options.userArguments ?? judge.userArguments
 
   return {
-    id: 'godbolt',
+    id: options.id ?? 'godbolt',
     maxConcurrency: judge.maxConcurrency,
     minIntervalMs: judge.minIntervalMs,
     timeoutMs: judge.timeoutMs,

@@ -53,7 +53,7 @@ interface CaseRecord {
 }
 interface ProblemRecord {
   id: string; type: string; file: string; checked_field: string
-  /** 本题实际用的编译器：libm 题会被路由到 g132，其余是配置里的 cg132 */
+  /** 本题实际用的编译器：libm 题会被路由到 MATH_COMPILER，其余是配置里的 cg132 */
   compiler?: string
   request_count: number; wall_ms: number; ok: boolean; adopted_answer: string | null
   /** inconclusive = 本轮遇到后端抖动（5xx/网络），根本没拿到判定；attempts = 本轮为这道题跑了几遍 */
@@ -87,14 +87,22 @@ const simulate5xx = process.argv.includes('--simulate-5xx')
 const DOC04 = '04_题型规范与样例.md'
 
 /**
- * libm 路由。实测（tmp/probe-math.mjs，2026-09-09）：cg132 的执行链路不吃 userArguments 里的
- * -lm，含 sqrt 的源码必然 undefined reference → didExecute=false；换 g132 能链上。
- * 代价：g132 是 C++ 前端，被路由过去的参考实现必须是「C++ 也能编译的 C」
- * （malloc 返回值要显式强转）。全库只有 2 道题走这条支路，故只在构建期脚本里做，
- * 线上判分后端不动 —— 这条前端缺口已登记，留给阶段 5。
+ * libm 路由（阶段 5 · R5 收口）。
+ *
+ * 选型证据与「为什么不是 g132」的实测表格在 src/judge/math-lib.ts 文件头，
+ * 那里是**唯一口径**：本脚本不再自己写一份正则与编译器 id，而是用 ssrLoadModule
+ * 从同一个模块取，避免构建期与线上判分各走一个编译器而惄惄漂移。
+ *
+ * 结论（tmp/probe-mathdecide.mjs，2026-09-09）：cg132 的执行链路不吃 userArguments 里的 -lm，
+ * 含 sqrt 的源码必然 undefined reference → didExecute=false；g132 能链上但它**不在
+ * /api/compilers/c 列表里**（是 C++ 前端），会拒绝 malloc 不强转 / _Bool 等合法 C 写法，
+ * 故本轮翻案改用 cicc191（x86-64 icc 19.0.1）—— 它既是名副其实的 C 编译器又能链 libm。
+ * 两道命中题（c-ch07-cr-001 / c-ch08-pg-005）在 cicc191 下的输出与原 g132 取证逐字一致，
+ * 故 expected 不需修正；verified 仍由本脚本实机重跑后置位。
  */
-const MATH_COMPILER = 'g132'
-const MATH_LIB_RE = /\b(sqrt|pow|sin|cos|tan|asin|acos|atan|atan2|log|log10|exp|fabs|floor|ceil|fmod|hypot|sinh|cosh|tanh)\s*\(/
+let MATH_COMPILER = ''
+let MATH_BACKEND_ID = 'godbolt-math'
+let needsMathLib: (code: string) => boolean = () => false
 
 /**
  * --only=<id 或 id 前缀>[,...]：只跑子集。内容返工时逐批改数据用，
@@ -117,7 +125,7 @@ const server = await createServer({
   optimizeDeps: { noDiscovery: true },
 })
 let backend: Backend
-/** libm 专用后端（g132）。只有 needsMathLib 命中的题会走它。 */
+/** libm 专用后端。只有 needsMathLib 命中的题会走它。 */
 let backendMath: Backend | null = null
 let normalize: Norm
 let cfg: { godboltCompiler: string; userArguments: string }
@@ -125,8 +133,14 @@ try {
   const mod = (await server.ssrLoadModule('/src/judge/backends/godbolt.ts')) as { createGodboltBackend: (o: Record<string, unknown>) => Backend }
   const base = (await server.ssrLoadModule('/src/judge/backends/base.ts')) as { normalizeOutput: Norm }
   const conf = (await server.ssrLoadModule('/src/app/config.ts')) as { judge: typeof cfg }
+  const math = (await server.ssrLoadModule('/src/judge/math-lib.ts')) as {
+    MATH_COMPILER: string; MATH_BACKEND_ID: string; needsMathLib: (code: string) => boolean
+  }
+  MATH_COMPILER = math.MATH_COMPILER
+  MATH_BACKEND_ID = math.MATH_BACKEND_ID
+  needsMathLib = math.needsMathLib
   backend = mod.createGodboltBackend({})
-  backendMath = mod.createGodboltBackend({ compiler: MATH_COMPILER })
+  backendMath = mod.createGodboltBackend({ id: MATH_BACKEND_ID, compiler: MATH_COMPILER })
   normalize = base.normalizeOutput
   cfg = conf.judge
   if (simulate5xx) {
@@ -144,9 +158,6 @@ console.log('后端就绪（' + (Date.now() - boot) + 'ms）id=' + backend.id + 
   ' args="' + cfg.userArguments + '" minIntervalMs=' + backend.minIntervalMs + ' timeoutMs=' + backend.timeoutMs)
 if (onlyTokens.length) console.log('--only 子集：' + onlyTokens.join(', ') + '（报告将与上一份合并，未跑的题原样带下去）')
 
-function needsMathLib(code: string): boolean {
-  return MATH_LIB_RE.test(code)
-}
 function backendFor(code: string): Backend {
   return needsMathLib(code) && backendMath !== null ? backendMath : backend
 }

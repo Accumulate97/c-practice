@@ -21,7 +21,8 @@ import { loadIndex } from '../modules/problems/data/loader'
 import type { ProblemIndex, ProblemIndexEntry } from '../modules/problems/data/loader'
 import { statusOf, useProgress } from '../modules/problems/progress/store'
 import type { ListStatus } from '../modules/problems/progress/store'
-import { RENDERABLE_TYPES, difficultyStars, shardKey, shortId, typeLabel } from '../modules/problems/type-meta'
+// TYPE_ORDER 阶段 5 下沉到 type-meta（进度页「按题型统计」要用同一份顺序，不留第二份）
+import { RENDERABLE_TYPES, TYPE_ORDER, difficultyStars, shardKey, shortId, typeLabel } from '../modules/problems/type-meta'
 
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
@@ -34,21 +35,6 @@ const control: CSSProperties = {
 const PAGE_SIZES = [20, 50, 100]
 const DEFAULT_PAGE_SIZE = 50
 const DIFFICULTIES = [1, 2, 3, 4, 5]
-
-/** 筛选面板的题型顺序：任务书第三节的主力四型在前，辅助题型在后（表外类型按题量追加） */
-const TYPE_ORDER = [
-  'code_completion',
-  'debug',
-  'code_reading',
-  'programming',
-  'single_choice',
-  'fill_blank',
-  'short_answer',
-  'true_false',
-  'code_ordering',
-  'complexity',
-  'matching',
-]
 
 type SortKey = 'default' | 'index' | 'diff-asc' | 'diff-desc'
 
