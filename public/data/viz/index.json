@@ -1,6 +1,127 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "d544a02039750f0f",
-  "count": 0,
-  "demos": []
+  "content_sha": "6ad1395e39c9bcb7",
+  "count": 12,
+  "demos": [
+    {
+      "id": "graph-bfs",
+      "chapter": "第6章 图",
+      "title": "图的广度优先遍历（BFS）",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 14,
+      "url": "data/viz/graph-bfs.json"
+    },
+    {
+      "id": "linear-singly-insert",
+      "chapter": "第2章 线性表",
+      "title": "单链表插入：指针修改顺序",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 5,
+      "url": "data/viz/linear-singly-insert.json"
+    },
+    {
+      "id": "memory-swap-call",
+      "chapter": "第9章 指针",
+      "title": "值传递 vs 地址传递（内存格对比）",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 7,
+      "url": "data/viz/memory-swap-call.json"
+    },
+    {
+      "id": "sort-bubble",
+      "chapter": "第8章 排序",
+      "title": "冒泡排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 50,
+      "url": "data/viz/sort-bubble.json"
+    },
+    {
+      "id": "sort-heapsort",
+      "chapter": "第8章 排序",
+      "title": "堆排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 41,
+      "url": "data/viz/sort-heapsort.json"
+    },
+    {
+      "id": "sort-insertion",
+      "chapter": "第8章 排序",
+      "title": "插入排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 34,
+      "url": "data/viz/sort-insertion.json"
+    },
+    {
+      "id": "sort-merge",
+      "chapter": "第8章 排序",
+      "title": "归并排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 40,
+      "url": "data/viz/sort-merge.json"
+    },
+    {
+      "id": "sort-quick",
+      "chapter": "第8章 排序",
+      "title": "快速排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 39,
+      "url": "data/viz/sort-quick.json"
+    },
+    {
+      "id": "sort-radix",
+      "chapter": "第8章 排序",
+      "title": "基数排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 20,
+      "url": "data/viz/sort-radix.json"
+    },
+    {
+      "id": "sort-selection",
+      "chapter": "第8章 排序",
+      "title": "选择排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 58,
+      "url": "data/viz/sort-selection.json"
+    },
+    {
+      "id": "sort-shell",
+      "chapter": "第8章 排序",
+      "title": "希尔排序",
+      "relatedProblems": [],
+      "renderer": "bar",
+      "category": "sort",
+      "steps": 66,
+      "url": "data/viz/sort-shell.json"
+    },
+    {
+      "id": "tree-bst-insert",
+      "chapter": "第5章 树和二叉树",
+      "title": "二叉排序树插入：查找路径",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 19,
+      "url": "data/viz/tree-bst-insert.json"
+    }
+  ]
 }

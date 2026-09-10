@@ -1,0 +1,369 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-swap-call",
+  "title": "值传递 vs 地址传递（内存格对比）",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "/* 值传递：形参是实参的副本，改副本动不了 x、y */\nvoid swapByValue(int a, int b) {\n    int t = a; a = b; b = t;\n}\n\n/* 地址传递：形参是指针，*pa、*pb 就是 x、y 本身 */\nvoid swapByAddr(int *pa, int *pb) {\n    int t = *pa; *pa = *pb; *pb = t;\n}\n\nint main(void) {\n    int x = 1, y = 2;\n    swapByValue(x, y);    /* 返回后 x=1, y=2（没变） */\n    swapByAddr(&x, &y);   /* 返回后 x=2, y=1（成功） */\n    return 0;\n}",
+  "meta": {
+    "algorithm": "memorySwapCall",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "main 中 x=1、y=2，目标是把它们交换。左：值传递；右：地址传递。两侧内存格并排对照",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "值传递：调用 swap(x, y)，把 x、y 的值【复制】一份给形参 a、b（a、b 与 x、y 是不同的内存单元）",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              },
+              {
+                "key": "a",
+                "address": "0x2000",
+                "value": "1",
+                "role": "active",
+                "note": "x 的副本"
+              },
+              {
+                "key": "b",
+                "address": "0x2004",
+                "value": "2",
+                "role": "active",
+                "note": "y 的副本"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "函数内交换 a、b：a=2、b=1 —— 但 0x1000/0x1004 上的 x、y 纹丝不动",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              },
+              {
+                "key": "a",
+                "address": "0x2000",
+                "value": "2",
+                "role": "swap",
+                "note": "副本被改"
+              },
+              {
+                "key": "b",
+                "address": "0x2004",
+                "value": "1",
+                "role": "swap",
+                "note": "副本被改"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "函数返回，形参 a、b 的内存被释放；x=1、y=2，交换失败",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "地址传递：调用 swap(&x, &y)，形参 pa、pb 是指针，分别保存 x、y 的地址",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              },
+              {
+                "key": "pa",
+                "address": "0x3000",
+                "value": "→ x",
+                "role": "active",
+                "note": "存 x 的地址 0x1000"
+              },
+              {
+                "key": "pb",
+                "address": "0x3004",
+                "value": "→ y",
+                "role": "active",
+                "note": "存 y 的地址 0x1004"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 *pa 与 *pb：直接改写 pa/pb 所指内存，即 x、y 本体 → x=2、y=1",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "2",
+                "role": "swap"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "1",
+                "role": "swap"
+              },
+              {
+                "key": "pa",
+                "address": "0x3000",
+                "value": "→ x",
+                "role": "active"
+              },
+              {
+                "key": "pb",
+                "address": "0x3004",
+                "value": "→ y",
+                "role": "active"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "函数返回，指针 pa、pb 释放；x=2、y=1，交换成功 —— 这就是 swap 必须传地址的原因",
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "byvalue",
+            "title": "值传递 swap(int a, int b)",
+            "note": "形参是副本",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "1"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "key": "byaddr",
+            "title": "地址传递 swap(int *pa, int *pb)",
+            "note": "形参是指针",
+            "cells": [
+              {
+                "key": "x",
+                "address": "0x1000",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "y",
+                "address": "0x1004",
+                "value": "1",
+                "role": "sorted"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

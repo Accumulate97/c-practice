@@ -1,0 +1,1333 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-quick",
+  "title": "快速排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void quickSort(int a[], int lo, int hi) {\n    if (lo >= hi) return;\n    int pivot = a[hi];                          /* 取末元素为基准 */\n    int i = lo - 1;                             /* i 是「小于区」右边界 */\n    for (int j = lo; j < hi; j++) {\n        if (a[j] < pivot) {\n            i++;\n            int t = a[i]; a[i] = a[j]; a[j] = t;\n        }\n    }\n    int t = a[i + 1]; a[i + 1] = a[hi]; a[hi] = t;  /* 基准归位 */\n    int p = i + 1;\n    quickSort(a, lo, p - 1);\n    quickSort(a, p + 1, hi);\n}",
+  "meta": {
+    "algorithm": "quickSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "swaps"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]；快速排序：选基准 → 分区 → 递归左右（Lomuto 分区）",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "选基准 a[7]=4，对区间 [0..7] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[0]=5 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[1]=2 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1] < 基准，交换到左区 a[0]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "比较 a[2]=8 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[3]=1 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3] < 基准，交换到左区 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=3 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] < 基准，交换到左区 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与基准 4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "基准归位到 a[3]=4：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "选基准 a[2]=3，对区间 [0..2] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "pivot",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[0]=2 与基准 3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "pivot",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0] < 基准，边界 i 前进到 0",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "pivot",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "比较 a[1]=1 与基准 3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "pivot",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1] < 基准，边界 i 前进到 1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "pivot",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "基准归位到 a[2]=3：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "选基准 a[1]=1，对区间 [0..1] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "idle",
+          "pivot",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[0]=2 与基准 1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "compare",
+          "pivot",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "基准归位到 a[0]=1：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "idle",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "区间只剩 a[1]=2，天然就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "选基准 a[7]=5，对区间 [4..7] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与基准 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "compare",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=8 与基准 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "compare",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与基准 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "compare",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "基准归位到 a[4]=5：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 6
+        }
+      }
+    },
+    {
+      "description": "选基准 a[7]=9，对区间 [5..7] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=8 与基准 9",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "compare",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] < 基准，边界 i 前进到 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 6
+        }
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与基准 9",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "compare",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6] < 基准，边界 i 前进到 6",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "active",
+          "pivot"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 6
+        }
+      }
+    },
+    {
+      "description": "基准归位到 a[7]=9：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 6
+        }
+      }
+    },
+    {
+      "description": "选基准 a[6]=7，对区间 [5..6] 分区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "pivot",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "pivot",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=8 与基准 7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "compare",
+          "pivot",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "基准归位到 a[5]=7：左侧都 ≤ 它，右侧都 > 它",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 7
+        }
+      }
+    },
+    {
+      "description": "区间只剩 a[6]=8，天然就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 7
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 16 次比较、7 次交换",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 7
+        }
+      }
+    }
+  ]
+}

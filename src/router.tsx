@@ -50,8 +50,39 @@ export const router = createHashRouter([
       { path: 'problems/:section', element: <SectionPage /> },
       { path: 'knowledge', element: <SectionPage /> },
       { path: 'knowledge/:section', element: <SectionPage /> },
-      { path: 'viz', element: <SectionPage /> },
-      { path: 'viz/:section', element: <SectionPage /> },
+      // 阶段 7：可视化板块从「诚实占位」换成真页面。三条都走路由级 lazy ——
+      // 5 套渲染器 + Player + 语料 loader 不该由首页付体积（与题目详情页同一口径）。
+      // 顺序有讲究：静态段 viz/compare 必须声明在 viz/:demoId 之前，否则 compare 会被当成演示 id。
+      {
+        path: 'viz',
+        lazy: async () => {
+          const mod = await import('./pages/VizListPage')
+          return { Component: mod.VizListPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载演示索引…</p>
+        ),
+      },
+      {
+        path: 'viz/compare',
+        lazy: async () => {
+          const mod = await import('./pages/VizComparePage')
+          return { Component: mod.VizComparePage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载对比演示…</p>
+        ),
+      },
+      {
+        path: 'viz/:demoId',
+        lazy: async () => {
+          const mod = await import('./pages/VizDemoPage')
+          return { Component: mod.VizDemoPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载演示…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台，阶段 4 判分器进刷题页后可移除
       { path: 'judge-lab', element: <JudgeLabPage /> },

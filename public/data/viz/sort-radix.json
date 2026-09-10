@@ -1,0 +1,610 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-radix",
+  "title": "基数排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void radixSort(int a[], int n) {                /* LSD，非负整数 */\n    int max = 0;\n    for (int i = 0; i < n; i++) if (a[i] > max) max = a[i];\n    int out[n];                                 /* C99 变长数组作缓冲 */\n    for (int exp = 1; max / exp > 0; exp *= 10) {\n        int count[10] = {0};\n        for (int i = 0; i < n; i++) count[(a[i] / exp) % 10]++;  /* 分配 */\n        for (int d = 1; d < 10; d++) count[d] += count[d - 1];   /* 前缀和 */\n        for (int i = n - 1; i >= 0; i--) {                       /* 倒序收集保稳定 */\n            int d = (a[i] / exp) % 10;\n            out[--count[d]] = a[i];\n        }\n        for (int i = 0; i < n; i++) a[i] = out[i];\n    }\n}",
+  "meta": {
+    "algorithm": "radixSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "moves"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]；基数排序（LSD）：从个位到最高位，逐位「分配—收集」，不靠比较（最大值 9）",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "按个位（exp=1）分配收集",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[0]=5 的个位是 5，count[5]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[1]=2 的个位是 2，count[2]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[2]=8 的个位是 8，count[8]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[3]=1 的个位是 1，count[1]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[4]=9 的个位是 9，count[9]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[5]=3 的个位是 3，count[3]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[6]=7 的个位是 7，count[7]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[7]=4 的个位是 4，count[4]++",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[7]=4（个位 4）放到临时数组第 3 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[6]=7（个位 7）放到临时数组第 5 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "moves": 2
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[5]=3（个位 3）放到临时数组第 2 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 3
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[4]=9（个位 9）放到临时数组第 7 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[3]=1（个位 1）放到临时数组第 0 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 5
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[2]=8（个位 8）放到临时数组第 6 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 6
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[1]=2（个位 2）放到临时数组第 1 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 7
+        }
+      }
+    },
+    {
+      "description": "倒序收集：a[0]=5（个位 5）放到临时数组第 4 位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 8
+        }
+      }
+    },
+    {
+      "description": "本趟收集后：[1, 2, 3, 4, 5, 7, 8, 9]（按个位有序）",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "moves": 16
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 16 次移动（基数排序不做元素比较）",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "moves": 16
+        }
+      }
+    }
+  ]
+}

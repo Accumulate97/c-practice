@@ -8,7 +8,7 @@
  *   public/data/problems/index.json    分片清单 + 题目卡片（列表页与 verify-data 的一致性核对对象）
  *   public/data/search/problems.json   搜索索引源（MiniSearch 在浏览器里拿这份建内存索引）
  *   public/data/knowledge/index.json   知识卡片索引（阶段 5 之前是空壳，但路径先定死）
- *   public/data/viz/index.json         演示索引（阶段 6 同上）
+ *   public/data/viz/index.json         演示索引（阶段 7：由 npm run gen:viz 产出的语料汇总）
  *
  * 用法：node scripts/build-index.ts
  */
@@ -203,6 +203,12 @@ function vizIndexShaped(): Record<string, unknown> {
       chapter: n.chapter,
       title: n.title ?? n.id,
       relatedProblems: Array.isArray(n.relatedProblems) ? n.relatedProblems : [],
+      // 阶段 7 起索引带上列表页必需的展示字段：渲染器种类、分类、步数、语料相对地址。
+      // steps 只存条数不存内容 —— 完整快照留在 {id}.json，列表页不为它付流量。
+      renderer: n.renderer,
+      category: n.category,
+      steps: Array.isArray(n.steps) ? n.steps.length : 0,
+      url: 'data/viz/' + n.id + '.json',
     })),
   }
 }

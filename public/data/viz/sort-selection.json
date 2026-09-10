@@ -1,0 +1,2147 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-selection",
+  "title": "选择排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void selectionSort(int a[], int n) {\n    for (int i = 0; i < n - 1; i++) {\n        int min = i;                            /* 记录最小值下标 */\n        for (int j = i + 1; j < n; j++)\n            if (a[j] < a[min]) min = j;\n        if (min != i) {                         /* 把最小值换到 a[i] */\n            int t = a[i]; a[i] = a[min]; a[min] = t;\n        }\n    }\n}",
+  "meta": {
+    "algorithm": "selectionSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "swaps"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]，每趟从未排序区选出最小值放到前端",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "第 1 趟：设 a[0]=5 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[1]=2 与当前最小 a[0]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          },
+          {
+            "label": "min",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1] 更小，更新最小值下标为 1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[2]=8 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[3]=1 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "pivot",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3] 更小，更新最小值下标为 3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与当前最小 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=3 与当前最小 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=4 与当前最小 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 a[0] 与 a[3]，把最小值 1 放到 a[0]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "swap",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "第 1 趟结束：a[0]=1 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "第 2 趟：设 a[1]=2 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[2]=8 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[3]=5 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=3 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=4 与当前最小 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟结束：a[1]=2 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "第 3 趟：设 a[2]=8 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[3]=5 与当前最小 a[2]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          },
+          {
+            "label": "min",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3] 更小，更新最小值下标为 3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=3 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "pivot",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] 更小，更新最小值下标为 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[5]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=4 与当前最小 a[5]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          8,
+          5,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "pivot",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 a[2] 与 a[5]，把最小值 3 放到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "swap",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "第 3 趟结束：a[2]=3 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "第 4 趟：设 a[3]=5 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[4]=9 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 19,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=8 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 21,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=4 与当前最小 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[7] 更小，更新最小值下标为 7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          8,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 a[3] 与 a[7]，把最小值 4 放到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "第 4 趟结束：a[3]=4 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "第 5 趟：设 a[4]=9 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[5]=8 与当前最小 a[4]=9",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          },
+          {
+            "label": "min",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] 更小，更新最小值下标为 5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[5]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "pivot",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 24,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6] 更小，更新最小值下标为 6",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 24,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=5 与当前最小 a[6]=7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "pivot",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[7] 更小，更新最小值下标为 7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          9,
+          8,
+          7,
+          5
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 a[4] 与 a[7]，把最小值 5 放到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "idle",
+          "idle",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "第 5 趟结束：a[4]=5 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "第 6 趟：设 a[5]=8 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[6]=7 与当前最小 a[5]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          },
+          {
+            "label": "min",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6] 更小，更新最小值下标为 6",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=9 与当前最小 a[6]=7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          7,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "pivot",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "交换 a[5] 与 a[6]，把最小值 7 放到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "第 6 趟结束：a[5]=7 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "第 7 趟：设 a[6]=8 为当前最小",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "比较 a[7]=9 与当前最小 a[6]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "pivot",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          },
+          {
+            "label": "min",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 7 趟结束：a[6]=8 就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 28 次比较、5 次交换",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 5
+        }
+      }
+    }
+  ]
+}

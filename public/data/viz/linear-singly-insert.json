@@ -1,0 +1,283 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "linear-singly-insert",
+  "title": "单链表插入：指针修改顺序",
+  "renderer": "nodechain",
+  "category": "linear",
+  "chapter": "第2章 线性表",
+  "relatedProblems": [],
+  "code": "struct Node { int data; struct Node *next; };\n\n/* 头插法：先连（new->next = head），后改头（head = new） */\nstruct Node *insertFront(struct Node *head, int v) {\n    struct Node *nw = malloc(sizeof(struct Node));\n    nw->data = v;\n    nw->next = head;   /* 先连：新结点接住原链表 */\n    head = nw;         /* 后改头：头指针指向新结点 */\n    return head;\n}",
+  "meta": {
+    "algorithm": "linearSinglyInsert",
+    "counterKeys": [
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始单链表：head → A → B → C → ∧（每个结点的 next 指向后继，尾结点 next 为 NULL）",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "新建结点 X（new 指向它），此时它还没接入链表",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "new",
+            "node": "X"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "先连：new->next = head，让 X 指向 A —— 这一步必须最先做，否则后面改 head 就再也找不到 A，链表断裂",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "X",
+            "to": "A",
+            "role": "active"
+          },
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "new",
+            "node": "X"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "后改头：head = new，头指针指向 X，头插完成",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "X",
+            "to": "A",
+            "role": "active"
+          },
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "X"
+          },
+          {
+            "label": "new",
+            "node": "X"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "结果：head → X → A → B → C → ∧；全程只改 2 次指针，顺序是「先连后改头」",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "X",
+            "label": "X",
+            "role": "sorted"
+          },
+          {
+            "key": "A",
+            "label": "A",
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "X",
+            "to": "A"
+          },
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "X"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    }
+  ]
+}

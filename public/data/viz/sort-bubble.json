@@ -1,0 +1,1777 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-bubble",
+  "title": "冒泡排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void bubbleSort(int a[], int n) {\n    for (int i = 0; i < n - 1; i++) {          /* 共 n-1 趟 */\n        for (int j = 0; j < n - 1 - i; j++) {   /* 每趟两两比较 */\n            if (a[j] > a[j + 1]) {              /* 逆序则交换，把大值后移 */\n                int t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n            }\n        }\n    }\n}",
+  "meta": {
+    "algorithm": "bubbleSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "swaps"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]，共做 7 趟冒泡（每趟把未排序区最大值沉到末尾）",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[0]=5 与 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0] > a[1]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[1]=5 与 a[2]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[2]=8 与 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2] > a[3]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[3]=8 与 a[4]=9",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[4]=9 与 a[5]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4] > a[5]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[5]=9 与 a[6]=7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "swaps": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] > a[6]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟：比较 a[6]=9 与 a[7]=4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6] > a[7]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 1 趟结束：最大值 a[7]=9 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[0]=2 与 a[1]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[1]=5 与 a[2]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1] > a[2]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[2]=5 与 a[3]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[3]=8 与 a[4]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          8,
+          3,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3] > a[4]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          8,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 7
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[4]=8 与 a[5]=7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          8,
+          7,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "swaps": 7
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4] > a[5]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          7,
+          8,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "swaps": 8
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟：比较 a[5]=8 与 a[6]=4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          7,
+          8,
+          4,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 8
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5] > a[6]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 2 趟结束：最大值 a[6]=8 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 9
+        }
+      }
+    },
+    {
+      "description": "第 3 趟：比较 a[0]=2 与 a[1]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0] > a[1]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "swaps": 10
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 3 趟：比较 a[1]=2 与 a[2]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 10
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 3 趟：比较 a[2]=5 与 a[3]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          3,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 10
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2] > a[3]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 11
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 3 趟：比较 a[3]=5 与 a[4]=7",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "swaps": 11
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 3 趟：比较 a[4]=7 与 a[5]=4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          4,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 11
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4] > a[5]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 3 趟结束：最大值 a[5]=7 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 12
+        }
+      }
+    },
+    {
+      "description": "第 4 趟：比较 a[0]=1 与 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 19,
+          "swaps": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 4 趟：比较 a[1]=2 与 a[2]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "swaps": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 4 趟：比较 a[2]=3 与 a[3]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 21,
+          "swaps": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 4 趟：比较 a[3]=5 与 a[4]=4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          4,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3] > a[4]，交换两者",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 4 趟结束：最大值 a[4]=5 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "第 5 趟：比较 a[0]=1 与 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 5 趟：比较 a[1]=2 与 a[2]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 24,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 5 趟：比较 a[2]=3 与 a[3]=4",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 5 趟结束：最大值 a[3]=4 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "第 6 趟：比较 a[0]=1 与 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 6 趟：比较 a[1]=2 与 a[2]=3",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 6 趟结束：最大值 a[2]=3 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "第 7 趟：比较 a[0]=1 与 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "第 7 趟结束：最大值 a[1]=2 已就位",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 28 次比较、13 次交换",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 28,
+          "swaps": 13
+        }
+      }
+    }
+  ]
+}

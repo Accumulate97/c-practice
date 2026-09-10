@@ -1,0 +1,1261 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-heapsort",
+  "title": "堆排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void siftDown(int a[], int root, int end) {     /* 在 [0, end) 内下沉 */\n    while (2 * root + 1 < end) {\n        int child = 2 * root + 1;\n        if (child + 1 < end && a[child + 1] > a[child]) child++;  /* 取大孩子 */\n        if (a[child] > a[root]) {\n            int t = a[child]; a[child] = a[root]; a[root] = t;\n            root = child;\n        } else break;\n    }\n}\n\nvoid heapSort(int a[], int n) {\n    for (int i = n / 2 - 1; i >= 0; i--) siftDown(a, i, n);  /* 建大顶堆 */\n    for (int end = n - 1; end > 0; end--) {\n        int t = a[0]; a[0] = a[end]; a[end] = t;             /* 堆顶换到末尾 */\n        siftDown(a, 0, end);\n    }\n}",
+  "meta": {
+    "algorithm": "heapSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "swaps"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]；堆排序：先建大顶堆，再反复把堆顶换到末尾并下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "建堆：从最后一个非叶结点 a[3]=1 开始下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[7]=4 与父结点 a[3]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 0
+        }
+      }
+    },
+    {
+      "description": "a[7] > a[3]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          4,
+          9,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "建堆：从最后一个非叶结点 a[2]=8 开始下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          4,
+          9,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[6]=7 与父结点 a[2]=8",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          4,
+          9,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "建堆：从最后一个非叶结点 a[1]=2 开始下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          4,
+          9,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[4]=9 与父结点 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          4,
+          9,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 1
+        }
+      }
+    },
+    {
+      "description": "a[4] > a[1]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          9,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "建堆：从最后一个非叶结点 a[0]=5 开始下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          9,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[1]=9 与父结点 a[0]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          9,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "active",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 2
+        }
+      }
+    },
+    {
+      "description": "a[1] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          9,
+          5,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[3]=4 与父结点 a[1]=5",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          9,
+          5,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "大顶堆建成：堆顶 a[0]=9 是当前最大值",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          9,
+          5,
+          8,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 3
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[7]，最大值 9 就位；对 [0..6] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          8,
+          4,
+          2,
+          3,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[2]=8 与父结点 a[0]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          8,
+          4,
+          2,
+          3,
+          7,
+          9
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 4
+        }
+      }
+    },
+    {
+      "description": "a[2] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          8,
+          5,
+          1,
+          4,
+          2,
+          3,
+          7,
+          9
+        ],
+        "roles": [
+          "swap",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[6]=7 与父结点 a[2]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          8,
+          5,
+          1,
+          4,
+          2,
+          3,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 5
+        }
+      }
+    },
+    {
+      "description": "a[6] > a[2]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          8,
+          5,
+          7,
+          4,
+          2,
+          3,
+          1,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 6
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[6]，最大值 8 就位；对 [0..5] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          4,
+          2,
+          3,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "swaps": 7
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[2]=7 与父结点 a[0]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          4,
+          2,
+          3,
+          8,
+          9
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 7
+        }
+      }
+    },
+    {
+      "description": "a[2] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          7,
+          5,
+          1,
+          4,
+          2,
+          3,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "swaps": 8
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[5]=3 与父结点 a[2]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          7,
+          5,
+          1,
+          4,
+          2,
+          3,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "compare",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 8
+        }
+      }
+    },
+    {
+      "description": "a[5] > a[2]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          7,
+          5,
+          3,
+          4,
+          2,
+          1,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "swap",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 9
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[5]，最大值 7 就位；对 [0..4] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          3,
+          4,
+          2,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "swaps": 10
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[1]=5 与父结点 a[0]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          3,
+          4,
+          2,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "active",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 10
+        }
+      }
+    },
+    {
+      "description": "a[1] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          3,
+          4,
+          2,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "swaps": 11
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[3]=4 与父结点 a[1]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          3,
+          4,
+          2,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "compare",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "swaps": 11
+        }
+      }
+    },
+    {
+      "description": "a[3] > a[1]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          4,
+          3,
+          1,
+          2,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "idle",
+          "swap",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "swaps": 12
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[4]，最大值 5 就位；对 [0..3] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          4,
+          3,
+          1,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[1]=4 与父结点 a[0]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          4,
+          3,
+          1,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "active",
+          "compare",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 13
+        }
+      }
+    },
+    {
+      "description": "a[1] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          4,
+          2,
+          3,
+          1,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "swaps": 14
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[3]=1 与父结点 a[1]=2",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          4,
+          2,
+          3,
+          1,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "swaps": 14
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[3]，最大值 4 就位；对 [0..2] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "swaps": 15
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[2]=3 与父结点 a[0]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 15
+        }
+      }
+    },
+    {
+      "description": "a[2] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          3,
+          2,
+          1,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "idle",
+          "swap",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 16
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[2]，最大值 3 就位；对 [0..1] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "swaps": 17
+        }
+      }
+    },
+    {
+      "description": "比较较大子结点 a[1]=2 与父结点 a[0]=1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "active",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 17
+        }
+      }
+    },
+    {
+      "description": "a[1] > a[0]，交换并继续下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          1,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 18
+        }
+      }
+    },
+    {
+      "description": "交换堆顶 a[0] 与 a[1]，最大值 2 就位；对 [0..0] 重新下沉",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 19
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 26 次比较、19 次交换",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "swaps": 19
+        }
+      }
+    }
+  ]
+}

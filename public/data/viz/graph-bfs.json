@@ -1,0 +1,1207 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-bfs",
+  "title": "图的广度优先遍历（BFS）",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "void bfs(int start, int n, const int adj[][n], int visited[]) {\n    int queue[n], front = 0, rear = 0;\n    visited[start] = 1;\n    queue[rear++] = start;              /* 起点入队 */\n    while (front < rear) {\n        int u = queue[front++];         /* 出队 */\n        for (int v = 0; v < n; v++)\n            if (adj[u][v] && !visited[v]) {\n                visited[v] = 1;\n                queue[rear++] = v;      /* 未访问邻居入队 */\n            }\n    }\n}",
+  "meta": {
+    "algorithm": "graphBfs",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "无向图共 6 个结点，从 A 开始广度优先遍历（BFS）：蓝=在队列，绿=已访问，紫=当前出队",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "起点 A 入队",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "出队 A 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "B 未访问，入队（A → B）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "D 未访问，入队（A → D）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "出队 B 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "C 未访问，入队（B → C）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "E 未访问，入队（B → E）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "出队 D 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "F 未访问，入队（D → F）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "pivot"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "出队 C 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "pivot"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "pivot"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "出队 E 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "pivot"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "出队 F 并访问它；依次检查它的邻接点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "BFS 完成，访问顺序：A → B → D → C → E → F（visited=6）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1401 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-merge",
+  "title": "归并排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void merge(int a[], int lo, int mid, int hi, int aux[]) {\n    int i = lo, j = mid, k = lo;\n    while (i < mid && j < hi)                   /* 两段有序，取较小者 */\n        aux[k++] = (a[i] <= a[j]) ? a[i++] : a[j++];\n    while (i < mid) aux[k++] = a[i++];          /* 收尾左段 */\n    while (j < hi)  aux[k++] = a[j++];          /* 收尾右段 */\n    for (int t = lo; t < hi; t++) a[t] = aux[t];/* 拷回原数组 */\n}\n\nvoid mergeSort(int a[], int lo, int hi, int aux[]) {  /* 区间 [lo, hi) */\n    if (hi - lo <= 1) return;\n    int mid = (lo + hi) / 2;\n    mergeSort(a, lo, mid, aux);\n    mergeSort(a, mid, hi, aux);\n    merge(a, lo, mid, hi, aux);\n}",
+  "meta": {
+    "algorithm": "mergeSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "moves"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]；归并排序：自顶向下二分，再两两有序归并",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [0..0] 与 [1..1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "a[1]=2 < a[0]=5，取 a[1] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 0
+          },
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "左段剩余 a[0]=5，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 2
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[0..1] = 2, 5 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [2..2] 与 [3..3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "a[3]=1 < a[2]=8，取 a[3] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 5
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          },
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "左段剩余 a[2]=8，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 6
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[2..3] = 1, 8 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 8
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [0..1] 与 [2..3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 8
+        }
+      }
+    },
+    {
+      "description": "a[2]=1 < a[0]=2，取 a[2] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 0
+          },
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=2 ≤ a[3]=8，取 a[0] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 10
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 0
+          },
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=5 ≤ a[3]=8，取 a[1] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 11
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 1
+          },
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "右段剩余 a[3]=8，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          1,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 12
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[0..3] = 1, 2, 5, 8 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 16
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [4..4] 与 [5..5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 16
+        }
+      }
+    },
+    {
+      "description": "a[5]=3 < a[4]=9，取 a[5] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 17
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 4
+          },
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "左段剩余 a[4]=9，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 18
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[4..5] = 3, 9 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 20
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [6..6] 与 [7..7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 20
+        }
+      }
+    },
+    {
+      "description": "a[7]=4 < a[6]=7，取 a[7] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 21
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 6
+          },
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "左段剩余 a[6]=7，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 22
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[6..7] = 4, 7 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 24
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [4..5] 与 [6..7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 24
+        }
+      }
+    },
+    {
+      "description": "a[4]=3 ≤ a[6]=4，取 a[4] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "moves": 25
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 4
+          },
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6]=4 < a[5]=9，取 a[6] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "moves": 26
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 5
+          },
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[7]=7 < a[5]=9，取 a[7] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 27
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 5
+          },
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "左段剩余 a[5]=9，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          9,
+          4,
+          7
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 28
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[4..7] = 3, 4, 7, 9 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 32
+        }
+      }
+    },
+    {
+      "description": "归并有序段 [0..3] 与 [4..7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 32
+        }
+      }
+    },
+    {
+      "description": "a[0]=1 ≤ a[4]=3，取 a[0] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 33
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 0
+          },
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=2 ≤ a[4]=3，取 a[1] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "moves": 34
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 1
+          },
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=3 < a[2]=5，取 a[4] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 35
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          },
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=4 < a[2]=5，取 a[5] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "moves": 36
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          },
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=5 ≤ a[6]=7，取 a[2] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "moves": 37
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          },
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6]=7 < a[3]=8，取 a[6] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "compare",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "moves": 38
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 3
+          },
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=8 ≤ a[7]=9，取 a[3] 入临时数组",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "compare"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 39
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 3
+          },
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "右段剩余 a[7]=9，直接并入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          3,
+          4,
+          7,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 40
+        }
+      }
+    },
+    {
+      "description": "归并完成：a[0..7] = 1, 2, 3, 4, 5, 7, 8, 9 已有序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 48
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 17 次比较、48 次移动",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 48
+        }
+      }
+    }
+  ]
+}

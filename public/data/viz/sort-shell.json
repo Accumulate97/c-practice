@@ -1,0 +1,2275 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-shell",
+  "title": "希尔排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void shellSort(int a[], int n) {\n    for (int gap = n / 2; gap >= 1; gap /= 2) {  /* 增量逐次减半 */\n        for (int i = gap; i < n; i++) {\n            int key = a[i];\n            int j = i;\n            while (j >= gap && a[j - gap] > key) {\n                a[j] = a[j - gap];              /* 间隔 gap 的插入排序 */\n                j -= gap;\n            }\n            a[j] = key;\n        }\n    }\n}",
+  "meta": {
+    "algorithm": "shellSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "moves"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始数组 [5, 2, 8, 1, 9, 3, 7, 4]；希尔排序增量序列：4 → 2 → 1",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "gap = 4：对间隔为 4 的各子序列做插入排序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "取 a[4]=9，在 gap=4 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=5 ≤ 9，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 9 放到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "取 a[5]=3，在 gap=4 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=2 ≤ 3，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 3 放到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "取 a[6]=7，在 gap=4 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=8 > 7，右移到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 7 放到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "取 a[7]=4，在 gap=4 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=1 ≤ 4，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 4 放到 a[7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "gap = 2：对间隔为 2 的各子序列做插入排序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "取 a[2]=7，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=5 ≤ 7，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 7 放到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "取 a[3]=1，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          1,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=2 > 1，右移到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "idle",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 1 放到 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 2
+        }
+      }
+    },
+    {
+      "description": "取 a[4]=9，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=7 ≤ 9，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 9 放到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 2
+        }
+      }
+    },
+    {
+      "description": "取 a[5]=3，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=2 ≤ 3，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 3 放到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "moves": 2
+        }
+      }
+    },
+    {
+      "description": "取 a[6]=8，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          8,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=9 > 8，右移到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "idle",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=7 ≤ 8，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          9,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 8 放到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 3
+        }
+      }
+    },
+    {
+      "description": "取 a[7]=4，在 gap=2 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=3 ≤ 4，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 4 放到 a[7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 3
+        }
+      }
+    },
+    {
+      "description": "gap = 1：对间隔为 1 的各子序列做插入排序",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 3
+        }
+      }
+    },
+    {
+      "description": "取 a[1]=1，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          1,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=5 > 1，右移到 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 1 放到 a[0]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "取 a[2]=7，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=5 ≤ 7，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 7 放到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "取 a[3]=2，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          2,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=7 > 2，右移到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          7,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "moves": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=5 > 2，右移到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=1 ≤ 2，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          5,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 2 放到 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "moves": 6
+        }
+      }
+    },
+    {
+      "description": "取 a[4]=8，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=7 ≤ 8，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 8 放到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 6
+        }
+      }
+    },
+    {
+      "description": "取 a[5]=3，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          3,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=8 > 3，右移到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "moves": 7
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=7 > 3，右移到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          7,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 19,
+          "moves": 8
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=5 > 3，右移到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 20,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=2 ≤ 3，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 21,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 3 放到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 21,
+          "moves": 9
+        }
+      }
+    },
+    {
+      "description": "取 a[6]=9，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 21,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=8 ≤ 9，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 9 放到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "moves": 9
+        }
+      }
+    },
+    {
+      "description": "取 a[7]=4，在 gap=1 的子序列内向前插入",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 22,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "i",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6]=9 > 4，右移到 a[7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 23,
+          "moves": 10
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=8 > 4，右移到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 24,
+          "moves": 11
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=7 > 4，右移到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 25,
+          "moves": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=5 > 4，右移到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 26,
+          "moves": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=3 ≤ 4，停止后移",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "moves": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 4 放到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "idle",
+          "idle",
+          "idle",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "moves": 13
+        }
+      }
+    },
+    {
+      "description": "排序完成（最后一趟 gap=1 即普通插入排序）：共 27 次比较、13 次移动",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 27,
+          "moves": 13
+        }
+      }
+    }
+  ]
+}

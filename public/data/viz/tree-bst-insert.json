@@ -1,0 +1,768 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-bst-insert",
+  "title": "二叉排序树插入：查找路径",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "struct TNode { int key; struct TNode *left, *right; };\n\nstruct TNode *bstInsert(struct TNode *root, int v) {\n    if (root == NULL) {                 /* 找到空位，落新结点 */\n        struct TNode *nw = malloc(sizeof(struct TNode));\n        nw->key = v; nw->left = nw->right = NULL;\n        return nw;\n    }\n    if (v < root->key) root->left  = bstInsert(root->left,  v);\n    else               root->right = bstInsert(root->right, v);\n    return root;\n}",
+  "meta": {
+    "algorithm": "bstInsert",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "二叉排序树插入演示：依次插入 5, 3, 8, 1, 4, 7, 9（左小右大）",
+      "snapshot": {
+        "kind": "tree",
+        "root": null,
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "树为空，5 作为根结点插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            null,
+            null
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "比较 3 与 5：更小，往左子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            null,
+            null
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 1,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "左孩子为空，3 作为 5 的左孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "active"
+            },
+            null
+          ]
+        },
+        "counters": {
+          "comparisons": 1,
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "比较 8 与 5：更大，往右子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            },
+            null
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "右孩子为空，8 作为 5 的右孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ],
+              "role": "active"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "比较 1 与 5：更小，往左子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "比较 1 与 3：更小，往左子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "左孩子为空，1 作为 3 的左孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                null
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "比较 4 与 5：更小，往左子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 5,
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "比较 4 与 3：更大，往右子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "右孩子为空，4 作为 3 的右孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "比较 7 与 5：更大，往右子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 7,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "比较 7 与 8：更小，往左子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 8,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "左孩子为空，7 作为 8 的左孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                {
+                  "key": "n7",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 8,
+          "pointerWrites": 6
+        }
+      }
+    },
+    {
+      "description": "比较 9 与 5：更大，往右子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                {
+                  "key": "n7",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 9,
+          "pointerWrites": 6
+        }
+      }
+    },
+    {
+      "description": "比较 9 与 8：更大，往右子树走",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                {
+                  "key": "n7",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ],
+              "role": "compare"
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 10,
+          "pointerWrites": 6
+        }
+      }
+    },
+    {
+      "description": "右孩子为空，9 作为 8 的右孩子插入",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                {
+                  "key": "n7",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n9",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 10,
+          "pointerWrites": 7
+        }
+      }
+    },
+    {
+      "description": "插入完成，得到二叉排序树；中序遍历即升序：1, 3, 4, 5, 7, 8, 9（共 10 次比较、7 次插入）",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n5",
+          "label": "5",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n4",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n8",
+              "label": "8",
+              "children": [
+                {
+                  "key": "n7",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n9",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 10,
+          "pointerWrites": 7
+        }
+      }
+    }
+  ]
+}

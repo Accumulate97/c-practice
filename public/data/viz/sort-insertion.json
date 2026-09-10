@@ -1,0 +1,1201 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "sort-insertion",
+  "title": "插入排序",
+  "renderer": "bar",
+  "category": "sort",
+  "chapter": "第8章 排序",
+  "relatedProblems": [],
+  "code": "void insertionSort(int a[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = a[i];                         /* 待插入元素 */\n        int j = i - 1;\n        while (j >= 0 && a[j] > key) {          /* 比 key 大的都右移 */\n            a[j + 1] = a[j];\n            j--;\n        }\n        a[j + 1] = key;                         /* 落位 */\n    }\n}",
+  "meta": {
+    "algorithm": "insertionSort",
+    "n": 8,
+    "input": [
+      5,
+      2,
+      8,
+      1,
+      9,
+      3,
+      7,
+      4
+    ],
+    "counterKeys": [
+      "comparisons",
+      "moves"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始：a[0]=5 视为已排序；从 a[1] 起逐个插入前方有序区",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        }
+      }
+    },
+    {
+      "description": "取 a[1]=2 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          2,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 0,
+          "moves": 0
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=5 > 2，右移到 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          5,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 2 放到 a[0]，有序区扩展为 [0..1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "active",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "取 a[2]=8 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 1,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=5 ≤ 8，插入点定在 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 8 放到 a[2]，有序区扩展为 [0..2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 1
+        }
+      }
+    },
+    {
+      "description": "取 a[3]=1 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          1,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 2,
+          "moves": 1
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=8 > 1，右移到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          8,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 3,
+          "moves": 2
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=5 > 1，右移到 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          5,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 4,
+          "moves": 3
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[0]=2 > 1，右移到 a[1]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          2,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "swap",
+          "swap",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 0
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 1 放到 a[0]，有序区扩展为 [0..3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "active",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "取 a[4]=9 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 5,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=8 ≤ 9，插入点定在 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "compare",
+          "idle",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 9 放到 a[4]，有序区扩展为 [0..4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 4
+        }
+      }
+    },
+    {
+      "description": "取 a[5]=3 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          3,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 6,
+          "moves": 4
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=9 > 3，右移到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          9,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 7,
+          "moves": 5
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=8 > 3，右移到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          8,
+          8,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 8,
+          "moves": 6
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=5 > 3，右移到 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          5,
+          8,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "sorted",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 9,
+          "moves": 7
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[1]=2 ≤ 3，插入点定在 a[2]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          5,
+          5,
+          8,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 7
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 3 放到 a[2]，有序区扩展为 [0..5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "active",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 7
+        }
+      }
+    },
+    {
+      "description": "取 a[6]=7 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          9,
+          7,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 10,
+          "moves": 7
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=9 > 7，右移到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          9,
+          9,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 11,
+          "moves": 8
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=8 > 7，右移到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 12,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=5 ≤ 7，插入点定在 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "compare",
+          "sorted",
+          "sorted",
+          "idle",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 7 放到 a[4]，有序区扩展为 [0..6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "sorted",
+          "sorted",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 9
+        }
+      }
+    },
+    {
+      "description": "取 a[7]=4 作为待插入元素",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          4
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "active"
+        ],
+        "counters": {
+          "comparisons": 13,
+          "moves": 9
+        },
+        "pointers": [
+          {
+            "label": "key",
+            "index": 7
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[6]=9 > 4，右移到 a[7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap"
+        ],
+        "counters": {
+          "comparisons": 14,
+          "moves": 10
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 6
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[5]=8 > 4，右移到 a[6]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 15,
+          "moves": 11
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 5
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[4]=7 > 4，右移到 a[5]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "sorted",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 16,
+          "moves": 12
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 4
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[3]=5 > 4，右移到 a[4]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "swap",
+          "swap",
+          "sorted",
+          "sorted",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 17,
+          "moves": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 3
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2]=3 ≤ 4，插入点定在 a[3]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          5,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "compare",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "idle"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "moves": 13
+        },
+        "pointers": [
+          {
+            "label": "j",
+            "index": 2
+          }
+        ]
+      }
+    },
+    {
+      "description": "把 4 放到 a[3]，有序区扩展为 [0..7]",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "active",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "moves": 13
+        }
+      }
+    },
+    {
+      "description": "排序完成：共 18 次比较、13 次移动",
+      "snapshot": {
+        "kind": "bar",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "roles": [
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted",
+          "sorted"
+        ],
+        "counters": {
+          "comparisons": 18,
+          "moves": 13
+        }
+      }
+    }
+  ]
+}
