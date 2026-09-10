@@ -220,7 +220,9 @@ function emit(rel: string, value: unknown): void {
 
 emit(join('problems', 'index.json'), problemIndex)
 emit(join('search', 'problems.json'), searchIndex)
-emit(join('knowledge', 'index.json'), knowledgeIndexShaped())
-emit(join('viz', 'index.json'), vizIndexShaped())
-console.log('题目 ' + cards.length + ' 道 / 分片 ' + shards.length + ' 个；知识卡片与演示当前为 0，属预期（阶段 5、6 交付）')
+const knowledgeIndex = knowledgeIndexShaped()
+const vizIndex = vizIndexShaped()
+emit(join('knowledge', 'index.json'), knowledgeIndex)
+emit(join('viz', 'index.json'), vizIndex)
+console.log('题目 ' + cards.length + ' 道 / 分片 ' + shards.length + ' 个；知识卡片 ' + Number(knowledgeIndex.count) + ' 张 / 演示 ' + Number(vizIndex.count) + ' 个')
 console.log('数据缺口：code_reading 缺 answer ' + problemIndex.defects.codeReadingNoAnswer + ' 道（不进判分，前端文案从这里读）')
