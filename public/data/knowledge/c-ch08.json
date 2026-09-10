@@ -1,0 +1,644 @@
+{
+  "category": "c",
+  "chapter": "第8章 编译预处理",
+  "generated_at": "2026-09-10",
+  "count": 15,
+  "cards": [
+    {
+      "id": "c-ch08-01",
+      "title": "预处理概述：编译之前的文本加工",
+      "section": "8.1 编译预处理概述",
+      "summary": "C 源程序要经过「预处理 → 编译 → 链接」三步才变成可执行文件；预处理阶段只对文本做替换、插入和删减，不理解 C 语法，所有预处理指令都以 # 开头且独占一行、行尾不加分号。",
+      "content": "### C 程序的三步加工\n```text\n源文件 a.c ──预处理──> a.i（纯 C 代码）──编译──> a.o ──链接──> a.exe\n```\n预处理程序（cpp）扫描源文件，把所有以 `#` 开头的**指令**处理掉，产出一份不含任何指令的纯 C 代码交给编译器。\n\n### 预处理的三大类指令\n| 指令 | 作用 |\n|---|---|\n| `#define` / `#undef` | 宏定义与取消定义 |\n| `#include` | 把另一个文件的内容原样插入当前位置 |\n| `#if` / `#ifdef` / `#ifndef` / `#else` / `#elif` / `#endif` | 条件编译，按条件保留或删除代码 |\n\n### 三条铁律\n1. 指令必须以 `#` 开头，`#` 前只能有空白字符；\n2. 一条指令占一行（需要换行用行尾反斜杠续行）；\n3. **指令末尾不写分号**——分号会被当成宏体的一部分参与文本替换。\n\n### 预处理的输出长什么样\n`gcc -E hello.c` 可以只跑预处理，看看展开后的结果；这是排查宏问题最直接的手段。",
+      "keyPoints": [
+        "C 程序需经预处理、编译、链接三步；预处理在编译之前完成",
+        "预处理指令一律以 # 开头，独占一行，行尾不加分号",
+        "预处理只做文本处理，不做语法与类型检查",
+        "三大类指令：宏定义、文件包含、条件编译",
+        "可用 gcc -E 只执行预处理，查看宏展开与包含结果"
+      ],
+      "pitfalls": [
+        "在 #define 行尾写了分号，导致展开出多余分号（如 if 语句后多出空语句）",
+        "以为预处理会检查宏体是否合法，其实非法文本要到编译阶段才报错",
+        "把 # 写在行中间（前面有代码），编译器不认为这是指令"
+      ],
+      "examples": [
+        {
+          "title": "预处理指令与 C 语句混排，指令行尾无分号",
+          "code": "#include <stdio.h>\n#define NUM 10\n\nint main(void) {\n    printf(\"%d\\n\", NUM);\n    printf(\"%d\\n\", NUM + 5);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10\n15",
+          "note": "#define NUM 10 行尾没有分号；若写成 #define NUM 10; 则 NUM 展开成 \"10;\"，printf 里就会多出分号而报错。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-001",
+        "c-ch08-cr-016"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-02",
+        "c-ch08-09",
+        "c-ch08-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 1
+    },
+    {
+      "id": "c-ch08-02",
+      "title": "简单宏定义：#define 标识符 字符串",
+      "section": "8.2 宏定义与宏替换",
+      "summary": "#define 宏名 宏体 给一段文本起个名字，预处理时把所有出现宏名的地方原样换成宏体；宏名习惯全大写，替换是「按词」进行的，字符串字面量与已定义标识符内部不会被替换。",
+      "content": "### 语法\n```c\n#define  宏名  宏体        /* 行尾不写分号 */\n```\n- **宏名**：标识符，习惯全部大写（与变量小写区分）；\n- **宏体**：从宏名后第一个空白开始，一直到行尾的全部字符（可以是数字、表达式、字符串、甚至一段代码）。\n\n### 替换规则（考试最常考的三点）\n1. **纯文本替换**：宏体不求值、不计算、不检查类型。`#define N 3+4` 里 N 就是字符 \"3+4\"，不是 7；\n2. **按词替换**：只替换作为独立单词出现的宏名。`#define A 5` 后，标识符 `AB`、`A1` 里的 A 不会被替换；\n3. **字符串内不替换**：`printf(\"N=%d\\n\", N);` 中双引号里的 N 保持原样，只有引号外的 N 被替换。\n\n### 宏的作用域\n从定义处开始，到文件末尾（或被 `#undef` 取消）为止，所以宏定义通常放在文件最前面、所有 `#include` 之后。\n\n### 宏体续行\n宏体太长可以用行尾反斜杠续行，反斜杠后**不能有任何字符（包括空格）**。",
+      "keyPoints": [
+        "语法为 #define 宏名 宏体，行尾不加分号",
+        "替换是纯文本的：不求值、不做类型检查",
+        "按单词替换，标识符内部的同名字母与字符串字面量内的宏名都不替换",
+        "宏的作用域从定义处到文件结束，可用 #undef 提前终止",
+        "宏名习惯用大写字母，便于与变量区分"
+      ],
+      "pitfalls": [
+        "以为 #define N 3+4 定义的是 7，遇到 N*N 算出 19",
+        "在宏体末尾多写分号，展开后多出空语句",
+        "宏体续行的反斜杠后跟了空格，编译报错"
+      ],
+      "examples": [
+        {
+          "title": "简单宏与「字符串内不替换」",
+          "code": "#include <stdio.h>\n#define PI 3.14\n#define R 2\n\nint main(void) {\n    printf(\"%.2f\\n\", PI * R * R);\n    printf(\"R = %d\\n\", R);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "12.56\nR = 2",
+          "note": "第一行 PI*R*R 展开成 3.14*2*2；第二行双引号里的 R 不被替换，只有引号外的 R 展开成 2。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-001",
+        "c-ch08-cr-002",
+        "c-ch08-cr-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-01",
+        "c-ch08-03",
+        "c-ch08-05"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 2
+    },
+    {
+      "id": "c-ch08-03",
+      "title": "宏替换是纯文本替换：不求值、不算术",
+      "section": "8.2 宏定义与宏替换",
+      "summary": "宏体在被替换前不会被计算，所以 #define SUM 3+4 之后 SUM*SUM 展开成 3+4*3+4=19 而不是 49；根源是「运算符优先级照旧生效，但括号不会自动加上」。",
+      "content": "### 一切从展开式看\n```c\n#define SUM 3+4\nSUM        -> 3+4        = 7\nSUM*SUM    -> 3+4*3+4    = 3 + 12 + 4 = 19   (不是 49!)\n2*SUM      -> 2*3+4      = 10                (不是 14!)\nSUM/2      -> 3+4/2      = 5                 (不是 3.5!)\n```\n**解题步骤永远是：先把宏名逐个换成宏体，再按 C 的优先级/结合性算。**\n\n### 为什么容易错\n人眼看到 `SUM*SUM` 会下意识当成 `(3+4)*(3+4)`，但预处理器只搬字符，**不会替你加括号**。\n\n### 两个对策\n1. 定义时就把整个宏体括起来：`#define SUM (3+4)`，则 `SUM*SUM -> (3+4)*(3+4) = 49`；\n2. 带参宏则要求「参数加括号 + 整体加括号」，详见 8.3。\n\n### 混合类型的宏\n```c\n#define HALF(x) ((x)/2.0)   /* 用 2.0 避免整数除法丢精度 */\n```",
+      "keyPoints": [
+        "宏替换只搬字符，替换前不求值，替换后按 C 优先级计算",
+        "读宏题的固定动作：先完全展开，再算优先级",
+        "#define SUM 3+4 后 SUM*SUM = 19，这是最经典的坑",
+        "把宏体整体加括号 (3+4) 可消除这类优先级问题",
+        "整数宏做除法要注意写 2.0 而不是 2，否则丢小数"
+      ],
+      "pitfalls": [
+        "看到 SUM*SUM 直接心算成 (3+4)*(3+4)",
+        "只给宏体的一部分加括号，如 #define SUM (3)+4 仍会得到 (3)+4*(3)+4",
+        "忘记展开后还可能出现负号、取模等优先级更高的运算"
+      ],
+      "examples": [
+        {
+          "title": "同一个宏在不同上下文里得到完全不同的值",
+          "code": "#include <stdio.h>\n#define SUM 3+4\n#define OK  (3+4)\n\nint main(void) {\n    printf(\"%d\\n\", SUM);        /* 3+4       = 7  */\n    printf(\"%d\\n\", SUM * SUM);  /* 3+4*3+4   = 19 */\n    printf(\"%d\\n\", 2 * SUM);    /* 2*3+4     = 10 */\n    printf(\"%d\\n\", OK * OK);    /* (3+4)*(3+4) = 49 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7\n19\n10\n49",
+          "note": "对比第 2、4 行：加不加整体括号，结果从 19 变成 49。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-004",
+        "c-ch08-cr-010",
+        "c-ch08-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-02",
+        "c-ch08-06",
+        "c-ch08-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 3
+    },
+    {
+      "id": "c-ch08-04",
+      "title": "#undef 与宏的重复定义",
+      "section": "8.2 宏定义与宏替换",
+      "summary": "#undef 宏名 用来提前结束宏的作用域；同一个宏名被再次 #define 属于重复定义，若两次宏体不同，多数编译器会给出警告并采用后一次定义，规范做法是先 #undef 再重新定义。",
+      "content": "### #undef 的用途\n```c\n#define N 5\n...          /* 这一段里 N 是 5 */\n#undef N     /* 从此 N 不再是宏；若从未定义过也不报错 */\n```\n`#undef` 后面跟**宏名**，不写宏体；对一个从未定义过的名字执行 `#undef` 是合法的（静默忽略）。\n\n### 重复定义\n```c\n#define N 5\n#define N 9      /* 警告：N redefined */\nprintf(\"%d\", N); /* 输出 9，后定义生效 */\n```\n- C 标准只允许**完全相同的重复定义**（benign redefinition）；\n- 宏体不同的重复定义，GCC 会报 `warning: \"N\" redefined`，实际生效的是**最后一次**；\n- 考试里遇到「先定义后重新定义」，按后面的算，但要知道这是不规范写法。\n\n### 正确姿势\n```c\n#ifdef N\n#undef N\n#endif\n#define N 9\n```",
+      "keyPoints": [
+        "#undef 宏名 提前终止宏的作用域，对未定义的名字使用 #undef 也合法",
+        "同名宏重复定义且宏体不同时，GCC 报 redefined 警告，最后一次定义生效",
+        "宏的作用域默认从定义处延伸到文件末尾",
+        "要改宏的值，规范做法是先 #undef 再 #define",
+        "重复定义的判断只看「文本是否完全相同」，与语义无关"
+      ],
+      "pitfalls": [
+        "以为 #undef 需要写宏体（#undef N 9 是错的）",
+        "看到重复定义就以为编译失败，其实只是警告",
+        "以为 #undef 会影响它前面已经展开的代码——预处理是自上而下单遍扫描，前面的替换不会回退"
+      ],
+      "examples": [
+        {
+          "title": "#undef 后重新定义同名宏",
+          "code": "#include <stdio.h>\n#define N 5\n\nint main(void) {\n    printf(\"%d\\n\", N);\n#undef N\n#define N 9\n    printf(\"%d\\n\", N);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5\n9",
+          "note": "指令可以写在函数体内（预处理不看语法结构），但通常放在文件顶部更清晰。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-016",
+        "c-ch08-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-02",
+        "c-ch08-11",
+        "c-ch08-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 4
+    },
+    {
+      "id": "c-ch08-05",
+      "title": "带参宏（宏函数）的定义与展开",
+      "section": "8.3 带参数的宏",
+      "summary": "#define 宏名(形参表) 宏体 定义带参宏；展开时先用实参文本逐个替换形参，再把结果替换到调用处。宏名与左括号之间不能有空格，实参与形参个数必须一致，实参也是「原样代入」而不先求值。",
+      "content": "### 语法\n```c\n#define  SQ(x)    ((x)*(x))          /* 宏名与 ( 之间不能有空格 */\n#define  MAX(a,b) ((a)>(b)?(a):(b))\n```\n调用 `SQ(5)` -> `((5)*(5))` = 25。\n\n### 展开的两步\n1. **实参代入形参**：把宏体里出现的每个形参，换成对应的实参**文本**（不求值）；\n2. **整体替换**：把替换完的宏体放到调用处。\n\n### 四条硬规则\n| 规则 | 反例 |\n|---|---|\n| 宏名与左括号之间不能有空格 | `#define SQ (x) ((x)*(x))` 变成了简单宏 |\n| 实参个数必须与形参一致 | `SQ(2,3)` 直接报错 |\n| 实参按文本代入，不先求值 | `SQ(1+2)` -> `((1+2)*(1+2))`=9 |\n| 形参出现几次就被替换几次 | 有副作用的实参会被求值多次 |\n\n### 带参宏 vs 简单宏\n`#define SQ(x) ((x)*(x))` 是带参宏；`#define SQ ((x)*(x))` 是简单宏，宏体里出现了未定义的 x，一用就编译错误。",
+      "keyPoints": [
+        "带参宏语法：#define 宏名(形参表) 宏体，宏名与左括号之间不留空格",
+        "展开分两步：实参文本代入形参，再整体替换到调用处",
+        "实参不做求值，只做文本代入，因此实参可以是任意表达式",
+        "形参出现几次，实参就被代入几次",
+        "实参个数与形参个数必须严格相等，否则预处理报错"
+      ],
+      "pitfalls": [
+        "写成 #define SQ (x) ... 变成简单宏，调用 SQ(5) 展开出一堆垃圾文本",
+        "以为 SQ(1+2) 会先算出 3 再平方，其实是文本代入",
+        "在宏名后多写一个空格，导致带参宏退化成简单宏"
+      ],
+      "examples": [
+        {
+          "title": "常用带参宏：平方与取大",
+          "code": "#include <stdio.h>\n#define SQ(x)    ((x)*(x))\n#define MAX(a,b) ((a)>(b)?(a):(b))\n\nint main(void) {\n    printf(\"%d %d\\n\", SQ(5), MAX(3, 7));\n    printf(\"%d\\n\", SQ(2 + 3));      /* ((2+3)*(2+3)) = 25 */\n    printf(\"%d\\n\", MAX(SQ(2), 3)); /* 宏可以嵌套调用 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "25 7\n25\n4",
+          "note": "MAX(SQ(2),3) 先把 SQ(2) 代入，展开为 ((((2)*(2)))>(3)?...)，结果为 4。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-004",
+        "c-ch08-cr-005",
+        "c-ch08-cr-006",
+        "c-ch08-cr-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-02",
+        "c-ch08-06",
+        "c-ch08-07"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 5
+    },
+    {
+      "id": "c-ch08-06",
+      "title": "带参宏的括号：参数加括号 + 整体加括号",
+      "section": "8.3 带参数的宏",
+      "summary": "带参宏必须给每个形参加括号、再给整个宏体加括号，即 #define SQ(x) ((x)*(x))；少一层括号就可能因实参是表达式或宏被嵌入更大的表达式而算错。",
+      "content": "### 三种写法的对比（实参 1+2，外部 6/宏）\n```c\n#define SQ1(x) x*x          /* 最危险 */\n#define SQ2(x) (x)*(x)      /* 参数有括号，整体没有 */\n#define SQ3(x) ((x)*(x))    /* 正确 */\n\nSQ1(1+2)   -> 1+2*1+2       = 5\nSQ2(1+2)   -> (1+2)*(1+2)   = 9\nSQ3(1+2)   -> ((1+2)*(1+2)) = 9\n\n6/SQ2(1+2) -> 6/(1+2)*(1+2) = 2*3 = 6   (错!)\n6/SQ3(1+2) -> 6/((1+2)*(1+2)) = 6/9 = 0 (对)\n```\n\n### 为什么必须两层括号\n- **参数括号**：防止实参里的低优先级运算符（`+`、`-`、逗号、赋值）被打散；\n- **整体括号**：防止宏被放进更大的表达式后，宏体里的低优先级运算被外面的 `*`、`/` 抢先结合。\n\n### 三目运算符宏同样如此\n```c\n#define MAX(a,b) ((a)>(b)?(a):(b))   /* 外层括号不可省 */\nint r = MAX(x,y) * 10;  /* 没有外层括号就会变成 (x>y?x:y*10) */\n```",
+      "keyPoints": [
+        "规范写法：每个形参各自加括号，整个宏体再加一层括号",
+        "参数括号解决实参含 + - 等低优先级运算符的问题",
+        "整体括号解决宏被嵌入 * / 等更高优先级运算的问题",
+        "三目运算符宏 MAX(a,b) 同样需要外层括号",
+        "读宏题时先手动补全括号再算，能避免绝大多数错误"
+      ],
+      "pitfalls": [
+        "只给参数加括号忘了整体括号，6/SQ(1+2) 算成 6",
+        "写成 #define SQ(x) (x*x)，实参 1+2 时得到 (1+2*1+2)=5",
+        "MAX(a,b) 忘外层括号，MAX(x,y)*10 变成条件表达式只作用于最后一项"
+      ],
+      "examples": [
+        {
+          "title": "三种括号写法在同一上下文下的结果",
+          "code": "#include <stdio.h>\n#define SQ1(x) x*x\n#define SQ2(x) (x)*(x)\n#define SQ3(x) ((x)*(x))\n\nint main(void) {\n    printf(\"%d\\n\", SQ1(1 + 2));      /* 1+2*1+2       = 5 */\n    printf(\"%d\\n\", SQ2(1 + 2));      /* (1+2)*(1+2)   = 9 */\n    printf(\"%d\\n\", SQ3(1 + 2));      /* 9 */\n    printf(\"%d\\n\", 6 / SQ2(1 + 2));  /* 6/(1+2)*(1+2) = 6 */\n    printf(\"%d\\n\", 6 / SQ3(1 + 2));  /* 6/9           = 0 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5\n9\n9\n6\n0",
+          "note": "最后两行只差一层括号，结果从 6 变成 0。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-009",
+        "c-ch08-cr-013",
+        "c-ch08-pg-001",
+        "c-ch08-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-03",
+        "c-ch08-05",
+        "c-ch08-07"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 6
+    },
+    {
+      "id": "c-ch08-07",
+      "title": "带参宏的副作用：实参被求值多次",
+      "section": "8.3 带参数的宏",
+      "summary": "宏体里形参出现几次，实参表达式就被原样复制几次，因此带副作用（自增、函数调用、赋值）的实参会被重复执行；而 i++ 与 j++ 同时出现在一个表达式里还构成未定义行为，必须避免。",
+      "content": "### 一个安全可跑的演示\n```c\nint sq(int x) { return x * x; }\n#define TWICE(f) ((f) + (f))\nTWICE(sq(3))  ->  ((sq(3)) + (sq(3)))   /* sq 被调用两次，结果 18 */\n```\n函数版 `twice(sq(3))` 只会调用一次 —— 这就是宏与函数最本质的差别之一。\n\n### 危险的自增实参\n```c\n#define SQ(x) ((x)*(x))\nint i = 3;\nSQ(i++);   /* 展开成 ((i++)*(i++)) */\n```\n`i` 在同一个表达式里被无顺序地修改两次，**这是未定义行为（UB）**，不同编译器/优化等级结果不同，考试与工程都不该写。\n\n### 判定「有副作用」的清单\n自增自减（`++` `--`）、赋值（`=`）、函数调用（可能改全局量）、`printf` 等有 I/O 的表达式。\n\n### 对策\n1. 实参只传**纯变量或纯常量表达式**；\n2. 需要「只求值一次」的语义，改用函数。",
+      "keyPoints": [
+        "形参在宏体中出现几次，实参表达式就被文本复制几次",
+        "带副作用的实参（++、--、赋值、函数调用）会被执行多次",
+        "MAX(i++, j++) / SQ(i++) 这类写法是未定义行为，结果不可预测",
+        "判断副作用看是否修改了对象状态或产生了 I/O",
+        "要「只求值一次」就用函数，宏保证不了这一点"
+      ],
+      "pitfalls": [
+        "以为 SQ(i++) 只会让 i 加 1，其实宏体里有两次 i++",
+        "把 printf 当实参传进宏，导致重复输出",
+        "遇到 UB 还去推算标准答案，应以 -O0 实际运行为准"
+      ],
+      "examples": [
+        {
+          "title": "实参是函数调用时会被求值多次",
+          "code": "#include <stdio.h>\n\nint sq(int x) { return x * x; }\n#define TWICE(f) ((f) + (f))\n\nint twice(int f) { return f + f; }\n\nint main(void) {\n    printf(\"%d\\n\", TWICE(sq(3)));   /* sq(3)+sq(3) = 18，sq 调用 2 次 */\n    printf(\"%d\\n\", twice(sq(3)));   /* 9 + 9 = 18，sq 调用 1 次 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "18\n18",
+          "note": "两行数值相同，但宏那行 sq(3) 被写了两次、执行两次；实参有副作用时差别立刻显现。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-005",
+        "c-ch08-cr-010",
+        "c-ch08-cr-015"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-05",
+        "c-ch08-06",
+        "c-ch08-13"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 7
+    },
+    {
+      "id": "c-ch08-08",
+      "title": "宏的嵌套定义与逐层展开",
+      "section": "8.3 带参数的宏",
+      "summary": "宏体里可以出现已经定义过的其它宏名，展开时递归替换直到不再含有宏名为止；带参宏的实参里也可以再调用宏。解题时应一直替换到没有大写宏名为止。",
+      "content": "### 简单宏嵌套\n```c\n#define A 2\n#define B (A*A)     /* -> (2*2)   = 4 */\n#define C (B+A)     /* -> ((2*2)+2) = 6 */\n```\n嵌套展开是**递归**的：`C -> (B+A) -> ((A*A)+A) -> ((2*2)+2) -> 6`。\n\n### 带参宏嵌套\n```c\n#define SQ(x)    ((x)*(x))\n#define SUM(a,b) ((a)+(b))\nSQ(SUM(1,2))  ->  ((SUM(1,2))*(SUM(1,2)))  ->  ((((1)+(2)))*(((1)+(2))))  = 9\n```\n\n### 定义顺序\n被引用的宏必须**先定义**吗？其实不必——宏体在定义时不求值，只在**使用处**展开，那时只要所有涉及的宏都已定义即可。但为了可读性，仍建议按依赖顺序书写。\n\n### 自引用\n`#define A A+1` 是合法的（展开到出现自身时停止，不会无限递归），得到 `A+1`。",
+      "keyPoints": [
+        "宏体中可以包含其它宏名，展开时递归替换到不含宏名为止",
+        "带参宏的实参也可以是宏调用，先代入文本再展开",
+        "宏在定义时不检查、不求值，只在使用处展开",
+        "展开一个自引用的宏不会死循环，替换到出现自身即停止",
+        "解题技巧：反复替换，直到表达式里再没有全大写的宏名"
+      ],
+      "pitfalls": [
+        "只展开一层就停下算结果，忽略了宏体里还有别的宏名",
+        "以为嵌套宏必须先定义后引用，实际只要求使用处之前都已定义",
+        "把 #define A A+1 当成无限递归而判定编译错误"
+      ],
+      "examples": [
+        {
+          "title": "简单宏与带参宏的嵌套展开",
+          "code": "#include <stdio.h>\n#define A 2\n#define B (A*A)\n#define C (B+A)\n#define SQ(x)    ((x)*(x))\n#define SUM(a,b) ((a)+(b))\n\nint main(void) {\n    printf(\"%d %d %d\\n\", A, B, C);\n    printf(\"%d\\n\", SQ(SUM(1, 2)));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2 4 6\n9",
+          "note": "C 展开为 ((2*2)+2)=6；SQ(SUM(1,2)) 展开为 ((((1)+(2)))*(((1)+(2))))=9。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-011",
+        "c-ch08-cr-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-05",
+        "c-ch08-06",
+        "c-ch08-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 8
+    },
+    {
+      "id": "c-ch08-09",
+      "title": "#include 文件包含：尖括号与双引号",
+      "section": "8.4 文件包含",
+      "summary": "#include 把指定文件的内容原样插入到指令所在位置；<...> 只从系统标准目录找（用于标准库头文件），\"...\" 先从当前源文件目录找、找不到再去系统目录（用于自己写的头文件）。",
+      "content": "### 两种写法\n```c\n#include <stdio.h>     /* 系统目录查找：标准库头文件 */\n#include \"myhead.h\"    /* 先当前目录，再系统目录：自己写的头文件 */\n```\n\n### 包含的本质\n`#include` 就是**把整个文件的内容复制粘贴到这里**，因此：\n- 头文件里通常只放宏定义、类型定义、函数声明、全局变量声明（extern），**不放函数定义**（否则多处包含会重复定义）；\n- 包含可以嵌套（头文件里再 include 别的头文件）；\n- 一个源文件可以包含多个头文件，顺序一般无关（但被依赖的宏要先定义）。\n\n### 常见错误\n| 错误 | 后果 |\n|---|---|\n| `#include <stdio.h>;` 带分号 | 分号被当成文件名一部分，找不到文件 |\n| 文件名拼错（`<stdoi.h>`） | fatal error: No such file |\n| 忘了 `#include <math.h>` 却用 sqrt | 编译报错/隐式声明 |\n| 忘加 `-lm` 链接数学库 | undefined reference to `sqrt` |\n\n### 为什么用了 printf 必须包含 stdio.h\nC99 起禁止隐式函数声明，编译器看不到声明会报错；即使侥幸通过，返回类型也会被当成 int，对返回 double 的函数会出错。",
+      "keyPoints": [
+        "#include 把目标文件内容原样插入到指令处，属于文本级操作",
+        "<...> 只在系统标准目录查找，\"...\" 先找当前目录再找系统目录",
+        "标准库用尖括号，项目自己的头文件用双引号",
+        "头文件里应只放声明与宏，不放函数定义，避免重复定义",
+        "使用 math.h 中的函数还需在链接时加 -lm"
+      ],
+      "pitfalls": [
+        "#include 行尾加分号，编译器去找 stdio.h; 这个文件",
+        "用了 sqrt/pow 却没 include <math.h>，或链接时漏了 -lm",
+        "把函数定义写进头文件，被两个 .c 同时包含后链接报重复定义"
+      ],
+      "examples": [
+        {
+          "title": "包含 math.h 并使用平方根、绝对值与幂",
+          "code": "#include <stdio.h>\n#include <math.h>\n\nint main(void) {\n    printf(\"%.2f\\n\", sqrt(2.0));\n    printf(\"%.2f\\n\", fabs(-3.5));\n    printf(\"%.2f\\n\", pow(2.0, 10));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1.41\n3.50\n1024.00",
+          "note": "少了 #include <math.h> 编译不过；少了链接选项 -lm 则链接报 undefined reference。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-pg-005",
+        "c-ch08-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-01",
+        "c-ch08-10",
+        "c-ch08-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 9
+    },
+    {
+      "id": "c-ch08-10",
+      "title": "包含的位置、嵌套与重复包含",
+      "section": "8.4 文件包含",
+      "summary": "#include 可以写在文件任意位置，但从该行往后才生效；包含可以嵌套，也可能因多个头文件互相包含而重复展开同一文件，工程上用「包含卫士」（#ifndef/#define/#endif）避免重复定义。",
+      "content": "### 生效范围\n```c\n#define N 5\nint arr[N];        /* 对：N 已定义 */\n```\n预处理自上而下单遍扫描，**指令只对它后面的代码生效**。所以 `#include` 与 `#define` 一律写在文件顶部。\n\n### 嵌套包含\n`a.c` 包含 `b.h`，`b.h` 又包含 `c.h` —— 完全可以，但层数过深会拖慢编译、难以排查。\n\n### 重复包含与包含卫士\n若 `b.h` 和 `d.h` 都包含了 `c.h`，而 `a.c` 同时包含 `b.h` 与 `d.h`，`c.h` 就会被插入两次，其中的 typedef、宏、结构体定义会重复报错。解决办法：\n```c\n/* c.h */\n#ifndef C_H\n#define C_H\ntypedef struct Node { int data; struct Node *next; } Node;\n#endif\n```\n这就是**包含卫士（include guard）**，也是 8.5 条件编译最常见的实战用途。",
+      "keyPoints": [
+        "预处理单遍自上而下扫描，指令只对其后面的代码生效",
+        "#include 可以嵌套，头文件里再包含其它头文件是允许的",
+        "多个头文件间接包含同一文件会造成重复展开，引发重复定义",
+        "包含卫士 #ifndef/#define/#endif 是解决重复包含的标准手段",
+        "#include 与 #define 应统一放在文件最前面"
+      ],
+      "pitfalls": [
+        "把 #define 写在使用它的语句之后，编译报未声明",
+        "以为重复包含只是效率问题，实际 typedef/struct 重复定义会直接报错",
+        "写包含卫士时 #define 的名字与 #ifndef 判断的名字不一致，卫士失效"
+      ],
+      "examples": [
+        {
+          "title": "宏只对其后面的代码生效",
+          "code": "#include <stdio.h>\n#define MAXN 5\n\nint arr[MAXN];\n\nint main(void) {\n    for (int i = 0; i < MAXN; i++) arr[i] = i * i;\n    for (int i = 0; i < MAXN; i++)\n        printf(\"%d%c\", arr[i], i == MAXN - 1 ? '\\n' : ' ');\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1 4 9 16",
+          "note": "arr[MAXN] 写在 #define 之后才能正确展开为 arr[5]。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-pg-005",
+        "c-ch08-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-09",
+        "c-ch08-11"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 10
+    },
+    {
+      "id": "c-ch08-11",
+      "title": "#ifdef / #ifndef / #endif 条件编译",
+      "section": "8.5 条件编译",
+      "summary": "#ifdef 名 判断某标识符是否已被定义过，#ifndef 相反；配合 #else、#endif 可以让编译器只看到满足条件的那部分代码。调试输出、包含卫士、跨平台适配都靠它。",
+      "content": "### 三种基本形式\n```c\n#ifdef  DEBUG                 #ifndef  X_H            #ifdef A\n    printf(\"debug\\n\");            #define X_H            ...\n#endif                        ...                   #else\n                              #endif                     ...\n                                                    #endif\n```\n`#ifdef X` 只看 **X 是否被定义过**，不看它定义成什么（哪怕 `#define X` 宏体为空也算已定义）。\n\n### 典型用途 1：调试开关\n```c\n#ifdef DEBUG\n#define LOG(x) printf(\"debug: %d\\n\", (x))\n#else\n#define LOG(x)                 /* 展开为空，正式版本一句代码都不产生 */\n#endif\n```\n好处：发布版**连语句都不存在**，比 `if (debug) printf(...)` 更彻底（后者仍占空间、仍要判断）。\n\n### 典型用途 2：包含卫士\n见 8.4，防止头文件被重复展开。\n\n### 命令行定义\n`gcc -DDEBUG a.c` 等价于在文件开头写 `#define DEBUG`，无需改源码即可开关调试。",
+      "keyPoints": [
+        "#ifdef 判断标识符是否已定义，与它定义成什么值无关",
+        "#ifndef 是 #ifdef 的反义，常用于包含卫士",
+        "#else / #elif 可选，#endif 必须有且与 #ifdef 配对",
+        "条件编译在预处理阶段就把不满足的分支整段删掉，编译器根本看不到",
+        "gcc -DNAME 可从命令行定义宏，实现无侵入的开关"
+      ],
+      "pitfalls": [
+        "写了 #ifdef 忘了 #endif，或嵌套时配对错位",
+        "以为 #ifdef DEBUG 会判断 DEBUG 的值是否为真——只要定义过就成立，哪怕 #define DEBUG 0",
+        "在 #else 分支里定义了与 #ifdef 分支同名的变量，误以为两处都会编译"
+      ],
+      "examples": [
+        {
+          "title": "用 #ifdef 做调试输出开关",
+          "code": "#include <stdio.h>\n#define DEBUG\n\n#ifdef DEBUG\n#define LOG(x) printf(\"debug: %d\\n\", (x))\n#else\n#define LOG(x)\n#endif\n\nint main(void) {\n    LOG(1);\n    LOG(2);\n    printf(\"done\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "debug: 1\ndebug: 2\ndone",
+          "note": "删掉第 2 行的 #define DEBUG（或用 gcc -UDEBUG 编译），前两行输出会整段消失。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-017",
+        "c-ch08-cr-018",
+        "c-ch08-cr-019"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-12",
+        "c-ch08-10",
+        "c-ch08-04"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 11
+    },
+    {
+      "id": "c-ch08-12",
+      "title": "#if / #elif：按常量表达式条件编译",
+      "section": "8.5 条件编译",
+      "summary": "#if 常量表达式 按表达式的值（非 0 为真）决定编译哪段代码；表达式里只能出现整型常量、已定义的宏、defined(名) 和整型运算符，不能使用变量与浮点数。",
+      "content": "### 语法\n```c\n#if   LEVEL == 1\n    ...\n#elif LEVEL == 2\n    ...\n#else\n    ...\n#endif\n```\n未定义的标识符在 `#if` 表达式里一律按 **0** 处理（这也是 `#ifndef X` 等价于 `#if !defined(X)` 的原因）。\n\n### defined 运算符\n```c\n#if defined(DEBUG) && !defined(NDEBUG)\n    ...\n#endif\n```\n`defined(X)` 与 `defined X` 等价，返回 1 或 0，可以参与 `&&`、`||`、`!` 组合，比 `#ifdef` 灵活。\n\n### 表达式里能写什么\n| 可以 | 不可以 |\n|---|---|\n| 整型常量 `1`、`0x10`、字符常量 `'a'` | 变量名（`#if n > 0` 中 n 按 0 算） |\n| 已定义的宏 | 浮点常量（`#if 1.5` 报错） |\n| `defined(X)` | 函数调用、强制类型转换 |\n| `+` `-` `*` `/` `%` `&&` `||` `!` `<` `>` `==` | 字符串字面量 |\n\n### 常见用途：判断标准版本 / 平台\n```c\n#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L\n    /* C99 及以上 */\n#endif\n```",
+      "keyPoints": [
+        "#if 后面必须是编译期可求值的整型常量表达式",
+        "#elif 可以有多个，#else 最多一个，最后必须有 #endif",
+        "#if 表达式中未定义的标识符按 0 处理，因此不会报未声明错误",
+        "defined(X) 可与逻辑运算符组合，比 #ifdef 更灵活",
+        "#if 里不能出现变量、浮点数、函数调用"
+      ],
+      "pitfalls": [
+        "在 #if 里用变量名，结果变量被当成 0，分支永远不进",
+        "写 #if PI > 3 这种浮点比较，预处理不支持浮点运算",
+        "以为 #elif 可以不写 #endif 收尾"
+      ],
+      "examples": [
+        {
+          "title": "#if/#elif/#else 与 defined 判断标准版本",
+          "code": "#include <stdio.h>\n#define LEVEL 2\n\nint main(void) {\n#if LEVEL == 1\n    printf(\"junior\\n\");\n#elif LEVEL == 2\n    printf(\"middle\\n\");\n#else\n    printf(\"senior\\n\");\n#endif\n#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L\n    printf(\"C99\\n\");\n#endif\n    return 0;\n}",
+          "stdin": "",
+          "expected": "middle\nC99",
+          "note": "用 gcc -std=c99 编译时 __STDC_VERSION__ 为 199901L，所以第二段被保留。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-017",
+        "c-ch08-cr-018"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-11",
+        "c-ch08-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 12
+    },
+    {
+      "id": "c-ch08-13",
+      "title": "宏与函数的区别",
+      "section": "8.6 宏与函数的区别",
+      "summary": "宏在预处理阶段做文本替换，没有类型检查、没有调用开销、不占运行时间但会增大代码体积；函数在运行期调用，有类型检查、有栈帧开销。求值次数、类型限制、调试难度是三大分水岭。",
+      "content": "### 对照表\n| 比较项 | 宏 | 函数 |\n|---|---|---|\n| 处理阶段 | 预处理（编译前） | 运行期 |\n| 参数类型 | 不限，纯文本 | 严格类型检查 |\n| 参数求值 | 出现几次求值几次 | 只求值一次 |\n| 返回值 | 无「返回值」概念，是替换结果 | 有确定的返回类型 |\n| 时间开销 | 无调用开销 | 有压栈/跳转/返回开销 |\n| 空间开销 | 每处都展开，代码变长 | 只有一份代码 |\n| 能否调试 | 难（展开后源码里没有它） | 可单步调试 |\n| 副作用风险 | 高（重复求值、优先级） | 低 |\n\n### 什么时候用宏\n- 很短、很频繁、类型无关的运算：`MAX`、`ABS`、`SWAP`、数组长度 `N`；\n- 需要在预处理阶段参与的场合：条件编译、包含卫士、字符串拼接。\n\n### 什么时候用函数\n- 逻辑较长、需要类型安全、需要调试、实参可能有副作用。\n\n### 类型无关是双刃剑\n```c\n#define MMAX(a,b) ((a)>(b)?(a):(b))\nMMAX(3, 7)      /* int    -> 7   */\nMMAX(3.9, 2.0)  /* double -> 3.9 */\nMMAX('a', 'b')  /* char   -> 'b' */\n```\n一个宏适配所有类型，但类型错误（如比较指针与整数）也不会被发现。",
+      "keyPoints": [
+        "宏是预处理期的文本替换，函数是运行期的调用",
+        "宏不做类型检查，同一宏可用于 int/double/char",
+        "宏的实参出现几次就求值几次，函数只求值一次",
+        "宏无调用开销但会使代码体积膨胀，函数相反",
+        "宏难以调试，函数可以单步跟踪"
+      ],
+      "pitfalls": [
+        "把宏当函数用，传入带 ++ 的实参，结果与预期不符",
+        "用 %d 打印宏返回的 double（如 MAX(3.9,2.0)），格式与类型不匹配",
+        "以为宏有返回值类型，其实它只是替换后表达式的类型"
+      ],
+      "examples": [
+        {
+          "title": "同一个「取大」逻辑：宏版与函数版",
+          "code": "#include <stdio.h>\n#define MMAX(a,b) ((a)>(b)?(a):(b))\n\nint imax(int a, int b) { return a > b ? a : b; }\n\nint main(void) {\n    printf(\"%d %d\\n\", MMAX(3, 7), imax(3, 7));\n    printf(\"%.1f\\n\", MMAX(3.9, 2.0));  /* 宏不限类型 */\n    printf(\"%c\\n\", MMAX('a', 'b'));     /* 字符也可以 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7 7\n3.9\nb",
+          "note": "imax 只能处理 int，MMAX 三种类型通吃；代价是没有类型检查。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-007",
+        "c-ch08-cr-008",
+        "c-ch08-cr-014"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-07",
+        "c-ch08-05",
+        "c-ch08-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 13
+    },
+    {
+      "id": "c-ch08-14",
+      "title": "多语句宏：do { ... } while (0) 的用法",
+      "section": "8.6 宏与函数的区别",
+      "summary": "包含多条语句的宏必须用 do{...}while(0) 包起来，使整个宏在语法上等价于一条语句，这样带分号调用、放进 if/else 都不会出错；用大括号包装则会因多余的分号导致 else 无匹配。",
+      "content": "### 为什么 { ... } 不行\n```c\n#define SWAP(a,b) { int t=(a); (a)=(b); (b)=t; }\nif (x < y) SWAP(x, y);   /* 展开：if (x<y) { ... } ;  ← 多出一个空语句 */\nelse printf(\"no\");       /* 编译错误：else without a previous if */\n```\n调用处的分号变成了一条独立的空语句，把 if 与 else 隔开了。\n\n### do { ... } while (0) 的三重好处\n1. **语法上是一条语句**，后面可以自然地跟分号；\n2. **形成独立作用域**，宏内的临时变量 t 不会与外部同名变量冲突；\n3. **while(0) 让循环只执行一次**，编译器优化后没有任何额外开销。\n\n```c\n#define SWAP(a,b) do { int t=(a); (a)=(b); (b)=t; } while (0)\nif (x < y) SWAP(x, y);\nelse printf(\"no\");       /* 正确 */\n```\n\n### 相关技巧\n- 需要「返回值」的多语句宏可用逗号表达式：`#define SET(p,v) ((p)=NULL,(v)=0)`；\n- GCC 扩展 `({ ... })` 也能做到，但**不是标准 C**，考试与移植场景不要用。",
+      "keyPoints": [
+        "多语句宏用 do{...}while(0) 包装，使其在语法上是一条语句",
+        "用 { } 包装会让调用处的分号变成空语句，破坏 if/else 配对",
+        "do-while(0) 只执行一次，优化后无额外开销",
+        "宏内部形成独立作用域，临时变量不会与外部冲突",
+        "({ ... }) 语句表达式是 GCC 扩展，不是标准 C，避免使用"
+      ],
+      "pitfalls": [
+        "写成 #define SWAP(a,b) { ... } 后在 if 分支里调用，else 报无匹配 if",
+        "宏定义里 while (0) 之后又加了分号，调用处再加分号就变成两条语句",
+        "在宏里定义临时变量却没包 do-while，与调用处同名变量冲突"
+      ],
+      "examples": [
+        {
+          "title": "do-while(0) 包装的 SWAP 宏可安全用于 if 分支",
+          "code": "#include <stdio.h>\n#define SWAP(a,b) do { int t = (a); (a) = (b); (b) = t; } while (0)\n\nint main(void) {\n    int x = 1, y = 2;\n    if (x < y) SWAP(x, y);\n    else printf(\"no\\n\");\n    printf(\"%d %d\\n\", x, y);\n    SWAP(x, y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2 1\n1 2",
+          "note": "若把宏体改成裸 { ... }，这段代码会因为 if 后多出的空语句而编译失败。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-13",
+        "c-ch08-05"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 14
+    },
+    {
+      "id": "c-ch08-15",
+      "title": "预处理常见错误清单与自查方法",
+      "section": "8.7 预处理常见错误",
+      "summary": "预处理相关的错误集中在四类：行尾多分号、括号不全、宏名与括号间有空格、条件编译配对错误；统一自查手段是 gcc -E 看展开结果，配合 -Wall -Wextra 尽早暴露问题。",
+      "content": "### 高频错误速查\n| # | 错误写法 | 后果 | 正确写法 |\n|---|---|---|---|\n| 1 | `#define N 10;` | N 展开带分号，`a[N]` 变成 `a[10;]` | `#define N 10` |\n| 2 | `#define SQ(x) (x*x)` | `SQ(1+2)`=5 | `#define SQ(x) ((x)*(x))` |\n| 3 | `#define SQ (x) ((x)*(x))` | 退化为简单宏 | 去掉 SQ 与 ( 之间的空格 |\n| 4 | `#define MAX(a,b) (a>b?a:b)` | 嵌入表达式时被拆散 | `((a)>(b)?(a):(b))` |\n| 5 | `SQ(i++)` | 未定义行为 | 实参不要带副作用 |\n| 6 | `#ifdef A ... #ifdef B ... #endif` | 少一个 #endif，配对错乱 | 逐层配对 |\n| 7 | `#include <my.h>`（自己的头文件） | 到系统目录找不到 | `#include \"my.h\"` |\n| 8 | `#if n > 0`（n 是变量） | n 按 0 处理，永假 | 条件编译只能用宏/常量 |\n\n### 自查三板斧\n1. `gcc -E a.c -o a.i`：看宏展开与包含结果，所有文本替换一目了然；\n2. `gcc -std=c99 -Wall -Wextra`：宏重复定义、格式串不匹配都会给警告；\n3. **手动展开**：做题时把宏名全部替换成宏体，再按优先级计算，不要心算。",
+      "keyPoints": [
+        "行尾多分号、括号不全、宏名后有空格是三大书写错误",
+        "条件编译必须 #if/#ifdef 与 #endif 严格配对",
+        "#if 里出现变量会被当成 0，条件编译只认宏与整型常量",
+        "自己的头文件用双引号，系统头文件用尖括号",
+        "gcc -E 是排查预处理问题的第一手段"
+      ],
+      "pitfalls": [
+        "调试半天看不出问题，忘了用 -E 打印展开结果",
+        "把带参宏写成简单宏（宏名后有空格），错误信息却指向调用处",
+        "考试时凭直觉算宏表达式，不做完整展开"
+      ],
+      "examples": [
+        {
+          "title": "宏体可以是声明语句（ARR 展开为数组定义）",
+          "code": "#include <stdio.h>\n#define LEN 10\n#define ARR int a[LEN]\n\nint main(void) {\n    ARR;                 /* 展开成 int a[10]; 分号由调用处提供 */\n    a[0] = LEN;\n    a[LEN - 1] = LEN * 2;\n    printf(\"%d %d %d\\n\", a[0], a[LEN - 1], LEN);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 20 10",
+          "note": "宏体可以是任意文本，包括声明语句；但分号仍需自己补，且这种写法可读性差，工程中不推荐。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch08-cr-005",
+        "c-ch08-cr-009",
+        "c-ch08-cr-016"
+      ],
+      "relatedKnowledge": [
+        "c-ch08-03",
+        "c-ch08-06",
+        "c-ch08-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "order": 15
+    }
+  ]
+}

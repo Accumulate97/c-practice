@@ -1,0 +1,1899 @@
+{
+  "category": "c",
+  "chapter": "第9章 指针",
+  "generated_at": "2026-09-10",
+  "count": 40,
+  "cards": [
+    {
+      "id": "c-ch09-01",
+      "title": "地址、指针变量与 *、& 运算符",
+      "section": "9.1 指针的概念",
+      "summary": "内存中每个字节都有唯一地址；指针变量是专门存放地址的变量，& 取地址、* 取（解引用）地址中的值，定义时的 * 只是类型标记。",
+      "content": "### 什么是指针\n内存按字节编号，编号就是**地址**。一个变量占用若干字节，其**首字节地址**称为该变量的地址。\n**指针 = 地址**；**指针变量 = 存放地址的变量**（口语中两者常混称\"指针\"）。\n\n### 定义与初始化\n```c\nint a = 10;\nint *p = &a;      /* p 是指向 int 的指针变量，初值为 a 的地址 */\n```\n- `int *p;` 中的 `*` 是**类型修饰符**，表示 p 的类型是\"指向 int 的指针\"；\n- `p = &a;` 中的 `&` 是**取地址运算符**；\n- `*p = 20;` 中的 `*` 是**解引用（间接访问）运算符**，读写的就是 a 本身。\n\n### 三个易混写法\n| 出现位置 | 含义 |\n|---|---|\n| `int *p;` | 声明：p 是指针 |\n| `&a` | 取 a 的地址 |\n| `*p` | 访问 p 所指对象 |\n\n### 要点\n1. 指针必须**先赋值再解引用**，未初始化的指针是野指针；\n2. `*p` 与 `a` 完全等价，可用于读、写、取地址（`&*p == &a`）；\n3. 指针变量的类型决定 `*p` 的类型和算术步长，与它存的地址数值无关。",
+      "keyPoints": [
+        "指针就是内存地址，指针变量是存放地址的变量",
+        "int *p 中 * 是类型标记；&a 是取地址；*p 是解引用",
+        "*p 与 p 所指变量完全等价，可读可写",
+        "&*p 与 *&p 都等于 p 所指对象本身",
+        "指针变量必须先初始化（指向有效对象或置 NULL）再解引用"
+      ],
+      "pitfalls": [
+        "把声明处的 * 当成运算符，误以为 *p = &a 才对",
+        "未初始化就 *p = 5，写入随机地址（野指针）",
+        "p = a（漏掉 &），把值当地址赋给指针",
+        "混淆 p++（改指针）与 *p++（先取值后移指针）"
+      ],
+      "examples": [
+        {
+          "title": "通过指针读写变量",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 10;\n    int *p = &a;\n\n    printf(\"a = %d\\n\", a);\n    *p = 20;                       /* 等价于 a = 20 */\n    printf(\"a = %d, *p = %d\\n\", a, *p);\n    printf(\"&a == p ? %d\\n\", &a == p);\n    printf(\"&*p == &a ? %d\\n\", &*p == &a);\n    printf(\"p == NULL ? %d\\n\", p == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "a = 10\na = 20, *p = 20\n&a == p ? 1\n&*p == &a ? 1\np == NULL ? 0",
+          "note": "地址的具体数值随运行环境变化，所以这里只打印地址之间的比较结果（1/0），不打印 %p。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cc-001",
+        "c-ch09-cr-001",
+        "c-ch09-cr-002",
+        "c-ch09-fb-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-02",
+        "c-ch09-03",
+        "c-ch09-28"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 1
+    },
+    {
+      "id": "c-ch09-02",
+      "title": "指针变量与所指对象的类型必须匹配",
+      "section": "9.1 指针的概念",
+      "summary": "指针的类型规定了它所指向的数据类型，从而决定解引用结果的类型和指针运算的步长；不同类型指针之间不能直接赋值。",
+      "content": "### 为什么要分类型\n地址本身只是一个数，但**\"从这个地址开始取几个字节、按什么类型解释\"**由指针类型决定：\n```c\nint   *pi;   /* *pi 是 int，pi+1 前进 sizeof(int) 字节 */\nchar  *pc;   /* *pc 是 char，pc+1 前进 1 字节 */\ndouble *pd;  /* *pd 是 double，pd+1 前进 sizeof(double) 字节 */\n```\n\n### 指针变量的大小\n所有对象指针变量本身的大小相同（同一平台上），64 位机为 8 字节、32 位机为 4 字节，与所指类型无关。\n\n### 类型不匹配的写法\n- `int *p; p = &c;`（c 是 char）—— gcc 会报 **warning: assignment from incompatible pointer type**；\n- 必须强制转换：`p = (int *)&c;`，但这样解引用会读取 4 字节，可能越界，属于危险写法；\n- `void *` 是\"无类型指针\"，可以与任何对象指针互相赋值，但**不能直接解引用**，必须先转换。\n\n### 常见考点\n`sizeof(数组名)` 得到整个数组字节数，而把数组名传给函数后退化为指针，函数内 `sizeof(形参)` 只是一个指针的大小 —— 所以**数组长度必须另行传入**。",
+      "keyPoints": [
+        "指针类型决定 *p 的类型和 p+1 的步长",
+        "同平台上各种对象指针变量本身大小相同（64 位机 8 字节）",
+        "不同类型指针直接赋值会产生编译警告，需强制转换",
+        "void * 可接任意对象地址，但不能直接解引用",
+        "数组传参后退化为指针，函数内无法用 sizeof 求元素个数"
+      ],
+      "pitfalls": [
+        "以为 int * 比 char * 占更多内存",
+        "把数组名传给函数后仍用 sizeof(a)/sizeof(a[0]) 求长度，结果是错的",
+        "不加转换就把 char * 赋给 int *",
+        "对 void * 直接写 *p 取值"
+      ],
+      "examples": [
+        {
+          "title": "步长由类型决定 & 数组长度必须另传",
+          "code": "#include <stdio.h>\n\nvoid show(int *p, int n)\n{\n    int i;\n    for (i = 0; i < n; i++) {\n        if (i > 0) printf(\",\");\n        printf(\"%d\", *(p + i));      /* int* 每次前进 sizeof(int) 字节 */\n    }\n    printf(\"\\n\");\n}\n\nint main(void)\n{\n    int a[4] = {10, 20, 30, 40};\n    printf(\"sizeof(a)=%d  n=%d\\n\",\n           (int)sizeof(a), (int)(sizeof(a) / sizeof(a[0])));\n    show(a, (int)(sizeof(a) / sizeof(a[0])));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(a)=16  n=4\n10,20,30,40",
+          "note": "sizeof(int) 在主流平台上都是 4，故 sizeof(a)=16；但 sizeof(指针) 与平台有关，所以代码里没有打印它。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-003",
+        "c-ch09-cr-004",
+        "c-ch09-cr-028",
+        "c-ch09-fb-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-01",
+        "c-ch09-07",
+        "c-ch09-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 2
+    },
+    {
+      "id": "c-ch09-03",
+      "title": "指针作为函数参数：传址调用",
+      "section": "9.2 指针与函数",
+      "summary": "C 只有传值调用，把变量地址作为实参传入，函数内通过 * 操作形参指针，即可修改主调函数中变量的值，实现\"传址\"效果。",
+      "content": "### 原理\n```c\nvoid swap(int *x, int *y)   /* 形参是两个 int 指针（副本） */\n{\n    int t = *x; *x = *y; *y = t;   /* 改的是 *x、*y，即实参本体 */\n}\nswap(&a, &b);               /* 实参必须是地址 */\n```\n指针形参本身也是**值传递**（复制了一份地址），但因为副本指向同一对象，所以通过 `*x` 能改到本体。\n\n### 三种传参对比\n| 写法 | 实参 | 能否改本体 |\n|---|---|---|\n| `void f(int x)` | `f(a)` | 否 |\n| `void f(int *x)` | `f(&a)` | **能** |\n| `void f(int x[])` | `f(a)` | **能**（数组名即地址） |\n\n### 何时用指针参数\n1. 需要函数**返回多个结果**（一个 return 只能返回一个值）；\n2. 需要**修改**调用者的变量、数组元素；\n3. 传递大结构体，避免整体复制（配合 `const` 保证只读）；\n4. 数组作参数时本来就只能传地址。\n\n### 易错\n- 实参写成 `swap(a, b)` 而不是 `swap(&a, &b)`；\n- 函数体内写 `x = y;`（改指针副本）而不是 `*x = *y;`（改所指对象）。",
+      "keyPoints": [
+        "C 只有传值调用，传地址即可让函数修改外部变量",
+        "形参指针是地址的副本，但指向同一对象",
+        "实参必须是 &变量 或数组名，不能直接写变量名",
+        "指针参数是实现多返回值的唯一手段（除全局变量）",
+        "函数内 *x = ... 改本体，x = ... 只改副本"
+      ],
+      "pitfalls": [
+        "调用时漏掉 &，写成 swap(a, b)",
+        "函数内交换写成 x = y 而不是 *x = *y",
+        "以为传了指针就是\"引用传递\"，其实仍是值传递（传的是地址值）",
+        "指针形参指向 NULL 却直接解引用"
+      ],
+      "examples": [
+        {
+          "title": "传值 vs 传址",
+          "code": "#include <stdio.h>\n\nvoid swap_bad(int x, int y)     /* 传值：改的是副本 */\n{\n    int t = x;\n    x = y;\n    y = t;\n    printf(\"函数内: %d %d\\n\", x, y);\n}\n\nvoid swap(int *x, int *y)       /* 传址：改的是本体 */\n{\n    int t = *x;\n    *x = *y;\n    *y = t;\n}\n\nint main(void)\n{\n    int a = 3, b = 7;\n    swap_bad(a, b);\n    printf(\"调用后: %d %d\\n\", a, b);\n    swap(&a, &b);\n    printf(\"调用后: %d %d\\n\", a, b);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "函数内: 7 3\n调用后: 3 7\n调用后: 7 3",
+          "note": "swap_bad 里确实交换成功了（函数内打印 7 3），但退出后 a、b 仍是 3 7 —— 这就是传值与传址的区别。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-005",
+        "c-ch09-cr-006",
+        "c-ch09-cr-019",
+        "c-ch09-pg-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-01",
+        "c-ch09-19",
+        "c-ch09-24"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 3
+    },
+    {
+      "id": "c-ch09-04",
+      "title": "数组名与指针的关系：数组名是首地址",
+      "section": "9.3 指针与一维数组",
+      "summary": "数组名代表数组首元素的地址，是地址常量（不能被赋值、不能自增）；int *p = a 之后 p 与 a 在取值上等价，但 p 是变量、a 不是。",
+      "content": "### 核心结论\n```c\nint a[5];\nint *p = a;        /* 等价于 p = &a[0] */\n```\n- `a` 的值 == `&a[0]` 的值 == `p` 的值；\n- `a` 是**地址常量**：不能 `a = p;`、不能 `a++;`；\n- `p` 是**指针变量**：可以 `p = a + 2;`、`p++;`。\n\n### 数组名不是指针的地方\n1. `sizeof(a)` 得到**整个数组**的字节数；`sizeof(p)` 只是一个指针的大小；\n2. `&a` 的类型是\"指向 5 个 int 的数组指针\" `int (*)[5]`，`&a + 1` 跳过整个数组；\n3. 字符串字面量初始化字符数组时，`char s[] = \"abc\"` 是**拷贝**内容到数组，`char *s = \"abc\"` 是**指向常量区**。\n\n### 数组作函数参数\n形参写成 `int a[]`、`int a[5]`、`int *a` **完全等价**，都被编译器当作 `int *`；\n所以函数内部 `sizeof(a)` 不再等于数组总长，**元素个数必须另开一个参数传入**。",
+      "keyPoints": [
+        "数组名的值等于首元素地址，即 a == &a[0]",
+        "数组名是地址常量，不能赋值、不能自增",
+        "sizeof(数组名) 是整个数组字节数，sizeof(指针) 是指针大小",
+        "int a[] / int a[5] / int *a 三种形参写法完全等价",
+        "数组传参后长度信息丢失，必须额外传 n"
+      ],
+      "pitfalls": [
+        "写 a = p 或 a++ 试图移动数组名（编译错误）",
+        "在函数内用 sizeof(a)/sizeof(a[0]) 求数组长度",
+        "以为 &a 与 a 类型相同（其实相差一层，&a+1 跳过整个数组）",
+        "把 a[5] 里的 5 当成有效声明，其实被忽略"
+      ],
+      "examples": [
+        {
+          "title": "a、&a[0]、p 三者取值相同",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5};\n    int *p = a;\n\n    printf(\"a == &a[0] ? %d\\n\", a == &a[0]);\n    printf(\"p == a ? %d\\n\", p == a);\n    printf(\"*a = %d, a[0] = %d\\n\", *a, a[0]);\n    printf(\"sizeof(a) = %d\\n\", (int)sizeof(a));\n    printf(\"n = %d\\n\", (int)(sizeof(a) / sizeof(a[0])));\n    p = a + 2;              /* 合法：p 是变量 */\n    printf(\"*p = %d\\n\", *p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "a == &a[0] ? 1\np == a ? 1\n*a = 1, a[0] = 1\nsizeof(a) = 20\nn = 5\n*p = 3",
+          "note": "数组名 a 不能像 p 那样被重新赋值或自增，它是编译期确定的地址常量。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-028",
+        "c-ch09-cr-029",
+        "c-ch09-cr-030",
+        "c-ch09-fb-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-02",
+        "c-ch09-06",
+        "c-ch09-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 4
+    },
+    {
+      "id": "c-ch09-05",
+      "title": "一维数组的四种等价访问写法",
+      "section": "9.3 指针与一维数组",
+      "summary": "设 int a[N]、int *p = a，则 a[i]、*(a+i)、p[i]、*(p+i) 四种写法完全等价，都表示第 i 个元素。",
+      "content": "### 等价关系\n```c\nint a[5], *p = a, i = 2;\na[i]  ==  *(a + i)\np[i]  ==  *(p + i)\na[i]  ==  p[i]  ==  *(a+i)  ==  *(p+i)\n```\nC 标准规定下标运算 `E1[E2]` 就是 `*((E1) + (E2))`，所以：\n- `a[i]` 与 `i[a]` 都合法且相等（`*(i+a)`），这是纯粹的语法后果，实际编程不要用；\n- `p[i]` 合法，即使 p 指向单个变量（此时 i 只能是 0）。\n\n### 编译器视角\n四种写法生成的机器码完全一样，**没有性能差别**；考试常考的是\"哪个写法合法/等价\"。\n\n### 注意区别\n| 表达式 | 含义 |\n|---|---|\n| `a[i]` | 第 i 个**元素的值** |\n| `&a[i]` | 第 i 个元素的**地址**，等于 `a + i` |\n| `a + i` | 地址（指针），不是值 |\n| `p[i]` | 值，要求 p 已指向数组 |",
+      "keyPoints": [
+        "a[i] ≡ *(a+i) ≡ p[i] ≡ *(p+i)",
+        "下标运算的定义就是 E1[E2] == *((E1)+(E2))",
+        "&a[i] 等于 a + i，是地址而非元素值",
+        "四种写法生成的代码相同，无性能差异",
+        "p[i] 要求 p 指向一段连续存储，i 不能越界"
+      ],
+      "pitfalls": [
+        "把 a+i 当成元素值直接 printf(\"%d\", a+i)",
+        "混淆 &a[i] 与 a[i]",
+        "以为 p[i] 只有 p 是数组名时才合法",
+        "写 i[a] 炫技，降低可读性"
+      ],
+      "examples": [
+        {
+          "title": "四种写法取值相同",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {2, 4, 6, 8};\n    int *p = a + 1;            /* 故意让 p != a，避免编译器把等价式判成\"自比较\" */\n    int i = 2;\n\n    printf(\"%d %d %d %d\\n\", a[i], *(a + i), p[i - 1], *(p + i - 1));\n    printf(\"四个值之和 = %d\\n\", a[i] + *(a + i) + p[i - 1] + *(p + i - 1));\n    printf(\"i[a] = %d\\n\", i[a]);\n    printf(\"p - a = %d\\n\", (int)(p - a));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "6 6 6 6\n四个值之和 = 24\ni[a] = 6\np - a = 1",
+          "note": "p 指向 a[1]，所以 p[i-1] 与 *(p+i-1) 都是 a[2]=6；i[a] 合法是因为下标运算被定义为 *(i+a)，加法可交换 —— 但请不要这样写代码。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-031",
+        "c-ch09-cr-032",
+        "c-ch09-cr-033",
+        "c-ch09-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-04",
+        "c-ch09-06",
+        "c-ch09-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 5
+    },
+    {
+      "id": "c-ch09-06",
+      "title": "指针的算术运算与步长",
+      "section": "9.3 指针与一维数组",
+      "summary": "指针加减整数时，实际移动的字节数 = 整数 × 所指类型的大小；两个同类型指针相减得到元素个数（ptrdiff_t），指针不能相乘或相加。",
+      "content": "### 合法运算\n| 运算 | 结果 |\n|---|---|\n| `p + n` / `p - n` | 前/后移动 n 个**元素**（不是 n 字节） |\n| `p++` / `p--` | 移动 1 个元素 |\n| `p1 - p2` | 相隔的**元素个数**，类型 ptrdiff_t |\n| `p1 == p2`、`<`、`>` | 关系比较（须指向同一数组才有意义） |\n| `p = NULL` / `p == NULL` | 置空 / 判空 |\n\n### 非法运算\n- `p1 + p2`（两个地址相加无意义）、`p1 * p2`、`p / 2`、`p1 % p2` 全部编译错误；\n- `p + 1.5`（不能加浮点数）。\n\n### 步长示例\n```c\nint a[5]; int *p = a;      /* p + 1 → 地址 +4 */\nchar *q = (char *)a;       /* q + 1 → 地址 +1 */\ndouble *r;                 /* r + 1 → 地址 +8 */\n```\n\n### 指针差的类型\n`p2 - p1` 的结果类型是 `ptrdiff_t`（定义在 stddef.h），打印时用 `%td` 或先转 int；\n考试里通常直接当整数用，但要注意它是**有符号**的，顺序反了会得到负数。",
+      "keyPoints": [
+        "p+n 移动 n 个元素，字节数 = n × sizeof(*p)",
+        "同类型指针相减得到元素个数，类型为 ptrdiff_t（有符号）",
+        "指针不能相加、相乘、相除",
+        "指针只能与 NULL 或另一指针比较，不能与普通整数比较",
+        "++/-- 只作用于指针变量本身，不能作用于数组名"
+      ],
+      "pitfalls": [
+        "以为 p+1 是地址加 1 字节",
+        "把 p1 - p2 当成字节差",
+        "对数组名做 a++（编译错误）",
+        "两个不相干数组的指针做减法（未定义行为）"
+      ],
+      "examples": [
+        {
+          "title": "步长与指针差",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {10, 20, 30, 40, 50};\n    int *p = a;\n\n    printf(\"%d\\n\", *p);\n    p++;                          /* 前进 1 个 int */\n    printf(\"%d\\n\", *p);\n    p += 3;                       /* 前进 3 个 int */\n    printf(\"%d\\n\", *p);\n    printf(\"p - a = %d\\n\", (int)(p - a));\n    printf(\"a - p = %d\\n\", (int)(a - p));\n    p--;\n    printf(\"%d\\n\", *p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10\n20\n50\np - a = 4\na - p = -4\n40",
+          "note": "指针差是有符号的，a - p 得到 -4；若打印 ptrdiff_t 建议用 %td 或先转成 int。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-034",
+        "c-ch09-cr-035",
+        "c-ch09-cr-036",
+        "c-ch09-fb-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-02",
+        "c-ch09-05",
+        "c-ch09-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 6
+    },
+    {
+      "id": "c-ch09-07",
+      "title": "用指针遍历数组的三种循环写法",
+      "section": "9.3 指针与一维数组",
+      "summary": "遍历数组可用下标法 a[i]、地址法 *(a+i)、指针法 *p++；三种写法效率相同，但指针法不能保留原数组名（p 已被移动）。",
+      "content": "### 三种写法\n```c\nint a[5], i;\n/* (1) 下标法 */\nfor (i = 0; i < 5; i++) printf(\"%d\", a[i]);\n\n/* (2) 地址法：数组名不动 */\nfor (i = 0; i < 5; i++) printf(\"%d\", *(a + i));\n\n/* (3) 指针法：p 不断后移 */\nint *p;\nfor (p = a; p < a + 5; p++) printf(\"%d\", *p);\n```\n\n### 常见变形\n- `for (p = a; p < a + n; p++)` —— 用**尾后指针**作终止条件，最规范；\n- `while (p < end) { ...; p++; }`；\n- `for (i = 0; i < n; i++) p[i]` —— p 不动，等价于下标法。\n\n### 注意\n1. 写法 (3) 结束后 `p == a + 5`，若还要再遍历一遍必须重新 `p = a`；\n2. `*p++` 先取 `*p` 再让 p 后移；`(*p)++` 是让**元素值**加 1；`*++p` 是先移后取；\n3. 遍历中不要同时修改 p 和 i，容易多走或少走一步。\n\n### 尾后指针\n`a + n`（指向最后一个元素之后）是**合法地址**，可以比较、可以赋值，但**不能解引用**。",
+      "keyPoints": [
+        "下标法、地址法、指针法三种遍历生成的代码相同",
+        "p < a + n 用尾后指针作终止条件最常用",
+        "*p++ 取值后移动指针，(*p)++ 修改元素值，*++p 先移动再取值",
+        "指针法遍历结束后 p 已指向尾后，需要复用时必须重新赋值",
+        "a + n 可以比较但不能解引用"
+      ],
+      "pitfalls": [
+        "混淆 *p++、(*p)++、*++p 三者",
+        "遍历后忘记 p = a 复位，导致第二轮越界",
+        "循环条件写成 p <= a + n-1 与 p < a + n 混用出错",
+        "在循环体内既用 i 又移动 p，步数算错"
+      ],
+      "examples": [
+        {
+          "title": "三种遍历 + *p++ / (*p)++ / *++p 的区别",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5};\n    int *p;\n    int i;\n\n    for (i = 0; i < 5; i++) printf(\"%d\", a[i]);\n    printf(\"\\n\");\n    for (i = 0; i < 5; i++) printf(\"%d\", *(a + i));\n    printf(\"\\n\");\n    for (p = a; p < a + 5; p++) printf(\"%d\", *p);\n    printf(\"\\n\");\n\n    p = a;\n    printf(\"*p++ = %d\\n\", *p++);              /* 先取 a[0]=1，p 移到 a[1] */\n    printf(\"之后 *p = %d\\n\", *p);\n    (*p)++;                                    /* a[1] 由 2 变 3 */\n    printf(\"(*p)++ 之后 a[1] = %d\\n\", a[1]);\n    printf(\"*++p = %d\\n\", *++p);               /* 先移到 a[2] 再取值得 3 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "12345\n12345\n12345\n*p++ = 1\n之后 *p = 2\n(*p)++ 之后 a[1] = 3\n*++p = 3",
+          "note": "注意不要把 *p++ 与 *p 写在同一条语句里（如 printf(\"%d %d\", *p++, *p)），那是未定义行为；本例每步单独一条语句。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-037",
+        "c-ch09-cr-038",
+        "c-ch09-cr-039",
+        "c-ch09-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-05",
+        "c-ch09-06",
+        "c-ch09-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 7
+    },
+    {
+      "id": "c-ch09-08",
+      "title": "指针的关系运算与合法地址范围",
+      "section": "9.3 指针与一维数组",
+      "summary": "指向同一数组的指针可以用 ==、!=、<、>、<=、>= 比较，越靠后地址越大；数组尾后位置 a+n 合法但不可解引用，不同数组之间比较无意义。",
+      "content": "### 可以比较的前提\n只有指向**同一数组（或同一对象）**的指针，其大小比较才有定义：\n```c\nint a[5]; int *p = a, *q = a + 3;\np < q     /* 1：q 在后 */\nq - p     /* 3：相隔 3 个元素 */\np == a    /* 1 */\n```\n\n### 尾后指针（one-past-the-end）\n`a + n` 是 C 标准明确允许的\"越界一个位置\"的地址：\n- **可以**：赋值给指针、与 `a+i` 比较、参与减法；\n- **不可以**：解引用 `*(a+n)`（未定义行为）。\n这正是所有循环用 `p < a + n` 作条件的依据。\n\n### 无意义的比较\n- 两个不同数组的元素指针比较大小 —— 标准未定义（实际会给出地址大小，但不可依赖）；\n- 指针与整数比较，如 `if (p > 0)` —— 应写 `if (p != NULL)`；\n- `NULL` 只能与指针做 `==` / `!=` 比较，不能做 `<`。\n\n### 典型用法\n```c\nwhile (p < end) { ...; p++; }               /* 区间遍历 */\nif (p >= a && p < a + n) { ... }            /* 边界检查 */\n```",
+      "keyPoints": [
+        "只有指向同一数组的指针比较大小才有定义",
+        "a + n（尾后地址）合法，可比较、可作减法，但不可解引用",
+        "循环终止条件 p < a + n 正是利用尾后地址",
+        "指针应与 NULL 用 ==/!= 比较，不要写 p > 0",
+        "不同数组之间的指针比较是未定义行为"
+      ],
+      "pitfalls": [
+        "解引用尾后指针 *(a+n)",
+        "拿两个不相干数组的指针比大小",
+        "用 if (p > 0) 判空，应写 if (p != NULL)",
+        "p <= a + n 导致多循环一次并越界读取"
+      ],
+      "examples": [
+        {
+          "title": "关系运算与尾后地址",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {7, 8, 9, 10};\n    int *p = a;\n    int *q = a + 3;\n    int *end = a + 4;         /* 尾后地址：合法，但不能 *end */\n\n    printf(\"p < q ? %d\\n\", p < q);\n    printf(\"q - p = %d\\n\", (int)(q - p));\n    printf(\"*q - *p = %d\\n\", *q - *p);\n    printf(\"end - a = %d\\n\", (int)(end - a));\n    printf(\"q < end ? %d\\n\", q < end);\n    printf(\"p == NULL ? %d\\n\", p == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "p < q ? 1\nq - p = 3\n*q - *p = 3\nend - a = 4\nq < end ? 1\np == NULL ? 0",
+          "note": "end 指向 a[4]（不存在的位置），代码里只用它做比较和减法，从不写 *end —— 这是标准允许的唯一\"越界\"。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-040",
+        "c-ch09-cr-041",
+        "c-ch09-cr-042",
+        "c-ch09-dbg-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-06",
+        "c-ch09-07",
+        "c-ch09-36"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 8
+    },
+    {
+      "id": "c-ch09-09",
+      "title": "二维数组的地址结构：行地址与元素地址",
+      "section": "9.4 指针与二维数组",
+      "summary": "二维数组按行连续存放；a 是首行地址（行指针），a[i] 是第 i 行首元素地址（列指针），&a[i][j] 是元素地址，三者类型不同但数值上前两个相同。",
+      "content": "### 内存布局\n```c\nint a[2][3] = {{1,2,3},{4,5,6}};\n```\n内存中依次是 1 2 3 4 5 6，**按行优先**连续存放，可视为\"一维数组的一维数组\"。\n\n### 三个层次的地址\n| 表达式 | 含义 | 类型 | +1 的效果 |\n|---|---|---|---|\n| `a`、`&a[0]` | 第 0 行地址 | `int (*)[3]` | 跳过一整行（12 字节） |\n| `a[i]`、`&a[i][0]` | 第 i 行首元素地址 | `int *` | 跳过 1 个元素（4 字节） |\n| `&a[i][j]` | 元素地址 | `int *` | 跳过 1 个元素 |\n\n数值上 `a == a[0] == &a[0][0]`，但**类型不同**，所以 `a + 1` 与 `a[0] + 1` 相差 3 个元素。\n\n### 元素的四种等价写法\n```c\na[i][j] == *(*(a+i)+j) == *(a[i]+j) == (&a[0][0])[i*列数+j]\n```\n\n### 考点\n- `sizeof(a)` = 2×3×4 = 24；\n- `a` 是**地址常量**，不能 `a++`；\n- 二维数组作参数时第二维（列数）必须写明，第一维可省略。",
+      "keyPoints": [
+        "二维数组按行优先连续存放",
+        "a 是行指针 int (*)[3]，a[i] 是列指针 int *，类型不同",
+        "a、a[0]、&a[0][0] 数值相同但 a+1 与 a[0]+1 步长不同",
+        "a[i][j] ≡ *(*(a+i)+j) ≡ *(a[i]+j)",
+        "sizeof(a) = 行数 × 列数 × sizeof(元素)"
+      ],
+      "pitfalls": [
+        "以为 a+1 前进一个元素（实际前进一整行）",
+        "把 a[i] 当成\"第 i 行的值\"，它其实是地址",
+        "混用 a[i][j] 与 a[i,j]（逗号表达式，结果是 a[j]）",
+        "忘记二维数组在内存中是连续的，以为按列存放"
+      ],
+      "examples": [
+        {
+          "title": "三个层次地址与四种访问写法",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int i = 1, j = 1;\n\n    printf(\"a[i][j] = %d\\n\", a[i][j]);\n    printf(\"%d %d %d\\n\", *(*(a + i) + j), *(a[i] + j), (&a[0][0])[i * 3 + j]);\n    printf(\"**a = %d\\n\", **a);\n    printf(\"sizeof(a) = %d\\n\", (int)sizeof(a));\n    printf(\"sizeof(a[0]) = %d\\n\", (int)sizeof(a[0]));\n    printf(\"sizeof(a[0][0]) = %d\\n\", (int)sizeof(a[0][0]));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "a[i][j] = 5\n5 5 5\n**a = 1\nsizeof(a) = 24\nsizeof(a[0]) = 12\nsizeof(a[0][0]) = 4",
+          "note": "a 是行指针（+1 跳 12 字节），a[0] 是列指针（+1 跳 4 字节），a[0][0] 才是 int；三者 sizeof 各不相同。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-043",
+        "c-ch09-cr-044",
+        "c-ch09-cr-045",
+        "c-ch09-cr-046"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-09",
+        "c-ch09-11",
+        "c-ch09-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 9
+    },
+    {
+      "id": "c-ch09-10",
+      "title": "行指针（数组指针）int (*p)[N] 与二维数组作参数",
+      "section": "9.4 指针与二维数组",
+      "summary": "int (*p)[N] 是\"指向含 N 个 int 的数组\"的指针，即行指针，专门用来遍历二维数组；二维数组作形参时列数 N 必须写死，行数可省略。",
+      "content": "### 行指针的定义\n```c\nint a[2][3];\nint (*p)[3] = a;      /* p 指向一行（3 个 int） */\n```\n**括号不能省**：\n- `int (*p)[3]` → p 是行指针，`p + 1` 跳 3 个 int；\n- `int *p[3]` → p 是**指针数组**（3 个 int*），完全不同的东西。\n\n### 用法\n```c\n(*p)[0]      /* 第 0 行第 0 列，等价 a[0][0]；* 与 [] 同优先级，必须加括号 */\np[0][1]      /* p 是行指针时，p[i][j] 与 a[i][j] 等价 */\np++          /* 移到下一行 */\n```\n\n### 二维数组作函数参数\n三种写法等价，**列数必须写**：\n```c\nvoid f(int a[][4], int n);      /* n 是行数 */\nvoid f(int a[3][4], int n);     /* 3 会被忽略 */\nvoid f(int (*a)[4], int n);     /* 最本质的写法 */\n```\n不能写成 `void f(int **a)` —— `int **` 与 `int (*)[4]` 类型不兼容，\n把二维数组传给 `int **` 形参会编译报错。\n\n### 通用遍历\n```c\nfor (i = 0; i < m; i++)\n    for (j = 0; j < n; j++)\n        printf(\"%d\", p[i][j]);      /* 或 *(*(p+i)+j) */\n```",
+      "keyPoints": [
+        "int (*p)[N] 是行指针，p+1 跳过一整行 N 个元素",
+        "int *p[N] 是指针数组，与行指针只差一对括号",
+        "(*p)[j] 必须加括号，因为 [] 优先级高于 *",
+        "二维数组形参必须写明列数，行数可省略",
+        "二维数组不能传给 int ** 形参，类型不兼容"
+      ],
+      "pitfalls": [
+        "漏写括号写成 int *p[3]，含义完全变了",
+        "形参写 int a[][]，缺少列数导致编译错误",
+        "用 int **p 接收二维数组",
+        "(*p)[0] 写成 *p[0]（后者是 *(p[0])，语义完全不同）"
+      ],
+      "examples": [
+        {
+          "title": "行指针遍历 + 二维数组作参数",
+          "code": "#include <stdio.h>\n\nint row_sum(int (*p)[4], int row)      /* 等价于 int p[][4] */\n{\n    int s = 0, i;\n    for (i = 0; i < 4; i++) s += p[row][i];\n    return s;\n}\n\nint main(void)\n{\n    int a[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};\n    int (*p)[4] = a;\n\n    printf(\"%d\\n\", (*p)[0]);            /* a[0][0] */\n    p++;                                /* 跳到第 1 行 */\n    printf(\"%d %d\\n\", (*p)[0], (*p)[3]);\n    printf(\"p[1][2] = %d\\n\", p[1][2]);  /* a[2][2] = 11 */\n    printf(\"%d %d\\n\", row_sum(a, 0), row_sum(a, 2));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1\n5 8\np[1][2] = 11\n10 42",
+          "note": "p++ 之后 p 指向第 1 行，所以 p[1][2] 实际是 a[2][2]=11；row_sum 的形参 (*p)[4] 中的 4 是列数，必须与实参一致。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-047",
+        "c-ch09-cr-048",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-09",
+        "c-ch09-12",
+        "c-ch09-25"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 10
+    },
+    {
+      "id": "c-ch09-11",
+      "title": "二维数组的通用遍历与\"一维化\"访问",
+      "section": "9.4 指针与二维数组",
+      "summary": "二维数组在内存中按行连续存放，因此既可以用 int (*p)[N] 按行访问，也可以用 int *flat = &a[0][0] 当成一维数组用 a[i*N+j] 访问。",
+      "content": "### 两种遍历方式\n```c\n#define M 3\n#define N 4\nint a[M][N];\n\n/* (1) 行指针：形参必须写列数 */\nvoid f(int (*p)[N], int m) {\n    for (i = 0; i < m; i++)\n        for (j = 0; j < N; j++) ... p[i][j] ...\n}\n\n/* (2) 一维化：把二维当一维 */\nint *flat = &a[0][0];\na[i][j] == flat[i * N + j]\n```\n\n### 为什么可以一维化\nC 标准保证**数组元素在内存中连续存放**，二维数组就是 M 个长度为 N 的一维数组首尾相接，\n所以 `&a[0][0]` 开始的 M×N 个 int 就是整个矩阵。\n\n### 一维化的好处\n- 形参可以写成 `int *p, int m, int n`，摆脱\"列数必须写死\"的限制，适合列数运行时才知道的场景；\n- 便于用一层循环处理整个矩阵（如清零、求和）。\n\n### 一维化的代价\n- 下标要自己算 `i*n+j`，可读性下降；\n- 编译器无法自动检查越界，算错列数 n 会导致数据错位（这是最常犯的错误）。\n\n### 考点\n`a[i][j]` 的地址 = `&a[0][0] + (i*列数 + j)`；**乘的是列数，不是行数**。",
+      "keyPoints": [
+        "二维数组按行连续存放，可当一维数组处理",
+        "int *flat = &a[0][0] 之后 a[i][j] == flat[i*列数+j]",
+        "行指针形参必须写列数；一维化形参用 int *p, int m, int n 更灵活",
+        "一维化下标乘的是列数 n，不是行数 m",
+        "列数写错会导致数据错位而不报错，极难调试"
+      ],
+      "pitfalls": [
+        "一维化时用 i*m+j（行数）而不是 i*n+j（列数）",
+        "形参写 int a[][] 缺列数",
+        "把 int (*)[N] 与 int ** 混用",
+        "对动态分配的\"指针数组式二维数组\"用 flat[i*n+j]（内存不连续，错误）"
+      ],
+      "examples": [
+        {
+          "title": "行指针遍历与一维化访问结果一致",
+          "code": "#include <stdio.h>\n\n#define M 3\n#define N 4\n\nvoid print_matrix(int (*a)[N], int m)\n{\n    int i, j;\n    for (i = 0; i < m; i++) {\n        for (j = 0; j < N; j++) {\n            if (j > 0) printf(\",\");\n            printf(\"%d\", a[i][j]);\n        }\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int a[M][N] = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};\n    int *flat = &a[0][0];\n    int i;\n\n    print_matrix(a, M);\n    for (i = 0; i < M * N; i++) {\n        if (i > 0) printf(\",\");\n        printf(\"%d\", flat[i]);\n    }\n    printf(\"\\n\");\n    printf(\"flat[2*N+1] = %d\\n\", flat[2 * N + 1]);   /* 即 a[2][1] */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1,2,3,4\n5,6,7,8\n9,10,11,12\n1,2,3,4,5,6,7,8,9,10,11,12\nflat[2*N+1] = 10",
+          "note": "a[2][1]=10，一维化下标是 2*4+1=9 —— 乘的是列数 N=4。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-043",
+        "c-ch09-cr-046",
+        "c-ch09-cr-049",
+        "c-ch09-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-09",
+        "c-ch09-10",
+        "c-ch09-31"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 11
+    },
+    {
+      "id": "c-ch09-12",
+      "title": "用字符数组与字符指针表示字符串",
+      "section": "9.5 指针与字符串",
+      "summary": "字符串是以 \\0 结尾的字符序列；char s[] = \"abc\" 把内容拷进可修改的数组，char *p = \"abc\" 让 p 指向只读的字符串常量，两者行为差别很大。",
+      "content": "### 两种定义\n```c\nchar s[] = \"Hello\";     /* 数组，6 字节，内容可改 */\nchar *p  = \"Hello\";     /* 指针，指向只读常量区 */\n```\n| 对比项 | `char s[] = \"Hello\"` | `char *p = \"Hello\"` |\n|---|---|---|\n| 存储位置 | 栈（局部）或数据段（全局） | 指针在栈，字符串在只读段 |\n| `s[0]='J'` | **合法** | **未定义行为**（段错误） |\n| `p = p + 1` | 不适用（数组名不能改） | **合法**（改指针本身） |\n| `sizeof` | 6（含 \\0） | 指针大小（8 或 4） |\n| `strlen` | 5 | 5 |\n\n### 遍历字符串\n```c\nchar *q = s;\nwhile (*q) { putchar(*q); q++; }     /* *q != '\\0' */\nfor (q = s; *q != '\\0'; q++) ...\n```\n字符串处理**不需要长度参数**，靠 \\0 判尾 —— 这也是缓冲区溢出的根源。\n\n### 长度概念\n- `strlen(s)`：不含 \\0 的字符个数，返回 size_t；\n- `sizeof(s)`：数组占用字节数，含 \\0（仅对数组有效）。",
+      "keyPoints": [
+        "字符串以 \\0 结尾，strlen 不计 \\0，sizeof(数组) 计 \\0",
+        "char s[] = \"abc\" 拷贝内容，可修改；char *p = \"abc\" 指向只读常量",
+        "通过字符指针修改字符串常量内容是未定义行为",
+        "指针变量可以 p++ 移动，数组名不能",
+        "遍历字符串用 while (*p) 而不是计数长度"
+      ],
+      "pitfalls": [
+        "写 p[0] = 'J' 修改字符串常量，运行时段错误",
+        "用 sizeof(p) 当字符串长度",
+        "忘记预留 \\0 的空间，char s[5] = \"Hello\" 会编译报错",
+        "把 char *p = \"abc\" 与 char p[] = \"abc\" 当成完全一样"
+      ],
+      "examples": [
+        {
+          "title": "数组可改内容，指针可改指向",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    char s[] = \"Hello\";        /* 数组：内容可修改 */\n    char *p = \"Hello\";         /* 指针：指向字符串常量 */\n\n    s[0] = 'J';                /* 合法 */\n    printf(\"%s\\n\", s);\n    printf(\"%s\\n\", p);\n    p = p + 1;                 /* 合法：移动指针本身 */\n    printf(\"%s\\n\", p);\n    printf(\"strlen=%d sizeof=%d\\n\", (int)strlen(s), (int)sizeof(s));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Jello\nHello\nello\nstrlen=5 sizeof=6",
+          "note": "若把 s[0] = 'J' 换成 p[0] = 'J'，程序在运行时很可能直接崩溃（写入只读内存段）。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-007",
+        "c-ch09-cr-008",
+        "c-ch09-cr-009",
+        "c-ch09-fb-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-12",
+        "c-ch09-13",
+        "c-ch09-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 12
+    },
+    {
+      "id": "c-ch09-13",
+      "title": "char s[] 与 char *s 作函数参数的区别（数组退化）",
+      "section": "9.5 指针与字符串",
+      "summary": "函数的字符数组形参一律退化为 char *，因此函数内 sizeof(形参) 只是指针大小，求字符串长度只能用 strlen 或由调用者传入长度。",
+      "content": "### 退化规则\n以下三个形参声明**完全等价**，编译器都当成 `char *`：\n```c\nvoid f(char s[]);\nvoid f(char s[100]);      /* 100 被忽略 */\nvoid f(char *s);\n```\n这叫**数组退化（array decay）**，是 C 的语言规则，不是编译器的选择。\n\n### 后果\n1. 函数内 `sizeof(s)` == 指针大小，**不是**实参数组大小；\n2. `sizeof(s)/sizeof(s[0])` 在函数内是错的；\n3. 求长度只能用 `strlen(s)`（要求以 \\0 结尾）或让调用者传 n。\n\n### 三个易混的长度\n```c\nchar a[10] = \"abc\";\nsizeof(a)   == 10      /* 数组容量 */\nstrlen(a)   == 3       /* 实际字符数 */\nsizeof(a)/sizeof(char) == 10\n```\n\n### 修改权限\n形参是 `char *s` 时，函数内 `s[0] = 'X'` 会**改到调用者的数组**；\n若只想读，应声明为 `const char *s`，让编译器帮你拦住误改。",
+      "keyPoints": [
+        "数组形参一律退化为指针，char s[] ≡ char *s",
+        "函数内 sizeof(形参) 是指针大小，不能用来求数组长度",
+        "求字符串长度用 strlen；求数组元素个数必须由调用者传入",
+        "形参写 const char * 可在编译期防止误改字符串",
+        "sizeof(a)=容量，strlen(a)=实际长度，二者常差 1 以上"
+      ],
+      "pitfalls": [
+        "在被调函数里用 sizeof(s)/sizeof(s[0]) 求长度",
+        "以为形参写 char s[100] 编译器就会检查长度",
+        "把 sizeof 与 strlen 混为一谈",
+        "形参不写 const，误改调用者的字符串"
+      ],
+      "examples": [
+        {
+          "title": "函数内 sizeof 失效，strlen 才可靠",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nvoid f(char s[])              /* 形参退化成 char * */\n{\n    printf(\"strlen=%d\\n\", (int)strlen(s));\n}\n\nint main(void)\n{\n    char a[10] = \"abc\";\n    char *p = a;\n\n    printf(\"sizeof(a)=%d\\n\", (int)sizeof(a));\n    f(a);\n    p[1] = 'B';               /* 通过指针修改数组，合法 */\n    printf(\"%s\\n\", a);\n    p = \"xyz\";                /* p 改指向字符串常量 */\n    printf(\"%s\\n\", p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(a)=10\nstrlen=3\naBc\nxyz",
+          "note": "sizeof(a)=10 是数组容量，strlen=3 是实际字符数；一旦 a 传进 f，f 内部就再也拿不到 10 这个信息了。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-010",
+        "c-ch09-cr-011",
+        "c-ch09-cr-012",
+        "c-ch09-cr-013"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-12",
+        "c-ch09-14",
+        "c-ch09-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 13
+    },
+    {
+      "id": "c-ch09-14",
+      "title": "字符串处理函数与指针遍历",
+      "section": "9.5 指针与字符串",
+      "summary": "strcpy/strcat/strcmp/strchr/strlen 等函数全部以 char * 形式接收字符串；strchr、strstr 返回的是指向原串内部的指针，可直接做指针减法求下标。",
+      "content": "### 常用函数（string.h）\n| 函数 | 原型要点 | 返回 |\n|---|---|---|\n| `strlen(s)` | `const char *` | 字符个数（不含 \\0），size_t |\n| `strcpy(d, s)` | d 必须**足够大且可写** | d |\n| `strncpy(d,s,n)` | 最多拷 n 个，**可能不加 \\0** | d |\n| `strcat(d, s)` | d 必须有剩余空间 | d |\n| `strcmp(s1,s2)` | 按字典序 | <0 / 0 / >0 |\n| `strchr(s,c)` | 找**第一次**出现 | 指向该字符的指针，找不到返回 NULL |\n| `strstr(s1,s2)` | 找子串 | 指向子串起点的指针或 NULL |\n\n### 返回指针的用法\n```c\nchar *q = strchr(t, ',');\nif (q != NULL) {\n    printf(\"%s\\n\", q);            /* 从该字符开始的后半串 */\n    printf(\"%d\\n\", (int)(q - t)); /* 下标 */\n}\n```\n\n### 自己实现 strlen / strcpy\n```c\nsize_t my_strlen(const char *s) {\n    const char *p = s;\n    while (*p) p++;\n    return (size_t)(p - s);      /* 指针差即长度 */\n}\nchar *my_strcpy(char *d, const char *s) {\n    char *r = d;\n    while ((*d++ = *s++)) ;      /* 连 \\0 一起拷，非 0 时继续 */\n    return r;\n}\n```\n\n### 危险点\n`strcmp` 返回的是**差值符号**而非 0/1；判断相等必须写 `== 0`，写成 `if (strcmp(a,b))` 表示\"不相等\"。",
+      "keyPoints": [
+        "所有字符串函数都以 char */const char * 传参，靠 \\0 判尾",
+        "strchr/strstr 返回指向原串内部的指针，可与首地址相减求下标",
+        "strcpy/strcat 不检查目标空间，缓冲区溢出是头号安全隐患",
+        "strcmp 返回负/零/正，判等必须写 == 0",
+        "用指针差 p - s 求长度是最常见的字符串惯用法"
+      ],
+      "pitfalls": [
+        "用 if (strcmp(a,b)) 表示\"相等\"（实际是\"不等\"）",
+        "strcpy 到太小的数组导致溢出",
+        "strncpy 拷满 n 个字符后不补 \\0，后续当字符串用会越界",
+        "strchr 返回 NULL 不检查就解引用"
+      ],
+      "examples": [
+        {
+          "title": "字符串函数与指针减法",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    char s[20] = \"Hello\";\n    char t[20];\n    char *q;\n\n    strcpy(t, s);\n    strcat(t, \", C\");\n    printf(\"%s\\n\", t);\n    printf(\"strlen=%d\\n\", (int)strlen(t));\n    printf(\"%d %d %d\\n\", strcmp(s, t) < 0, strcmp(s, s) == 0, strcmp(t, s) > 0);\n    q = strchr(t, ',');\n    printf(\"%s\\n\", q);\n    printf(\"下标=%d\\n\", (int)(q - t));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Hello, C\nstrlen=8\n1 1 1\n, C\n下标=5",
+          "note": "strchr 返回的 q 指向 t 内部的逗号，所以 q - t 就是逗号的下标 5，printf(\"%s\", q) 打印的是后半串。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-014",
+        "c-ch09-cr-015",
+        "c-ch09-cr-016",
+        "c-ch09-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-12",
+        "c-ch09-13",
+        "c-ch09-38"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 14
+    },
+    {
+      "id": "c-ch09-15",
+      "title": "const 与指针：三种组合的区别",
+      "section": "9.5 指针与字符串",
+      "summary": "const char *p 不能通过 p 改内容但能改指向；char *const p 能改内容但不能改指向；const char *const p 两者都不能改。",
+      "content": "### 读法：从右往左\n```c\nconst char *p;        /* p 是指针，指向 const char：内容只读，指向可改 */\nchar *const p = s;    /* p 是指针常量：指向可改✗，内容可改✓ */\nconst char *const p;  /* 都不可改 */\n```\n口诀：**const 在 * 左边 → 内容只读；const 在 * 右边 → 指针只读**。\n（`char const *p` 与 `const char *p` 完全等价。）\n\n### 为什么要用 const\n1. **接口承诺**：`size_t f(const char *s)` 告诉调用者\"我不会改你的字符串\"，\n   同时允许传入字符串字面量和 const 对象；\n2. **编译期防错**：函数内误写 `s[0]='X'` 会直接编译报错，而不是运行时才发现；\n3. **能接更多实参**：`const char *` 形参可以接 `char[]`、`char *`、字符串字面量。\n\n### 注意\n- `const char *p = buf;` 之后仍可 `buf[0]='X'`（buf 本身不是 const），const 只约束\"通过 p 的访问\"；\n- `char *const p` **必须在定义时初始化**，否则永远无法赋值；\n- 去掉 const 需要强制转换 `(char *)p`，若原对象真是常量则是未定义行为。",
+      "keyPoints": [
+        "const 在 * 左边修饰所指内容，在 * 右边修饰指针本身",
+        "const char * 形参可同时接收数组、指针和字符串字面量",
+        "const 只是\"通过该指针访问\"的约束，原对象仍可能被其他途径修改",
+        "char *const p 必须定义时初始化",
+        "强转掉 const 再修改真正的常量对象是未定义行为"
+      ],
+      "pitfalls": [
+        "把 const char * 与 char * const 说反",
+        "以为 const char *p = buf 之后 buf 就不能改了",
+        "形参不写 const，导致无法传字符串字面量",
+        "用 (char *) 强行去掉 const 后写入常量区"
+      ],
+      "examples": [
+        {
+          "title": "两种 const 组合的实际行为",
+          "code": "#include <stdio.h>\n\nsize_t count_char(const char *s, char c)   /* 承诺不修改 *s */\n{\n    size_t n = 0;\n    while (*s) {\n        if (*s == c) n++;\n        s++;                                /* 改的是形参副本，合法 */\n    }\n    return n;\n}\n\nint main(void)\n{\n    char buf[] = \"banana\";\n    const char *p = buf;        /* 内容只读，指向可改 */\n    char *const q = buf;        /* 指针只读，内容可改 */\n\n    printf(\"%d\\n\", (int)count_char(p, 'a'));\n    q[0] = 'B';                 /* 合法：q 所指内容不是 const */\n    printf(\"%s\\n\", q);\n    p = \"apple\";                /* 合法：p 本身不是 const */\n    printf(\"%s\\n\", p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "3\nBanana\napple",
+          "note": "count_char 里 s++ 改的是形参指针副本，调用者的 p 不受影响；这正是 const char * 形参的标准写法。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-017",
+        "c-ch09-cr-018",
+        "c-ch09-cr-027",
+        "c-ch09-fb-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-12",
+        "c-ch09-13",
+        "c-ch09-16"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 15
+    },
+    {
+      "id": "c-ch09-16",
+      "title": "字符串指针数组（字符串表）",
+      "section": "9.5 指针与字符串",
+      "summary": "const char *names[] 是一组指向字符串常量的指针，用来表示菜单、星期、月份等字符串表；它比二维字符数组省空间且长度可以不等。",
+      "content": "### 两种存字符串表的方式\n```c\n/* (1) 指针数组：每行长度可不同，省空间 */\nconst char *week[] = {\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\"};\n\n/* (2) 二维字符数组：每行等长，浪费空间但可修改 */\nchar week2[5][10] = {\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\"};\n```\n| 对比 | 指针数组 | 二维数组 |\n|---|---|---|\n| 各行长度 | 可不同 | 必须按最长行预留 |\n| 内存 | 只存指针 + 常量 | 5×10=50 字节 |\n| 可修改内容 | 否（常量区） | 是 |\n| `sizeof(week)` | 指针数 × 指针大小 | 总字节数 |\n| 排序 | 只交换指针，**极快** | 要搬动字符串 |\n\n### 常见操作\n```c\nint n = sizeof(week) / sizeof(week[0]);      /* 元素个数 */\nprintf(\"%s\", week[i]);                       /* 第 i 个字符串 */\nprintf(\"%c\", week[i][0]);                    /* 第 i 个串的首字符 */\nconst char *t = week[0]; week[0] = week[1]; week[1] = t;   /* 交换指针 */\n```\n\n### 用途\n菜单选项、错误信息表、状态名、关键字表 —— 配合函数指针数组可做出简洁的\"跳转表\"。",
+      "keyPoints": [
+        "字符串指针数组每行长度可不同，比二维字符数组省空间",
+        "sizeof(数组)/sizeof(数组[0]) 求出字符串个数",
+        "排序时只交换指针，不搬动字符串内容",
+        "week[i][0] 是第 i 个字符串的首字符",
+        "指针数组元素指向常量区，不能修改内容"
+      ],
+      "pitfalls": [
+        "对指针数组元素做 week[0][0] = 'X' 修改常量",
+        "用 sizeof(week) 当字符串个数（那是总字节数）",
+        "以为交换指针会改变字符串本身的内容",
+        "忘记数组元素类型是 const char *，赋给 char * 会丢 const"
+      ],
+      "examples": [
+        {
+          "title": "字符串表的遍历与访问",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    const char *week[] = {\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\"};\n    int n = (int)(sizeof(week) / sizeof(week[0]));\n    int i;\n\n    for (i = 0; i < n; i++) {\n        printf(\"%d:%s\", i + 1, week[i]);\n        if (i < n - 1) printf(\"-\");\n    }\n    printf(\"\\n\");\n    printf(\"%s %c\\n\", week[4], week[2][0]);\n    printf(\"n = %d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1:Mon-2:Tue-3:Wed-4:Thu-5:Fri\nFri W\nn = 5",
+          "note": "week[2][0] 是 \"Wed\" 的首字符 W；如果 week 声明为 char week[5][10]，这行代码同样成立，但内存要多占一倍以上。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-020",
+        "c-ch09-cr-021",
+        "c-ch09-cr-022",
+        "c-ch09-pg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-12",
+        "c-ch09-16",
+        "c-ch09-26"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 16
+    },
+    {
+      "id": "c-ch09-17",
+      "title": "用指针参数让函数返回多个值",
+      "section": "9.2 指针与函数",
+      "summary": "C 的 return 只能返回一个值，需要同时得到商和余数、最大值和最小值等结果时，把结果变量的地址作为参数传入，函数内通过 * 写入。",
+      "content": "### 标准套路\n```c\nvoid divmod(int a, int b, int *q, int *r)\n{\n    *q = a / b;\n    *r = a % b;\n}\nint quo, rem;\ndivmod(17, 5, &quo, &rem);        /* 实参必须取地址 */\n```\n\n### 三种\"多返回值\"方案对比\n| 方案 | 优点 | 缺点 |\n|---|---|---|\n| 指针参数 | 无全局状态、类型安全 | 调用处要多声明变量并取地址 |\n| 全局变量 | 调用简单 | 破坏封装、不可重入、多线程不安全 |\n| 返回结构体 | 语义清晰 | 大结构体有拷贝开销 |\n\n### 编写规范\n1. **出参放最后**，且命名清晰（min/max、q/r）；\n2. 函数开头就写入出参，避免中途 return 漏赋值；\n3. 只读的输入数组用 `const` 修饰：`void f(const int *a, int n, int *out)`；\n4. 出参可能为 NULL 时要判空（库函数常允许传 NULL 表示\"我不关心这个结果\"）。\n\n### 常见错误\n```c\nvoid f(int *q, int *r) { q = ...; }     /* 错：只改了指针副本 */\ndivmod(17, 5, quo, rem);                /* 错：漏了 & */\n```",
+      "keyPoints": [
+        "return 只能返回一个值，多结果靠指针出参",
+        "出参实参必须是 &变量，函数内必须用 *p 写入",
+        "只读输入用 const 修饰，出参放参数列表末尾",
+        "全局变量也能实现多返回值，但破坏封装且不可重入",
+        "返回结构体是另一种可行的选择"
+      ],
+      "pitfalls": [
+        "函数内写 q = a/b 而不是 *q = a/b",
+        "调用时漏掉 &",
+        "出参未初始化就被 printf，读到随机值",
+        "忘记在函数所有 return 分支上给出参赋值"
+      ],
+      "examples": [
+        {
+          "title": "一次调用返回两个结果",
+          "code": "#include <stdio.h>\n\nvoid min_max(const int *a, int n, int *min, int *max)\n{\n    int i;\n    *min = *max = a[0];\n    for (i = 1; i < n; i++) {\n        if (a[i] < *min) *min = a[i];\n        if (a[i] > *max) *max = a[i];\n    }\n}\n\nvoid divmod(int a, int b, int *q, int *r)\n{\n    *q = a / b;\n    *r = a % b;\n}\n\nint main(void)\n{\n    int a[] = {4, -2, 9, 0, 7};\n    int lo, hi, quo, rem;\n\n    min_max(a, (int)(sizeof(a) / sizeof(a[0])), &lo, &hi);\n    printf(\"%d %d\\n\", lo, hi);\n    divmod(17, 5, &quo, &rem);\n    printf(\"%d %d\\n\", quo, rem);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "-2 9\n3 2",
+          "note": "lo、hi、quo、rem 在调用前是未初始化的，调用后才有值 —— 千万不要在调用前 printf 它们。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-019",
+        "c-ch09-pg-001",
+        "c-ch09-pg-002",
+        "c-ch09-sa-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-03",
+        "c-ch09-17",
+        "c-ch09-24"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 17
+    },
+    {
+      "id": "c-ch09-18",
+      "title": "指针型函数：返回指针的函数",
+      "section": "9.2 指针与函数",
+      "summary": "函数的返回类型可以是指针，如 const char *longer(...)；返回值必须指向调用后仍然有效的内存 —— 静态区、堆或调用者传入的缓冲区。",
+      "content": "### 定义形式\n```c\nconst char *longer(const char *s1, const char *s2)\n{\n    return strlen(s1) >= strlen(s2) ? s1 : s2;\n}\n\nint *max_addr(int *a, int n)     /* 返回最大值元素的地址 */\n{\n    int *m = a, i;\n    for (i = 1; i < n; i++) if (a[i] > *m) m = &a[i];\n    return m;\n}\n```\n\n### 返回指针的三条铁律\n1. **可以**返回：静态变量地址（`static`）、堆地址（`malloc`）、调用者传入的指针、字符串字面量、全局变量地址；\n2. **不可以**返回：局部自动变量的地址（函数结束即销毁，成为悬空指针）；\n3. 返回堆地址时必须**明确谁负责 free**（写在注释或文档里）。\n\n### 返回指针的好处\n- 可以用 `r - a` 反算下标，比返回下标更灵活；\n- 链式调用：`strcpy(dst, strchr(src, ','))`；\n- 找不到时可返回 `NULL` 表示失败（strchr、strstr 就是这样）。\n\n### 与函数指针的辨析\n| 写法 | 名称 | 含义 |\n|---|---|---|\n| `int *f(int a)` | 指针型函数 | 是一个**函数**，返回 int * |\n| `int (*f)(int a)` | 函数指针 | 是一个**指针**，指向函数 |",
+      "keyPoints": [
+        "返回类型可以是指针，如 char *f(void)、int *max_addr(...)",
+        "绝不能返回局部自动变量的地址（悬空指针）",
+        "返回 static、malloc 或调用者缓冲区地址是安全的",
+        "返回 NULL 是表示\"没找到\"的惯用法",
+        "int *f() 是指针型函数，int (*f)() 是函数指针，别混"
+      ],
+      "pitfalls": [
+        "return 局部数组名或局部变量地址",
+        "返回 malloc 的地址却没约定谁 free",
+        "不检查返回值是否为 NULL 就解引用",
+        "把 int *f(int) 误读成函数指针"
+      ],
+      "examples": [
+        {
+          "title": "返回字符串指针与数组元素地址",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nconst char *longer(const char *s1, const char *s2)\n{\n    return strlen(s1) >= strlen(s2) ? s1 : s2;\n}\n\nint *max_addr(int *a, int n)      /* 返回第一个最大值元素的地址 */\n{\n    int *m = a;\n    int i;\n    for (i = 1; i < n; i++) if (a[i] > *m) m = &a[i];\n    return m;\n}\n\nint main(void)\n{\n    int a[] = {3, 9, 2, 9, 1};\n    int *r = max_addr(a, 5);\n\n    printf(\"%s\\n\", longer(\"cat\", \"elephant\"));\n    printf(\"*r = %d, 下标 = %d\\n\", *r, (int)(r - a));\n    *r = 0;                       /* 通过返回的指针修改原数组 */\n    printf(\"a[1] = %d\\n\", a[1]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "elephant\n*r = 9, 下标 = 1\na[1] = 0",
+          "note": "返回元素地址而不是下标的好处：既能用 r - a 反算下标，又能直接通过 *r 修改原数组。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-023",
+        "c-ch09-cr-024",
+        "c-ch09-pg-003",
+        "c-ch09-sa-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-17",
+        "c-ch09-18",
+        "c-ch09-20"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 18
+    },
+    {
+      "id": "c-ch09-19",
+      "title": "悬空指针：不能返回局部变量的地址",
+      "section": "9.2 指针与函数",
+      "summary": "局部变量存放在栈帧中，函数返回时栈帧被回收，其地址随之失效；返回它的地址得到悬空指针，解引用是未定义行为。",
+      "content": "### 错误示范（会产生编译警告）\n```c\nint *bad(void)\n{\n    int x = 5;\n    return &x;          /* warning: function returns address of local variable */\n}\nint *bad2(void)\n{\n    int a[10];\n    return a;           /* 同样错误：局部数组 */\n}\n```\ngcc 用 `-Wall` 就会报 `-Wreturn-local-addr`；即使侥幸跑出\"正确\"结果，也是未定义行为。\n\n### 为什么危险\n函数返回后栈帧被下一次调用覆盖，`*bad()` 可能读到别的函数的局部变量，\n表现为\"结果时对时错\"\"换个编译器就崩\"，是最难排查的一类 bug。\n\n### 三种正确写法\n```c\n/* (1) static：生命周期延长到程序结束（但不可重入、多线程不安全） */\nint *ok1(void) { static int s = 5; return &s; }\n\n/* (2) malloc：由调用者负责 free */\nint *ok2(void) { int *p = malloc(sizeof(int)); if (p) *p = 5; return p; }\n\n/* (3) 调用者提供缓冲区：最推荐，无内存管理负担 */\nint *ok3(int *buf) { buf[0] = 5; return buf; }\n```\n\n### 同类错误\n- 返回指向局部结构体的指针；\n- `free(p)` 之后继续使用 p（也是悬空指针）；\n- 块作用域内定义的变量，出了 `{}` 就失效。",
+      "keyPoints": [
+        "局部变量随栈帧销毁，返回其地址得到悬空指针",
+        "gcc -Wall 会以 -Wreturn-local-addr 警告该错误",
+        "三种替代方案：static、malloc、调用者传入缓冲区",
+        "free 之后继续使用指针同样产生悬空指针",
+        "\"侥幸能跑\"不代表正确，这是未定义行为"
+      ],
+      "pitfalls": [
+        "return &局部变量 或 return 局部数组名",
+        "以为 static 方案完美（其实不可重入、多线程不安全）",
+        "malloc 返回的指针不检查 NULL 就解引用",
+        "free(p) 后没有把 p 置 NULL，后续误用"
+      ],
+      "examples": [
+        {
+          "title": "三种安全的\"返回数据\"方式",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint *make_static(void)\n{\n    static int s = 42;         /* static：函数结束后仍存在 */\n    return &s;\n}\n\nint *make_heap(void)\n{\n    int *p = malloc(sizeof(int));\n    if (p == NULL) return NULL;\n    *p = 7;\n    return p;                  /* 堆内存由调用者负责 free */\n}\n\nint *fill(int *buf)            /* 由调用者提供缓冲区：最推荐 */\n{\n    buf[0] = 1;\n    buf[1] = 2;\n    return buf;\n}\n\nint main(void)\n{\n    int a[2];\n    int *h = make_heap();\n\n    printf(\"%d\\n\", *make_static());\n    if (h != NULL) {\n        printf(\"%d\\n\", *h);\n        free(h);\n        h = NULL;              /* 防悬空 */\n    }\n    fill(a);\n    printf(\"%d %d\\n\", a[0], a[1]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "42\n7\n1 2",
+          "note": "反面例子 int *bad(void){ int x=5; return &x; } 会被 gcc -Wall 直接警告，所以没有放进可运行示例里。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-025",
+        "c-ch09-cr-026",
+        "c-ch09-dbg-014",
+        "c-ch09-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-17",
+        "c-ch09-18",
+        "c-ch09-34"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 19
+    },
+    {
+      "id": "c-ch09-20",
+      "title": "函数指针：定义、赋值与调用",
+      "section": "9.6 函数指针",
+      "summary": "函数名代表函数的入口地址；int (*fp)(int,int) 定义一个指向该类型函数的指针，可用 fp(...) 或 (*fp)(...) 调用，常用于回调和跳转表。",
+      "content": "### 定义与使用\n```c\nint add(int a, int b) { return a + b; }\n\nint (*fp)(int, int);      /* fp 是函数指针；括号不能省 */\nfp = add;                 /* 也可写 fp = &add，两者等价 */\nfp(3, 4);                 /* 调用，等价于 (*fp)(3, 4) 与 add(3, 4) */\n```\n- `int (*fp)(int,int)` → 函数指针；\n- `int *fp(int,int)` → **返回 int* 的函数**，完全不同。\n\n### 函数名与地址\n`add`、`&add` 在赋值语境下等价（函数名会\"退化\"为函数地址），\n但类型不同：`add` 是函数类型，`&add` 是指针类型；`sizeof(add)` 非法。\n\n### 主要用途\n1. **回调函数**：`qsort(base, n, size, cmp)` 把比较逻辑交给调用者；\n2. **跳转表**：`int (*ops[])(int,int) = {add, sub, mul};` 用下标选函数，替代长 switch；\n3. **策略切换**：运行时决定用哪种算法。\n\n### 注意\n- 函数指针**不能做算术**（`fp + 1` 在标准 C 中无意义）；\n- 可以与 NULL 比较、可以互相比较；\n- 类型必须完全匹配（返回类型 + 全部参数类型），否则是未定义行为。",
+      "keyPoints": [
+        "函数名代表入口地址，可赋给类型匹配的函数指针",
+        "int (*fp)(int,int) 是函数指针，int *fp(int,int) 是返回指针的函数",
+        "fp(...) 与 (*fp)(...) 等价，都可直接调用",
+        "函数指针主要用于回调（qsort）与跳转表",
+        "函数指针不能做加减算术，类型必须完全匹配"
+      ],
+      "pitfalls": [
+        "漏写括号变成 int *fp(int,int)",
+        "把函数指针与函数名类型混为一谈，写 sizeof(add)",
+        "调用与指针类型不匹配的函数（未定义行为）",
+        "对函数指针做 fp++ 运算"
+      ],
+      "examples": [
+        {
+          "title": "函数指针的赋值、调用与传参",
+          "code": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\nint mul(int a, int b) { return a * b; }\n\nint apply(int (*fp)(int, int), int x, int y)\n{\n    return (*fp)(x, y);            /* 与 fp(x, y) 等价 */\n}\n\nint main(void)\n{\n    int (*op)(int, int) = add;\n\n    printf(\"%d\\n\", op(3, 4));\n    printf(\"%d\\n\", (*op)(3, 4));\n    op = sub;\n    printf(\"%d\\n\", apply(op, 3, 4));\n    printf(\"%d\\n\", apply(mul, 3, 4));\n    printf(\"op == sub ? %d\\n\", op == sub);\n    op = &add;\n    printf(\"op = &add 之后 op == add ? %d\\n\", op == add);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7\n7\n-1\n12\nop == sub ? 1\nop = &add 之后 op == add ? 1",
+          "note": "op = &add 与 op = add 效果相同；函数名在赋值语境下会自动退化为函数地址。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-057",
+        "c-ch09-cr-058"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-18",
+        "c-ch09-21",
+        "c-ch09-22"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 20
+    },
+    {
+      "id": "c-ch09-21",
+      "title": "函数指针作参数（回调函数）",
+      "section": "9.6 函数指针",
+      "summary": "把\"规则\"作为参数传给通用算法，实现排序、遍历与具体处理逻辑的解耦。",
+      "content": "## 为什么要传函数\n\n排序、求和、查找这类算法的**流程固定**，只有\"怎么比较\"\"怎么处理\"随场景变化。把这部分做成参数，一个函数就能服务所有场景——这就是回调（callback）。\n\n## 形参与实参\n\n```c\nint transform(int x, int (*f)(int)) { return f(x); }  /* f 是形参 */\ntransform(6, twice);      /* 实参写函数名，自动转成指针 */\ntransform(6, &twice);     /* 写 &twice 也完全等价 */\n```\n\n调用时 `f(x)` 与 `(*f)(x)` 等价，前者更常用。\n\n## 标准库范例：qsort\n\n```c\nvoid qsort(void *base, size_t nmemb, size_t size,\n           int (*compar)(const void *, const void *));\n```\n\n比较函数必须返回**负数 / 0 / 正数**表示 a<b / a==b / a>b。\n参数是 `const void *`，用前要转回真实类型再解引用。\n\n## 写比较函数的安全姿势\n\n不要用 `return x - y;`——当 x=INT_MIN、y=1 时相减会溢出，结果符号可能反掉。\n标准写法是 `(x > y) - (x < y)`，恒为 -1/0/1，永不溢出。",
+      "keyPoints": [
+        "函数指针形参写作 int (*f)(int)，括号不能省，否则退化成\"返回 int* 的函数声明\"",
+        "实参可直接写函数名，函数名在表达式中自动转换为其地址，f 与 &f 等价",
+        "调用 f(x) 与 (*f)(x) 完全等价，推荐前者",
+        "qsort 的比较函数签名固定为 int (*)(const void*, const void*)，返回负/零/正",
+        "比较整数用 (x>y)-(x<y)，不要用 x-y，避免溢出"
+      ],
+      "pitfalls": [
+        "比较函数写成 return x - y 在极值处溢出，排序结果错乱",
+        "漏掉 const void* 到真实类型的强制转换，直接解引用会编译报错",
+        "形参写成 int *f(int) 意思是\"返回 int* 的函数\"，与回调毫无关系"
+      ],
+      "examples": [
+        {
+          "title": "回调：把处理规则参数化",
+          "code": "#include <stdio.h>\n\nint twice(int v)  { return v * 2; }\nint square(int v) { return v * v; }\n\n/* transform 不关心 f 具体做什么，只负责\"套用它\" */\nint transform(int x, int (*f)(int))\n{\n    return f(x);\n}\n\nint main(void)\n{\n    printf(\"%d %d\\n\", transform(6, twice), transform(6, square));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "12 36",
+          "note": "实参直接写函数名 twice / square，不需要加 &",
+          "runnable": true
+        },
+        {
+          "title": "qsort 排序整型数组",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint cmp_int(const void *a, const void *b)\n{\n    int x = *(const int *)a;\n    int y = *(const int *)b;\n    return (x > y) - (x < y);   /* 安全，不会溢出 */\n}\n\nint main(void)\n{\n    int a[6] = { 5, 2, 9, 1, 7, 3 };\n    qsort(a, 6, sizeof a[0], cmp_int);\n    for (int i = 0; i < 6; i++)\n        printf(\"%d%c\", a[i], i == 5 ? '\\n' : ' ');\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3 5 7 9",
+          "note": "qsort 第 3 个参数是\"单个元素大小\"，第 4 个是函数指针",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-057",
+        "c-ch09-sa-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-20",
+        "c-ch09-22",
+        "c-ch09-26"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 21
+    },
+    {
+      "id": "c-ch09-22",
+      "title": "函数指针数组与跳转表",
+      "section": "9.6 函数指针",
+      "summary": "用一张\"函数表\"配合下标完成分发，替代冗长的 switch-case，新增功能只加一行。",
+      "content": "## 声明\n\n```c\nint (*op[3])(int, int);   /* op 是数组，3 个元素，每个是函数指针 */\n```\n\n读法（右左法则）：`op` 先与 `[3]` 结合 → 是数组；元素类型是 `int (*)(int,int)`。\n对比：`int *op[3](int,int)` 是**非法**的——C 不允许\"函数数组\"，只能存函数的指针。\n\n## 初始化与调用\n\n```c\nint (*op[3])(int, int) = { add, sub, mul };\nop[1](8, 3);        /* 等价于 sub(8, 3) */\n(*op[1])(8, 3);     /* 等价写法 */\n```\n\n## 跳转表 vs switch\n\nswitch 版本每加一种运算要改两处（case + 实现）；跳转表只在数组里加一项，分发逻辑一行不动。\n当分支很多、且分支号是连续整数（菜单项、状态机、运算符编号）时，跳转表还能由编译器优化成间接跳转，比逐个比较快。\n\n## 典型场景\n\n- 解释器的运算符表\n- 菜单驱动程序的选项表\n- 状态机的动作表\n- 单元测试框架的用例表",
+      "keyPoints": [
+        "int (*op[N])(...) 是函数指针数组；括号位置决定它是\"数组\"而不是\"函数\"",
+        "C 语言没有函数数组，只有函数指针数组，因为函数不能被拷贝进数组元素",
+        "调用形式 op[i](args) 与 (*op[i])(args) 等价",
+        "跳转表的优势是\"新增行为不改分发逻辑\"，符合表驱动设计",
+        "下标必须自己校验范围，越界取到的是垃圾地址，调用即崩溃"
+      ],
+      "pitfalls": [
+        "声明漏掉外层括号写成 int *op[3](int,int)，编译直接报错",
+        "用外部输入当下标却不检查范围，跳到非法地址",
+        "数组元素个数与实际函数个数不一致，未初始化的槽位是野指针"
+      ],
+      "examples": [
+        {
+          "title": "用跳转表实现四则分发",
+          "code": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\nint mul(int a, int b) { return a * b; }\n\nint main(void)\n{\n    int (*op[3])(int, int) = { add, sub, mul };\n    const char *name[3] = { \"add\", \"sub\", \"mul\" };\n\n    for (int i = 0; i < 3; i++)\n        printf(\"%s(8,3)=%d\\n\", name[i], op[i](8, 3));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "add(8,3)=11\nsub(8,3)=5\nmul(8,3)=24",
+          "note": "函数表与名字表下标一一对应，新增运算只需在两个数组各加一项",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-057",
+        "c-ch09-cr-058",
+        "c-ch09-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-20",
+        "c-ch09-21",
+        "c-ch09-16"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 22
+    },
+    {
+      "id": "c-ch09-23",
+      "title": "二级指针作函数参数",
+      "section": "9.2 指针与函数",
+      "summary": "要在函数内部改变\"指针变量本身的指向\"（例如给它分配内存），必须传它的地址，即 T** 。",
+      "content": "## 三层传值规律\n\nC 语言**只有传值**。想改什么，就把什么的地址传进去：\n\n| 想改的东西 | 形参类型 | 实参写法 |\n|---|---|---|\n| int 变量 | `int *` | `&x` |\n| int* 指针 | `int **` | `&p` |\n| 数组元素 | `int *` | 数组名 |\n\n## 经典需求：函数内 malloc\n\n```c\nvoid alloc_fill(int **pp, int n)\n{\n    *pp = (int *)malloc((size_t)n * sizeof(int));\n    /* 用 (*pp)[i] 访问，不能用 *pp[i]（那是 *(pp[i])） */\n}\n\nint *p = NULL;\nalloc_fill(&p, 4);      /* 返回后 p 已指向新内存 */\n```\n\n如果写成 `void f(int *p)` 然后在里面 `p = malloc(...)`，改的只是**副本**，调用者的 p 仍然是 NULL。\n\n## 所有权\n\n函数分配的内存，释放责任要写清楚。约定俗成是\"谁拿到指针谁 free\"，并在注释里说明。\n\n## 另一个常见用途\n\n链表的\"在头结点之前插入\"、\"删除某个结点\"等操作，标准做法是传 `Node **head`，这样连 head 本身也能被修改，不必再返回新表头。",
+      "keyPoints": [
+        "要修改指针变量的指向，形参必须是二级指针 T**，实参传 &p",
+        "*pp = malloc(...) 之后调用者的 p 才真正指向新内存",
+        "访问元素写 (*pp)[i]，写 *pp[i] 会被解析成 *(pp[i])，含义完全不同",
+        "链表插入/删除传 Node **head 可以统一处理\"改头指针\"的情况",
+        "分配的内存所有权要注释说明，否则调用方不知道要不要 free"
+      ],
+      "pitfalls": [
+        "形参写 int *p 却在函数里 p = malloc(...)，调用者的指针毫无变化",
+        "写成 *pp[i] 而不是 (*pp)[i]，因为 [] 优先级高于 *",
+        "函数返回栈上局部变量的地址，调用者拿到的是悬空指针"
+      ],
+      "examples": [
+        {
+          "title": "在函数里为调用者的指针分配内存",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid alloc_fill(int **pp, int n)\n{\n    *pp = (int *)malloc((size_t)n * sizeof(int));\n    if (*pp == NULL)\n        return;\n    for (int i = 0; i < n; i++)\n        (*pp)[i] = i * i;      /* 注意括号：先解引用再下标 */\n}\n\nint main(void)\n{\n    int *p = NULL;\n    alloc_fill(&p, 4);\n    if (p == NULL) {\n        printf(\"alloc failed\\n\");\n        return 1;\n    }\n    for (int i = 0; i < 4; i++)\n        printf(\"%d%c\", p[i], i == 3 ? '\\n' : ' ');\n    free(p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1 4 9",
+          "note": "若形参写成 int *p，函数内 p = malloc(...) 只改副本，main 里的 p 仍是 NULL",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-048",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050",
+        "c-ch09-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-03",
+        "c-ch09-27",
+        "c-ch09-28"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 23
+    },
+    {
+      "id": "c-ch09-24",
+      "title": "指针数组 vs 数组指针",
+      "section": "9.4 指针与二维数组",
+      "summary": "int *p[4] 是\"装指针的数组\"，int (*p)[4] 是\"指向数组的指针\"，一个括号之差，类型与步长全变。",
+      "content": "## 一图区分\n\n```c\nint *colp[4];      /* 指针数组：本身是数组，4 个元素，每个是 int* */\nint (*rowp)[4];    /* 数组指针：本身是指针，指向\"4 个 int 的数组\" */\n```\n\n- `sizeof(colp)` = 4 × 指针大小（数组整体在栈上）\n- `sizeof(rowp)` = 一个指针大小\n- `rowp + 1` 跳过 **4 个 int**；`colp + 1` 跳过 **1 个指针**\n\n## 各自的典型用途\n\n**数组指针** → 二维数组的形参：\n\n```c\nvoid show(int (*p)[3], int rows);   /* 等价于 void show(int p[][3], int rows) */\n```\n\n必须写明列数 3，因为编译器要靠它算行偏移。\n\n**指针数组** → 字符串表、每行长度不等的\"锯齿表\"：\n\n```c\nconst char *month[12] = { \"Jan\", \"Feb\", ... };\n```\n\n比 `char month[12][10]` 省空间（不浪费补齐），而且排序时只交换指针。\n\n## 与二维数组的关系\n\n`int a[2][3]` 中，`a` 的类型是 `int (*)[3]`（数组指针），而 `a[0]` 的类型是 `int *`。\n这就是为什么 `a+1` 跳 3 个 int，而 `a[0]+1` 只跳 1 个 int。",
+      "keyPoints": [
+        "int *p[N]：数组，元素是指针；sizeof 是 N 个指针之和",
+        "int (*p)[N]：指针，指向含 N 个元素的数组；sizeof 是一个指针",
+        "数组指针作二维数组形参必须写死列数 int (*p)[3] 或 int p[][3]",
+        "指针数组适合存放变长字符串表，交换元素只需换指针",
+        "二维数组名 a 的类型是数组指针 int (*)[3]，a+1 跨一整行"
+      ],
+      "pitfalls": [
+        "把 int (*p)[3] 写成 int *p[3]，函数调用处类型不兼容",
+        "以为指针数组和二维字符数组等价，前者元素不可写、后者可写",
+        "用 sizeof(指针数组形参) 求元素个数，形参已退化成指针，结果永远是一个指针大小"
+      ],
+      "examples": [
+        {
+          "title": "同一份数据，两种指针的不同步长",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = { {1, 2, 3}, {4, 5, 6} };\n    int (*rowp)[3] = a;              /* 数组指针：指向一行 */\n    int *colp[2]   = { a[0], a[1] }; /* 指针数组：2 个 int* */\n\n    printf(\"%d %d\\n\", rowp[1][2], colp[1][2]);\n    printf(\"%d %d\\n\", *(rowp[0] + 1), *(colp[0] + 1));\n\n    rowp++;                          /* 跨过一整行(3 个 int) */\n    colp[0]++;                       /* 只跨过 1 个 int */\n    printf(\"%d %d\\n\", (*rowp)[0], *colp[0]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "6 6\n2 2\n4 2",
+          "note": "rowp++ 后指向 a[1]，所以 (*rowp)[0] 是 4；colp[0]++ 后指向 a[0][1]，所以 *colp[0] 是 2",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-034",
+        "c-ch09-cr-035",
+        "c-ch09-cr-036",
+        "c-ch09-fb-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-10",
+        "c-ch09-16",
+        "c-ch09-26"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 24
+    },
+    {
+      "id": "c-ch09-25",
+      "title": "字符串指针数组与字符串排序",
+      "section": "9.5 指针与字符串",
+      "summary": "排序一组字符串时只交换指针、不搬运字符，交换代价从 O(len) 降到 O(1)。",
+      "content": "## 两种存法\n\n```c\nconst char *s[4] = { \"pear\", \"apple\", \"fig\", \"banana\" };  /* 指针数组 */\nchar buf[4][10]  = { \"pear\", \"apple\", \"fig\", \"banana\" };  /* 二维字符数组 */\n```\n\n| | 指针数组 | 二维字符数组 |\n|---|---|---|\n| 内容可写 | ✗（指向字面量，改是 UB） | ✓ |\n| 占用 | 只存实际长度 + 指针 | 每行都补齐到 10 |\n| 排序交换 | 换指针，O(1) | strcpy 整行，O(len) |\n\n## 选择排序（只换指针）\n\n```c\nfor (i = 0; i < n - 1; i++)\n    for (j = i + 1; j < n; j++)\n        if (strcmp(s[i], s[j]) > 0) {\n            const char *t = s[i];\n            s[i] = s[j]; s[j] = t;   /* 三个赋值搞定 */\n        }\n```\n\n## 关键点\n\n- `strcmp` 返回 >0 表示左串字典序更大，**不要**用 `s[i] > s[j]` 比较指针（那比的是地址）\n- 元素类型建议写 `const char *`，这样把字面量赋给它不会有\"丢弃限定符\"的警告\n- 排序后原字面量在内存中的位置没变，变的只是数组里存的地址",
+      "keyPoints": [
+        "字符串排序的标准做法是交换指针，而不是交换字符串内容",
+        "strcmp 返回值 >0 表示左串更大，判等必须写 ==0",
+        "比较两个字符串不能用 s[i] > s[j]，那是比较地址不是比较内容",
+        "元素声明成 const char * 可避免\"赋值丢弃 const 限定符\"警告",
+        "二维字符数组排序要用 strcpy 搬整行，代价随串长线性增长"
+      ],
+      "pitfalls": [
+        "用 > < 直接比较两个 char*，比的是地址，结果与字典序无关",
+        "对 const char *s[] 的元素做 s[0][0] = 'X'，修改字符串字面量属 UB",
+        "交换时忘了用临时变量，先把 s[i] 覆盖掉导致数据丢失"
+      ],
+      "examples": [
+        {
+          "title": "选择排序：只交换指针",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    const char *s[4] = { \"pear\", \"apple\", \"fig\", \"banana\" };\n    int i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = i + 1; j < 4; j++)\n            if (strcmp(s[i], s[j]) > 0) {\n                const char *t = s[i];\n                s[i] = s[j];\n                s[j] = t;              /* 交换的是地址，不是字符 */\n            }\n\n    for (i = 0; i < 4; i++)\n        printf(\"%s%c\", s[i], i == 3 ? '\\n' : ' ');\n    return 0;\n}",
+          "stdin": "",
+          "expected": "apple banana fig pear",
+          "note": "四次交换最多涉及 3 个指针赋值；若用二维数组则要 strcpy 搬 3 个字符串",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-cr-026",
+        "c-ch09-cr-027",
+        "c-ch09-sa-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-16",
+        "c-ch09-14",
+        "c-ch09-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 25
+    },
+    {
+      "id": "c-ch09-26",
+      "title": "复杂指针声明的解读（右左法则）",
+      "section": "9.6 函数指针",
+      "summary": "从变量名出发\"先右后左\"逐层翻译，任何绕人的指针声明都能读通；读不动就用 typedef 收拢。",
+      "content": "## 右左法则（spiral rule）\n\n从**标识符**出发，先看右边最近的结合对象，再往左，遇到括号就折返：\n\n| 声明 | 翻译 |\n|---|---|\n| `int *f(void)` | f 是函数 → 返回 `int*` |\n| `int (*f)(void)` | f 是指针 → 指向函数 → 该函数返回 int |\n| `int *(*fp)(void)` | fp 是指针 → 指向函数 → 返回 `int*` |\n| `int (*ap[3])(int)` | ap 是数组[3] → 元素是指针 → 指向函数(int)→int |\n| `char **argv` | argv 是指针 → 指向指针 → 指向 char |\n\n## 优先级的两个坑\n\n```c\n*fp()      /* == *(fp()) ：() 优先级高于 *，先调用再解引用 */\n(*fp)()    /* 先取指针指向的函数，再调用 —— 结果相同但语义清晰 */\nfp[1]()    /* == (fp[1])() */\n```\n\n`int *p[3]` 与 `int (*p)[3]` 的区别也全在这对括号上。\n\n## 读不动就 typedef\n\n```c\ntypedef int (*Fn)(int, int);   /* 把\"函数指针类型\"命名 */\nFn pick(int k);                /* 一眼看懂：返回一个 Fn */\n```\n\ntypedef 不改变语义，只把复杂声明压成一个名字，是工程代码的常规做法。",
+      "keyPoints": [
+        "右左法则：从标识符出发，先右后左，遇括号折返，逐层翻译成中文",
+        "() 和 [] 的优先级都高于 *，所以 *fp() 是 *(fp()) 而不是 (*fp)()",
+        "int *f(void) 是\"返回指针的函数\"，int (*f)(void) 是\"指向函数的指针\"",
+        "typedef 可以给函数指针类型起名，把复杂声明压成一个标识符",
+        "声明里最外层括号决定它是数组/函数还是指针，位置错了类型就全错"
+      ],
+      "pitfalls": [
+        "把 int (*f)(void) 写成 int *f(void)，一个是变量声明一个是函数原型",
+        "看到 *fp() 以为是\"先解引用再调用\"，实际是先调用再解引用",
+        "嵌套超过两层还硬读不写 typedef，维护时极易改错"
+      ],
+      "examples": [
+        {
+          "title": "三种绕人声明的实际使用",
+          "code": "#include <stdio.h>\n\nstatic int g = 7;\n\nint *getp(void)   { return &g; }      /* 返回 int* 的函数 */\nint  twice(int v) { return v * 2; }\n\nint main(void)\n{\n    int *(*fp)(void) = getp;          /* fp: 指向\"返回 int* 的函数\" */\n    int (*ap[2])(int) = { twice, twice };  /* 函数指针数组 */\n\n    printf(\"%d\\n\", *fp());            /* == *(fp())，先调用后解引用 */\n    printf(\"%d\\n\", ap[1](21));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7\n42",
+          "note": "*fp() 中 () 优先级高于 *，等价于 *(fp())",
+          "runnable": true
+        },
+        {
+          "title": "typedef 收拢复杂声明",
+          "code": "#include <stdio.h>\n\ntypedef int (*Fn)(int, int);          /* 给函数指针类型起名 */\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\n\nFn pick(int k)                        /* 返回一个函数指针 */\n{\n    return k == 0 ? add : sub;\n}\n\nint main(void)\n{\n    Fn f = pick(1);\n    printf(\"%d\\n\", f(9, 4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5",
+          "note": "pick(1) 返回 sub，9-4=5",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-20",
+        "c-ch09-24",
+        "c-ch09-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 26
+    },
+    {
+      "id": "c-ch09-27",
+      "title": "多级指针",
+      "section": "9.7 指针数组与多级指针",
+      "summary": "指针的指针：每加一级就多一层间接，int** 用于修改指针、构造动态指针数组与 char **argv。",
+      "content": "## 层级关系\n\n```c\nint   x   = 10;\nint  *p   = &x;      /* p  里存 x 的地址   */\nint **pp  = &p;      /* pp 里存 p 的地址   */\nint ***ppp = &pp;    /* ppp 里存 pp 的地址 */\n\n*p == **pp == ***ppp == 10\n```\n\n解引用一次剥一层：`***ppp` → `**pp` → `*p` → `x`。\n所以 `***ppp = 99;` 改的就是最里层的 `x`。\n\n## 三大典型用途\n\n**1. 修改指针本身**——函数形参用 `int **`（见 c-ch09-23）。\n\n**2. 动态指针数组**——\"锯齿状\"二维数据：\n\n```c\nchar **rows = malloc(n * sizeof *rows);   /* 堆上的指针数组 */\nrows[i] = malloc(len_i);                  /* 每行长度可不同 */\n```\n\n释放要**先内后外**：逐个 `free(rows[i])`，最后 `free(rows)`。\n\n**3. main 的 argv**——`char *argv[]` 退化后就是 `char **`。\n\n## 与二维数组的区别\n\n`int a[2][3]` 是**连续**的 6 个 int；`int **p` 指向的是\"指针的数组\"，各行可以在内存的任何位置。\n所以 `int **p = a;` 是**非法**的（类型不兼容），必须写 `int (*p)[3] = a;`。",
+      "keyPoints": [
+        "int **pp 存放 int* 的地址，***ppp 会一路解引用到最里层变量",
+        "动态指针数组的释放顺序是先内层 free(p[i]) 再外层 free(p)",
+        "char **argv 就是指针数组退化后的类型，argv[i] 是第 i 个字符串的首地址",
+        "int **p = a（a 是二维数组）类型不兼容，二维数组要用 int (*p)[COLS]",
+        "多级指针每层解引用剥一层间接，写反层数会读到地址而不是值"
+      ],
+      "pitfalls": [
+        "把 int** 当成二维数组用，p[i][j] 在指针不连续时读到垃圾",
+        "释放动态指针数组时只 free 外层，内层每行都泄漏",
+        "层数写多或写少一个 *，把地址当成数值打印出天文数字"
+      ],
+      "examples": [
+        {
+          "title": "三级指针逐层解引用",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int   x    = 10;\n    int  *p    = &x;\n    int **pp   = &p;\n    int ***ppp = &pp;\n\n    printf(\"%d %d %d %d\\n\", x, *p, **pp, ***ppp);\n    ***ppp = 99;                    /* 改的其实是最里层的 x */\n    printf(\"%d %d\\n\", x, *p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 10 10 10\n99 99",
+          "note": "四种写法取到的都是同一个 x；***ppp = 99 等价于 x = 99",
+          "runnable": true
+        },
+        {
+          "title": "二级指针作形参：argv 的本质",
+          "code": "#include <stdio.h>\n\nvoid show(char **pp, int n)         /* argv 的类型就是 char** */\n{\n    int i;\n    for (i = 0; i < n; i++)\n        printf(\"[%d]=%s\\n\", i, pp[i]);\n}\n\nint main(void)\n{\n    char *words[3] = { \"red\", \"green\", \"blue\" };\n    show(words, 3);                 /* 指针数组名退化为 char** */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "[0]=red\n[1]=green\n[2]=blue",
+          "note": "pp[i] 等价于 *(pp+i)，取到的是第 i 个字符串的首地址",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-045",
+        "c-ch09-cr-046",
+        "c-ch09-cr-047",
+        "c-ch09-fb-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-23",
+        "c-ch09-24",
+        "c-ch09-31"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 27
+    },
+    {
+      "id": "c-ch09-28",
+      "title": "malloc 与 free",
+      "section": "9.8 动态内存分配",
+      "summary": "malloc 在堆上申请未初始化的内存并返回 void*，free 归还；两者必须一一配对，free 后立即置 NULL。",
+      "content": "## 原型\n\n```c\n#include <stdlib.h>\nvoid *malloc(size_t size);   /* 成功返回首地址，失败返回 NULL */\nvoid  free(void *ptr);       /* 无返回值；free(NULL) 是合法空操作 */\n```\n\n## 三个必做动作\n\n```c\nint n = 5;\nint *a = (int *)malloc((size_t)n * sizeof(int));\nif (a == NULL) { /* 处理失败：报错、降级或退出 */ }\n/* ... 使用 ... */\nfree(a);\na = NULL;                     /* 防止悬空指针被误用 */\n```\n\n1. **判空**：malloc 可能失败，不判空就解引用是崩溃主因之一。\n2. **算对字节数**：`n * sizeof(int)` 或更稳的 `n * sizeof *a`（改了 a 的类型这行不用改）。\n   先把 n 转成 `size_t` 可避免 int 溢出后申请到过小内存。\n3. **配对释放**：一次 malloc 对应一次 free，且只能一次。\n\n## malloc 的内存是\"脏\"的\n\nmalloc **不清零**，里面是上次释放留下的任意字节。要用 0 初始化请选 `calloc`，或自己 `memset`。\n（局部数组同样不清零；只有**全局/静态**变量才自动清零。）\n\n## 不能做的事\n\n- `free` 栈上数组：`int a[10]; free(a);` → UB\n- `free` 指针中间位置：`free(a + 1);` → UB\n- 同一块内存 free 两次 → UB",
+      "keyPoints": [
+        "malloc 返回 void*，失败返回 NULL，用前必须判空",
+        "申请字节数写 n * sizeof *p 最稳，类型改了不用改这行",
+        "malloc 的内存未初始化，要清零请用 calloc 或 memset",
+        "free 后指针成为悬空指针，应立即置 NULL",
+        "free(NULL) 合法且无副作用，所以置 NULL 后再 free 也安全"
+      ],
+      "pitfalls": [
+        "不判空直接解引用，内存耗尽时立刻段错误",
+        "free 一个栈数组地址或 a+1，都是未定义行为",
+        "忘记 free 造成泄漏，或 free 两次造成崩溃"
+      ],
+      "examples": [
+        {
+          "title": "分配、使用、释放的完整闭环",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n = 5, i;\n    int *a = (int *)malloc((size_t)n * sizeof(int));\n\n    if (a == NULL) {\n        printf(\"alloc failed\\n\");\n        return 1;\n    }\n    for (i = 0; i < n; i++)\n        a[i] = 2 * i + 1;\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", a[i], i == n - 1 ? '\\n' : ' ');\n\n    free(a);\n    a = NULL;                 /* 悬空指针立刻置空 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 3 5 7 9",
+          "note": "若省略 for 循环直接打印 a[0]，读到的是未初始化的垃圾值",
+          "runnable": true
+        },
+        {
+          "title": "sizeof *p 惯用法与字符串缓冲",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    char *p = malloc(6 * sizeof *p);   /* 类型改了这行不用动 */\n    if (p == NULL)\n        return 1;\n\n    memcpy(p, \"hello\", 6);             /* 连结尾 '\\0' 共 6 字节 */\n    printf(\"%s\\n\", p);\n    free(p);\n    p = NULL;\n    printf(\"%d\\n\", p == NULL);\n    free(p);                           /* free(NULL) 是合法空操作 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "hello\n1",
+          "note": "拷贝字符串必须把结尾的 \\0 一起拷，否则 printf(\"%s\") 会越界读",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-pg-001",
+        "c-ch09-pg-005",
+        "c-ch09-sa-003",
+        "c-ch09-cr-050"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-29",
+        "c-ch09-30",
+        "c-ch09-19"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 28
+    },
+    {
+      "id": "c-ch09-29",
+      "title": "calloc 与 realloc",
+      "section": "9.8 动态内存分配",
+      "summary": "calloc 分配并清零，realloc 改变已有堆块大小；realloc 可能搬家，必须用新变量接收返回值。",
+      "content": "## calloc：分配 + 清零\n\n```c\nvoid *calloc(size_t nmemb, size_t size);\nint *a = (int *)calloc(3, sizeof(int));   /* a[0..2] 全是 0 */\n```\n\n与 `malloc(3 * sizeof(int))` 的唯一区别是**初值为 0**。\n数值数组、指针数组建议用 calloc——顺带躲开了\"忘记初始化\"这一大类 bug。\n两个参数是\"个数 × 单个大小\"，内部会做溢出检查，比手写乘法更安全。\n\n## realloc：改变大小\n\n```c\nvoid *realloc(void *ptr, size_t size);\n```\n\n- 原内容**尽量保留**（缩小时截断，扩大时新增部分是**未初始化**的）\n- 可能**原地扩容**，也可能**搬到新地址**并 free 掉旧块\n- 失败返回 NULL，且**旧块仍然有效**\n\n## 唯一正确的写法\n\n```c\nint *b = (int *)realloc(a, newn * sizeof(int));\nif (b == NULL) {          /* 失败：a 还能用，可以照常 free(a) */\n    free(a);\n    return 1;\n}\na = b;                    /* 成功才覆盖 */\n```\n\n写成 `a = realloc(a, n);` 一旦失败，a 变 NULL，旧内存既找不到也释放不了 —— 泄漏 + 悬空双杀。\n\n## 两个边界\n\n- `realloc(NULL, n)` 等价于 `malloc(n)`\n- `realloc(p, 0)` 行为由实现定义（可能等价 free，也可能返回不可用的唯一指针），**不要用**",
+      "keyPoints": [
+        "calloc(n, size) 分配 n 个 size 字节的对象并全部清零，适合数值与指针数组",
+        "realloc 扩大后新增部分是未初始化的，只有原范围内容被保留",
+        "realloc 可能返回新地址，必须用临时变量接收，成功后再覆盖原指针",
+        "realloc 失败返回 NULL 且旧块依然有效，所以绝不能写 p = realloc(p, n)",
+        "realloc(NULL, n) 等价 malloc(n)；realloc(p, 0) 行为实现相关，禁止使用"
+      ],
+      "pitfalls": [
+        "p = realloc(p, n) 失败时旧指针丢失，内存泄漏",
+        "以为 realloc 扩大后新空间也是 0，实际读到垃圾值",
+        "calloc 参数顺序写反成 calloc(sizeof(int), 3)，字节数虽同但语义颠倒且失去溢出保护"
+      ],
+      "examples": [
+        {
+          "title": "calloc 清零 + realloc 扩容",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int i;\n    int *a = (int *)calloc(3, sizeof(int));      /* 3 个 int，全为 0 */\n    if (a == NULL)\n        return 1;\n    printf(\"%d %d %d\\n\", a[0], a[1], a[2]);\n\n    int *b = (int *)realloc(a, 5 * sizeof(int)); /* 扩到 5 个 */\n    if (b == NULL) {                             /* 失败时 a 仍有效 */\n        free(a);\n        return 1;\n    }\n    b[3] = 8;\n    b[4] = 9;\n    for (i = 0; i < 5; i++)\n        printf(\"%d%c\", b[i], i == 4 ? '\\n' : ' ');\n    free(b);                                     /* 只 free 最后的结果 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 0 0\n0 0 0 8 9",
+          "note": "realloc 后原来 3 个 0 被保留，新增的 b[3] b[4] 需要自己赋值",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-pg-005",
+        "c-ch09-sa-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-28",
+        "c-ch09-30",
+        "c-ch09-31"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 29
+    },
+    {
+      "id": "c-ch09-30",
+      "title": "分配检查、所有权与内存泄漏",
+      "section": "9.8 动态内存分配",
+      "summary": "每块堆内存都要有唯一的 free；泄漏的本质是\"丢失了指向该块的最后一个指针\"。",
+      "content": "## 泄漏是怎么发生的\n\n```c\np = malloc(100);\np = malloc(200);      /* 第一块的地址被覆盖，永远找不回来 → 泄漏 */\n\nfor (i = 0; i < n; i++)\n    tmp = malloc(64); /* 循环里分配却不释放 → 泄漏 n 块 */\n\nif (bad) return;      /* 提前 return 跳过 free → 泄漏 */\n```\n\n一句话：**只要还存在一条能走到该内存的路径，它就没泄漏；路径断了又没 free，就泄漏了。**\n\n## 所有权约定\n\n跨函数传递堆内存时必须明确\"谁负责 free\"，常用三种约定：\n\n| 约定 | 写法 |\n|---|---|\n| 谁分配谁释放 | 函数内 malloc，函数内 free，只把结果拷出去 |\n| 调用者释放 | 函数返回堆指针，注释写 `/* caller must free */` |\n| 移交所有权 | `*out = p; p = NULL;` 明确交出 |\n\n## 防泄漏的三个习惯\n\n1. **malloc 与 free 成对书写**：先写 malloc，紧接着把 free 写好，中间再填逻辑。\n2. **单一出口或 goto cleanup**：错误分支统一跳到一个清理段，避免每个 return 都复制一遍 free。\n3. **free 后置 NULL**：重复 free 是 UB，但 `free(NULL)` 安全，置 NULL 可以把\"重复释放\"降级成\"无害空操作\"。\n\n## 别用\"进程会回收\"当借口\n\n程序结束时操作系统确实会回收全部内存，但库函数、长驻程序、循环里的分配不会自动得救；\nValgrind / AddressSanitizer 也照样会把它报出来，考试与工程上都算错。",
+      "keyPoints": [
+        "内存泄漏的本质是丢失了指向堆块的最后一个指针，而不是\"忘记写 free\"这个动作本身",
+        "跨函数传堆内存必须写明所有权：谁分配谁释放，或由调用者 free",
+        "free 后把指针置 NULL，可把\"重复释放\"这一 UB 降级为 free(NULL) 空操作",
+        "多分支函数用 goto cleanup 或单一出口统一释放，避免漏掉某条 return 路径",
+        "进程结束时 OS 会回收内存，但这不是省略 free 的理由，检测工具照样报泄漏"
+      ],
+      "pitfalls": [
+        "同一指针连续两次 malloc，第一块直接泄漏",
+        "错误分支提前 return，跳过后面所有 free",
+        "把 free 写两遍（尤其在不同分支汇合处），重复释放是 UB"
+      ],
+      "examples": [
+        {
+          "title": "所有权移交 + free(NULL) 的安全性",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 返回堆内存，所有权移交给调用者：caller must free */\nint *make(int n)\n{\n    int i;\n    int *p = (int *)malloc((size_t)n * sizeof(int));\n    if (p == NULL)\n        return NULL;                 /* 失败显式返回 NULL */\n    for (i = 0; i < n; i++)\n        p[i] = i + 1;\n    return p;\n}\n\nint main(void)\n{\n    int *a = make(3);\n    if (a == NULL) {\n        printf(\"alloc failed\\n\");\n        return 1;\n    }\n    printf(\"%d %d %d\\n\", a[0], a[1], a[2]);\n\n    free(a);\n    a = NULL;                        /* 立刻置空 */\n    free(a);                         /* free(NULL) 合法，无副作用 */\n    printf(\"done\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 2 3\ndone",
+          "note": "若 make 内部失败时不返回 NULL，调用者就会解引用空指针",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-28",
+        "c-ch09-32",
+        "c-ch09-33"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 30
+    },
+    {
+      "id": "c-ch09-31",
+      "title": "动态二维数组的三种实现",
+      "section": "9.8 动态内存分配",
+      "summary": "行数在运行时才知道时用动态二维数组：数组指针法一次分配、指针数组法逐行分配、一维化法手工算下标。",
+      "content": "## 方法一：数组指针（推荐）\n\n```c\nint (*a)[3] = malloc((size_t)rows * sizeof *a);  /* sizeof *a == 3*sizeof(int) */\na[i][j] = 1;      /* 下标写法与静态二维数组完全一样 */\nfree(a);          /* 一次分配 → 一次释放 */\n```\n\n优点：内存**连续**、下标自然、只 free 一次、可以直接传给 `void f(int (*p)[3], int rows)`。\n限制：列数必须是编译期常量（C99 可用变长数组类型 `int (*a)[cols]` 放宽）。\n\n## 方法二：指针数组（锯齿表）\n\n```c\nint **a = malloc((size_t)rows * sizeof *a);\nfor (i = 0; i < rows; i++)\n    a[i] = malloc((size_t)cols * sizeof(int));\n/* 释放：先内后外 */\nfor (i = 0; i < rows; i++) free(a[i]);\nfree(a);\n```\n\n优点：每行长度可以不同（字符串表、稀疏矩阵）。\n缺点：内存不连续、要 free n+1 次、中途失败要回滚已分配的行。\n\n## 方法三：一维化\n\n```c\nint *a = malloc((size_t)rows * cols * sizeof(int));\n#define AT(i, j)  a[(i) * cols + (j)]\n```\n\n优点：最简单、最省、最好序列化。缺点：下标要自己算，写错不报错只出错值。\n\n## 三者不能混用\n\n`int **p` 与 `int (*p)[3]` **类型不兼容**：前者要求内存里先有一排指针，后者要求直接是一排 int。\n把方法一的结果传给形参 `int **` 会编译报错，反之亦然。",
+      "keyPoints": [
+        "数组指针法 int (*a)[COLS] = malloc(rows * sizeof *a) 内存连续，a[i][j] 用法与静态数组相同，只需 free 一次",
+        "指针数组法 int **a 每行单独 malloc，释放必须先内层 free(a[i]) 再外层 free(a)",
+        "一维化法用 a[i*cols+j] 手工算下标，最简单但下标写错不会有编译错误",
+        "int ** 与 int (*)[COLS] 类型不兼容，两种实现不能互相传参",
+        "sizeof *a 会随 a 的声明类型自动给出\"一行\"或\"一个元素\"的字节数，比硬写 sizeof(int) 更稳"
+      ],
+      "pitfalls": [
+        "指针数组法只 free 外层，rows 行全部泄漏",
+        "把 malloc 出来的连续二维块硬转成 int**，运行时读到垃圾",
+        "方法一的列数写成了变量却没开 C99 变长数组类型，编译报错"
+      ],
+      "examples": [
+        {
+          "title": "方法一：数组指针，一次分配一次释放",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int rows = 2, cols = 3, i, j;\n    int (*a)[3] = malloc((size_t)rows * sizeof *a);  /* sizeof *a = 一行 */\n\n    if (a == NULL)\n        return 1;\n\n    for (i = 0; i < rows; i++)\n        for (j = 0; j < cols; j++)\n            a[i][j] = i * 10 + j;\n\n    for (i = 0; i < rows; i++)\n        for (j = 0; j < cols; j++)\n            printf(\"%d%c\", a[i][j], j == cols - 1 ? '\\n' : ' ');\n\n    free(a);                    /* 连续内存，只释放一次 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1 2\n10 11 12",
+          "note": "a[i][j] 的写法与静态二维数组一模一样，因为 a 的类型就是\"指向 3 个 int 的指针\"",
+          "runnable": true
+        },
+        {
+          "title": "方法二：指针数组，先内后外释放",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int rows = 3, cols = 3, i, j;\n    int **a = malloc((size_t)rows * sizeof *a);   /* 堆上的指针数组 */\n\n    if (a == NULL)\n        return 1;\n    for (i = 0; i < rows; i++) {\n        a[i] = malloc((size_t)cols * sizeof(int));\n        if (a[i] == NULL)\n            return 1;         /* 真实项目应 goto cleanup 回滚已分配的行 */\n    }\n\n    for (i = 0; i < rows; i++)\n        for (j = 0; j < cols; j++)\n            a[i][j] = i * cols + j;\n\n    for (i = 0; i < rows; i++) {\n        for (j = 0; j < cols; j++)\n            printf(\"%d%c\", a[i][j], j == cols - 1 ? '\\n' : ' ');\n        free(a[i]);           /* 先释放每一行 */\n    }\n    free(a);                  /* 再释放指针数组本身 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0 1 2\n3 4 5\n6 7 8",
+          "note": "rows 行的内存彼此独立，可以长度不同（锯齿表）；释放顺序反了会访问已释放内存",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-pg-003",
+        "c-ch09-pg-005",
+        "c-ch09-cr-044",
+        "c-ch09-sa-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-27",
+        "c-ch09-28",
+        "c-ch09-10"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 31
+    },
+    {
+      "id": "c-ch09-32",
+      "title": "野指针与未初始化指针",
+      "section": "9.9 指针的常见错误",
+      "summary": "野指针指向的位置不可预知，解引用即未定义行为；定义时就赋初值（NULL 或有效地址）是唯一防线。",
+      "content": "## 什么算野指针\n\n```c\nint *p;              /* 未初始化：p 里是栈上的随机字节 → 野指针 */\n*p = 1;              /* UB：可能段错误，也可能悄悄改坏别人的数据 */\n```\n\n更危险的是它**不一定立刻崩**。写到了一个\"恰好可写\"的地址，程序继续跑，\n直到很远的地方因为数据被改坏而崩溃，排查成本极高。\n\n## 三条防线\n\n1. **定义即初始化**：`int *p = NULL;` 或 `int *p = &x;`。\n2. **解引用前判空**：`if (p != NULL) ...`，NULL 解引用至少是**确定性**崩溃。\n3. **scanf 类函数必须传地址**：`scanf(\"%d\", &x)`，写成 `scanf(\"%d\", x)` 就是把 x 的**值**当地址写进去——最典型的野指针事故。\n\n## 编译器能帮你多少\n\n`-Wall -Wextra` 能报\"可能未初始化就使用\"（`-Wmaybe-uninitialized`），\n但跨函数、跨分支的情况常常漏报。别指望编译器兜底。\n\n## NULL 不是万能解药\n\n`int *p = NULL; *p = 1;` 依然是 UB，只是崩得干脆。\n正确做法是：**让它指向一个真实存在、生命周期足够长的对象**，再解引用。",
+      "keyPoints": [
+        "未初始化的指针里是随机字节，解引用属未定义行为，可能不立刻崩溃",
+        "定义指针时立即赋初值（NULL 或有效对象地址）是成本最低的防线",
+        "scanf(\"%d\", x) 漏掉 & 会把 x 的值当地址写入，是最常见的野指针事故",
+        "判空只能把\"随机崩溃\"变成\"确定崩溃\"，不能替代\"指向有效对象\"",
+        "-Wall -Wextra 的 -Wmaybe-uninitialized 有漏报，跨函数时基本查不出来"
+      ],
+      "pitfalls": [
+        "int *p; 之后直接使用，读到的是栈上残留的随机地址",
+        "scanf/函数传参时漏写 &，把数值当地址",
+        "把 p = NULL 当成\"安全值\"，随后仍然 *p = 1"
+      ],
+      "examples": [
+        {
+          "title": "先判空、再指向、后解引用",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int *p = NULL;             /* 定义即初始化，杜绝野指针 */\n    int x = 5;\n\n    if (p == NULL)\n        printf(\"p is null, safe to check\\n\");\n\n    p = &x;                    /* 指向一个生命周期覆盖使用期的对象 */\n    printf(\"%d\\n\", *p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "p is null, safe to check\n5",
+          "note": "若把 int *p = NULL 写成 int *p; 再判断 p == NULL，结果是不可预知的",
+          "runnable": true
+        },
+        {
+          "title": "scanf 传地址：野指针事故现场",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 0;\n    int *p = &x;\n\n    /* 正确：p 本身就是地址，不要再加 & ；\n       若写成 scanf(\"%d\", x)，就是把 x 的值 0 当地址往 0 号内存写 → 崩溃 */\n    if (scanf(\"%d\", p) != 1)\n        return 1;\n\n    printf(\"%d\\n\", x);\n    return 0;\n}",
+          "stdin": "42\n",
+          "expected": "42",
+          "note": "p 是 int*，scanf 需要的正是 int*，二者类型天然吻合",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-fb-002",
+        "c-ch09-cr-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-33",
+        "c-ch09-34",
+        "c-ch09-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 32
+    },
+    {
+      "id": "c-ch09-33",
+      "title": "悬空指针：返回栈地址、释放后使用、重复释放",
+      "section": "9.9 指针的常见错误",
+      "summary": "对象生命周期已结束而指针还在手上，就是悬空指针；三种典型来源与对应正解。",
+      "content": "## 来源一：返回局部变量的地址\n\n```c\nchar *bad(void) {\n    char buf[16];\n    strcpy(buf, \"hi\");\n    return buf;        /* buf 随函数返回而失效 → 悬空 */\n}\n```\n\n正解：**返回堆内存**（调用者 free），或**由调用者提供缓冲区**：\n\n```c\nchar *good(void)                 { char *p = malloc(16); /* ... */ return p; }\nvoid  good2(char *out, size_t n) { /* 往调用者的缓冲区里写 */ }\n```\n\n## 来源二：free 之后继续使用\n\n```c\nfree(p);\nprintf(\"%d\", *p);      /* use-after-free，UB */\nfree(p);               /* double free，UB */\n```\n\n正解：`free(p); p = NULL;`。此后 `*p` 是**确定性**的空指针解引用，\n而重复 `free(NULL)` 是合法空操作，两个坑一起堵掉。\n\n## 来源三：遍历中释放（链表最典型）\n\n```c\nwhile (cur != NULL) {\n    Node *next = cur->next;   /* 必须先把后继存下来 */\n    free(cur);                /* 此后 cur->next 已不可读 */\n    cur = next;\n}\n```\n\n写成 `free(cur); cur = cur->next;` 就是 use-after-free，有时\"看起来能跑\"，\n因为释放的内存尚未被覆盖——这是最会骗人的一类 bug。\n\n## 判别口诀\n\n**指针还活着，它指的东西死了吗？** 死了就是悬空。",
+      "keyPoints": [
+        "返回局部变量地址是最典型的悬空指针，正解是返回堆内存或由调用者传入缓冲区",
+        "free 后立刻置 NULL，可同时防住\"释放后使用\"和\"重复释放\"",
+        "链表释放必须先用临时变量保存 cur->next，再 free(cur)",
+        "use-after-free 常常\"看起来能跑\"，因为被释放的内存还没被覆盖",
+        "局部数组作实参传给函数是安全的，把它的地址存到外部指针里带出来才不安全"
+      ],
+      "pitfalls": [
+        "return 一个局部数组名或局部变量地址",
+        "free(cur); cur = cur->next; 顺序颠倒，读取已释放内存",
+        "同一指针在两条分支里各 free 一次，汇合后再 free 第三次"
+      ],
+      "examples": [
+        {
+          "title": "返回堆内存而不是栈地址",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n/* 错误示范（不可运行）：\n   char *bad(void) { char buf[16]; strcpy(buf, \"hi\"); return buf; }\n   buf 是栈对象，函数返回即失效 → 悬空指针            */\n\nchar *good(const char *s)          /* 正解：返回堆内存 */\n{\n    size_t n = strlen(s) + 1;\n    char *p = malloc(n);\n    if (p == NULL)\n        return NULL;\n    memcpy(p, s, n);               /* 连结尾 '\\0' 一起拷 */\n    return p;\n}\n\nint main(void)\n{\n    char *t = good(\"hello\");\n    if (t == NULL)\n        return 1;\n    printf(\"%s\\n\", t);\n    free(t);\n    t = NULL;                      /* 释放后置空 */\n    printf(\"%d\\n\", t == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "hello\n1",
+          "note": "所有权交给调用者，谁用谁 free；free 后 t = NULL 让后续误用立刻暴露",
+          "runnable": true
+        },
+        {
+          "title": "链表释放：先存后继再 free",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node {\n    int v;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL;\n    Node *cur;\n    int i;\n\n    for (i = 0; i < 3; i++) {          /* 头插法建 3 个结点 */\n        Node *n = malloc(sizeof *n);\n        if (n == NULL)\n            return 1;\n        n->v = i;\n        n->next = head;\n        head = n;\n    }\n\n    cur = head;\n    while (cur != NULL) {\n        Node *next = cur->next;        /* 先保存，free 之后就读不到了 */\n        printf(\"%d%c\", cur->v, next == NULL ? '\\n' : ' ');\n        free(cur);\n        cur = next;\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2 1 0",
+          "note": "若写成 free(cur); cur = cur->next; 就是 use-after-free，属未定义行为",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015",
+        "c-ch09-sa-004",
+        "c-ch09-pg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-19",
+        "c-ch09-30",
+        "c-ch09-32"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 33
+    },
+    {
+      "id": "c-ch09-34",
+      "title": "指针越界与尾后指针",
+      "section": "9.9 指针的常见错误",
+      "summary": "尾后指针只能取地址不能解引用；循环条件写 <= 或字符串少留 1 字节就会越界。",
+      "content": "## 尾后指针（one past the end）\n\n```c\nint a[5];\nint *end = a + 5;      /* 合法：可以形成、可以比较 */\n*end;                  /* 非法：解引用越界，UB */\n```\n\n标准允许\"指向数组末尾之后一个位置\"的指针**存在**并参与比较，\n这正是 `for (p = a; p != a + n; p++)` 与 `while (p < end)` 的依据。\n\n## 三类高频越界\n\n**1. 循环条件写错**\n\n```c\nfor (i = 0; i <= n; i++)  a[i] = 0;      /* 多写一个 a[n] */\nwhile (p <= end) s += *p++;              /* 多读一个 *end */\n```\n\n**2. 字符串少留 '\\0'**\n\n```c\nchar *d = malloc(strlen(s));      /* 少 1 字节，strcpy 会越界写 */\nchar *d = malloc(strlen(s) + 1);  /* 正确 */\n```\n\n**3. 传长度时传错**\n\n```c\nf(a, sizeof a);                   /* 在 main 里是字节数；进函数后退化成指针就错了 */\nf(a, sizeof a / sizeof a[0]);     /* 元素个数，只在数组定义所在作用域有效 */\n```\n\n## 为什么越界不一定崩\n\n越界写落在栈帧的其它局部变量、保存的返回地址或堆管理结构上，\n可能几行之后才崩、也可能在另一台机器上才崩。\n**\"跑了没报错\"绝不等于\"没越界\"**，要靠 AddressSanitizer / Valgrind 验证。",
+      "keyPoints": [
+        "尾后指针 a+n 可以形成和比较，但解引用它是未定义行为",
+        "循环条件用 p < end 或 i < n，写成 <= 就多访问一个元素",
+        "为字符串分配内存必须 strlen(s)+1，漏掉 \\0 的位置就会越界写",
+        "sizeof(数组) 只在数组定义的作用域里有效，作函数形参后退化成指针",
+        "越界常常不立刻崩溃，必须用 ASan/Valgrind 而不是\"跑通了\"来验证"
+      ],
+      "pitfalls": [
+        "for (i = 0; i <= n; i++) 的经典多一次",
+        "malloc(strlen(s)) 少分配 1 字节",
+        "把 sizeof 形参数组当元素个数传给函数"
+      ],
+      "examples": [
+        {
+          "title": "尾后指针与安全的边界遍历",
+          "code": "#include <stdio.h>\n\nint sum(const int *p, int n)\n{\n    const int *end = p + n;      /* 尾后指针：可比较，不可解引用 */\n    int s = 0;\n    while (p < end)              /* 严格小于；写成 <= 就多读一个元素 */\n        s += *p++;\n    return s;\n}\n\nint main(void)\n{\n    int a[5] = { 1, 2, 3, 4, 5 };\n    printf(\"%d\\n\", sum(a, 5));\n    printf(\"%d\\n\", sum(a + 1, 3));   /* 只累加 a[1]..a[3] */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "15\n9",
+          "note": "a+1 作为起点、3 作为长度，尾后指针正好是 a+4，全程没有越界",
+          "runnable": true
+        },
+        {
+          "title": "为字符串多留一个 \\0 的位置",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    const char *src = \"abc\";\n    char *dst = malloc(strlen(src) + 1);   /* 写成 strlen(src) 就越界写 */\n    if (dst == NULL)\n        return 1;\n\n    strcpy(dst, src);\n    printf(\"%s %d\\n\", dst, (int)strlen(dst));\n    free(dst);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "abc 3",
+          "note": "strlen 不计入结尾的 \\0，所以分配时必须 +1",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-cr-010",
+        "c-ch09-cr-011",
+        "c-ch09-fb-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-08",
+        "c-ch09-14",
+        "c-ch09-32"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 34
+    },
+    {
+      "id": "c-ch09-35",
+      "title": "指针与整数的混合运算",
+      "section": "9.3 指针与一维数组",
+      "summary": "指针±整数按元素移动，指针-指针得元素个数；要把地址当整数用必须借助 uintptr_t。",
+      "content": "## 四种合法运算\n\n| 表达式 | 结果类型 | 含义 |\n|---|---|---|\n| `p + n` / `p - n` | `int*` | 地址移动 n × sizeof(int) **字节** |\n| `p - q` | `ptrdiff_t` | 相隔的**元素个数**，不是字节数 |\n| `p < q` 等 | `int` | 同一数组内才有意义 |\n| `(char*)p + 1` | `char*` | 按**字节**移动一步 |\n\n```c\nint a[4];\n(a + 3) - a == 3;                        /* 元素个数 */\n(char*)(a + 3) - (char*)a == 12;         /* 字节数（sizeof(int)==4 时） */\n```\n\n## 地址与整数\n\n- **不能**写 `int addr = (int)p;`：64 位平台上指针 8 字节、int 4 字节，高位被截断。\n- 需要把地址当整数比较/运算时用 `<stdint.h>` 的 `uintptr_t`（保证能无损往返）。\n- 打印地址用 `%p`（配 `(void*)`），不要用 `%d` 或 `%u`。\n\n## 三个非法 / UB 操作\n\n1. **两个指针相加**：`p + q` 无意义，编译就报错。\n2. **不相关对象的指针比较或相减**：`&x - &y`（x、y 是独立变量）是 UB，只有同一数组（含尾后）之间才有意义。\n3. **void* 算术**：`vp + 1` 在标准 C 里非法（GCC 把 sizeof(void) 当 1 是**扩展**，不可移植）。要先转成具体类型或 `char*`。",
+      "keyPoints": [
+        "p+n 移动 n 个元素而不是 n 个字节，步长由指针类型决定",
+        "p-q 的结果是元素个数（ptrdiff_t），要字节数得先转 char*",
+        "把地址存成整数必须用 uintptr_t，用 int 在 64 位平台会被截断",
+        "打印地址用 %p 并转 (void*)，不要用 %d",
+        "两个指针相加非法；不相关对象的指针相减或比较是未定义行为"
+      ],
+      "pitfalls": [
+        "用 %d 打印指针，64 位下截断且格式不匹配",
+        "对 void* 直接做 vp+1，依赖 GCC 扩展而非标准 C",
+        "比较两个独立变量的地址并据此判断\"谁先声明\"，属 UB 且毫无意义"
+      ],
+      "examples": [
+        {
+          "title": "元素差与字节差",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = { 10, 20, 30, 40 };\n    int  *p = a, *q = a + 3;\n    char *cp = (char *)a, *cq = (char *)(a + 3);\n\n    printf(\"%d\\n\", (int)(q - p));    /* 元素个数 */\n    printf(\"%d\\n\", (int)(cq - cp));  /* 字节数 */\n    printf(\"%d\\n\", *(p + 2));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "3\n12\n30",
+          "note": "同样两个端点，用 int* 相减得 3，转成 char* 相减得 12",
+          "runnable": true
+        },
+        {
+          "title": "uintptr_t 无损承载地址",
+          "code": "#include <stdio.h>\n#include <stdint.h>\n\nint main(void)\n{\n    char s[4] = { 'A', 'B', 'C', 'D' };\n    uintptr_t base = (uintptr_t)s;     /* 足够宽的无符号整数 */\n    int i;\n\n    for (i = 0; i < 4; i++)\n        printf(\"%c%c\", s[i], i == 3 ? '\\n' : ' ');\n\n    printf(\"%d %d\\n\",\n           (int)(base == (uintptr_t)&s[0]),\n           (int)((uintptr_t)&s[2] - base));   /* 按字节差 = 2 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "A B C D\n1 2",
+          "note": "uintptr_t 保证指针与整数无损往返；用 int 存地址在 64 位下会截断",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-005",
+        "c-ch09-cr-006",
+        "c-ch09-cr-042",
+        "c-ch09-sa-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-06",
+        "c-ch09-08",
+        "c-ch09-38"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 35
+    },
+    {
+      "id": "c-ch09-36",
+      "title": "命令行参数：argc 与 argv",
+      "section": "9.10 命令行参数",
+      "summary": "main 可带两个参数：argc 是参数个数（含程序名），argv 是字符串指针数组，argv[argc] 保证为 NULL。",
+      "content": "## 标准形式\n\n```c\nint main(int argc, char *argv[])\n```\n\n- **argc**（argument count）：参数**个数**，包含程序名本身，所以 argc ≥ 1\n- **argv**（argument vector）：字符串指针数组，argv[0] 是程序名\n- **argv[argc]**：标准规定为 NULL，可当遍历哨兵\n\n命令行 `file1 beijing shanghai` 对应：\n\n| 表达式 | 值 |\n|---|---|\n| argc | 3 |\n| argv[0] | \"file1\" |\n| argv[1] | \"beijing\" |\n| argv[2] | \"shanghai\" |\n| argv[3] | NULL |\n\n## 形参的等价写法\n\n`char *argv[]` 与 `char **argv` 在形参位置**完全等价**（数组退化为指针），教材两种写法都会出现。\n\n## 遍历\n\n```c\nint i;\nfor (i = 0; i < argc; i++)\n    printf(\"%s\\n\", argv[i]);\n```\n\n## 三个常考陷阱\n\n1. argv[0] 也算一个参数 → argc 比\"用户实际输入的参数个数\"多 1\n2. 所有参数都是**字符串**，要参与算术必须先转换\n3. 参数以空白分隔，参数内部不能含空格（除非由 shell 用引号包起来）",
+      "keyPoints": [
+        "main 的标准形式是 int main(int argc, char *argv[])，其中 argc ≥ 1",
+        "argv[0] 是程序名，argv[1] 到 argv[argc-1] 才是用户给出的参数",
+        "argv[argc] 保证为 NULL，可以用它做遍历哨兵",
+        "形参 char *argv[] 与 char **argv 等价（数组名退化为指针）",
+        "参数一律以字符串形式传入，参与算术运算前必须转换"
+      ],
+      "pitfalls": [
+        "把 argc 当成\"用户输入的参数个数\"，忘了 argv[0] 是程序名，处理参数的循环从 i = 0 开始就多数一个",
+        "对 argv[i] 直接做算术（如 argv[1] + 1），得到的是把指针后移一个字符，而不是数值加 1",
+        "用 printf(\"%s\", argv[argc]) 打印哨兵元素——它是 NULL，属于未定义行为"
+      ],
+      "examples": [
+        {
+          "title": "模拟 file1 beijing shanghai",
+          "code": "#include <stdio.h>\n\nstatic void show(int argc, char *argv[])\n{\n    int i;\n    printf(\"argc = %d\\n\", argc);\n    for (i = 0; i < argc; i++)\n        printf(\"argv[%d] = %s\\n\", i, argv[i]);\n}\n\nint main(void)\n{\n    char *av[] = {\"file1\", \"beijing\", \"shanghai\"};\n    show(3, av);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "argc = 3\nargv[0] = file1\nargv[1] = beijing\nargv[2] = shanghai",
+          "note": "命令行参数无法在本页真实传入，这里用一个函数模拟 main 收到的 argc/argv。",
+          "runnable": true
+        },
+        {
+          "title": "argv[argc] 是 NULL",
+          "code": "#include <stdio.h>\n\nstatic void tail(int argc, char *argv[])\n{\n    int i;\n    printf(\"last = %s\\n\", argv[argc - 1]);\n    printf(\"argv[argc] is %s\\n\", argv[argc] == NULL ? \"NULL\" : \"not NULL\");\n    for (i = 1; i < argc; i++)\n        printf(\"%s\\n\", argv[i]);\n}\n\nint main(void)\n{\n    char *av[] = {\"prog\", \"a\", \"bb\", \"ccc\", NULL};\n    tail(4, av);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "last = ccc\nargv[argc] is NULL\na\nbb\nccc",
+          "note": "标准保证 argv[argc] == NULL；但它只是哨兵，不是字符串，不能解引用或打印。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-051",
+        "c-ch09-fb-003",
+        "c-ch09-cr-052",
+        "c-ch09-sa-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-16",
+        "c-ch09-27",
+        "c-ch09-37"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 36
+    },
+    {
+      "id": "c-ch09-37",
+      "title": "命令行参数的数值转换与字符统计",
+      "section": "9.10 命令行参数",
+      "summary": "argv 里全是字符串：atoi(\"1234abc\") 得 1234，atoi(\"abc\") 得 0；统计类题目用\"外层遍历 argv + 内层遍历字符\"两层循环。",
+      "content": "## 为什么必须转换\n\n```c\n/* 命令行： file1 1234abc */\nprintf(\"%d\\n\", atoi(argv[1]));   /* 1234：字符串转成整数 */\nprintf(\"%d\\n\", argv[1][0]);      /* 49：字符 '1' 的 ASCII 码 */\n```\n\n## atoi 的规则\n\n| 输入 | atoi 结果 | 原因 |\n|---|---|---|\n| \"123\" | 123 | 全部是数字 |\n| \"  42\" | 42 | 跳过前导空白 |\n| \"+7\" / \"-7\" | 7 / -7 | 识别符号 |\n| \"1234abc\" | 1234 | 遇第一个非数字即停止 |\n| \"abc1234\" | 0 | 第一个字符就不是数字 |\n| \"\" | 0 | 空串 |\n\natoi **无法区分\"真的 0\"和\"转换失败\"**；需要严格校验时用 `strtol` 并检查 `endptr`。\n\n## 统计类题目的通用套路\n\n```c\nint i, cnt = 0;\nfor (i = 1; i < argc; i++) {          /* 从 1 开始，跳过程序名 */\n    const char *p = argv[i];\n    while (*p) {\n        if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z'))\n            cnt++;\n        p++;\n    }\n}\n```\n\n外层 for 走参数、内层 while 走字符，是\"统计命令行中第 k 个参数的英文字母个数\"这类题的标准骨架。\n\n## 常见判断条件\n\n| 要求 | 条件 |\n|---|---|\n| 数字字符 | `*p >= '0' && *p <= '9'` |\n| 大写字母 | `*p >= 'A' && *p <= 'Z'` |\n| 小写字母 | `*p >= 'a' && *p <= 'z'` |\n| 字母（不分大小写） | 上面两条用逻辑或连起来 |",
+      "keyPoints": [
+        "argv[i] 是 char *，直接参与算术得到的是 ASCII 码或地址偏移，不是数值",
+        "atoi 先跳过前导空白，遇第一个非数字字符立即停止并返回已累积的值",
+        "\"1234abc\" 得 1234 而 \"abc1234\" 得 0：停止位置决定结果",
+        "atoi 返回 0 不代表失败，需要严格校验时用 strtol 并检查 endptr",
+        "统计字符类题目的模板：外层 for (i = 1; i < argc; i++)，内层 while (*p)"
+      ],
+      "pitfalls": [
+        "写 argv[1] + 1 想得到\"数值加一\"，实际是把指针后移一个字符，指向 \"234abc\"",
+        "统计循环写成 for (i = 0; i < argc; i++)，忘了跳过 argv[0] 程序名，结果被程序名里的字母污染",
+        "自己实现转换时不跳过前导空格，\" 42\" 直接返回 0，与库 atoi 的行为不一致"
+      ],
+      "examples": [
+        {
+          "title": "模拟 FILE1 1 2 3：求参数之和",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstatic int sum_args(int argc, char *argv[])\n{\n    int i, s = 0;\n    for (i = 1; i < argc; i++)      /* 跳过 argv[0] */\n        s += atoi(argv[i]);\n    return s;\n}\n\nint main(void)\n{\n    char *av[] = {\"FILE1\", \"1\", \"2\", \"3\"};\n    printf(\"argc = %d, sum = %d\\n\", 4, sum_args(4, av));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "argc = 4, sum = 6",
+          "note": "对应\"命令行为 FILE1 1 2 3\"的经典题：argc 是 4 而不是 3，参数之和是 6。",
+          "runnable": true
+        },
+        {
+          "title": "自写 atoi：遇非数字即停",
+          "code": "#include <stdio.h>\n\nstatic int my_atoi(const char *s)\n{\n    int n = 0;\n    while (*s >= '0' && *s <= '9') {\n        n = n * 10 + (*s - '0');\n        s++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    printf(\"%d\\n\", my_atoi(\"1234abc\"));\n    printf(\"%d\\n\", my_atoi(\"abc\"));\n    printf(\"%d\\n\", my_atoi(\" 42\"));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1234\n0\n0",
+          "note": "\"1234abc\" 得 1234；\"abc\" 得 0；\" 42\" 得 0 说明这个简化版不跳过前导空白，与库 atoi 有差别。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-cr-052",
+        "c-ch09-sa-002",
+        "c-ch09-fb-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-36",
+        "c-ch09-14",
+        "c-ch09-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 37
+    },
+    {
+      "id": "c-ch09-38",
+      "title": "void * 与通用指针",
+      "section": "9.11 void * 与通用指针",
+      "summary": "void * 是\"无类型指针\"，用于 malloc/memcpy/qsort 这类通用接口；它与任意对象指针可隐式互转，但不能解引用、不能做算术。",
+      "content": "## 四条规则\n\n| 操作 | 是否合法 |\n|---|---|\n| 任意对象指针 → void * | 合法，隐式转换 |\n| void * → 任意对象指针 | 合法，C 中隐式转换（**不需要强转**） |\n| `*p`（p 是 void *） | **非法**，void 没有大小 |\n| `p + 1`（p 是 void *） | **非法**，步长未定义（gcc 扩展当 1 字节，不可移植） |\n\n## 典型出现场合\n\n```c\nint *a = malloc(4 * sizeof(int));   /* C 中不必写 (int *) */\nmemcpy(dst, src, n);                /* 两个参数都是 void * */\nqsort(base, n, size, cmp);          /* 通用排序，cmp 收到 const void * */\n```\n\n## 函数内部必须先\"落地\"成具体类型\n\n```c\nvoid show_first(void *p)\n{\n    int *ip = p;          /* 落地：确定\"按 int 解读\" */\n    printf(\"%d\\n\", *ip);\n}\n```\n\n**类型信息并没有存在指针里**，它只存在于程序员的约定中；落地时选错类型，读到的就是垃圾值，编译器一句警告都不会给。\n\n## C 与 C++ 的差别\n\nC++ 里 `void *` 转 `T *` 必须显式强转，C 不需要。本项目一律按 C 写：malloc 的返回值**不加强转**更地道，也不会产生任何警告。\n\n## 按字节访问的正规做法\n\n```c\nconst unsigned char *b = p;   /* char 的大小规定为 1 字节 */\n```\n\n要看一块内存的原始字节（例如判断字节序），转成 `unsigned char *`，而不是对 void * 做算术。",
+      "keyPoints": [
+        "void * 表示\"某个对象的地址，但暂不关心类型\"，是所有对象指针的公共中转类型",
+        "C 中 void * 与任意对象指针可互相隐式转换，malloc 的返回值不需要强转",
+        "void * 不能解引用、不能做指针算术，必须先赋给具体类型的指针",
+        "指针本身不携带类型信息，落地时选错类型不会产生任何诊断，只会读到垃圾值",
+        "const void * 常用于\"只读的通用缓冲区\"，如 memcpy 的源参数"
+      ],
+      "pitfalls": [
+        "对 void * 直接写 *p 或 p[0]，编译报错 dereferencing pointer to incomplete type",
+        "依赖 gcc 扩展对 void * 做算术（p + 1 前进 1 字节），换编译器就错；按字节走请转成 unsigned char *",
+        "把函数指针与 void * 互相转换：标准不保证可行，属于不可移植写法"
+      ],
+      "examples": [
+        {
+          "title": "void * 参数：函数内部落地成 int *",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstatic void fill(void *p, int n)\n{\n    int *ip = p;                 /* 必须先转换才能解引用 */\n    int i;\n    for (i = 0; i < n; i++)\n        ip[i] = i * i;\n}\n\nint main(void)\n{\n    int *a = malloc(4 * sizeof(int));   /* C 中不写强转 */\n    int i;\n    if (a == NULL)\n        return 1;\n    fill(a, 4);\n    for (i = 0; i < 4; i++)\n        printf(\"%d\\n\", a[i]);\n    free(a);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0\n1\n4\n9",
+          "note": "fill 不知道也不关心传进来的是什么类型，类型约定由调用双方共同遵守。",
+          "runnable": true
+        },
+        {
+          "title": "用 unsigned char * 查看字节序",
+          "code": "#include <stdio.h>\n\nstatic void dump_bytes(const void *p, size_t n)\n{\n    const unsigned char *b = p;\n    size_t i;\n    for (i = 0; i < n; i++)\n        printf(\"%02X\", b[i]);\n    printf(\"\\n\");\n}\n\nint main(void)\n{\n    int x = 1;\n    dump_bytes(&x, sizeof x);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "01000000",
+          "note": "x86/ARM 是小端：低位字节 01 存放在低地址。const void * 表示\"只读、类型待定\"。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-fb-004",
+        "c-ch09-sa-004",
+        "c-ch09-dbg-013",
+        "c-ch09-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-28",
+        "c-ch09-02",
+        "c-ch09-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 38
+    },
+    {
+      "id": "c-ch09-39",
+      "title": "用指针自己实现 strlen / strcpy / strcmp / strcat",
+      "section": "9.5 指针与字符串",
+      "summary": "四个库函数的指针版实现都围绕一件事：用 char * 走到结束符。核心技巧是 while ((*d++ = *s++)); 一行完成拷贝并自动补结束符。",
+      "content": "## 四个函数的指针骨架\n\n```c\nsize_t my_strlen(const char *s)\n{\n    const char *p = s;\n    while (*p) p++;\n    return p - s;               /* 尾后指针减首指针 = 长度 */\n}\n\nchar *my_strcpy(char *d, const char *s)\n{\n    char *r = d;\n    while ((*d++ = *s++))       /* 赋值表达式的值就是刚拷的字符 */\n        ;\n    return r;\n}\n\nint my_strcmp(const char *a, const char *b)\n{\n    while (*a && *a == *b) { a++; b++; }\n    return (unsigned char)*a - (unsigned char)*b;\n}\n\nchar *my_strcat(char *d, const char *s)\n{\n    char *p = d + my_strlen(d); /* 先走到末尾 */\n    while ((*p++ = *s++))\n        ;\n    return d;\n}\n```\n\n## 三处最容易被扣分的细节\n\n1. **循环条件 `*d++ = *s++`**：连结束符一起拷过去，值为 0 时循环自然结束，**不必再补 `*d = 0`**\n2. **返回类型**：strcpy/strcat 返回 `char *`（目的串首地址，支持链式调用）；strlen 返回 `size_t`（无符号）\n3. **strcmp 用 unsigned char 比较**：标准要求按无符号字符比较，否则高位字节（如汉字）会得出与库函数相反的符号\n\n## 复杂度\n\n| 函数 | 时间 | 说明 |\n|---|---|---|\n| strlen | O(n) | 必须走到结束符 |\n| strcpy | O(n) | n 为源串长度 |\n| strcmp | O(min(m,n)) | 遇不等即停 |\n| strcat | O(m+n) | 先找末尾再拷贝，这就是它慢的原因 |\n\n在循环里反复 strcat，总代价会退化成 O(n²)。",
+      "keyPoints": [
+        "所有字符串函数都靠 while (*p) 定位结尾，长度 = 尾后指针减首指针",
+        "while ((*d++ = *s++)); 一行完成拷贝并自动补上结束符",
+        "strcpy/strcat 返回目的串首地址以支持链式调用，strlen 返回 size_t",
+        "strcmp 的差值按 unsigned char 计算，只有返回值的符号有意义，绝对值没有意义",
+        "源串形参一律加 const，既表明只读又能防止误改",
+        "strcat 是 O(m+n)，循环里反复 strcat 会退化成 O(n²)"
+      ],
+      "pitfalls": [
+        "写 while (*d++ = *s++) 漏掉最外层括号会被解析成给 while 赋值；只加一层括号则 -Wall 警告\"赋值用作条件值\"",
+        "strcpy/strcat 完全不检查目的缓冲区容量，源串过长就是缓冲区溢出；工程上应改用 strncpy 并手工补结束符",
+        "把 my_strlen 的返回类型写成 int，与 size_t 比较或处理超长字符串时会出现符号/溢出问题"
+      ],
+      "examples": [
+        {
+          "title": "my_strlen / my_strcpy / my_strcmp",
+          "code": "#include <stdio.h>\n\nstatic size_t my_strlen(const char *s)\n{\n    const char *p = s;\n    while (*p) p++;\n    return p - s;\n}\n\nstatic char *my_strcpy(char *d, const char *s)\n{\n    char *r = d;\n    while ((*d++ = *s++))\n        ;\n    return r;\n}\n\nstatic int my_strcmp(const char *a, const char *b)\n{\n    while (*a && *a == *b) { a++; b++; }\n    return (unsigned char)*a - (unsigned char)*b;\n}\n\nint main(void)\n{\n    char buf[20];\n    my_strcpy(buf, \"hello\");\n    printf(\"%d %s\\n\", (int)my_strlen(buf), buf);\n    printf(\"%d %d %d\\n\", my_strcmp(\"abc\", \"abd\") < 0,\n           my_strcmp(\"abc\", \"abc\") == 0, my_strcmp(\"b\", \"a\") > 0);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "5 hello\n1 1 1",
+          "note": "三个判断式都成立，说明符号与库函数一致：小于返回负、相等返回 0、大于返回正。",
+          "runnable": true
+        },
+        {
+          "title": "my_strcat：先找末尾再拼接",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstatic char *my_strcat(char *d, const char *s)\n{\n    char *p = d + strlen(d);\n    while ((*p++ = *s++))\n        ;\n    return d;\n}\n\nint main(void)\n{\n    char buf[30] = \"abc\";\n    my_strcat(buf, \"def\");\n    my_strcat(buf, \"!\");\n    printf(\"%s %d\\n\", buf, (int)strlen(buf));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "abcdef! 7",
+          "note": "buf 容量 30，最终只用 8 字节（7 个字符加结束符）。若容量不足，这里就是溢出点。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-pg-003",
+        "c-ch09-cr-024",
+        "c-ch09-cr-020"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-14",
+        "c-ch09-13",
+        "c-ch09-15"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 39
+    },
+    {
+      "id": "c-ch09-40",
+      "title": "指针错误自检清单",
+      "section": "9.9 指针的常见错误",
+      "summary": "把野指针、悬空指针、越界、泄漏、类型错配五类错误压成十条可逐条打勾的自检项，写指针代码前后各过一遍。",
+      "content": "## 十条自检项\n\n| # | 检查项 | 典型错误 | 正确做法 |\n|---|---|---|---|\n| 1 | 定义后立即初始化 | `int *p; *p = 5;` | `int *p = NULL;` 或指向有效对象 |\n| 2 | 分配后检查 NULL | `p = malloc(n); p[0] = 1;` | `if (p == NULL) { 处理 }` |\n| 3 | 下标不超过 n-1 | `for (i = 0; i <= n; i++)` | `i < n`；尾后指针只可比较不可解引用 |\n| 4 | 不返回局部变量地址 | `return buf;` | 由调用者传入缓冲区（out 参数模式） |\n| 5 | free 后置 NULL | `free(p); ... *p;` | `free(p); p = NULL;` |\n| 6 | 每块内存只 free 一次 | 两个指针指向同一块都 free | 明确唯一所有者 |\n| 7 | 指针类型与被指对象一致 | `int *p = &d;`（d 是 double） | 类型严格匹配 |\n| 8 | 字符串操作先看容量 | `char s[5]; strcpy(s, \"abcdef\");` | 容量 ≥ 长度 + 1 |\n| 9 | 指针相减须在同一数组内 | `p1 - p2`（两个无关数组） | 只对同一数组/对象的指针做减法 |\n| 10 | 不对 void * 解引用 | `*(void *)p` | 先转成具体类型 |\n\n## 排查顺序：先初始化，再边界，后释放\n\n1. 打印指针值：是 NULL 还是明显的垃圾值？（野指针）\n2. 打印下标：有没有等于 n 或大于 n-1？（越界）\n3. 检查 free 的位置与次数（悬空指针 / 重复释放）\n4. 检查每条 return 路径是否都释放了已分配内存（泄漏）\n\n## 一句话记忆\n\n> 指针的每一种崩溃，都对应\"它此刻指向的内存**不属于你** / **已经不属于你** / **根本不存在**\"三种情况之一。\n\n## 为什么\"跑通了\"不算证据\n\n越界写往往**当时不崩**：它改坏了相邻变量或栈上的返回地址，直到后面某个毫不相干的语句才暴露。所以指针代码的正确性只能靠逐条对照清单来保证，不能靠一次运行结果。",
+      "keyPoints": [
+        "定义即初始化：int *p = NULL; 把\"野指针\"降级成可用 if 检测的空指针",
+        "malloc/calloc/realloc 的返回值必须判 NULL 后再使用",
+        "循环边界写 i < n；尾后指针 a + n 合法但绝不可解引用",
+        "函数不要返回局部数组或局部变量的地址，改用调用者提供缓冲区的 out 参数模式",
+        "free 之后立刻置 NULL，同一块内存只允许唯一所有者释放",
+        "字符串函数不检查容量，strcpy/strcat 之前必须自己核对 dst 能装下 len + 1 个字符"
+      ],
+      "pitfalls": [
+        "越界写常常\"当时不崩\"，直到后面某个无关语句才出错，因此不能以\"跑通了\"作为指针正确的证据",
+        "在 free 之前移动过 p（如写成 free(p++) 或先 p++ 再 free），释放的不是 malloc 返回的原始地址，属于未定义行为",
+        "修一个泄漏时又造一个泄漏：错误分支里 return 前忘记释放之前已经分配成功的其他内存"
+      ],
+      "examples": [
+        {
+          "title": "正确写法：分配检查 + 不越界 + 释放置空",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstatic int safe_sum(int n)\n{\n    int *p, i, s = 0;\n    if (n <= 0)\n        return 0;\n    p = malloc((size_t)n * sizeof(int));\n    if (p == NULL)                 /* 1 检查返回值 */\n        return -1;\n    for (i = 0; i < n; i++)\n        p[i] = i + 1;              /* 2 边界：i < n */\n    for (i = 0; i < n; i++)\n        s += p[i];\n    free(p);                       /* 3 用完释放 */\n    p = NULL;                      /* 4 置空，避免悬空指针 */\n    return s;\n}\n\nint main(void)\n{\n    int *q = NULL;                 /* 5 定义即初始化 */\n    (void)q;\n    printf(\"%d %d\\n\", safe_sum(4), safe_sum(0));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 0",
+          "note": "先判 n <= 0 再分配，是为了不依赖 malloc(0) 的实现定义行为（它可能返回 NULL，也可能返回一个不可解引用的唯一指针）。",
+          "runnable": true
+        },
+        {
+          "title": "out 参数模式：调用者提供缓冲区",
+          "code": "#include <stdio.h>\n#include <string.h>\n\n/* 错误写法是返回局部数组的首地址，函数返回后即失效 */\nstatic void copy_name(char *dst, size_t n, const char *src)\n{\n    strncpy(dst, src, n - 1);\n    dst[n - 1] = 0;                /* strncpy 可能不补结束符，必须手工补 */\n}\n\nint main(void)\n{\n    char name[8];\n    copy_name(name, sizeof name, \"abcdefghijk\");\n    printf(\"%s %d\\n\", name, (int)strlen(name));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "abcdefg 7",
+          "note": "缓冲区由调用者准备、容量随参数传入，一举避免\"返回栈地址\"和\"缓冲区溢出\"两类错误。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015",
+        "c-ch09-fb-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch09-32",
+        "c-ch09-33",
+        "c-ch09-34",
+        "c-ch09-30"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第9章 指针",
+      "order": 40
+    }
+  ]
+}

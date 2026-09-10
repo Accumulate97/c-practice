@@ -1,7 +1,7 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "ba127a0ab9d5bd14",
-  "count": 90,
+  "content_sha": "f56d29a5d0c39b29",
+  "count": 165,
   "cards": [
     {
       "id": "c-ch05-01",
@@ -1065,6 +1065,936 @@
         "c-ch07-sa-008",
         "c-ch07-sa-009",
         "c-ch07-sa-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-01",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 编译预处理概述",
+      "title": "预处理概述：编译之前的文本加工",
+      "relatedProblems": [
+        "c-ch08-cr-001",
+        "c-ch08-cr-016"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-02",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 宏定义与宏替换",
+      "title": "简单宏定义：#define 标识符 字符串",
+      "relatedProblems": [
+        "c-ch08-cr-001",
+        "c-ch08-cr-002",
+        "c-ch08-cr-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-03",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 宏定义与宏替换",
+      "title": "宏替换是纯文本替换：不求值、不算术",
+      "relatedProblems": [
+        "c-ch08-cr-004",
+        "c-ch08-cr-010",
+        "c-ch08-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-04",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 宏定义与宏替换",
+      "title": "#undef 与宏的重复定义",
+      "relatedProblems": [
+        "c-ch08-cr-016",
+        "c-ch08-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-05",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 带参数的宏",
+      "title": "带参宏（宏函数）的定义与展开",
+      "relatedProblems": [
+        "c-ch08-cr-004",
+        "c-ch08-cr-005",
+        "c-ch08-cr-006",
+        "c-ch08-cr-007"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-06",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 带参数的宏",
+      "title": "带参宏的括号：参数加括号 + 整体加括号",
+      "relatedProblems": [
+        "c-ch08-cr-009",
+        "c-ch08-cr-013",
+        "c-ch08-pg-001",
+        "c-ch08-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-07",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 带参数的宏",
+      "title": "带参宏的副作用：实参被求值多次",
+      "relatedProblems": [
+        "c-ch08-cr-005",
+        "c-ch08-cr-010",
+        "c-ch08-cr-015"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-08",
+      "chapter": "第8章 编译预处理",
+      "section": "8.3 带参数的宏",
+      "title": "宏的嵌套定义与逐层展开",
+      "relatedProblems": [
+        "c-ch08-cr-011",
+        "c-ch08-cr-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-09",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 文件包含",
+      "title": "#include 文件包含：尖括号与双引号",
+      "relatedProblems": [
+        "c-ch08-pg-005",
+        "c-ch08-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-10",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 文件包含",
+      "title": "包含的位置、嵌套与重复包含",
+      "relatedProblems": [
+        "c-ch08-pg-005",
+        "c-ch08-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-11",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 条件编译",
+      "title": "#ifdef / #ifndef / #endif 条件编译",
+      "relatedProblems": [
+        "c-ch08-cr-017",
+        "c-ch08-cr-018",
+        "c-ch08-cr-019"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-12",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 条件编译",
+      "title": "#if / #elif：按常量表达式条件编译",
+      "relatedProblems": [
+        "c-ch08-cr-017",
+        "c-ch08-cr-018"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-13",
+      "chapter": "第8章 编译预处理",
+      "section": "8.6 宏与函数的区别",
+      "title": "宏与函数的区别",
+      "relatedProblems": [
+        "c-ch08-cr-007",
+        "c-ch08-cr-008",
+        "c-ch08-cr-014"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-14",
+      "chapter": "第8章 编译预处理",
+      "section": "8.6 宏与函数的区别",
+      "title": "多语句宏：do { ... } while (0) 的用法",
+      "relatedProblems": [
+        "c-ch08-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch08-15",
+      "chapter": "第8章 编译预处理",
+      "section": "8.7 预处理常见错误",
+      "title": "预处理常见错误清单与自查方法",
+      "relatedProblems": [
+        "c-ch08-cr-005",
+        "c-ch08-cr-009",
+        "c-ch08-cr-016"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-01",
+      "chapter": "第9章 指针",
+      "section": "9.1 指针的概念",
+      "title": "地址、指针变量与 *、& 运算符",
+      "relatedProblems": [
+        "c-ch09-cc-001",
+        "c-ch09-cr-001",
+        "c-ch09-cr-002",
+        "c-ch09-fb-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-02",
+      "chapter": "第9章 指针",
+      "section": "9.1 指针的概念",
+      "title": "指针变量与所指对象的类型必须匹配",
+      "relatedProblems": [
+        "c-ch09-cr-003",
+        "c-ch09-cr-004",
+        "c-ch09-cr-028",
+        "c-ch09-fb-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-03",
+      "chapter": "第9章 指针",
+      "section": "9.2 指针与函数",
+      "title": "指针作为函数参数：传址调用",
+      "relatedProblems": [
+        "c-ch09-cr-005",
+        "c-ch09-cr-006",
+        "c-ch09-cr-019",
+        "c-ch09-pg-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-04",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "数组名与指针的关系：数组名是首地址",
+      "relatedProblems": [
+        "c-ch09-cr-028",
+        "c-ch09-cr-029",
+        "c-ch09-cr-030",
+        "c-ch09-fb-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-05",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "一维数组的四种等价访问写法",
+      "relatedProblems": [
+        "c-ch09-cr-031",
+        "c-ch09-cr-032",
+        "c-ch09-cr-033",
+        "c-ch09-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-06",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "指针的算术运算与步长",
+      "relatedProblems": [
+        "c-ch09-cr-034",
+        "c-ch09-cr-035",
+        "c-ch09-cr-036",
+        "c-ch09-fb-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-07",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "用指针遍历数组的三种循环写法",
+      "relatedProblems": [
+        "c-ch09-cr-037",
+        "c-ch09-cr-038",
+        "c-ch09-cr-039",
+        "c-ch09-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-08",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "指针的关系运算与合法地址范围",
+      "relatedProblems": [
+        "c-ch09-cr-040",
+        "c-ch09-cr-041",
+        "c-ch09-cr-042",
+        "c-ch09-dbg-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-09",
+      "chapter": "第9章 指针",
+      "section": "9.4 指针与二维数组",
+      "title": "二维数组的地址结构：行地址与元素地址",
+      "relatedProblems": [
+        "c-ch09-cr-043",
+        "c-ch09-cr-044",
+        "c-ch09-cr-045",
+        "c-ch09-cr-046"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-10",
+      "chapter": "第9章 指针",
+      "section": "9.4 指针与二维数组",
+      "title": "行指针（数组指针）int (*p)[N] 与二维数组作参数",
+      "relatedProblems": [
+        "c-ch09-cr-047",
+        "c-ch09-cr-048",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-11",
+      "chapter": "第9章 指针",
+      "section": "9.4 指针与二维数组",
+      "title": "二维数组的通用遍历与\"一维化\"访问",
+      "relatedProblems": [
+        "c-ch09-cr-043",
+        "c-ch09-cr-046",
+        "c-ch09-cr-049",
+        "c-ch09-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-12",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "用字符数组与字符指针表示字符串",
+      "relatedProblems": [
+        "c-ch09-cr-007",
+        "c-ch09-cr-008",
+        "c-ch09-cr-009",
+        "c-ch09-fb-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-13",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "char s[] 与 char *s 作函数参数的区别（数组退化）",
+      "relatedProblems": [
+        "c-ch09-cr-010",
+        "c-ch09-cr-011",
+        "c-ch09-cr-012",
+        "c-ch09-cr-013"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-14",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "字符串处理函数与指针遍历",
+      "relatedProblems": [
+        "c-ch09-cr-014",
+        "c-ch09-cr-015",
+        "c-ch09-cr-016",
+        "c-ch09-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-15",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "const 与指针：三种组合的区别",
+      "relatedProblems": [
+        "c-ch09-cr-017",
+        "c-ch09-cr-018",
+        "c-ch09-cr-027",
+        "c-ch09-fb-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-16",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "字符串指针数组（字符串表）",
+      "relatedProblems": [
+        "c-ch09-cr-020",
+        "c-ch09-cr-021",
+        "c-ch09-cr-022",
+        "c-ch09-pg-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-17",
+      "chapter": "第9章 指针",
+      "section": "9.2 指针与函数",
+      "title": "用指针参数让函数返回多个值",
+      "relatedProblems": [
+        "c-ch09-cr-019",
+        "c-ch09-pg-001",
+        "c-ch09-pg-002",
+        "c-ch09-sa-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-18",
+      "chapter": "第9章 指针",
+      "section": "9.2 指针与函数",
+      "title": "指针型函数：返回指针的函数",
+      "relatedProblems": [
+        "c-ch09-cr-023",
+        "c-ch09-cr-024",
+        "c-ch09-pg-003",
+        "c-ch09-sa-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-19",
+      "chapter": "第9章 指针",
+      "section": "9.2 指针与函数",
+      "title": "悬空指针：不能返回局部变量的地址",
+      "relatedProblems": [
+        "c-ch09-cr-025",
+        "c-ch09-cr-026",
+        "c-ch09-dbg-014",
+        "c-ch09-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-20",
+      "chapter": "第9章 指针",
+      "section": "9.6 函数指针",
+      "title": "函数指针：定义、赋值与调用",
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-057",
+        "c-ch09-cr-058"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-21",
+      "chapter": "第9章 指针",
+      "section": "9.6 函数指针",
+      "title": "函数指针作参数（回调函数）",
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-057",
+        "c-ch09-sa-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-22",
+      "chapter": "第9章 指针",
+      "section": "9.6 函数指针",
+      "title": "函数指针数组与跳转表",
+      "relatedProblems": [
+        "c-ch09-cr-057",
+        "c-ch09-cr-058",
+        "c-ch09-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-23",
+      "chapter": "第9章 指针",
+      "section": "9.2 指针与函数",
+      "title": "二级指针作函数参数",
+      "relatedProblems": [
+        "c-ch09-cr-048",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050",
+        "c-ch09-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-24",
+      "chapter": "第9章 指针",
+      "section": "9.4 指针与二维数组",
+      "title": "指针数组 vs 数组指针",
+      "relatedProblems": [
+        "c-ch09-cr-034",
+        "c-ch09-cr-035",
+        "c-ch09-cr-036",
+        "c-ch09-fb-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-25",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "字符串指针数组与字符串排序",
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-cr-026",
+        "c-ch09-cr-027",
+        "c-ch09-sa-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-26",
+      "chapter": "第9章 指针",
+      "section": "9.6 函数指针",
+      "title": "复杂指针声明的解读（右左法则）",
+      "relatedProblems": [
+        "c-ch09-cr-055",
+        "c-ch09-cr-056",
+        "c-ch09-cr-049",
+        "c-ch09-cr-050"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-27",
+      "chapter": "第9章 指针",
+      "section": "9.7 指针数组与多级指针",
+      "title": "多级指针",
+      "relatedProblems": [
+        "c-ch09-cr-045",
+        "c-ch09-cr-046",
+        "c-ch09-cr-047",
+        "c-ch09-fb-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-28",
+      "chapter": "第9章 指针",
+      "section": "9.8 动态内存分配",
+      "title": "malloc 与 free",
+      "relatedProblems": [
+        "c-ch09-pg-001",
+        "c-ch09-pg-005",
+        "c-ch09-sa-003",
+        "c-ch09-cr-050"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-29",
+      "chapter": "第9章 指针",
+      "section": "9.8 动态内存分配",
+      "title": "calloc 与 realloc",
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-pg-005",
+        "c-ch09-sa-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-30",
+      "chapter": "第9章 指针",
+      "section": "9.8 动态内存分配",
+      "title": "分配检查、所有权与内存泄漏",
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-31",
+      "chapter": "第9章 指针",
+      "section": "9.8 动态内存分配",
+      "title": "动态二维数组的三种实现",
+      "relatedProblems": [
+        "c-ch09-pg-003",
+        "c-ch09-pg-005",
+        "c-ch09-cr-044",
+        "c-ch09-sa-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-32",
+      "chapter": "第9章 指针",
+      "section": "9.9 指针的常见错误",
+      "title": "野指针与未初始化指针",
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-fb-002",
+        "c-ch09-cr-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-33",
+      "chapter": "第9章 指针",
+      "section": "9.9 指针的常见错误",
+      "title": "悬空指针：返回栈地址、释放后使用、重复释放",
+      "relatedProblems": [
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015",
+        "c-ch09-sa-004",
+        "c-ch09-pg-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-34",
+      "chapter": "第9章 指针",
+      "section": "9.9 指针的常见错误",
+      "title": "指针越界与尾后指针",
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-cr-010",
+        "c-ch09-cr-011",
+        "c-ch09-fb-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-35",
+      "chapter": "第9章 指针",
+      "section": "9.3 指针与一维数组",
+      "title": "指针与整数的混合运算",
+      "relatedProblems": [
+        "c-ch09-cr-005",
+        "c-ch09-cr-006",
+        "c-ch09-cr-042",
+        "c-ch09-sa-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-36",
+      "chapter": "第9章 指针",
+      "section": "9.10 命令行参数",
+      "title": "命令行参数：argc 与 argv",
+      "relatedProblems": [
+        "c-ch09-cr-051",
+        "c-ch09-fb-003",
+        "c-ch09-cr-052",
+        "c-ch09-sa-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-37",
+      "chapter": "第9章 指针",
+      "section": "9.10 命令行参数",
+      "title": "命令行参数的数值转换与字符统计",
+      "relatedProblems": [
+        "c-ch09-cr-052",
+        "c-ch09-sa-002",
+        "c-ch09-fb-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-38",
+      "chapter": "第9章 指针",
+      "section": "9.11 void * 与通用指针",
+      "title": "void * 与通用指针",
+      "relatedProblems": [
+        "c-ch09-fb-004",
+        "c-ch09-sa-004",
+        "c-ch09-dbg-013",
+        "c-ch09-pg-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-39",
+      "chapter": "第9章 指针",
+      "section": "9.5 指针与字符串",
+      "title": "用指针自己实现 strlen / strcpy / strcmp / strcat",
+      "relatedProblems": [
+        "c-ch09-pg-002",
+        "c-ch09-pg-003",
+        "c-ch09-cr-024",
+        "c-ch09-cr-020"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch09-40",
+      "chapter": "第9章 指针",
+      "section": "9.9 指针的常见错误",
+      "title": "指针错误自检清单",
+      "relatedProblems": [
+        "c-ch09-dbg-013",
+        "c-ch09-dbg-014",
+        "c-ch09-dbg-015",
+        "c-ch09-fb-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-01",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 结构体的定义与引用",
+      "title": "结构体类型的定义与结构体变量",
+      "relatedProblems": [
+        "c-ch10-cr-001",
+        "c-ch10-cr-002",
+        "c-ch10-pg-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-02",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 结构体的定义与引用",
+      "title": "结构体变量的初始化与嵌套结构体",
+      "relatedProblems": [
+        "c-ch10-cr-002",
+        "c-ch10-cr-003",
+        "c-ch10-cc-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-03",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 结构体的定义与引用",
+      "title": "sizeof 结构体与内存对齐",
+      "relatedProblems": [
+        "c-ch10-cc-001",
+        "c-ch10-cr-001",
+        "c-ch10-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-04",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 结构体数组",
+      "title": "结构体数组的定义与遍历",
+      "relatedProblems": [
+        "c-ch10-cr-004",
+        "c-ch10-cr-005",
+        "c-ch10-cc-004"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-05",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 结构体数组",
+      "title": "结构体数组的查找与排序",
+      "relatedProblems": [
+        "c-ch10-cc-002",
+        "c-ch10-cc-004",
+        "c-ch10-cr-005"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-06",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 结构体指针与 -> 运算符",
+      "title": "结构体指针与 -> 运算符",
+      "relatedProblems": [
+        "c-ch10-cr-006",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-07",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.3 结构体指针与 -> 运算符",
+      "title": "用指针遍历结构体数组",
+      "relatedProblems": [
+        "c-ch10-cr-005",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-08",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 结构体与函数",
+      "title": "结构体作函数参数（值传递）",
+      "relatedProblems": [
+        "c-ch10-cc-003",
+        "c-ch10-cr-007",
+        "c-ch10-pg-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-09",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 结构体与函数",
+      "title": "指针传递与结构体整体赋值",
+      "relatedProblems": [
+        "c-ch10-cr-006",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-10",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 结构体与函数",
+      "title": "函数返回结构体还是返回结构体指针",
+      "relatedProblems": [
+        "c-ch10-cc-003",
+        "c-ch10-pg-001",
+        "c-ch10-pg-002"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-11",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 typedef",
+      "title": "typedef 为结构体起别名",
+      "relatedProblems": [
+        "c-ch10-cr-012",
+        "c-ch10-pg-001",
+        "c-ch10-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-12",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 typedef",
+      "title": "typedef 与 #define 的区别",
+      "relatedProblems": [
+        "c-ch10-cr-012",
+        "c-ch10-cr-011",
+        "c-ch10-cr-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-13",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.6 共用体 union",
+      "title": "共用体 union：所有成员共享同一段内存",
+      "relatedProblems": [
+        "c-ch10-cr-008",
+        "c-ch10-cr-009",
+        "c-ch10-cr-010"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-14",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.6 共用体 union",
+      "title": "sizeof(union) 的计算与标签联合",
+      "relatedProblems": [
+        "c-ch10-cr-008",
+        "c-ch10-cr-009",
+        "c-ch10-cc-001"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-15",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.6 共用体 union",
+      "title": "用共用体拆解整数的字节与判断字节序",
+      "relatedProblems": [
+        "c-ch10-cr-010",
+        "c-ch10-pg-007",
+        "c-ch10-cr-008"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-16",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.7 枚举 enum",
+      "title": "枚举 enum：默认从 0 开始连续取值",
+      "relatedProblems": [
+        "c-ch10-cr-011",
+        "c-ch10-sa-001",
+        "c-ch10-cr-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-17",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.7 枚举 enum",
+      "title": "枚举的显式赋值与典型应用",
+      "relatedProblems": [
+        "c-ch10-sa-001",
+        "c-ch10-cr-011",
+        "c-ch10-cr-012"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-18",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.8 链表基础",
+      "title": "链表结点的定义、创建与释放",
+      "relatedProblems": [
+        "c-ch10-pg-003",
+        "c-ch10-pg-002",
+        "c-ch10-cc-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-19",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.8 链表基础",
+      "title": "链表的插入与查找",
+      "relatedProblems": [
+        "c-ch10-pg-005",
+        "c-ch10-pg-004",
+        "c-ch10-pg-003"
+      ],
+      "relatedViz": []
+    },
+    {
+      "id": "c-ch10-20",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.8 链表基础",
+      "title": "链表的逆置与释放",
+      "relatedProblems": [
+        "c-ch10-pg-006",
+        "c-ch10-pg-004",
+        "c-ch10-pg-003"
       ],
       "relatedViz": []
     }

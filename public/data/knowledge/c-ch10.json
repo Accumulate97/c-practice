@@ -1,0 +1,1068 @@
+{
+  "category": "c",
+  "chapter": "第10章 结构体与共用体",
+  "generated_at": "2026-09-10",
+  "count": 20,
+  "cards": [
+    {
+      "id": "c-ch10-01",
+      "title": "结构体类型的定义与结构体变量",
+      "section": "10.1 结构体的定义与引用",
+      "summary": "结构体把若干个类型不同的数据组合成一个整体；定义方式有三种（先声明类型再定义变量、声明类型的同时定义变量、直接定义无名结构体变量），成员用「变量名.成员名」引用。",
+      "content": "## 为什么需要结构体\n\n数组要求所有元素同类型，而描述一个学生需要「学号(int) + 姓名(char[]) + 成绩(float)」这类**异质数据**。结构体（struct）就是把它们捆成一个可以整体命名、整体传递的复合类型。\n\n## 三种定义方式\n\n| 方式 | 写法 | 特点 |\n|---|---|---|\n| ① 先声明类型，再定义变量 | `struct Student {...};` 然后 `struct Student s1;` | 最常用，可反复定义多个变量 |\n| ② 声明类型的同时定义变量 | `struct Date {...} d1, d2;` | 类型名与变量名一次写完 |\n| ③ 直接定义无名类型变量 | `struct {int a; int b;} p;` | 没有类型名，之后无法再定义同类型变量 |\n\n方式①的完整骨架：\n\n```c\nstruct Student          /* 定义一种新类型：struct Student */\n{\n    int   num;          /* 成员：整型 */\n    char  name[10];     /* 成员：字符数组 */\n    float score;        /* 成员：浮点 */\n};                      /* 这个分号不能丢 */\n\nint main(void)\n{\n    struct Student s1;  /* C 里必须带 struct 关键字 */\n    return 0;\n}\n```\n\n## 成员的引用\n\n- 结构体**变量**用点运算符：`s1.num`、`s1.score`。\n- 结构体**指针**用箭头运算符：`p->num`，等价于 `(*p).num`（见 10.3）。\n- 成员可以像普通变量一样参与运算：`s1.score + 3`、`s2.num = s1.num`。\n- **整体赋值**：同类型的两个结构体变量可以直接 `s2 = s1;`，编译器逐成员复制（含数组成员）。这是数组做不到的。\n\n## 成员是字符数组时的赋值\n\n`name` 是数组名，不是可赋值的左值：\n\n```c\nstrcpy(s2.name, \"WangFang\");   /* 正确 */\n/* s2.name = \"WangFang\"; */    /* 编译错误：数组不能被赋值 */\n```\n\n## 语法速查\n\n| 操作 | 写法 |\n|---|---|\n| 定义类型 | `struct Tag { 成员表 };` |\n| 定义变量 | `struct Tag v;` |\n| 初始化 | `struct Tag v = {值1, 值2, ...};` |\n| 读/写成员 | `v.成员` |\n| 整体复制 | `v2 = v1;` |\n| 成员是字符数组 | `strcpy(v.name, \"...\")` |\n",
+      "keyPoints": [
+        "结构体是把若干个类型不同的数据组合成一个整体的复合类型，用 struct 关键字定义",
+        "定义结构体变量的三种方式：先声明类型再定义变量、声明类型的同时定义变量、直接定义无名结构体变量",
+        "成员引用用点运算符「变量名.成员名」，成员可以像普通变量一样参与运算和赋值",
+        "同类型的结构体变量之间可以整体赋值，编译器逐成员复制，包括数组成员",
+        "成员为字符数组时只能用 strcpy 复制字符串，不能写成 name = \"...\"",
+        "C 语言中定义变量必须写全 struct Tag，不能像 C++ 那样省略 struct"
+      ],
+      "pitfalls": [
+        "结构体类型定义末尾的分号容易漏写，漏写后编译错误往往报在下一行",
+        "字符数组成员不能用 = 赋字符串，必须用 strcpy，且目标数组要足够长",
+        "成员名可以与其他结构体的成员名或普通变量同名，作用域限定在各自的结构体内",
+        "结构体类型定义本身不分配内存，只有定义了结构体变量才占用存储空间"
+      ],
+      "examples": [
+        {
+          "title": "三种定义方式与成员引用",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Student                       /* 方式①：先声明类型 */\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nstruct Date                          /* 方式②：声明类型的同时定义变量 */\n{\n    int year;\n    int month;\n    int day;\n} birthday = {2005, 3, 12};\n\nint main(void)\n{\n    struct Student s1 = {1001, \"LiLin\", 89.5f};\n    struct Student s2;\n    struct { int a; int b; } pair = {3, 4};   /* 方式③：无名类型 */\n\n    s2 = s1;                                  /* 整体赋值 */\n    strcpy(s2.name, \"WangFang\");              /* 字符数组成员只能这样改 */\n    s2.score = s1.score + 3.0f;\n\n    printf(\"%d %s %.1f\\n\", s1.num, s1.name, s1.score);\n    printf(\"%d %s %.1f\\n\", s2.num, s2.name, s2.score);\n    printf(\"%d-%02d-%02d\\n\", birthday.year, birthday.month, birthday.day);\n    printf(\"%d %d\\n\", pair.a, pair.b);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001 LiLin 89.5\n1001 WangFang 92.5\n2005-03-12\n3 4",
+          "note": "整体赋值 s2 = s1 把三个成员一起复制过来，之后单独改 name 和 score 不影响 s1。",
+          "runnable": true
+        },
+        {
+          "title": "成员本身是数组：循环读写与累加",
+          "code": "#include <stdio.h>\n\nstruct Score\n{\n    char name[10];\n    int  s[3];          /* 成员是数组 */\n    int  total;\n};\n\nint main(void)\n{\n    struct Score a = {\"Zhang\", {78, 85, 91}, 0};\n    int i;\n\n    for (i = 0; i < 3; i++) {\n        a.total += a.s[i];          /* 成员数组用 a.s[i] 访问 */\n    }\n    printf(\"%s total=%d avg=%.2f\\n\", a.name, a.total, a.total / 3.0);\n\n    a.s[0] = 88;\n    printf(\"after: %d %d %d\\n\", a.s[0], a.s[1], a.s[2]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Zhang total=254 avg=84.67\nafter: 88 85 91",
+          "note": "成员数组的每个元素仍是普通变量；注意 a.total 要先初始化为 0 再累加，否则累加的是随机值。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-001",
+        "c-ch10-cr-002",
+        "c-ch10-pg-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-02",
+        "c-ch10-03",
+        "c-ch10-06"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 1
+    },
+    {
+      "id": "c-ch10-02",
+      "title": "结构体变量的初始化与嵌套结构体",
+      "section": "10.1 结构体的定义与引用",
+      "summary": "结构体变量可以在定义时按成员顺序列出初值，也可以用 C99 的指定初始化器；未列出的成员自动清零；结构体成员可以是另一个结构体，访问时逐层用点运算符。",
+      "content": "## 初始化的三种写法\n\n```c\nstruct Student s1 = {1001, \"LiLin\", 89.5f};         /* ① 按声明顺序列出全部初值 */\nstruct Student s2 = {.num = 1002, .score = 90.0f};  /* ② C99 指定初始化器 */\nstruct Student s3 = {0};                            /* ③ 整体清零 */\n```\n\n- ① 的顺序必须与成员声明顺序一致，**不能跳着写**（想跳过就改用②）。\n- ② 中没点名的成员按「静态初始化」规则补 0，顺序也可以打乱。\n- ③ `{0}` 是让全部成员清零的标准写法，`-Wall -Wextra` 不会报警。\n\n> ⚠️ 只写一部分成员（如 `{\"box\", 5}` 而结构体还有第三个成员）在 GCC 下会触发\n> `-Wmissing-field-initializers` 警告。要么写全，要么用 `{0}`。\n\n## 嵌套结构体\n\n结构体成员可以是另一个结构体类型，用来表达「日期」「地址」这类可复用的子结构：\n\n```c\nstruct Date    { int year, month, day; };\nstruct Student {\n    int         num;\n    struct Date birth;    /* 嵌套：成员本身又是结构体 */\n};\n\nstruct Student s = {1001, {2005, 3, 12}};\ns.birth.year = 2006;      /* 逐层用 . 访问 */\n```\n\n访问嵌套成员就是**一层一个点**，层数不限：`a.b.c.d`。\n\n## 整体赋值的复制语义\n\n`t = s;` 是**值复制**：把 s 的每一个成员（包括嵌套结构体的每一个子成员、包括数组内容）都拷贝一份给 t。之后修改 `t.birth.year` 不会影响 s。这与「结构体作函数参数」时的行为完全一致（见 10.4）。\n\n## 语法速查\n\n| 目的 | 写法 |\n|---|---|\n| 全部按序初始化 | `struct T v = {v1, v2, v3};` |\n| 指定成员初始化 | `struct T v = {.y = 7, .x = 3};` |\n| 整体清零 | `struct T v = {0};` |\n| 嵌套成员初始化 | `struct T v = {1, {2005, 3, 12}};` |\n| 读嵌套成员 | `v.birth.year` |\n| 改嵌套成员 | `v.birth.day = 1;` |\n| 复制整个结构体 | `v2 = v1;` |\n",
+      "keyPoints": [
+        "按声明顺序列出全部初值是最常用的初始化方式，顺序不能错位",
+        "C99 指定初始化器 .成员名 = 值 可以只写部分成员并打乱顺序，未写出的成员自动清零",
+        "struct T v = {0} 是整体清零的标准写法，不会触发 -Wmissing-field-initializers 警告",
+        "结构体成员可以是另一个结构体类型，访问时一层一个点，如 s.birth.year",
+        "整体赋值是逐成员的值复制，嵌套成员和数组成员都会被完整拷贝一份",
+        "初始化时字符串常量可以直接写给字符数组成员，如 {1001, \"LiLin\", 89.5f}"
+      ],
+      "pitfalls": [
+        "只初始化部分成员而不用指定初始化器，GCC 的 -Wextra 会报 missing initializer 警告",
+        "嵌套结构体的初值要用一对花括号括起来，写成 {1001, 2005, 3, 12} 会被按顺序错误地展开",
+        "指定初始化器是 C99 特性，用 -std=c89 编译会报错",
+        "整体赋值之后两个变量互不影响，误以为它们共享数据是常见错误"
+      ],
+      "examples": [
+        {
+          "title": "嵌套结构体与整体赋值",
+          "code": "#include <stdio.h>\n\nstruct Date\n{\n    int year;\n    int month;\n    int day;\n};\n\nstruct Student\n{\n    int          num;\n    char         name[12];\n    struct Date  birth;      /* 嵌套结构体 */\n    float        score[2];\n};\n\nint main(void)\n{\n    struct Student s = {1001, \"LiLin\", {2005, 3, 12}, {89.5f, 92.0f}};\n    struct Student t;\n\n    t = s;                       /* 整体赋值：嵌套成员、数组成员一并复制 */\n    t.birth.year = 2006;         /* 逐层用 . 访问，改 t 不影响 s */\n    t.score[1] += 1.5f;\n\n    printf(\"%d %s %d-%d-%d %.1f %.1f\\n\",\n           s.num, s.name, s.birth.year, s.birth.month, s.birth.day,\n           s.score[0], s.score[1]);\n    printf(\"%d %s %d-%d-%d %.1f %.1f\\n\",\n           t.num, t.name, t.birth.year, t.birth.month, t.birth.day,\n           t.score[0], t.score[1]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001 LiLin 2005-3-12 89.5 92.0\n1001 LiLin 2006-3-12 89.5 93.5",
+          "note": "t = s 之后两者内容完全相同；随后对 t.birth.year 和 t.score[1] 的修改只作用于 t。",
+          "runnable": true
+        },
+        {
+          "title": "指定初始化器与 {0} 清零",
+          "code": "#include <stdio.h>\n\nstruct Point\n{\n    int x;\n    int y;\n    int z;\n};\n\nstruct Item\n{\n    char         name[8];\n    int          cnt;\n    struct Point pos;\n};\n\nint main(void)\n{\n    struct Point p = {.x = 3, .y = 7, .z = 0};   /* C99 指定初始化 */\n    struct Item  a = {\"box\", 5, {1, 2, 3}};      /* 写全所有成员 */\n    struct Item  b = {0};                        /* 整体清零 */\n\n    printf(\"%d %d %d\\n\", p.x, p.y, p.z);\n    printf(\"[%s] %d %d %d %d\\n\", a.name, a.cnt, a.pos.x, a.pos.y, a.pos.z);\n    printf(\"[%s] %d %d %d %d\\n\", b.name, b.cnt, b.pos.x, b.pos.y, b.pos.z);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "3 7 0\n[box] 5 1 2 3\n[] 0 0 0 0",
+          "note": "{0} 把字符数组变成空串、把 int 与嵌套结构体全部置 0；用 [%s] 包起来才能看清空串。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-002",
+        "c-ch10-cr-003",
+        "c-ch10-cc-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-01",
+        "c-ch10-03",
+        "c-ch10-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 2
+    },
+    {
+      "id": "c-ch10-03",
+      "title": "sizeof 结构体与内存对齐",
+      "section": "10.1 结构体的定义与引用",
+      "summary": "sizeof(结构体) 不等于各成员大小之和：编译器按「对齐」规则在成员之间和结构体末尾插入填充字节，整个结构体的大小必须是最大对齐要求的整数倍。",
+      "content": "## 为什么会有填充\n\nCPU 访问按其自然边界对齐的数据最快，所以编译器给每个成员安排的偏移量必须是「该成员对齐值」的整数倍。常见规则（GCC / MSVC 默认）：\n\n1. 第一个成员偏移为 0。\n2. 后面每个成员的偏移必须是其对齐值（一般 = 自身大小）的整数倍，不够就插填充。\n3. 结构体总大小必须是**所有成员中最大对齐值**的整数倍，不够就在末尾补填充。\n\n## 手工推算\n\n```c\nstruct A { char c; int i; char d; };\n```\n\n| 成员 | 大小 | 对齐 | 偏移 | 说明 |\n|---|---|---|---|---|\n| c | 1 | 1 | 0 | |\n| — | 3 | | 1~3 | 填充，让 i 落在 4 |\n| i | 4 | 4 | 4 | |\n| d | 1 | 1 | 8 | |\n| — | 3 | | 9~11 | 末尾填充，使总长为 4 的倍数 |\n\n所以 `sizeof(struct A) == 12`，而不是 1+4+1 = 6。\n\n把成员顺序换成 `{int i; char c; char d;}`，两个 char 可以紧挨着放在 i 之后（偏移 4、5），末尾只需补 2 字节，`sizeof == 8`。**同样的成员，顺序不同，大小可以差很多**——把大成员放前面、小成员聚在一起通常最省空间。\n\n## offsetof：查成员偏移\n\n`<stddef.h>` 提供的 `offsetof(类型, 成员)` 返回成员的字节偏移，是验证推算结果最直接的工具。它是编译期常量，不会真的去访问内存。\n\n## 与数组配合\n\n```c\nstruct Node arr[5];\nsizeof(arr)                  /* = 5 * sizeof(struct Node) */\nsizeof(arr)/sizeof(arr[0])   /* = 5，求元素个数的标准写法 */\n```\n\n⚠️ 结构体作为函数参数传递时会退化为指针，函数内部 `sizeof(形参)` 得到的是指针大小而不是结构体大小，必须另外传元素个数（见 10.4）。\n\n## 语法速查\n\n| 目的 | 写法 |\n|---|---|\n| 类型大小 | `(int)sizeof(struct T)` |\n| 变量大小 | `(int)sizeof(v)` |\n| 成员偏移 | `(int)offsetof(struct T, m)` |\n| 数组元素个数 | `(int)(sizeof(a)/sizeof(a[0]))` |\n",
+      "keyPoints": [
+        "sizeof 结构体一般大于各成员大小之和，多出来的是编译器插入的填充字节",
+        "每个成员的偏移必须是其对齐值的整数倍，不够就在前面插填充",
+        "结构体总大小必须是所有成员中最大对齐值的整数倍，末尾也要补填充",
+        "成员声明顺序会影响 sizeof，把大成员放前、小成员聚在一起通常更省空间",
+        "offsetof 宏（stddef.h）返回成员的字节偏移，可用来验证对齐推算",
+        "结构体传给函数后 sizeof 形参得到的是指针大小，元素个数必须另外传"
+      ],
+      "pitfalls": [
+        "把 sizeof(结构体) 当成成员大小之和直接相加，是最常见的错误",
+        "用 sizeof(arr)/sizeof(int) 求结构体数组元素个数会得到错误的值",
+        "不同编译器的对齐策略可以用 #pragma pack 改变，跨平台二进制文件读写要特别小心",
+        "sizeof 的结果是无符号的 size_t，打印时应转成 int 配 %d，或用 %zu"
+      ],
+      "examples": [
+        {
+          "title": "对齐造成的填充：两种成员顺序对比",
+          "code": "#include <stdio.h>\n#include <stddef.h>\n\nstruct A                 /* char int char */\n{\n    char c;\n    int  i;\n    char d;\n};\n\nstruct B                 /* int char char */\n{\n    int  i;\n    char c;\n    char d;\n};\n\nint main(void)\n{\n    printf(\"sizeof(char)=%d sizeof(int)=%d\\n\",\n           (int)sizeof(char), (int)sizeof(int));\n    printf(\"A: size=%d c=%d i=%d d=%d\\n\", (int)sizeof(struct A),\n           (int)offsetof(struct A, c), (int)offsetof(struct A, i),\n           (int)offsetof(struct A, d));\n    printf(\"B: size=%d i=%d c=%d d=%d\\n\", (int)sizeof(struct B),\n           (int)offsetof(struct B, i), (int)offsetof(struct B, c),\n           (int)offsetof(struct B, d));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(char)=1 sizeof(int)=4\nA: size=12 c=0 i=4 d=8\nB: size=8 i=0 c=4 d=5",
+          "note": "A 中 c 之后要填 3 字节才能让 i 落在 4 的倍数上，末尾再补 3 字节凑成 12；B 把 int 放前面，两个 char 紧挨着，只需末尾补 2 字节。",
+          "runnable": true
+        },
+        {
+          "title": "结构体数组的 sizeof 与元素个数",
+          "code": "#include <stdio.h>\n\nstruct Node\n{\n    int  data;\n    char flag;\n};\n\nint main(void)\n{\n    struct Node arr[5];\n    int n = (int)(sizeof(arr) / sizeof(arr[0]));\n\n    printf(\"sizeof(struct Node)=%d\\n\", (int)sizeof(struct Node));\n    printf(\"sizeof(arr)=%d n=%d\\n\", (int)sizeof(arr), n);\n    printf(\"sizeof(arr)/sizeof(int)=%d  <- wrong\\n\",\n           (int)(sizeof(arr) / sizeof(int)));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(struct Node)=8\nsizeof(arr)=40 n=5\nsizeof(arr)/sizeof(int)=10  <- wrong",
+          "note": "Node 只有 4+1=5 字节的成员，但对齐后是 8 字节，所以数组是 40 而不是 25；除以 sizeof(int) 得到 10，正好说明这种算法是错的。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cc-001",
+        "c-ch10-cr-001",
+        "c-ch10-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-01",
+        "c-ch10-02",
+        "c-ch10-14"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 3
+    },
+    {
+      "id": "c-ch10-04",
+      "title": "结构体数组的定义与遍历",
+      "section": "10.2 结构体数组",
+      "summary": "结构体数组的每个元素都是一个完整的结构体变量；用「数组名[下标].成员」访问，用普通 for 循环遍历，是最常见的批量记录组织方式。",
+      "content": "## 什么是结构体数组\n\n```c\nstruct Student\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nstruct Student st[3];     /* 3 个结构体变量，连续存放 */\n```\n\n内存布局：`st[0]`、`st[1]`、`st[2]` 依次相邻，每个占 `sizeof(struct Student)` 字节。**整个数组是同类型的**，但**每个元素内部是异质的**——这正是它与二维数组的区别。\n\n## 初始化\n\n```c\nstruct Student st[3] = {\n    {1001, \"LiLin\",    89.5f},     /* 每个元素一对花括号 */\n    {1002, \"WangFang\", 92.0f},\n    {1003, \"ZhaoLei\",  78.5f}\n};\nstruct Student part[5] = {{1, \"a\", 0}, {2, \"b\", 0}};  /* 只给前 2 个，其余清零 */\n```\n\n元素个数可以省略让编译器数：`struct Student st[] = {...};`。\n\n## 访问与遍历\n\n| 目标 | 写法 |\n|---|---|\n| 第 i 个元素整体 | `st[i]`（是一个结构体变量） |\n| 第 i 个元素的成员 | `st[i].num` |\n| 第 i 个元素的首地址 | `&st[i]` |\n| 遍历 | `for (i = 0; i < n; i++) ... st[i].成员 ...` |\n\n`st[i]` 本身是结构体变量，所以它可以整体赋值给另一个同类型变量，也可以整体作为函数实参。\n\n## 典型操作套路\n\n1. **求和/平均**：`sum += st[i].score;` 循环结束后 `sum / n`。\n2. **求最值**：记住**下标**而不是值（`if (st[i].score > st[max].score) max = i;`），最后能同时拿到该记录的所有成员。\n3. **交换**：`tmp = st[i]; st[i] = st[j]; st[j] = tmp;` —— 结构体可以整体交换，不必逐成员搬。\n4. **元素个数**：`(int)(sizeof(st) / sizeof(st[0]))`。\n\n## 输出格式的坑\n\n`printf(\"%-10s\", name)` 会在名字后面补空格，行尾出现**尾随空格**，在自动判题里极易造成「答案不一致」。稳妥做法是用明确的分隔符（`|`、`,`、`:`）或先打分隔符再打内容。\n",
+      "keyPoints": [
+        "结构体数组的每个元素都是一个完整的结构体变量，元素之间连续存放",
+        "访问成员用「数组名[下标].成员」，例如 st[i].score",
+        "初始化时每个元素用一对花括号括起来，元素个数可以省略由编译器推算",
+        "只初始化前面若干个元素时，其余元素的所有成员自动清零",
+        "求最值时应记录下标而不是记录值，这样才能拿到该记录的全部成员",
+        "两个元素交换直接用结构体整体赋值，不必逐成员搬运"
+      ],
+      "pitfalls": [
+        "printf 用 %-10s 之类的左对齐会产生尾随空格，判题时容易失配",
+        "误以为 st[i] 是单个成员，其实它是整个结构体变量",
+        "sizeof(st)/sizeof(st[0]) 求的是元素个数，写成 sizeof(st)/sizeof(int) 就错了",
+        "结构体数组名 st 传进函数后退化为指针，函数里必须另外接收元素个数"
+      ],
+      "examples": [
+        {
+          "title": "结构体数组的定义、初始化与遍历",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[3] = {\n        {1001, \"LiLin\",    89.5f},\n        {1002, \"WangFang\", 92.0f},\n        {1003, \"ZhaoLei\",  78.5f}\n    };\n    int i;\n\n    for (i = 0; i < 3; i++) {\n        printf(\"%d|%s|%.1f\\n\", st[i].num, st[i].name, st[i].score);\n    }\n    printf(\"n=%d\\n\", (int)(sizeof(st) / sizeof(st[0])));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001|LiLin|89.5\n1002|WangFang|92.0\n1003|ZhaoLei|78.5\nn=3",
+          "note": "用 | 作分隔符而不是 %-10s，可以避免行尾出现多余空格。",
+          "runnable": true
+        },
+        {
+          "title": "求最高分、平均分并整体交换",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    char  name[10];\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[4] = {\n        {\"A\", 89.5f}, {\"B\", 98.5f}, {\"C\", 92.5f}, {\"D\", 76.0f}\n    };\n    struct Student tmp;\n    int i, max = 0;\n    float sum = 0.0f;\n\n    for (i = 0; i < 4; i++) {\n        if (st[i].score > st[max].score) max = i;   /* 记下标 */\n        sum += st[i].score;\n    }\n    printf(\"max: %s %.1f\\n\", st[max].name, st[max].score);\n    printf(\"avg: %.3f\\n\", sum / 4);\n\n    tmp = st[0]; st[0] = st[max]; st[max] = tmp;    /* 整体交换 */\n    for (i = 0; i < 4; i++) printf(\"%s\", st[i].name);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "max: B 98.5\navg: 89.125\nBACD",
+          "note": "max 记下的是下标 1，所以能同时打印名字和分数；交换用三条整体赋值就够了。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-004",
+        "c-ch10-cr-005",
+        "c-ch10-cc-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-05",
+        "c-ch10-07",
+        "c-ch10-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 4
+    },
+    {
+      "id": "c-ch10-05",
+      "title": "结构体数组的查找与排序",
+      "section": "10.2 结构体数组",
+      "summary": "在结构体数组上查找要按下标记住命中位置；排序时交换的是整个结构体（或用指针数组只交换地址），比较的依据是某个成员。",
+      "content": "## 顺序查找\n\n查找的结果应该是**下标**（找不到返回 -1），而不是成员值，这样调用方才能拿到整条记录：\n\n```c\nint find(struct Student a[], int n, int num)\n{\n    int i;\n    for (i = 0; i < n; i++)\n        if (a[i].num == num) return i;\n    return -1;\n}\n```\n\n字符串成员要用 `strcmp(a[i].name, key) == 0` 判断相等，不能用 `==`（那是比较地址）。\n\n若数组已按某个成员有序，可以用二分查找把复杂度降到 O(log n)，但**必须明确是按哪个成员有序**。\n\n## 排序：交换整个结构体\n\n```c\nfor (i = 0; i < n - 1; i++)\n    for (j = 0; j < n - 1 - i; j++)\n        if (a[j].score < a[j+1].score) {      /* 降序 */\n            struct Student t = a[j];\n            a[j] = a[j+1];\n            a[j+1] = t;                        /* 三条整体赋值 */\n        }\n```\n\n要点：\n\n- 比较条件决定升序/降序：`<` 交换得到降序，`>` 交换得到升序。\n- 交换是**整条记录一起搬**，所以记录内部各成员不会错位。\n- 临时变量必须是同类型结构体，不能只交换一个成员。\n\n## 记录很大时：只交换指针\n\n结构体很大（比如含 1KB 缓冲区）时，搬数据代价高。常见做法是建一个指针数组，排序时只交换指针：\n\n```c\nstruct Student *idx[100];\nfor (i = 0; i < n; i++) idx[i] = &st[i];\n/* 排序中交换 idx[j] 与 idx[j+1]，原数组一个字节都不动 */\n```\n\n这也是后面「链表的插入/删除只改指针」思想的雏形。\n\n## 多关键字排序\n\n先按主关键字比较，主关键字相等再按次关键字比较：\n\n```c\nif (a[j].score < a[j+1].score ||\n   (a[j].score == a[j+1].score && a[j].num > a[j+1].num))\n    交换;\n```\n",
+      "keyPoints": [
+        "查找函数应返回命中元素的下标，找不到返回 -1，这样调用方能取到整条记录",
+        "字符串成员判等必须用 strcmp，用 == 比较的是两个地址",
+        "冒泡排序中交换的是整个结构体变量，三条整体赋值即可，记录内部不会错位",
+        "比较条件用 < 还是 > 决定降序还是升序",
+        "记录很大时可改用指针数组，排序只交换指针，原数组不动",
+        "多关键字排序先比主关键字，相等时再比次关键字"
+      ],
+      "pitfalls": [
+        "用 == 比较字符数组成员永远不会成立，必须用 strcmp",
+        "只交换一个成员（如只换 score）会导致记录内部数据错位",
+        "排序函数忘记接收元素个数 n，在函数内用 sizeof(a) 得到的是指针大小",
+        "二分查找的前提是数组已按键有序，无序数组用二分必然出错"
+      ],
+      "examples": [
+        {
+          "title": "按学号顺序查找",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nstatic int find(struct Student a[], int n, int key)\n{\n    int i;\n    for (i = 0; i < n; i++)\n        if (a[i].num == key) return i;      /* 返回下标 */\n    return -1;\n}\n\nint main(void)\n{\n    struct Student st[4] = {\n        {1001, \"LiLin\", 89.5f},    {1002, \"WangFang\", 92.0f},\n        {1003, \"ZhaoLei\", 78.5f},  {1004, \"SunQi\", 85.0f}\n    };\n    int p1 = find(st, 4, 1003);\n    int p2 = find(st, 4, 9999);\n\n    if (p1 >= 0) printf(\"found at %d: %s %.1f\\n\", p1, st[p1].name, st[p1].score);\n    else         printf(\"not found\\n\");\n    printf(\"find(9999) = %d\\n\", p2);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "found at 2: ZhaoLei 78.5\nfind(9999) = -1",
+          "note": "返回下标而不是返回值，才能顺带取出 name 和 score；找不到统一用 -1 表示。",
+          "runnable": true
+        },
+        {
+          "title": "按成绩降序冒泡排序",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    char  name[10];\n    float score;\n};\n\nstatic void sort_desc(struct Student a[], int n)\n{\n    int i, j;\n    struct Student t;\n\n    for (i = 0; i < n - 1; i++) {\n        for (j = 0; j < n - 1 - i; j++) {\n            if (a[j].score < a[j + 1].score) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;  /* 整体交换 */\n            }\n        }\n    }\n}\n\nint main(void)\n{\n    struct Student st[5] = {\n        {\"A\", 89.5f}, {\"B\", 98.5f}, {\"C\", 92.5f}, {\"D\", 76.0f}, {\"E\", 85.0f}\n    };\n    int i;\n\n    sort_desc(st, 5);\n    for (i = 0; i < 5; i++) {\n        if (i > 0) printf(\" \");\n        printf(\"%s:%.1f\", st[i].name, st[i].score);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "B:98.5 C:92.5 A:89.5 E:85.0 D:76.0",
+          "note": "交换用三条整体赋值完成，名字和分数始终绑在一起；分隔符放在内容前面可以避免行尾空格。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cc-002",
+        "c-ch10-cc-004",
+        "c-ch10-cr-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-04",
+        "c-ch10-07",
+        "c-ch10-19"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 5
+    },
+    {
+      "id": "c-ch10-06",
+      "title": "结构体指针与 -> 运算符",
+      "section": "10.3 结构体指针与 -> 运算符",
+      "summary": "指向结构体的指针用箭头运算符 -> 访问成员，p->m 与 (*p).m 完全等价；通过指针修改成员会直接改动原变量。",
+      "content": "## 定义与赋值\n\n```c\nstruct Student s = {1001, \"LiLin\", 89.5f};\nstruct Student *p = &s;      /* 取结构体变量的地址 */\n```\n\n`p` 的类型是 `struct Student *`，它决定了：\n\n- `*p` 的类型是 `struct Student`（整个结构体）；\n- `p + 1` 前进 `sizeof(struct Student)` 字节，而不是 1 字节；\n- `p->num` 中的 `num` 必须是该结构体的成员。\n\n## -> 与 (*p). 的关系\n\n```c\np->num        /* 推荐写法 */\n(*p).num      /* 完全等价 */\n/* *p.num */  /* 错！. 的优先级高于 *，会被解析成 *(p.num) */\n```\n\n`->` 存在的意义就是省掉这对括号。\n\n## 通过指针修改原变量\n\n指针指向谁，改的就是谁：\n\n```c\np->score += 5.5f;            /* 等价于 s.score += 5.5f */\nstrcpy(p->name, \"WangFang\"); /* 字符数组成员仍需 strcpy */\n```\n\n这是「函数需要修改调用方的结构体」时的标准手段：传 `struct Student *` 而不是传值（见 10.4）。\n\n## 指向结构体数组元素\n\n数组名 `st` 就是首元素地址，所以：\n\n```c\nstruct Student *p = st;     /* 等价于 &st[0] */\np->num                      /* st[0].num */\n(p + 1)->num                /* st[1].num */\np++;                        /* 现在 p 指向 st[1] */\n```\n\n## 语法速查\n\n| 目的 | 写法 |\n|---|---|\n| 取地址 | `struct T *p = &v;` |\n| 读成员 | `p->m` 或 `(*p).m` |\n| 写成员 | `p->m = 值;` |\n| 指向数组首元素 | `struct T *p = a;` |\n| 第 i 个元素 | `(p + i)->m` 或 `p[i].m` |\n| 打印字符串成员 | `printf(\"%s\", p->name);` |\n",
+      "keyPoints": [
+        "指向结构体的指针用 & 取地址赋值，类型写作 struct T *",
+        "访问成员用箭头运算符 p->m，它与 (*p).m 完全等价",
+        "*p.num 是错的，因为点运算符的优先级高于单目 *，必须写成 (*p).m",
+        "通过指针修改成员会直接改动它所指向的原变量",
+        "指针加 1 前进 sizeof(struct T) 字节，所以可以用 p+1 依次访问数组元素",
+        "结构体数组名本身就是首元素地址，可以直接赋给 struct T * 型指针"
+      ],
+      "pitfalls": [
+        "写成 *p.num 会因为优先级问题被解释为 *(p.num) 而编译失败",
+        "忘记 p 可能为 NULL，解引用空指针会直接崩溃",
+        "字符数组成员通过指针赋值仍要用 strcpy，p->name = \"...\" 非法",
+        "结构体指针的步长是整个结构体的大小，按字节数理解会算错地址"
+      ],
+      "examples": [
+        {
+          "title": "-> 与 (*p). 等价，并通过指针修改原变量",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Student\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nint main(void)\n{\n    struct Student s = {1001, \"LiLin\", 89.5f};\n    struct Student *p = &s;\n\n    printf(\"%d %s %.1f\\n\", p->num, p->name, p->score);\n    printf(\"%d %s\\n\", (*p).num, (*p).name);   /* 与 -> 等价，括号不能省 */\n\n    p->num = 1002;\n    p->score += 5.5f;                          /* 改的就是 s */\n    strcpy(p->name, \"WangFang\");\n    printf(\"%d %s %.1f\\n\", s.num, s.name, s.score);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001 LiLin 89.5\n1001 LiLin\n1002 WangFang 95.0",
+          "note": "最后打印的是 s，说明通过 p 做的三处修改全部作用在原变量上。",
+          "runnable": true
+        },
+        {
+          "title": "指针指向结构体数组元素并递增",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    int   num;\n    char  name[10];\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[2] = {\n        {1001, \"LiLin\", 89.5f}, {1002, \"WangFang\", 92.0f}\n    };\n    struct Student *p = st;        /* 数组名就是首元素地址 */\n\n    printf(\"%d %s\\n\", p->num, p->name);\n    p++;                            /* 前进一个结构体，不是 1 字节 */\n    printf(\"%d %s\\n\", p->num, p->name);\n\n    p = &st[0];\n    p->score = 100.0f;\n    printf(\"%d %.1f / %d %.1f\\n\",\n           st[0].num, st[0].score, st[1].num, st[1].score);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001 LiLin\n1002 WangFang\n1001 100.0 / 1002 92.0",
+          "note": "p++ 一步跨过一个完整的结构体；重新指向 st[0] 后改 score，改的是数组里的元素。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-006",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-07",
+        "c-ch10-01",
+        "c-ch10-09"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 6
+    },
+    {
+      "id": "c-ch10-07",
+      "title": "用指针遍历结构体数组",
+      "section": "10.3 结构体指针与 -> 运算符",
+      "summary": "遍历结构体数组有三种等价写法：st[i].m、p++ 配合 p->m、p[i].m；数组传给函数后 sizeof 失效，必须同时传元素个数。",
+      "content": "## 三种遍历写法\n\n```c\nstruct Student st[4], *p;\nint i;\n\nfor (i = 0; i < 4; i++)          printf(\"%d\", st[i].num);   /* ① 下标 */\nfor (p = st; p < st + 4; p++)    printf(\"%d\", p->num);      /* ② 指针递增 */\nfor (p = st, i = 0; i < 4; i++)  printf(\"%d\", p[i].num);    /* ③ p[i] */\n```\n\n三者生成的代码几乎一样（现代编译器都会优化成同一种寻址），选哪种主要看可读性：\n\n- 需要同时用到下标 → 用①。\n- 需要「走到某个位置停下」或做链表式移动 → 用②。\n- 想把「起始位置」和「偏移」分开表达 → 用③，`p[i]` 与 `(p+i)->` 等价。\n\n## 边界：st + n 是「尾后」位置\n\n`p < st + n` 中的 `st + n` 指向最后一个元素**之后**，它本身不可以解引用，但作为比较终点是合法的。指针相减得到元素个数：`(st + n) - st == n`。\n\n## 传给函数：数组退化为指针\n\n```c\nvoid f(struct Student a[], int n);   /* 与 struct Student *a 完全等价 */\n```\n\n调用 `f(st, 4)` 时只传了首地址，函数内部：\n\n| 表达式 | 在 main 中 | 在 f 中 |\n|---|---|---|\n| `sizeof(st)` / `sizeof(a)` | 4×sizeof(元素) | sizeof(指针)（x64 上是 8） |\n| `a[i].m` | 可用 | 可用 |\n| 元素个数 | 可由 sizeof 推出 | **必须由参数 n 给出** |\n\n所以「结构体数组 + 个数」必须成对出现，这是 C 语言的硬性约定。\n\n## 修改会被调用方看到\n\n函数内 `a[i].score = 0;` 或 `(a+i)->score = 0;` 改的就是 main 里那个数组的元素——因为传的是地址，不是副本。这与「传结构体值」的拷贝语义正好相反（见 10.4）。\n",
+      "keyPoints": [
+        "遍历结构体数组的三种等价写法：st[i].成员、p++ 配合 p->成员、p[i].成员",
+        "p[i].成员 与 (p+i)->成员 等价，p 不必一定指向数组开头",
+        "st + n 是尾后位置，可以作为循环终点但不能解引用",
+        "两个指向同一数组的指针相减得到的是元素个数而不是字节数",
+        "数组作为函数参数会退化为指针，函数内 sizeof 得到的是指针大小",
+        "元素个数必须作为独立参数传入，这是 C 语言的硬性约定"
+      ],
+      "pitfalls": [
+        "在函数内用 sizeof(a)/sizeof(a[0]) 求元素个数，得到的是指针大小除以元素大小的错误结果",
+        "循环条件写成 p <= st + n 会越界访问尾后位置",
+        "p++ 移动的是整个结构体的大小，把它当字节数用会算错",
+        "忘记函数内通过指针修改数组会影响调用方的原数组，误以为改的是副本"
+      ],
+      "examples": [
+        {
+          "title": "三种遍历写法输出一致",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    int   num;\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[4] = {\n        {1001, 89.5f}, {1002, 92.0f}, {1003, 78.5f}, {1004, 85.0f}\n    };\n    struct Student *p;\n    int i;\n\n    for (i = 0; i < 4; i++) printf(\"%d,\", st[i].num);          /* ① 下标 */\n    printf(\"\\n\");\n    for (p = st; p < st + 4; p++) printf(\"%.1f,\", p->score);    /* ② 递增 */\n    printf(\"\\n\");\n    for (p = st, i = 0; i < 4; i++) printf(\"%d,\", p[i].num);    /* ③ p[i] */\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001,1002,1003,1004,\n89.5,92.0,78.5,85.0,\n1001,1002,1003,1004,",
+          "note": "三种写法访问的是同一批内存，输出完全一致；③ 中的 p 停在 st 上，靠 i 做偏移。",
+          "runnable": true
+        },
+        {
+          "title": "数组传函数后 sizeof 失效，必须传 n",
+          "code": "#include <stdio.h>\n\nstruct Student\n{\n    int   num;\n    float score;\n};\n\nstatic int best(struct Student *a, int n)   /* a[] 与 *a 等价 */\n{\n    int i, k = 0;\n    for (i = 1; i < n; i++)\n        if (a[i].score > a[k].score) k = i;\n    return k;\n}\n\nint main(void)\n{\n    struct Student st[4] = {\n        {1001, 89.5f}, {1002, 92.0f}, {1003, 78.5f}, {1004, 95.5f}\n    };\n    int k = best(st, 4);\n\n    printf(\"index=%d num=%d score=%.1f\\n\", k, st[k].num, st[k].score);\n    printf(\"sizeof(st) in main=%d\\n\", (int)sizeof(st));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "index=3 num=1004 score=95.5\nsizeof(st) in main=32",
+          "note": "main 里 sizeof(st) = 4×8 = 32，但在 best 内部 sizeof(a) 只有 8（指针大小），所以个数 4 只能由参数传进去。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-005",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-06",
+        "c-ch10-04",
+        "c-ch10-08"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 7
+    },
+    {
+      "id": "c-ch10-08",
+      "title": "结构体作函数参数（值传递）",
+      "section": "10.4 结构体与函数",
+      "summary": "结构体变量作实参时形参得到一份完整副本，函数内改的是副本、不影响实参；返回类型也可以是结构体，return 局部结构体变量是合法的值返回。",
+      "content": "## 值传递：整个对象被拷贝\n\n```c\nstruct Point { int x; int y; };\n\nvoid move_copy(struct Point p)   /* p 是 a 的副本 */\n{\n    p.x += 10;                   /* 只改副本 */\n}\n```\n\n调用 `move_copy(a)` 时，实参 `a` 的 **全部成员** 被逐个复制给形参 `p`，\n拷贝的字节数正好是 `sizeof(struct Point)`。函数返回后副本销毁，`a` 原封不动。\n\n## 结构体作为返回值\n\n函数的返回类型可以写成结构体类型，这是 C 语言里**唯一能\"一次返回多个值\"的合法手段**：\n\n```c\nstruct Point make_point(int x, int y)\n{\n    struct Point p;              /* 局部变量 */\n    p.x = x;  p.y = y;\n    return p;                    /* 返回的是 p 的“值”，不是 p 的地址 —— 合法 */\n}\n```\n\n`return p;` 会把 p 的内容复制到调用者的接收对象里，因此**不存在返回局部变量地址的问题**。\n（对比：`return &p;` 是未定义行为。）\n\n## 值传递 vs 指针传递的选择\n\n| 场景 | 写法 | 拷贝开销 | 能否改实参 |\n|---|---|---|---|\n| 小结构体、只读 | `void f(struct T v)` | sizeof(T) | 否 |\n| 需要修改实参 | `void f(struct T *p)` | 一个地址 | 是（`p->m`） |\n| 大结构体、只读 | `void f(const struct T *p)` | 一个地址 | 否（编译器禁止） |\n| 返回多个值 | `struct T f(void)` | sizeof(T) | —— |\n\n教材与考试里最常见的组合是：**入参用指针（可改），返回值用结构体（安全）**。",
+      "keyPoints": [
+        "结构体变量作实参属于值传递，形参是一份完整副本，成员逐个复制（数组成员也整体复制）",
+        "函数内对形参成员的任何修改都不会影响调用者的实参，这与数组名作参数（传地址）完全不同",
+        "拷贝的字节数等于 sizeof(结构体类型)，结构体越大、调用越频繁，值传递的开销越明显",
+        "函数返回类型可以写成结构体类型，return 局部结构体变量返回的是“值”，合法且安全",
+        "需要函数修改调用者的数据时，必须传 struct T * 并用 p->成员 访问",
+        "只读的大结构体参数推荐写成 const struct T *p，既省拷贝又防止误改"
+      ],
+      "pitfalls": [
+        "误以为函数内改了形参成员实参也会变——值传递下绝不会，考试常在此设陷阱",
+        "写成 return &局部结构体变量; 返回的是函数结束后已失效的地址，属未定义行为",
+        "结构体作参数却漏传个数/长度信息，尤其是成员里还有指针时只拷了地址没拷内容",
+        "把大结构体（含大数组成员）在循环里反复按值传递，功能正确但性能明显下降"
+      ],
+      "examples": [
+        {
+          "title": "函数内修改的是副本",
+          "code": "#include <stdio.h>\n\nstruct Point {\n    int x;\n    int y;\n};\n\nvoid move_copy(struct Point p)     /* 值传递：p 是副本 */\n{\n    p.x += 10;\n    p.y += 20;\n    printf(\"in func: %d,%d\\n\", p.x, p.y);\n}\n\nint main(void)\n{\n    struct Point a = {1, 2};\n    move_copy(a);\n    printf(\"after  : %d,%d\\n\", a.x, a.y);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "in func: 11,22\nafter  : 1,2",
+          "note": "函数里打印的是 11,22，回到 main 后 a 仍是 1,2 —— 副本被改，实参没变。",
+          "runnable": true
+        },
+        {
+          "title": "返回结构体值",
+          "code": "#include <stdio.h>\n\nstruct Point {\n    int x;\n    int y;\n};\n\nstruct Point make_point(int x, int y)\n{\n    struct Point p;\n    p.x = x;\n    p.y = y;\n    return p;                      /* 返回值，不是返回地址 */\n}\n\nstruct Point add(struct Point a, struct Point b)\n{\n    struct Point r;\n    r.x = a.x + b.x;\n    r.y = a.y + b.y;\n    return r;\n}\n\nint main(void)\n{\n    struct Point p = make_point(3, 4);\n    struct Point q = add(p, make_point(10, 20));\n    printf(\"p = %d,%d\\n\", p.x, p.y);\n    printf(\"q = %d,%d\\n\", q.x, q.y);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "p = 3,4\nq = 13,24",
+          "note": "make_point 的局部变量 p 已经销毁，但它的“值”早被复制给调用者，所以合法。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cc-003",
+        "c-ch10-cr-007",
+        "c-ch10-pg-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-06",
+        "c-ch10-09",
+        "c-ch10-10"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 8
+    },
+    {
+      "id": "c-ch10-09",
+      "title": "指针传递与结构体整体赋值",
+      "section": "10.4 结构体与函数",
+      "summary": "传 struct T * 才能在函数内真正改动调用者的数据；结构体整体赋值 a = b 是逐成员复制，数组成员被复制而指针成员只复制地址，两者共享同一块内存。",
+      "content": "## 想改实参就必须传地址\n\n```c\nvoid by_value(struct Counter c) { c.value++; }   /* 改不到外面 */\nvoid by_addr (struct Counter *p){ p->value++; }  /* 改得到 */\n\nby_value(m);      /* m 不变 */\nby_addr(&m);      /* m 变了 */\n```\n\n三种传参方式的区别只有一句话：**值传拷贝内容，指针传拷贝地址**。\n\n## 结构体整体赋值\n\n同类型的两个结构体变量可以直接用 `=` 赋值：\n\n```c\nstruct Buf a, b;\nb = a;        /* 合法：等价于把 a 的每个成员依次复制给 b */\n```\n\n要求：两侧类型**完全相同**（同一个 struct 标签，或同一个 typedef 名）。\n注意 C 语言**不允许**用 `=` 给数组赋值，但结构体里的数组成员会随整体赋值一起被复制：\n\n| 成员类型 | `b = a` 的效果 |\n|---|---|\n| int / char / double | 复制数值 |\n| char data[8] | 复制 8 个字节，b.data 与 a.data 互不影响 |\n| char *p | **只复制地址**，a.p 与 b.p 指向同一块内存 |\n| struct S inner | 递归地按上述规则复制 |\n\n## 浅拷贝陷阱\n\n含指针成员的结构体做整体赋值，得到的是**浅拷贝**：\n\n```c\ns2 = s1;        /* s1.p 与 s2.p 现在指向同一个对象 */\ns2.p[0] = 'Y';  /* s1.p[0] 也变成了 'Y' */\n```\n\n需要真正独立的副本时，必须**深拷贝**：先整体赋值，再为指针成员单独 malloc 并复制内容。",
+      "keyPoints": [
+        "传 struct T * 并用 p->成员 赋值，函数内的修改才会作用到调用者的实参上",
+        "同类型结构体之间可以直接整体赋值 b = a，语义是“逐成员复制”",
+        "整体赋值会复制数组成员的全部内容，因此结构体里的字符数组不需要 strcpy",
+        "整体赋值对指针成员只复制地址，赋值后两个结构体共享同一块内存（浅拷贝）",
+        "需要独立副本时应做深拷贝：为指针成员另行分配内存并把内容复制过去",
+        "交换两个结构体只需一个同类型临时变量：t = *a; *a = *b; *b = t;"
+      ],
+      "pitfalls": [
+        "以为 b = a 之后改 b.p 指向的内容不会影响 a.p——浅拷贝下两者是同一块内存",
+        "试图用 a.data = b.data 给字符数组成员赋值，数组名不是左值，必须用 strcpy 或整体赋值",
+        "两个不同 struct 标签即使成员完全一样也不能相互赋值，类型必须一模一样",
+        "深拷贝时忘记复制指针成员指向的内容，或 free 之后没有把指针置 NULL"
+      ],
+      "examples": [
+        {
+          "title": "值传递与指针传递对比",
+          "code": "#include <stdio.h>\n\nstruct Counter {\n    int value;\n};\n\nvoid by_value(struct Counter c)   { c.value++; }\nvoid by_addr(struct Counter *p)   { p->value++; }\n\nvoid swap_counter(struct Counter *a, struct Counter *b)\n{\n    struct Counter t = *a;        /* 结构体整体赋值 */\n    *a = *b;\n    *b = t;\n}\n\nint main(void)\n{\n    struct Counter m = {1}, n = {9};\n    by_value(m);\n    printf(\"after by_value: %d\\n\", m.value);\n    by_addr(&m);\n    printf(\"after by_addr : %d\\n\", m.value);\n    swap_counter(&m, &n);\n    printf(\"after swap    : m=%d n=%d\\n\", m.value, n.value);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "after by_value: 1\nafter by_addr : 2\nafter swap    : m=9 n=2",
+          "note": "m 从 1 出发：值传递没改动它，指针传递加到 2，交换后变成 n 原来的 9。",
+          "runnable": true
+        },
+        {
+          "title": "数组成员被复制，指针成员被共享",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Buf {\n    char data[8];\n    int  len;\n};\n\nstruct Shared {\n    char *p;\n    int   len;\n};\n\nint main(void)\n{\n    char pool[8] = \"abc\";\n    struct Buf a, b;\n    struct Shared s1, s2;\n\n    strcpy(a.data, \"abc\");\n    a.len = 3;\n    b = a;                       /* 数组成员逐字节复制 */\n    b.data[0] = 'X';\n    printf(\"a.data=%s b.data=%s\\n\", a.data, b.data);\n\n    s1.p = pool;\n    s1.len = 3;\n    s2 = s1;                     /* 只复制了地址 */\n    s2.p[0] = 'Y';\n    printf(\"s1.p=%s s2.p=%s same=%d\\n\", s1.p, s2.p, s1.p == s2.p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "a.data=abc b.data=Xbc\ns1.p=Ybc s2.p=Ybc same=1",
+          "note": "同样是整体赋值：数组成员各自独立（a 不受影响），指针成员共享（改 s2 等于改 s1）。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-006",
+        "c-ch10-cr-007",
+        "c-ch10-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-06",
+        "c-ch10-08",
+        "c-ch10-10"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 9
+    },
+    {
+      "id": "c-ch10-10",
+      "title": "函数返回结构体还是返回结构体指针",
+      "section": "10.4 结构体与函数",
+      "summary": "返回结构体的值、返回调用者数组的元素地址、返回 static 对象地址、返回 malloc 的地址都安全；唯独返回局部结构体变量的地址是未定义行为。",
+      "content": "## 五种返回值一览\n\n| 返回什么 | 写法 | 安全吗 | 备注 |\n|---|---|---|---|\n| 结构体的值 | `struct T f(void)` + `return local;` | ✅ | 内容被复制出去，最省心 |\n| 调用者数组的元素地址 | `return &arr[k];` | ✅ | 数组在调用者栈上，函数返回后依然存在 |\n| static 对象地址 | `static struct T s; return &s;` | ✅ | 但下次调用会**覆盖**上一次的结果 |\n| malloc 的对象地址 | `return p;`（p 来自 malloc） | ✅ | 调用者必须负责 free |\n| 局部变量地址 | `return &local;` | ❌ UB | 函数返回后栈帧失效，读它是未定义行为 |\n\n## 为什么返回局部变量的地址不行\n\n```c\nstruct Student *bad(void)\n{\n    struct Student t;      /* t 在栈上，函数返回即销毁 */\n    return &t;             /* 返回了一个悬空指针 */\n}\n```\n\ngcc 会直接给出 `warning: function returns address of local variable`。\n拿到这个指针再解引用，可能读到别的函数覆盖后的垃圾数据。\n\n## static 返回值的隐藏坑\n\n```c\nstruct Student *p = remember(1001, \"Li Lin\");\nstruct Student *q = remember(1002, \"Zhang\");\n/* 此时 p 与 q 指向同一个静态对象，内容都是 1002 Zhang */\n```\n\n静态对象只有**一份**，第二次调用把第一次的结果冲掉了。\n需要同时保留多份时，要么返回值、要么 malloc。\n\n## 选择建议\n\n- 结果只有一份、结构体不大 → **返回结构体的值**\n- 要在原数组里定位某个元素 → **返回该元素地址**\n- 结点数量运行期才确定（链表）→ **malloc 后返回指针**，调用者负责释放",
+      "keyPoints": [
+        "return 局部结构体变量（值）是安全的，返回的是一份拷贝，原对象销毁不影响结果",
+        "return &arr[k] 安全的前提是 arr 由调用者提供或本身是 static/全局对象",
+        "return &局部结构体变量; 是未定义行为，gcc 在 -Wall 下会直接报警",
+        "返回 static 对象地址合法，但所有调用共享同一份存储，后一次调用会覆盖前一次",
+        "返回 malloc 得到的指针合法，且必须由调用者在不用之后 free，否则内存泄漏",
+        "判断安全性的唯一标准：返回的指针所指对象，在函数返回之后是否还有有效的存储期"
+      ],
+      "pitfalls": [
+        "把 return &local; 当成 return local; 的等价写法，这是最常见的悬空指针来源",
+        "连续调用两次返回 static 指针的函数，误以为两个指针指向两份独立数据",
+        "返回 malloc 的指针却没人 free，长时间运行的程序内存持续增长",
+        "返回全局结构体地址使函数带上了隐式状态，多线程或递归场景下会出错"
+      ],
+      "examples": [
+        {
+          "title": "返回调用者数组的元素地址",
+          "code": "#include <stdio.h>\n\nstruct Score {\n    int id;\n    int val;\n};\n\nstruct Score *pick_best(struct Score arr[], int n)\n{\n    int i, k = 0;\n    for (i = 1; i < n; i++)\n        if (arr[i].val > arr[k].val)\n            k = i;\n    return &arr[k];            /* 数组属于调用者，返回其元素地址安全 */\n}\n\nint main(void)\n{\n    struct Score a[3] = {{1, 78}, {2, 95}, {3, 88}};\n    struct Score *p = pick_best(a, 3);\n\n    printf(\"best: id=%d val=%d\\n\", p->id, p->val);\n    p->val = 0;                /* 通过指针确实改到了 a[1] */\n    printf(\"a[1].val now = %d\\n\", a[1].val);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "best: id=2 val=95\na[1].val now = 0",
+          "note": "返回的是 a[1] 的地址，所以通过 p 修改会反映到 a[1] 上——这正是“查找并就地修改”的常用写法。",
+          "runnable": true
+        },
+        {
+          "title": "返回 static 对象地址会被覆盖",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Student {\n    int  num;\n    char name[16];\n};\n\nstatic struct Student cache;          /* 静态存储期：函数返回后依然有效 */\n\nstruct Student *remember(int num, const char *name)\n{\n    cache.num = num;\n    strcpy(cache.name, name);\n    return &cache;                    /* 合法，但只有一份存储 */\n}\n\n/* 反面教材，不要这样写：\n   struct Student *bad(void) { struct Student t; return &t; }   */\n\nint main(void)\n{\n    struct Student *p = remember(1001, \"Li Lin\");\n    struct Student *q = remember(1002, \"Zhang\");\n\n    printf(\"%d %s\\n\", p->num, p->name);\n    printf(\"%d %s\\n\", q->num, q->name);\n    printf(\"same object = %d\\n\", p == q);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1002 Zhang\n1002 Zhang\nsame object = 1",
+          "note": "p 指向的内容被第二次调用改写了，所以两行输出相同；p == q 为真，说明是同一个对象。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cc-003",
+        "c-ch10-pg-001",
+        "c-ch10-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-08",
+        "c-ch10-09",
+        "c-ch10-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 10
+    },
+    {
+      "id": "c-ch10-11",
+      "title": "typedef 为结构体起别名",
+      "section": "10.5 typedef",
+      "summary": "typedef 给已有类型起新名字，最常用的就是为 struct 起别名，让 struct Student 简写成 Student；自引用结构体（链表结点）必须保留 struct 标签。",
+      "content": "## 三种等价写法\n\n```c\n/* ① 先定义标签，再起别名 —— 教材最常见 */\nstruct Date { int y, m, d; };\ntypedef struct Date DATE;\n\n/* ② 匿名结构体 + 别名，一步到位 */\ntypedef struct { int y, m, d; } DATE;\n\n/* ③ 有标签又有别名，两者都可用 */\ntypedef struct Date { int y, m, d; } DATE;\n```\n\n有了别名之后：\n\n```c\nDATE a;             /* 等价于 struct Date a; */\nDATE *p = &a;       /* 等价于 struct Date *p; */\nDATE arr[10];       /* 等价于 struct Date arr[10]; */\n```\n\n## 自引用必须用标签\n\n链表结点里要放一个指向**同类型**结点的指针，此时类型还没定义完，\n只能用 struct 标签，不能用 typedef 出来的别名：\n\n```c\ntypedef struct Node {\n    int data;\n    struct Node *next;      /* ✅ 正确 */\n    /* Node *next; */       /* ❌ 错误：此刻 Node 这个名字还不存在 */\n} NODE;\n```\n\n原因：typedef 的新名字要等到整个声明的**分号处**才生效，而 `struct Node` 标签在\n`{` 之后就已经可用了。\n\n## typedef 还能定义数组与指针类型\n\n```c\ntypedef Student StuArr[4];    /* StuArr 是“4 个 Student 的数组”类型 */\ntypedef Student *StuPtr;      /* StuPtr 是“指向 Student 的指针”类型 */\n\nStuArr a;      /* 等价于 Student a[4]; */\nStuPtr p = a;  /* 等价于 Student *p = a; */\n```",
+      "keyPoints": [
+        "typedef 不创建新类型，只是给已有类型起一个别名，两者可以完全互换使用",
+        "为结构体起别名后，声明变量不再需要写 struct 关键字：Student s; 而不是 struct Student s;",
+        "写法②（匿名 struct + typedef）无法在结构体内部自引用，链表结点必须保留标签",
+        "typedef 的新名字在整条声明的分号处才生效，struct 标签在左花括号之后即可使用",
+        "typedef 可以定义数组类型和指针类型，这是 #define 做不到的",
+        "同一个结构体可以同时拥有 struct 标签和 typedef 别名，两种写法都合法"
+      ],
+      "pitfalls": [
+        "在自引用成员里写 Node *next;（用别名而不是 struct Node *next;）会报“未知类型名”",
+        "以为 typedef 定义了新类型，其实 struct Date 与 DATE 是同一个类型的两个名字",
+        "用匿名 typedef 定义的结构体，之后无法再写 struct 标签形式的前向声明",
+        "别名命名与变量名冲突（如把别名取名为 node，又定义变量 node）导致编译错误"
+      ],
+      "examples": [
+        {
+          "title": "三种别名写法与自引用",
+          "code": "#include <stdio.h>\n\nstruct Date { int y; int m; int d; };\ntypedef struct Date DATE1;                /* ① 先标签后别名 */\n\ntypedef struct { int y; int m; int d; } DATE2;   /* ② 匿名 + 别名 */\n\ntypedef struct Node {                     /* ③ 自引用必须用 struct Node */\n    int data;\n    struct Node *next;\n} NODE;\n\nint main(void)\n{\n    DATE1 a = {2026, 9, 10};\n    DATE2 b = {2026, 9, 10};\n    NODE  c = {7, NULL};\n\n    printf(\"%d-%d-%d\\n\", a.y, a.m, a.d);\n    printf(\"%d-%d-%d\\n\", b.y, b.m, b.d);\n    printf(\"node=%d next_is_null=%d\\n\", c.data, c.next == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "2026-9-10\n2026-9-10\nnode=7 next_is_null=1",
+          "note": "DATE1 与 struct Date 是同一类型；NODE 内部的 next 只能写成 struct Node *，写 NODE * 会编译不过。",
+          "runnable": true
+        },
+        {
+          "title": "typedef 定义数组类型与指针类型",
+          "code": "#include <stdio.h>\n#include <string.h>\n\ntypedef struct {\n    int  num;\n    char name[12];\n} Student;\n\ntypedef Student  StuArr[4];       /* 数组类型别名 */\ntypedef Student *StuPtr;          /* 指针类型别名 */\n\nvoid print_all(StuPtr p, int n)\n{\n    int i;\n    for (i = 0; i < n; i++)\n        printf(\"%d:%s\\n\", p[i].num, p[i].name);\n}\n\nint main(void)\n{\n    StuArr a = {{1, \"Ann\"}, {2, \"Bob\"}, {3, \"Cid\"}, {4, \"Dan\"}};\n    StuPtr p = a;\n\n    print_all(p, 4);\n    strcpy(a[1].name, \"Bee\");\n    printf(\"%d:%s\\n\", p[1].num, p[1].name);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1:Ann\n2:Bob\n3:Cid\n4:Dan\n2:Bee",
+          "note": "StuArr a 就是 Student a[4]，StuPtr p = a 就是 Student *p = a；改 a[1] 后 p[1] 同步变化。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-012",
+        "c-ch10-pg-001",
+        "c-ch10-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-01",
+        "c-ch10-12",
+        "c-ch10-18"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 11
+    },
+    {
+      "id": "c-ch10-12",
+      "title": "typedef 与 #define 的区别",
+      "section": "10.5 typedef",
+      "summary": "typedef 由编译器处理、生成真正的类型别名并受作用域与类型检查约束；#define 由预处理器做纯文本替换，声明多个变量时只有第一个带上 *。",
+      "content": "## 经典陷阱：一次声明两个变量\n\n```c\ntypedef char *PCHAR;\n#define   DCHAR char *\n\nPCHAR a, b;     /* 编译器展开：char *a, *b;   → a、b 都是指针 */\nDCHAR c, d;     /* 预处理替换：char *c, d;    → c 是指针，d 是 char */\n```\n\ntypedef 的名字是**一个完整的类型**，套用到声明里的每个变量；\n#define 只是把标识符换成一段文本，`*` 只跟到第一个变量名前面。\n\n## 逐项对比\n\n| 对比点 | typedef | #define |\n|---|---|---|\n| 处理阶段 | 编译期，由编译器理解语义 | 预处理期，纯文本替换 |\n| 是否类型检查 | 有，别名必须是合法类型 | 无，替换什么就是什么 |\n| 作用域 | 遵守块作用域，可在函数内定义 | 从定义处到文件末尾（或 #undef），无视 {} |\n| 声明多个变量 | 每个都获得完整类型 | 只有第一个符合预期 |\n| 定义数组类型 | `typedef int A[5];` ✅ | 做不到 |\n| 定义指针类型 | `typedef int *P;` ✅ | 文本替换，易出错 |\n| 能否 #undef | 不能（无撤销机制） | 可以 |\n\n## 记忆口诀\n\n**typedef 是\"起名字\"，#define 是\"换文本\"。**\n凡是要造类型（结构体别名、数组类型、函数指针类型），一律用 typedef。",
+      "keyPoints": [
+        "typedef 在编译期由编译器处理，创建的是一个真正的类型别名",
+        "#define 在预处理期做纯文本替换，预处理器完全不理解 C 的类型语法",
+        "typedef char *P; 之后 P a, b; 中 a、b 都是指针；#define 版本里只有 a 是指针",
+        "typedef 遵守作用域规则，可以写在函数内部；宏从定义处一直有效到文件结束",
+        "typedef 能定义数组类型、函数指针类型，#define 无法安全地做到这些",
+        "类型别名一律用 typedef，常量与短小的文本替换才用 #define"
+      ],
+      "pitfalls": [
+        "#define PCHAR char * 之后写 PCHAR a, b; 误以为 b 也是指针，实际 b 是 char 变量",
+        "以为宏受花括号作用域限制，在函数内 #define 后它仍会影响后面的所有代码",
+        "用宏定义数组类型（#define ARR int[5]）在声明处展开会得到语法错误",
+        "typedef 的名字被 #undef 撤销——typedef 根本没有 #undef 这种机制"
+      ],
+      "examples": [
+        {
+          "title": "一次声明两个变量的差别",
+          "code": "#include <stdio.h>\n\ntypedef char *PCHAR;          /* PCHAR 是完整的指针类型 */\n#define   DCHAR char *        /* 纯文本替换 */\n\nint main(void)\n{\n    char s1[] = \"hi\", s2[] = \"yo\", s3[] = \"ok\";\n    PCHAR a, b;               /* 展开为 char *a, *b;  两个都是指针 */\n    DCHAR c, d;               /* 展开为 char *c, d;    d 是 char 变量 */\n\n    a = s1;\n    b = s2;\n    c = s3;\n    d = 'x';\n\n    printf(\"%s %s %s %c\\n\", a, b, c, d);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "hi yo ok x",
+          "note": "d 只能赋一个字符；若写成 d = s1; 会报“把指针赋给整型”的错误，这正是 #define 的陷阱。",
+          "runnable": true
+        },
+        {
+          "title": "typedef 定义数组类型",
+          "code": "#include <stdio.h>\n\ntypedef unsigned int UINT;        /* 类型别名：有类型检查 */\n#define  BYTE  unsigned char      /* 宏：无类型检查 */\ntypedef int Arr[5];               /* 数组类型别名，#define 做不到 */\n\nvoid f(UINT x)\n{\n    printf(\"f: %u\\n\", x);\n}\n\nint main(void)\n{\n    Arr  v = {1, 2, 3, 4, 5};     /* 等价于 int v[5] = {...} */\n    BYTE b = 200;\n    UINT u = 3;\n    int  i;\n\n    f(u);\n    printf(\"b = %u\\n\", (unsigned)b);\n    for (i = 0; i < 5; i++)\n        printf(\"%d|\", v[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "f: 3\nb = 200\n1|2|3|4|5|",
+          "note": "Arr v 就是 int v[5]；BYTE b 展开成 unsigned char b，赋值 200 不会溢出。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-012",
+        "c-ch10-cr-011",
+        "c-ch10-cr-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-11",
+        "c-ch10-13",
+        "c-ch08-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 12
+    },
+    {
+      "id": "c-ch10-13",
+      "title": "共用体 union：所有成员共享同一段内存",
+      "section": "10.6 共用体 union",
+      "summary": "共用体的全部成员从同一地址开始存放，任一时刻只有一个成员的值有效；给某个成员赋值会覆盖其它成员的内容，sizeof(union) 等于最大成员所需的字节数。",
+      "content": "## 定义与内存模型\n\n```c\nunion Data {\n    int    i;      /* 4 字节 */\n    char   c;      /* 1 字节 */\n    double d;      /* 8 字节 */\n};\nunion Data u;      /* 只分配 8 字节，i、c、d 都从这 8 字节的起点开始 */\n```\n\n| 对比项 | struct | union |\n|---|---|---|\n| 成员存放 | 各占一段，依次排列 | **全部重叠**在同一段 |\n| sizeof | 各成员之和 + 填充 | 最大成员的大小（再按对齐取整） |\n| 同时有效的成员 | 全部 | **只有一个** |\n| 初始化 | 可逐个成员初始化 | C99 只能初始化第一个成员（或用指定初始化器） |\n\n## 覆盖行为\n\n```c\nu.i = 65;      /* 内存：41 00 00 00（小端） */\nu.c = 'B';     /* 只改最低字节：42 00 00 00 */\nprintf(\"%d\", u.i);   /* 66 —— i 的低字节被 c 覆盖了 */\n```\n\n小端机（x86）上，`char` 成员对应 `int` 成员的**最低字节**。\n这也是判断字节序的经典手法：给 int 成员赋 1，再读 char 成员。\n\n## 什么时候用 union\n\n1. **节省内存**：一批记录里某个字段\"多种类型只可能是其一\"，如标签联合（tagged union）。\n2. **按字节拆解数据**：把一个 int/long 拆成若干字节或两个半字，用于网络传输、加密、硬件寄存器。\n3. **同一块内存的多种解释**：浮点数的位模式分析等。\n\n用 union 存\"多类型之一\"时，**必须另配一个标记字段**记录当前有效的是哪个成员，\n否则程序无法知道该按哪种类型去读。",
+      "keyPoints": [
+        "共用体的所有成员共享同一段内存，起始地址完全相同，&u == &u.i == &u.c",
+        "任一时刻只有一个成员的值是有效的，给一个成员赋值会破坏其它成员的内容",
+        "sizeof(union) 等于最大成员所需的字节数，再按最大对齐要求向上取整",
+        "union 变量不能在定义时用花括号逐个成员初始化（C99 只允许初始化第一个成员）",
+        "union 常用于节省内存、按字节拆解数据、同一块内存的多种类型解释",
+        "用 union 表示“多类型之一”时必须另加一个标记字段，记录当前有效成员是哪个"
+      ],
+      "pitfalls": [
+        "以为给 u.c 赋值后 u.i 保持不变——低字节已被覆盖，i 的值随之改变",
+        "定义 union 时写成 union Data u = {1, 2.5, \"x\"}; 试图初始化多个成员",
+        "读取一个从未被赋值过的成员，得到的是未初始化的内存内容",
+        "把 union 当成“能同时存多个值的结构体”来用，这是概念性错误"
+      ],
+      "examples": [
+        {
+          "title": "成员互相覆盖",
+          "code": "#include <stdio.h>\n\nunion Data {\n    int  i;\n    char c;\n};\n\nint main(void)\n{\n    union Data u;\n\n    u.i = 65;\n    printf(\"u.i = %d\\n\", u.i);\n    u.c = 'B';                       /* 覆盖了 i 所占的最低字节 */\n    printf(\"u.c = %c\\n\", u.c);\n    printf(\"u.i = %d\\n\", u.i);       /* 小端机上 i 变成 66 */\n    return 0;\n}",
+          "stdin": "",
+          "expected": "u.i = 65\nu.c = B\nu.i = 66",
+          "note": "65 的内存是 41 00 00 00，把最低字节改成 42（字符 B）后，整个 int 就成了 66。",
+          "runnable": true
+        },
+        {
+          "title": "所有成员地址相同",
+          "code": "#include <stdio.h>\n\nunion Data {\n    int    i;\n    char   c;\n    double d;\n};\n\nint main(void)\n{\n    union Data u;\n\n    u.d = 3.5;\n\n    printf(\"sizeof(union)  = %d\\n\", (int)sizeof(union Data));\n    printf(\"sizeof(int)    = %d\\n\", (int)sizeof(int));\n    printf(\"sizeof(char)   = %d\\n\", (int)sizeof(char));\n    printf(\"sizeof(double) = %d\\n\", (int)sizeof(double));\n    printf(\"same addr = %d\\n\",\n           (void *)&u == (void *)&u.i && (void *)&u == (void *)&u.c);\n    printf(\"u.d = %.1f\\n\", u.d);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(union)  = 8\nsizeof(int)    = 4\nsizeof(char)   = 1\nsizeof(double) = 8\nsame addr = 1\nu.d = 3.5",
+          "note": "union 的大小取最大成员 double 的 8 字节，而不是 4+1+8=13；三个成员地址完全一致。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-008",
+        "c-ch10-cr-009",
+        "c-ch10-cr-010"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-14",
+        "c-ch10-15",
+        "c-ch10-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 13
+    },
+    {
+      "id": "c-ch10-14",
+      "title": "sizeof(union) 的计算与标签联合",
+      "section": "10.6 共用体 union",
+      "summary": "共用体的大小等于最大成员的大小，并按成员中最大的对齐要求向上取整；把 union 嵌进 struct 再加一个类型标记，就得到了节省内存的标签联合。",
+      "content": "## 计算规则（两步）\n\n1. **取最大成员大小** `M = max(sizeof(每个成员))`\n2. **按最大对齐向上取整**：设成员中最大的对齐要求为 `A`，则 `sizeof = ⌈M / A⌉ × A`\n\n```c\nunion U1 { char c; int i; double d; };   /* M=8, A=8 → 8  */\nunion U2 { char s[5]; int i; };          /* M=5, A=4 → 8  */\nunion U3 { char a; char b; };            /* M=1, A=1 → 1  */\nunion U4 { char s[3]; short h; };        /* M=3, A=2 → 4  */\n```\n\nU2 是最容易算错的一个：最大成员是 5 字节的数组，但 `int` 要求 4 字节对齐，\n所以整体要补齐到 8。\n\n## 与 struct 的对照\n\n| 类型 | 成员 | sizeof |\n|---|---|---|\n| `struct { char c; int i; }` | 1 + 3(填充) + 4 | 8 |\n| `union  { char c; int i; }` | max(1, 4) | 4 |\n\n同样的成员，union 往往只有 struct 的一半甚至更少——这正是它存在的意义。\n\n## 标签联合（tagged union）\n\n```c\nstruct Value {\n    int type;                    /* 1=int 2=double 3=string */\n    union {\n        int    i;\n        double d;\n        char   s[16];\n    } v;\n};\n```\n\n- `sizeof(struct Value)` = 4(type) + 4(填充) + 16(v) = **24**，而不是 4+16=20；\n- 若把三种类型都做成 struct 的并列成员，则要 4 + 4 + 8 + 16 + 填充 ≈ 36 字节；\n- 读取前**先看 type**，再访问对应的 `v.i / v.d / v.s`。",
+      "keyPoints": [
+        "sizeof(union) 的第一步是取所有成员大小的最大值 M",
+        "第二步按成员中最大的对齐要求 A 把 M 向上取整到 A 的整数倍",
+        "union { char s[5]; int i; } 的大小是 8 而不是 5，因为 int 要求 4 字节对齐",
+        "成员全部为 char 的 union 对齐要求是 1，大小就等于最大成员大小，不填充",
+        "把 union 嵌入 struct 并配一个 int 标记字段，就构成节省内存的标签联合",
+        "含 double 成员的 union 嵌入 struct 后，标记字段与 union 之间会产生填充"
+      ],
+      "pitfalls": [
+        "把 sizeof(union) 算成各成员之和，那是 struct 的规则",
+        "忘记第二步对齐取整，得出 union { char s[5]; int i; } == 5 的错误答案",
+        "标签联合里不看 type 就直接读某个成员，读到的是另一种类型的位模式",
+        "以为 struct 里放一个 union 就不会有填充——union 自身的对齐要求照样生效"
+      ],
+      "examples": [
+        {
+          "title": "四种 union 的大小",
+          "code": "#include <stdio.h>\n\nunion U1 { char c;   int i; double d; };   /* M=8, A=8 -> 8 */\nunion U2 { char s[5]; int i; };            /* M=5, A=4 -> 8 */\nunion U3 { char a;   char b; };            /* M=1, A=1 -> 1 */\nunion U4 { char s[3]; short h; };          /* M=3, A=2 -> 4 */\n\nint main(void)\n{\n    printf(\"U1 = %d\\n\", (int)sizeof(union U1));\n    printf(\"U2 = %d\\n\", (int)sizeof(union U2));\n    printf(\"U3 = %d\\n\", (int)sizeof(union U3));\n    printf(\"U4 = %d\\n\", (int)sizeof(union U4));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "U1 = 8\nU2 = 8\nU3 = 1\nU4 = 4",
+          "note": "U2 与 U4 都体现了“向上取整到对齐倍数”：5→8（按 4 对齐），3→4（按 2 对齐）。",
+          "runnable": true
+        },
+        {
+          "title": "struct 内嵌匿名 union 的标签联合",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Value {\n    int type;                       /* 1=int 2=double 3=string */\n    union {\n        int    i;\n        double d;\n        char   s[16];\n    } v;\n};\n\nint main(void)\n{\n    struct Value a, b;\n\n    printf(\"sizeof(union only) = %d\\n\", (int)sizeof(a.v));\n    printf(\"sizeof(struct)     = %d\\n\", (int)sizeof(a));\n\n    a.type = 1;\n    a.v.i = 42;\n    b.type = 3;\n    strcpy(b.v.s, \"hello\");\n\n    printf(\"a: type=%d i=%d\\n\", a.type, a.v.i);\n    printf(\"b: type=%d s=%s\\n\", b.type, b.v.s);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "sizeof(union only) = 16\nsizeof(struct)     = 24\na: type=1 i=42\nb: type=3 s=hello",
+          "note": "union 取最大成员 char[16] 得 16；struct 里 type 之后要填 4 字节才能满足 8 字节对齐，所以是 24 不是 20。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-008",
+        "c-ch10-cr-009",
+        "c-ch10-cc-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-13",
+        "c-ch10-15",
+        "c-ch10-03"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 14
+    },
+    {
+      "id": "c-ch10-15",
+      "title": "用共用体拆解整数的字节与判断字节序",
+      "section": "10.6 共用体 union",
+      "summary": "把 int/long 与 char 数组、short 数组放进同一个 union，就能按字节读写整数：取低字节判断大小端，取前后两个半字完成拆分输出。",
+      "content": "## 基本套路\n\n```c\nunion Split {\n    unsigned int   u;        /* 整体 */\n    unsigned char  b[4];     /* 按字节看 */\n    unsigned short w[2];     /* 按半字看 */\n};\n```\n\n三种视图共享同一段内存，改任何一个都会立刻反映到其它两个上。\n\n## 判断字节序\n\n```c\nunion { int i; char c; } u;\nu.i = 1;\nif (u.c == 1)  /* 小端：低位字节放在低地址 */\n```\n\n| 字节序 | 内存布局（u.i = 0x12345678） | b[0] | b[3] |\n|---|---|---|---|\n| 小端（x86/ARM 默认） | 78 56 34 12 | 0x78 | 0x12 |\n| 大端（网络字节序） | 12 34 56 78 | 0x12 | 0x78 |\n\n## 拆分前后两个字节（题 10.92 的模型）\n\n```c\ns.u = 0x12345678u;\n/* 小端机上：s.w[0] = 0x5678（低半字），s.w[1] = 0x1234（高半字） */\n```\n\n教材原题假设 `int` 占 2 字节，所以\"前 2 个字节 / 后 2 个字节\"就是高低两个 16 位半字。\n用位移写法可以不依赖字节序：`low = u & 0xFFFF; high = (u >> 16) & 0xFFFF;`\n——**考试要求用 union 时用 union，要求可移植时用位移**。\n\n## 注意事项\n\n- union 拆字节的结果**依赖机器的字节序**，跨平台代码应改用移位与掩码；\n- 通过 `unsigned char` 别名访问任意对象是标准明确允许的，不算违反严格别名规则；\n- 打印字节时用 `%02X` 保证固定两位，便于与答案比对。",
+      "keyPoints": [
+        "把整数与 char 数组放进同一个 union，即可按字节读写这个整数",
+        "小端机（x86）上 b[0] 是最低有效字节，b[n-1] 是最高有效字节",
+        "u.i = 1 之后读 char 成员，值为 1 说明是小端，为 0 说明是大端",
+        "unsigned short w[2] 视图可以把 32 位整数看成高低两个 16 位半字",
+        "不依赖字节序的等价写法是移位与掩码：low = u & 0xFFFF; high = u >> 16;",
+        "通过 unsigned char 指针或成员访问任意对象的字节是 C 标准允许的，不违反严格别名规则"
+      ],
+      "pitfalls": [
+        "在大端机上照抄小端的答案，字节顺序正好完全颠倒",
+        "打印字节时用 %X 而不是 %02X，0x0A 会打印成 A 导致与标准答案不符",
+        "用 union 拆完字节就直接用于跨平台的数据交换，应改用移位等确定顺序的方法",
+        "把 signed char 当字节容器，值超过 127 时符号扩展会让结果出错，应使用 unsigned char"
+      ],
+      "examples": [
+        {
+          "title": "判断本机字节序",
+          "code": "#include <stdio.h>\n\nint is_little_endian(void)\n{\n    union {\n        int  i;\n        char c;\n    } u;\n\n    u.i = 1;\n    return u.c == 1;           /* 最低地址存最低有效字节 -> 小端 */\n}\n\nint main(void)\n{\n    printf(\"little endian = %d\\n\", is_little_endian());\n    return 0;\n}",
+          "stdin": "",
+          "expected": "little endian = 1",
+          "note": "代码自带判断，不依赖具体机器；在 x86 上输出 1，在大端机上会输出 0。",
+          "runnable": true
+        },
+        {
+          "title": "按字节与半字拆解 0x12345678",
+          "code": "#include <stdio.h>\n\nunion Split {\n    unsigned int   u;\n    unsigned char  b[4];\n    unsigned short w[2];\n};\n\nint main(void)\n{\n    union Split s;\n    int i;\n\n    s.u = 0x12345678u;\n\n    printf(\"bytes:\");\n    for (i = 0; i < 4; i++)\n        printf(\" %02X\", s.b[i]);\n    printf(\"\\n\");\n\n    printf(\"low 16 = %04X\\n\", s.w[0]);\n    printf(\"high16 = %04X\\n\", s.w[1]);\n\n    s.b[0] = 0x00;                 /* 改一个字节，整体立刻变化 */\n    printf(\"after b[0]=0 : %08X\\n\", s.u);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "bytes: 78 56 34 12\nlow 16 = 5678\nhigh16 = 1234\nafter b[0]=0 : 12345600",
+          "note": "本输出以 x86 小端为准；把最低字节清零，整个整数就从 0x12345678 变成 0x12345600。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-010",
+        "c-ch10-pg-007",
+        "c-ch10-cr-008"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-13",
+        "c-ch10-14",
+        "c-ch09-01"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 15
+    },
+    {
+      "id": "c-ch10-16",
+      "title": "枚举 enum：默认从 0 开始连续取值",
+      "section": "10.7 枚举 enum",
+      "summary": "枚举把一组整型常量起上名字，默认第一个为 0、其后依次加 1；枚举变量本质是整型，可以比较、自增、用作 switch 的分支标签，比裸写数字可读性好得多。",
+      "content": "## 定义与默认值\n\n```c\nenum Color { RED, GREEN, BLUE };\n/* RED == 0, GREEN == 1, BLUE == 2 */\n\nenum Color c = GREEN;    /* c 的值是 1 */\n```\n\n规则：**第一个枚举常量的值是 0，后面每一个都比前一个大 1**。\ngcc 下 `sizeof(enum Color)` 为 4（枚举常量按 int 处理）。\n\n## 枚举变量能做什么\n\n| 操作 | 是否合法 | 说明 |\n|---|---|---|\n| `c = BLUE;` | ✅ | 赋枚举常量 |\n| `c = 2;` | ✅ | C 语言允许把 int 直接赋给枚举变量（C++ 不允许） |\n| `c++` | ✅ | 枚举变量是整型，可自增，常用于 for 循环 |\n| `c1 < c2` | ✅ | 按定义顺序比较大小 |\n| `FRI - MON + 1` | ✅ | 枚举常量参与算术运算，结果是 int |\n| `printf(\"%d\", RED)` | ✅ | 用 %d 打印其整数值 |\n\n## 与 switch 配合\n\n```c\nswitch (w) {\ncase MON: return \"Mon\";\ncase TUE: return \"Tue\";\n/* ... 必须覆盖所有枚举常量，否则 -Wall 会报 -Wswitch */\n}\n```\n\ngcc 在 `-Wall` 下会检查 switch 是否漏掉了某个枚举常量，\n这是枚举相比\"一堆 #define 数字\"最实用的一点：**漏写分支会被编译器提醒**。\n\n## 枚举 vs #define\n\n- 枚举常量有类型、有作用域、能被调试器识别，且自动连续编号；\n- `#define` 只是文本替换，写错了要到运行时才发现；\n- 表示\"有限的几种状态/类别\"时，**一律优先用 enum**。",
+      "keyPoints": [
+        "枚举常量默认从 0 开始，其后每一个依次比前一个大 1",
+        "枚举常量是编译期整型常量，可以直接参与算术与比较运算",
+        "枚举变量本质是整型，C 语言允许把 int 值直接赋给它，也允许自增",
+        "switch 的 case 标签可以用枚举常量，漏写会被 gcc -Wall 的 -Wswitch 检出",
+        "gcc 下 sizeof(enum X) 通常为 4，与 int 相同",
+        "枚举相比 #define 的优势是有类型、有作用域、能自动连续编号、便于调试"
+      ],
+      "pitfalls": [
+        "以为第一个枚举常量的值是 1，实际上默认是 0",
+        "在 switch 里只写了部分枚举常量，gcc -Wall 会报 warning，考试也常以此为陷阱",
+        "把枚举常量当成变量去赋值，RED = 5; 是非法的（常量不可被赋值）",
+        "用 %c 打印枚举值，得到的是对应 ASCII 字符而不是数字"
+      ],
+      "examples": [
+        {
+          "title": "默认取值与运算",
+          "code": "#include <stdio.h>\n\nenum Color { RED, GREEN, BLUE };\n\nint main(void)\n{\n    enum Color c = GREEN;\n\n    printf(\"RED=%d GREEN=%d BLUE=%d\\n\", RED, GREEN, BLUE);\n    printf(\"c=%d\\n\", (int)c);\n    printf(\"sizeof=%d\\n\", (int)sizeof(enum Color));\n    c = BLUE;\n    printf(\"after c=BLUE: %d\\n\", (int)c);\n    printf(\"BLUE+1=%d\\n\", BLUE + 1);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "RED=0 GREEN=1 BLUE=2\nc=1\nsizeof=4\nafter c=BLUE: 2\nBLUE+1=3",
+          "note": "枚举常量默认从 0 开始连续编号；BLUE + 1 是普通的 int 运算，结果为 3。",
+          "runnable": true
+        },
+        {
+          "title": "枚举变量在 for 与 switch 中使用",
+          "code": "#include <stdio.h>\n\nenum Week { MON, TUE, WED, THU, FRI, SAT, SUN };\n\nconst char *name_of(enum Week w)\n{\n    switch (w) {\n    case MON: return \"Mon\";\n    case TUE: return \"Tue\";\n    case WED: return \"Wed\";\n    case THU: return \"Thu\";\n    case FRI: return \"Fri\";\n    case SAT: return \"Sat\";\n    case SUN: return \"Sun\";\n    }\n    return \"?\";\n}\n\nint main(void)\n{\n    enum Week w;\n\n    for (w = MON; w <= SUN; w++)          /* 枚举变量可以自增 */\n        printf(\"%d:%s|\", (int)w, name_of(w));\n    printf(\"\\n\");\n    printf(\"workdays = %d\\n\", FRI - MON + 1);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "0:Mon|1:Tue|2:Wed|3:Thu|4:Fri|5:Sat|6:Sun|\nworkdays = 5",
+          "note": "switch 覆盖了全部 7 个枚举常量，所以 -Wall 不会报 -Wswitch；FRI - MON + 1 得到工作日天数 5。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-cr-011",
+        "c-ch10-sa-001",
+        "c-ch10-cr-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-17",
+        "c-ch10-11",
+        "c-ch08-02"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 16
+    },
+    {
+      "id": "c-ch10-17",
+      "title": "枚举的显式赋值与典型应用",
+      "section": "10.7 枚举 enum",
+      "summary": "枚举常量可以在定义时显式指定值，未指定的自动取前一个值加 1；这一特性正好用来给人民币面值、状态码等一组离散常量命名。",
+      "content": "## 显式赋值规则\n\n```c\nenum Num { ONE = 1, TWO, FIVE = 5, SIX, TEN = 10 };\n/* ONE=1  TWO=2（自动 +1）  FIVE=5  SIX=6（自动 +1）  TEN=10 */\n```\n\n只有一句话：**写了值的用它，没写的等于前一个加 1**。\n值可以重复，也可以不按递增顺序排列（但递增更易读）。\n\n## 题 10.93 的模型：人民币面值\n\n```c\ntypedef enum {\n    ONE_FEN = 1,   TWO_FEN = 2,   FIVE_FEN = 5,\n    ONE_JIAO = 10, TWO_JIAO = 20, FIVE_JIAO = 50,\n    ONE_YUAN = 100, TWO_YUAN = 200, FIVE_YUAN = 500,\n    TEN_YUAN = 1000, FIFTY_YUAN = 5000, HUNDRED_YUAN = 10000\n} Money;\n```\n\n以\"分\"为基本单位，1 角 = 10 分、1 元 = 100 分，\n这样 `Money` 类型的值本身就可以直接参与金额计算。\n\n## 与 typedef 联用\n\n`typedef enum { ... } Money;` 之后声明变量不再需要写 `enum`：\n\n```c\nMoney m = FIVE_JIAO;        /* 等价于 enum money m = FIVE_JIAO; */\nMoney list[5] = {ONE_FEN, FIVE_JIAO};\n```\n\n注意：匿名 enum + typedef 之后，**枚举类型本身没有标签名**，\n不能再写 `struct`/`enum` 形式的前向引用。",
+      "keyPoints": [
+        "枚举常量可以在定义时用 = 显式指定整型值",
+        "未显式赋值的枚举常量，其值等于前一个枚举常量的值加 1",
+        "第一个枚举常量若未赋值则默认为 0，若显式赋值则以赋值为准",
+        "枚举常量的值允许重复，也允许不递增，但递增排列更利于阅读与比较",
+        "枚举常量的值可以超出 char 范围，只要能用 int 表示即可",
+        "配合 typedef 使用可以省略 enum 关键字，声明变量更简洁"
+      ],
+      "pitfalls": [
+        "以为显式赋值后面的常量会回到 0，实际是接着前一个值加 1",
+        "把人民币面值直接写成 1、2、5、10… 而忘记单位统一，导致金额计算出错",
+        "给枚举常量再赋值（ONE_FEN = 1;）——枚举常量是常量，不是变量",
+        "匿名 enum + typedef 后仍想写 enum Money m;，此时并没有 Money 这个标签"
+      ],
+      "examples": [
+        {
+          "title": "显式赋值与自动加 1",
+          "code": "#include <stdio.h>\n\nenum Num { ONE = 1, TWO, FIVE = 5, SIX, TEN = 10 };\n\nenum Money {\n    FEN1 = 1,  FEN2 = 2,  FEN5 = 5,\n    JIAO1 = 10, JIAO2 = 20, JIAO5 = 50,\n    YUAN1 = 100, YUAN2 = 200, YUAN5 = 500,\n    YUAN10 = 1000, YUAN50 = 5000, YUAN100 = 10000\n};\n\nint main(void)\n{\n    printf(\"ONE=%d TWO=%d FIVE=%d SIX=%d TEN=%d\\n\",\n           ONE, TWO, FIVE, SIX, TEN);\n    printf(\"FEN2=%d JIAO5=%d YUAN100=%d\\n\", FEN2, JIAO5, YUAN100);\n    printf(\"sizeof=%d\\n\", (int)sizeof(enum Money));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "ONE=1 TWO=2 FIVE=5 SIX=6 TEN=10\nFEN2=2 JIAO5=50 YUAN100=10000\nsizeof=4",
+          "note": "TWO 与 SIX 没有写值，分别取前一个的 1+1=2 与 5+1=6；所有面值都能用 int 表示，故 sizeof 为 4。",
+          "runnable": true
+        },
+        {
+          "title": "用枚举给人民币面值命名（题 10.93 模型）",
+          "code": "#include <stdio.h>\n\ntypedef enum {\n    ONE_FEN = 1,   TWO_FEN = 2,   FIVE_FEN = 5,\n    ONE_JIAO = 10, TWO_JIAO = 20, FIVE_JIAO = 50,\n    ONE_YUAN = 100, TWO_YUAN = 200, FIVE_YUAN = 500,\n    TEN_YUAN = 1000, FIFTY_YUAN = 5000, HUNDRED_YUAN = 10000\n} Money;\n\nconst char *money_name(Money m)\n{\n    switch (m) {\n    case ONE_FEN:      return \"1 fen\";\n    case TWO_FEN:      return \"2 fen\";\n    case FIVE_FEN:     return \"5 fen\";\n    case ONE_JIAO:     return \"1 jiao\";\n    case TWO_JIAO:     return \"2 jiao\";\n    case FIVE_JIAO:    return \"5 jiao\";\n    case ONE_YUAN:     return \"1 yuan\";\n    case TWO_YUAN:     return \"2 yuan\";\n    case FIVE_YUAN:    return \"5 yuan\";\n    case TEN_YUAN:     return \"10 yuan\";\n    case FIFTY_YUAN:   return \"50 yuan\";\n    case HUNDRED_YUAN: return \"100 yuan\";\n    }\n    return \"invalid\";\n}\n\nint main(void)\n{\n    Money list[5] = {ONE_FEN, FIVE_JIAO, TWO_YUAN, HUNDRED_YUAN, TEN_YUAN};\n    int i;\n\n    for (i = 0; i < 5; i++)\n        printf(\"%5d = %s\\n\", (int)list[i], money_name(list[i]));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "    1 = 1 fen\n   50 = 5 jiao\n  200 = 2 yuan\n10000 = 100 yuan\n 1000 = 10 yuan",
+          "note": "以“分”为统一单位，1 角 = 10、1 元 = 100；switch 覆盖全部 12 个面值，-Wall 不会报警。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-sa-001",
+        "c-ch10-cr-011",
+        "c-ch10-cr-012"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-16",
+        "c-ch10-11",
+        "c-ch10-12"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 17
+    },
+    {
+      "id": "c-ch10-18",
+      "title": "链表结点的定义、创建与释放",
+      "section": "10.8 链表基础",
+      "summary": "单向链表由 malloc 出来的结点用 next 串起来；带头结点时空表与非空表的处理统一，尾插法保持输入顺序，头插法逆序，释放时必须先存 next 再 free。",
+      "content": "## 结点定义\n\n```c\nstruct Node {\n    int data;\n    struct Node *next;      /* 自引用只能用 struct 标签 */\n};\n```\n\n## 带头结点 vs 不带头结点\n\n| | 带头结点 | 不带头结点 |\n|---|---|---|\n| head 指向 | 一个 data 不用的哨兵结点 | 第一个真实结点 |\n| 空表判定 | `head->next == NULL` | `head == NULL` |\n| 插入/删除第一个元素 | 与其它位置**代码相同** | 需要单独处理 head |\n\n教材（题 10.88）明确要求**带头结点**，判空条件是 `ph->next == NULL`。\n\n## 两种建表方式\n\n```c\n/* 头插法：新结点插到 head 之后，结果与输入顺序相反 */\np->next = head->next;\nhead->next = p;\n\n/* 尾插法：用一个 tail 指针记住最后一个结点，结果与输入顺序相同 */\ntail->next = p;\ntail = p;\n```\n\n## malloc 三步曲\n\n1. `p = malloc(sizeof(struct Node));` —— 括号里写**类型**，不要写指针变量名\n2. `if (p == NULL) ...` —— 必须判空\n3. `p->next = NULL;` —— 新结点的 next 先置空，避免野指针\n\n## 释放链表\n\n```c\nwhile (p != NULL) {\n    q = p->next;     /* ① 先记住后继 */\n    free(p);         /* ② 再释放当前 */\n    p = q;           /* ③ 移到下一个 */\n}\n```\n\n顺序错了就会访问已释放的内存（use-after-free）。",
+      "keyPoints": [
+        "链表结点必须用 struct 标签自引用：struct Node *next; 不能写成 Node *next;",
+        "每个结点由 malloc 单独分配，分配后必须判 NULL 再使用",
+        "带头结点的链表判空条件是 head->next == NULL，头结点的 data 域不存放数据",
+        "头插法建表得到的顺序与输入相反，尾插法得到的顺序与输入相同",
+        "尾插法需要一个 tail 指针始终指向当前最后一个结点，插入后同步更新 tail",
+        "释放链表必须先保存 p->next 再 free(p)，否则会访问已释放的内存"
+      ],
+      "pitfalls": [
+        "malloc 后不判 NULL 就直接 p->data = x;，内存不足时程序崩溃",
+        "新结点忘记 p->next = NULL，遍历时会沿着野指针一路跑飞",
+        "释放时写成 free(p); p = p->next;，p 指向的内存已经被回收",
+        "带头结点的链表误用 head == NULL 判空，实际应为 head->next == NULL"
+      ],
+      "examples": [
+        {
+          "title": "头插法建表与释放",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head, *p, *q;\n    int i;\n\n    head = (struct Node *)malloc(sizeof(struct Node));\n    if (head == NULL)\n        return 1;\n    head->next = NULL;                  /* 头结点，data 不使用 */\n\n    for (i = 1; i <= 3; i++) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = i * 10;\n        p->next = head->next;           /* 头插法 */\n        head->next = p;\n    }\n\n    for (q = head->next; q != NULL; q = q->next)\n        printf(\"%d|\", q->data);\n    printf(\"\\n\");\n\n    while (head->next != NULL) {        /* 逐个摘下来释放 */\n        p = head->next;\n        head->next = p->next;\n        free(p);\n    }\n    free(head);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "30|20|10|",
+          "note": "依次插入 10、20、30，头插法让后插的排在前面，所以输出是 30|20|10|。",
+          "runnable": true
+        },
+        {
+          "title": "尾插法建表，读到 -1 结束（题 10.88 模型）",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\nstruct Node *create_list(void)\n{\n    struct Node *head, *tail, *p;\n    int x;\n\n    head = (struct Node *)malloc(sizeof(struct Node));\n    if (head == NULL)\n        return NULL;\n    head->next = NULL;\n    tail = head;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            break;\n        p->data = x;\n        p->next = NULL;\n        tail->next = p;                 /* 尾插 */\n        tail = p;\n    }\n    return head;\n}\n\nint count(const struct Node *head)\n{\n    const struct Node *p;\n    int n = 0;\n\n    for (p = head->next; p != NULL; p = p->next)\n        n++;\n    return n;\n}\n\nvoid free_list(struct Node *head)\n{\n    struct Node *p = head, *q;\n\n    while (p != NULL) {\n        q = p->next;                    /* 先存后继 */\n        free(p);\n        p = q;\n    }\n}\n\nint main(void)\n{\n    struct Node *head = create_list();\n    struct Node *p;\n\n    if (head == NULL)\n        return 1;\n    for (p = head->next; p != NULL; p = p->next)\n        printf(\"%d|\", p->data);\n    printf(\"\\nlen = %d\\n\", count(head));\n    free_list(head);\n    return 0;\n}",
+          "stdin": "5 8 3 -1\n",
+          "expected": "5|8|3|\nlen = 3",
+          "note": "输入 5 8 3 -1，尾插法保持输入顺序；-1 只是结束标志，不进链表。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-pg-003",
+        "c-ch10-pg-002",
+        "c-ch10-cc-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-19",
+        "c-ch10-20",
+        "c-ch09-30"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 18
+    },
+    {
+      "id": "c-ch10-19",
+      "title": "链表的插入与查找",
+      "section": "10.8 链表基础",
+      "summary": "链表插入与查找都要先定位到前驱结点 pre，再用两步改指针完成插入；带头结点时表头与中间插入代码完全一致，找不到目标时新结点自然接到表尾。",
+      "content": "## 插入的统一套路：先找前驱\n\n链表的插入与删除，**永远先定位到前驱结点 pre**，再改两根指针：\n\n```c\ns->next = pre->next;\npre->next = s;\n```\n\n顺序不能颠倒：先让新结点接住后面的链，再让前驱指向新结点。\n\n## 带头结点让代码统一\n\n| 插入位置 | 带头结点 | 不带头结点 |\n|---|---|---|\n| 表头 | pre = head，与其它位置代码完全相同 | 必须 s->next = head; head = s; 单独处理 |\n| 中间 / 表尾 | 同一套代码 | 同一套代码 |\n\n## 查找该返回什么\n\n- 只判断“有没有” → 返回结点指针或 NULL\n- 要在该位置插入或删除 → 返回**前驱**指针\n- 要报告位置 → 返回序号（从 1 开始），0 表示找不到\n\n## 找不到就插到表尾\n\n```c\nwhile (pre->next != NULL && pre->next->data != a)\n    pre = pre->next;\n```\n\n循环结束时 pre->next 要么是值为 a 的结点，要么是 NULL。后一种情况下\ns->next = pre->next; 正好把新结点接成表尾，**不需要写额外分支**，\n这就是“定位前驱”写法比“定位结点本身”写法省事的地方。\n\n## 插入的时间开销\n\n| 步骤 | 复杂度 |\n|---|---|\n| 定位前驱 | O(n)，必须从头遍历 |\n| 改两根指针 | O(1) |\n\n链表的优势是**已定位后插入删除只改指针**，代价是定位本身仍是 O(n)。",
+      "keyPoints": [
+        "插入和删除都必须先定位到前驱结点 pre，再改指针，不能直接拿着目标结点操作",
+        "插入两步顺序固定：先 s->next = pre->next; 再 pre->next = s;，颠倒就断链",
+        "定位循环条件写成 pre->next != NULL && pre->next->data != a，判空必须在前",
+        "找不到目标时 pre->next == NULL，同一套插入代码天然把新结点接到表尾，无需分支",
+        "带头结点时表头插入与中间插入代码完全相同，不带头结点必须单独修改 head",
+        "新结点 malloc 后必须判 NULL，并先置 s->next = NULL 再串进链表"
+      ],
+      "pitfalls": [
+        "先写 pre->next = s; 再写 s->next = pre->next;，新结点指向自己，后面所有结点丢失",
+        "定位时从第一个真实结点开始比较 p->data，插到表头时找不到前驱可挂",
+        "不判 pre->next != NULL 就写 pre->next->data，空表或找不到时解引用 NULL 直接崩溃",
+        "malloc 之后不判 NULL 就赋值，内存不足时程序崩溃"
+      ],
+      "examples": [
+        {
+          "title": "在指定值前插入，找不到则插到表尾",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\n/* 尾插建表，带头结点，读到 -1 结束 */\nstruct Node *create_list(void)\n{\n    struct Node *head, *tail, *p;\n    int x;\n\n    head = (struct Node *)malloc(sizeof(struct Node));\n    if (head == NULL)\n        return NULL;\n    head->next = NULL;\n    tail = head;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            break;\n        p->data = x;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n    return head;\n}\n\n/* 在第一个值为 a 的结点之前插入 key，找不到 a 则插到表尾 */\nvoid insert_before(struct Node *head, int a, int key)\n{\n    struct Node *pre = head, *s;\n\n    while (pre->next != NULL && pre->next->data != a)\n        pre = pre->next;\n\n    s = (struct Node *)malloc(sizeof(struct Node));\n    if (s == NULL)\n        return;\n    s->data = key;\n    s->next = pre->next;\n    pre->next = s;\n}\n\nvoid print_list(struct Node *head)\n{\n    struct Node *p;\n    for (p = head->next; p != NULL; p = p->next)\n        printf(\"%d|\", p->data);\n    printf(\"\\n\");\n}\n\nvoid free_list(struct Node *head)\n{\n    struct Node *p = head->next, *q;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n    head->next = NULL;\n}\n\nint main(void)\n{\n    struct Node *head = create_list();\n\n    if (head == NULL)\n        return 1;\n\n    print_list(head);\n    insert_before(head, 8, 99);      /* 8 存在，插在它前面 */\n    print_list(head);\n    insert_before(head, 100, 77);    /* 100 不存在，插到表尾 */\n    print_list(head);\n\n    free_list(head);\n    free(head);\n    return 0;\n}",
+          "stdin": "5 8 3 -1\n",
+          "expected": "5|8|3|\n5|99|8|3|\n5|99|8|3|77|",
+          "note": "输入 5 8 3 -1。第一次插入时 8 存在，99 落到它前面；第二次 100 不存在，定位循环走到 pre->next == NULL，77 自然成为新的表尾，一行分支都没多写。",
+          "runnable": true
+        },
+        {
+          "title": "查找序号、统计与求最大值",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\nstruct Node *create_list(void)\n{\n    struct Node *head, *tail, *p;\n    int x;\n\n    head = (struct Node *)malloc(sizeof(struct Node));\n    if (head == NULL)\n        return NULL;\n    head->next = NULL;\n    tail = head;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            break;\n        p->data = x;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n    return head;\n}\n\n/* 返回值为 key 的结点序号（从 1 开始），找不到返回 0 */\nint search_index(struct Node *head, int key)\n{\n    struct Node *p;\n    int i = 0;\n\n    for (p = head->next; p != NULL; p = p->next) {\n        i++;\n        if (p->data == key)\n            return i;\n    }\n    return 0;\n}\n\nint count_gt(struct Node *head, int x)\n{\n    struct Node *p;\n    int n = 0;\n\n    for (p = head->next; p != NULL; p = p->next)\n        if (p->data > x)\n            n++;\n    return n;\n}\n\nint max_list(struct Node *head)\n{\n    struct Node *p = head->next;\n    int m;\n\n    if (p == NULL)\n        return 0;                 /* 空表约定返回 0 */\n    m = p->data;\n    for (p = p->next; p != NULL; p = p->next)\n        if (p->data > m)\n            m = p->data;\n    return m;\n}\n\nvoid free_list(struct Node *head)\n{\n    struct Node *p = head->next, *q;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n    head->next = NULL;\n}\n\nint main(void)\n{\n    struct Node *head = create_list();\n    int key, idx;\n\n    if (head == NULL)\n        return 1;\n    if (scanf(\"%d\", &key) != 1)\n        key = 0;\n\n    idx = search_index(head, key);\n    if (idx == 0)\n        printf(\"%d: not found\\n\", key);\n    else\n        printf(\"%d: found at index %d\\n\", key, idx);\n\n    printf(\"count > 5 = %d\\n\", count_gt(head, 5));\n    printf(\"max = %d\\n\", max_list(head));\n\n    free_list(head);\n    free(head);\n    return 0;\n}",
+          "stdin": "5 8 3 12 6 -1 12\n",
+          "expected": "12: found at index 4\ncount > 5 = 3\nmax = 12",
+          "note": "输入 5 8 3 12 6 -1 12，-1 之后的 12 是要查的关键字。三个遍历函数共用 for (p = head->next; p != NULL; p = p->next) 这一句模板，区别只在循环体里做什么。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-pg-005",
+        "c-ch10-pg-004",
+        "c-ch10-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-18",
+        "c-ch10-20",
+        "c-ch09-33"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 19
+    },
+    {
+      "id": "c-ch10-20",
+      "title": "链表的逆置与释放",
+      "section": "10.8 链表基础",
+      "summary": "链表逆置用 pre/cur/next 三个指针就地反转，每轮先存后继再改指针，循环结束时 pre 就是新表头；释放则必须先存 next 再 free，最后单独 free 头结点。",
+      "content": "## 三指针就地逆置\n\n```c\nstruct Node *pre = NULL, *cur = head->next, *next;\n\nwhile (cur != NULL) {\n    next = cur->next;      /* 1 先存后继，否则改完指针就找不到链了 */\n    cur->next = pre;       /* 2 反转当前结点的指针 */\n    pre = cur;             /* 3 三个指针整体后移一位 */\n    cur = next;\n}\nhead->next = pre;          /* 4 循环结束时 pre 停在原表尾，即新表第一个真实结点 */\n```\n\n带头结点时 head 本身不动，只改 head->next；不带头结点时**必须把 pre 返回给调用者**，\n否则调用者手里的 head 仍指向原来的第一个结点（逆置后它成了表尾）。\n\n## 另一种等价写法：逐个头插\n\n```c\nstruct Node *p = head->next, *q;\n\nhead->next = NULL;              /* 先把链表剪断成空表 */\nwhile (p != NULL) {\n    q = p->next;\n    p->next = head->next;       /* 头插 */\n    head->next = p;\n    p = q;\n}\n```\n\n思路是“摘下结点往表头插”，与三指针法结果相同，\n但更容易看清 head->next = NULL 这一步为什么必须写。\n\n## 释放链表\n\n```c\nwhile (p != NULL) {\n    q = p->next;      /* 必须先存 */\n    free(p);          /* 再释放 */\n    p = q;\n}\nhead->next = NULL;    /* 恢复成空表，避免悬空指针 */\nfree(head);           /* 头结点也是 malloc 出来的，最后单独释放 */\n```\n\n## 复杂度对比\n\n| 操作 | 时间 | 额外空间 |\n|---|---|---|\n| 逆置 | O(n) | O(1)，只用 3 个指针 |\n| 释放 | O(n) | O(1) |\n| 查找 | O(n) | O(1) |\n\n数组逆置用双下标 i、j 向中间靠拢即可，因为元素可以按位置直接访问；\n链表逆置只能用三指针顺着一根 next 走，这是两者最典型的写法差异。",
+      "keyPoints": [
+        "逆置只需要 pre/cur/next 三个指针，时间 O(n)、额外空间 O(1)，不新建任何结点",
+        "每轮第一步必须 next = cur->next;，一旦先反转指针就再也找不回后继",
+        "循环结束的条件是 cur == NULL，此时 pre 指向原表尾，也就是新表的第一个真实结点",
+        "带头结点逆置只需最后写 head->next = pre;，head 指针本身不变",
+        "不带头结点逆置必须把新表头 return 出去，调用处用 head = reverse(head); 接收",
+        "释放顺序固定为先存 next 再 free，释放完把 head->next 置 NULL 防悬空"
+      ],
+      "pitfalls": [
+        "逆置后忘了 head->next = pre;，头结点仍指向原来的第一个结点，链表只剩一个元素",
+        "不带头结点的逆置函数返回 void，调用者的 head 变成指向表尾的废指针",
+        "释放时写成 free(p); p = p->next;，读的是已经归还给系统的内存，这是 UB",
+        "只释放真实结点忘了 free(head)，头结点造成内存泄漏"
+      ],
+      "examples": [
+        {
+          "title": "带头结点：三指针就地逆置",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\n/* 尾插建表，带头结点，读到 -1 结束 */\nstruct Node *create_list(void)\n{\n    struct Node *head, *tail, *p;\n    int x;\n\n    head = (struct Node *)malloc(sizeof(struct Node));\n    if (head == NULL)\n        return NULL;\n    head->next = NULL;\n    tail = head;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            break;\n        p->data = x;\n        p->next = NULL;\n        tail->next = p;\n        tail = p;\n    }\n    return head;\n}\n\n/* 三指针就地逆置，head 不变，只改 head->next */\nvoid reverse_list(struct Node *head)\n{\n    struct Node *pre = NULL, *cur = head->next, *next;\n\n    while (cur != NULL) {\n        next = cur->next;\n        cur->next = pre;\n        pre = cur;\n        cur = next;\n    }\n    head->next = pre;\n}\n\nvoid print_list(struct Node *head)\n{\n    struct Node *p;\n    for (p = head->next; p != NULL; p = p->next)\n        printf(\"%d|\", p->data);\n    printf(\"\\n\");\n}\n\nvoid free_list(struct Node *head)\n{\n    struct Node *p = head->next, *q;\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n    }\n    head->next = NULL;\n}\n\nint main(void)\n{\n    struct Node *head = create_list();\n\n    if (head == NULL)\n        return 1;\n\n    print_list(head);\n    reverse_list(head);\n    print_list(head);\n\n    free_list(head);\n    free(head);\n    return 0;\n}",
+          "stdin": "5 8 3 12 6 -1\n",
+          "expected": "5|8|3|12|6|\n6|12|3|8|5|",
+          "note": "输入 5 8 3 12 6 -1。三个指针顺着一根 next 往前走，每走一步把当前结点的 next 掉头指向前驱，走完 pre 停在 6，把它挂到 head->next 上即完成逆置。",
+          "runnable": true
+        },
+        {
+          "title": "不带头结点：必须返回新表头",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node *next;\n};\n\n/* 不带头结点：尾插建表，读到 -1 结束，返回第一个真实结点 */\nstruct Node *create_list(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p;\n    int x;\n\n    while (scanf(\"%d\", &x) == 1 && x != -1) {\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            break;\n        p->data = x;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    return head;\n}\n\n/* 不带头结点：新表头必须返回给调用者 */\nstruct Node *reverse_list(struct Node *head)\n{\n    struct Node *pre = NULL, *cur = head, *next;\n\n    while (cur != NULL) {\n        next = cur->next;\n        cur->next = pre;\n        pre = cur;\n        cur = next;\n    }\n    return pre;\n}\n\n/* 释放整条链，返回释放的结点数 */\nint free_list(struct Node *head)\n{\n    struct Node *p = head, *q;\n    int n = 0;\n\n    while (p != NULL) {\n        q = p->next;\n        free(p);\n        p = q;\n        n++;\n    }\n    return n;\n}\n\nvoid print_list(struct Node *head)\n{\n    struct Node *p;\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d|\", p->data);\n    printf(\"\\n\");\n}\n\nint main(void)\n{\n    struct Node *head = create_list();\n    int n;\n\n    print_list(head);\n    head = reverse_list(head);        /* 必须接收返回值 */\n    print_list(head);\n\n    n = free_list(head);\n    head = NULL;                      /* 释放后置空，避免悬空指针 */\n    printf(\"freed %d nodes\\n\", n);\n    return 0;\n}",
+          "stdin": "5 8 3 12 6 -1\n",
+          "expected": "5|8|3|12|6|\n6|12|3|8|5|\nfreed 5 nodes",
+          "note": "与上一个例子的唯一区别是没有头结点：遍历从 head 开始，逆置结果靠 return 传回，调用处必须写 head = reverse_list(head);，否则 head 指向的仍是原来的第一个结点。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch10-pg-006",
+        "c-ch10-pg-004",
+        "c-ch10-pg-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch10-18",
+        "c-ch10-19",
+        "c-ch09-30"
+      ],
+      "relatedViz": null,
+      "category": "c",
+      "chapter": "第10章 结构体与共用体",
+      "order": 20
+    }
+  ]
+}
