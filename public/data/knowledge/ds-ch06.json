@@ -1,0 +1,206 @@
+{
+  "category": "ds",
+  "chapter": "第6章 图",
+  "generated_at": "2026-09-10",
+  "count": 4,
+  "cards": [
+    {
+      "id": "ds-ch06-01",
+      "title": "图的基本概念与术语",
+      "section": "6.1 图的定义和术语",
+      "summary": "图 G=(V,E) 由顶点集与边（弧）集构成，边可以有向也可以无向，且不允许重复边和自环。核心术语包括度/入度/出度、完全图、连通与强连通、连通分量、生成树、稠密图与稀疏图。最重要的两个数量关系是：无向图 Σ度 = 2e，有向图 Σ入度 = Σ出度 = e。",
+      "content": "## 一、图的定义\n\n图 `G = (V, E)`，V 是顶点的有穷非空集合，E 是边（弧）的集合。\n\n- 无向图：边用 `(vi, vj)` 表示，无序，`(vi,vj)` 与 `(vj,vi)` 是同一条边。\n- 有向图：边称**弧**，用 `<vi, vj>` 表示，vi 是**弧尾**（起点），vj 是**弧头**（终点）。\n- 简单图的约束：**不允许自环**（`(vi,vi)`）、**不允许重复边**。\n\n## 二、基本术语\n\n| 术语 | 含义 |\n|---|---|\n| 邻接 | 若 `(vi,vj) ∈ E`，则 vi 与 vj 互为邻接点，该边依附于这两点 |\n| 关联 | 边与它的两个端点之间的关系 |\n| 度 TD(v) | 依附于 v 的边数；有向图中 `TD(v) = ID(v) + OD(v)` |\n| 入度 ID(v) | 以 v 为**弧头**的弧数（邻接矩阵的**第 v 列**之和） |\n| 出度 OD(v) | 以 v 为**弧尾**的弧数（邻接矩阵的**第 v 行**之和） |\n| 路径 | 顶点序列 `vp1, vp2, …, vpm`，相邻两点间都有边 |\n| 路径长度 | 路径上**边（弧）的数目** |\n| 简单路径 | 序列中顶点不重复出现 |\n| 回路（环） | 第一个顶点与最后一个顶点相同的路径 |\n| 权 / 网 | 边带有权值，带权的图称为网 |\n\n## 三、两个必考的数量关系\n\n- 无向图：`Σ TD(vi) = 2e`（每条边被两个端点各计一次）。\n- 有向图：`Σ ID(vi) = Σ OD(vi) = e`。\n\n## 四、完全图的边数\n\n| 图类型 | 边（弧）数 |\n|---|---|\n| 无向完全图 Kn | `n(n-1)/2` |\n| 有向完全图 | `n(n-1)`（每对顶点间有两个方向的弧） |\n\n含有边数**接近完全图**的称**稠密图**，**远小于** `n(n-1)/2` 的称**稀疏图**。\n\n## 五、连通性\n\n- **连通**：无向图中 vi 到 vj 有路径，则二者连通。\n- **连通图**：任意两顶点都连通。\n- **连通分量**：无向图中的**极大连通子图**。「极大」指再加任何一个不属于它的顶点就不再连通。非连通图有若干个连通分量。\n- **强连通图**：有向图中任意一对 vi、vj，从 vi 到 vj **和**从 vj 到 vi 都有路径。\n- **强连通分量**：有向图中的极大强连通子图。\n\n⚠️ 无向图只要每个顶点的度 ≥ 1 也可能不连通；反过来，**n 个顶点的无向图若边数 > (n−1)(n−2)/2，则必连通**（这是常考结论）。\n\n## 六、生成树与生成森林\n\n- **生成树**：连通图的**极小连通子图**，含全部 n 个顶点和恰好 **n−1** 条边。\n- 生成树中**去掉任一边必不连通**，**加上任一边必成环**（有 n 条边的 n 顶点图一定含环）。\n- 非连通图的生成树集合称**生成森林**。\n- 一个连通图的生成树**不唯一**；不同的遍历方法（DFS/BFS）或不同的起点会得到不同的生成树。\n\n## 七、有向树与 DAG\n\n- **DAG**：有向无环图，是拓扑排序与关键路径的前提。\n- **AOV 网**：顶点表示活动、弧表示先后关系的 DAG。\n- **AOE 网**：顶点表示事件、弧表示活动的 DAG，用于求关键路径。",
+      "keyPoints": [
+        "图由顶点集 V 和边集 E 组成，简单图不允许自环与重复边",
+        "无向图 Σ度 = 2e；有向图 Σ入度 = Σ出度 = e，这是最常考的等式",
+        "无向完全图边数 n(n−1)/2，有向完全图弧数 n(n−1)",
+        "邻接矩阵中：某行 1 的个数 = 出度（无向图即度），某列 1 的个数 = 入度",
+        "连通分量是「极大」连通子图，生成树是「极小」连通子图且恰好 n−1 条边",
+        "有 n 个顶点、n 条边的无向连通图一定含环；生成树加一边必成环、去一边必不连通"
+      ],
+      "pitfalls": [
+        "混淆「极大」与「最大」：连通分量是极大的，不一定是顶点数最多的",
+        "把有向图的度当成入度或出度，度应是二者之和",
+        "误认为度都 ≥ 2 的无向图一定连通（反例：两个分离的三角形）",
+        "误认为生成树唯一——同一连通图可以有 n^(n−2) 棵不同的生成树"
+      ],
+      "examples": [
+        {
+          "title": "无向图：求各顶点度、边数并验证 Σ度 = 2e",
+          "code": "#include <stdio.h>\n\n#define N 5\n\n/* 无向图邻接矩阵：对称，主对角线为 0（无自环） */\nstatic const int G[N][N] = {\n    {0, 1, 1, 0, 0},\n    {1, 0, 1, 1, 0},\n    {1, 1, 0, 1, 1},\n    {0, 1, 1, 0, 1},\n    {0, 0, 1, 1, 0}\n};\n\n/* 无向图中顶点 v 的度 = 第 v 行 1 的个数 */\nstatic int Degree(int v)\n{\n    int d = 0, j;\n    for (j = 0; j < N; j++)\n        if (G[v][j]) d++;\n    return d;\n}\n\n/* 只统计上三角，避免每条边被数两次 */\nstatic int EdgeCount(void)\n{\n    int i, j, e = 0;\n    for (i = 0; i < N; i++)\n        for (j = i + 1; j < N; j++)\n            if (G[i][j]) e++;\n    return e;\n}\n\nint main(void)\n{\n    int i, sum = 0, e;\n\n    printf(\"各顶点的度:\\n\");\n    for (i = 0; i < N; i++) {\n        int d = Degree(i);\n        printf(\"  v%d: %d\\n\", i, d);\n        sum += d;\n    }\n\n    e = EdgeCount();\n    printf(\"边数 e = %d\\n\", e);\n    printf(\"度之和 = %d, 是否等于 2e: %s\\n\", sum, sum == 2 * e ? \"是\" : \"否\");\n    printf(\"完全图 K%d 的边数应为 %d\\n\", N, N * (N - 1) / 2);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "各顶点的度:\n  v0: 2\n  v1: 3\n  v2: 4\n  v3: 3\n  v4: 2\n边数 e = 7\n度之和 = 14, 是否等于 2e: 是\n完全图 K5 的边数应为 10",
+          "note": "度序列为 2,3,4,3,2，和为 14；边数只数上三角得 7，正好满足 14 = 2×7。K5 有 10 条边，本图 7 条，属较稠密的连通图。",
+          "runnable": true
+        },
+        {
+          "title": "有向图：求各顶点入度、出度并验证 Σ入度 = Σ出度 = 弧数",
+          "code": "#include <stdio.h>\n\n#define N 4\n\n/* 有向图邻接矩阵：A[i][j]=1 表示存在弧 <vi,vj> */\nstatic const int A[N][N] = {\n    {0, 1, 1, 0},\n    {0, 0, 1, 1},\n    {0, 0, 0, 1},\n    {1, 0, 0, 0}\n};\n\nint main(void)\n{\n    int i, j, arcs = 0, sumIn = 0, sumOut = 0;\n\n    printf(\"顶点  出度  入度   度\\n\");\n    for (i = 0; i < N; i++) {\n        int out = 0, in = 0;\n        for (j = 0; j < N; j++) {\n            if (A[i][j]) out++;     /* 第 i 行：以 vi 为弧尾 */\n            if (A[j][i]) in++;      /* 第 i 列：以 vi 为弧头 */\n        }\n        printf(\" v%d     %d     %d     %d\\n\", i, out, in, out + in);\n        sumOut += out;\n        sumIn  += in;\n    }\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (A[i][j]) arcs++;\n\n    printf(\"弧数 e = %d\\n\", arcs);\n    printf(\"sum(出度) = %d, sum(入度) = %d\\n\", sumOut, sumIn);\n    printf(\"完全有向图的弧数应为 %d\\n\", N * (N - 1));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "顶点  出度  入度   度\n v0     2     1     3\n v1     2     1     3\n v2     1     2     3\n v3     1     2     3\n弧数 e = 6\nsum(出度) = 6, sum(入度) = 6\n完全有向图的弧数应为 12",
+          "note": "四个顶点的度都是 3，但入度出度分布不同。Σ出度 = Σ入度 = 弧数 = 6，完全有向图应有 4×3=12 条弧。该图存在 v0→v1→v2→v3→v0 的回路。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch06-02",
+        "ds-ch06-03",
+        "ds-ch05-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第6章 图",
+      "order": 1
+    },
+    {
+      "id": "ds-ch06-02",
+      "title": "图的存储结构：邻接矩阵与邻接表",
+      "section": "6.2 图的存储结构",
+      "summary": "图的两种主流存储是邻接矩阵与邻接表。邻接矩阵用 n×n 的二维数组表示边，空间 O(n²)，判两点是否相邻 O(1)，适合稠密图，无向图的矩阵一定对称；邻接表用「表头数组 + 边链表」，空间 O(n+e)，适合稀疏图，求某顶点的度需遍历链表。有向图还可用十字链表，无向图可用邻接多重表压缩重复存储。",
+      "content": "## 一、邻接矩阵（数组表示法）\n\n```c\n#define MAXV 100\ntypedef struct {\n    VertexType vexs[MAXV];        /* 顶点表 */\n    int arcs[MAXV][MAXV];         /* 邻接矩阵：权值或 0/1 */\n    int vexnum, arcnum;           /* 顶点数、边数 */\n    int kind;                     /* 有向图 / 无向图 / 有向网 / 无向网 */\n} MGraph;\n```\n\n- 无权图：`arcs[i][j] = 1` 表示有边，`0` 表示无边；网则存权值，无边用 `∞`（实现中常用一个极大值如 `INT_MAX`）。\n- **无向图的邻接矩阵一定对称**，可只存上三角节省一半空间。\n- 主对角线元素为 0（简单图无自环）。\n\n**性质与结论**：\n\n| 结论 | 说明 |\n|---|---|\n| 空间复杂度 | `O(n²)`，与边数无关 |\n| 判 vi、vj 是否相邻 | `O(1)`，直接查 `arcs[i][j]` |\n| 求顶点的度 | 无向图 = 第 i 行之和；有向图出度 = 行和、入度 = 列和 |\n| 遍历所有邻接点 | `O(n)`，稀疏图会扫大量 0 |\n| 邻接矩阵是否唯一 | **唯一**（顶点次序确定后） |\n\n## 二、邻接表（链式存储）\n\n```c\ntypedef struct ArcNode {          /* 边表结点 */\n    int adjvex;                   /* 该边指向的顶点位置 */\n    struct ArcNode *nextarc;      /* 指向下一条边 */\n    /* InfoType *info;  网中存权值 */\n} ArcNode;\n\ntypedef struct VNode {            /* 表头结点 */\n    VertexType data;\n    ArcNode *firstarc;            /* 第一条依附该顶点的边 */\n} VNode, AdjList[MAXV];\n\ntypedef struct {\n    AdjList vertices;\n    int vexnum, arcnum;\n    int kind;\n} ALGraph;\n```\n\n- 无向图的每条边在两个顶点的链表中**各存一次**，故边结点总数为 **2e**。\n- 有向图每条弧只存一次，边结点数 = 弧数 e；**求入度需扫描全表**。\n- 用头插法建表时，链表中的邻接点是**逆序**的；邻接表的表示**不唯一**（同一图可有多种链表次序）。\n- 空间复杂度 `O(n + e)`，求顶点 vi 的度的时间 = O(该链表长度)。\n\n## 三、两种存储的对比\n\n| 对比项 | 邻接矩阵 | 邻接表 |\n|---|---|---|\n| 空间 | O(n²) | O(n + e) |\n| 适用 | 稠密图 | 稀疏图 |\n| 判两点相邻 | O(1) | O(该顶点度) |\n| 求顶点度 | O(n) | 无向 O(度)；有向求入度 O(n+e) |\n| 找所有邻接点 | O(n) | O(度)，效率高 |\n| 表示是否唯一 | 唯一 | 不唯一 |\n| DFS/BFS 总时间 | O(n²) | O(n + e) |\n\n## 四、其它存储方式\n\n- **逆邻接表**：有向图中以「弧头」为索引建链表，便于快速求入度。\n- **十字链表**：有向图的链式存储，每条弧一个结点（`tailvex, headvex, hlink, tlink`），每个顶点有「以它为弧头」和「以它为弧尾」两条链，**入度出度都能 O(1) 求得**。\n- **邻接多重表**：无向图的链式存储，**每条边只存一个结点**（含两个顶点域和两条链域），解决了邻接表把一条边存两次的空间浪费。",
+      "keyPoints": [
+        "邻接矩阵空间 O(n²)、判邻接 O(1)，适合稠密图；无向图的邻接矩阵必对称",
+        "邻接表空间 O(n+e)，适合稀疏图；无向图边结点数为 2e，有向图为 e",
+        "邻接矩阵中：无向图顶点度 = 行和；有向图出度 = 行和、入度 = 列和",
+        "邻接表中：无向图度 = 链表长度；有向图出度 = 链表长度，入度需遍历全表",
+        "基于邻接矩阵的 DFS/BFS 时间 O(n²)，基于邻接表为 O(n+e)",
+        "邻接矩阵表示唯一，邻接表表示不唯一（边插入次序不同结果不同）"
+      ],
+      "pitfalls": [
+        "误认为无向图邻接表的边结点数等于 e（实际是 2e）",
+        "邻接矩阵存网时用 0 表示「无边」，与权值为 0 的边混淆（应使用一个极大哨兵值）",
+        "以为邻接表能 O(1) 求有向图顶点的入度（需借助逆邻接表或十字链表）",
+        "邻接矩阵只开 n 行却按 n+1 索引，或忘记把主对角线清零"
+      ],
+      "examples": [
+        {
+          "title": "邻接矩阵建图：输出矩阵、各顶点度并检验对称性",
+          "code": "#include <stdio.h>\n\n#define MAXV 6\ntypedef int VertexType;\n\ntypedef struct {\n    VertexType vexs[MAXV];\n    int arcs[MAXV][MAXV];\n    int vexnum, arcnum;\n    int kind;                    /* 0 = 无向图, 1 = 有向图 */\n} MGraph;\n\nstatic void CreateMGraph(MGraph *G, const int edges[][2],\n                         int n, int e, int directed)\n{\n    int i, j, k;\n    G->vexnum = n;\n    G->arcnum = e;\n    G->kind = directed;\n    for (i = 0; i < n; i++) G->vexs[i] = i;\n    for (i = 0; i < n; i++)                 /* 初始化全 0 */\n        for (j = 0; j < n; j++)\n            G->arcs[i][j] = 0;\n    for (k = 0; k < e; k++) {\n        i = edges[k][0];\n        j = edges[k][1];\n        G->arcs[i][j] = 1;\n        if (!directed) G->arcs[j][i] = 1;   /* 无向图置对称位 */\n    }\n}\n\nstatic int IsSymmetric(const MGraph *G)\n{\n    int i, j;\n    for (i = 0; i < G->vexnum; i++)\n        for (j = 0; j < i; j++)\n            if (G->arcs[i][j] != G->arcs[j][i]) return 0;\n    return 1;\n}\n\nint main(void)\n{\n    static const int edges[7][2] =\n        { {0,1}, {0,2}, {1,2}, {1,3}, {2,3}, {2,4}, {3,4} };\n    MGraph G;\n    int i, j, sum = 0;\n\n    CreateMGraph(&G, edges, 5, 7, 0);\n\n    printf(\"邻接矩阵:\\n\");\n    for (i = 0; i < G.vexnum; i++) {\n        int d = 0;\n        printf(\"  v%d:\", i);\n        for (j = 0; j < G.vexnum; j++) {\n            printf(\" %d\", G.arcs[i][j]);\n            d += G.arcs[i][j];\n        }\n        printf(\"   度 = %d\\n\", d);\n        sum += d;\n    }\n\n    printf(\"边数 e = %d, 度之和 = %d\\n\", G.arcnum, sum);\n    printf(\"矩阵是否对称: %s\\n\", IsSymmetric(&G) ? \"是\" : \"否\");\n    printf(\"空间占用 = %d 个 int 单元 (n^2)\\n\", G.vexnum * G.vexnum);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "邻接矩阵:\n  v0: 0 1 1 0 0   度 = 2\n  v1: 1 0 1 1 0   度 = 3\n  v2: 1 1 0 1 1   度 = 4\n  v3: 0 1 1 0 1   度 = 3\n  v4: 0 0 1 1 0   度 = 2\n边数 e = 7, 度之和 = 14\n矩阵是否对称: 是\n空间占用 = 25 个 int 单元 (n^2)",
+          "note": "同一张 5 顶点 7 边的无向图。邻接矩阵 5×5 = 25 个单元，其中只有 14 个 1，稀疏信息大量浪费，这正是邻接表存在的理由。",
+          "runnable": true
+        },
+        {
+          "title": "邻接表建图：输出各链表、边结点数并与矩阵对比空间",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 5\n\ntypedef struct ArcNode {\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct {\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nstatic void AddArc(int i, int j)          /* 头插法 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n    if (p == NULL) { perror(\"malloc\"); exit(1); }\n    p->adjvex = j;\n    p->nextarc = G[i].firstarc;\n    G[i].firstarc = p;\n}\n\nstatic void FreeGraph(void)\n{\n    int i;\n    for (i = 0; i < MAXV; i++) {\n        ArcNode *p = G[i].firstarc;\n        while (p != NULL) {\n            ArcNode *q = p->nextarc;\n            free(p);\n            p = q;\n        }\n        G[i].firstarc = NULL;\n    }\n}\n\nint main(void)\n{\n    static const int edges[7][2] =\n        { {0,1}, {0,2}, {1,2}, {1,3}, {2,3}, {2,4}, {3,4} };\n    int k, i, total = 0;\n\n    for (i = 0; i < MAXV; i++) G[i].firstarc = NULL;\n    for (k = 0; k < 7; k++) {\n        AddArc(edges[k][0], edges[k][1]);\n        AddArc(edges[k][1], edges[k][0]);  /* 无向图两边都存 */\n    }\n\n    printf(\"邻接表(头插法, 故为逆序):\\n\");\n    for (i = 0; i < MAXV; i++) {\n        ArcNode *p;\n        int d = 0;\n        printf(\"  v%d ->\", i);\n        for (p = G[i].firstarc; p != NULL; p = p->nextarc) {\n            printf(\" %d\", p->adjvex);\n            d++;\n        }\n        printf(\"   度 = %d\\n\", d);\n        total += d;\n    }\n\n    printf(\"边结点数 = %d = 2 × e(%d)\\n\", total, total / 2);\n    printf(\"空间占用 = %d 个表头 + %d 个边结点\\n\", MAXV, total);\n\n    FreeGraph();\n    return 0;\n}",
+          "stdin": "",
+          "expected": "邻接表(头插法, 故为逆序):\n  v0 -> 2 1   度 = 2\n  v1 -> 3 2 0   度 = 3\n  v2 -> 4 3 1 0   度 = 4\n  v3 -> 4 2 1   度 = 3\n  v4 -> 3 2   度 = 2\n边结点数 = 14 = 2 × e(7)\n空间占用 = 5 个表头 + 14 个边结点",
+          "note": "与上一例是同一张图。头插法使每条链表呈逆序，这也说明邻接表的表示不唯一。14 个边结点 + 5 个表头，远少于矩阵的 25 个单元。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch06-01",
+        "ds-ch06-03",
+        "ds-ch02-03",
+        "ds-ch04-02"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第6章 图",
+      "order": 2
+    },
+    {
+      "id": "ds-ch06-03",
+      "title": "图的遍历：DFS 与 BFS",
+      "section": "6.3 图的遍历",
+      "summary": "图的遍历是从某一顶点出发，沿边访问图中所有顶点且每个顶点仅访问一次。深度优先 DFS 用递归或显式栈，思路与树的先序遍历一致；广度优先 BFS 用队列，思路与树的层次遍历一致。二者都必须借助 visited 数组防止重复访问与死循环。基于邻接矩阵的复杂度是 O(n²)，基于邻接表是 O(n+e)。",
+      "content": "## 一、深度优先搜索 DFS\n\n思想：从起点 v 出发，访问 v 并标记，然后**依次考察 v 的每个未被访问的邻接点 w**，从 w 出发继续 DFS；若 w 已访问过则看下一个邻接点；v 的所有邻接点都处理完才回溯。\n\n```c\nint visited[MAXV];                 /* 必须全局或调用前清零 */\n\nvoid DFS(ALGraph *G, int v)\n{\n    ArcNode *p;\n    visited[v] = 1;\n    printf(\"%d \", v);              /* 访问 v */\n    for (p = G->vertices[v].firstarc; p != NULL; p = p->nextarc)\n        if (!visited[p->adjvex])\n            DFS(G, p->adjvex);\n}\n```\n\n- 递归实现本质是**栈**；非递归实现需自己维护栈。\n- DFS 序列对应树的**先序遍历**思想。\n- 若图非连通，需对每个未访问顶点调用一次 DFS，调用次数 = **连通分量个数**；这些 DFS 树构成**深度优先生成森林**。\n\n## 二、广度优先搜索 BFS\n\n思想：访问起点 v 后，**依次访问 v 的所有未访问邻接点**，再按同样次序访问这些邻接点的邻接点，即「一层一层」向外扩展。\n\n```c\nvoid BFS(ALGraph *G, int v)\n{\n    int queue[MAXV], front = 0, rear = 0;\n    ArcNode *p;\n    visited[v] = 1;\n    printf(\"%d \", v);\n    queue[rear++] = v;\n    while (front < rear) {\n        int u = queue[front++];\n        for (p = G->vertices[u].firstarc; p != NULL; p = p->nextarc) {\n            int w = p->adjvex;\n            if (!visited[w]) {\n                visited[w] = 1;     /* 入队时立即标记！ */\n                printf(\"%d \", w);\n                queue[rear++] = w;\n            }\n        }\n    }\n}\n```\n\nBFS 序列对应树的**层次遍历**思想；BFS 得到的树称**广度优先生成树**。\n\n## 三、复杂度\n\n| 存储方式 | 时间复杂度 | 说明 |\n|---|---|---|\n| 邻接矩阵 | `O(n²)` | 每个顶点都要扫描一整行 |\n| 邻接表 | `O(n + e)` | n 个顶点入栈/队一次，e（无向图 2e）条边各处理一次 |\n\n两种遍历的**空间复杂度都是 O(n)**（visited 数组 + 栈或队列，最坏 n 个元素）。\n\n## 四、遍历序列的唯一性\n\n- 遍历序列**不唯一**，取决于：① 存储结构（邻接矩阵唯一、邻接表不唯一）；② 起始顶点；③ 邻接点的考察次序。\n- 但若**存储结构与起点都确定**，DFS 与 BFS 的序列是**唯一确定**的。\n- 常考题型：给出邻接表/矩阵与起点，手写遍历序列。\n\n## 五、主要应用\n\n| 应用 | 用哪种遍历 |\n|---|---|\n| 求连通分量个数 | DFS 或 BFS，对每个未访问点调一次 |\n| 构造生成树 / 生成森林 | 遍历过程中记录走过的边 |\n| 判无向图是否连通 | 一次 DFS 后看 visited 是否全为真 |\n| 求顶点到起点的最少边数路径 | **BFS**（无权图最短路径） |\n| 判有向图是否有环（配合入度） | DFS + 栈中标志，或拓扑排序 |\n| 求图中所有简单路径 | DFS（回溯） |\n\n⚠️ 无权图中「从起点出发的最短路径（边数最少）」必须用 **BFS** 求；DFS 找到的路径不保证最短。",
+      "keyPoints": [
+        "DFS 用递归（本质是栈），BFS 用队列，二者都必须配合 visited 标记数组",
+        "BFS 必须在「入队时」立即置 visited，若等到出队才置会导致同一顶点重复入队",
+        "邻接矩阵下 DFS/BFS 为 O(n²)，邻接表下为 O(n+e)，空间均为 O(n)",
+        "对非连通图，DFS/BFS 的调用次数就是连通分量个数，生成的树构成生成森林",
+        "遍历序列不唯一，取决于存储结构、起点与邻接点考察次序；但三者确定后序列唯一",
+        "无权图的最少边数路径由 BFS 得到，DFS 不保证最短"
+      ],
+      "pitfalls": [
+        "忘记在每次遍历前把 visited 数组清零，第二次遍历结果全错",
+        "BFS 在出队时才标记 visited，造成队列膨胀甚至重复输出",
+        "对非连通图只从一个顶点调用一次 DFS，就断言图连通",
+        "递归 DFS 用于顶点很多的稀疏图时未考虑栈深度，可能栈溢出"
+      ],
+      "examples": [
+        {
+          "title": "邻接表上的 DFS 与 BFS（同一张图，两种序列）",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 5\n\ntypedef struct ArcNode {\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct {\n    ArcNode *firstarc;\n} VNode;\n\ntypedef struct {\n    VNode vertices[MAXV];\n    int vexnum, arcnum;\n} ALGraph;\n\nstatic int visited[MAXV];\n\nstatic void AddArc(ALGraph *G, int i, int j)     /* 头插法 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n    if (p == NULL) { perror(\"malloc\"); exit(1); }\n    p->adjvex = j;\n    p->nextarc = G->vertices[i].firstarc;\n    G->vertices[i].firstarc = p;\n}\n\nstatic void CreateGraph(ALGraph *G, const int edges[][2], int n, int e)\n{\n    int k, i;\n    G->vexnum = n;\n    G->arcnum = e;\n    for (i = 0; i < n; i++) G->vertices[i].firstarc = NULL;\n    for (k = 0; k < e; k++) {\n        AddArc(G, edges[k][0], edges[k][1]);\n        AddArc(G, edges[k][1], edges[k][0]);     /* 无向图 */\n    }\n}\n\nstatic void DFS(ALGraph *G, int v)\n{\n    ArcNode *p;\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (p = G->vertices[v].firstarc; p != NULL; p = p->nextarc)\n        if (!visited[p->adjvex]) DFS(G, p->adjvex);\n}\n\nstatic void BFS(ALGraph *G, int v)\n{\n    int queue[MAXV], front = 0, rear = 0;\n    ArcNode *p;\n    visited[v] = 1;\n    printf(\"%d \", v);\n    queue[rear++] = v;\n    while (front < rear) {\n        int u = queue[front++];\n        for (p = G->vertices[u].firstarc; p != NULL; p = p->nextarc) {\n            int w = p->adjvex;\n            if (!visited[w]) {\n                visited[w] = 1;                  /* 入队即标记 */\n                printf(\"%d \", w);\n                queue[rear++] = w;\n            }\n        }\n    }\n}\n\nstatic void FreeGraph(ALGraph *G)\n{\n    int i;\n    for (i = 0; i < G->vexnum; i++) {\n        ArcNode *p = G->vertices[i].firstarc;\n        while (p != NULL) { ArcNode *q = p->nextarc; free(p); p = q; }\n        G->vertices[i].firstarc = NULL;\n    }\n}\n\nint main(void)\n{\n    static const int edges[7][2] =\n        { {0,1}, {0,2}, {1,2}, {1,3}, {2,3}, {2,4}, {3,4} };\n    ALGraph G;\n    int i;\n\n    CreateGraph(&G, edges, 5, 7);\n\n    printf(\"邻接表: \");\n    for (i = 0; i < 5; i++) {\n        ArcNode *p;\n        printf(\"| v%d:\", i);\n        for (p = G.vertices[i].firstarc; p != NULL; p = p->nextarc)\n            printf(\"->%d\", p->adjvex);\n        printf(\" \");\n    }\n    printf(\"\\n\");\n\n    for (i = 0; i < 5; i++) visited[i] = 0;\n    printf(\"DFS(从 v0): \");\n    DFS(&G, 0);\n    printf(\"\\n\");\n\n    for (i = 0; i < 5; i++) visited[i] = 0;\n    printf(\"BFS(从 v0): \");\n    BFS(&G, 0);\n    printf(\"\\n\");\n\n    FreeGraph(&G);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "邻接表: | v0:->2->1 | v1:->3->2->0 | v2:->4->3->1->0 | v3:->4->2->1 | v4:->3->2 \nDFS(从 v0): 0 2 4 3 1 \nBFS(从 v0): 0 2 1 4 3 ",
+          "note": "头插法使 v0 的链表是 [2,1]，所以 DFS 先走 2，得到 0 2 4 3 1；BFS 先把 0 的邻接点 2、1 全部入队，得到 0 2 1 4 3。两条序列不同正体现了两种遍历的扩展方式差异。",
+          "runnable": true
+        },
+        {
+          "title": "非连通图：统计连通分量个数并输出生成森林",
+          "code": "#include <stdio.h>\n\n#define N 6\n\n/* 邻接矩阵：0-1-2 一条链、3-4 一条边、5 孤立点 */\nstatic const int A[N][N] = {\n    {0, 1, 0, 0, 0, 0},\n    {1, 0, 1, 0, 0, 0},\n    {0, 1, 0, 0, 0, 0},\n    {0, 0, 0, 0, 1, 0},\n    {0, 0, 0, 1, 0, 0},\n    {0, 0, 0, 0, 0, 0}\n};\n\nstatic int visited[N];\n\nstatic void DFS(int v)\n{\n    int w;\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < N; w++)               /* 邻接矩阵：扫描一整行 */\n        if (A[v][w] && !visited[w]) DFS(w);\n}\n\nint main(void)\n{\n    int i, j, cnt = 0, e = 0;\n\n    for (i = 0; i < N; i++) visited[i] = 0;\n\n    printf(\"深度优先生成森林:\\n\");\n    for (i = 0; i < N; i++) {\n        if (!visited[i]) {\n            printf(\"  分量%d: \", ++cnt);   /* 每个未访问点起一棵树 */\n            DFS(i);\n            printf(\"\\n\");\n        }\n    }\n\n    for (i = 0; i < N; i++)\n        for (j = i + 1; j < N; j++)\n            if (A[i][j]) e++;\n\n    printf(\"连通分量个数 = %d\\n\", cnt);\n    printf(\"边数 e = %d\\n\", e);\n    printf(\"生成森林边数 = n - 分量数 = %d\\n\", N - cnt);\n    printf(\"该图是否连通: %s\\n\", cnt == 1 ? \"是\" : \"否\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "深度优先生成森林:\n  分量1: 0 1 2 \n  分量2: 3 4 \n  分量3: 5 \n连通分量个数 = 3\n边数 e = 3\n生成森林边数 = n - 分量数 = 3\n该图是否连通: 否",
+          "note": "DFS 的外层循环调用了 3 次，说明有 3 个连通分量（{0,1,2}、{3,4}、{5}）。孤立点也自成一个分量。森林边数 n − 分量数 = 3，正好等于图的边数，这是判定「无环」的依据。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch06-01",
+        "ds-ch06-02",
+        "ds-ch03-02",
+        "ds-ch05-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第6章 图",
+      "order": 3
+    },
+    {
+      "id": "ds-ch06-04",
+      "title": "最小生成树、最短路径、拓扑排序与关键路径",
+      "section": "6.4-6.5 最小生成树、最短路径、拓扑排序与关键路径",
+      "summary": "图的四大经典应用：Prim/Kruskal 求最小生成树，Dijkstra 求单源最短路径，拓扑排序判环定序，AOE 网关键路径求工期。",
+      "content": "\n## 最小生成树（MST）\n\n连通加权无向图的极小代价生成树：n 个顶点、恰好 n−1 条边、权值和最小。\n\n### Prim（从顶点长树）\n\n- 维护 lowcost 数组：每个未并入顶点到已并入集合的最小边权\n- 每步选 lowcost 最小的顶点并入，并入后用它更新其余顶点\n- 时间 O(n²)，与边数无关 → **适合稠密图**\n\n### Kruskal（从边构树）\n\n- 所有边按权升序排序，依次尝试加入\n- 若边的两端已连通（**并查集**判环）则跳过，否则合并两端点集\n- 时间 O(e·log e)（瓶颈在排序）→ **适合稀疏图**\n\n两法所得 MST 总权值相同，但树的形态不一定唯一（存在等权边时）。\n\n## Dijkstra（单源最短路径）\n\n- 贪心策略：dist[] 存源点到各点当前最短距离，s[] 标记已并入集合 S\n- 每轮从 V−S 中选 dist 最小者并入 S，再**松弛**其邻接点：\n  ```c\n  if (dist[u] + g[u][j] < dist[j]) dist[j] = dist[u] + g[u][j];\n  ```\n- 时间 O(n²)；**不支持负权边**（负权会使已并入的点被推翻）\n\n## 拓扑排序（AOV 网）\n\n- AOV 网：顶点表示活动，有向边表示先行制约关系\n- 算法：反复取**入度为 0** 的顶点输出，并将其所有后继入度减 1\n- 若输出顶点数 < n，说明图中**存在有向环**，拓扑序列不存在\n\n## 关键路径（AOE 网）\n\n- AOE 网：边表示活动（带权=持续时间），顶点表示事件\n- 事件最早发生时间 ve：从源点**顺推取 max**（所有前驱都完成事件才发生）\n- 事件最迟发生时间 vl：从汇点**逆推取 min**（不推迟总工期）\n- 活动最早 e = ve[弧尾]，最迟 l = vl[弧头] − 权值；**e == l 的活动为关键活动**\n- 关键活动连成的路径即关键路径，其长度就是工程最短总工期\n",
+      "keyPoints": [
+        "n 个顶点的生成树恰有 n−1 条边，MST 是权值和最小的生成树",
+        "Prim O(n²) 与边数无关适合稠密图；Kruskal O(e·log e) 适合稀疏图",
+        "Kruskal 用并查集判断加入边是否成环，成环则跳过",
+        "Dijkstra 贪心求单源最短路径，不支持负权边，每轮并入 dist 最小的未定点并松弛",
+        "拓扑排序反复取入度 0 顶点，输出数 < n 则图有环",
+        "AOE 网 ve 顺推取 max、vl 逆推取 min，e==l 的活动为关键活动"
+      ],
+      "pitfalls": [
+        "MST 总权值唯一但形态不一定唯一，别误以为最小生成树只有一棵",
+        "Kruskal 忘记判环会把成环边也选进来，边数超过 n−1",
+        "Dijkstra 松弛时只更新未并入 S 的顶点，且负权图必须换 Bellman-Ford",
+        "关键路径 ve 取 max、vl 取 min，方向或取值写反结果全错"
+      ],
+      "examples": [
+        {
+          "title": "Kruskal 求最小生成树",
+          "code": "\n#include <stdio.h>\n\n#define MAXE 20\n\ntypedef struct { int u, v, w; } Edge;\n\n/* 并查集：找 x 所在树的根 */\nstatic int find(int parent[], int x)\n{\n    while (parent[x] != x)\n        x = parent[x];\n    return x;\n}\n\nint main(void)\n{\n    int n = 6, m = 10;\n    Edge e[MAXE] = {\n        {0,1,6},{0,2,1},{0,3,5},{1,2,5},{1,4,3},\n        {2,3,5},{2,4,6},{2,5,4},{3,5,2},{4,5,6}\n    };\n    int parent[6];\n    int i, j, k, total = 0, cnt = 0;\n\n    /* 按权升序排序（简单选择排序，等权保持原相对次序） */\n    for (i = 0; i < m - 1; i++) {\n        k = i;\n        for (j = i + 1; j < m; j++)\n            if (e[j].w < e[k].w) k = j;\n        if (k != i) { Edge t = e[i]; e[i] = e[k]; e[k] = t; }\n    }\n\n    for (i = 0; i < n; i++) parent[i] = i;\n\n    for (i = 0; i < m && cnt < n - 1; i++) {\n        int fu = find(parent, e[i].u);\n        int fv = find(parent, e[i].v);\n        if (fu != fv) {              /* 不成环才选入 */\n            parent[fu] = fv;\n            printf(\"select(%d,%d) w=%d\\n\", e[i].u, e[i].v, e[i].w);\n            total += e[i].w;\n            cnt++;\n        }\n    }\n    printf(\"edges=%d total=%d\\n\", cnt, total);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "select(0,2) w=1\nselect(3,5) w=2\nselect(1,4) w=3\nselect(2,5) w=4\nselect(1,2) w=5\nedges=5 total=15",
+          "note": "边排序后依次尝试加入，用并查集判环；6 顶点 10 边的经典图，MST 总权 15",
+          "runnable": true
+        },
+        {
+          "title": "Dijkstra 单源最短路径",
+          "code": "\n#include <stdio.h>\n\n#define INF 100000\n#define N 6\n\nint main(void)\n{\n    int g[N][N], dist[N], s[N];\n    int edges[10][3] = {\n        {0,1,6},{0,2,1},{0,3,5},{1,2,5},{1,4,3},\n        {2,3,5},{2,4,6},{2,5,4},{3,5,2},{4,5,6}\n    };\n    int i, j, k;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            g[i][j] = INF;\n    for (k = 0; k < 10; k++) {       /* 无向图建邻接矩阵 */\n        g[edges[k][0]][edges[k][1]] = edges[k][2];\n        g[edges[k][1]][edges[k][0]] = edges[k][2];\n    }\n\n    for (i = 0; i < N; i++) { dist[i] = g[0][i]; s[i] = 0; }\n    dist[0] = 0; s[0] = 1;\n\n    for (i = 1; i < N; i++) {\n        int min = INF, u = -1;\n        for (j = 0; j < N; j++)      /* 选未并入的最小 dist */\n            if (!s[j] && dist[j] < min) { min = dist[j]; u = j; }\n        if (u < 0) break;\n        s[u] = 1;\n        for (j = 0; j < N; j++)      /* 松弛 u 的邻接点 */\n            if (!s[j] && g[u][j] < INF && dist[u] + g[u][j] < dist[j])\n                dist[j] = dist[u] + g[u][j];\n    }\n\n    for (i = 0; i < N; i++)\n        printf(\"dist[%d]=%d\\n\", i, dist[i]);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "dist[0]=0\ndist[1]=6\ndist[2]=1\ndist[3]=5\ndist[4]=7\ndist[5]=5",
+          "note": "从顶点 0 出发，输出到各顶点的最短距离 0 6 1 5 7 5",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch06-01",
+        "ds-ch06-02",
+        "ds-ch06-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第6章 图",
+      "order": 4
+    }
+  ]
+}

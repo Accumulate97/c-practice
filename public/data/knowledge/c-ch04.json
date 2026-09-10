@@ -52,7 +52,7 @@
         "c-ch04-03",
         "c-ch04-05"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 1
@@ -103,7 +103,7 @@
         "c-ch04-03",
         "c-ch04-04"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 2
@@ -154,7 +154,7 @@
         "c-ch04-02",
         "c-ch04-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 3
@@ -205,7 +205,7 @@
         "c-ch04-05",
         "c-ch04-23"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 4
@@ -255,7 +255,7 @@
         "c-ch04-04",
         "c-ch04-07"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 5
@@ -306,7 +306,7 @@
         "c-ch04-08",
         "c-ch04-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 6
@@ -356,7 +356,7 @@
         "c-ch04-06",
         "c-ch04-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 7
@@ -406,7 +406,7 @@
         "c-ch04-09",
         "c-ch04-11"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 8
@@ -456,7 +456,7 @@
         "c-ch04-11",
         "c-ch04-25"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 9
@@ -506,7 +506,7 @@
         "c-ch04-07",
         "c-ch04-13"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 10
@@ -556,7 +556,7 @@
         "c-ch04-09",
         "c-ch04-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 11
@@ -608,7 +608,7 @@
         "c-ch04-11",
         "c-ch04-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 12
@@ -658,7 +658,7 @@
         "c-ch04-10",
         "c-ch04-06"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 13
@@ -708,7 +708,7 @@
         "c-ch04-12",
         "c-ch04-04"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 14
@@ -758,7 +758,7 @@
         "c-ch04-17",
         "c-ch04-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 15
@@ -808,7 +808,7 @@
         "c-ch04-18",
         "c-ch04-21"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 16
@@ -859,7 +859,7 @@
         "c-ch04-18",
         "c-ch04-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 17
@@ -909,7 +909,7 @@
         "c-ch04-17",
         "c-ch04-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 18
@@ -959,7 +959,7 @@
         "c-ch04-17",
         "c-ch04-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 19
@@ -1009,7 +1009,7 @@
         "c-ch04-15",
         "c-ch04-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 20
@@ -1059,7 +1059,7 @@
         "c-ch04-04",
         "c-ch04-16"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 21
@@ -1109,7 +1109,7 @@
         "c-ch04-04",
         "c-ch04-25"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 22
@@ -1159,7 +1159,7 @@
         "c-ch04-24",
         "c-ch04-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 23
@@ -1209,7 +1209,7 @@
         "c-ch04-12",
         "c-ch04-28"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 24
@@ -1258,7 +1258,7 @@
         "c-ch04-22",
         "c-ch04-28"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 25
@@ -1310,7 +1310,7 @@
         "c-ch04-20",
         "c-ch04-23"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 26
@@ -1360,7 +1360,7 @@
         "c-ch04-24",
         "c-ch04-28"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 27
@@ -1411,7 +1411,7 @@
         "c-ch04-26",
         "c-ch04-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
       "order": 28

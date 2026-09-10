@@ -43,7 +43,7 @@
         "c-ch02-04",
         "c-ch02-24"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 1
@@ -87,7 +87,7 @@
         "c-ch02-11",
         "c-ch02-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 2
@@ -132,7 +132,7 @@
         "c-ch02-04",
         "c-ch02-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 3
@@ -175,7 +175,7 @@
         "c-ch02-03",
         "c-ch02-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 4
@@ -218,7 +218,7 @@
         "c-ch02-12",
         "c-ch02-31"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 5
@@ -262,7 +262,7 @@
         "c-ch02-27",
         "c-ch02-31"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 6
@@ -305,7 +305,7 @@
         "c-ch02-09",
         "c-ch02-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 7
@@ -349,7 +349,7 @@
         "c-ch02-22",
         "c-ch02-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 8
@@ -395,7 +395,7 @@
         "c-ch02-10",
         "c-ch02-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 9
@@ -437,7 +437,7 @@
         "c-ch02-09",
         "c-ch02-24"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 10
@@ -479,7 +479,7 @@
         "c-ch02-12",
         "c-ch02-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 11
@@ -526,7 +526,7 @@
         "c-ch02-09",
         "c-ch02-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 12
@@ -569,7 +569,7 @@
         "c-ch02-26",
         "c-ch02-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 13
@@ -613,7 +613,7 @@
         "c-ch02-33",
         "c-ch02-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 14
@@ -658,7 +658,7 @@
         "c-ch02-27",
         "c-ch02-29"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 15
@@ -702,7 +702,7 @@
         "c-ch02-15",
         "c-ch02-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 16
@@ -747,7 +747,7 @@
         "c-ch02-26",
         "c-ch02-35"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 17
@@ -789,7 +789,7 @@
         "c-ch02-26",
         "c-ch02-23"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 18
@@ -831,7 +831,7 @@
         "c-ch02-20",
         "c-ch02-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 19
@@ -872,7 +872,7 @@
         "c-ch02-19",
         "c-ch02-35"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 20
@@ -916,7 +916,7 @@
         "c-ch02-25",
         "c-ch02-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 21
@@ -963,7 +963,7 @@
         "c-ch02-26",
         "c-ch02-35"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 22
@@ -1006,7 +1006,7 @@
         "c-ch02-22",
         "c-ch02-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 23
@@ -1052,7 +1052,7 @@
         "c-ch02-07",
         "c-ch02-01"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 24
@@ -1093,7 +1093,7 @@
         "c-ch02-21",
         "c-ch02-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 25
@@ -1142,7 +1142,7 @@
         "c-ch02-22",
         "c-ch02-23"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 26
@@ -1191,7 +1191,7 @@
         "c-ch02-28",
         "c-ch02-29"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 27
@@ -1238,7 +1238,7 @@
         "c-ch02-29",
         "c-ch02-31"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 28
@@ -1286,7 +1286,7 @@
         "c-ch02-28",
         "c-ch02-13"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 29
@@ -1334,7 +1334,7 @@
         "c-ch02-32",
         "c-ch02-31"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 30
@@ -1386,7 +1386,7 @@
         "c-ch02-28",
         "c-ch02-30"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 31
@@ -1440,7 +1440,7 @@
         "c-ch02-26",
         "c-ch02-30"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 32
@@ -1500,7 +1500,7 @@
         "c-ch02-35",
         "c-ch02-13"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 33
@@ -1542,7 +1542,7 @@
         "c-ch02-33",
         "c-ch02-26"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 34
@@ -1589,7 +1589,7 @@
         "c-ch02-20",
         "c-ch02-22"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第2章 数据类型、运算符与表达式",
       "order": 35

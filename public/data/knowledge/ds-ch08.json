@@ -1,0 +1,197 @@
+{
+  "category": "ds",
+  "chapter": "第8章 排序",
+  "generated_at": "2026-09-10",
+  "count": 4,
+  "cards": [
+    {
+      "id": "ds-ch08-01",
+      "title": "排序的基本概念与稳定性",
+      "section": "8.1 排序的基本概念与稳定性",
+      "summary": "排序按关键字重排序列；稳定性看相同关键字相对次序是否保持，\"快选希堆\"不稳定，其余插入/冒泡/归并/基数稳定。",
+      "content": "\n## 排序的基本概念\n\n- 排序：将一组记录按关键字**递增或递减**重新排列\n- **内排序**：待排记录全部存放在内存中完成\n- **外排序**：记录太多，需在内存与外存之间多次往返\n- 衡量指标：**时间**（比较次数+移动次数）、**空间**（辅助存储）、**稳定性**\n\n## 稳定性\n\n- 定义：关键字相同的记录，排序前后**相对次序保持不变**，则算法稳定，否则不稳定\n- **稳定**：直接插入、折半插入、冒泡、归并、基数\n- **不稳定**：希尔、快速、简单选择、堆排序（口诀：**\"快选希堆\"不稳定**）\n- 不稳定 ≠ 低效：快排、堆排不稳定但平均性能最好\n\n## 内排序算法总表\n\n| 算法 | 平均时间 | 最坏时间 | 辅助空间 | 稳定性 |\n|---|---|---|---|---|\n| 直接插入 | O(n²) | O(n²) | O(1) | 稳定 |\n| 希尔 | ≈O(n^1.3) | O(n²) | O(1) | 不稳定 |\n| 冒泡 | O(n²) | O(n²) | O(1) | 稳定 |\n| 快速 | O(n log n) | O(n²) | O(log n) | 不稳定 |\n| 简单选择 | O(n²) | O(n²) | O(1) | 不稳定 |\n| 堆排序 | O(n log n) | O(n log n) | O(1) | 不稳定 |\n| 2 路归并 | O(n log n) | O(n log n) | O(n) | 稳定 |\n| 基数 | O(d(n+rd)) | O(d(n+rd)) | O(rd) | 稳定 |\n",
+      "keyPoints": [
+        "稳定性指相同关键字的记录排序前后相对次序不变",
+        "稳定：直接插入、折半插入、冒泡、归并、基数",
+        "不稳定：希尔、快速、简单选择、堆排序（口诀\"快选希堆\"）",
+        "时间性能看比较次数与移动次数，空间性能看辅助存储量",
+        "简单选择移动次数最少（至多 n−1 次交换），且与初始序列状态无关",
+        "内排序在内存中完成，外排序需内存与外存多次往返"
+      ],
+      "pitfalls": [
+        "把\"不稳定\"误解为\"效率低\"——快排堆排不稳定但平均最快",
+        "冒泡只有\"严格大于才交换\"才稳定；相等也交换就变不稳定",
+        "简单选择因远距离交换会改变相等元素的相对次序，是典型不稳定算法",
+        "折半插入虽减少比较次数但仍要移动元素，与直接插入同为 O(n²) 且都稳定"
+      ],
+      "examples": [
+        {
+          "title": "直接插入与冒泡：每趟输出",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\nstatic void printArr(const char *tag, const int a[], int n)\n{\n    int i;\n    printf(\"%s\", tag);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n}\n\n/* 直接插入排序（稳定） */\nstatic void insertSort(int a[], int n)\n{\n    int i, j;\n    for (i = 1; i < n; i++) {\n        if (a[i] < a[i - 1]) {\n            int t = a[i];\n            for (j = i - 1; j >= 0 && a[j] > t; j--)\n                a[j + 1] = a[j];\n            a[j + 1] = t;\n        }\n        printArr(\"insert pass: \", a, n);\n    }\n}\n\n/* 冒泡排序（稳定，带提前结束标志） */\nstatic void bubbleSort(int a[], int n)\n{\n    int i, j, exchanged;\n    for (i = 0; i < n - 1; i++) {\n        exchanged = 0;\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) {         /* 严格大于才交换 → 稳定 */\n                int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n                exchanged = 1;\n            }\n        printArr(\"bubble pass: \", a, n);\n        if (!exchanged) break;\n    }\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int b[N];\n    int i;\n\n    for (i = 0; i < N; i++) b[i] = a[i];\n    insertSort(a, N);\n    bubbleSort(b, N);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "insert pass: 38 49 65 97 76 13 27 49 \ninsert pass: 38 49 65 97 76 13 27 49 \ninsert pass: 38 49 65 97 76 13 27 49 \ninsert pass: 38 49 65 76 97 13 27 49 \ninsert pass: 13 38 49 65 76 97 27 49 \ninsert pass: 13 27 38 49 65 76 97 49 \ninsert pass: 13 27 38 49 49 65 76 97 \nbubble pass: 38 49 65 76 13 27 49 97 \nbubble pass: 38 49 65 13 27 49 76 97 \nbubble pass: 38 49 13 27 49 65 76 97 \nbubble pass: 38 13 27 49 49 65 76 97 \nbubble pass: 13 27 38 49 49 65 76 97 \nbubble pass: 13 27 38 49 49 65 76 97 ",
+          "note": "经典序列 49 38 65 97 76 13 27 49 分别跑直接插入与冒泡，每趟打印",
+          "runnable": true
+        },
+        {
+          "title": "简单选择排序：统计交换次数",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 简单选择排序（不稳定），*swaps 统计交换次数 */\nstatic void selectSort(int a[], int n, int *swaps)\n{\n    int i, j, k;\n    *swaps = 0;\n    for (i = 0; i < n - 1; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;\n        if (k != i) {\n            int t = a[i]; a[i] = a[k]; a[k] = t;\n            (*swaps)++;\n        }\n        printf(\"pass %d: \", i + 1);\n        for (j = 0; j < n; j++) printf(\"%d \", a[j]);\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int swaps = 0;\n\n    selectSort(a, N, &swaps);\n    printf(\"swaps=%d\\n\", swaps);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "pass 1: 13 38 65 97 76 49 27 49 \npass 2: 13 27 65 97 76 49 38 49 \npass 3: 13 27 38 97 76 49 65 49 \npass 4: 13 27 38 49 76 97 65 49 \npass 5: 13 27 38 49 49 97 65 76 \npass 6: 13 27 38 49 49 65 97 76 \npass 7: 13 27 38 49 49 65 76 97 \nswaps=7",
+          "note": "每趟选最小者交换到前部，至多 n−1 次交换；两个 49 的相对次序被改变，可见其不稳定",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "order": 1
+    },
+    {
+      "id": "ds-ch08-02",
+      "title": "插入类排序：直接插入、折半插入与希尔排序",
+      "section": "8.2 插入类排序",
+      "summary": "直接插入最好 O(n) 且稳定；折半插入只省比较不省移动；希尔按增量分组插入，平均≈O(n^1.3) 但不稳定。",
+      "content": "\n## 直接插入排序\n\n- 思想：把第 i 个记录插入到前面**已排好序**的 i−1 个记录中\n- 哨兵技巧：a[0] 暂存待插值，省去后移循环里的下标判断\n- 性能与初态相关：**最好（已有序）O(n)**；最坏（逆序）与平均 O(n²)\n- **稳定**、辅助空间 O(1)；适合 n 较小或基本有序的序列\n\n## 折半插入排序\n\n- 找插入位置时改用**折半查找**，位置确定后元素统一后移\n- **只减少比较次数（每个元素约 log2 i 次），移动次数与直接插入完全相同**，总时间仍 O(n²)\n- 要求顺序存储；**稳定**\n\n## 希尔排序（缩小增量法）\n\n- 取增量 gap，按下标模 gap 相同分组，**组内做直接插入排序**\n- 缩小增量（常取 n/2, n/4, …, 1）重复，直到 gap=1 的最后一趟普通插入排序\n- 原理：直接插入在**基本有序**时接近 O(n)，希尔先让序列\"宏观基本有序\"\n- 平均约 **O(n^1.3)**；**不稳定**（组间交错交换）；只能顺序存储，不适合链表\n",
+      "keyPoints": [
+        "直接插入最好情形（已有序）只需比较 n−1 次、不移动，O(n)",
+        "哨兵 a[0] 兼任暂存单元，免掉后移循环的越界判断",
+        "折半插入只减少比较次数，移动次数不变，复杂度仍 O(n²) 且稳定",
+        "希尔按增量分组做组内直接插入，增量逐趟减半直至 1",
+        "希尔平均≈O(n^1.3)，n 较大时明显优于直接插入，但不稳定",
+        "三种插入排序都要求顺序存储，希尔不能用于链式结构"
+      ],
+      "pitfalls": [
+        "误以为折半插入把复杂度降为 O(n log n)——元素后移仍是 O(n²)",
+        "希尔最后一趟增量必须为 1，否则结果不是有序序列",
+        "\"插入类都稳定\"是错的：直接插入、折半插入稳定，希尔不稳定",
+        "非哨兵实现后移循环条件要含 j>=0，漏了等号会少移一位"
+      ],
+      "examples": [
+        {
+          "title": "直接插入排序（哨兵法）",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 直接插入排序：a[0] 作哨兵兼暂存，数据在 a[1..n] */\nstatic void insertSort(int a[], int n)\n{\n    int i, j;\n    for (i = 2; i <= n; i++) {\n        if (a[i] < a[i - 1]) {\n            a[0] = a[i];                 /* 暂存待插值 */\n            for (j = i - 1; a[0] < a[j]; j--)\n                a[j + 1] = a[j];         /* 后移 */\n            a[j + 1] = a[0];             /* 插入到位 */\n        }\n        printf(\"pass %d: \", i - 1);\n        for (j = 1; j <= n; j++) printf(\"%d \", a[j]);\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int a[N + 1] = {0, 49, 38, 65, 97, 76, 13, 27, 49};\n\n    insertSort(a, N);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "pass 1: 38 49 65 97 76 13 27 49 \npass 2: 38 49 65 97 76 13 27 49 \npass 3: 38 49 65 97 76 13 27 49 \npass 4: 38 49 65 76 97 13 27 49 \npass 5: 13 38 49 65 76 97 27 49 \npass 6: 13 27 38 49 65 76 97 49 \npass 7: 13 27 38 49 49 65 76 97 ",
+          "note": "经典序列每趟打印一次；已有序部分始终保持递增",
+          "runnable": true
+        },
+        {
+          "title": "折半插入与希尔排序",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 折半插入排序：折半找插入位置，再统一后移 */\nstatic void binInsertSort(int a[], int n)\n{\n    int i, j, low, high, mid, t;\n    for (i = 1; i < n; i++) {\n        t = a[i];\n        low = 0; high = i - 1;\n        while (low <= high) {\n            mid = (low + high) / 2;\n            if (a[mid] > t) high = mid - 1;\n            else            low  = mid + 1;\n        }\n        for (j = i - 1; j >= low; j--)\n            a[j + 1] = a[j];\n        a[low] = t;\n    }\n}\n\n/* 希尔排序的一趟：对间隔 gap 的子序列做直接插入 */\nstatic void shellPass(int a[], int n, int gap)\n{\n    int i, j;\n    for (i = gap; i < n; i++) {\n        if (a[i] < a[i - gap]) {\n            int t = a[i];\n            for (j = i - gap; j >= 0 && a[j] > t; j -= gap)\n                a[j + gap] = a[j];\n            a[j + gap] = t;\n        }\n    }\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int b[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int gaps[3] = {4, 2, 1};\n    int g, i;\n\n    binInsertSort(a, N);\n    printf(\"binInsert: \");\n    for (i = 0; i < N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n\n    for (g = 0; g < 3; g++) {\n        shellPass(b, N, gaps[g]);\n        printf(\"gap=%d: \", gaps[g]);\n        for (i = 0; i < N; i++) printf(\"%d \", b[i]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "binInsert: 13 27 38 49 49 65 76 97 \ngap=4: 49 13 27 49 76 38 65 97 \ngap=2: 27 13 49 38 65 49 76 97 \ngap=1: 13 27 38 49 49 65 76 97 ",
+          "note": "折半插入结果与直接插入一致；希尔按 4、2、1 三趟增量收敛到有序",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch08-01",
+        "ds-ch02-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "order": 2
+    },
+    {
+      "id": "ds-ch08-03",
+      "title": "交换类与选择类排序：冒泡、快排、选择与堆",
+      "section": "8.3 交换类与选择类排序",
+      "summary": "冒泡稳定且可提前结束；快排平均 O(n log n) 但有序/逆序退化 O(n²) 且不稳定；简单选择移动少（≤n-1 次交换）；堆排序建堆+反复下调 O(n log n) 与初态无关。",
+      "content": "\n## 冒泡排序（交换类）\n\n- 思想：两两比较相邻元素，逆序则交换，每趟把最值\"冒\"到序列一端\n- 加 exchanged 标志：某趟无交换即已有序，提前结束，最好情形 O(n)\n- 平均/最坏 O(n²)；稳定（相等不交换）；辅助空间 O(1)\n\n## 快速排序（交换类，重点）\n\n- 思想：选枢轴 pivot，一趟 partition 分成\"≤pivot\"与\"≥pivot\"两段，枢轴归位后递归两段\n- 平均 O(n log n)，是平均性能最好的内部排序之一\n- 最坏 O(n²)：枢轴每次取到最值，发生在序列已有序或逆序（常取首元素为枢轴时）\n- 不稳定；递归栈平均 O(log n)、最坏 O(n)\n\n## 简单选择排序（选择类）\n\n- 思想：第 i 趟从 a[i..n] 选最小者与 a[i] 交换\n- 比较次数恒为 O(n²)（与初态无关），但移动次数很少，最多 n-1 次交换\n- 不稳定（如 {5*,5,2} 首趟 5* 与 2 交换后跑到了 5 之后）\n\n## 堆排序（选择类，重点）\n\n- 大根堆 a[i]≥a[2i] 且 a[i]≥a[2i+1]，小根堆相反\n- 两步：建初始堆（从最后一个非叶 n/2 起逐一下调）+ 反复\"取堆顶、末尾补、再下调\"\n- 建堆 O(n)、每次下调 O(log n)，总 O(n log n)，最好最坏平均相同\n- 不稳定；辅助空间 O(1)；适合 Top-K（n 个数取前 k 大/小）\n\n## 四种方法对比\n\n| 方法 | 平均 | 最坏 | 空间 | 稳定性 |\n|---|---|---|---|---|\n| 冒泡 | O(n²) | O(n²) | O(1) | 稳定 |\n| 快排 | O(n log n) | O(n²) | O(log n) | 不稳定 |\n| 简单选择 | O(n²) | O(n²) | O(1) | 不稳定 |\n| 堆排序 | O(n log n) | O(n log n) | O(1) | 不稳定 |\n",
+      "keyPoints": [
+        "冒泡加 exchanged 标志可在已有序时提前结束，最好 O(n)，稳定",
+        "快排以枢轴 partition 分治，平均 O(n log n)，是平均最快的内部排序之一",
+        "快排最坏 O(n²) 出现在序列已有序/逆序且取端点为枢轴时",
+        "简单选择比较次数恒为 O(n²)，但交换（移动）次数最多 n-1 次",
+        "堆排序建堆 O(n)、每趟下调 O(log n)，总 O(n log n) 且与初态无关",
+        "稳定性：冒泡/归并/插入稳定，快排/选择/堆/希尔不稳定"
+      ],
+      "pitfalls": [
+        "误以为快排任何情况都 O(n log n)——已有序取首元素为枢轴会退化 O(n²)",
+        "简单选择\"稳定\"是错的：跨距交换会打乱相等元素的相对次序",
+        "堆排序建堆须从最后一个非叶 n/2 起下调，起点或大小根方向弄错得不到堆",
+        "冒泡忘记 exchanged 提前退出，已有序仍会跑满 O(n²) 趟"
+      ],
+      "examples": [
+        {
+          "title": "快速排序（partition + 递归）",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 一趟划分：以 a[low] 为枢轴，返回枢轴最终位置 */\nstatic int partition(int a[], int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && a[high] >= pivot) high--;\n        a[low] = a[high];\n        while (low < high && a[low] <= pivot) low++;\n        a[high] = a[low];\n    }\n    a[low] = pivot;\n    return low;\n}\n\nstatic void quickSort(int a[], int low, int high)\n{\n    if (low < high) {\n        int p = partition(a, low, high);\n        quickSort(a, low, p - 1);\n        quickSort(a, p + 1, high);\n    }\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int i;\n    quickSort(a, 0, N - 1);\n    for (i = 0; i < N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "13 27 38 49 49 65 76 97 ",
+          "note": "经典序列 {49,38,65,97,76,13,27,49}，以首元素为枢轴递归划分",
+          "runnable": true
+        },
+        {
+          "title": "堆排序（建大根堆 + 反复下调）",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 自顶向下调整：使 a[s..m] 成为大根堆 */\nstatic void heapAdjust(int a[], int s, int m)\n{\n    int j, t = a[s];\n    for (j = 2 * s; j <= m; j *= 2) {\n        if (j < m && a[j] < a[j + 1]) j++;   /* 取较大孩子 */\n        if (t >= a[j]) break;                /* 已到位 */\n        a[s] = a[j]; s = j;                  /* 继续下沉 */\n    }\n    a[s] = t;\n}\n\n/* 堆排序：a[1..n] 存数据 */\nstatic void heapSort(int a[], int n)\n{\n    int i, t;\n    for (i = n / 2; i >= 1; i--) heapAdjust(a, i, n);   /* 建初始堆 */\n    for (i = n; i > 1; i--) {\n        t = a[1]; a[1] = a[i]; a[i] = t;                /* 堆顶与末尾交换 */\n        heapAdjust(a, 1, i - 1);                        /* 调整剩余 */\n    }\n}\n\nint main(void)\n{\n    int a[N + 1] = {0, 49, 38, 65, 97, 76, 13, 27, 49};\n    int i;\n    heapSort(a, N);\n    for (i = 1; i <= N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "13 27 38 49 49 65 76 97 ",
+          "note": "a[1..n] 存数据，先从 n/2 建大根堆，再逐趟取堆顶下沉",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch08-01",
+        "ds-ch05-02"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "order": 3
+    },
+    {
+      "id": "ds-ch08-04",
+      "title": "归并、基数与外部排序",
+      "section": "8.4 归并、基数排序与外部排序",
+      "summary": "2 路归并 O(n log n)、需 O(n) 辅助空间且稳定；基数排序 LSD 按位分配收集 O(d(n+rd)) 且稳定；外部排序=生成初始归并段+多路归并，以增大路数减少 I/O（概念级）。",
+      "content": "\n## 2 路归并排序\n\n- 思想：把序列看成 n 个有序段，两两归并成更长有序段，log n 趟后合成一段\n- 归并两段有序序列：双指针比较取小者，用 <= 取左段以保证稳定\n- 时间 O(n log n)（最好最坏平均相同），空间 O(n)（需等长辅助数组）\n- 稳定；是外部排序的基础\n\n## 基数排序（桶式，不基于比较）\n\n- 按关键字每一位做\"分配—收集\"，共 d 趟（d 为最大位数）\n- LSD（最低位优先）：从个位到最高位，每趟必须稳定，否则高位序被破坏\n- 时间 O(d(n+rd))，rd 为基数（十进制 rd=10）；空间 O(rd+n)\n- 稳定；适合关键字可分解、位数少、取值范围不大的整数或字符串\n\n## 外部排序（概念级）\n\n- 待排数据量超过内存时借助外存（磁盘/文件）排序\n- 两步：生成初始归并段 run，再做多趟多路归并\n- 归并路数 k 越大、初始段越多，趟数 log_k(段数) 越少，I/O 是主要开销\n- 内部常用\"置换—选择\"生成更长初始段（本章只要求概念，不写代码）\n",
+      "keyPoints": [
+        "2 路归并 log n 趟、每趟 O(n)，总 O(n log n) 且最好最坏相同",
+        "归并取小者时用 <= 保留左段元素，是归并稳定性的关键",
+        "归并需 O(n) 辅助数组，空间代价高于快排与堆",
+        "基数排序不基于比较，LSD 从低位到高位、每趟必须稳定",
+        "基数排序时间 O(d(n+rd))，与初态无关，适合整数等可分解关键字",
+        "外部排序 = 生成初始归并段 + 多路归并，增大路数 k 以减少 I/O 趟数"
+      ],
+      "pitfalls": [
+        "归并写成 < 而非 <= 会破坏稳定性（相等时先取了右段元素）",
+        "LSD 基数排序若某趟不稳定，前面排好的低位次序会被后续趟打乱",
+        "误以为归并 O(1) 空间——递归加辅助数组实为 O(n)",
+        "外部排序把\"归并路数越多越好\"绝对化：路数受内存缓冲区数量限制"
+      ],
+      "examples": [
+        {
+          "title": "2 路归并排序（递归）",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 归并 [low..mid] 与 [mid+1..high] 两段有序序列到 tmp 再回写 */\nstatic void merge(int a[], int tmp[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) tmp[k++] = a[i++];   /* <= 保证稳定 */\n        else              tmp[k++] = a[j++];\n    }\n    while (i <= mid)  tmp[k++] = a[i++];\n    while (j <= high) tmp[k++] = a[j++];\n    for (k = low; k <= high; k++) a[k] = tmp[k];\n}\n\nstatic void mergeSort(int a[], int tmp[], int low, int high)\n{\n    if (low < high) {\n        int mid = (low + high) / 2;\n        mergeSort(a, tmp, low, mid);\n        mergeSort(a, tmp, mid + 1, high);\n        merge(a, tmp, low, mid, high);\n    }\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int tmp[N];\n    int i;\n    mergeSort(a, tmp, 0, N - 1);\n    for (i = 0; i < N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "13 27 38 49 49 65 76 97 ",
+          "note": "递归二分再归并；<= 取左段元素保证稳定",
+          "runnable": true
+        },
+        {
+          "title": "基数排序（LSD，个位→十位两趟）",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* LSD 一趟：按 exp（1=个位,10=十位）做稳定的计数分配—收集 */\nstatic void radixPass(int a[], int tmp[], int n, int exp)\n{\n    int count[10] = {0};\n    int i, d;\n    for (i = 0; i < n; i++) count[(a[i] / exp) % 10]++;\n    for (i = 1; i < 10; i++) count[i] += count[i - 1];   /* 累积定位 */\n    for (i = n - 1; i >= 0; i--) {                        /* 倒序保持稳定 */\n        d = (a[i] / exp) % 10;\n        tmp[--count[d]] = a[i];\n    }\n    for (i = 0; i < n; i++) a[i] = tmp[i];\n}\n\nint main(void)\n{\n    int a[N] = {49, 38, 65, 97, 76, 13, 27, 49};\n    int tmp[N];\n    int i;\n    radixPass(a, tmp, N, 1);    /* 第一趟：个位 */\n    printf(\"ones : \");\n    for (i = 0; i < N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    radixPass(a, tmp, N, 10);   /* 第二趟：十位 */\n    printf(\"tens : \");\n    for (i = 0; i < N; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "ones : 13 65 76 97 27 38 49 49 \ntens : 13 27 38 49 49 65 76 97 ",
+          "note": "个位、十位各一趟；倒序收集保证每趟稳定",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch08-01",
+        "ds-ch03-02"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "order": 4
+    }
+  ]
+}

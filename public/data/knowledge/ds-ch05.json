@@ -1,0 +1,207 @@
+{
+  "category": "ds",
+  "chapter": "第5章 树和二叉树",
+  "generated_at": "2026-09-10",
+  "count": 4,
+  "cards": [
+    {
+      "id": "ds-ch05-01",
+      "title": "二叉树的定义、五种形态与五条基本性质",
+      "section": "5.1 二叉树的定义",
+      "summary": "二叉树是每个结点至多两棵子树、且左右子树有序的树形结构，不能视作树的特例。核心是五条性质：第 i 层至多 2^(i-1) 个结点、深度 k 至多 2^k-1 个结点、n0 = n2 + 1、n 个结点的完全二叉树深度为 floor(log2 n)+1、以及完全二叉树的编号映射规则。",
+      "content": "## 一、二叉树的定义\n\n二叉树是 n（n ≥ 0）个结点的有限集合：\n\n- 或者为空（n = 0）\n- 或者由一个**根结点**以及两棵**互不相交**的、分别称作根的**左子树**和**右子树**的二叉树组成\n\n两个硬性特点：\n\n1. 每个结点至多有两棵子树，即度 ≤ 2（不存在度大于 2 的结点）\n2. 左右子树**有序**，不能任意颠倒\n\n因此**二叉树不是树的特例**——度为 1 的树只有一个孩子且不分左右，而二叉树必须区分「左孩子」与「右孩子」。\n\n三个结点以内的五种基本形态：空二叉树、只有根、只有左子树、只有右子树、左右子树都有。\n\n## 二、特殊二叉树\n\n| 名称 | 定义 |\n| --- | --- |\n| 斜树 | 所有结点都只有左子树（左斜）或都只有右子树（右斜），实际退化成一条线 |\n| 满二叉树 | 深度为 k 且含 2^k - 1 个结点，即每层结点数都达到最大值 |\n| 完全二叉树 | 深度 k、n 个结点，当且仅当每个结点的编号都与同深度满二叉树中编号 1..n 的结点一一对应 |\n\n满二叉树的特征：叶子全部在最下层；所有非叶结点度都为 2；同层内从左到右编号 1..2^k-1。满二叉树一定是完全二叉树，反之不然。\n\n完全二叉树的五条判定特征：\n\n1. 叶子结点只可能出现在**最大层和次大层**\n2. 最下层的叶子一定集中在**左部连续**位置\n3. 倒数第二层的叶子一定集中在**右部连续**位置\n4. 度为 1 的结点**最多只有一个**，且该结点只有左孩子（它是左子树的根）\n5. 结点数相同时，完全二叉树的**深度最小**\n\n推论：完全二叉树中，n 为奇数时度 1 结点数 n1 = 0；n 为偶数时 n1 = 1。\n\n## 三、五条基本性质\n\n**性质 1**：二叉树第 i 层上至多有 2^(i-1) 个结点（i ≥ 1）。\n\n**性质 2**：深度为 k 的二叉树至多有 2^k - 1 个结点（k ≥ 1）。\n证明：各层最大结点数之和 = 2^0 + 2^1 + … + 2^(k-1) = 2^k - 1。\n\n**性质 3**：对任何二叉树 T，若叶子数为 n0、度为 2 的结点数为 n2，则 **n0 = n2 + 1**。\n证明：设度为 1 的结点数为 n1，则总结点数 n = n0 + n1 + n2。\n除根以外，每个结点都有且仅有一个指向它的分支，故分支总数 B = n - 1。\n分支只能由度为 1 或 2 的结点发出，故 B = n1 + 2·n2。\n联立：n0 + n1 + n2 - 1 = n1 + 2·n2，化简得 n0 = n2 + 1。\n\n**性质 4**：具有 n 个结点的完全二叉树深度为 **floor(log2 n) + 1**。\n证明：设深度为 k，则 2^(k-1) - 1 < n ≤ 2^k - 1，即 2^(k-1) ≤ n < 2^k，两边取以 2 为底的对数得 k-1 ≤ log2 n < k。\n\n**性质 5**：对完全二叉树中编号为 i 的结点（1 ≤ i ≤ n）：\n\n| 关系 | 规则 |\n| --- | --- |\n| 双亲 | i = 1 时为根、无双亲；i > 1 时双亲编号为 floor(i/2) |\n| 左孩子 | 2i > n 则无左孩子（i 为叶子）；否则左孩子编号 2i |\n| 右孩子 | 2i+1 > n 则无右孩子；否则右孩子编号 2i+1 |\n| 兄弟 | i 为奇数且 i > 1 时左兄弟为 i-1；i 为偶数且 i < n 时右兄弟为 i+1 |\n| 层次 | 结点 i 位于第 floor(log2 i) + 1 层 |\n\n性质 5 是**堆、顺序存储完全二叉树、优先队列**的实现基础。\n\n## 四、常考速算\n\n- 例：完全二叉树有 699 个结点，求叶子数。\n  n 为奇数 ⇒ n1 = 0；n0 + n2 = 699 且 n0 = n2 + 1 ⇒ 2·n2 + 1 = 699 ⇒ n2 = 349，n0 = **350**。\n- 例：一棵二叉树有 10 个叶子，则度为 2 的结点有 9 个，总结点数至少 19 个（当 n1 = 0，即哈夫曼树形态时取到）。\n- 例：深度为 6 的满二叉树有 2^6 - 1 = 63 个结点，其中叶子 32 个、度 2 结点 31 个。",
+      "keyPoints": [
+        "二叉树每个结点度 ≤2 且左右子树有序，因此不是树的特例",
+        "满二叉树：深度 k、2^k-1 个结点；完全二叉树：编号与满二叉树前 n 个一一对应",
+        "完全二叉树中度 1 的结点最多 1 个且只有左孩子；n 为奇数则 n1=0，n 为偶数则 n1=1",
+        "性质 1、2：第 i 层至多 2^(i-1) 个结点，深度 k 至多 2^k-1 个结点",
+        "性质 3：n0 = n2 + 1，由「分支总数 = 结点数 - 1」推出",
+        "性质 5 的编号映射（父 floor(i/2)、左 2i、右 2i+1）是堆与顺序存储的实现基础"
+      ],
+      "pitfalls": [
+        "把二叉树当成树的特例：度为 1 的树不分左右，二叉树必须区分",
+        "性质 2 记成 2^(k-1)：深度为 k 时最多 2^k-1 个结点",
+        "把完全二叉树与满二叉树混用：满二叉树一定完全，完全不一定满",
+        "数 n0 时忘记 n1 也可能存在，直接套 n0 = n2 + 1 却把 n2 算错",
+        "用性质 5 求孩子时忘记先判 2i > n，对叶子结点越界"
+      ],
+      "examples": [
+        {
+          "title": "验证性质 3：统计 n0 / n1 / n2 并检查 n0 = n2 + 1",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n\n/* 按先序扩展序列建树，'#' 表示空子树 */\nstatic void CreateBiTree(BiTree *T, const char *s, int *k) {\n    if (s[*k] == '#') { (*k)++; *T = NULL; return; }\n    *T = (BiTNode *)malloc(sizeof(BiTNode));\n    if (*T == NULL) { *T = NULL; printf(\"malloc failed\\n\"); return; }\n    (*T)->data = s[*k];\n    (*k)++;\n    (*T)->lchild = NULL;\n    (*T)->rchild = NULL;\n    CreateBiTree(&(*T)->lchild, s, k);\n    CreateBiTree(&(*T)->rchild, s, k);\n}\n\nstatic int ipow2(int e) {\n    int v = 1, i;\n    for (i = 0; i < e; i++) { v *= 2; }\n    return v;\n}\n\nstatic void Count(const BiTree T, int *n0, int *n1, int *n2, int *depth) {\n    int dl = 0, dr = 0;\n    if (T == NULL) { *depth = 0; return; }\n    if (T->lchild == NULL && T->rchild == NULL) { (*n0)++; }\n    else if (T->lchild == NULL || T->rchild == NULL) { (*n1)++; }\n    else { (*n2)++; }\n    Count(T->lchild, n0, n1, n2, &dl);\n    Count(T->rchild, n0, n1, n2, &dr);\n    *depth = (dl > dr ? dl : dr) + 1;\n}\n\nstatic void Destroy(BiTree T) {\n    if (T == NULL) { return; }\n    Destroy(T->lchild);\n    Destroy(T->rchild);\n    free(T);\n}\n\nint main(void) {\n    const char *cases[2];\n    int t;\n    cases[0] = \"ABD##E##CF##G##\";\n    cases[1] = \"A#CD###\";\n\n    for (t = 0; t < 2; t++) {\n        BiTree T = NULL;\n        int k = 0, n0 = 0, n1 = 0, n2 = 0, depth = 0, total;\n        CreateBiTree(&T, cases[t], &k);\n        Count(T, &n0, &n1, &n2, &depth);\n        total = n0 + n1 + n2;\n        printf(\"先序扩展序列：%s\\n\", cases[t]);\n        printf(\"  n0=%d n1=%d n2=%d 总结点=%d 深度=%d\\n\", n0, n1, n2, total, depth);\n        printf(\"  性质3：n0 = n2 + 1 → %d = %d + 1 → %s\\n\",\n               n0, n2, (n0 == n2 + 1) ? \"成立\" : \"不成立\");\n        printf(\"  性质2：结点数 %d <= 2^%d - 1 = %d → %s\\n\\n\",\n               total, depth, ipow2(depth) - 1,\n               (total <= ipow2(depth) - 1) ? \"成立\" : \"不成立\");\n        Destroy(T);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "先序扩展序列：ABD##E##CF##G##\n  n0=4 n1=0 n2=3 总结点=7 深度=3\n  性质3：n0 = n2 + 1 → 4 = 3 + 1 → 成立\n  性质2：结点数 7 <= 2^3 - 1 = 7 → 成立\n\n先序扩展序列：A#CD###\n  n0=1 n1=2 n2=0 总结点=3 深度=3\n  性质3：n0 = n2 + 1 → 1 = 0 + 1 → 成立\n  性质2：结点数 3 <= 2^3 - 1 = 7 → 成立",
+          "note": "两棵树分别是 n1=0 与 n1=2 的情形，性质 3 都成立",
+          "runnable": true
+        },
+        {
+          "title": "性质 4 与性质 5：完全二叉树的编号关系表",
+          "code": "#include <stdio.h>\n\n/* floor(log2 n)，用整数循环实现，避免依赖 libm */\nstatic int floorLog2(int n) {\n    int k = 0;\n    while (n > 1) { n /= 2; k++; }\n    return k;\n}\n\nstatic int ipow2(int e) {\n    int v = 1, i;\n    for (i = 0; i < e; i++) { v *= 2; }\n    return v;\n}\n\nint main(void) {\n    int n = 12, i, k, depth;\n\n    printf(\"完全二叉树：n = %d，编号 1..%d\\n\\n\", n, n);\n    printf(\"%-5s%-9s%-9s%-9s%-8s%-8s\\n\",\n           \"i\", \"parent\", \"lchild\", \"rchild\", \"lsib\", \"rsib\");\n    for (i = 1; i <= n; i++) {\n        int p  = (i == 1) ? 0 : i / 2;\n        int lc = (2 * i > n) ? 0 : 2 * i;\n        int rc = (2 * i + 1 > n) ? 0 : 2 * i + 1;\n        int ls = (i == 1 || i % 2 == 1) ? 0 : i - 1;\n        int rs = (i == n || i % 2 == 0) ? 0 : i + 1;\n        printf(\"%-5d%-9d%-9d%-9d%-8d%-8d\\n\", i, p, lc, rc, ls, rs);\n    }\n\n    depth = floorLog2(n) + 1;\n    printf(\"\\n性质4：深度 = floor(log2(%d)) + 1 = %d\\n\", n, depth);\n    printf(\"性质1：各层最多结点数 → \");\n    for (k = 1; k <= depth; k++) { printf(\"L%d<=%d  \", k, ipow2(k - 1)); }\n    printf(\"\\n性质2：深度 %d 的二叉树最多 %d 个结点\\n\", depth, ipow2(depth) - 1);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "完全二叉树：n = 12，编号 1..12\n\ni    parent   lchild   rchild   lsib    rsib    \n1    0        2        3        0       2       \n2    1        4        5        1       0       \n3    1        6        7        0       4       \n4    2        8        9        3       0       \n5    2        10       11       0       6       \n6    3        12       0        5       0       \n7    3        0        0        0       8       \n8    4        0        0        7       0       \n9    4        0        0        0       10      \n10   5        0        0        9       0       \n11   5        0        0        0       12      \n12   6        0        0        11      0       \n\n性质4：深度 = floor(log2(12)) + 1 = 4\n性质1：各层最多结点数 → L1<=1  L2<=2  L3<=4  L4<=8  \n性质2：深度 4 的二叉树最多 15 个结点",
+          "note": "编号表直接体现 parent=floor(i/2)、lchild=2i、rchild=2i+1",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-04",
+        "ds-ch05-02",
+        "ds-ch05-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第5章 树和二叉树",
+      "order": 1
+    },
+    {
+      "id": "ds-ch05-02",
+      "title": "二叉树的存储结构：顺序存储与二叉链表",
+      "section": "5.2 二叉树的性质与存储结构",
+      "summary": "二叉树可用一维数组顺序存储（按完全二叉树编号），也可用二叉链表存储。顺序存储对满/完全二叉树最紧凑，但对单支树极度浪费；二叉链表 n 个结点共 2n 个链域，其中空链域恰为 n+1 个，这正是线索二叉树的生存空间。",
+      "content": "## 一、顺序存储结构\n\n用一维数组，按完全二叉树的编号规则依次存放：编号 i 的结点存于 data[i-1]（若 0 号单元不用，则存于 data[i]）。\n\n```c\n#define MAX_TREE_SIZE 100\ntypedef char SqBiTree[MAX_TREE_SIZE];   /* 0 号单元可存根结点个数 */\n```\n\n- 优点：满二叉树、完全二叉树最省空间；由编号可直接算出双亲与孩子（性质 5），不需要指针\n- 缺点：一般二叉树必须先补成完全二叉树，最坏情况是**深度为 k 的单支树**——只有 k 个结点，却要分配 2^k - 1 个单元\n- 适用：满二叉树、完全二叉树、堆\n\n例：深度 5 的右单支树只有 5 个结点，但按编号它们落在 1、3、7、15、31，需要 31 个单元，利用率约 16%。\n\n## 二、链式存储：二叉链表\n\n```c\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n```\n\nn 个结点的二叉链表共有 2n 个链域，其中：\n\n```text\n非空链域 = 分支数 = n - 1        （除根外每个结点被一个指针指向）\n空链域   = 2n - (n - 1) = n + 1\n```\n\n**空链域恰好 n+1 个**，这个结论是线索二叉树的出发点，也是常考证明题。\n\n## 三、三叉链表\n\n为方便找双亲，再增加一个 parent 域：\n\n```c\ntypedef struct TriTNode {\n    char data;\n    struct TriTNode *lchild, *rchild, *parent;\n} TriTNode, *TriTree;\n```\n\n3n 个链域中空链域为 2n + 1。求双亲从 O(h) 降为 O(1)，代价是每结点多一个指针。\n\n## 四、两种存储的对比\n\n| 维度 | 顺序存储 | 二叉链表 |\n| --- | --- | --- |\n| 空间 | 完全二叉树紧凑，一般树浪费大 | 每结点固定两个指针，稀疏树也够用 |\n| 求双亲 | O(1)，编号 floor(i/2) | 需三叉链表或自顶向下遍历 |\n| 求孩子 | O(1)，编号 2i / 2i+1 | O(1)，直接指针 |\n| 插入删除 | 需搬移大量元素 | 只改指针 |\n| 适用 | 满/完全二叉树、堆、优先队列 | 一般二叉树、二叉排序树、哈夫曼树 |\n\n## 五、建树的标准输入形式\n\n先序扩展序列（用 '#' 表示空子树）可**唯一确定**一棵二叉树，递归建树是教材的标准写法：\n\n```c\nvoid CreateBiTree(BiTree *T, const char *s, int *k) {\n    if (s[*k] == '#') { (*k)++; *T = NULL; return; }\n    *T = (BiTNode *)malloc(sizeof(BiTNode));\n    (*T)->data = s[*k];\n    (*k)++;\n    CreateBiTree(&(*T)->lchild, s, k);\n    CreateBiTree(&(*T)->rchild, s, k);\n}\n```\n\n注意必须传 `BiTree *`（二级指针）才能修改调用者的头指针；序列中的 '#' 与递归调用次序一一对应，多一个少一个都会建出错树。",
+      "keyPoints": [
+        "顺序存储按完全二叉树编号存放，满/完全二叉树最紧凑，可直接算出双亲与孩子",
+        "顺序存储的最坏情形是单支树：深度 k 只有 k 个结点却要 2^k-1 个单元",
+        "二叉链表 n 个结点共 2n 个链域，非空链域 = n-1，空链域 = n+1",
+        "n+1 个空链域正是线索二叉树利用的空间",
+        "三叉链表增加 parent 域，求双亲 O(1)，3n 个链域中空链域为 2n+1",
+        "先序扩展序列（井号表空）可唯一确定二叉树，递归建树须传二级指针"
+      ],
+      "pitfalls": [
+        "以为二叉链表能 O(1) 求双亲——普通二叉链表做不到，需三叉链表",
+        "用顺序存储保存稀疏二叉树，造成大量空间浪费",
+        "递归建树时传 BiTree 而非 BiTree 的指针，头指针永远改不动",
+        "销毁二叉树时只 free 根结点，造成子树内存泄漏",
+        "先序扩展序列中漏写空标记，递归会读到字符串结束符而越界"
+      ],
+      "examples": [
+        {
+          "title": "先序扩展序列建二叉链表，统计叶子与空链域（验证 n+1）",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n\nstatic void CreateBiTree(BiTree *T, const char *s, int *k) {\n    if (s[*k] == '#') { (*k)++; *T = NULL; return; }\n    *T = (BiTNode *)malloc(sizeof(BiTNode));\n    if (*T == NULL) { *T = NULL; printf(\"malloc failed\\n\"); return; }\n    (*T)->data = s[*k];\n    (*k)++;\n    (*T)->lchild = NULL;\n    (*T)->rchild = NULL;\n    CreateBiTree(&(*T)->lchild, s, k);\n    CreateBiTree(&(*T)->rchild, s, k);\n}\n\n/* nulls 统计空指针个数，即空链域数 */\nstatic void Stat(const BiTree T, int *nodes, int *leaves, int *nulls) {\n    if (T == NULL) { (*nulls)++; return; }\n    (*nodes)++;\n    if (T->lchild == NULL && T->rchild == NULL) { (*leaves)++; }\n    Stat(T->lchild, nodes, leaves, nulls);\n    Stat(T->rchild, nodes, leaves, nulls);\n}\n\nstatic void Destroy(BiTree T) {\n    if (T == NULL) { return; }\n    Destroy(T->lchild);\n    Destroy(T->rchild);\n    free(T);\n}\n\nint main(void) {\n    const char *pre = \"ABDH##I##EJ###CF##G##\";\n    BiTree T = NULL;\n    int k = 0, nodes = 0, leaves = 0, nulls = 0;\n\n    CreateBiTree(&T, pre, &k);\n    Stat(T, &nodes, &leaves, &nulls);\n\n    printf(\"先序扩展序列：%s\\n\", pre);\n    printf(\"结点数 n = %d，叶子数 = %d\\n\", nodes, leaves);\n    printf(\"链域总数 = 2n = %d\\n\", 2 * nodes);\n    printf(\"实测空链域 = %d，公式 n+1 = %d，%s\\n\",\n           nulls, nodes + 1, (nulls == nodes + 1) ? \"吻合\" : \"不吻合\");\n\n    Destroy(T);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "先序扩展序列：ABDH##I##EJ###CF##G##\n结点数 n = 10，叶子数 = 5\n链域总数 = 2n = 20\n实测空链域 = 11，公式 n+1 = 11，吻合",
+          "note": "10 个结点、11 个空链域，正是 n+1",
+          "runnable": true
+        },
+        {
+          "title": "顺序存储：满二叉树与单支树的空间利用率对照",
+          "code": "#include <stdio.h>\n\n#define DEPTH 5\n\nint main(void) {\n    int slots = 1, k, idx;\n\n    for (k = 1; k < DEPTH; k++) { slots = slots * 2 + 1; }\n\n    printf(\"深度 k = %d\\n\", DEPTH);\n    printf(\"满二叉树结点数 = 2 的 %d 次方减 1 = %d\\n\", DEPTH, slots);\n    printf(\"顺序存储需分配 %d 个单元\\n\\n\", slots);\n\n    printf(\"满二叉树：结点 %2d 个，占用 %2d 单元，利用率 %d 百分比\\n\", slots, slots, 100);\n    printf(\"右单支树：结点 %2d 个，占用 %2d 单元，利用率 %d 百分比\\n\",\n           DEPTH, slots, 100 * DEPTH / slots);\n\n    printf(\"\\n右单支树各结点在数组中的编号（i 变 2i+1）：\");\n    idx = 1;\n    for (k = 1; k <= DEPTH; k++) { printf(\"%d \", idx); idx = 2 * idx + 1; }\n    printf(\"\\n左单支树各结点在数组中的编号（i 变 2i）  ：\");\n    idx = 1;\n    for (k = 1; k <= DEPTH; k++) { printf(\"%d \", idx); idx = 2 * idx; }\n    printf(\"\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "深度 k = 5\n满二叉树结点数 = 2 的 5 次方减 1 = 31\n顺序存储需分配 31 个单元\n\n满二叉树：结点 31 个，占用 31 单元，利用率 100 百分比\n右单支树：结点  5 个，占用 31 单元，利用率 16 百分比\n\n右单支树各结点在数组中的编号（i 变 2i+1）：1 3 7 15 31 \n左单支树各结点在数组中的编号（i 变 2i）  ：1 2 4 8 16 ",
+          "note": "单支树把 k 个结点摊到 2^k-1 个单元，是顺序存储的最坏情形",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch05-01",
+        "ds-ch02-03",
+        "ds-ch05-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第5章 树和二叉树",
+      "order": 2
+    },
+    {
+      "id": "ds-ch05-03",
+      "title": "二叉树的遍历与线索二叉树",
+      "section": "5.3 二叉树的遍历",
+      "summary": "遍历是把二叉树的结点按某种次序各访问一次且仅一次。四种常用次序为先序 DLR、中序 LDR、后序 LRD 与层次遍历；递归写法最简洁，非递归写法需显式栈（中序/先序）或队列（层次）。由「先序+中序」或「后序+中序」可唯一重建二叉树，而「先序+后序」不能。线索二叉树把空指针改存前驱/后继线索，从而免递归免栈地遍历。",
+      "content": "## 一、四种遍历次序\n\n| 次序 | 访问顺序 | 递归核心 | 典型用途 |\n|---|---|---|---|\n| 先序 DLR | 根 → 左 → 右 | ```c\nvisit(T); Pre(T->lchild); Pre(T->rchild);\n``` | 复制树、求树深、带 `#` 标记建树 |\n| 中序 LDR | 左 → 根 → 右 | ```c\nIn(T->lchild); visit(T); In(T->rchild);\n``` | 二叉排序树得到递增序列 |\n| 后序 LRD | 左 → 右 → 根 | ```c\nPost(T->lchild); Post(T->rchild); visit(T);\n``` | 销毁树、求表达式值（先算子树） |\n| 层次 | 自上而下、自左而右 | 队列 BFS | 完全二叉树编号、按层处理 |\n\n三种深度优先遍历的时间复杂度都是 O(n)；递归深度最坏为 n（单支树），可能栈溢出。\n\n## 二、非递归中序（显式栈）\n\n```c\nvoid InOrderByStack(BiTree T)\n{\n    BiTree stack[64];\n    int top = -1;\n    BiTree p = T;\n    while (p != NULL || top >= 0) {\n        while (p != NULL) {        /* 一路向左入栈 */\n            stack[++top] = p;\n            p = p->lchild;\n        }\n        p = stack[top--];          /* 退栈即当前最左未访问结点 */\n        printf(\"%c \", p->data);\n        p = p->rchild;             /* 转向右子树 */\n    }\n}\n```\n\n层次遍历用队列：根入队，每次出队一个、访问、把其左右孩子入队，直到队空。\n\n## 三、由遍历序列重建二叉树\n\n- 「先序 + 中序」可重建：先序首字符是根，在中序中定位根，左侧为左子树中序、右侧为右子树中序，再按长度切分先序，递归即可。\n- 「后序 + 中序」可重建：后序末字符是根，其余同理。\n- 「层次 + 中序」可重建。\n- 「先序 + 后序」**不可**重建：两者都只能确定根，无法区分「只有左孩子」与「只有右孩子」。\n\n## 四、线索二叉树\n\nn 个结点的二叉链表共有 2n 个指针域，其中 n-1 个用于指向孩子，剩余 **n+1** 个空指针。线索化就是把这些空指针改存遍历序列中的前驱/后继。\n\n```c\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n    int ltag, rtag;   /* tag=0 指向孩子；tag=1 指向线索 */\n} BiTNode, *BiTree;\n\nstatic BiTNode *pre;  /* 全局前驱，线索化前必须置 NULL */\n\nvoid InThreading(BiTree p)\n{\n    if (p == NULL) return;\n    InThreading(p->lchild);                 /* 递归左子树 */\n    if (p->lchild == NULL) {                /* 左空 → 前驱线索 */\n        p->ltag = 1;\n        p->lchild = pre;\n    }\n    if (pre != NULL && pre->rchild == NULL) { /* 前驱右空 → 后继线索 */\n        pre->rtag = 1;\n        pre->rchild = p;\n    }\n    pre = p;\n    InThreading(p->rchild);                 /* 递归右子树 */\n}\n```\n\n线索树上找中序后继：若 `rtag==1`，右指针即后继；否则后继是**右子树中最左下**的结点。\n\n## 五、树、森林与二叉树的转换\n\n- 转换法则：**左孩子右兄弟**——结点的第一个孩子作二叉树的左孩子，其余兄弟依次作右孩子链。\n- 树的**先根遍历** ↔ 对应二叉树的**先序遍历**。\n- 树的**后根遍历** ↔ 对应二叉树的**中序遍历**（注意不是后序）。\n- 森林的先序/中序遍历同样对应二叉树的先序/中序遍历。",
+      "keyPoints": [
+        "四种遍历次序的口诀：先序「根左右」、中序「左根右」、后序「左右根」，差别只在根的位置",
+        "递归遍历的时间复杂度均为 O(n)，空间复杂度为递归栈深度 O(树高)，最坏 O(n)",
+        "非递归中序的循环条件是 §p != NULL || top >= 0§——两者缺一都会漏访问或死循环",
+        "「先序+中序」「后序+中序」「层次+中序」可唯一重建；「先序+后序」不能",
+        "线索化前必须把全局 pre 置 NULL；销毁线索树时必须先判 tag，否则会对线索指针重复 free",
+        "树的后根遍历对应二叉树的中序遍历，这是最常考的转换结论"
+      ],
+      "pitfalls": [
+        "把线索指针当孩子指针递归，导致销毁树时重复释放或死循环（FreeThr 必须先判 ltag/rtag）",
+        "线索化忘记初始化 pre = NULL，使第一个结点的左线索指向野值",
+        "误认为「先序 + 后序」也能重建二叉树",
+        "层次遍历把入队顺序写成「先右后左」，输出次序颠倒"
+      ],
+      "examples": [
+        {
+          "title": "四种遍历 + 由先序中序重建后序",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n\n/* 按带空子树标记 `#` 的先序串建二叉树，i 为扫描位置 */\nstatic void CreateBiTree(BiTree *T, const char *s, size_t *i)\n{\n    if (s[*i] == '#') { (*i)++; *T = NULL; return; }\n    *T = (BiTree)malloc(sizeof(BiTNode));\n    if (*T == NULL) { perror(\"malloc\"); exit(1); }\n    (*T)->data = s[*i];\n    (*i)++;\n    CreateBiTree(&((*T)->lchild), s, i);\n    CreateBiTree(&((*T)->rchild), s, i);\n}\n\nstatic void PreOrder(BiTree T)\n{\n    if (T == NULL) return;\n    printf(\"%c \", T->data);\n    PreOrder(T->lchild);\n    PreOrder(T->rchild);\n}\n\nstatic void InOrder(BiTree T)\n{\n    if (T == NULL) return;\n    InOrder(T->lchild);\n    printf(\"%c \", T->data);\n    InOrder(T->rchild);\n}\n\nstatic void PostOrder(BiTree T)\n{\n    if (T == NULL) return;\n    PostOrder(T->lchild);\n    PostOrder(T->rchild);\n    printf(\"%c \", T->data);\n}\n\n/* 层次遍历：用数组模拟队列 */\nstatic void LevelOrder(BiTree T)\n{\n    BiTree q[64];\n    int front = 0, rear = 0;\n    if (T == NULL) return;\n    q[rear++] = T;\n    while (front < rear) {\n        BiTree p = q[front++];\n        printf(\"%c \", p->data);\n        if (p->lchild != NULL) q[rear++] = p->lchild;\n        if (p->rchild != NULL) q[rear++] = p->rchild;\n    }\n}\n\nstatic void FreeBiTree(BiTree T)\n{\n    if (T == NULL) return;\n    FreeBiTree(T->lchild);\n    FreeBiTree(T->rchild);\n    free(T);\n}\n\n/* 由先序 pre 与中序 in 重建，把后序序列写入 out */\nstatic void Rebuild(const char *pre, const char *in, char *out, size_t *k)\n{\n    size_t n = strlen(pre), i = 0;\n    char lp[32], li[32], rp[32], ri[32];\n    if (n == 0) return;\n    while (in[i] != pre[0]) i++;            /* 在中序中定位根 */\n    memcpy(lp, pre + 1, i);       lp[i] = '\\0';\n    memcpy(li, in, i);            li[i] = '\\0';\n    memcpy(rp, pre + 1 + i, n - 1 - i); rp[n - 1 - i] = '\\0';\n    memcpy(ri, in + i + 1, n - 1 - i);  ri[n - 1 - i] = '\\0';\n    Rebuild(lp, li, out, k);                /* 左子树 */\n    Rebuild(rp, ri, out, k);                /* 右子树 */\n    out[(*k)++] = pre[0];                   /* 根最后输出 → 后序 */\n}\n\nint main(void)\n{\n    BiTree T = NULL;\n    size_t i = 0, k = 0;\n    char post[32];\n\n    CreateBiTree(&T, \"ABD##E##CF##G##\", &i);\n\n    printf(\"先序: \"); PreOrder(T);   printf(\"\\n\");\n    printf(\"中序: \"); InOrder(T);    printf(\"\\n\");\n    printf(\"后序: \"); PostOrder(T);  printf(\"\\n\");\n    printf(\"层次: \"); LevelOrder(T); printf(\"\\n\");\n\n    Rebuild(\"ABDECFG\", \"DBEAFCG\", post, &k);\n    post[k] = '\\0';\n    printf(\"由先序+中序重建得到的后序: %s\\n\", post);\n\n    FreeBiTree(T);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "先序: A B D E C F G \n中序: D B E A F C G \n后序: D E B F G C A \n层次: A B C D E F G \n由先序+中序重建得到的后序: DEBFGCA",
+          "note": "树形为 A(B(D,E), C(F,G))。四种遍历输出应与重建结果自洽：先序 ABDECFG、中序 DBEAFCG 唯一确定该树，其后序为 DEBFGCA。",
+          "runnable": true
+        },
+        {
+          "title": "非递归中序 + 中序线索化，两条路径输出一致",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BiTNode {\n    char data;\n    struct BiTNode *lchild, *rchild;\n    int ltag, rtag;              /* 0 = 孩子指针；1 = 线索 */\n} BiTNode, *BiTree;\n\nstatic BiTree NewNode(char c)\n{\n    BiTree p = (BiTree)malloc(sizeof(BiTNode));\n    if (p == NULL) { perror(\"malloc\"); exit(1); }\n    p->data = c;\n    p->lchild = p->rchild = NULL;\n    p->ltag = p->rtag = 0;\n    return p;\n}\n\nstatic BiTree BuildDemo(void)    /* A(B(D,E), C(F,G)) */\n{\n    BiTree a = NewNode('A'), b = NewNode('B'), c = NewNode('C');\n    BiTree d = NewNode('D'), e = NewNode('E');\n    BiTree f = NewNode('F'), g = NewNode('G');\n    a->lchild = b; a->rchild = c;\n    b->lchild = d; b->rchild = e;\n    c->lchild = f; c->rchild = g;\n    return a;\n}\n\nstatic void InOrderByStack(BiTree T)\n{\n    BiTree stack[64];\n    int top = -1;\n    BiTree p = T;\n    while (p != NULL || top >= 0) {\n        while (p != NULL) { stack[++top] = p; p = p->lchild; }\n        p = stack[top--];\n        printf(\"%c \", p->data);\n        p = p->rchild;\n    }\n}\n\nstatic BiTNode *pre;             /* 中序前驱，线索化前置 NULL */\n\nstatic void InThreading(BiTree p)\n{\n    if (p == NULL) return;\n    InThreading(p->lchild);\n    if (p->lchild == NULL) { p->ltag = 1; p->lchild = pre; }\n    if (pre != NULL && pre->rchild == NULL) {\n        pre->rtag = 1;\n        pre->rchild = p;\n    }\n    pre = p;\n    InThreading(p->rchild);\n}\n\nstatic void InOrderThr(BiTree T) /* 免递归免栈的中序遍历 */\n{\n    BiTree p = T;\n    while (p != NULL) {\n        while (p->ltag == 0) p = p->lchild;      /* 找最左下结点 */\n        printf(\"%c \", p->data);\n        while (p->rtag == 1 && p->rchild != NULL) {\n            p = p->rchild;                       /* 沿后继线索走 */\n            printf(\"%c \", p->data);\n        }\n        p = p->rchild;                           /* 进入右子树 */\n    }\n}\n\nstatic void FreeThr(BiTree T)    /* tag==1 的指针不可再递归 */\n{\n    if (T == NULL) return;\n    if (T->ltag == 0) FreeThr(T->lchild);\n    if (T->rtag == 0) FreeThr(T->rchild);\n    free(T);\n}\n\nint main(void)\n{\n    BiTree T = BuildDemo();\n\n    printf(\"非递归中序: \");\n    InOrderByStack(T);\n    printf(\"\\n\");\n\n    pre = NULL;\n    InThreading(T);\n    printf(\"线索中序  : \");\n    InOrderThr(T);\n    printf(\"\\n\");\n\n    FreeThr(T);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "非递归中序: D B E A F C G \n线索中序  : D B E A F C G ",
+          "note": "两次输出必须完全相同（D B E A F C G），这是检验线索化是否正确的最直接方法。注意 FreeThr 判 tag，否则会顺着线索重复释放。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch05-01",
+        "ds-ch05-02",
+        "ds-ch03-02",
+        "ds-ch05-04"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第5章 树和二叉树",
+      "order": 3
+    },
+    {
+      "id": "ds-ch05-04",
+      "title": "哈夫曼树与哈夫曼编码",
+      "section": "5.4 哈夫曼树及其应用",
+      "summary": "哈夫曼树是带权路径长度 WPL 最小的二叉树（最优二叉树）。构造方法是反复选取权值最小的两棵无父结点子树合并，共合并 n-1 次，得到 2n-1 个结点，且树中不存在度为 1 的结点。一个重要结论是 WPL 等于所有合并产生的内部结点权值之和。哈夫曼编码利用它构造前缀编码，使报文总位数最短。",
+      "content": "## 一、带权路径长度 WPL\n\n- 路径长度：从树中一个结点到另一个结点之间的**分支数**。\n- 树的路径长度 PL：根到每个结点的路径长度之和。结点数相同、深度相同的二叉树中，**完全二叉树**的 PL 最小。\n- 带权路径长度：`WPL = Σ (wk × lk)`，其中 wk 是**叶子**结点的权值，lk 是根到该叶子的路径长度。\n\n⚠️ WPL 只对**叶子**计算，内部结点的权值不参与求和（但参与下面的等价结论）。\n\n## 二、哈夫曼树的构造\n\n以权值 `{5, 29, 7, 8, 14, 23, 3, 11}` 为例（n = 8）：\n\n| 步骤 | 选取的两个最小权 | 新生成结点权值 |\n|---|---|---|\n| 1 | 3, 5 | 8 |\n| 2 | 7, 8 | 15 |\n| 3 | 8, 11 | 19 |\n| 4 | 14, 15 | 29 |\n| 5 | 19, 23 | 42 |\n| 6 | 29, 29 | 58 |\n| 7 | 42, 58 | 100 |\n\n**核心结论**：\n\n- 合并次数恒为 `n - 1`，总结点数恒为 `2n - 1`。\n- 哈夫曼树中**没有度为 1 的结点**（每次合并都产生两个孩子）。\n- `WPL = 所有内部（合并）结点权值之和`，即 `8+15+19+29+42+58+100 = 271`。\n- 权值相同的树可能不唯一（选取次序不同），但 **WPL 一定相同**。\n\n## 三、静态三叉链表存储\n\n```c\ntypedef struct {\n    unsigned int weight;\n    unsigned int parent, lchild, rchild;   /* 存下标，0 表示空 */\n} HTNode, *HuffmanTree;\n\nHuffmanTree HT = malloc((2 * n) * sizeof(HTNode));  /* 0 号单元不用 */\n```\n\n选最小两棵子树的关键是 `Select`：只考虑 `parent == 0` 的结点，一趟扫描同时记录最小与次小。\n\n## 四、哈夫曼编码（前缀编码）\n\n- **前缀编码**：任一字符的编码都不是其它字符编码的前缀，译码时无歧义。\n- 约定：从根出发，走**左分支记 0、右分支记 1**，到叶子所经过的 0/1 串即该字符的编码。\n- 实现上从叶子**向上回溯**到根，得到的是逆序编码，需反向存放（常用 `cd[--start]` 的写法）。\n- 权值 = 字符出现频度，权值越大的字符编码越短。\n\n上例各叶子码长依次为 4, 2, 4, 4, 3, 2, 4, 3：\n\n- 哈夫曼编码总位数 = WPL = **271 位**\n- 等长编码需 3 位（`⌈log2 8⌉`）→ 3 × 100 = **300 位**\n- 平均码长 = 271 / 100 = **2.71 位/字符**，压缩率约 9.7%\n\n## 五、常考结论汇总\n\n| 命题 | 结论 |\n|---|---|\n| n 个叶子的哈夫曼树结点数 | 2n − 1 |\n| n 个叶子的哈夫曼树合并次数 | n − 1 |\n| 度为 1 的结点数 | 0 |\n| 树的高度 | 不确定，最坏为 n（退化） |\n| WPL 是否唯一 | 唯一（树形可能不唯一） |",
+      "keyPoints": [
+        "WPL = Σ(叶子权值 × 根到该叶子的路径长度)，只对叶子求和",
+        "构造过程合并 n−1 次，最终结点数为 2n−1，且不存在度为 1 的结点",
+        "WPL 等于所有内部（合并生成）结点的权值之和——这是最快的验算方法",
+        "权值相同的哈夫曼树形态可能不唯一，但 WPL 唯一",
+        "静态三叉链表用下标而非指针，数组开 2n 且 0 号单元不用",
+        "哈夫曼编码是前缀编码：任一编码都不是其它编码的前缀，译码无歧义"
+      ],
+      "pitfalls": [
+        "把内部结点的权值也算进 WPL，导致结果偏大",
+        "Select 忘记跳过 §parent != 0§ 的结点，把已合并的子树重复选中",
+        "回溯生成编码后忘记反转，输出的是逆序编码",
+        "数组只开 2n−1 却从下标 1 开始用，导致最后一个结点越界（应开 2n 个元素，0 号不用）"
+      ],
+      "examples": [
+        {
+          "title": "构造哈夫曼树，用两种方法求 WPL",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct {\n    unsigned int weight;\n    unsigned int parent, lchild, rchild;\n} HTNode, *HuffmanTree;\n\n/* 在 HT[1..end] 中选 parent==0 且权值最小的两个结点 */\nstatic void Select(HuffmanTree HT, int end, int *s1, int *s2)\n{\n    int i, min1 = -1, min2 = -1;\n    for (i = 1; i <= end; i++) {\n        if (HT[i].parent != 0) continue;\n        if (min1 == -1 || HT[i].weight < HT[min1].weight) {\n            min2 = min1;\n            min1 = i;\n        } else if (min2 == -1 || HT[i].weight < HT[min2].weight) {\n            min2 = i;\n        }\n    }\n    *s1 = min1;\n    *s2 = min2;\n}\n\nstatic void HuffmanBuild(HuffmanTree HT, const unsigned int *w, int n)\n{\n    int m = 2 * n - 1, i, s1, s2;\n    for (i = 1; i <= m; i++) {\n        HT[i].weight = (i <= n) ? w[i - 1] : 0u;\n        HT[i].parent = HT[i].lchild = HT[i].rchild = 0;\n    }\n    for (i = n + 1; i <= m; i++) {\n        Select(HT, i - 1, &s1, &s2);\n        HT[s1].parent = (unsigned int)i;\n        HT[s2].parent = (unsigned int)i;\n        HT[i].lchild = (unsigned int)s1;\n        HT[i].rchild = (unsigned int)s2;\n        HT[i].weight = HT[s1].weight + HT[s2].weight;\n    }\n}\n\n/* 方法一：按定义，对叶子求 Σ(w × 深度) */\nstatic unsigned int WPL_ByLeaf(HuffmanTree HT, int n)\n{\n    unsigned int sum = 0;\n    int i, len, p;\n    for (i = 1; i <= n; i++) {\n        len = 0;\n        for (p = (int)HT[i].parent; p != 0; p = (int)HT[p].parent) len++;\n        sum += HT[i].weight * (unsigned int)len;\n    }\n    return sum;\n}\n\n/* 方法二：WPL = 所有内部结点的权值之和 */\nstatic unsigned int WPL_ByInternal(HuffmanTree HT, int n)\n{\n    unsigned int sum = 0;\n    int i;\n    for (i = n + 1; i <= 2 * n - 1; i++) sum += HT[i].weight;\n    return sum;\n}\n\nint main(void)\n{\n    const unsigned int w[8] = { 5, 29, 7, 8, 14, 23, 3, 11 };\n    int n = 8, i;\n    HuffmanTree HT = (HuffmanTree)malloc((size_t)(2 * n) * sizeof(HTNode));\n    if (HT == NULL) { perror(\"malloc\"); return 1; }\n\n    HuffmanBuild(HT, w, n);\n\n    printf(\"合并过程:\\n\");\n    for (i = n + 1; i <= 2 * n - 1; i++)\n        printf(\"  结点%2d = %2u + %2u = %3u\\n\", i,\n               HT[HT[i].lchild].weight, HT[HT[i].rchild].weight, HT[i].weight);\n\n    printf(\"按叶子求 WPL       = %u\\n\", WPL_ByLeaf(HT, n));\n    printf(\"按内部结点求 WPL   = %u\\n\", WPL_ByInternal(HT, n));\n\n    free(HT);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "合并过程:\n  结点 9 =  3 +  5 =   8\n  结点10 =  7 +  8 =  15\n  结点11 =  8 + 11 =  19\n  结点12 = 14 + 15 =  29\n  结点13 = 19 + 23 =  42\n  结点14 = 29 + 29 =  58\n  结点15 = 42 + 58 = 100\n按叶子求 WPL       = 271\n按内部结点求 WPL   = 271",
+          "note": "两种方法都必须得到 271。若结果不同，说明 Select 选错或深度算错。内部结点权值序列为 8,15,19,29,42,58,100。",
+          "runnable": true
+        },
+        {
+          "title": "回溯生成哈夫曼编码并与等长编码比较",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct {\n    unsigned int weight;\n    unsigned int parent, lchild, rchild;\n} HTNode, *HuffmanTree;\n\nstatic void Select(HuffmanTree HT, int end, int *s1, int *s2)\n{\n    int i, min1 = -1, min2 = -1;\n    for (i = 1; i <= end; i++) {\n        if (HT[i].parent != 0) continue;\n        if (min1 == -1 || HT[i].weight < HT[min1].weight) {\n            min2 = min1;\n            min1 = i;\n        } else if (min2 == -1 || HT[i].weight < HT[min2].weight) {\n            min2 = i;\n        }\n    }\n    *s1 = min1;\n    *s2 = min2;\n}\n\nstatic void HuffmanCoding(HuffmanTree HT, int n)\n{\n    char *cd = (char *)malloc((size_t)n * sizeof(char));\n    int i, start, p;\n    unsigned int total = 0, sumw = 0;\n\n    if (cd == NULL) { perror(\"malloc\"); exit(1); }\n    cd[n - 1] = '\\0';\n\n    for (i = 1; i <= n; i++) {\n        start = n - 1;\n        /* 从叶子向上回溯：是父亲的左孩子记 0，右孩子记 1 */\n        for (p = (int)HT[i].parent; p != 0; p = (int)HT[p].parent)\n            cd[--start] = (HT[p].lchild == (unsigned int)i) ? '0' : '1';\n        printf(\"  权值 %2u -> 编码 %s (码长 %d)\\n\",\n               HT[i].weight, &cd[start], n - 1 - start);\n        total += HT[i].weight * (unsigned int)(n - 1 - start);\n        sumw  += HT[i].weight;\n    }\n\n    printf(\"哈夫曼编码总位数     = %u\\n\", total);\n    printf(\"等长编码(3 bit)总位数 = %u\\n\", 3u * sumw);\n    printf(\"平均码长             = %.2f 位/字符\\n\",\n           (double)total / (double)sumw);\n    free(cd);\n}\n\nint main(void)\n{\n    const unsigned int w[8] = { 5, 29, 7, 8, 14, 23, 3, 11 };\n    int n = 8, m = 2 * n - 1, i, s1, s2;\n    HuffmanTree HT = (HuffmanTree)malloc(((size_t)m + 1) * sizeof(HTNode));\n    if (HT == NULL) { perror(\"malloc\"); return 1; }\n\n    for (i = 1; i <= m; i++) {\n        HT[i].weight = (i <= n) ? w[i - 1] : 0u;\n        HT[i].parent = HT[i].lchild = HT[i].rchild = 0;\n    }\n    for (i = n + 1; i <= m; i++) {\n        Select(HT, i - 1, &s1, &s2);\n        HT[s1].parent = (unsigned int)i;\n        HT[s2].parent = (unsigned int)i;\n        HT[i].lchild  = (unsigned int)s1;\n        HT[i].rchild  = (unsigned int)s2;\n        HT[i].weight  = HT[s1].weight + HT[s2].weight;\n    }\n\n    HuffmanCoding(HT, n);\n\n    free(HT);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "  权值  5 -> 编码 1111 (码长 4)\n  权值 29 -> 编码 10 (码长 2)\n  权值  7 -> 编码 1110 (码长 4)\n  权值  8 -> 编码 1111 (码长 4)\n  权值 14 -> 编码 110 (码长 3)\n  权值 23 -> 编码 11 (码长 2)\n  权值  3 -> 编码 1110 (码长 4)\n  权值 11 -> 编码 111 (码长 3)\n哈夫曼编码总位数     = 271\n等长编码(3 bit)总位数 = 300\n平均码长             = 2.71 位/字符",
+          "note": "cd[--start] 的写法天然完成反转，无需再调 strrev。总位数应等于 WPL=271，等长编码为 300 位，平均码长 2.71。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch05-01",
+        "ds-ch05-02",
+        "ds-ch05-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第5章 树和二叉树",
+      "order": 4
+    }
+  ]
+}

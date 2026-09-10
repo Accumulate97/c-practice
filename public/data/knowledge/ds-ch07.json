@@ -1,0 +1,151 @@
+{
+  "category": "ds",
+  "chapter": "第7章 查找",
+  "generated_at": "2026-09-10",
+  "count": 3,
+  "cards": [
+    {
+      "id": "ds-ch07-01",
+      "title": "顺序查找与折半查找",
+      "section": "7.1 顺序查找与折半查找",
+      "summary": "两种最基本的线性表查找：顺序查找不挑存储与有序性，ASL=(n+1)/2；折半查找要求有序+顺序存储，ASL≈log2(n+1)−1。",
+      "content": "\n## 顺序查找（线性查找）\n\n- 从表的一端到另一端逐个比较，**顺序表和链表都适用，不要求有序**\n- **哨兵技巧**：把待查 key 存入 a[0]，从后往前扫时无需每轮判断下标越界\n- 成功 ASL = (n+1)/2，查找失败比较 n+1 次\n\n## 折半查找（二分查找）\n\n- 前提：**顺序存储 + 按关键字递增有序**（链表不能折半——无法 O(1) 定位中点）\n- 每轮与中点 mid 比较：\n  - a[mid] == key → 成功\n  - a[mid] > key → 到前半区间找，high = mid − 1\n  - a[mid] < key → 到后半区间找，low = mid + 1\n- 循环条件 **low <= high**；最多比较 **⌊log2 n⌋ + 1** 次\n- 成功 ASL ≈ **log2(n+1) − 1**\n\n## 折半查找判定树\n\n- 把每次 mid 的选择画成二叉树：根为第一次 mid，左右子树为两个子区间的判定树\n- 树高 = ⌊log2 n⌋ + 1；**查找某元素的比较次数 = 判定树中该结点所在层次**\n- 判定树是平衡的，失败结点（外部结点）只出现在最下两层\n\n## 对比\n\n| | 顺序查找 | 折半查找 |\n|---|---|---|\n| 存储 | 顺序/链表均可 | 仅顺序存储 |\n| 有序性 | 不要求 | 必须有序 |\n| ASL(成功) | (n+1)/2 | ≈log2(n+1)−1 |\n| 适用 | 小表或无序表 | 较大的有序表 |\n",
+      "keyPoints": [
+        "顺序查找对存储和有序性都无要求，成功 ASL=(n+1)/2",
+        "哨兵放 0 号位存 key，可省去每轮的下标越界判断",
+        "折半查找要求顺序存储且按关键字有序，链表不适用",
+        "折半的区间收缩为 high=mid−1 / low=mid+1，循环条件 low<=high",
+        "折半最多比较 ⌊log2 n⌋+1 次，成功 ASL≈log2(n+1)−1",
+        "判定树树高 ⌊log2 n⌋+1，某元素的比较次数=它在判定树中的层次"
+      ],
+      "pitfalls": [
+        "mid=(low+high)/2 在极端大下标时会整型溢出，稳妥写法 low+(high−low)/2",
+        "循环条件误写成 low<high 会漏掉区间只剩一个元素的情形",
+        "对链表做折半查找是典型错误——链表无法随机访问中点",
+        "哨兵法要求 0 号位空闲；若数据从 0 号位存起，放哨兵会覆盖数据"
+      ],
+      "examples": [
+        {
+          "title": "带哨兵的顺序查找",
+          "code": "\n#include <stdio.h>\n\n#define N 8\n\n/* 带哨兵的顺序查找：a[0] 留给哨兵，数据存 a[1..n] */\nstatic int seqSearch(int a[], int n, int key)\n{\n    int i = n;\n    a[0] = key;              /* 设哨兵，免去越界判断 */\n    while (a[i] != key)\n        i--;\n    return i;                /* 返回 0 表示查找失败 */\n}\n\nint main(void)\n{\n    int a[N + 1] = {0, 34, 12, 56, 7, 45, 23, 89, 16};\n    int keys[3] = {45, 34, 100};\n    int i;\n\n    for (i = 0; i < 3; i++) {\n        int pos = seqSearch(a, N, keys[i]);\n        if (pos == 0)\n            printf(\"key=%d not found\\n\", keys[i]);\n        else\n            printf(\"key=%d found at %d\\n\", keys[i], pos);\n    }\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "key=45 found at 5\nkey=34 found at 1\nkey=100 not found",
+          "note": "数据存 1..8 号位，0 号位放哨兵；从后往前扫，返回 0 即失败",
+          "runnable": true
+        },
+        {
+          "title": "迭代折半查找并统计比较次数",
+          "code": "\n#include <stdio.h>\n\n#define N 11\n\n/* 折半查找：返回下标，*cmp 记录比较次数；失败返回 -1 */\nstatic int binSearch(const int a[], int n, int key, int *cmp)\n{\n    int low = 0, high = n - 1, mid;\n    *cmp = 0;\n    while (low <= high) {\n        mid = low + (high - low) / 2;\n        (*cmp)++;\n        if (a[mid] == key) return mid;\n        if (a[mid] > key) high = mid - 1;\n        else              low  = mid + 1;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int a[N] = {7, 12, 16, 23, 34, 45, 56, 67, 78, 89, 96};\n    int keys[3] = {7, 45, 50};\n    int i, cmp;\n\n    for (i = 0; i < 3; i++) {\n        int pos = binSearch(a, N, keys[i], &cmp);\n        if (pos < 0)\n            printf(\"key=%d not found, cmp=%d\\n\", keys[i], cmp);\n        else\n            printf(\"key=%d found at %d, cmp=%d\\n\", keys[i], pos, cmp);\n    }\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "key=7 found at 0, cmp=3\nkey=45 found at 5, cmp=1\nkey=50 not found, cmp=3",
+          "note": "11 个有序元素：首元素比较 3 次命中，中点元素 1 次命中，不存在的 50 比较 4 次失败",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch02-01",
+        "ds-ch08-02"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "order": 1
+    },
+    {
+      "id": "ds-ch07-02",
+      "title": "二叉排序树与平衡二叉树",
+      "section": "7.2 二叉排序树与平衡二叉树",
+      "summary": "BST 中序遍历得递增序列，插入挂失败点，删除分三种情形；AVL 用 |bf|≤1 加四种旋转把树高压到 O(log n)。",
+      "content": "\n## 二叉排序树（BST）\n\n定义（递归）：每个结点满足 **左子树所有关键字 < 根 < 右子树所有关键字**。\n\n- 核心性质：**中序遍历 BST 得到递增有序序列**\n- 插入：从根开始按大小下降，挂到查找失败的位置，**新结点必为叶子**，不移动已有结点\n- 查找：与折半查找思路相同但基于链式结构，平均 O(log n)，**最坏（单支树）O(n)**\n\n## 删除（三种情形）\n\n| 被删结点 | 处理方法 |\n|---|---|\n| 叶子 | 直接摘除 |\n| 只有左或只有右子树 | 唯一子树顶替其位置 |\n| 左右子树都有 | 用**中序前驱**（左子树最大）或中序后继（右子树最小）的关键字顶替，再递归删除那个前驱/后继结点 |\n\n## 平衡二叉树（AVL）\n\n- 要求每个结点的平衡因子 |bf| = |左子树高 − 右子树高| **≤ 1**\n- 保证树高始终 O(log n)，查找/插入/删除均 O(log n)\n- 插入新结点后自底向上检查 bf，失衡时做**最小旋转**：\n  - **LL**（插在失衡点左孩子的左子树）→ 单右旋\n  - **RR**（插在右孩子的右子树）→ 单左旋\n  - **LR**（插在左孩子的右子树）→ 先左旋后右旋\n  - **RL**（插在右孩子的左子树）→ 先右旋后左旋\n",
+      "keyPoints": [
+        "BST 满足左子树<根<右子树，中序遍历必得递增序列",
+        "BST 插入总是挂到查找失败处，新结点必为叶子",
+        "删除分三支：叶子直删、单子顶替、双子用中序前驱（或后继）顶替后再删前驱",
+        "BST 平均查找 O(log n)，插入序列有序时退化成单支树 O(n)",
+        "AVL 要求每个结点 |bf|≤1，树高保持 O(log n)",
+        "AVL 失衡修复四种旋转：LL 右旋、RR 左旋、LR 先左后右、RL 先右后左"
+      ],
+      "pitfalls": [
+        "双子树情形顶替后忘记递归删除原前驱/后继结点，会造成关键字重复",
+        "按升序序列逐个插入 BST 会退化成右单支树，此时应改用 AVL",
+        "中序前驱是左子树的最右（最大）结点、后继是右子树的最左（最小）结点，方向别弄反",
+        "LL/RR 命名指插入位置相对失衡结点的两层方位，旋转方向与之相反或先反后同"
+      ],
+      "examples": [
+        {
+          "title": "BST 插入、中序遍历与查找",
+          "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode {\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n/* 递归插入：成功返回 1，关键字已存在或内存不足返回 0 */\nstatic int bstInsert(BSTree *t, int key)\n{\n    BSTNode *p;\n    if (*t == NULL) {\n        p = (BSTNode *)malloc(sizeof(BSTNode));\n        if (p == NULL) return 0;\n        p->key = key;\n        p->lchild = p->rchild = NULL;\n        *t = p;\n        return 1;\n    }\n    if (key == (*t)->key)  return 0;\n    if (key < (*t)->key)   return bstInsert(&(*t)->lchild, key);\n    return bstInsert(&(*t)->rchild, key);\n}\n\n/* 中序遍历：应输出递增序列 */\nstatic void inOrder(const BSTree t)\n{\n    if (t == NULL) return;\n    inOrder(t->lchild);\n    printf(\"%d \", t->key);\n    inOrder(t->rchild);\n}\n\nstatic int bstSearch(const BSTree t, int key)\n{\n    if (t == NULL)        return 0;\n    if (t->key == key)    return 1;\n    if (key < t->key)     return bstSearch(t->lchild, key);\n    return bstSearch(t->rchild, key);\n}\n\nstatic void freeTree(BSTree t)\n{\n    if (t == NULL) return;\n    freeTree(t->lchild);\n    freeTree(t->rchild);\n    free(t);\n}\n\nint main(void)\n{\n    BSTree t = NULL;\n    int keys[7] = {45, 23, 67, 12, 34, 56, 78};\n    int i;\n\n    for (i = 0; i < 7; i++)\n        bstInsert(&t, keys[i]);\n\n    printf(\"inOrder: \");\n    inOrder(t);\n    printf(\"\\nsearch 34: %d\\n\", bstSearch(t, 34));\n    printf(\"search 50: %d\\n\", bstSearch(t, 50));\n\n    freeTree(t);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "inOrder: 12 23 34 45 56 67 78 \nsearch 34: 1\nsearch 50: 0",
+          "note": "插入 45 23 67 12 34 56 78 后中序输出递增序列，验证 BST 性质",
+          "runnable": true
+        },
+        {
+          "title": "BST 删除：覆盖三种情形",
+          "code": "\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode {\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\nstatic int bstInsert(BSTree *t, int key)\n{\n    BSTNode *p;\n    if (*t == NULL) {\n        p = (BSTNode *)malloc(sizeof(BSTNode));\n        if (p == NULL) return 0;\n        p->key = key;\n        p->lchild = p->rchild = NULL;\n        *t = p;\n        return 1;\n    }\n    if (key == (*t)->key) return 0;\n    if (key < (*t)->key)  return bstInsert(&(*t)->lchild, key);\n    return bstInsert(&(*t)->rchild, key);\n}\n\n/* 递归删除关键字为 key 的结点，返回子树新根 */\nstatic BSTree bstDelete(BSTree t, int key)\n{\n    BSTree p;\n    if (t == NULL) return NULL;\n    if (key < t->key) {\n        t->lchild = bstDelete(t->lchild, key);\n    } else if (key > t->key) {\n        t->rchild = bstDelete(t->rchild, key);\n    } else {                          /* 找到被删结点 */\n        if (t->lchild == NULL) {      /* 叶子 或 只有右子树 */\n            p = t->rchild;\n            free(t);\n            return p;\n        }\n        if (t->rchild == NULL) {      /* 只有左子树 */\n            p = t->lchild;\n            free(t);\n            return p;\n        }\n        p = t->lchild;                /* 双子树：找中序前驱 */\n        while (p->rchild != NULL) p = p->rchild;\n        t->key = p->key;              /* 前驱关键字顶替 */\n        t->lchild = bstDelete(t->lchild, p->key);\n    }\n    return t;\n}\n\nstatic void inOrder(const BSTree t)\n{\n    if (t == NULL) return;\n    inOrder(t->lchild);\n    printf(\"%d \", t->key);\n    inOrder(t->rchild);\n}\n\nstatic void freeTree(BSTree t)\n{\n    if (t == NULL) return;\n    freeTree(t->lchild);\n    freeTree(t->rchild);\n    free(t);\n}\n\nint main(void)\n{\n    BSTree t = NULL;\n    int keys[8] = {45, 23, 67, 12, 34, 56, 78, 30};\n    int i;\n\n    for (i = 0; i < 8; i++)\n        bstInsert(&t, keys[i]);\n\n    printf(\"before:  \"); inOrder(t); printf(\"\\n\");\n    t = bstDelete(t, 12);             /* 叶子 */\n    printf(\"del 12:  \"); inOrder(t); printf(\"\\n\");\n    t = bstDelete(t, 23);             /* 只剩右子树 */\n    printf(\"del 23:  \"); inOrder(t); printf(\"\\n\");\n    t = bstDelete(t, 45);             /* 双子树，用前驱 34 顶替 */\n    printf(\"del 45:  \"); inOrder(t); printf(\"\\n\");\n\n    freeTree(t);\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "before:  12 23 30 34 45 56 67 78 \ndel 12:  23 30 34 45 56 67 78 \ndel 23:  30 34 45 56 67 78 \ndel 45:  30 34 56 67 78 ",
+          "note": "依次删叶子 12、单子结点 23、双子树根 45，每步中序输出仍递增",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch05-03",
+        "ds-ch07-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "order": 2
+    },
+    {
+      "id": "ds-ch07-03",
+      "title": "散列表",
+      "section": "7.3 散列表",
+      "summary": "散列表按 H(key) 直接定位、平均 O(1)；除留余数法构造地址，开放定址/链地址法处理冲突，装填因子 α 决定冲突多少。",
+      "content": "\n## 基本概念\n\n- 散列表（哈希表）：由关键字经**散列函数 H(key)** 直接算出存储地址，平均查找 O(1)\n- **冲突**：不同的关键字映射到同一地址（互为同义词），不可避免，只能妥善处理\n- **装填因子 α = 表中记录数 / 表长**：α 越大冲突概率越高，ASL 按 α 估算\n\n## 构造方法：除留余数法\n\n```c\nH(key) = key mod p\n```\n\n- p 取 **≤ 表长的最大素数**，最常用\n- 其余方法（直接定址、数字分析、折叠、平方取中）了解概念即可\n\n## 冲突处理\n\n### 开放定址法（闭散列）\n\n- 冲突后在表内按探测序列找下一个空位：**线性探测** h+1, h+2, …（模表长）\n- 线性探测易产生**堆积（聚集）**；改进有二次探测、再哈希法\n- 删除记录不能真置空，要标记\"已删\"，否则会截断后续查找\n\n### 链地址法（开散列）\n\n- 同义词挂成同一地址上的单链表，适合删除频繁或 α 较大的场景\n\n## ASL 估算\n\n- 成功 ASL：对每个在表关键字数出查找比较次数后取平均\n- 失败 ASL：对每个可能地址，数到**第一个空位**的比较次数后取平均（开放定址）\n",
+      "keyPoints": [
+        "散列表用散列函数 H(key) 直接算出存储地址，平均查找时间 O(1)",
+        "除留余数法 H(key)=key mod p，p 取不大于表长的素数最常用",
+        "冲突不可避免：不同关键字映射到同一地址互为同义词",
+        "开放定址把冲突元素放表内空位（线性探测）；链地址法把同义词挂单链表",
+        "装填因子 α=记录数/表长，α 越大冲突越多，ASL 按 α 估算",
+        "线性探测查找时遇空位即停止——空位之后不可能再有该关键字"
+      ],
+      "pitfalls": [
+        "线性探测下删除记录直接置空会截断查找，应打\"已删\"标记",
+        "p 取偶数或含小因子的合数会让冲突扎堆，务必取素数",
+        "失败 ASL 数到第一个空位为止，不是数满整个表长",
+        "表快满（α→1）时线性探测可能死循环，必须保证有空位或加探测次数上限"
+      ],
+      "examples": [
+        {
+          "title": "除留余数+线性探测建表",
+          "code": "\n#include <stdio.h>\n\n#define M 13\n#define P 13\n#define EMPTY -1\n\nint main(void)\n{\n    int table[M];\n    int keys[8] = {19, 14, 23, 1, 68, 20, 84, 27};\n    int i, j;\n\n    for (i = 0; i < M; i++) table[i] = EMPTY;\n\n    for (i = 0; i < 8; i++) {\n        int h = keys[i] % P;          /* 除留余数 */\n        while (table[h] != EMPTY)     /* 冲突则线性探测下一格 */\n            h = (h + 1) % M;\n        table[h] = keys[i];\n    }\n\n    printf(\"index:\");\n    for (j = 0; j < M; j++) printf(\"%4d\", j);\n    printf(\"\\nvalue:\");\n    for (j = 0; j < M; j++) {\n        if (table[j] == EMPTY) printf(\"%4s\", \"-\");\n        else                   printf(\"%4d\", table[j]);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "index:   0   1   2   3   4   5   6   7   8   9  10  11  12\nvalue:   -  14   1  68  27   -  19  20  84   -  23   -   -",
+          "note": "表长 13、p=13，8 个关键字插入后打印全表，空位用 - 表示",
+          "runnable": true
+        },
+        {
+          "title": "线性探测下的成功查找",
+          "code": "\n#include <stdio.h>\n\n#define M 13\n#define P 13\n#define EMPTY -1\n\nint main(void)\n{\n    int table[M];\n    int keys[8] = {19, 14, 23, 1, 68, 20, 84, 27};\n    int queries[3] = {27, 84, 19};\n    int i;\n\n    for (i = 0; i < M; i++) table[i] = EMPTY;\n    for (i = 0; i < 8; i++) {\n        int h = keys[i] % P;\n        while (table[h] != EMPTY) h = (h + 1) % M;\n        table[h] = keys[i];\n    }\n\n    for (i = 0; i < 3; i++) {\n        int key = queries[i];\n        int h = key % P, cmp = 0;\n        while (table[h] != EMPTY && cmp < M) {\n            cmp++;\n            if (table[h] == key) {\n                printf(\"key=%d found at %d, cmp=%d\\n\", key, h, cmp);\n                break;\n            }\n            h = (h + 1) % M;\n        }\n        if (table[h] == EMPTY)\n            printf(\"key=%d not found, cmp=%d\\n\", key, cmp);\n    }\n    return 0;\n}\n",
+          "stdin": "",
+          "expected": "key=27 found at 4, cmp=4\nkey=84 found at 8, cmp=3\nkey=19 found at 6, cmp=1",
+          "note": "27 经 4 次比较命中、84 经 3 次、19 无冲突 1 次命中",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch07-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "order": 3
+    }
+  ]
+}

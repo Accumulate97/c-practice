@@ -41,7 +41,7 @@
         "c-ch01-07",
         "c-ch01-09"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 1
@@ -85,7 +85,7 @@
         "c-ch01-03",
         "c-ch01-04"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 2
@@ -126,7 +126,7 @@
         "c-ch01-02",
         "c-ch01-04"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 3
@@ -167,7 +167,7 @@
         "c-ch01-02",
         "c-ch01-03"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 4
@@ -211,7 +211,7 @@
       "relatedKnowledge": [
         "c-ch01-06"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 5
@@ -252,7 +252,7 @@
         "c-ch01-05",
         "c-ch01-09"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 6
@@ -293,7 +293,7 @@
         "c-ch01-08",
         "c-ch01-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 7
@@ -333,7 +333,7 @@
       "relatedKnowledge": [
         "c-ch01-07"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 8
@@ -374,7 +374,7 @@
         "c-ch01-11",
         "c-ch01-06"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 9
@@ -415,7 +415,7 @@
         "c-ch01-09",
         "c-ch01-11"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 10
@@ -455,7 +455,7 @@
         "c-ch01-09",
         "c-ch01-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 11
@@ -496,7 +496,7 @@
         "c-ch01-07",
         "c-ch01-06"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第1章 C语言概述",
       "order": 12

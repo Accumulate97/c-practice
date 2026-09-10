@@ -52,7 +52,7 @@
         "c-ch10-03",
         "c-ch10-06"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 1
@@ -105,7 +105,7 @@
         "c-ch10-03",
         "c-ch10-08"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 2
@@ -158,7 +158,7 @@
         "c-ch10-02",
         "c-ch10-14"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 3
@@ -211,7 +211,7 @@
         "c-ch10-07",
         "c-ch10-03"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 4
@@ -264,7 +264,7 @@
         "c-ch10-07",
         "c-ch10-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 5
@@ -317,7 +317,7 @@
         "c-ch10-01",
         "c-ch10-09"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 6
@@ -370,7 +370,7 @@
         "c-ch10-04",
         "c-ch10-08"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 7
@@ -423,7 +423,7 @@
         "c-ch10-09",
         "c-ch10-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 8
@@ -476,7 +476,7 @@
         "c-ch10-08",
         "c-ch10-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 9
@@ -529,7 +529,7 @@
         "c-ch10-09",
         "c-ch10-18"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 10
@@ -582,7 +582,7 @@
         "c-ch10-12",
         "c-ch10-18"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 11
@@ -635,7 +635,7 @@
         "c-ch10-13",
         "c-ch08-02"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 12
@@ -688,7 +688,7 @@
         "c-ch10-15",
         "c-ch10-03"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 13
@@ -741,7 +741,7 @@
         "c-ch10-15",
         "c-ch10-03"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 14
@@ -794,7 +794,7 @@
         "c-ch10-14",
         "c-ch09-01"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 15
@@ -847,7 +847,7 @@
         "c-ch10-11",
         "c-ch08-02"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 16
@@ -900,7 +900,7 @@
         "c-ch10-11",
         "c-ch10-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 17
@@ -953,7 +953,7 @@
         "c-ch10-20",
         "c-ch09-30"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 18
@@ -1006,7 +1006,7 @@
         "c-ch10-20",
         "c-ch09-33"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 19
@@ -1059,7 +1059,7 @@
         "c-ch10-19",
         "c-ch09-30"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 20

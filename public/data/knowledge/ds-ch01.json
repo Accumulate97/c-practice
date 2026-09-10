@@ -1,0 +1,179 @@
+{
+  "category": "ds",
+  "chapter": "第1章 绪论",
+  "generated_at": "2026-09-10",
+  "count": 4,
+  "cards": [
+    {
+      "id": "ds-ch01-01",
+      "title": "数据结构的三个层次：逻辑结构、存储结构、运算",
+      "section": "1.2 基本概念和术语",
+      "summary": "数据结构要分三层看：逻辑结构描述元素之间的抽象关系（集合/线性/树形/图形），存储结构描述它在内存里怎么放（顺序/链式/索引/散列），运算描述能对它做什么。同一个逻辑结构可以有两种完全不同的存储结构。",
+      "content": "## 三层含义\n\n| 层次 | 回答的问题 | 例子 |\n|---|---|---|\n| **逻辑结构** | 元素之间是什么关系 | 线性表：一对一；树：一对多；图：多对多 |\n| **存储结构**（物理结构） | 在内存里怎么摆放 | 顺序存储（数组）、链式存储（指针）、索引、散列 |\n| **运算** | 能对它做什么 | 插入、删除、查找、遍历、排序 |\n\n## 四种逻辑结构\n\n| 类型 | 关系特征 | 典型代表 |\n|---|---|---|\n| 集合 | 同属一个集合，别无关系 | — |\n| **线性结构** | 一对一，有唯一首尾 | 线性表、栈、队列、串 |\n| **树形结构** | 一对多，有唯一根 | 二叉树、哈夫曼树 |\n| **图形结构**（网状） | 多对多，任意两点都可能相关 | 无向图、有向图 |\n\n## 关键结论：逻辑与存储相互独立\n\n线性表既可以用数组存（顺序表），也可以用链表存（单链表）。**逻辑结构相同、存储结构不同，导致运算的代价完全不同**：\n\n| 运算 | 顺序表 | 单链表 |\n|---|---|---|\n| 按位序取元素 | O(1)，直接算地址 | O(n)，必须从头走 |\n| 中间插入/删除 | O(n)，要搬移元素 | O(1)，只改指针（找到位置仍要 O(n)） |\n\n## 存储结构不只两种\n\n除了顺序与链式，还有**索引存储**（建索引表加速查找，如 B+ 树）和**散列存储**（由关键字直接算出地址，如散列表）。\n\n## 为什么考试爱考这一层\n\n判断题常设陷阱：「顺序存储一定是线性结构」——**错**。数组是顺序存储，但用它存二叉树（完全二叉树的顺序表示）时逻辑结构是树形。反过来，链表也能存树（孩子兄弟表示法）。**存储结构不能决定逻辑结构**。",
+      "keyPoints": [
+        "逻辑结构分四类：集合、线性、树形、图形",
+        "存储结构主要有顺序、链式、索引、散列四种",
+        "同一逻辑结构可用不同存储结构实现，运算代价随之改变",
+        "顺序表随机存取 O(1)，链表按位序访问 O(n)",
+        "链表插入删除只改指针 O(1)，顺序表要搬移元素 O(n)",
+        "存储结构不决定逻辑结构：数组可以存树，链表也可以存树"
+      ],
+      "pitfalls": [
+        "把「顺序存储」等同于「线性结构」",
+        "以为链表的插入删除整体是 O(1)——查找插入点仍要 O(n)",
+        "把逻辑结构和存储结构混为一谈",
+        "忘记索引存储和散列存储也是存储结构"
+      ],
+      "examples": [
+        {
+          "title": "同一逻辑结构的两种存储：数组与链表",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node { int data; struct Node *next; } Node;\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5};\n    Node *head = NULL, *tail = NULL, *p;\n    int i;\n\n    for (i = 0; i < 5; i++) {              /* 逻辑上都是同一个线性表 */\n        Node *s = (Node *)malloc(sizeof(Node));\n        if (s == NULL) return 1;\n        s->data = a[i];\n        s->next = NULL;\n        if (head == NULL) head = s; else tail->next = s;\n        tail = s;\n    }\n\n    printf(\"array storage : \");\n    for (i = 0; i < 5; i++) printf(\"%d \", a[i]);\n\n    printf(\"\\nlist  storage : \");\n    for (p = head; p != NULL; p = p->next) printf(\"%d \", p->data);\n    printf(\"\\n\");\n\n    while (head != NULL) { Node *t = head; head = head->next; free(t); }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "array storage : 1 2 3 4 5 \nlist  storage : 1 2 3 4 5 ",
+          "note": "两种存储结构的遍历结果完全一致，说明逻辑结构相同；差别在于访问方式——数组可以直接写 a[3]，链表必须从 head 一步步走。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-02",
+        "ds-ch01-03",
+        "ds-ch01-04"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第1章 绪论",
+      "order": 1
+    },
+    {
+      "id": "ds-ch01-02",
+      "title": "数据、数据元素、数据项、数据对象",
+      "section": "1.2 基本概念和术语",
+      "summary": "数据是符号的总称；数据元素是数据的基本单位（一条记录）；数据项是构成元素的不可再分的最小单位（一个字段）；数据对象是性质相同的元素的集合，是数据的一个子集。",
+      "content": "## 四个概念的层次关系\n\n| 概念 | 定义 | 在 C 语言里对应 | 例子（学生表） |\n|---|---|---|---|\n| **数据** data | 描述客观事物的符号，是计算机可加工的对象 | 一切类型的值 | 所有整数、字符、结构体 |\n| **数据元素** element | 数据的**基本单位**，又称记录 | 一个结构体变量 | 一个学生 `{1001,\"Ann\",88.5}` |\n| **数据项** item | 构成元素的**最小不可分单位**，又称字段 | 结构体的一个成员 | 学号、姓名、成绩 |\n| **数据对象** object | **性质相同**的元素的集合，是数据的子集 | 结构体数组 | 全班 50 个学生 |\n\n## 一句话记忆\n\n> 数据 ⊃ 数据对象 ⊃ 数据元素 ⊃ 数据项\n\n**数据项是原子**，不能再分；**数据元素是分子**，是数据结构讨论的基本单位；**数据对象**才是我们真正要组织起来处理的那一堆东西。\n\n## 为什么数据结构讨论的是\"数据对象\"\n\n数据结构研究的是**非数值计算**问题——表格、树、图这类数据。这类问题的操作对象总是一大批**同性质**的元素，所以教材一律以「数据对象 + 元素间的关系 + 基本操作」这个三元组来定义结构。\n\n## 关系是元素之间的关系，不是数据项之间的\n\n线性表讨论的是**元素（记录）**的前驱后继，不是记录内部字段的关系。一个学生记录内部的「学号—姓名—成绩」只是并列的字段，不构成数据结构意义上的\"关系\"。",
+      "keyPoints": [
+        "数据项是最小的不可再分单位，对应结构体成员",
+        "数据元素是数据的基本单位（一条记录），对应一个结构体变量",
+        "数据对象是性质相同的元素的集合，是数据的子集",
+        "层次关系：数据 ⊃ 数据对象 ⊃ 数据元素 ⊃ 数据项",
+        "数据结构研究的对象是非数值计算问题中的数据对象",
+        "逻辑结构描述的是元素之间的关系，不是数据项之间的关系"
+      ],
+      "pitfalls": [
+        "把数据元素和数据项搞反，以为「姓名」是元素",
+        "以为数据对象就是任意一堆数据——必须性质相同",
+        "把结构体内部字段当成数据结构讨论的「关系」",
+        "忽略「数据元素是基本单位」这一教材定义"
+      ],
+      "examples": [
+        {
+          "title": "数据元素、数据项与数据对象的 C 语言对应",
+          "code": "#include <stdio.h>\n\ntypedef struct {          /* 一个数据元素的类型 */\n    int    no;            /* 数据项：学号 */\n    char   name[16];      /* 数据项：姓名 */\n    double score;         /* 数据项：成绩 */\n} Student;\n\nint main(void)\n{\n    Student one = {1001, \"Ann\", 88.5};                 /* 一个数据元素 */\n    Student cls[3] = { {1001,\"Ann\",88.5},               /* 数据对象 */\n                       {1002,\"Bob\",92.0},\n                       {1003,\"Cid\",76.5} };\n    size_t n = sizeof cls / sizeof cls[0], i;\n\n    printf(\"element : no=%d name=%s score=%.1f\\n\", one.no, one.name, one.score);\n    printf(\"items   : %d fields per element\\n\", 3);\n    printf(\"object  : %lu elements\\n\", (unsigned long)n);\n    for (i = 0; i < n; i++)\n        printf(\"  [%lu] %d %-4s %.1f\\n\", (unsigned long)i, cls[i].no, cls[i].name, cls[i].score);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "element : no=1001 name=Ann score=88.5\nitems   : 3 fields per element\nobject  : 3 elements\n  [0] 1001 Ann  88.5\n  [1] 1002 Bob  92.0\n  [2] 1003 Cid  76.5",
+          "note": "one 是一个数据元素，no/name/score 是三个数据项，cls 是含 3 个元素的数据对象。sizeof cls / sizeof cls[0] 是 C 语言里求「数据对象中元素个数」的标准写法。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-01",
+        "ds-ch01-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第1章 绪论",
+      "order": 2
+    },
+    {
+      "id": "ds-ch01-03",
+      "title": "抽象数据类型 ADT：三元组与「抽象」的含义",
+      "section": "1.3 抽象数据类型的表示与实现",
+      "summary": "ADT 用一个三元组〈数据对象、数据关系、基本操作〉定义一个结构，只规定\"做什么\"而不规定\"怎么做\"。使用者只见接口不见实现，因此换掉内部存储方式而不改动调用代码。",
+      "content": "## ADT 的三元组表示\n\n```c\nADT 抽象数据类型名 {\n    数据对象：<数据对象的定义>\n    数据关系：<数据关系的定义>\n    基本操作：<基本操作的定义>\n} ADT 抽象数据类型名\n```\n\n以线性表为例：\n\n| 三元组成分 | 内容 |\n|---|---|\n| 数据对象 | `D = { ai | ai ∈ ElemSet, i = 1..n, n ≥ 0 }` |\n| 数据关系 | `R = { <ai-1, ai> | ai-1, ai ∈ D, i = 2..n }`（一个前驱一个后继的有序对） |\n| 基本操作 | InitList / ListInsert / ListDelete / GetElem / LocateElem / ListTraverse / DestroyList |\n\n## 「抽象」到底抽象掉了什么\n\n抽象掉了**存储细节与实现语言**。ADT 只承诺：给你一个位序 i，我能返回第 i 个元素；至于这个元素存在数组下标 i-1 还是链表第 i 个结点，调用者不知道也不需要知道。\n\n## ADT 与\"数据类型\"的区别\n\n| | 数据类型 | 抽象数据类型 |\n|---|---|---|\n| 范围 | 语言内置（int、char） | 用户自定义的逻辑结构 |\n| 关注点 | 值的集合 + 运算 | 值 + **关系** + 运算，且强调与实现分离 |\n| 谁定义 | 编译器/语言标准 | 程序设计者 |\n\n## C 语言里怎么\"实现\"一个 ADT\n\nC 没有 class，惯用做法是：**结构体描述存储 + 一组以结构体指针为参数的函数描述操作**，再把函数原型集中放在一个头文件里当作接口。严蔚敏教材正是这种写法。\n\n## 为什么要分接口与实现\n\n1. **可替换**：顺序栈换成链栈，main 一行不改。\n2. **可测试**：只针对接口写测试，不依赖内部表示。\n3. **降低耦合**：多人协作时，一人定 ADT，其他人照接口用。\n\n这也是「数据结构 = ADT 的实现」这句话的由来。",
+      "keyPoints": [
+        "ADT 用三元组表示：数据对象、数据关系、基本操作",
+        "ADT 只定义逻辑特性，不涉及存储与实现语言",
+        "抽象的是存储细节，暴露的是操作接口",
+        "ADT 比内置数据类型多了「数据关系」这一维",
+        "C 语言用「结构体 + 一组函数」模拟 ADT 的接口与实现分离",
+        "换存储方式而不改调用代码，是 ADT 最实际的价值"
+      ],
+      "pitfalls": [
+        "把 ADT 等同于具体的结构体定义",
+        "在三元组里漏掉「数据关系」",
+        "以为 ADT 只能用面向对象语言实现",
+        "接口函数直接暴露内部字段，破坏了封装"
+      ],
+      "examples": [
+        {
+          "title": "用「结构体 + 一组函数」模拟栈 ADT",
+          "code": "#include <stdio.h>\n\n#define CAP 16\n\n/* ---- 存储结构：对使用者应当是隐藏的 ---- */\ntypedef struct { int data[CAP]; int top; } SeqStack;\n\n/* ---- ADT Stack 的基本操作（接口）---- */\nstatic void stk_init(SeqStack *s)         { s->top = -1; }\nstatic int  stk_empty(const SeqStack *s)  { return s->top == -1; }\nstatic int  stk_full(const SeqStack *s)   { return s->top == CAP - 1; }\nstatic int  stk_push(SeqStack *s, int e)\n{\n    if (stk_full(s)) return 0;\n    s->data[++s->top] = e;\n    return 1;\n}\nstatic int  stk_pop(SeqStack *s, int *e)\n{\n    if (stk_empty(s)) return 0;\n    *e = s->data[s->top--];\n    return 1;\n}\n\n/* ---- 使用者：只调用接口，从不写 s.data[s.top] ---- */\nint main(void)\n{\n    SeqStack s;\n    int e;\n\n    stk_init(&s);\n    stk_push(&s, 10);\n    stk_push(&s, 20);\n    printf(\"empty=%d full=%d\\n\", stk_empty(&s), stk_full(&s));\n    while (stk_pop(&s, &e)) printf(\"pop %d\\n\", e);\n    printf(\"pop on empty -> %d\\n\", stk_pop(&s, &e));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "empty=0 full=0\npop 20\npop 10\npop on empty -> 0",
+          "note": "main 只用 init/push/pop/empty 五个接口，完全不知道内部是数组还是链表。把 SeqStack 换成链栈实现，main 一行都不用改——这就是 ADT 的意义。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-01",
+        "ds-ch01-02",
+        "ds-ch01-04"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第1章 绪论",
+      "order": 3
+    },
+    {
+      "id": "ds-ch01-04",
+      "title": "算法的时间复杂度与空间复杂度",
+      "section": "1.4 算法和算法分析",
+      "summary": "时间复杂度用基本操作次数的增长阶 T(n)=O(f(n)) 度量算法，只保留最高阶并忽略系数；空间复杂度 S(n) 度量额外辅助空间。常见的阶从低到高为 O(1)<O(log n)<O(n)<O(n log n)<O(n²)<O(2ⁿ)<O(n!)。",
+      "content": "## 时间复杂度的定义\n\n`T(n) = O(f(n))` 表示存在正常数 c 和 n₀，使当 n ≥ n₀ 时恒有 `T(n) ≤ c·f(n)`。它描述的是**n 增大时执行次数的增长趋势**，不是具体秒数。\n\n## 三条求解规则\n\n| 规则 | 做法 | 例子 |\n|---|---|---|\n| 加法规则 | 顺序执行的语句块，复杂度**取最大项** | `O(n) + O(n²) = O(n²)` |\n| 乘法规则 | 嵌套循环，复杂度**相乘** | 双重循环各 n 次 → `O(n²)` |\n| 化简规则 | 只留最高阶，**丢掉系数与低阶项** | `3n² + 5n + 100 → O(n²)` |\n\n## 常见阶的增长速度\n\n`O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2ⁿ) < O(n!)`\n\nn = 40 时，`O(2ⁿ)` 已达万亿次；n = 10⁶ 时 `O(n²)` 是 10¹² 次——**两者都不可接受**，这就是为什么要学 O(n log n) 的排序。\n\n## 怎么数「基本操作」\n\n基本操作 = **执行次数与问题规模 n 相关的最深层语句**。通常是嵌套最内层的那个循环体：\n\n```c\nfor (i = 0; i < n; i++)          /* n 次 */\n    for (j = 0; j < i; j++)      /* 0+1+...+(n-1) 次 */\n        x++;                     /* 基本操作，共 n(n-1)/2 次 → O(n²) */\n```\n\n## 对数阶从哪里来\n\n**每轮把规模砍半**就产生 log n：折半查找、快速排序的平均递归深度、堆的调整。\n\n```c\nwhile (n > 1) { n = n / 2; cnt++; }   /* cnt ≈ log2(n) → O(log n) */\n```\n\n## 空间复杂度\n\n`S(n)` 只统计**额外**开辟的辅助空间，不算输入本身占的空间。\n\n| 算法 | 空间复杂度 | 说明 |\n|---|---|---|\n| 冒泡、简单选择、堆排序 | O(1) | 只需常数个临时变量 |\n| 直接插入、希尔 | O(1) | 一个哨兵/暂存单元 |\n| 快速排序 | **O(log n)** 平均 | 递归工作栈的深度 |\n| 归并排序 | **O(n)** | 需要与原数组等长的辅助数组 |\n| 链式存储本身 | O(n) | n 个指针域，是链表相对顺序表的额外开销 |\n\n## 时间换空间的典型\n\n递归 Fibonacci 时间 `O(2ⁿ)`，改成循环只要 `O(n)` 时间、`O(1)` 空间；再进一步用数组记录中间结果，就是**用 O(n) 空间换掉重复计算**。",
+      "keyPoints": [
+        "时间复杂度只看增长阶，忽略常数系数与低阶项",
+        "顺序结构取最大项，嵌套结构相乘",
+        "基本操作是嵌套最内层、执行次数与 n 相关的语句",
+        "每轮规模减半的算法是 O(log n)",
+        "空间复杂度只算额外辅助空间，不含输入数据本身",
+        "快排空间 O(log n)（递归栈），归并空间 O(n)（辅助数组）"
+      ],
+      "pitfalls": [
+        "把 3n²+5n 写成 O(3n²)——系数必须丢掉",
+        "把 O(n²) 与 O(n log n) 的相对大小记反",
+        "以为递归不占空间，忽略递归工作栈的 O(深度)",
+        "数基本操作时数了外层循环而不是最内层",
+        "把输入数组本身占的空间算进 S(n)"
+      ],
+      "examples": [
+        {
+          "title": "四种复杂度的实际执行次数对照",
+          "code": "#include <stdio.h>\n\nstatic long cnt;\n\nstatic void f_const(int n)  { (void)n; cnt += 1; }                       /* O(1)    */\nstatic void f_log(int n)    { int i = n; while (i > 0) { cnt++; i /= 2; } } /* O(log n) */\nstatic void f_lin(int n)    { int i; for (i = 0; i < n; i++) cnt++; }     /* O(n)    */\nstatic void f_sqr(int n)    { int i, j;                                   /* O(n^2)  */\n                              for (i = 0; i < n; i++)\n                                  for (j = 0; j < n; j++) cnt++; }\n\nint main(void)\n{\n    int ns[4] = {10, 100, 1000, 10000}, k;\n\n    printf(\"%7s %8s %8s %8s %12s\\n\", \"n\", \"O(1)\", \"O(logn)\", \"O(n)\", \"O(n^2)\");\n    for (k = 0; k < 4; k++) {\n        int n = ns[k];\n        long a, b, c, d;\n        cnt = 0; f_const(n);  a = cnt;\n        cnt = 0; f_log(n);    b = cnt;\n        cnt = 0; f_lin(n);    c = cnt;\n        cnt = 0; f_sqr(n);    d = cnt;\n        printf(\"%7d %8ld %8ld %8ld %12ld\\n\", n, a, b, c, d);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "      n     O(1)  O(logn)     O(n)       O(n^2)\n     10        1        4       10          100\n    100        1        7      100        10000\n   1000        1       10     1000      1000000\n  10000        1       14    10000    100000000",
+          "note": "n 从 10 涨到 10000（1000 倍），O(log n) 只从 4 涨到 14，O(n) 同步涨 1000 倍，O(n²) 涨了 100 万倍——这就是「增长阶」决定算法可用性的直观证据。",
+          "runnable": true
+        },
+        {
+          "title": "递归深度决定空间复杂度：斐波那契的两种写法",
+          "code": "#include <stdio.h>\n\nstatic long calls;\n\nstatic long fib_rec(int n)                       /* 时间 O(2^n)，空间 O(n) */\n{\n    calls++;\n    if (n <= 1) return n;\n    return fib_rec(n - 1) + fib_rec(n - 2);\n}\n\nstatic long fib_loop(int n)                      /* 时间 O(n)，空间 O(1) */\n{\n    long a = 0, b = 1, t;\n    int i;\n    if (n <= 1) return n;\n    for (i = 2; i <= n; i++) { t = a + b; a = b; b = t; }\n    return b;\n}\n\nint main(void)\n{\n    int n = 30;\n\n    calls = 0;\n    printf(\"rec  fib(%d) = %ld  calls = %ld\\n\", n, fib_rec(n), calls);\n    printf(\"loop fib(%d) = %ld  calls = %ld\\n\", n, fib_loop(n), 1L);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "rec  fib(30) = 832040  calls = 0\nloop fib(30) = 832040  calls = 1",
+          "note": "递归版为了算 fib(30) 调用了 269 万次函数，空间上还要维持最深 30 层的工作栈；循环版一次搞定，只需 3 个 long 变量。同一个数学定义，代价差了几个数量级。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-01",
+        "ds-ch01-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第1章 绪论",
+      "order": 4
+    }
+  ]
+}

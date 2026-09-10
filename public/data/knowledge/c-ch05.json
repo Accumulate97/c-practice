@@ -40,7 +40,7 @@
         "c-ch05-05",
         "c-ch05-08"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 1
@@ -82,7 +82,7 @@
         "c-ch05-03",
         "c-ch05-04"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 2
@@ -124,7 +124,7 @@
         "c-ch05-04",
         "c-ch05-30"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 3
@@ -166,7 +166,7 @@
         "c-ch05-03",
         "c-ch05-09"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 4
@@ -208,7 +208,7 @@
         "c-ch05-06",
         "c-ch05-10"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 5
@@ -250,7 +250,7 @@
         "c-ch05-14",
         "c-ch05-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 6
@@ -290,7 +290,7 @@
         "c-ch05-05",
         "c-ch05-11"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 7
@@ -332,7 +332,7 @@
         "c-ch05-10",
         "c-ch05-20"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 8
@@ -417,7 +417,7 @@
         "c-ch05-03",
         "c-ch05-05"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 9
@@ -459,7 +459,7 @@
         "c-ch05-08",
         "c-ch05-20"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 10
@@ -501,7 +501,7 @@
         "c-ch05-12",
         "c-ch05-17"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 11
@@ -541,7 +541,7 @@
         "c-ch05-11",
         "c-ch05-13"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 12
@@ -581,7 +581,7 @@
         "c-ch05-11",
         "c-ch05-12"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 13
@@ -623,7 +623,7 @@
         "c-ch05-16",
         "c-ch05-17"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 14
@@ -665,7 +665,7 @@
         "c-ch05-16",
         "c-ch05-19"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 15
@@ -744,7 +744,7 @@
         "c-ch05-15",
         "c-ch05-17"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 16
@@ -786,7 +786,7 @@
         "c-ch05-14",
         "c-ch05-16"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 17
@@ -828,7 +828,7 @@
         "c-ch05-30",
         "c-ch06-18"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 18
@@ -869,7 +869,7 @@
         "c-ch05-06",
         "c-ch05-21"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 19
@@ -911,7 +911,7 @@
         "c-ch05-10",
         "c-ch06-03"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 20
@@ -952,7 +952,7 @@
         "c-ch05-22",
         "c-ch05-02"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 21
@@ -994,7 +994,7 @@
         "c-ch05-10",
         "c-ch05-08"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 22
@@ -1036,7 +1036,7 @@
         "c-ch05-25",
         "c-ch05-01"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 23
@@ -1077,7 +1077,7 @@
         "c-ch05-23",
         "c-ch05-27"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 24
@@ -1119,7 +1119,7 @@
         "c-ch05-30",
         "c-ch06-32"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 25
@@ -1161,7 +1161,7 @@
         "c-ch05-27",
         "c-ch05-11"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 26
@@ -1203,7 +1203,7 @@
         "c-ch05-26",
         "c-ch06-34"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 27
@@ -1245,7 +1245,7 @@
         "c-ch05-29",
         "c-ch05-02"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 28
@@ -1287,7 +1287,7 @@
         "c-ch05-14",
         "c-ch05-28"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 29
@@ -1329,7 +1329,7 @@
         "c-ch05-18",
         "c-ch05-25"
       ],
-      "relatedViz": null,
+      "relatedViz": [],
       "category": "c",
       "chapter": "第5章 循环结构",
       "order": 30

@@ -1,0 +1,1295 @@
+{
+  "category": "c",
+  "chapter": "第12章 文件",
+  "generated_at": "2026-09-10",
+  "count": 25,
+  "cards": [
+    {
+      "id": "c-ch12-01",
+      "title": "文件的概念与分类",
+      "section": "12.1 文件概述",
+      "summary": "文件是存放在外部介质上、以文件名标识的一组相关数据的集合；C 语言按内容编码把文件分成 ASCII 文件（文本文件）和二进制文件两类。",
+      "content": "\n## 什么是文件\n\n**文件 = 一组相关数据的有序集合**，存放在磁盘（或其他外部介质）上，用**文件名**标识。程序运行时通过文件名找到文件，再按顺序读写其中的数据。\n\n按用途分两类：\n\n| 类别 | 内容 | 例子 |\n|---|---|---|\n| **程序文件** | 源代码、目标代码、可执行代码 | `.c` `.o` `.exe` |\n| **数据文件** | 程序运行时读写的输入/输出数据 | `data.txt` `student.dat` |\n\n第 12 章讨论的是**数据文件**。注意：源程序本身也是文件，而且一定是文本文件。\n\n## 按编码形式分类（考试重点）\n\n| 类型 | 一个数据怎么存 | 特点 |\n|---|---|---|\n| **ASCII 文件 / 文本文件** | 每个字符用 1 个字节的 ASCII 码存 | 一字节一字符，人可读、可打印，但占空间、转换耗时 |\n| **二进制文件** | 按数据在内存中的**二进制形式**原样存 | 与内存映像一致，节省空间、读写快，但屏幕上不可读 |\n\n例：整数 `10000`\n- 文本形式：字符 `'1' '0' '0' '0' '0'` → **5 个字节**（ASCII 49 50 50 50 48）\n- 二进制形式：内存中的 4 字节补码原样搬过去 → **4 个字节**\n\n## 关键结论\n\n1. 「文本文件」和「ASCII 文件」是**同义词**，教材常混用。\n2. 二进制文件里也有 ASCII 字符，只是**不以字节为分隔单位**，所以不能按字符逐个读懂。\n3. 选择依据：需要人工查看/编辑 → 文本；追求效率与精度（尤其浮点数）→ 二进制。\n",
+      "keyPoints": [
+        "文件是外部介质上以文件名标识的数据集合，分为程序文件与数据文件，第12章讨论数据文件",
+        "按编码形式分为 ASCII 文件（文本文件）和二进制文件，两者是同义分类",
+        "文本文件一字节存一个字符，可用任何编辑器阅读；二进制文件按内存映像原样存放",
+        "整数 10000 以文本形式占 5 字节，以二进制形式占 sizeof(int)=4 字节",
+        "文本文件便于人工查看但占空间、转换慢；二进制文件省空间、读写快但屏幕不可读"
+      ],
+      "pitfalls": [
+        "把「文件」只理解成磁盘上的 .txt，忽略源程序、目标程序也是文件",
+        "认为二进制文件里「没有字符」，实际上任何字节都可以按 ASCII 解释，只是解释出来无意义",
+        "把文本文件的字节数当成数据个数：5 个字节的文本 \"10000\" 只表示 1 个整数",
+        "混淆「数据文件」与「文件缓冲区」，后者是内存中为每个文件开辟的中转区"
+      ],
+      "examples": [
+        {
+          "title": "文本文件里存的就是 ASCII 码",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_01a.txt\", \"w\");\n    int c;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"123\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_01a.txt\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(fp)) != EOF)\n        printf(\"%c=%d\\n\", c, c);\n    fclose(fp);\n\n    remove(\"kc12_01a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1=49\n2=50\n3=51",
+          "note": "字符 1/2/3 在磁盘上分别是 ASCII 码 49/50/51，一个字符占一个字节。",
+          "runnable": true
+        },
+        {
+          "title": "文本文件的字节数不等于数据个数",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_01b.txt\", \"w\");\n    long n = 0;\n    int i;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    for (i = 0; i < 5; i++)\n        fputc('A' + i, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_01b.txt\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fgetc(fp) != EOF)\n        n++;\n    fclose(fp);\n\n    printf(\"bytes = %ld\\n\", n);\n    remove(\"kc12_01b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "bytes = 5",
+          "note": "写入 5 个字符就占 5 个字节，这是文本文件「一字节一字符」的直接体现。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-02",
+        "c-ch12-03",
+        "c-ch12-22"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 1
+    },
+    {
+      "id": "c-ch12-02",
+      "title": "文本文件与二进制文件的存储形式对比",
+      "section": "12.1 文件概述",
+      "summary": "同一个数据用文本方式和二进制方式写入文件，字节数和字节内容完全不同：文本方式存的是字符的 ASCII 码，二进制方式存的是内存中的补码映像。",
+      "content": "\n## 一张对比表（以 int 型 -1234 为例）\n\n| 存法 | 调用 | 文件里的字节 | 字节数 |\n|---|---|---|---|\n| 文本 | `fprintf(fp,\"%d\",-1234)` | `2d 31 32 33 34`（即字符 `-1234`） | **5** |\n| 二进制 | `fwrite(&x,sizeof x,1,fp)` | `2e fb ff ff`（补码 0xFFFFFB2E 小端存放） | **4** |\n\n> 这就是填空题「把 -1234 分别以文本和二进制形式存放，各占几个字节」的标准答案：**文本 5 字节，二进制 sizeof(int) 字节**。\n\n## 为什么二进制更快\n\n- 文本方式：内存中的二进制数 → 逐位除法取余 → 转成 ASCII 字符（**写出时转换**）；读回时再逐字符拼回整数（**读入时转换**）。\n- 二进制方式：内存 → 磁盘**原样搬运**，零转换。\n\n## 为什么浮点数几乎必须用二进制\n\n`double` 有 15~17 位有效数字，用 `%f` 默认只输出 6 位小数，**会丢精度**；写回文件再读回来就不是原来那个数了。二进制方式按 8 字节原样存，精度无损。\n\n## 打开方式必须配对\n\n| 写入调用 | 应使用的模式 | 读回调用 |\n|---|---|---|\n| `fprintf / fputs / fputc` | `\"w\" \"a\"`（或 `\"w+\" \"a+\"`） | `fscanf / fgets / fgetc` |\n| `fwrite` | `\"wb\" \"ab\" \"wb+\"` | `fread`（`\"rb\" \"rb+\"`） |\n\n**用文本方式写的文件必须用文本方式读，用二进制方式写的必须用二进制方式读**，否则数据解释错乱。在 Windows 上还有换行转换问题：文本模式下写 `'\\n'` 落盘变成 `0D 0A` 两个字节，读回时再还原成一个；二进制模式不做任何转换。\n",
+      "keyPoints": [
+        "同一个数据的文本存法存 ASCII 字符序列，二进制存法存内存补码映像，字节数不同",
+        "-1234 以文本形式占 5 字节（字符 - 1 2 3 4），以二进制形式占 sizeof(int)=4 字节",
+        "二进制方式无需数制转换，读写速度快、节省空间，是浮点数与结构体的首选",
+        "用 fwrite 写的文件要用 fread + \"rb\" 读，用 fprintf 写的要用 fscanf + \"r\" 读，不可混用",
+        "Windows 文本模式写 \\n 会转换成 0D 0A 两字节，读回时再还原；二进制模式不做转换"
+      ],
+      "pitfalls": [
+        "用 sizeof 去数文本文件的字节数，结果与文件大小不符",
+        "把 %d 输出的文本文件当成二进制文件 fread，读出来的是 ASCII 码拼成的整数",
+        "认为二进制文件里「全是乱码所以不能用」，其实用配套程序读完全正确",
+        "忽略 Windows 的换行转换，导致文本模式下的字节数统计多算"
+      ],
+      "examples": [
+        {
+          "title": "同一个整数两种存法的字节数对比",
+          "code": "#include <stdio.h>\n\nstatic long bytes_of(const char *name)\n{\n    FILE *fp = fopen(name, \"rb\");\n    long n = 0;\n\n    if (fp == NULL)\n        return -1;\n    while (fgetc(fp) != EOF)\n        n++;\n    fclose(fp);\n    return n;\n}\n\nint main(void)\n{\n    int x = 10000;\n    FILE *fp;\n\n    fp = fopen(\"kc12_02a.txt\", \"w\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fprintf(fp, \"%d\", x);\n    fclose(fp);\n\n    fp = fopen(\"kc12_02a.bin\", \"wb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    if (fwrite(&x, sizeof x, 1, fp) != 1) { printf(\"write failed\\n\"); fclose(fp); return 1; }\n    fclose(fp);\n\n    printf(\"text = %ld bytes, binary = %ld bytes\\n\",\n           bytes_of(\"kc12_02a.txt\"), bytes_of(\"kc12_02a.bin\"));\n\n    remove(\"kc12_02a.txt\");\n    remove(\"kc12_02a.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "text = 5 bytes, binary = 4 bytes",
+          "note": "文本 \"10000\" 占 5 字节，二进制按 sizeof(int)=4 字节存放。",
+          "runnable": true
+        },
+        {
+          "title": "看二进制文件里到底是哪几个字节",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 10000;              /* 0x00002710 */\n    FILE *fp = fopen(\"kc12_02b.bin\", \"wb\");\n    int c, first = 1;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    if (fwrite(&x, sizeof x, 1, fp) != 1) { printf(\"write failed\\n\"); fclose(fp); return 1; }\n    fclose(fp);\n\n    fp = fopen(\"kc12_02b.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(fp)) != EOF) {\n        printf(\"%s%02X\", first ? \"\" : \" \", (unsigned)c);\n        first = 0;\n    }\n    printf(\"\\n\");\n    fclose(fp);\n\n    remove(\"kc12_02b.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "10 27 00 00",
+          "note": "10000 = 0x2710，x86 小端存放，低字节在前，所以是 10 27 00 00。这是二进制文件「内存映像原样落盘」的证据。",
+          "runnable": true
+        },
+        {
+          "title": "文本文件里的字节是可打印字符",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 10000;\n    FILE *fp = fopen(\"kc12_02c.txt\", \"w\");\n    int c, first = 1;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fprintf(fp, \"%d\", x);\n    fclose(fp);\n\n    fp = fopen(\"kc12_02c.txt\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(fp)) != EOF) {\n        printf(\"%s%02X\", first ? \"\" : \" \", (unsigned)c);\n        first = 0;\n    }\n    printf(\"\\n\");\n    fclose(fp);\n\n    remove(\"kc12_02c.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "31 30 30 30 30",
+          "note": "31 30 30 30 30 就是字符 1 0 0 0 0 的 ASCII 码，可以用记事本直接阅读。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-01",
+        "c-ch12-15",
+        "c-ch12-22"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 2
+    },
+    {
+      "id": "c-ch12-03",
+      "title": "缓冲文件系统与文件类型指针 FILE",
+      "section": "12.1 文件概述",
+      "summary": "C 语言使用缓冲文件系统：每个打开的文件都在内存中配一个缓冲区，程序通过 FILE 结构体（文件类型指针）访问它，所有读写都先经过缓冲区。",
+      "content": "\n## 缓冲文件系统的工作方式\n\n```\n程序  ←→  文件缓冲区（内存）  ←→  磁盘文件\n        fgetc/fputc 等            系统成批搬运\n```\n\n- 从磁盘**读**：系统一次成批读入缓冲区，程序再逐个字符从缓冲区取；缓冲区空了才再读下一批。\n- 向磁盘**写**：程序先把字符送进缓冲区，**装满后才一次性写出**；也可以强制刷出。\n- 好处：减少磁盘 I/O 次数，大幅提高速度。\n\n## FILE 结构体\n\n标准库为**每一个被使用的文件**在内存中开辟一个 FILE 结构体变量，存放该文件的全部管理信息：\n\n| 成员（概念） | 含义 |\n|---|---|\n| 缓冲区指针 | 指向该文件的缓冲区 |\n| 当前读写位置 | 缓冲区中下一个读/写的下标 |\n| **文件位置标记** | 磁盘文件中当前读写位置（`fseek/ftell` 操作的就是它） |\n| 文件状态标志 | 读/写/出错/结束（`ferror/feof` 读的就是它） |\n| 文件描述符 | 操作系统层面的编号 |\n\n不同编译器的 FILE 成员不完全一样，**所以永远不要直接访问它的成员**，只用指针。\n\n## 文件类型指针的定义\n\n```c\nFILE *fp;              /* 正确：fp 是指向 FILE 结构体的指针 */\nstruct _iobuf *fp;     /* 错误：不可移植，别写 */\n```\n\n一次可以定义多个，**每个指针对应一个打开的文件**：\n\n```c\nFILE *f1, *f2, *f3;    /* 同时操作三个文件 */\n```\n\n## stdin / stdout / stderr\n\n它们是系统预定义的三个 `FILE *`，分别对应标准输入（键盘）、标准输出（屏幕）、标准错误输出。**不需要也不能 fopen/fclose**，但可以用在一切以 `FILE *` 为参数的函数里，例如 `fputc('A', stdout)` 等价于 `putchar('A')`。\n",
+      "keyPoints": [
+        "C 语言用缓冲文件系统，每个打开的文件在内存中都有一个缓冲区，读写先经过缓冲区再成批与磁盘交换",
+        "FILE 是一个结构体类型，存放缓冲区指针、文件位置标记、读写状态等信息，不同编译器成员不同",
+        "文件类型指针定义为 FILE *fp，一个指针对应一个打开的文件，可同时定义多个",
+        "不要直接访问 FILE 的成员，也不要写 struct _iobuf，只用指针才具有可移植性",
+        "stdin、stdout、stderr 是系统预定义的 FILE 指针，可直接传给文件函数使用"
+      ],
+      "pitfalls": [
+        "写成 FILE fp（漏了 *），fp 变成结构体变量而不是指针",
+        "一个 FILE 指针连续 fopen 两次而不 fclose，第一次的文件句柄泄漏",
+        "以为 fclose 之后 fp 自动变成 NULL，其实它仍指向已释放的缓冲区，属悬空指针",
+        "试图打印或修改 FILE 的成员，编译就过不去或者结果不可移植"
+      ],
+      "examples": [
+        {
+          "title": "stdout 也是 FILE 指针",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_03a.txt\", \"w\");\n    int c;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"hello\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_03a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, stdout);            /* 等价于 putchar(c) */\n    fputc('\\n', stdout);\n    fclose(fp);\n\n    remove(\"kc12_03a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "hello",
+          "note": "文件函数接受 FILE *，把 stdout 传进去就实现了「从文件读、往屏幕写」。",
+          "runnable": true
+        },
+        {
+          "title": "同时操作多个文件",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *src = fopen(\"kc12_03b.txt\", \"w\");\n    FILE *dst, *chk;\n    int c;\n    long n = 0;\n\n    if (src == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"ABCDEFGH\", src);\n    fclose(src);\n\n    src = fopen(\"kc12_03b.txt\", \"r\");\n    dst = fopen(\"kc12_03c.txt\", \"w\");\n    if (src == NULL || dst == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(src)) != EOF)\n        fputc(c, dst);\n    fclose(src);\n    fclose(dst);\n\n    chk = fopen(\"kc12_03c.txt\", \"r\");\n    if (chk == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fgetc(chk) != EOF)\n        n++;\n    fclose(chk);\n    printf(\"copied %ld bytes\\n\", n);\n\n    remove(\"kc12_03b.txt\");\n    remove(\"kc12_03c.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "copied 8 bytes",
+          "note": "三个 FILE 指针各自独立，互不干扰：一个读、一个写、一个校验。",
+          "runnable": true
+        },
+        {
+          "title": "文件位置标记随读写前进（ftell 预览）",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_03d.txt\", \"w+\");\n    int i;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    for (i = 0; i < 4; i++)\n        fputc('a' + i, fp);\n    printf(\"after write: pos = %ld\\n\", ftell(fp));\n\n    rewind(fp);\n    printf(\"after rewind: pos = %ld\\n\", ftell(fp));\n\n    fgetc(fp);\n    fgetc(fp);\n    printf(\"after 2 reads: pos = %ld\\n\", ftell(fp));\n\n    fclose(fp);\n    remove(\"kc12_03d.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "after write: pos = 4\nafter rewind: pos = 0\nafter 2 reads: pos = 2",
+          "note": "FILE 结构体里的「文件位置标记」就是 ftell 读出来的值，每读写一个字节它自动前进 1。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-006"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-04",
+        "c-ch12-07",
+        "c-ch12-20"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 3
+    },
+    {
+      "id": "c-ch12-04",
+      "title": "顺序存取与随机存取",
+      "section": "12.1 文件概述",
+      "summary": "顺序存取是从文件头开始一个接一个地读写、不能跳过中间数据；随机存取（直接存取）可以用 fseek 把位置标记移到任意字节再读写。",
+      "content": "\n## 两种存取方式\n\n| 方式 | 别名 | 读写规律 | 典型函数 |\n|---|---|---|---|\n| **顺序存取** | 串行存取 | 只能从头到尾依次读写，要读第 100 个数据必须先走过前 99 个 | `fgetc fputc fgets fputs fscanf fprintf` |\n| **随机存取** | 直接存取 | 可以直接跳到文件任意位置读写 | `fseek ftell rewind` + 读写函数 |\n\n## 顺序存取的代码形式\n\n```c\nfp = fopen(\"data.txt\", \"r\");\nwhile ((c = fgetc(fp)) != EOF)      /* 只能一个个往前走 */\n    putchar(c);\nfclose(fp);\n```\n\n## 随机存取的代码形式\n\n```c\nfp = fopen(\"stu.dat\", \"rb+\");\nfseek(fp, 2L * sizeof(Student), SEEK_SET);   /* 直接跳到第 3 条记录 */\nfread(&s, sizeof s, 1, fp);                  /* 只读这一条 */\nfclose(fp);\n```\n\n## 关键结论\n\n1. **顺序 vs 随机说的是「存取方式」，文本 vs 二进制说的是「编码形式」，这是两个互不相干的维度。** 四种组合都合法：文本顺序、文本随机、二进制顺序、二进制随机。\n2. 随机存取要求**每条记录长度固定**（用 `fwrite` 存结构体最方便），否则算不出第 i 条的偏移量。\n3. 对文本文件也能用 `fseek`，但**偏移量不可靠**：Windows 文本模式下 `0D 0A` 算作一个换行，位置标记与「肉眼看到的字节数」不一致；标准建议 `fseek` 只用于二进制文件，文本文件仅用 `fseek(fp,0L,SEEK_END)` 求长度这类简单操作。\n4. 顺序文件不能「就地删除中间一条」，只能整体重写；随机文件可以只覆盖那一条。\n",
+      "keyPoints": [
+        "顺序存取必须从头到尾依次读写，不能跳过中间数据，fgetc/fgets/fscanf 都是顺序方式",
+        "随机存取用 fseek 把文件位置标记移到任意字节，再配合读写函数直接访问某条记录",
+        "顺序/随机是存取方式，文本/二进制是编码形式，两个维度互相独立，四种组合都合法",
+        "随机存取要求记录等长，第 i 条记录的偏移量是 i * sizeof(记录类型)",
+        "标准建议 fseek 主要用于二进制文件，文本文件的偏移量受换行转换影响不可靠"
+      ],
+      "pitfalls": [
+        "把「文本文件」等同于「只能顺序存取」、「二进制文件」等同于「只能随机存取」",
+        "随机读写时忘记每条记录必须等长，用 fprintf 存变长文本再按 sizeof 定位",
+        "对文本文件用 fseek(fp, 100L, SEEK_SET) 以为能到第 100 个字符",
+        "用 \"r\" 模式打开却想 fseek 后写入，模式与操作不匹配（需要 \"r+\" 或 \"rb+\"）"
+      ],
+      "examples": [
+        {
+          "title": "顺序存取：只能一个个往前走",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_04a.txt\", \"w\");\n    int c, k = 0;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"abcdefghij\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_04a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while ((c = fgetc(fp)) != EOF) {\n        k++;\n        if (k == 7) { printf(\"7th char = %c\\n\", c); break; }\n    }\n    fclose(fp);\n\n    remove(\"kc12_04a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7th char = g",
+          "note": "要拿到第 7 个字符，前面 6 个必须先被读过去，这就是顺序存取。",
+          "runnable": true
+        },
+        {
+          "title": "随机存取：fseek 直接跳到第 7 个字节",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_04b.txt\", \"w+\");\n    int c;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"abcdefghij\", fp);\n\n    fseek(fp, 6L, SEEK_SET);         /* 偏移 6 → 第 7 个字节 */\n    c = fgetc(fp);\n    printf(\"7th char = %c\\n\", c);\n\n    fseek(fp, 0L, SEEK_SET);         /* 回到开头再读一次 */\n    c = fgetc(fp);\n    printf(\"1st char = %c\\n\", c);\n\n    fclose(fp);\n    remove(\"kc12_04b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "7th char = g\n1st char = a",
+          "note": "同一个文件，不重头遍历也能直接取第 7 个字符，还能来回跳。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-001",
+        "c-ch12-fb-002",
+        "c-ch12-fb-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-19",
+        "c-ch12-21",
+        "c-ch12-02"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 4
+    },
+    {
+      "id": "c-ch12-05",
+      "title": "fopen 的打开方式（模式）全表",
+      "section": "12.2 文件的打开与关闭",
+      "summary": "fopen(文件名, 使用方式) 返回 FILE 指针；使用方式由 r/w/a 加 + 与 b 组合而成，决定文件是否被清空、读写指针从哪里开始、以及能否同时读写。",
+      "content": "\n## 函数原型\n\n```c\nFILE *fopen(const char *filename, const char *mode);\n```\n\n成功返回指向 FILE 的指针，**失败返回 NULL**。\n\n## 12 种常用模式\n\n| 模式 | 含义 | 文件不存在 | 文件已存在 | 起始位置 | 可读 | 可写 |\n|---|---|---|---|---|---|---|\n| `\"r\"` | 只读文本 | **出错 NULL** | 保留内容 | 开头 | ✔ | ✘ |\n| `\"w\"` | 只写文本 | 新建 | **清空为 0 字节** | 开头 | ✘ | ✔ |\n| `\"a\"` | 追加文本 | 新建 | 保留，写在末尾 | **末尾** | ✘ | ✔ |\n| `\"r+\"` | 读写文本 | 出错 NULL | 保留内容 | 开头 | ✔ | ✔ |\n| `\"w+\"` | 读写文本 | 新建 | **清空** | 开头 | ✔ | ✔ |\n| `\"a+\"` | 读+追加文本 | 新建 | 保留 | 末尾 | ✔ | ✔(只能追加) |\n| `\"rb\"` `\"wb\"` `\"ab\"` | 同上，二进制 | 同规则 | 同规则 | 同规则 | — | — |\n| `\"rb+\"` `\"wb+\"` `\"ab+\"` | 同上，二进制 | 同规则 | 同规则 | 同规则 | — | — |\n\n`\"r+b\"` 与 `\"rb+\"` 等价，`+` 和 `b` 谁先谁后都行。\n\n## 三条必背规则\n\n1. **`\"w\"` 会截断**：打开一个已有内容的文件用 `\"w\"`，原内容立即丢失，长度变 0。想保留就用 `\"a\"` 或 `\"r+\"`。\n2. **`\"r\"` 要求文件必须存在**，否则返回 NULL；`\"w\" \"a\"` 在文件不存在时会创建。\n3. **带 `+` 的模式才能既读又写**；但 ANSI C 规定：在同一个流上读写切换时，中间最好有一次 `fseek / rewind / fflush`，否则行为可能不合预期。\n\n## 文件名的书写\n\n```c\nfopen(\"data.txt\", \"r\");            /* 当前目录 */\nfopen(\"d:\\\\\\\\data\\\\\\\\a.txt\", \"r\");    /* Windows 绝对路径，反斜杠要写成 \\\\\\\\ */\nfopen(\"/home/u/a.txt\", \"r\");       /* Linux 绝对路径 */\n```\n",
+      "keyPoints": [
+        "fopen(文件名, 模式) 成功返回 FILE 指针，失败返回 NULL，这是所有文件程序的第一步",
+        "r 只读且文件必须存在；w 只写且会清空已有内容；a 只写且从末尾追加",
+        "带 + 的模式（r+ w+ a+）允许对同一文件既读又写，w+ 同样会先清空文件",
+        "带 b 的模式（rb wb ab）表示二进制文件，不带 b 表示文本文件",
+        "Windows 路径中的反斜杠在字符串里必须写成两个反斜杠，否则被当成转义字符"
+      ],
+      "pitfalls": [
+        "用 \"w\" 打开一个已有数据的文件，原内容被悄悄清空",
+        "用 \"r\" 打开不存在的文件却不检查返回值，后面 fgetc 直接对 NULL 解引用而崩溃",
+        "以为 \"a+\" 可以在文件中间插入数据，其实 a 系列的所有写操作都被强制送到末尾",
+        "把模式字符串写成变量拼接后的错误内容，如 \"rw\"（无此模式，返回 NULL）"
+      ],
+      "examples": [
+        {
+          "title": "w 截断、a 追加、w 再截断",
+          "code": "#include <stdio.h>\n\nstatic void show(const char *tag, const char *name)\n{\n    FILE *fp = fopen(name, \"r\");\n    int c;\n\n    printf(\"%s\", tag);\n    if (fp == NULL) { printf(\"[open failed]\\n\"); return; }\n    printf(\"[\");\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    printf(\"]\\n\");\n    fclose(fp);\n}\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_05a.txt\", \"w\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"hello\", fp);\n    fclose(fp);\n    show(\"after w  \", \"kc12_05a.txt\");\n\n    fp = fopen(\"kc12_05a.txt\", \"a\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"world\", fp);\n    fclose(fp);\n    show(\"after a  \", \"kc12_05a.txt\");\n\n    fp = fopen(\"kc12_05a.txt\", \"w\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"123\", fp);\n    fclose(fp);\n    show(\"after w2 \", \"kc12_05a.txt\");\n\n    remove(\"kc12_05a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "after w  [hello]\nafter a  [helloworld]\nafter w2 [123]",
+          "note": "第一次 w 写入 hello；a 在后面接上 world；再次 w 把整个文件清空只剩 123。",
+          "runnable": true
+        },
+        {
+          "title": "r 打开不存在的文件返回 NULL",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_05_no_such_file.txt\", \"r\");\n\n    printf(\"fp == NULL ? %d\\n\", fp == NULL);\n    if (fp != NULL)\n        fclose(fp);\n\n    fp = fopen(\"kc12_05b.txt\", \"w\");        /* w 会自动创建 */\n    printf(\"create by w ok ? %d\\n\", fp != NULL);\n    if (fp != NULL)\n        fclose(fp);\n    remove(\"kc12_05b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "fp == NULL ? 1\ncreate by w ok ? 1",
+          "note": "\"r\" 要求文件必须存在，\"w\"/\"a\" 不存在则新建，这是二者最本质的差别。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-06",
+        "c-ch12-07",
+        "c-ch12-08"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 5
+    },
+    {
+      "id": "c-ch12-06",
+      "title": "fopen 失败检查与路径书写",
+      "section": "12.2 文件的打开与关闭",
+      "summary": "fopen 失败时返回 NULL，成功才返回可用的 FILE 指针。打开后的第一件事永远是判空，否则对 NULL 做任何读写都是未定义行为。",
+      "content": "## 为什么必须判空\n\nfopen 失败返回 NULL 的常见原因：文件不存在、无访问权限、路径写错、磁盘已满、进程打开文件数已达上限。\n拿到 NULL 后继续调用 fgetc / fputc / fclose，就是解引用空指针 —— 多数环境直接段错误，且崩溃点远离真正的病因。\n\n## 标准写法\n\n```c\nFILE *fp = fopen(\"data.txt\", \"r\");\nif (fp == NULL) {\n    fprintf(stderr, \"cannot open data.txt\\n\");\n    return 1;\n}\n/* 只有走到这里 fp 才保证可用 */\n```\n\n## 路径书写的三个坑\n\n| 写法 | 结果 |\n|---|---|\n| \"D:\\data\\a.txt\" | 错。\\d 与 \\a 被当作转义字符处理 |\n| \"D:\\\\data\\\\a.txt\" | 对。反斜杠需要写成两个 |\n| \"D:/data/a.txt\" | 对。Windows 的 C 运行库同样接受正斜杠 |\n\n- 相对路径相对于**进程的工作目录**，不是 .c 源文件所在目录。\n- fopen 只创建文件，不会创建缺失的中间目录。\n- 用 \"r\" 打开一个不存在的文件必然失败；用 \"w\" 才会新建。",
+      "keyPoints": [
+        "fopen 成功返回 FILE*，失败返回 NULL",
+        "打开后立刻 if (fp == NULL) 判空，失败分支要能读懂",
+        "相对路径基于工作目录，不是源文件目录",
+        "Windows 路径的反斜杠必须写成 \\，或直接用 /",
+        "\"r\" 要求文件已存在，\"w\" 会新建并清空"
+      ],
+      "pitfalls": [
+        "不判空直接使用 fp，程序段错误且难以定位",
+        "路径写成 \"D:dataa.txt\"，转义后变成乱码路径",
+        "判空后忘记 return / goto，错误分支继续往下执行",
+        "把待写入的文件用 \"r\" 方式打开"
+      ],
+      "examples": [
+        {
+          "title": "打开不存在的文件并安全退出",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_06_missing.txt\", \"r\");\n    if (fp == NULL) {\n        printf(\"open failed, exit safely\\n\");\n    } else {\n        printf(\"open ok\\n\");\n        fclose(fp);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "open failed, exit safely",
+          "note": "文件 kc12_06_missing.txt 不存在，fopen 返回 NULL，程序走进失败分支后正常结束。",
+          "runnable": true
+        },
+        {
+          "title": "建立文件后再打开：验证路径确实可用",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_06.txt\", \"w\");\n    if (fp == NULL) { printf(\"cannot create\\n\"); return 0; }\n    fputs(\"hello\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_06.txt\", \"r\");   /* 同一变量复用，先关再开 */\n    if (fp == NULL) { printf(\"cannot reopen\\n\"); return 0; }\n    printf(\"reopen ok\\n\");\n    fclose(fp);\n\n    remove(\"kc12_06.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "reopen ok",
+          "note": "同一个 FILE* 变量可以复用，但必须保证前一次已经 fclose。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-01",
+        "c-ch12-05",
+        "c-ch12-07"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 6
+    },
+    {
+      "id": "c-ch12-07",
+      "title": "fclose 与缓冲区刷写",
+      "section": "12.2 文件的打开与关闭",
+      "summary": "fclose 一次完成三件事：把缓冲区里尚未写出的数据刷到文件、断开与文件的关联、释放 FILE 对象。成功返回 0，失败返回 EOF。",
+      "content": "## fclose 做了什么\n\n写文件时数据先进入缓冲区，攒够一块（或遇到刷新时机）才真正落盘。fclose 会强制把残留数据全部写出，\n所以**没有 fclose 的程序可能丢掉最后一段内容**。\n\n```c\nif (fclose(fp) == EOF) {\n    fprintf(stderr, \"close failed\\n\");\n}\n```\n\n## fclose 与 fflush 的区别\n\n| 函数 | 刷缓冲区 | 关闭文件 | 释放 FILE | 返回值 |\n|---|---|---|---|---|\n| fflush(fp) | 是 | 否 | 否 | 0 / EOF |\n| fclose(fp) | 是 | 是 | 是 | 0 / EOF |\n\nfflush 之后文件仍处于打开状态，位置标记不动，可以继续写；fclose 之后该指针作废，再用就是未定义行为。\n\n## 何时必须显式刷新\n\n- 程序即将异常退出（exit / abort / 被信号杀死）之前，希望已写内容不丢。\n- 长驻程序写日志，希望每行立即可见（配合 \"a\" 追加模式）。\n- 一个文件写完后马上要用另一个进程 / 另一次 fopen 读它。\n\n正常 return 出 main 或调用 exit 时，C 标准保证所有打开的输出流被自动刷新并关闭；但依赖这一点会让代码在异常路径上丢数据。",
+      "keyPoints": [
+        "fclose = 刷缓冲 + 关文件 + 释放 FILE 对象",
+        "fclose 成功返回 0，失败返回 EOF",
+        "fflush 只刷不关，文件仍可继续写",
+        "fclose 之后原指针作废，不可再使用",
+        "写文件不 fclose 可能丢失缓冲区里的最后一段"
+      ],
+      "pitfalls": [
+        "忘记 fclose 导致文件尾部数据缺失",
+        "fclose 之后又用同一个 fp 读写",
+        "把 fflush 当成 fclose，文件一直没关造成句柄泄漏",
+        "忽略 fclose 的返回值，磁盘满时写入失败无人知晓"
+      ],
+      "examples": [
+        {
+          "title": "写入后 fclose，再重新打开读回验证",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_07.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"line one\\n\", fp);\n    fputs(\"line two\\n\", fp);\n    if (fclose(fp) == EOF) { printf(\"close failed\\n\"); return 0; }\n\n    fp = fopen(\"kc12_07.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    char buf[32];\n    while (fgets(buf, sizeof buf, fp) != NULL) fputs(buf, stdout);\n    fclose(fp);\n    remove(\"kc12_07.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "line one\nline two",
+          "note": "fclose 已把两行刷到磁盘，所以重新打开能完整读回。",
+          "runnable": true
+        },
+        {
+          "title": "fflush：只刷不关",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_07b.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"flushed\\n\", fp);\n    fflush(fp);                        /* 数据此刻已落到文件 */\n    printf(\"after fflush, ftell = %ld\\n\", (long)ftell(fp));\n    fputs(\"more\\n\", fp);                /* 文件仍打开，可以继续写 */\n    fclose(fp);\n    remove(\"kc12_07b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "after fflush, ftell = 9",
+          "note": "\"flushed\n\" 共 8 个字节，fflush 不改变位置标记，所以 ftell 仍为 8。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-006"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-03",
+        "c-ch12-06",
+        "c-ch12-08"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 7
+    },
+    {
+      "id": "c-ch12-08",
+      "title": "文件操作的完整流程模板",
+      "section": "12.2 文件的打开与关闭",
+      "summary": "声明 FILE 指针 → fopen → 判空 → 读写循环（每次检查返回值）→ fclose，是所有文件程序的通用骨架。把五步背成肌肉记忆，能消除绝大多数文件类错误。",
+      "content": "## 五步模板\n\n```c\nFILE *fp = fopen(fname, mode);      /* 1 打开 */\nif (fp == NULL) { /* 2 判空 */ }\nwhile (/* 3 未读完 */) { /* 4 读写并检查返回值 */ }\nfclose(fp);                         /* 5 关闭 */\n```\n\n## 读写循环的三种正确形态\n\n| 目标 | 循环条件 |\n|---|---|\n| 逐字符 | while ((ch = fgetc(fp)) != EOF) |\n| 逐行 | while (fgets(buf, sizeof buf, fp) != NULL) |\n| 逐块（二进制） | while ((n = fread(buf, size, 1, fp)) == 1) |\n\n三条都把「读取动作」写在条件里，天然避免了「先判断 feof 再读」的多读一次错误。\n\n## 错误处理的层次\n\n1. 打开失败 → 直接报告并退出，不要继续。\n2. 读写失败 → 用 ferror(fp) 区分「真的出错」和「正常到末尾」。\n3. 关闭失败 → 写操作时应检查 fclose 返回值，读操作可以忽略。",
+      "keyPoints": [
+        "五步骨架：fopen → 判空 → 循环读写 → 检查返回值 → fclose",
+        "读取动作写进 while 条件，避免多读一次",
+        "ferror 与 feof 分别对应「出错」与「到末尾」",
+        "任何一条路径都必须恰好 fclose 一次",
+        "模板化后，文件类题目只需替换中间那一段"
+      ],
+      "pitfalls": [
+        "循环体里忘记检查读写返回值，出错后无限循环",
+        "先 while (!feof(fp)) 再读，最后一行被处理两次",
+        "错误分支提前 return 却没先 fclose，句柄泄漏",
+        "同一个 fp 在两条分支里各 fclose 一次，第二次是未定义行为"
+      ],
+      "examples": [
+        {
+          "title": "完整模板：写 3 行 → 读回 → 删除",
+          "code": "#include <stdio.h>\n\n#define FNAME \"kc12_08.txt\"\n\nint main(void)\n{\n    FILE *fp = fopen(FNAME, \"w\");\n    if (fp == NULL) { printf(\"step1 failed\\n\"); return 0; }\n    for (int i = 1; i <= 3; i++) fprintf(fp, \"item %d\\n\", i);\n    fclose(fp);\n\n    fp = fopen(FNAME, \"r\");\n    if (fp == NULL) { printf(\"step2 failed\\n\"); return 0; }\n    char line[64];\n    int n = 0;\n    while (fgets(line, sizeof line, fp) != NULL) {\n        n++;\n        printf(\"%d: %s\", n, line);      /* line 自带换行符 */\n    }\n    fclose(fp);\n    remove(FNAME);\n    printf(\"total lines = %d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1: item 1\n2: item 2\n3: item 3\ntotal lines = 3",
+          "note": "五步模板的标准形态：写入、关闭、重开、逐行读、关闭、清理。",
+          "runnable": true
+        },
+        {
+          "title": "统计行数与字符数",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_08b.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"abc\\ndefg\\nhi\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_08b.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    int ch, lines = 0, chars = 0;\n    while ((ch = fgetc(fp)) != EOF) {\n        chars++;\n        if (ch == '\\n') lines++;\n    }\n    fclose(fp);\n    remove(\"kc12_08b.txt\");\n    printf(\"lines = %d, chars = %d\\n\", lines, chars);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "lines = 3, chars = 12",
+          "note": "3+4+2 个可见字符加 3 个换行符共 12 个；EOF 是循环唯一的退出条件。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-pg-001",
+        "c-ch12-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-06",
+        "c-ch12-07",
+        "c-ch12-09",
+        "c-ch12-10"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 8
+    },
+    {
+      "id": "c-ch12-09",
+      "title": "fputc：向文件写一个字符",
+      "section": "12.3 文件的读写",
+      "summary": "int fputc(int c, FILE *stream) 把 c 的最低字节写入流，成功返回写入的字符，失败返回 EOF。参数顺序是「字符在前、流在后」，与 fgetc 正好相反。",
+      "content": "## 原型与返回值\n\n```c\nint fputc(int c, FILE *stream);   /* 成功返回 c，失败返回 EOF */\n```\n\n返回值类型是 int 而不是 char，因为它需要能表示 EOF。判断成败要和 EOF 比较，不能和 0 比较。\n\n## 一族等价写法\n\n| 函数 | 等价形式 | 说明 |\n|---|---|---|\n| putchar(c) | fputc(c, stdout) | 宏，写标准输出 |\n| putc(c, fp) | fputc(c, fp) | 通常是宏，注意参数只求值一次的差异 |\n| fputc(c, fp) | —— | 真正的函数，参数顺序 (字符, 流) |\n\n## 写字符 vs 写字符串\n\nfputc 一次一个字节，循环调用即可写出任意内容；fputs 一次一整串，效率更高。\n两者都**不会自动补换行符**，需要换行就自己写 fputc('\\n', fp)。\n\n## 文本模式的换行转换\n\nWindows 下以文本模式（\"w\"）打开时，写入的 '\\n' 会被转换成 0x0D 0x0A 两个字节落盘；\n以 \"wb\" 打开则原样写入一个字节。Linux 下两者没有区别。",
+      "keyPoints": [
+        "原型 int fputc(int c, FILE *stream)",
+        "参数顺序：字符在前，流在后",
+        "成功返回写入的字符，失败返回 EOF",
+        "putchar(c) 就是 fputc(c, stdout)",
+        "fputc 不会自动添加换行符",
+        "文本模式下 \\n 在 Windows 会被展开成 CRLF"
+      ],
+      "pitfalls": [
+        "把参数写成 fputc(fp, c)，类型不匹配直接编译报错",
+        "用返回值和 0 比较判断成败",
+        "以为写完一行会自动换行，结果所有内容挤在一行",
+        "对已 fclose 的指针再调用 fputc"
+      ],
+      "examples": [
+        {
+          "title": "逐字符写入再读回",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_09.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    for (char c = 'A'; c <= 'E'; c++) fputc(c, fp);\n    fputc('\\n', fp);                    /* 换行要自己写 */\n    fclose(fp);\n\n    fp = fopen(\"kc12_09.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    char buf[16];\n    if (fgets(buf, sizeof buf, fp) != NULL) printf(\"content = %s\", buf);\n    fclose(fp);\n    remove(\"kc12_09.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "content = ABCDE",
+          "note": "fputc 只负责写字节，换行符必须显式写入。",
+          "runnable": true
+        },
+        {
+          "title": "检查 fputc 的返回值",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_09b.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    int r = fputc('X', fp);\n    printf(\"returned = %d, as char = %c\\n\", r, (char)r);\n    if (r == EOF) printf(\"write failed\\n\");\n    else printf(\"write ok\\n\");\n    fclose(fp);\n    remove(\"kc12_09b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "returned = 88, as char = X\nwrite ok",
+          "note": "X 的 ASCII 码是 88，fputc 成功时原样返回该字符值。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-08",
+        "c-ch12-10",
+        "c-ch12-12"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 9
+    },
+    {
+      "id": "c-ch12-10",
+      "title": "fgetc：读一个字符与 EOF",
+      "section": "12.3 文件的读写",
+      "summary": "int fgetc(FILE *stream) 从流中读一个字节并以 int 返回（0..255），读到末尾或出错返回 EOF。接收变量必须是 int，用 char 会在 0xFF 字节上与 EOF 混淆。",
+      "content": "## 原型与返回值\n\n```c\nint fgetc(FILE *stream);   /* 成功返回 0..255，失败返回 EOF（通常 -1）*/\n```\n\n返回类型是 int 而不是 char，这是为了能在 0..255 之外多留一个 EOF 值。\n\n## 为什么不能用 char 接收\n\n```c\nchar ch;                              /* 错 */\nwhile ((ch = fgetc(fp)) != EOF) ...\n```\n\n- 若 char 有符号（x86 默认）：读到二进制字节 0xFF 时 ch 变成 -1，与 EOF 相等，循环**提前结束**。\n- 若 char 无符号：ch 永远不可能等于 -1，循环**永不结束**。\n\n两种平台表现不同，都属于典型错误。正确写法只有 int。\n\n## 一族等价写法\n\n| 函数 | 等价形式 |\n|---|---|\n| getchar() | fgetc(stdin) |\n| getc(fp) | fgetc(fp)（通常是宏） |\n| fgetc(fp) | 真正的函数 |\n\n## 与 feof 的关系\n\nfgetc 返回 EOF 时，流末尾标志才被置位。所以「先读、读不到再退出」是对的；\n「先 while (!feof(fp)) 再读」会多执行一次循环体，是文件题里最高频的错误。",
+      "keyPoints": [
+        "原型 int fgetc(FILE *stream)",
+        "返回 int：成功是 0..255，失败是 EOF",
+        "接收变量必须声明为 int，不能是 char",
+        "标准循环：while ((ch = fgetc(fp)) != EOF)",
+        "EOF 是负数常量（通常 -1），不是文件里的一个字符",
+        "getchar() 等价于 fgetc(stdin)"
+      ],
+      "pitfalls": [
+        "用 char 接收 fgetc 结果，二进制 0xFF 被误判成文件结束",
+        "把 EOF 当成文件末尾真实存在的字符去统计",
+        "写成 while (!feof(fp)) { ch = fgetc(fp); ... } 多处理一次",
+        "不区分 EOF 的来源：文件结束与读取出错都返回 EOF，需要 ferror 甄别"
+      ],
+      "examples": [
+        {
+          "title": "用 int 正确读到 EOF",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_10.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"Hi!\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_10.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    int ch, n = 0;\n    while ((ch = fgetc(fp)) != EOF) { n++; putchar(ch); }\n    fclose(fp);\n    remove(\"kc12_10.txt\");\n    printf(\"read %d chars\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "Hi!\nread 4 chars",
+          "note": "H、i、!、换行共 4 个字符，第 5 次 fgetc 返回 EOF 退出循环。",
+          "runnable": true
+        },
+        {
+          "title": "含 0xFF 的二进制文件：int 接收才正确",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_10b.bin\", \"wb\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    unsigned char data[2] = { 0x41, 0xFF };      /* 'A' 与 0xFF */\n    if (fwrite(data, 1, 2, fp) != 2) { printf(\"write failed\\n\"); fclose(fp); return 0; }\n    fclose(fp);\n\n    fp = fopen(\"kc12_10b.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    int ch, n = 0;\n    while ((ch = fgetc(fp)) != EOF) n++;         /* int：正确数到 2 */\n    fclose(fp);\n    remove(\"kc12_10b.bin\");\n    printf(\"int receiver counted %d bytes\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "int receiver counted 2 bytes",
+          "note": "若把 ch 改成 char（x86 上 char 有符号），0xFF 会被提升为 -1 与 EOF 相等，循环提前结束只能数到 1。这是平台相关行为，以 -O0 下的实测为准。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-cr-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-08",
+        "c-ch12-09",
+        "c-ch12-17"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 10
+    },
+    {
+      "id": "c-ch12-11",
+      "title": "文件复制的标准模板",
+      "section": "12.3 文件的读写",
+      "summary": "文件复制就是「打开源 + 打开目标 + 循环搬运 + 双双关闭」。文本文件可用逐字符 fgetc/fputc 通用模板，二进制文件必须用 \"rb\"/\"wb\" 配 fread/fwrite 才能逐字节保真。",
+      "content": "## 逐字符复制（文本、二进制都可用）\n\n```c\nint ch;\nwhile ((ch = fgetc(src)) != EOF) fputc(ch, dst);\n```\n\n注意源和目标都要用二进制模式（\"rb\" / \"wb\"）才能保证 0x1A（Ctrl-Z）等字节不被特殊处理，\n且不会发生换行转换。文本模式复制文本文件在 Windows 上也能工作，但复制二进制文件会损坏数据。\n\n## 分块复制（更快）\n\n```c\nchar buf[4096];\nsize_t n;\nwhile ((n = fread(buf, 1, sizeof buf, src)) > 0)\n    fwrite(buf, 1, n, dst);        /* 用实际读到的 n，不是 sizeof buf */\n```\n\n最后一块通常不足一整块，**必须用 fread 的返回值 n 作为 fwrite 的长度**，否则会把上一块的残留数据重复写入。\n\n## 关闭顺序\n\n两个文件都要 fclose。任一路径出错时，已打开的流仍需关闭，否则句柄泄漏。",
+      "keyPoints": [
+        "复制 = 打开源 + 打开目标 + 循环搬运 + 双双关闭",
+        "二进制复制必须用 \"rb\" / \"wb\"，否则数据损坏",
+        "分块复制时 fwrite 的长度要用 fread 的返回值",
+        "逐字符模板最简单，分块模板效率最高",
+        "两条出错路径都要保证已打开的流被关闭"
+      ],
+      "pitfalls": [
+        "用文本模式复制二进制文件，遇到 0x1A 提前截断",
+        "分块复制时 fwrite 固定写 sizeof buf，文件尾部多出垃圾数据",
+        "只关闭了源文件，目标文件缓冲区没刷出",
+        "忘记判空，源文件不存在时段错误"
+      ],
+      "examples": [
+        {
+          "title": "逐字符复制文本文件并验证",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_11.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"first line\\nsecond line\\n\", fp);\n    fclose(fp);\n\n    FILE *src = fopen(\"kc12_11.txt\", \"r\");\n    FILE *dst = fopen(\"kc12_11_copy.txt\", \"w\");\n    if (src == NULL || dst == NULL) { printf(\"open failed\\n\"); return 0; }\n    int ch;\n    while ((ch = fgetc(src)) != EOF) fputc(ch, dst);\n    fclose(src);\n    fclose(dst);\n\n    dst = fopen(\"kc12_11_copy.txt\", \"r\");\n    if (dst == NULL) { printf(\"verify failed\\n\"); return 0; }\n    char buf[32];\n    while (fgets(buf, sizeof buf, dst) != NULL) fputs(buf, stdout);\n    fclose(dst);\n    remove(\"kc12_11.txt\");\n    remove(\"kc12_11_copy.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "first line\nsecond line",
+          "note": "源文件两行内容被逐字节搬到副本，读回后完全一致。",
+          "runnable": true
+        },
+        {
+          "title": "分块复制二进制文件",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int data[4] = { 10, 20, 30, 40 };\n    FILE *fp = fopen(\"kc12_11b.bin\", \"wb\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    if (fwrite(data, sizeof data[0], 4, fp) != 4) { printf(\"write failed\\n\"); fclose(fp); return 0; }\n    fclose(fp);\n\n    FILE *src = fopen(\"kc12_11b.bin\", \"rb\");\n    FILE *dst = fopen(\"kc12_11b_copy.bin\", \"wb\");\n    if (src == NULL || dst == NULL) { printf(\"open failed\\n\"); return 0; }\n    char buf[8];\n    size_t n;\n    while ((n = fread(buf, 1, sizeof buf, src)) > 0) {\n        if (fwrite(buf, 1, n, dst) != n) { printf(\"copy failed\\n\"); break; }\n    }\n    fclose(src);\n    fclose(dst);\n\n    int back[4] = { 0 };\n    dst = fopen(\"kc12_11b_copy.bin\", \"rb\");\n    if (dst == NULL) { printf(\"verify failed\\n\"); return 0; }\n    size_t got = fread(back, sizeof back[0], 4, dst);\n    fclose(dst);\n    remove(\"kc12_11b.bin\");\n    remove(\"kc12_11b_copy.bin\");\n    printf(\"read back %u items: %d %d %d %d\\n\", (unsigned)got, back[0], back[1], back[2], back[3]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "read back 4 items: 10 20 30 40",
+          "note": "4 个 int 共 16 字节，用 8 字节的块搬两次；fwrite 的长度始终取自 fread 的返回值。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-pg-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-08",
+        "c-ch12-10",
+        "c-ch12-15"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 11
+    },
+    {
+      "id": "c-ch12-12",
+      "title": "fputs 与 fgets：按字符串读写",
+      "section": "12.3 文件的读写",
+      "summary": "fputs 把一串字符写入流且不自动加换行，成功返回非负值；fgets 从流中最多读 n-1 个字符并自动补结束符，成功返回缓冲区地址，遇文件末尾或出错返回 NULL。",
+      "content": "## 原型对照\n\n| 函数 | 原型 | 成功返回 | 失败返回 |\n|---|---|---|---|\n| fputs | int fputs(const char *s, FILE *stream) | 非负整数 | EOF |\n| fgets | char *fgets(char *s, int n, FILE *stream) | s 本身 | NULL |\n\n## fputs 的两个要点\n\n1. 参数顺序与 fputc 一致：内容在前，流在后。\n2. **不会自动添加换行符**。想要一行一个记录，必须自己在字符串末尾写换行。\n\n## fgets 的三个要点\n\n1. 最多读 n-1 个字符，第 n 个位置留给字符串结束符。\n2. 遇到换行符就停止，且**换行符会保留在缓冲区里**。\n3. 读到文件末尾且一个字符都没读到时返回 NULL，这是循环的终止条件。\n\n## 为什么必须用 fgets 取代 gets\n\ngets 无法知道缓冲区多大，输入超长就会越界写入，是缓冲区溢出漏洞的经典来源。\nC99 已把它标记为过时，C11 直接从标准中删除。fgets 强制传入容量上限，同样从键盘读一行可以写\n`fgets(buf, sizeof buf, stdin)`。本项目禁用 gets。",
+      "keyPoints": [
+        "fputs(s, fp) 不自动加换行符",
+        "fputs 成功返回非负值，失败返回 EOF",
+        "fgets(s, n, fp) 最多读 n-1 个字符并补结束符",
+        "fgets 会把读到的换行符保留在缓冲区",
+        "fgets 返回 NULL 表示文件末尾或出错",
+        "读键盘一行用 fgets 配 stdin，禁用 gets"
+      ],
+      "pitfalls": [
+        "以为 fputs 会自动换行，多个记录全挤在一行",
+        "以为 fgets 会去掉换行符，比较字符串时总是不相等",
+        "gets 无长度限制，输入超长直接越界（本项目禁用）",
+        "fgets 的 n 传成 sizeof 指针而不是数组长度"
+      ],
+      "examples": [
+        {
+          "title": "fputs 写、fgets 读：观察换行符被保留",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_12.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"alpha\\n\", fp);              /* 换行要自己加 */\n    fputs(\"beta\\n\", fp);\n    fputs(\"gamma\\n\", fp);\n    int r = fputs(\"done\\n\", fp);\n    fclose(fp);\n    printf(\"fputs returned %s\\n\", r >= 0 ? \"non-negative\" : \"EOF\");\n\n    fp = fopen(\"kc12_12.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    char line[32];\n    while (fgets(line, sizeof line, fp) != NULL) printf(\"[%s]\", line);\n    printf(\"\\n\");\n    fclose(fp);\n    remove(\"kc12_12.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "fputs returned non-negative\n[alpha\n][beta\n][gamma\n][done\n]",
+          "note": "方括号里能看到每行末尾都带一个换行符，说明 fgets 原样保留了它。",
+          "runnable": true
+        },
+        {
+          "title": "用 fgets 从键盘读一行（替代 gets）",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    char line[16];\n    printf(\"input: \");\n    if (fgets(line, sizeof line, stdin) != NULL) printf(\"got: %s\", line);\n    else printf(\"read failed\\n\");\n    return 0;\n}",
+          "stdin": "hello world\n",
+          "expected": "input: got: hello world",
+          "note": "标准输入为一行 hello world，fgets 连同换行符一起读入，所以 printf 不需要再补换行。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-09",
+        "c-ch12-10",
+        "c-ch12-13"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 12
+    },
+    {
+      "id": "c-ch12-13",
+      "title": "fgets 的参数 n 与换行符陷阱",
+      "section": "12.3 文件的读写",
+      "summary": "fgets 的 n 是缓冲区总容量（含结束符），实际最多读入 n-1 个字符；一行超过 n-1 会被拆成多次读取，且读到的换行符会留在缓冲区末尾，需要手动去掉才能安全比较。",
+      "content": "## n 到底是什么意思\n\n```c\nchar buf[5];\nfgets(buf, sizeof buf, fp);   /* 最多读 4 个字符，buf[4] 一定是结束符 */\n```\n\nn 表示**能写多少个字节**，其中最后一个必须留给字符串结束符，所以有效数据最多 n-1 个字符。\n把 n 写成 sizeof(char *) 或别的值，是最常见的越界来源。\n\n## 长行会被拆开\n\n文件里一行有 10 个字符，而 buf 只有 5 字节，则第一次 fgets 读走前 4 个，第二次读走接着的 4 个，\n第三次读走剩下的 2 个加换行符。**fgets 返回非 NULL 不代表读到了完整一行。**\n判断是否读到整行的办法：看结果里有没有换行符。\n\n## 去掉尾部换行符的惯用法\n\n```c\nsize_t len = strlen(line);\nif (len > 0 && line[len - 1] == '\\n') line[len - 1] = '\\0';\n```\n\n不去掉换行符，`strcmp(line, \"hello\")` 永远不相等，因为 line 的实际内容是 \"hello\\n\"。\n\n## 与缓冲区大小的关系\n\n缓冲区太小则一行被切碎，太大则浪费栈空间。读一般文本行用 128 或 256 字节足够；\n若无法预估行长，应循环调用 fgets 直到看见换行符。",
+      "keyPoints": [
+        "n 是缓冲区总容量，实际最多读 n-1 个字符",
+        "最后一个字节一定被写成字符串结束符",
+        "一行超过 n-1 时会被拆成多次读取",
+        "读到的换行符保留在缓冲区末尾",
+        "比较字符串前通常要先去掉尾部换行符",
+        "fgets 返回非 NULL 不等于读到了完整一行"
+      ],
+      "pitfalls": [
+        "把 n 写成 sizeof(char*)，在 64 位机上变成 8，与缓冲区实际大小不符",
+        "缓冲区太小导致一行被切成好几段却毫无察觉",
+        "忘记去掉换行符，strcmp 恒不相等",
+        "以为最后一段一定以换行符结尾（文件末行可能没有换行符）"
+      ],
+      "examples": [
+        {
+          "title": "缓冲区过小时长行被拆分",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_13.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"0123456789\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_13.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    char buf[5];                       /* 最多存 4 个字符加结束符 */\n    int k = 0;\n    while (fgets(buf, sizeof buf, fp) != NULL) printf(\"chunk%d = [%s]\\n\", ++k, buf);\n    fclose(fp);\n    remove(\"kc12_13.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "chunk1 = [0123]\nchunk2 = [4567]\nchunk3 = [89\n]",
+          "note": "11 个字符的一行被切成 4 + 4 + 3 三段，第三段带着换行符。",
+          "runnable": true
+        },
+        {
+          "title": "去掉尾部换行符再比较",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nstatic void strip_newline(char *s)\n{\n    size_t n = strlen(s);\n    if (n > 0 && s[n - 1] == '\\n') s[n - 1] = '\\0';\n}\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_13b.txt\", \"w\");\n    if (fp == NULL) { printf(\"create failed\\n\"); return 0; }\n    fputs(\"hello\\n\", fp);\n    fputs(\"world\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_13b.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 0; }\n    char line[32];\n    while (fgets(line, sizeof line, fp) != NULL) {\n        strip_newline(line);\n        printf(\"<%s> len=%u match=%d\\n\", line, (unsigned)strlen(line),\n               strcmp(line, \"hello\") == 0);\n    }\n    fclose(fp);\n    remove(\"kc12_13b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "<hello> len=5 match=1\n<world> len=5 match=0",
+          "note": "去掉换行符后 strlen 变成 5，第一行的 strcmp 才返回 0。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-004",
+        "c-ch12-pg-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-12",
+        "c-ch12-18"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 13
+    },
+    {
+      "id": "c-ch12-14",
+      "title": "fprintf 与 fscanf：格式化读写",
+      "section": "12.3 文件的读写",
+      "summary": "fprintf 和 fscanf 就是 printf 和 scanf 的文件版本，只是把数据流向从屏幕/键盘换成指定的文件流；格式串规则完全相同，fscanf 的变量同样必须取地址。",
+      "content": "## 函数原型\n\n```c\nint fprintf(FILE *fp, const char *format, ...);\nint fscanf (FILE *fp, const char *format, ...);\n```\n\n| 函数 | 方向 | 返回值 |\n|---|---|---|\n| fprintf | 内存 → 文件 | 成功写入的**字符数**，出错返回负值 |\n| fscanf | 文件 → 内存 | 成功**赋值的项数**，遇 EOF 或出错返回 EOF(-1) |\n\n## 与 printf / scanf 的对应\n\n规则一模一样，只把 `stdout` / `stdin` 换成文件指针：\n\n```c\nfprintf(fp, \"%d %s\\n\", 3, \"abc\");\nfscanf (fp, \"%d %s\", &n, buf);\n```\n\n事实上 `printf(...)` 等价于 `fprintf(stdout, ...)`，`scanf(...)` 等价于 `fscanf(stdin, ...)`。\n\n## fscanf 的三大陷阱\n\n1. **漏写 &**：`fscanf(fp, \"%d\", n)` 把变量的**值**当成了地址，几乎必然段错误。\n2. **格式与数据不匹配**：文件里是 `12.5`，用 `%d` 读只得到 12，剩下的 `.5` 留在流中干扰下一次读。\n3. **不检查返回值**：一旦失配，fscanf 返回 0 且**不移动位置标记**，下一次读的还是同一处 → 死循环。\n\n## 正确的循环条件\n\n```c\nwhile (fscanf(fp, \"%d %lf\", &id, &score) == 2) {\n    /* 只有两项都读成功才处理 */\n}\n```\n\n用「返回值 == 期望项数」做条件，而不是用 `feof()`。\n\n## 读写方式必须配对\n\nfprintf 写出的文本只能用 fscanf/fgets 读回；fwrite 写出的二进制块只能用 fread 读回。交叉使用一定得到无意义的结果。",
+      "keyPoints": [
+        "fprintf 相当于 printf 多了第一个参数 fp，格式串规则完全相同",
+        "fscanf 返回成功赋值的项数，返回 EOF(-1) 表示还没赋值就遇到文件末尾或错误",
+        "fscanf 的每个接收变量都必须取地址，数组名本身已是地址不用加 &",
+        "循环条件应写「fscanf(...) == 期望项数」，不要用 !feof(fp)",
+        "失配时 fscanf 返回 0 且不移动文件位置标记，不判返回值就会死循环",
+        "fprintf 写的文件用 fscanf 读，fwrite 写的文件用 fread 读，不能交叉"
+      ],
+      "pitfalls": [
+        "把 fscanf 的返回值当成读到的字符数（那是 fprintf 的语义）",
+        "格式失配后不 break，导致 while 死循环",
+        "用 %d 去读文件里的浮点数，只拿到整数部分还污染了流",
+        "忘记 fscanf 遇到 EOF 返回 -1 而不是 0，判断条件写错"
+      ],
+      "examples": [
+        {
+          "title": "fprintf 写成绩表，fscanf 读回求平均",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_14a.txt\", \"w\");\n    int id, n = 0;\n    double score, sum = 0.0;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fprintf(fp, \"%d %.1f\\n\", 1001, 88.5);\n    fprintf(fp, \"%d %.1f\\n\", 1002, 92.0);\n    fprintf(fp, \"%d %.1f\\n\", 1003, 76.5);\n    fclose(fp);\n\n    fp = fopen(\"kc12_14a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fscanf(fp, \"%d %lf\", &id, &score) == 2) {\n        sum += score;\n        n++;\n        printf(\"%d -> %.1f\\n\", id, score);\n    }\n    fclose(fp);\n    remove(\"kc12_14a.txt\");\n\n    printf(\"n=%d avg=%.2f\\n\", n, sum / n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1001 -> 88.5\n1002 -> 92.0\n1003 -> 76.5\nn=3 avg=85.67",
+          "note": "循环条件用「== 2」，读到文件末尾时 fscanf 返回 EOF，循环自然结束。",
+          "runnable": true
+        },
+        {
+          "title": "fscanf 格式失配：返回值与位置标记",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_14b.txt\", \"w\");\n    int v = -1, ret;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"10 20 xyz\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_14b.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    ret = fscanf(fp, \"%d\", &v); printf(\"ret=%d v=%d\\n\", ret, v);\n    ret = fscanf(fp, \"%d\", &v); printf(\"ret=%d v=%d\\n\", ret, v);\n    ret = fscanf(fp, \"%d\", &v); printf(\"ret=%d v=%d\\n\", ret, v);\n    ret = fscanf(fp, \"%d\", &v); printf(\"ret=%d v=%d\\n\", ret, v);\n    fclose(fp);\n    remove(\"kc12_14b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "ret=1 v=10\nret=1 v=20\nret=0 v=20\nret=0 v=20",
+          "note": "第 3 次遇到 xyz 失配返回 0，v 保持原值；第 4 次位置标记没动，结果完全相同——这就是死循环的成因。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-pg-003",
+        "c-ch12-pg-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-09",
+        "c-ch12-10",
+        "c-ch12-12",
+        "c-ch12-17",
+        "c-ch12-18",
+        "c-ch12-22"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 14
+    },
+    {
+      "id": "c-ch12-15",
+      "title": "fread 与 fwrite：二进制块读写",
+      "section": "12.3 文件的读写",
+      "summary": "fread/fwrite 以「字节块」为单位在内存与文件之间原样搬运数据，不做任何字符与数值之间的转换，是二进制文件的标准读写方式；返回值是成功的块数而不是字节数。",
+      "content": "## 函数原型\n\n```c\nsize_t fread (void *buf,       size_t size, size_t count, FILE *fp);\nsize_t fwrite(const void *buf, size_t size, size_t count, FILE *fp);\n```\n\n返回**成功读/写的块数**，正常情况应等于 count。\n\n## 参数怎么算\n\n- `size`：一块多大，通常写 `sizeof(元素类型)`\n- `count`：搬几块\n- 实际搬运字节数 = size × count\n\n```c\nint a[10];\nfwrite(a, sizeof(int), 10, fp);   /* 10 块，每块 4 字节 */\nfwrite(a, sizeof(a),   1,  fp);   /* 1 块，40 字节 —— 结果相同 */\n```\n\n## 必须检查返回值\n\n```c\nsize_t k = fread(buf, sizeof(int), 10, fp);\nif (k < 10) {\n    if (feof(fp))        { /* 文件比预期短，只读到 k 块 */ }\n    else if (ferror(fp)) { /* 真正的读错误 */ }\n}\n```\n\n短读不一定是错误，但必须区分「到头」和「出错」。\n\n## 二进制模式必须带 b\n\nWindows 的文本模式会把 `0x1A`（Ctrl+Z）当作文件结束符，并对 `\\n` 做 `\\r\\n` 转换。读写二进制数据必须用 `\"rb\"` / `\"wb\"`，否则数据会被悄悄破坏。\n\n## 适用与不适用\n\n| 适用 | 不适用 |\n|---|---|\n| 结构体数组、图像、音频等原始字节 | 需要人眼直接阅读、手工编辑的内容 |\n| 追求读写速度与数值保真 | 需要在不同 sizeof / 字节序的平台间交换 |",
+      "keyPoints": [
+        "fread/fwrite 返回的是成功的「块数」，不是字节数",
+        "总搬运字节数 = size × count，size 一般写 sizeof(元素类型)",
+        "必须检查返回值：小于 count 时用 feof/ferror 区分「文件短」与「真出错」",
+        "二进制读写必须用带 b 的模式，否则 Windows 下数据会被转换破坏",
+        "fwrite 只做内存到文件的字节复制，不经过任何格式化转换",
+        "buf 用 void* 接收，传数组名即可，不需要取地址符"
+      ],
+      "pitfalls": [
+        "把返回值当字节数用，导致长度计算错误",
+        "二进制文件用不带 b 的模式打开，Windows 下数据被破坏",
+        "短读时直接报错，没有先用 feof 判断是否只是文件到头",
+        "size 与 count 参数含义弄反"
+      ],
+      "examples": [
+        {
+          "title": "int 数组写入二进制文件再读回",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5}, b[5] = {0};\n    size_t k;\n    FILE *fp = fopen(\"kc12_15a.bin\", \"wb\");\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fwrite(a, sizeof(int), 5, fp);\n    printf(\"write blocks=%u\\n\", (unsigned)k);\n    fclose(fp);\n\n    fp = fopen(\"kc12_15a.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fread(b, sizeof(int), 5, fp);\n    printf(\"read  blocks=%u\\n\", (unsigned)k);\n    fclose(fp);\n    remove(\"kc12_15a.bin\");\n\n    printf(\"%d %d %d %d %d\\n\", b[0], b[1], b[2], b[3], b[4]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "write blocks=5\nread  blocks=5\n1 2 3 4 5",
+          "note": "写和读都用 sizeof(int) 作 size、5 作 count，两个返回值都等于 5。",
+          "runnable": true
+        },
+        {
+          "title": "短读：文件只有 3 块却请求 10 块",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[3] = {7, 8, 9}, b[10] = {0};\n    size_t k;\n    FILE *fp = fopen(\"kc12_15b.bin\", \"wb\");\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fwrite(a, sizeof(int), 3, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_15b.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fread(b, sizeof(int), 10, fp);\n    printf(\"asked 10, got %u, feof=%d, ferror=%d\\n\",\n           (unsigned)k, feof(fp), ferror(fp));\n    fclose(fp);\n    remove(\"kc12_15b.bin\");\n    printf(\"%d %d %d\\n\", b[0], b[1], b[2]);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "asked 10, got 3, feof=16, ferror=0\n7 8 9",
+          "note": "k=3 且 feof 为真、ferror 为假，说明只是文件到头，不是错误；b[3]~b[9] 保持原值不变。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-007"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-02",
+        "c-ch12-05",
+        "c-ch12-14",
+        "c-ch12-16",
+        "c-ch12-17",
+        "c-ch12-22"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 15
+    },
+    {
+      "id": "c-ch12-16",
+      "title": "用 fwrite 存取结构体数组",
+      "section": "12.3 文件的读写",
+      "summary": "把结构体数组整块 fwrite / fread 是最常见的「数据落盘」写法，一行代码即可保存几十条记录；但结构体里若有指针成员，直接写盘只会存下地址，读回即悬空指针。",
+      "content": "## 标准模板\n\n```c\ntypedef struct {\n    int    id;\n    char   name[16];\n    double score;\n} Student;\n\nStudent a[N], b[N];\nsize_t k;\n\n/* 存 */\nfp = fopen(\"stu.bin\", \"wb\");\nk = fwrite(a, sizeof(Student), N, fp);\nfclose(fp);\n\n/* 取 */\nfp = fopen(\"stu.bin\", \"rb\");\nk = fread(b, sizeof(Student), N, fp);\nfclose(fp);\n```\n\n## 为什么能整块存\n\n结构体成员在内存中连续排布（中间只有对齐填充），fwrite 把这 size × N 个字节原样搬进文件，fread 再原样搬回，字段自然对位。\n\n## 致命陷阱：指针成员\n\n```c\ntypedef struct {\n    char *name;    /* 只存了地址，没存字符串内容 */\n} Bad;\n```\n\nfwrite 只写指针自身的几个字节（地址值），下次运行该地址毫无意义 → **读回即悬空指针**。\n要落盘就必须用定长数组 `char name[16]`。\n\n## 记录数未知怎么办\n\n用文件大小除以单条记录大小：\n\n```c\nfseek(fp, 0L, SEEK_END);\nlong sz = ftell(fp);\nint  n  = (int)(sz / (long)sizeof(Student));\nrewind(fp);\n```\n\n## 平台可移植性\n\n二进制文件里的 `sizeof(double)`、结构体对齐填充、字节序都与编译器和 CPU 有关。需要跨平台交换的数据应改用文本格式（fprintf / fscanf）。",
+      "keyPoints": [
+        "结构体数组可以整块 fwrite / fread，size 取 sizeof(结构体类型)、count 取元素个数",
+        "能整块存取的前提是成员全部为值类型（基本类型或定长数组），不能含指针",
+        "含指针成员的结构体写盘只保存地址，读回后是悬空指针",
+        "记录数未知时用「文件大小 ÷ sizeof(单条)」推算，再 rewind 回头逐条读",
+        "二进制文件不跨平台：字节序、对齐填充、sizeof 都可能不同",
+        "读写模式必须分别用 \"wb\" 与 \"rb\""
+      ],
+      "pitfalls": [
+        "结构体里放 char *name 就直接 fwrite，读回后解引用崩溃",
+        "用 sizeof(指针) 当成 sizeof(结构体)，块大小算错",
+        "记录数写死在代码里，文件一变就读越界或读不满",
+        "以为二进制文件可以换台机器直接读"
+      ],
+      "examples": [
+        {
+          "title": "结构体数组整块存取",
+          "code": "#include <stdio.h>\n\ntypedef struct {\n    int    id;\n    char   name[16];\n    double score;\n} Student;\n\nint main(void)\n{\n    Student a[2] = {{1001, \"Ann\", 88.5}, {1002, \"Bob\", 92.0}};\n    Student b[2];\n    size_t k;\n    FILE *fp = fopen(\"kc12_16a.bin\", \"wb\");\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fwrite(a, sizeof(Student), 2, fp);\n    printf(\"written=%u\\n\", (unsigned)k);\n    fclose(fp);\n\n    fp = fopen(\"kc12_16a.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fread(b, sizeof(Student), 2, fp);\n    fclose(fp);\n    remove(\"kc12_16a.bin\");\n\n    printf(\"read=%u\\n\", (unsigned)k);\n    printf(\"%d %s %.1f\\n\", b[0].id, b[0].name, b[0].score);\n    printf(\"%d %s %.1f\\n\", b[1].id, b[1].name, b[1].score);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "written=2\nread=2\n1001 Ann 88.5\n1002 Bob 92.0",
+          "note": "两次调用都只有一行，就完成了两条记录的存与取；name 是定长数组所以可以安全落盘。",
+          "runnable": true
+        },
+        {
+          "title": "记录数由文件大小推算",
+          "code": "#include <stdio.h>\n\ntypedef struct { int x; int y; } Point;\n\nint main(void)\n{\n    Point p[5] = {{1,1},{2,4},{3,9},{4,16},{5,25}};\n    Point q;\n    FILE *fp = fopen(\"kc12_16b.bin\", \"wb\");\n    long sz;\n    int n, i;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fwrite(p, sizeof(Point), 5, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_16b.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fseek(fp, 0L, SEEK_END);\n    sz = ftell(fp);\n    n = (int)(sz / (long)sizeof(Point));\n    rewind(fp);\n    printf(\"size=%ld count=%d\\n\", sz, n);\n\n    for (i = 0; i < n; i++) {\n        if (fread(&q, sizeof(Point), 1, fp) != 1) break;\n        printf(\"(%d,%d)\\n\", q.x, q.y);\n    }\n    fclose(fp);\n    remove(\"kc12_16b.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "size=40 count=5\n(1,1)\n(2,4)\n(3,9)\n(4,16)\n(5,25)",
+          "note": "先跳到末尾用 ftell 拿到字节数，除以 sizeof(Point) 得到记录数，rewind 后再逐条读——这是「不知道文件里有几条」的标准解法。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-pg-004"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-15",
+        "c-ch12-19",
+        "c-ch12-20",
+        "c-ch12-21"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 16
+    },
+    {
+      "id": "c-ch12-17",
+      "title": "feof 与 ferror：结束与出错检测",
+      "section": "12.3 文件的读写",
+      "summary": "feof 报告「已经读过文件末尾」，ferror 报告「发生过读写错误」，clearerr 把两个标志都清零；三者都是事后标志，不能用来预测下一次读会不会成功。",
+      "content": "## 三个函数\n\n```c\nint  feof(FILE *fp);      /* 已到末尾返回非 0，否则 0 */\nint  ferror(FILE *fp);    /* 发生过错误返回非 0，否则 0 */\nvoid clearerr(FILE *fp);  /* 把上面两个标志都清 0 */\n```\n\n## feof 是「事后」标志\n\n关键认知：**feof 只有在一次读操作已经撞到末尾之后才变真**，它无法告诉你「下一次读会不会成功」。\n\n```c\n/* 错：多循环一次，最后一次处理的是上一轮的残留内容 */\nwhile (!feof(fp)) {\n    fgets(line, sizeof line, fp);\n    process(line);\n}\n\n/* 对：用读函数自己的返回值当循环条件 */\nwhile (fgets(line, sizeof line, fp) != NULL) {\n    process(line);\n}\n```\n\n## feof 的正确用武之地\n\n区分「读到 0 块是因为文件到头」还是「因为出错」：\n\n```c\nk = fread(buf, sizeof(int), 10, fp);\nif (k < 10) {\n    if (feof(fp))        printf(\"文件比预期短\\n\");\n    else if (ferror(fp)) printf(\"真正的读错误\\n\");\n}\n```\n\n## ferror 与 errno\n\nferror 只说「错了」，不说错在哪里；要看到原因需配合 `perror(\"msg\")` 或全局 `errno`（如权限不足、磁盘满）。\n\n## clearerr 的时机\n\n文件刚打开时两个标志都是 0；一旦置位就会一直保持，直到调用 clearerr、rewind、fseek 或关闭文件。想在同一个 FILE* 上做多轮处理时记得先 clearerr。",
+      "keyPoints": [
+        "feof 只有在一次读操作已经撞到末尾之后才为真，它是事后标志",
+        "循环条件永远用读函数的返回值（fgets != NULL、fread == count、fscanf == 项数），不用 !feof",
+        "feof 的正确用途是在短读之后区分「文件到头」与「真正出错」",
+        "ferror 只报告发生过错，具体原因要看 errno / perror",
+        "clearerr 同时清除 EOF 标志与错误标志，rewind 与 fseek 也会清除 EOF 标志",
+        "文件刚打开时 feof 与 ferror 都为 0"
+      ],
+      "pitfalls": [
+        "用 while(!feof(fp)) 控制读循环，最后一条数据被处理两遍或处理到残留内容",
+        "以为 feof 能预测下一次读是否成功",
+        "把 ferror 非 0 直接当成文件末尾",
+        "标志置位后忘记 clearerr/rewind，后续判断全部失真"
+      ],
+      "examples": [
+        {
+          "title": "!feof 做条件的经典错误",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_17a.txt\", \"w\");\n    char line[64];\n    int bad = 0, good = 0;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"AA\\nBB\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_17a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (!feof(fp)) {                       /* 反面教材 */\n        fgets(line, sizeof line, fp);\n        bad++;\n    }\n    fclose(fp);\n    printf(\"bad  loop count=%d\\n\", bad);\n\n    fp = fopen(\"kc12_17a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fgets(line, sizeof line, fp) != NULL) good++;\n    fclose(fp);\n    remove(\"kc12_17a.txt\");\n    printf(\"good loop count=%d\\n\", good);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "bad  loop count=3\ngood loop count=2",
+          "note": "文件只有 2 行，用 !feof 控制的循环却跑了 3 次：第 3 次 fgets 返回 NULL，line 里还是上一轮的内容。",
+          "runnable": true
+        },
+        {
+          "title": "feof / ferror / clearerr 的配合",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[3] = {1, 2, 3}, b[8] = {0};\n    size_t k;\n    FILE *fp = fopen(\"kc12_17b.bin\", \"wb\");\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fwrite(a, sizeof(int), 3, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_17b.bin\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fread(b, sizeof(int), 8, fp);\n    printf(\"blocks=%u feof=%d ferror=%d\\n\", (unsigned)k, feof(fp), ferror(fp));\n    clearerr(fp);\n    printf(\"after clearerr feof=%d ferror=%d\\n\", feof(fp), ferror(fp));\n    fclose(fp);\n    remove(\"kc12_17b.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "blocks=3 feof=16 ferror=0\nafter clearerr feof=0 ferror=0",
+          "note": "请求 8 块只拿到 3 块，feof=1、ferror=0，说明是文件到头而非错误；clearerr 之后两个标志都归零。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-cr-001",
+        "c-ch12-cr-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-10",
+        "c-ch12-14",
+        "c-ch12-15",
+        "c-ch12-18",
+        "c-ch12-25"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 17
+    },
+    {
+      "id": "c-ch12-18",
+      "title": "逐行读取文本文件的正确姿势",
+      "section": "12.3 文件的读写",
+      "summary": "fgets 成功时返回缓冲区地址、失败时返回 NULL；用它直接做 while 条件，既能正确处理最后一行没有换行符的情况，也能避免 feof 造成的多循环一次错误。",
+      "content": "## 标准骨架\n\n```c\nFILE *fp = fopen(\"data.txt\", \"r\");\nchar line[256];\n\nif (fp == NULL) { perror(\"open\"); return 1; }\nwhile (fgets(line, sizeof line, fp) != NULL) {\n    /* 这里 line 一定是一行有效内容 */\n}\nfclose(fp);\n```\n\n## 为什么不能用 feof 做条件\n\nfeof 是**事后**标志：只有在读操作撞到末尾之后才为真。用它做条件必然多循环一次，最后一次拿到的是上一轮的残留数据。\n\n## 三个必须知道的细节\n\n| 现象 | 处理办法 |\n|---|---|\n| line 末尾带着 `\\n` | `line[strcspn(line, \"\\n\")] = '\\0';` |\n| 一行长度超过缓冲区 | 被截断，剩余部分下一次接着读，**不算错误** |\n| 文件最后一行没有 \\n | fgets 照样返回该行，之后再返回 NULL |\n\n## 带行号打印的完整程序\n\n```c\n#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"data.txt\", \"r\");\n    char line[256];\n    int n = 0;\n\n    if (fp == NULL) { perror(\"open\"); return 1; }\n    while (fgets(line, sizeof line, fp) != NULL) {\n        line[strcspn(line, \"\\n\")] = '\\0';\n        n++;\n        printf(\"%3d: %s\\n\", n, line);\n    }\n    fclose(fp);\n    return 0;\n}\n```\n\n## 想一次读进整个文件\n\n先 `fseek(fp, 0L, SEEK_END)` + `ftell` 得到字节数，再 malloc，然后一次 fread，最后手动补 `'\\0'`（fread 不会补）。",
+      "keyPoints": [
+        "while (fgets(line, sizeof line, fp) != NULL) 是逐行读文本的唯一推荐写法",
+        "fgets 成功返回缓冲区首地址，失败或到末尾返回 NULL",
+        "读到的每行末尾都带 \n，需要时用 strcspn 去掉",
+        "超长行会被自动截断，剩余部分下次继续读，不会报错也不置 ferror",
+        "文件最后一行即使没有换行符也能被正常读到",
+        "用 fread 读整个文件时必须自己补字符串结束符 \u0000"
+      ],
+      "pitfalls": [
+        "用 while(!feof(fp)) 包 fgets，多处理一次残留数据",
+        "忘了 line 末尾的 \n，比较或统计长度时出错",
+        "把 sizeof(line) 写成 sizeof(指针)，导致缓冲区溢出",
+        "判断 fgets 失败写成 == EOF（fgets 返回 NULL，不是 EOF）"
+      ],
+      "examples": [
+        {
+          "title": "逐行读、去换行、打行号",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_18a.txt\", \"w\");\n    char line[64];\n    int n = 0;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"first\\nsecond\\nthird\", fp);   /* 最后一行故意不写 \\n */\n    fclose(fp);\n\n    fp = fopen(\"kc12_18a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fgets(line, sizeof line, fp) != NULL) {\n        line[strcspn(line, \"\\n\")] = '\\0';\n        n++;\n        printf(\"%d:[%s]\\n\", n, line);\n    }\n    fclose(fp);\n    remove(\"kc12_18a.txt\");\n    printf(\"lines=%d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1:[first]\n2:[second]\n3:[third]\nlines=3",
+          "note": "最后一行没有换行符也照样被读到，共 3 行；strcspn 找到 \n 的下标并把该处改成 \u0000。",
+          "runnable": true
+        },
+        {
+          "title": "超长行被自动截断",
+          "code": "#include <stdio.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_18b.txt\", \"w\");\n    char line[8];\n    int n = 0;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"ABCDEFGHIJKLMN\\n\", fp);      /* 15 个字符一行 */\n    fclose(fp);\n\n    fp = fopen(\"kc12_18b.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    while (fgets(line, sizeof line, fp) != NULL) {\n        n++;\n        printf(\"chunk%d len=%d\\n\", n, (int)strlen(line));\n    }\n    fclose(fp);\n    remove(\"kc12_18b.txt\");\n    printf(\"chunks=%d\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "chunk1 len=7\nchunk2 len=7\nchunk3 len=1\nchunks=3",
+          "note": "缓冲区只有 8 字节，fgets 每次最多装 7 个字符加 \u0000，所以 15 字符的一行被切成 3 段（7+7+1），这不是错误。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-pg-001"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-12",
+        "c-ch12-13",
+        "c-ch12-17",
+        "c-ch12-25"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 18
+    },
+    {
+      "id": "c-ch12-19",
+      "title": "fseek 与文件位置标记",
+      "section": "12.4 文件的定位",
+      "summary": "fseek 把文件位置标记移动到指定偏移，是实现随机存取的核心；偏移以字节计，方向由 SEEK_SET / SEEK_CUR / SEEK_END 三个基准宏决定。",
+      "content": "## 原型与三要素\n\n```c\nint fseek(FILE *fp, long offset, int origin);\n```\n\n| origin | 宏值 | 基准点 | offset 常见取值 |\n|---|---|---|---|\n| SEEK_SET | 0 | 文件开头 | ≥ 0 |\n| SEEK_CUR | 1 | 当前位置 | 正负皆可 |\n| SEEK_END | 2 | 文件末尾 | 0 或负数 |\n\n成功返回 0，失败返回非 0 并置 ferror 标志。\n\n## 什么是「文件位置标记」\n\n每个 FILE 流都带一个「下次读写从这里开始」的字节偏移。fgetc / fgets / fread 每读一个字节它就自动前移；fseek 则是**手动**把它挪到任意位置——这就是随机存取与顺序存取的分水岭。\n\n## 常见用法\n\n```c\nfseek(fp, 0L, SEEK_SET);                              /* 回到开头，等价 rewind */\nfseek(fp, 0L, SEEK_END);                              /* 跳到末尾，配合 ftell 求文件大小 */\nfseek(fp, 100L, SEEK_SET);                            /* 绝对定位到第 100 字节 */\nfseek(fp, (long)i * (long)sizeof(Student), SEEK_SET); /* 定位第 i 条记录 */\nfseek(fp, -(long)sizeof(int), SEEK_CUR);              /* 回退一个 int，重读 */\n```\n\n## 把文件当数组用\n\n```c\nStudent s;\nfseek(fp, (long)i * (long)sizeof(Student), SEEK_SET);\nfread(&s, sizeof(Student), 1, fp);\n```\n\n随机访问第 i 条记录，时间复杂度 O(1)，与顺序表的下标访问完全同构。\n\n## 三条注意事项\n\n1. **offset 必须是 long**：`fseek(fp, i * sizeof(S), SEEK_SET)` 中若乘法在 int 范围内进行，大文件会溢出；应显式写成 `(long)i * (long)sizeof(S)`。\n2. **文本流上的 fseek 不可靠**：ANSI 只保证在文本流上用 SEEK_SET 加 ftell 曾返回过的值、或偏移 0 进行定位；真正的随机读写请改用 `\"rb\"` / `\"r+b\"`。\n3. fseek 成功时会清除 EOF 标志，因此可以用 `fseek(fp, 0L, SEEK_CUR)` 在读写之间做合法切换。",
+      "keyPoints": [
+        "fseek(fp, offset, origin) 成功返回 0，失败返回非 0",
+        "三个基准宏：SEEK_SET 文件开头、SEEK_CUR 当前位置、SEEK_END 文件末尾",
+        "文件位置标记就是「下次读写从哪个字节开始」，普通读函数会自动前移它",
+        "定位第 i 条记录：fseek(fp, (long)i * (long)sizeof(T), SEEK_SET)",
+        "offset 必须显式转成 long，否则 int 乘法在大文件上溢出",
+        "随机读写要用二进制模式，文本流上的 fseek 行为受限"
+      ],
+      "pitfalls": [
+        "fseek 的 offset 写成 int 型表达式，大文件溢出",
+        "以为 fseek 返回 0 表示失败（其实 0 是成功）",
+        "在文本模式下做随机定位，Windows 上因 \r\n 转换而算错位置",
+        "以为 fseek 会自动回到开头——它只按你给的偏移移动"
+      ],
+      "examples": [
+        {
+          "title": "r+b 模式下改写中间一条记录",
+          "code": "#include <stdio.h>\n\ntypedef struct { int id; double v; } Rec;\n\nint main(void)\n{\n    Rec a[4] = {{1,1.0},{2,2.0},{3,3.0},{4,4.0}};\n    Rec r;\n    int i;\n    FILE *fp = fopen(\"kc12_19a.bin\", \"wb\");\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fwrite(a, sizeof(Rec), 4, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_19a.bin\", \"r+b\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fseek(fp, (long)2 * (long)sizeof(Rec), SEEK_SET);   /* 定位第 3 条 */\n    r.id = 3; r.v = 99.5;\n    fwrite(&r, sizeof(Rec), 1, fp);\n\n    rewind(fp);\n    for (i = 0; i < 4; i++) {\n        if (fread(&r, sizeof(Rec), 1, fp) != 1) break;\n        printf(\"%d %.1f\\n\", r.id, r.v);\n    }\n    fclose(fp);\n    remove(\"kc12_19a.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "1 1.0\n2 2.0\n3 99.5\n4 4.0",
+          "note": "只有第 3 条被改写，前后记录原封不动——这就是随机存取相对顺序存取的优势。",
+          "runnable": true
+        },
+        {
+          "title": "三种基准的定位效果",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_19b.txt\", \"w\");\n    long sz, cur;\n    int ch;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"0123456789\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_19b.txt\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n\n    fseek(fp, 0L, SEEK_END);\n    sz = ftell(fp);\n    printf(\"size=%ld\\n\", sz);\n\n    fseek(fp, 4L, SEEK_SET);\n    cur = ftell(fp);\n    printf(\"after SEEK_SET+4  pos=%ld\\n\", cur);\n\n    fseek(fp, -3L, SEEK_CUR);\n    cur = ftell(fp);\n    printf(\"after SEEK_CUR-3  pos=%ld\\n\", cur);\n\n    ch = fgetc(fp);\n    printf(\"char at that pos = %c\\n\", ch);\n\n    fclose(fp);\n    remove(\"kc12_19b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "size=10\nafter SEEK_SET+4  pos=4\nafter SEEK_CUR-3  pos=1\nchar at that pos = 1",
+          "note": "从末尾量得长度 10；绝对定位到 4，再相对回退 3 到位置 1，读出的正是字符 1。ftell 与 fgetc 分开调用，避免同一表达式中求值顺序不确定。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-04",
+        "c-ch12-16",
+        "c-ch12-20",
+        "c-ch12-21"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 19
+    },
+    {
+      "id": "c-ch12-20",
+      "title": "ftell 与 rewind",
+      "section": "12.4 文件的定位",
+      "summary": "ftell 返回当前位置标记的字节偏移（失败返回 -1L），rewind 把位置标记复位到文件开头并同时清除 EOF 与错误标志；两者是文件定位的「读表」与「归零」。",
+      "content": "## 原型\n\n```c\nlong ftell(FILE *fp);   /* 成功返回偏移，失败返回 -1L */\nvoid rewind(FILE *fp);  /* 无返回值 */\n```\n\n## rewind 其实做了三件事\n\n1. 位置标记 → 文件开头（等价 `fseek(fp, 0L, SEEK_SET)`）\n2. 清除 **EOF 标志**\n3. 清除 **错误标志**（等价 clearerr）\n\n所以「读完一遍想再读一遍」最省事的写法就是 `rewind(fp)`，不必重新 fopen。\n\n## 求文件大小\n\n```c\nfseek(fp, 0L, SEEK_END);\nlong size = ftell(fp);\nrewind(fp);\n```\n\n## 记住位置、稍后回来\n\n```c\nlong mark = ftell(fp);\n/* ... 往前读一段做试探 ... */\nfseek(fp, mark, SEEK_SET);   /* 精确回到 mark */\n```\n\n## 文本模式下 ftell 的返回值\n\n对文本流，ftell 返回的是一个**只能交给 fseek 使用**的不透明位置值，不必然是「从文件开头数第几个字符」——Windows 的 `\\r\\n` 转换会造成差异。要精确字节数请用 `\"rb\"` 打开。\n\n## 易错对照\n\n| 需求 | 错误写法 | 正确写法 |\n|---|---|---|\n| 回到开头重读 | `fseek(fp, 0L, SEEK_CUR)` | `rewind(fp)` |\n| 求文件大小 | 打开后直接 `ftell(fp)` | 先 `fseek(fp, 0L, SEEK_END)` 再 ftell |\n| 判断 ftell 失败 | `if (ftell(fp) == 0)` | `if (ftell(fp) == -1L)` |\n| 清除 EOF 标志 | 再调一次 `feof` | `rewind` 或 `clearerr` |",
+      "keyPoints": [
+        "ftell 返回当前位置标记的字节偏移，失败返回 -1L（不是 0）",
+        "rewind 等价于 fseek(fp,0L,SEEK_SET)，但额外清除 EOF 与错误标志",
+        "求文件大小的固定三步：fseek 到 SEEK_END、ftell、rewind",
+        "ftell 的返回值可以存下来，之后用 fseek(fp, mark, SEEK_SET) 精确回到该处",
+        "文本流的 ftell 值是不透明位置，只在二进制模式下等于真实字节数",
+        "rewind 没有返回值，无法用它判断成功与否"
+      ],
+      "pitfalls": [
+        "用 ftell(fp) == 0 判断失败，其实 0 是合法的「在开头」",
+        "刚打开文件就 ftell 当作文件大小（此时位置就是 0）",
+        "以为 rewind 只移动位置，忘了它还清标志",
+        "把 ftell 的返回值存进 int，大文件溢出"
+      ],
+      "examples": [
+        {
+          "title": "rewind 后重读同一个流",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_20a.txt\", \"w\");\n    char line[32];\n    int pass, n;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"alpha\\nbeta\\n\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_20a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    for (pass = 1; pass <= 2; pass++) {\n        n = 0;\n        while (fgets(line, sizeof line, fp) != NULL) n++;\n        printf(\"pass%d lines=%d feof=%d\\n\", pass, n, feof(fp));\n        rewind(fp);\n        printf(\"      after rewind pos=%ld feof=%d\\n\", ftell(fp), feof(fp));\n    }\n    fclose(fp);\n    remove(\"kc12_20a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "pass1 lines=2 feof=16\n      after rewind pos=0 feof=0\npass2 lines=2 feof=16\n      after rewind pos=0 feof=0",
+          "note": "第一遍读完 feof 为真；rewind 之后位置回到 0 且 EOF 标志被清除，所以第二遍仍能读到同样的 2 行。",
+          "runnable": true
+        },
+        {
+          "title": "ftell 求大小后一次性读入堆内存",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_20b.txt\", \"w\");\n    char *buf;\n    long sz;\n    size_t k;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"Hello binary-free world\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_20b.txt\", \"rb\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fseek(fp, 0L, SEEK_END);\n    sz = ftell(fp);\n    rewind(fp);\n\n    buf = malloc((size_t)sz + 1);          /* 多留一个位置放结束符 */\n    if (buf == NULL) { fclose(fp); printf(\"malloc failed\\n\"); return 1; }\n    k = fread(buf, 1, (size_t)sz, fp);\n    buf[k] = '\\0';                          /* fread 不会补结束符 */\n    printf(\"size=%ld read=%u\\n\", sz, (unsigned)k);\n    printf(\"%s\\n\", buf);\n\n    free(buf);\n    fclose(fp);\n    remove(\"kc12_20b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "size=23 read=23\nHello binary-free world",
+          "note": "以二进制模式打开，ftell 的结果就是真实字节数；malloc 要多分配 1 字节，因为 fread 只搬字节、不会补 \u0000。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-16",
+        "c-ch12-19",
+        "c-ch12-21"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 20
+    },
+    {
+      "id": "c-ch12-21",
+      "title": "SEEK_SET / SEEK_CUR / SEEK_END 与随机读写",
+      "section": "12.4 文件的定位",
+      "summary": "三个基准宏决定偏移从哪里算起；把它们与可更新的文件模式（r+ / w+ / a+）组合起来，就能实现顺序文件做不到的随机读写，同时要记住读写交替必须夹一次定位操作。",
+      "content": "## 三种基准\n\n| 宏 | 值 | 基准点 | 典型 offset |\n|---|---|---|---|\n| SEEK_SET | 0 | 文件开头 | 正数 |\n| SEEK_CUR | 1 | 当前位置 | 正负皆可 |\n| SEEK_END | 2 | 文件末尾 | 0 或负数 |\n\n## 随机读写需要「可更新」模式\n\n| 模式 | 能力 | 能否随机读写 |\n|---|---|---|\n| `\"r\"` | 只读，文件须已存在 | 可随机**读** |\n| `\"w\"` | 只写，先把文件清空 | 可随机**写** |\n| `\"r+\"` | 读写，文件须已存在 | ✅ 改中间内容的首选 |\n| `\"w+\"` | 读写，先清空 | ✅ |\n| `\"a+\"` | 读 ＋ 末尾追加 | ⚠️ 写操作永远追加到末尾 |\n\n二进制版本各加一个 `b`：`\"rb+\"` / `\"wb+\"` / `\"ab+\"`。\n\n## a+ 的坑\n\n用 `\"a+\"` 打开时，fseek 可以把位置标记挪到中间**读**，但任何写操作都会把位置标记强制拉回文件末尾。想改中间的内容必须用 `\"r+\"`。\n\n## 标准 C 的一条硬规则\n\n同一个流上**读写交替**时，两者之间必须有一次 `fseek` / `fsetpos` / `rewind` / `fflush`，否则行为未定义：\n\n```c\nfread(&r, sizeof r, 1, fp);\nfseek(fp, 0L, SEEK_CUR);   /* 必须有这一步，空跳也算 */\nfwrite(&r, sizeof r, 1, fp);\n```\n\n## 记录式文件的随机改写模板\n\n```c\nint update(FILE *fp, int idx, const Rec *p)\n{\n    if (fseek(fp, (long)idx * (long)sizeof(Rec), SEEK_SET) != 0) return -1;\n    return fwrite(p, sizeof(Rec), 1, fp) == 1 ? 0 : -1;\n}\n```",
+      "keyPoints": [
+        "SEEK_SET 从文件开头算，SEEK_CUR 从当前位置算，SEEK_END 从文件末尾算",
+        "改写文件中间内容要用 \"r+\" 或 \"rb+\"，用 \"a+\" 写永远追加到末尾",
+        "同一文件流读写交替之间必须插入 fseek/fsetpos/rewind/fflush，否则行为未定义",
+        "fseek(fp, 0L, SEEK_CUR) 是合法的空跳，常专门用来满足上面这条规则",
+        "定位第 i 条记录的偏移是 (long)i * (long)sizeof(记录类型)",
+        "w+ 会先把文件清空，想保留原内容绝对不能用它"
+      ],
+      "pitfalls": [
+        "用 \"a+\" 打开后 fseek 到中间写入，结果内容跑到了文件末尾",
+        "读写交替时省略定位操作，结果依赖具体实现",
+        "想追加内容却用了 \"w\"，原文件被清空",
+        "用 \"r+\" 打开一个不存在的文件（r+ 不会创建文件）"
+      ],
+      "examples": [
+        {
+          "title": "r+ 改中间 vs a+ 追加末尾",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_21a.txt\", \"w\");\n    char buf[32];\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fputs(\"0123456789\", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_21a.txt\", \"r+\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fseek(fp, 3L, SEEK_SET);\n    fputc('X', fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_21a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    if (fgets(buf, sizeof buf, fp) != NULL) printf(\"r+ -> %s\\n\", buf);\n    fclose(fp);\n\n    fp = fopen(\"kc12_21a.txt\", \"a+\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fseek(fp, 0L, SEEK_SET);\n    fputc('Y', fp);              /* 位置被强制拉回末尾 */\n    fclose(fp);\n\n    fp = fopen(\"kc12_21a.txt\", \"r\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    if (fgets(buf, sizeof buf, fp) != NULL) printf(\"a+ -> %s\\n\", buf);\n    fclose(fp);\n    remove(\"kc12_21a.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "r+ -> 012X456789\na+ -> 012X456789Y",
+          "note": "r+ 模式成功把下标 3 处改成 X；a+ 模式虽然先 fseek 到开头，写入的 Y 仍被追加到末尾。",
+          "runnable": true
+        },
+        {
+          "title": "r+b 下读写交替必须夹一次 fseek",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp = fopen(\"kc12_21b.bin\", \"wb\");\n    int v = 10, w = 0;\n    size_t k;\n\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    fwrite(&v, sizeof v, 1, fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_21b.bin\", \"r+b\");\n    if (fp == NULL) { printf(\"open failed\\n\"); return 1; }\n    k = fread(&w, sizeof w, 1, fp);\n    printf(\"read blocks=%u value=%d\\n\", (unsigned)k, w);\n\n    w = w * 2;\n    fseek(fp, 0L, SEEK_SET);      /* 读转写之间必须定位 */\n    fwrite(&w, sizeof w, 1, fp);\n\n    rewind(fp);                   /* 写转读之间同样必须定位 */\n    k = fread(&v, sizeof v, 1, fp);\n    fclose(fp);\n    remove(\"kc12_21b.bin\");\n\n    printf(\"read blocks=%u value=%d\\n\", (unsigned)k, v);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "read blocks=1 value=10\nread blocks=1 value=20",
+          "note": "两次方向切换各插入一次定位（fseek 与 rewind），文件中的值被正确地由 10 改为 20。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-001",
+        "c-ch12-fb-002",
+        "c-ch12-fb-003"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-05",
+        "c-ch12-19",
+        "c-ch12-20"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 21
+    },
+    {
+      "id": "c-ch12-22",
+      "title": "同一个整数：文本存储 vs 二进制存储",
+      "section": "12.1 文件概述",
+      "summary": "把整数 12345 用 fprintf 写入得到 5 个 ASCII 字节，用 fwrite 写入得到 sizeof(int)=4 个原始字节；两种文件互不通用，读写方式必须成对，这是本章最常被考的区别。",
+      "content": "## 直接对比 —— 以 `int x = 12345;` 为例（sizeof(int)=4，小端机器）\n\n| 写法 | 落盘字节 | 文件大小 | 记事本打开 |\n|---|---|---|---|\n| `fprintf(fp, \"%d\", x)` | `31 32 33 34 35`（即字符 '1''2''3''4''5'） | 5 | ✅ 显示 12345 |\n| `fwrite(&x, sizeof(int), 1, fp)` | `39 30 00 00`（0x00003039 小端排列） | 4 | ❌ 乱码 |\n\n## 读写必须配对\n\n| 写 | 只能这样读 |\n|---|---|\n| `fprintf` | `fscanf` / `fgets` |\n| `fputc` / `fputs` | `fgetc` / `fgets` |\n| `fwrite` | `fread` |\n\n交叉使用一定出错：用 `fscanf(\"%d\")` 读 fwrite 的 4 字节，只会把开头 `39 30` 当字符 \"90\" 读进来。\n\n## 两种方式的取舍\n\n| 维度 | 文本 | 二进制 |\n|---|---|---|\n| 可读性 | 好，可直接查看与手工编辑 | 差 |\n| 体积 | 大（12345 占 5 字节，位数越多越大） | 小（固定 4 字节） |\n| 速度 | 慢，需做字符与数值的相互转换 | 快，原样搬字节 |\n| 跨平台 | 好 | 差（字节序、sizeof、结构体对齐） |\n| double 精度 | 可能被格式串截断 | 完全保真 |\n\n## 打开模式要匹配\n\n二进制数据必须用带 `b` 的模式。Windows 文本模式会把 `0x1A` 当文件结束符、把 `\\n` 写成 `\\r\\n`，二进制文件会因此被悄悄破坏。\n\n## 怎么验证自己到底写成了什么\n\n写完用 `fseek + ftell` 看文件大小，或把前若干字节按 `%02X` 打印——这是唯一可靠的判断手段，靠「看起来对」一定会翻车。",
+      "keyPoints": [
+        "fprintf 写 12345 得到 5 个 ASCII 字节，fwrite 写同一个数得到 sizeof(int) 个原始字节",
+        "文本文件大小随数值位数变化，二进制文件大小固定",
+        "fprintf 写的只能用 fscanf/fgets 读，fwrite 写的只能用 fread 读",
+        "二进制文件体积更小、速度更快、数值完全保真",
+        "文本文件可读性好、跨平台安全，适合交换数据",
+        "二进制文件必须用带 b 的模式打开，否则 Windows 下会破坏数据"
+      ],
+      "pitfalls": [
+        "用 fscanf 去读 fwrite 写的文件，得到毫无意义的数字",
+        "把二进制文件用 \"r\" 打开，遇到 0x1A 就以为文件结束",
+        "以为文本文件里的 12345 就是 4 字节整数",
+        "比较体积时忽略负号、小数点也各占一个字节"
+      ],
+      "examples": [
+        {
+          "title": "同一个整数分别写成文本与二进制",
+          "code": "#include <stdio.h>\n\nstatic long fsize(const char *name)\n{\n    FILE *fp = fopen(name, \"rb\");\n    long n;\n    if (fp == NULL) return -1L;\n    fseek(fp, 0L, SEEK_END);\n    n = ftell(fp);\n    fclose(fp);\n    return n;\n}\n\nstatic void dump(const char *tag, const char *name, int n)\n{\n    FILE *fp = fopen(name, \"rb\");\n    unsigned char b[64];\n    size_t k;\n    int i;\n    if (fp == NULL) { printf(\"%s open failed\\n\", tag); return; }\n    k = fread(b, 1, (size_t)n, fp);\n    printf(\"%s size=%ld bytes:\", tag, fsize(name));\n    for (i = 0; i < (int)k; i++) printf(\" %02X\", (unsigned)b[i]);\n    printf(\"\\n\");\n    fclose(fp);\n}\n\nint main(void)\n{\n    int x = 12345;\n    size_t w;\n    FILE *fp;\n\n    fp = fopen(\"kc12_22a.txt\", \"w\");\n    if (fp == NULL) return 1;\n    fprintf(fp, \"%d\", x);\n    fclose(fp);\n\n    fp = fopen(\"kc12_22a.bin\", \"wb\");\n    if (fp == NULL) return 1;\n    w = fwrite(&x, sizeof(int), 1, fp);\n    fclose(fp);\n    if (w != 1) return 1;\n\n    dump(\"text  \", \"kc12_22a.txt\", 5);\n    dump(\"binary\", \"kc12_22a.bin\", 4);\n\n    remove(\"kc12_22a.txt\");\n    remove(\"kc12_22a.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "text   size=5 bytes: 31 32 33 34 35\nbinary size=4 bytes: 39 30 00 00",
+          "note": "同一个 12345：文本形式是 5 个 ASCII 码 31~35，二进制形式是 4 个原始字节 39 30 00 00（小端）。字节顺序与 sizeof 依平台而定。",
+          "runnable": true
+        },
+        {
+          "title": "交叉读取：用 fscanf 读二进制文件",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 12345, y = 0, r;\n    size_t k;\n    FILE *fp;\n\n    fp = fopen(\"kc12_22b.bin\", \"wb\");\n    if (fp == NULL) return 1;\n    k = fwrite(&x, sizeof(int), 1, fp);\n    fclose(fp);\n    if (k != 1) return 1;\n\n    fp = fopen(\"kc12_22b.bin\", \"rb\");\n    if (fp == NULL) return 1;\n    k = fread(&y, sizeof(int), 1, fp);\n    fclose(fp);\n    printf(\"fread  -> blocks=%u value=%d\\n\", (unsigned)k, y);\n\n    y = -1;\n    fp = fopen(\"kc12_22b.bin\", \"r\");\n    if (fp == NULL) return 1;\n    r = fscanf(fp, \"%d\", &y);\n    fclose(fp);\n    printf(\"fscanf -> items=%d  value=%d\\n\", r, y);\n\n    remove(\"kc12_22b.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "fread  -> blocks=1 value=12345\nfscanf -> items=1  value=90",
+          "note": "fread 原样拿回 12345；fscanf 把文件开头的两个字节当成字符 9 和 0，读出毫无意义的 90。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-fb-005"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-02",
+        "c-ch12-14",
+        "c-ch12-15"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 22
+    },
+    {
+      "id": "c-ch12-23",
+      "title": "main 的 argc 与 argv：命令行参数",
+      "section": "12.5 文件操作的其他函数",
+      "summary": "int main(int argc, char *argv[]) 让程序从命令行接收文件名等参数：argv[0] 是命令名本身，argv[argc] 保证为 NULL，使用前必须先检查 argc 是否足够。",
+      "content": "## 两种合法的 main\n\n```c\nint main(void)\nint main(int argc, char *argv[])\n```\n\n## 参数含义\n\n| 名字 | 含义 |\n|---|---|\n| `argc` | argument count，参数**个数**，至少为 1 |\n| `argv` | argument vector，字符串指针数组（类型 `char **`） |\n| `argv[0]` | 命令名本身（可能不含路径） |\n| `argv[argc]` | 标准保证为 `NULL` |\n\n执行命令 `copy a.txt b.txt` 时：argc=3，argv[1]=\"a.txt\"，argv[2]=\"b.txt\"。\n\n## 文件复制程序的标准骨架\n\n```c\nint main(int argc, char *argv[])\n{\n    FILE *in, *out;\n    int c;\n\n    if (argc != 3) {\n        fprintf(stderr, \"usage: %s <src> <dst>\\n\", argv[0]);\n        return 1;\n    }\n    if ((in = fopen(argv[1], \"rb\")) == NULL) { perror(argv[1]); return 1; }\n    if ((out = fopen(argv[2], \"wb\")) == NULL) { fclose(in); perror(argv[2]); return 1; }\n\n    while ((c = fgetc(in)) != EOF) fputc(c, out);\n\n    fclose(in);\n    fclose(out);\n    return 0;\n}\n```\n\n## 三个要点\n\n1. **必须先检查 argc**：argc 不足时访问 `argv[1]` 是读越界，行为未定义。\n2. **argv[i] 是 char \\***，不是数组，别用 `sizeof(argv[1])` 求字符串长度（那是指针大小）。\n3. **返回值**：0 表示成功、非 0 表示失败，供 shell 的 `%ERRORLEVEL%` / `$?` 读取，便于脚本串联。\n\n## 与文件章节的关系\n\n命令行参数最常见的用途就是**传文件名**，让同一个程序处理不同文件，而不是把文件名硬编码在源码里——这正是「通用工具程序」的写法。",
+      "keyPoints": [
+        "argc 是参数个数，最小值为 1；argv 是字符串指针数组",
+        "argv[0] 是命令名本身，argv[1] 起才是用户给的参数",
+        "标准保证 argv[argc] == NULL，可以用它作为遍历终点",
+        "使用 argv[i] 之前必须先判断 argc 是否足够，否则是越界访问",
+        "argv[i] 是 char * 不是数组，sizeof(argv[i]) 得到的是指针大小",
+        "main 返回 0 表示成功，非 0 表示失败，可被 shell 检测"
+      ],
+      "pitfalls": [
+        "不检查 argc 就直接用 argv[1]，参数不足时越界访问",
+        "用 sizeof(argv[1]) 求字符串长度",
+        "把 argv 的类型写成 char argv[]（少一层星号）",
+        "以为 argc 包含了 argv[argc] 那个 NULL"
+      ],
+      "examples": [
+        {
+          "title": "手工构造 argv 观察参数布局",
+          "code": "#include <stdio.h>\n\nstatic void show(int argc, char *argv[])\n{\n    int i;\n    printf(\"argc=%d\\n\", argc);\n    for (i = 0; i < argc; i++) printf(\"argv[%d]=%s\\n\", i, argv[i]);\n    printf(\"argv[argc] is %s\\n\", argv[argc] == NULL ? \"NULL\" : \"not NULL\");\n}\n\nint main(void)\n{\n    char *sim[] = {\"copy\", \"a.txt\", \"b.txt\", NULL};\n    show(3, sim);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "argc=3\nargv[0]=copy\nargv[1]=a.txt\nargv[2]=b.txt\nargv[argc] is NULL",
+          "note": "这里手工模拟了执行 copy a.txt b.txt 时的 argv 数组；真实程序中它由系统启动代码构造。",
+          "runnable": true
+        },
+        {
+          "title": "完整的命令行复制程序（需命令行调用）",
+          "code": "#include <stdio.h>\n\nint main(int argc, char *argv[])\n{\n    FILE *in, *out;\n    long n = 0;\n    int c;\n\n    if (argc != 3) {\n        fprintf(stderr, \"usage: %s <src> <dst>\\n\", argv[0]);\n        return 1;\n    }\n    if ((in = fopen(argv[1], \"rb\")) == NULL) { perror(argv[1]); return 1; }\n    if ((out = fopen(argv[2], \"wb\")) == NULL) {\n        fclose(in);\n        perror(argv[2]);\n        return 1;\n    }\n\n    while ((c = fgetc(in)) != EOF) {\n        fputc(c, out);\n        n++;\n    }\n\n    fclose(in);\n    if (fclose(out) != 0) { perror(\"close\"); return 1; }\n    printf(\"copied %ld bytes\\n\", n);\n    return 0;\n}",
+          "stdin": "",
+          "note": "本例需要在命令行执行「程序名 源文件 目标文件」，无法在标准输入环境下演示，故标记为不可运行。",
+          "runnable": false
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-06",
+        "c-ch12-08",
+        "c-ch12-11"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 23
+    },
+    {
+      "id": "c-ch12-24",
+      "title": "remove 与 rename：文件管理",
+      "section": "12.5 文件操作的其他函数",
+      "summary": "remove 删除文件、rename 改名或移动文件，二者都声明在 stdio.h 中，成功返回 0、失败返回非 0，且都要求目标文件当前未被打开。",
+      "content": "## 原型\n\n```c\nint remove(const char *filename);\nint rename(const char *oldname, const char *newname);\n```\n\n成功返回 0，失败返回非 0；具体原因看全局 `errno` 或用 `perror` 打印。\n\n## 必须遵守的前提\n\n| 函数 | 前提 |\n|---|---|\n| `remove` | 文件**不能处于打开状态**，先 `fclose` |\n| `rename` | 新旧两个名字都不能对应一个已打开的文件 |\n\nWindows 上删除或改名一个已 fopen 的文件几乎必然失败；Unix 上 remove 只是摘掉目录项，已打开的句柄仍可用到关闭为止——**这是典型的平台差异考点**。\n\n## rename 的两个用途\n\n1. **改名 / 移动**：`rename(\"a.txt\", \"dir/b.txt\")`（只能在同一分区内移动）。\n2. **安全写文件的原子替换**：先写临时文件 `tmp.dat`，全部写完并 fclose 成功后再 `rename(\"tmp.dat\", \"real.dat\")`。这样即使中途崩溃或断电，也不会留下半截的 real.dat。\n\n## 典型错误\n\n```c\nFILE *fp = fopen(\"t.txt\", \"w\");\nfputs(\"hi\", fp);\nremove(\"t.txt\");   /* 忘了 fclose —— Windows 上必然失败 */\nfclose(fp);\n```\n\n## 与 tmpfile 的配合\n\n```c\nFILE *tmp = tmpfile();   /* 创建一个临时文件，关闭时自动删除 */\n```\n\ntmpfile 返回的流以 `\"wb+\"` 模式打开，程序结束或 fclose 时自动 remove，既不用自己起名字，也不怕重名与残留。",
+      "keyPoints": [
+        "remove 与 rename 都声明在 stdio.h，不是专门的「文件系统头文件」",
+        "两者成功返回 0，失败返回 非 0",
+        "remove 之前必须 fclose，Windows 上删除已打开的文件会失败",
+        "rename 可以把文件改名，也能在同一分区内移动",
+        "先写临时文件再 rename 到正式名字，是实现「安全写盘」的常用手法",
+        "tmpfile 创建的临时文件在关闭时自动删除，不需要手动 remove"
+      ],
+      "pitfalls": [
+        "忘 fclose 就 remove，Windows 上返回失败却不去检查返回值",
+        "rename 的目标文件已存在（Windows 上会失败）",
+        "以为 rename 能跨磁盘分区移动文件",
+        "remove 一个不存在的文件却不检查返回值，程序静默出错"
+      ],
+      "examples": [
+        {
+          "title": "未 fclose 就 remove 会失败",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp;\n    int r;\n\n    fp = fopen(\"kc12_24a.txt\", \"w\");\n    if (fp == NULL) return 1;\n    fputs(\"hi\", fp);\n\n    r = remove(\"kc12_24a.txt\");   /* 忘了 fclose */\n    printf(\"remove while open  -> %s\\n\", r == 0 ? \"ok\" : \"FAILED\");\n\n    fclose(fp);\n\n    r = remove(\"kc12_24a.txt\");\n    printf(\"remove after close -> %s\\n\", r == 0 ? \"ok\" : \"FAILED\");\n\n    r = remove(\"kc12_24a.txt\");\n    printf(\"remove twice       -> %s\\n\", r == 0 ? \"ok\" : \"FAILED\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "remove while open  -> FAILED\nremove after close -> ok\nremove twice       -> FAILED",
+          "note": "文件还开着时 remove 失败，fclose 之后才成功；再删一次同一名字也失败。这三行输出是 Windows 平台的典型表现，Unix 上第一行可能反而成功。",
+          "runnable": true
+        },
+        {
+          "title": "先写临时文件再 rename 的安全替换",
+          "code": "#include <stdio.h>\n\nstatic int file_exists(const char *n)\n{\n    FILE *fp = fopen(n, \"r\");\n    if (fp == NULL) return 0;\n    fclose(fp);\n    return 1;\n}\n\nint main(void)\n{\n    FILE *fp;\n    char line[128];\n\n    remove(\"kc12_24b.dat\");   /* 清理上次残留，保证可重复运行 */\n\n    fp = fopen(\"kc12_24b.tmp\", \"w\");\n    if (fp == NULL) return 1;\n    fputs(\"version 2 content\\n\", fp);\n    fclose(fp);\n\n    printf(\"before: dat=%d tmp=%d\\n\",\n           file_exists(\"kc12_24b.dat\"), file_exists(\"kc12_24b.tmp\"));\n\n    if (rename(\"kc12_24b.tmp\", \"kc12_24b.dat\") != 0) {\n        perror(\"rename\");\n        remove(\"kc12_24b.tmp\");\n        return 1;\n    }\n\n    printf(\"after : dat=%d tmp=%d\\n\",\n           file_exists(\"kc12_24b.dat\"), file_exists(\"kc12_24b.tmp\"));\n\n    fp = fopen(\"kc12_24b.dat\", \"r\");\n    if (fp == NULL) return 1;\n    if (fgets(line, sizeof line, fp) != NULL) printf(\"content=%s\", line);\n    fclose(fp);\n\n    remove(\"kc12_24b.dat\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "before: dat=0 tmp=1\nafter : dat=1 tmp=0\ncontent=version 2 content",
+          "note": "rename 成功后旧名字消失、新名字出现，中间不存在「内容写了一半」的可见状态，这就是原子替换的价值。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "c-ch12-07",
+        "c-ch12-18"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 24
+    },
+    {
+      "id": "c-ch12-25",
+      "title": "文件操作高频错误汇总（考前自查表）",
+      "section": "12.5 文件操作的其他函数",
+      "summary": "把本章最容易丢分的十几处错误集中成对照表：忘判 fopen 返回值、用 feof 做循环条件、忘 fclose、文本与二进制模式混用、fscanf 漏 &、fwrite 的 size 算错等。",
+      "content": "## 高频错误对照表\n\n| # | 错误写法 | 后果 | 正确写法 |\n|---|---|---|---|\n| 1 | `fp = fopen(...);` 后不判 NULL | 解引用空指针崩溃 | `if (fp == NULL) return 1;` |\n| 2 | `while (!feof(fp))` | 多循环一次，处理残留数据 | 用读函数返回值做条件 |\n| 3 | 忘 `fclose(fp)` | 缓冲区未刷写，数据丢失 | 每个 fopen 配对一个 fclose |\n| 4 | `char c = fgetc(fp);` | 收不到 EOF(-1)，可能死循环 | `int c = fgetc(fp);` |\n| 5 | `fscanf(fp, \"%d\", n)` | 把值当地址，段错误 | `fscanf(fp, \"%d\", &n)` |\n| 6 | 二进制文件用 `\"r\"` / `\"w\"` | Windows 下 0x1A 截断、\\r\\n 破坏数据 | `\"rb\"` / `\"wb\"` |\n| 7 | `sizeof(line)` 中 line 是函数形参指针 | 得到 4/8，缓冲区溢出 | 传数组名或显式传长度 |\n| 8 | `fwrite(p, sizeof(p), 1, fp)` 中 p 是指针 | 只写了地址没写内容 | `sizeof(元素) * 个数` |\n| 9 | 同一流读写交替不做定位 | 行为未定义 | 中间插 `fseek/rewind/fflush` |\n| 10 | `fputs(\"file.txt\", s)` | 参数顺序颠倒 | `fputs(字符串, fp)` |\n| 11 | 想追加却用 `\"w\"` 打开 | 原内容被清空 | `\"a\"` |\n| 12 | `fseek(fp, i * sizeof(T), SEEK_SET)` | int 乘法溢出 | `(long)i * (long)sizeof(T)` |\n| 13 | `fgets` 判失败写 `== EOF` | 永远不成立 | `== NULL` |\n| 14 | `ftell` 判失败写 `== 0` | 0 是合法位置 | `== -1L` |\n\n## 交卷前的自查三步\n\n1. **配对检查**：数一遍 fopen 与 fclose 的出现次数是否相等。\n2. **返回值检查**：fopen / fread / fwrite / fscanf / fseek 每一个都判过吗？\n3. **模式检查**：文本还是二进制？权限够吗？`\"w\"` 会不会把原数据清掉？\n\n## 一段「满分模板」\n\n```c\nfp = fopen(name, \"rb\");\nif (fp == NULL) { perror(name); return 1; }\n\nwhile (fread(&rec, sizeof rec, 1, fp) == 1) {\n    /* 处理 rec */\n}\n\nif (ferror(fp)) { perror(\"read\"); fclose(fp); return 1; }\nfclose(fp);\n```",
+      "keyPoints": [
+        "fopen 之后第一件事永远是判 NULL",
+        "循环条件用读函数的返回值，feof/ferror 只用于事后区分原因",
+        "fgetc 的返回值必须用 int 接，用 char 接会丢掉 EOF",
+        "fscanf 的接收变量必须取地址，返回值是成功赋值的项数",
+        "二进制数据必须用带 b 的模式打开",
+        "同一流读写交替之间必须有一次 fseek/rewind/fflush"
+      ],
+      "pitfalls": [
+        "指针形参上用 sizeof 求数组长度",
+        "想追加内容却用 \"w\" 打开把文件清空",
+        "判断 fgets/ftell 失败时用错了哨兵值（NULL 与 -1L）",
+        "忘 fclose 导致缓冲区里的数据没落盘"
+      ],
+      "examples": [
+        {
+          "title": "char 接 fgetc 会提前结束",
+          "code": "#include <stdio.h>\n\nint main(void)\n{\n    FILE *fp;\n    size_t w;\n    int ci, n_int = 0, n_char = 0;\n    char cc;\n\n    fp = fopen(\"kc12_25a.bin\", \"wb\");\n    if (fp == NULL) return 1;\n    w = fwrite(\"AB\\xFF\", 1, 3, fp);   /* 三个字节：41 42 FF */\n    fclose(fp);\n    if (w != 3) return 1;\n\n    fp = fopen(\"kc12_25a.bin\", \"rb\");\n    if (fp == NULL) return 1;\n    while ((ci = fgetc(fp)) != EOF) n_int++;\n    fclose(fp);\n    printf(\"int  counter=%d\\n\", n_int);\n\n    fp = fopen(\"kc12_25a.bin\", \"rb\");\n    if (fp == NULL) return 1;\n    for (;;) {\n        ci = fgetc(fp);\n        if (ci == EOF) break;\n        cc = (char)ci;\n        if (cc == (char)EOF) break;   /* 0xFF 变成 -1，与 EOF 无法区分 */\n        n_char++;\n        if (n_char > 100) break;\n    }\n    fclose(fp);\n    printf(\"char counter=%d\\n\", n_char);\n\n    remove(\"kc12_25a.bin\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "int  counter=3\nchar counter=2",
+          "note": "用 int 接收数到 3 个字节；一旦把 fgetc 的结果塞进 char，0xFF 就变成了 -1，与 EOF 无法区分，循环提前在 2 处结束。",
+          "runnable": true
+        },
+        {
+          "title": "\"w\" 清空 vs \"a\" 追加",
+          "code": "#include <stdio.h>\n\nstatic void dump(const char *tag, const char *name)\n{\n    FILE *r = fopen(name, \"r\");\n    char buf[128];\n    size_t n;\n    if (r == NULL) { printf(\"%s [missing]\\n\", tag); return; }\n    n = fread(buf, 1, sizeof buf - 1, r);\n    buf[n] = '\\0';\n    printf(\"%s [%s]\\n\", tag, buf);\n    fclose(r);\n}\n\nint main(void)\n{\n    FILE *fp;\n\n    remove(\"kc12_25b.txt\");\n\n    fp = fopen(\"kc12_25b.txt\", \"w\");\n    if (fp == NULL) return 1;\n    fputs(\"first \", fp);\n    fclose(fp);\n\n    fp = fopen(\"kc12_25b.txt\", \"w\");   /* 错：想追加却用了 w */\n    if (fp == NULL) return 1;\n    fputs(\"second\", fp);\n    fclose(fp);\n    dump(\"after w:\", \"kc12_25b.txt\");\n\n    fp = fopen(\"kc12_25b.txt\", \"a\");   /* 对：追加 */\n    if (fp == NULL) return 1;\n    fputs(\" third\", fp);\n    fclose(fp);\n    dump(\"after a:\", \"kc12_25b.txt\");\n\n    remove(\"kc12_25b.txt\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "after w: [second]\nafter a: [second third]",
+          "note": "第一次用 \"w\" 打开把 \"first \" 整个清掉了，只剩 \"second\"；随后用 \"a\" 打开才真正追加成 \"second third\"。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "c-ch12-cr-001",
+        "c-ch12-cr-002"
+      ],
+      "relatedKnowledge": [
+        "c-ch12-05",
+        "c-ch12-07",
+        "c-ch12-10",
+        "c-ch12-14",
+        "c-ch12-17",
+        "c-ch12-21"
+      ],
+      "relatedViz": [],
+      "category": "c",
+      "chapter": "第12章 文件",
+      "order": 25
+    }
+  ]
+}

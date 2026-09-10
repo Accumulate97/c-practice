@@ -1,0 +1,157 @@
+{
+  "category": "ds",
+  "chapter": "第4章 串、数组和广义表",
+  "generated_at": "2026-09-10",
+  "count": 3,
+  "cards": [
+    {
+      "id": "ds-ch04-01",
+      "title": "串的定义、存储与模式匹配（BF / KMP）",
+      "section": "4.1 串类型的定义",
+      "summary": "串是零个或多个字符的有限序列，其运算以「子串」为整体而非单个字符。模式匹配是在主串中求子串首次出现的位置：BF 算法主串指针要回溯，最坏 O(n×m)；KMP 利用只由模式串决定的 next 数组消除回溯，达到 O(n+m)。",
+      "content": "## 一、串的基本概念\n\n| 术语 | 含义 |\n| --- | --- |\n| 串 string | 零个或多个字符组成的有限序列 s='a1a2…an'（n≥0） |\n| 串长 | 字符个数 n；n=0 时为空串 |\n| 空串 vs 空格串 | 空串长度 0；空格串由空格字符组成，长度 ≥1，两者不相等 |\n| 子串 | 串中任意个**连续**字符组成的子序列（不是任取字符） |\n| 主串 | 包含子串的串 |\n| 字符位置 | 字符在串中的序号（教材位序从 1 开始） |\n| 子串位置 | 子串**首字符**在主串中的位置 |\n| 串相等 | 长度相等 **且** 各对应字符相同 |\n\n要点：串的逻辑结构仍是线性表，区别在**操作对象**——串以「子串」为整体运算（求子串、定位、比较、替换），而线性表以单个元素为运算对象。\n\n## 二、串的三种存储表示\n\n| 方式 | 说明 | 特点 |\n| --- | --- | --- |\n| 定长顺序存储 | 静态数组 char s[MAXLEN+1] | 实现简单；存在截断问题 |\n| 堆分配存储 | 用 malloc 动态分配 char *ch | 仍是顺序存取，但长度可变（教材主推） |\n| 块链存储 | 链表，每个结点存若干字符 | 插入删除方便；存储密度 <1，末结点常补 '#' |\n\n存储密度 = 串值本身所占存储量 ÷ 实际分配的存储量。\n\n## 三、BF（Brute Force）暴力匹配\n\n主串指针 i 每趟失配后回溯到 i-j+2，模式串指针 j 复位为 1：\n\n```c\nint Index_BF(const char *s, const char *t, int pos) {\n    int i = pos, j = 1;\n    int slen = (int)strlen(s), tlen = (int)strlen(t);\n    while (i <= slen && j <= tlen) {\n        if (s[i-1] == t[j-1]) { ++i; ++j; }\n        else { i = i - j + 2; j = 1; }   /* 主串指针回溯 */\n    }\n    return (j > tlen) ? i - tlen : 0;\n}\n```\n\n最坏时间复杂度 O(n×m)，例如主串 'aaaaab'、模式串 'aab'；平均情形约为 O(n+m)。\n\n## 四、KMP 算法\n\n核心思想：主串指针 i **永不回溯**，失配时只把 j 滑动到 next[j]，把「已经匹配成功的那一段」信息利用起来。总复杂度 O(n+m)，其中求 next 为 O(m)。\n\nnext 的定义（模式串位序从 1 开始）：\n\n```text\nnext[j] = 0                                              当 j = 1\n        = max{ k | 1<k<j 且 p[1..k-1] == p[j-k+1..j-1] }  该集合非空\n        = 1                                              其他情况\n```\n\n直观理解：**next[j] = 模式串前 j-1 个字符中「最长相等前后缀」的长度 + 1**。\n\n| 模式串 | next（位序 1..m） | nextval |\n| --- | --- | --- |\n| abcac | 0 1 1 1 2 | 0 1 1 0 2 |\n| aaaab | 0 1 2 3 4 | 0 0 0 0 4 |\n\nnextval 的改进规则：若 p[j] == p[next[j]]，则 nextval[j] = nextval[next[j]]；否则 nextval[j] = next[j]。作用是避免「同一个字符反复失配」。\n\n关键：next / nextval **只与模式串有关，与主串无关**，因此可以预处理。\n\n## 五、复杂度小结\n\n| 算法 | 预处理 | 匹配 | 主串指针 | 最坏总计 |\n| --- | --- | --- | --- | --- |\n| BF | 无 | O(n×m) | 回溯 | O(n×m) |\n| KMP | O(m) | O(n) | 不回溯 | O(n+m) |",
+      "keyPoints": [
+        "串是字符的有限序列，n=0 为空串；空格串长度不为 0，与空串不同",
+        "串与线性表的区别在操作对象：串以子串为整体运算，而非单个字符",
+        "三种存储：定长顺序、堆分配、块链；块链存储密度小于 1",
+        "BF 匹配主串指针会回溯，最坏 O(n×m)，典型坏例是主串与模式串都由同一字符构成",
+        "KMP 主串指针不回溯，O(n+m)；next[j] 等于模式串前 j-1 个字符的最长相等前后缀长度加 1",
+        "nextval 在 p[j] == p[next[j]] 时继续向前回退，可减少无效比较"
+      ],
+      "pitfalls": [
+        "把空串与空格串混为一谈：前者长度 0，后者长度至少为 1",
+        "把「子串」理解成「子序列」：子串必须是连续的一段",
+        "手写 next 时用 0-based 下标直接套 1-based 公式，导致整表错位一位",
+        "误以为 next 需要主串参与计算——它只依赖模式串，可离线预处理",
+        "C 实现时混用位序 i 与数组下标 i-1，或忘记字符串以终止符结尾"
+      ],
+      "examples": [
+        {
+          "title": "BF 与 KMP 对照：位置与字符比较次数",
+          "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXP 64\n\n/* BF：主串指针 i 每趟失配后回溯到 i-j+2 */\nint Index_BF(const char *s, const char *t, int pos, int *cmpCount) {\n    int i = pos, j = 1;\n    int slen = (int)strlen(s), tlen = (int)strlen(t);\n    *cmpCount = 0;\n    while (i <= slen && j <= tlen) {\n        ++(*cmpCount);\n        if (s[i-1] == t[j-1]) { ++i; ++j; }\n        else { i = i - j + 2; j = 1; }\n    }\n    return (j > tlen) ? i - tlen : 0;\n}\n\n/* 求 next 数组（位序 1-based，p[k-1] 表示第 k 个字符） */\nvoid get_next(const char *p, int next[]) {\n    int n = (int)strlen(p);\n    int i = 1, j = 0;\n    next[1] = 0;\n    while (i < n) {\n        if (j == 0 || p[i-1] == p[j-1]) { ++i; ++j; next[i] = j; }\n        else { j = next[j]; }\n    }\n}\n\n/* KMP：主串指针 i 不回溯，只让 j 滑到 next[j] */\nint Index_KMP(const char *s, const char *t, int pos, const int next[], int *cmpCount) {\n    int i = pos, j = 1;\n    int slen = (int)strlen(s), tlen = (int)strlen(t);\n    *cmpCount = 0;\n    while (i <= slen && j <= tlen) {\n        ++(*cmpCount);\n        if (j == 0 || s[i-1] == t[j-1]) { ++i; ++j; }\n        else { j = next[j]; }\n    }\n    return (j > tlen) ? i - tlen : 0;\n}\n\nint main(void) {\n    const char *cases[2][2];\n    int next[MAXP], c1, c2, p1, p2, i;\n\n    cases[0][0] = \"ababcabcacbab\"; cases[0][1] = \"abcac\";\n    cases[1][0] = \"aaaaab\";        cases[1][1] = \"aab\";\n\n    for (i = 0; i < 2; i++) {\n        get_next(cases[i][1], next);\n        p1 = Index_BF(cases[i][0], cases[i][1], 1, &c1);\n        p2 = Index_KMP(cases[i][0], cases[i][1], 1, next, &c2);\n        printf(\"主串 \\\"%s\\\"，模式串 \\\"%s\\\"\\n\", cases[i][0], cases[i][1]);\n        printf(\"  BF  ：首次出现位置 = %d，字符比较 %d 次\\n\", p1, c1);\n        printf(\"  KMP ：首次出现位置 = %d，字符比较 %d 次\\n\\n\", p2, c2);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "主串 \"ababcabcacbab\"，模式串 \"abcac\"\n  BF  ：首次出现位置 = 6，字符比较 16 次\n  KMP ：首次出现位置 = 6，字符比较 12 次\n\n主串 \"aaaaab\"，模式串 \"aab\"\n  BF  ：首次出现位置 = 4，字符比较 12 次\n  KMP ：首次出现位置 = 4，字符比较 9 次",
+          "note": "第二组主串 aaaaab 正是 BF 的最坏情形，比较次数明显多于 KMP",
+          "runnable": true
+        },
+        {
+          "title": "next 与 nextval 数组的自动求解",
+          "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXP 64\n\nvoid get_next(const char *p, int next[]) {\n    int n = (int)strlen(p);\n    int i = 1, j = 0;\n    next[1] = 0;\n    while (i < n) {\n        if (j == 0 || p[i-1] == p[j-1]) { ++i; ++j; next[i] = j; }\n        else { j = next[j]; }\n    }\n}\n\n/* 改进的 nextval：p[j] == p[next[j]] 时继续回退 */\nvoid get_nextval(const char *p, int next[]) {\n    int n = (int)strlen(p);\n    int i = 1, j = 0;\n    next[1] = 0;\n    while (i < n) {\n        if (j == 0 || p[i-1] == p[j-1]) {\n            ++i; ++j;\n            if (p[i-1] != p[j-1]) { next[i] = j; }\n            else { next[i] = next[j]; }\n        } else { j = next[j]; }\n    }\n}\n\nint main(void) {\n    const char *pats[3];\n    int next[MAXP], nv[MAXP], i, k;\n\n    pats[0] = \"abcac\"; pats[1] = \"aaaab\"; pats[2] = \"aab\";\n\n    for (i = 0; i < 3; i++) {\n        int len = (int)strlen(pats[i]);\n        get_next(pats[i], next);\n        get_nextval(pats[i], nv);\n        printf(\"模式串 \\\"%s\\\" (m=%d)\\n\", pats[i], len);\n        printf(\"  j      :\");\n        for (k = 1; k <= len; k++) printf(\"%4d\", k);\n        printf(\"\\n  next   :\");\n        for (k = 1; k <= len; k++) printf(\"%4d\", next[k]);\n        printf(\"\\n  nextval:\");\n        for (k = 1; k <= len; k++) printf(\"%4d\", nv[k]);\n        printf(\"\\n\\n\");\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "模式串 \"abcac\" (m=5)\n  j      :   1   2   3   4   5\n  next   :   0   1   1   1   2\n  nextval:   0   1   1   0   2\n\n模式串 \"aaaab\" (m=5)\n  j      :   1   2   3   4   5\n  next   :   0   1   2   3   4\n  nextval:   0   0   0   0   4\n\n模式串 \"aab\" (m=3)\n  j      :   1   2   3\n  next   :   0   1   2\n  nextval:   0   0   2",
+          "note": "可与卡片正文表格中的 next / nextval 值逐一核对",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch02-01",
+        "ds-ch04-02",
+        "ds-ch04-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "order": 1
+    },
+    {
+      "id": "ds-ch04-02",
+      "title": "数组的顺序存储与地址计算",
+      "section": "4.2 数组的顺序表示",
+      "summary": "数组是定长线性表的推广：维数与各维长度确定后元素个数固定，因此只有「存取」而没有「插入/删除」，其存储实现的核心问题就是下标到物理地址的映射。二维数组有行优先（C 语言）与列优先（FORTRAN）两种次序，地址公式不同。",
+      "content": "## 一、为什么数组只谈「地址映射」\n\n- n 维数组中每个元素都受 n 个线性关系的约束，是线性表的推广\n- 维数和各维长度一旦确定，元素个数就**固定不变** → 不做插入和删除运算\n- 因此数组一律采用顺序存储，且要求支持 O(1) 的随机存取\n- 唯一的实现问题：如何由下标 (i1,i2,…,in) 算出一维内存地址\n\n## 二、二维数组的两种存储次序\n\n设 a[0..m-1][0..n-1]，每个元素占 L 字节，首元素 a[0][0] 的地址为 base：\n\n| 次序 | 排列规则 | 地址公式 | 代表语言 |\n| --- | --- | --- | --- |\n| 行优先 row major | 先存完第 0 行，再存第 1 行… | LOC(i,j) = base + (i×n + j) × L | C / C++ / Pascal |\n| 列优先 column major | 先存完第 0 列，再存第 1 列… | LOC(i,j) = base + (j×m + i) × L | FORTRAN / MATLAB |\n\n若下标从 1 开始（a[1..m][1..n]），把 i、j 换成 i-1、j-1 即可：\n\n```text\n行优先：LOC(i,j) = base + ((i-1)×n + (j-1)) × L\n列优先：LOC(i,j) = base + ((j-1)×m + (i-1)) × L\n```\n\n记忆口诀：**行优先 = 行号 × 总列数 + 列号**（跨距是「列数」，不是行数）。\n\n## 三、三维与 n 维推广\n\na[0..p-1][0..q-1][0..r-1] 行优先：\n\n```text\nLOC(i,j,k) = base + ((i×q + j)×r + k) × L\n           = base + (i×q×r + j×r + k) × L\n```\n\n一般规律：行优先时**最右维下标变化最快**；每一维的跨距 stride 等于它右边所有维长度的乘积。列优先则完全相反。\n\n## 四、用 C 语言实测验证\n\nC 语言的多维数组本质是「数组的数组」，在内存中严格按行优先连续存放。数组名退化为指针，可用指针相减实测偏移：\n\n```c\nint a[3][4];\nint elems = (int)(&a[2][1] - &a[0][0]);          /* = 9 个元素 */\nint bytes = (int)((char *)&a[2][1] - (char *)a); /* = 9*4 = 36 字节 */\n```\n\n这也解释了为什么 `&a[i][j]` 与 `*(a + i) + j` 等价。\n\n## 五、常考题型\n\n1. 已知行优先存放与 base、L，求某元素地址\n2. 已知两个元素的地址，反推 L、维长或起始下标\n3. 行优先 ↔ 列优先互换，即矩阵转置\n4. 访存局部性：按行遍历（顺序访问）比按列遍历（跨 n×L 步长跳跃）对缓存友好得多",
+      "keyPoints": [
+        "数组是定长线性表的推广，元素个数固定，故只有存取运算、没有插入删除",
+        "顺序存储的核心问题是「下标 → 物理地址」的映射，要求 O(1) 随机存取",
+        "行优先：LOC(i,j) = base + (i×n + j) × L，n 为总列数；C 语言采用行优先",
+        "列优先：LOC(i,j) = base + (j×m + i) × L，m 为总行数；FORTRAN 采用列优先",
+        "下标从 1 开始时，公式中的 i、j 一律替换为 i-1、j-1",
+        "n 维推广：某维的跨距等于其右侧所有维长度的乘积，最右维变化最快"
+      ],
+      "pitfalls": [
+        "把行优先公式中的 n 误当成行数（应为列数），一遇非方阵就错",
+        "忘记区分下标起点是 0 还是 1，导致整体差一个 L",
+        "以为二维数组在内存中真的分成了若干段——它是完全连续的一维块",
+        "按列遍历大矩阵时忽视缓存不友好，把性能问题当成算法问题"
+      ],
+      "examples": [
+        {
+          "title": "行优先与列优先：一维下标映射对照表",
+          "code": "#include <stdio.h>\n\n#define M 3\n#define N 4\n\nint main(void) {\n    int a[M][N];\n    int i, j;\n\n    printf(\"二维数组 a[%d][%d]，C 语言行优先存放：\\n\", M, N);\n    for (i = 0; i < M; i++)\n        for (j = 0; j < N; j++)\n            a[i][j] = i * N + j;              /* 行优先的线性下标 */\n    for (i = 0; i < M; i++) {\n        for (j = 0; j < N; j++) printf(\"%4d\", a[i][j]);\n        printf(\"\\n\");\n    }\n\n    printf(\"\\n%-8s%-12s%-12s\\n\", \"(i,j)\", \"row-major\", \"col-major\");\n    for (i = 0; i < M; i++)\n        for (j = 0; j < N; j++)\n            printf(\"(%d,%d)%4d%12d\\n\", i, j, i * N + j, j * M + i);\n\n    /* 指针算术实测，验证 LOC(i,j) = base + (i*n+j)*L */\n    printf(\"\\n&a[2][1] - &a[0][0] = %d 个元素 = %d 字节\\n\",\n           (int)(&a[2][1] - &a[0][0]),\n           (int)((char *)&a[2][1] - (char *)a));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "二维数组 a[3][4]，C 语言行优先存放：\n   0   1   2   3\n   4   5   6   7\n   8   9  10  11\n\n(i,j)   row-major   col-major   \n(0,0)   0           0\n(0,1)   1           3\n(0,2)   2           6\n(0,3)   3           9\n(1,0)   4           1\n(1,1)   5           4\n(1,2)   6           7\n(1,3)   7          10\n(2,0)   8           2\n(2,1)   9           5\n(2,2)  10           8\n(2,3)  11          11\n\n&a[2][1] - &a[0][0] = 9 个元素 = 36 字节",
+          "note": "实测偏移 9 个元素、36 字节，与公式 (2*4+1)*4 一致",
+          "runnable": true
+        },
+        {
+          "title": "用一维数组按行优先存矩阵并实现转置",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int m = 3, n = 4, i, j;\n    int *a = (int *)malloc((size_t)m * n * sizeof(int));\n    int *b = (int *)malloc((size_t)n * m * sizeof(int));\n    if (a == NULL || b == NULL) {\n        free(a); free(b);\n        printf(\"malloc failed\\n\");\n        return 1;\n    }\n\n    for (i = 0; i < m; i++)\n        for (j = 0; j < n; j++)\n            a[i * n + j] = i * n + j + 1;     /* 行优先填充 */\n\n    printf(\"原矩阵 a（%dx%d，行优先存于一维数组）：\\n\", m, n);\n    for (i = 0; i < m; i++) {\n        for (j = 0; j < n; j++) printf(\"%4d\", a[i * n + j]);\n        printf(\"\\n\");\n    }\n\n    for (i = 0; i < n; i++)\n        for (j = 0; j < m; j++)\n            b[i * m + j] = a[j * n + i];      /* 转置：b[j][i] = a[i][j] */\n\n    printf(\"\\n转置矩阵 b（%dx%d，同样行优先）：\\n\", n, m);\n    for (i = 0; i < n; i++) {\n        for (j = 0; j < m; j++) printf(\"%4d\", b[i * m + j]);\n        printf(\"\\n\");\n    }\n\n    free(a);\n    free(b);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "原矩阵 a（3x4，行优先存于一维数组）：\n   1   2   3   4\n   5   6   7   8\n   9  10  11  12\n\n转置矩阵 b（4x3，同样行优先）：\n   1   5   9\n   2   6  10\n   3   7  11\n   4   8  12",
+          "note": "一维下标 i*n+j 就是行优先地址公式中 (i,j) 的线性序号",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch04-01",
+        "ds-ch04-03",
+        "ds-ch02-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "order": 2
+    },
+    {
+      "id": "ds-ch04-03",
+      "title": "特殊矩阵与稀疏矩阵的压缩存储、广义表",
+      "section": "4.3 矩阵的压缩存储",
+      "summary": "压缩存储为多个相同的非零元素只分配一个空间、对零元素不分配空间。对称矩阵只需存下三角 n(n+1)/2 个元素并按 k=i(i-1)/2+j 映射；稀疏矩阵非零元分布无规律，用三元组顺序表或十字链表存储，代价是失去随机存取特性，转置须借助 num/cpot 做快速转置。广义表则是元素可为原子或子表的线性表推广。",
+      "content": "## 一、什么是压缩存储\n\n- 为多个**相同**的非零元素只分配一个存储空间\n- 对**零元素**不分配空间\n\n可压缩的矩阵分两类：\n\n| 类型 | 特征 | 手段 |\n| --- | --- | --- |\n| 特殊矩阵 | 非零元分布**有规律**（对称、三角、对角） | 建立下标映射公式，存入一维数组 |\n| 稀疏矩阵 | 非零元个数远小于元素总数（一般 <5%）且分布**无规律** | 三元组顺序表 / 十字链表 |\n\n## 二、对称矩阵\n\n满足 a[i][j] = a[j][i]，只需存下三角（含主对角线）共 n(n+1)/2 个元素。\n以 1-based 下标、行优先存入一维数组 sa[0 .. n(n+1)/2-1]：\n\n```text\ni >= j（下三角）：k = i(i-1)/2 + j\ni <  j（上三角）：由对称性 k = j(j-1)/2 + i\nC 数组实际下标 = k - 1\n```\n\n## 三、三角矩阵\n\n- **下三角矩阵**：上三角全为同一常数 c。存 n(n+1)/2 个下三角元素 + 1 个 c，共 n(n+1)/2 + 1 个单元\n- **上三角矩阵**：下三角为常数 c。映射 k = (i-1)(2n-i+2)/2 + (j-i+1)\n\n## 四、对角矩阵（带状矩阵）\n\n非零元集中在主对角线上下各 d 条带状区域内，即 |i-j| ≤ d。\n非零元个数为 (2d+1)n - d(d+1)（扣去左上、右下两个缺角）。\n按行优先压缩后各行元素个数不同（首行 d+1 个、中间行 2d+1 个），映射公式须按教材给定形式使用，不宜死记。\n\n## 五、稀疏矩阵\n\n### 1. 三元组顺序表\n\n```c\ntypedef struct { int i, j; int e; } Triple;      /* 行、列、值 */\ntypedef struct {\n    Triple data[MAXSIZE];\n    int mu, nu, tu;                              /* 行数、列数、非零元个数 */\n} TSMatrix;\n```\n\n要求 data 按**行序有序**存放。优点：空间省；缺点：**失去随机存取特性**，矩阵加、乘等运算变复杂。\n\n### 2. 转置运算\n\n| 方法 | 做法 | 复杂度 |\n| --- | --- | --- |\n| 简单转置 | 对转置矩阵的每一列，扫一遍原三元组找该列元素 | O(mu × nu) |\n| 快速转置 | 预先算出 num[col]（该列非零元个数）与 cpot[col]（该列首元素在转置三元组中的落位），一趟扫描完成 | O(nu + tu) |\n\ncpot 的递推（位置按 0-based 计）：cpot[1] = 0；cpot[col] = cpot[col-1] + num[col-1]。\n\n### 3. 十字链表\n\n每个非零元一个结点，含行号、列号、值及两个指针；行方向与列方向各组织一个单链表，另设行表头、列表头数组。适合非零元**频繁增删**的场景。\n\n## 六、广义表 Generalized List\n\nLS = (a1, a2, …, an)，其中 ai 既可以是**原子**（单元素），也可以是**子表**。\n\n| 概念 | 说明 |\n| --- | --- |\n| 表头 head | 第一个元素 a1（可以是原子，也可以是子表） |\n| 表尾 tail | 除 a1 之外其余元素组成的**表**——一定是表，只剩一个元素也要加括号 |\n| 长度 | 最外层元素个数 |\n| 深度 | 括号的重数；原子深度 0，空表 () 深度 1 |\n\n以 A = (a, (b, c)) 为例：head(A) = a，tail(A) = ((b,c))，长度 2，深度 2。\n\n广义表的两条重要性质：可以**递归**（把自身作为子表，如 E = (a, E)），也可以**共享**（多个表共用同一子表，此时结构变成有向图）。\n\n存储表示：\n\n- **头尾链存储**：结点带 tag 区分 ATOM / LIST，用 union 存 hp（指向表头）与 tp（指向表尾）\n- **扩展线性链表**：即「孩子-兄弟」表示法，第一个域指向表头元素，第二个域指向同层的下一个结点",
+      "keyPoints": [
+        "压缩存储两条原则：相同的非零元素共用一个空间、零元素不分配空间",
+        "对称矩阵存下三角 n(n+1)/2 个，映射 k = i(i-1)/2 + j（i≥j），C 数组下标为 k-1",
+        "三角矩阵因存在公共常数 c，需 n(n+1)/2 + 1 个存储单元",
+        "稀疏矩阵用三元组顺序表（按行序有序）或十字链表，代价是失去随机存取特性",
+        "快速转置靠 num[col] 与 cpot[col] 两个辅助数组，把 O(mu×nu) 降到 O(nu+tu)",
+        "广义表的表尾一定是「表」；长度为最外层元素个数，深度为括号重数"
+      ],
+      "pitfalls": [
+        "对称矩阵映射忘记减 1：教材的 k 是位序，C 数组下标要用 k-1",
+        "以为压缩存储后仍能 O(1) 随机存取——稀疏矩阵的三元组表做不到",
+        "三元组表未按行序有序就调用快速转置，结果错乱",
+        "把 tail(A) 写成不带括号的元素：表尾必须是表",
+        "把广义表的长度与深度混淆：长度数「逗号分隔的元素」，深度数「括号层数」"
+      ],
+      "examples": [
+        {
+          "title": "对称矩阵压缩存储：下三角一维映射与还原",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define N 5\n\n/* i,j 均为 1-based 位序，返回一维数组（0-based）下标 */\nstatic int idx(int i, int j) {\n    if (i >= j) { return i * (i - 1) / 2 + (j - 1); }\n    return j * (j - 1) / 2 + (i - 1);\n}\n\nint main(void) {\n    int size = N * (N + 1) / 2;\n    int *sa = (int *)malloc((size_t)size * sizeof(int));\n    int a[N][N];\n    int i, j;\n\n    if (sa == NULL) { printf(\"malloc failed\\n\"); return 1; }\n\n    /* 先造一个下三角矩阵，再对称化 */\n    for (i = 1; i <= N; i++)\n        for (j = 1; j <= N; j++)\n            a[i-1][j-1] = (i >= j) ? i * 10 + j : 0;\n    for (i = 1; i <= N; i++)\n        for (j = 1; j < i; j++)\n            a[j-1][i-1] = a[i-1][j-1];\n\n    /* 只把下三角（含对角线）压进一维数组 */\n    for (i = 1; i <= N; i++)\n        for (j = 1; j <= i; j++)\n            sa[idx(i, j)] = a[i-1][j-1];\n\n    printf(\"一维压缩数组（%d 个元素，原矩阵共 %d 个）：\\n\", size, N * N);\n    for (i = 0; i < size; i++) printf(\"%d \", sa[i]);\n\n    printf(\"\\n\\n由一维数组还原的对称矩阵：\\n\");\n    for (i = 1; i <= N; i++) {\n        for (j = 1; j <= N; j++) printf(\"%5d\", sa[idx(i, j)]);\n        printf(\"\\n\");\n    }\n    free(sa);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "一维压缩数组（15 个元素，原矩阵共 25 个）：\n11 21 22 31 32 33 41 42 43 44 51 52 53 54 55 \n\n由一维数组还原的对称矩阵：\n   11   21   31   41   51\n   21   22   32   42   52\n   31   32   33   43   53\n   41   42   43   44   54\n   51   52   53   54   55",
+          "note": "N=5 时只用 15 个单元存 25 个元素，且能无损还原",
+          "runnable": true
+        },
+        {
+          "title": "稀疏矩阵三元组顺序表 + 快速转置",
+          "code": "#include <stdio.h>\n\n#define MAXSIZE 128\n\ntypedef struct { int i, j; int e; } Triple;      /* 行、列（1-based）、值 */\ntypedef struct {\n    Triple data[MAXSIZE];\n    int mu, nu, tu;                              /* 行数、列数、非零元个数 */\n} TSMatrix;\n\n/* 快速转置：num[col] 记该列非零元个数，cpot[col] 记该列首元素的落位 */\nvoid FastTransposeSMatrix(const TSMatrix *M, TSMatrix *T) {\n    int num[MAXSIZE], cpot[MAXSIZE];\n    int col, p, q;\n\n    T->mu = M->nu; T->nu = M->mu; T->tu = M->tu;\n    if (T->tu == 0) { return; }\n\n    for (col = 1; col <= M->nu; col++) { num[col] = 0; }\n    for (p = 0; p < M->tu; p++) { num[M->data[p].j]++; }\n    cpot[1] = 0;\n    for (col = 2; col <= M->nu; col++) { cpot[col] = cpot[col-1] + num[col-1]; }\n\n    for (p = 0; p < M->tu; p++) {\n        col = M->data[p].j;\n        q = cpot[col];\n        T->data[q].i = col;\n        T->data[q].j = M->data[p].i;\n        T->data[q].e = M->data[p].e;\n        cpot[col]++;\n    }\n}\n\nstatic void printM(const char *name, const TSMatrix *M) {\n    int k;\n    printf(\"%s：%d 行 %d 列，%d 个非零元\\n\", name, M->mu, M->nu, M->tu);\n    for (k = 0; k < M->tu; k++) {\n        printf(\"  (%d,%d) = %d\\n\", M->data[k].i, M->data[k].j, M->data[k].e);\n    }\n}\n\nint main(void) {\n    TSMatrix M, T;\n    int rows[6] = {1, 2, 3, 4, 5, 6};\n    int cols[6] = {2, 1, 3, 2, 4, 1};\n    int vals[6] = {3, 5, 7, 9, 2, 8};\n    int k;\n\n    M.mu = 6; M.nu = 4; M.tu = 6;\n    for (k = 0; k < M.tu; k++) {\n        M.data[k].i = rows[k];\n        M.data[k].j = cols[k];\n        M.data[k].e = vals[k];\n    }\n\n    printM(\"原矩阵 M\", &M);\n    FastTransposeSMatrix(&M, &T);\n    printf(\"\\n\");\n    printM(\"转置矩阵 T\", &T);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "原矩阵 M：6 行 4 列，6 个非零元\n  (1,2) = 3\n  (2,1) = 5\n  (3,3) = 7\n  (4,2) = 9\n  (5,4) = 2\n  (6,1) = 8\n\n转置矩阵 T：4 行 6 列，6 个非零元\n  (1,2) = 5\n  (1,6) = 8\n  (2,1) = 3\n  (2,4) = 9\n  (3,3) = 7\n  (4,5) = 2",
+          "note": "M 为 6x4 稀疏矩阵，转置后 T 为 4x6 且三元组仍按行序有序",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch04-02",
+        "ds-ch01-04",
+        "ds-ch02-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "order": 3
+    }
+  ]
+}

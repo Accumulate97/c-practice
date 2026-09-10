@@ -1,0 +1,207 @@
+{
+  "category": "ds",
+  "chapter": "第2章 线性表",
+  "generated_at": "2026-09-10",
+  "count": 4,
+  "cards": [
+    {
+      "id": "ds-ch02-01",
+      "title": "线性表的定义、特点与基本操作",
+      "section": "2.1 线性表的类型定义",
+      "summary": "线性表是 n（n≥0）个数据元素的有限序列。除表头和表尾外，每个元素有且仅有一个直接前驱和一个直接后继；元素的位序 i 从 1 开始，与数组下标 i-1 相差 1。线性表是逻辑结构，与它用什么方式存储无关。",
+      "content": "## 定义\n\n> 线性表（Linear List）是由 n（n ≥ 0）个**类型相同**的数据元素构成的**有限序列**。\n\nn = 0 时称为**空表**。序列中元素的**位置**是确定的、有先后次序的，这就是「线性」二字的含义。\n\n## 逻辑结构图示\n\n```text\na1 → a2 → a3 → … → ai-1 → ai → ai+1 → … → an\n表头                            表尾\n```\n\n| 元素 | 直接前驱 | 直接后继 |\n|---|---|---|\n| `a1`（表头） | **无** | `a2` |\n| `ai`（1<i<n） | `a(i-1)` | `a(i+1)` |\n| `an`（表尾） | `a(n-1)` | **无** |\n\n## ⚠ 位序 vs 数组下标（最高频考点）\n\n- **位序 i**：元素在线性表中的序号，**从 1 开始**，取值 1…n\n- **数组下标 j**：C 语言里的偏移，**从 0 开始**，取值 0…n-1\n- 关系：`j = i - 1`，即 `a_i` 存放在 `elem[i-1]`\n\n教材一律用位序描述算法，代码一律用下标访问，写程序时必须显式转换。\n\n## 线性表的 12 个基本操作（ADT）\n\n| 操作 | 语义 |\n|---|---|\n| `InitList(&L)` | 构造空表 |\n| `DestroyList(&L)` | 销毁表，释放空间 |\n| `ClearList(&L)` | 置为空表（空间可保留） |\n| `ListEmpty(L)` | 判空 |\n| `ListLength(L)` | 求长度 |\n| `GetElem(L,i,&e)` | 取第 i 个元素 |\n| `LocateElem(L,e,compare)` | 按值查找，返回位序 |\n| `PriorElem(L,cur,&pre)` | 求前驱 |\n| `NextElem(L,cur,&next)` | 求后继 |\n| `ListInsert(&L,i,e)` | 在第 i 个位置**之前**插入 |\n| `ListDelete(&L,i,&e)` | 删除第 i 个元素 |\n| `ListTraverse(L,visit)` | 遍历 |\n\n## 关键认识\n\n**操作定义在逻辑结构上，实现依赖存储结构。** 同一组 `ListInsert`，顺序表要搬移元素（O(n)），链表只改指针（找到位置后 O(1)）。这就是本章后三节的分岔点。\n\n## 线性表 ≠ 顺序表\n\n线性表是**抽象**的逻辑结构；顺序表、单链表、静态链表都是它的**具体存储实现**。考试中「线性表」默认指逻辑结构，不要一看到线性表就想到数组。",
+      "keyPoints": [
+        "线性表是 n（n≥0）个同类型数据元素的有限序列，n=0 为空表",
+        "除表头无直接前驱、表尾无直接后继外，其余元素的前驱后继均唯一",
+        "位序 i 从 1 开始，数组下标从 0 开始，二者相差 1（elem[i-1]）",
+        "线性表是逻辑结构，顺序表和链表都是它的存储实现",
+        "ListInsert(&L,i,e) 的语义是「在第 i 个元素之前插入」，合法 i 为 1..n+1",
+        "ListDelete(&L,i,&e) 的合法 i 为 1..n，比插入少一个取值"
+      ],
+      "pitfalls": [
+        "把位序当成下标直接写 elem[i]，导致整体错位一格",
+        "以为插入的合法位序也是 1..n（实际是 1..n+1，可以插在表尾之后）",
+        "把「线性表」和「顺序表」混为一谈，忽略链式实现",
+        "忘记元素类型必须相同、序列必须有限"
+      ],
+      "examples": [
+        {
+          "title": "位序、前驱后继的直观演示",
+          "code": "#include <stdio.h>\n\ntypedef struct { int no; char name[8]; } Student;\n\nint main(void)\n{\n    Student L[4] = { {1001,\"Ann\"}, {1002,\"Bob\"}, {1003,\"Cid\"}, {1004,\"Dan\"} };\n    int n = 4, i;\n\n    printf(\"n = %d 的线性表（位序从 1 开始）\\n\", n);\n    for (i = 1; i <= n; i++) {\n        printf(\"位序 %d : %d %-4s\", i, L[i-1].no, L[i-1].name);\n        if (i == 1)      printf(\"[表头，无直接前驱]\");\n        else if (i == n) printf(\"[表尾，无直接后继]\");\n        else             printf(\"前驱=位序%d 后继=位序%d\", i-1, i+1);\n        printf(\"\\n\");\n    }\n    printf(\"下标 = 位序 - 1：位序 3 对应 L[%d]\\n\", 3 - 1);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "n = 4 的线性表（位序从 1 开始）\n位序 1 : 1001 Ann [表头，无直接前驱]\n位序 2 : 1002 Bob 前驱=位序1 后继=位序3\n位序 3 : 1003 Cid 前驱=位序2 后继=位序4\n位序 4 : 1004 Dan [表尾，无直接后继]\n下标 = 位序 - 1：位序 3 对应 L[2]",
+          "note": "注意 L[i-1] 这个 -1：位序 i 在 C 数组里必须减 1 才是下标。表头和表尾分别缺少前驱和后继，这是线性表逻辑结构的定义性特征。",
+          "runnable": true
+        },
+        {
+          "title": "PriorElem 与 NextElem：按值求前驱后继",
+          "code": "#include <stdio.h>\n\n#define MAXSIZE 10\ntypedef int ElemType;\ntypedef struct { ElemType data[MAXSIZE]; int length; } SqList;\n\n/* cur 是 L 的元素且不是第一个时，返回其前驱 */\nint PriorElem(const SqList *L, ElemType cur, ElemType *pre)\n{\n    int i;\n    for (i = 1; i < L->length; i++)\n        if (L->data[i] == cur) { *pre = L->data[i-1]; return 1; }\n    return 0;\n}\n\n/* cur 是 L 的元素且不是最后一个时，返回其后继 */\nint NextElem(const SqList *L, ElemType cur, ElemType *next)\n{\n    int i;\n    for (i = 0; i < L->length - 1; i++)\n        if (L->data[i] == cur) { *next = L->data[i+1]; return 1; }\n    return 0;\n}\n\nint main(void)\n{\n    SqList L = { {5, 8, 13, 21, 34}, 5 };\n    ElemType v = 0;\n    if (PriorElem(&L, 13, &v)) printf(\"13 的前驱 = %d\\n\", v);\n    if (NextElem(&L, 13, &v))  printf(\"13 的后继 = %d\\n\", v);\n    printf(\"表头 5  有前驱? %d\\n\", PriorElem(&L, 5, &v));\n    printf(\"表尾 34 有后继? %d\\n\", NextElem(&L, 34, &v));\n    return 0;\n}",
+          "stdin": "",
+          "expected": "13 的前驱 = 8\n13 的后继 = 21\n表头 5  有前驱? 0\n表尾 34 有后继? 0",
+          "note": "PriorElem 的循环从 i=1 开始（第 0 个元素没有前驱），NextElem 的循环到 length-2 结束（最后一个元素没有后继）。返回 0 表示「不存在」，调用方不能去读 v。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch01-01",
+        "ds-ch01-03",
+        "ds-ch02-02",
+        "ds-ch02-03"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "order": 1
+    },
+    {
+      "id": "ds-ch02-02",
+      "title": "线性表的顺序表示（顺序表）",
+      "section": "2.2 线性表的顺序表示和实现",
+      "summary": "顺序表用一段地址连续的存储单元依次存储线性表的元素，使逻辑上相邻的元素物理位置也相邻，第 i 个元素的存储地址为 LOC(a1)+(i-1)*L，因此可以随机存取；但插入和删除平均要搬移 n/2 与 (n-1)/2 个元素。",
+      "content": "## 定义与地址公式\n\n用**一段地址连续**的存储单元依次存储线性表的元素，使得逻辑上相邻的元素物理位置也相邻。\n\n```text\nLOC(a_i) = LOC(a_1) + (i - 1) * L        L = sizeof(ElemType)\n```\n\n因为地址可由公式**一次算出**，顺序表是**随机存取**结构：访问任一元素的时间都是 **O(1)**。\n\n## 存储密度\n\n> 存储密度 = 数据本身占用量 / 结点结构占用量 = **1**\n\n顺序表只存数据，不存额外的指针信息，是所有存储方式中空间利用率最高的。\n\n## 静态 vs 动态\n\n| 方式 | 声明 | 特点 |\n|---|---|---|\n| 静态分配 | `ElemType elem[MAXSIZE];` | 编译期定长，容量满即无法插入 |\n| 动态分配 | `elem = (ElemType*)malloc(cap*sizeof(ElemType));` | 运行期申请，可 `realloc` 扩容；**仍是顺序存储**，不是链表 |\n\n⚠ 动态顺序表 ≠ 链表。区别在于**物理地址是否连续**，而不是是否用 malloc。\n\n## 插入算法：从后往前搬\n\n在第 i 个位置之前插入 e，需要把 `a_i … a_n` 依次**后移一位**，共搬移 `n - i + 1` 个元素。\n\n```c\nfor (k = L->length - 1; k >= i - 1; k--)\n    L->elem[k + 1] = L->elem[k];   /* 从表尾往前搬，避免覆盖 */\nL->elem[i - 1] = e;\nL->length++;\n```\n\n**合法位序：`1 ≤ i ≤ n+1`**。平均搬移次数 = `n/2`，时间复杂度 **O(n)**。\n\n## 删除算法：从前往后搬\n\n删除第 i 个元素，需要把 `a_(i+1) … a_n` 依次**前移一位**，共搬移 `n - i` 个元素。\n\n```c\n*e = L->elem[i - 1];\nfor (k = i; k < L->length; k++)\n    L->elem[k - 1] = L->elem[k];   /* 从 i+1 开始往前搬 */\nL->length--;\n```\n\n**合法位序：`1 ≤ i ≤ n`**。平均搬移次数 = `(n-1)/2`，时间复杂度 **O(n)**。\n\n## 复杂度总表\n\n| 操作 | 时间复杂度 | 说明 |\n|---|---|---|\n| 按下标/位序取值 | **O(1)** | 地址公式直接算出 |\n| 按值查找（无序表） | O(n) | 只能逐个比较 |\n| 按值查找（有序表） | O(log n) | 可折半查找，见第 7 章 |\n| 插入 | O(n) | 平均搬移 n/2 |\n| 删除 | O(n) | 平均搬移 (n-1)/2 |\n\n## 搬移方向记忆口诀\n\n> **插入倒着搬（从后往前），删除顺着搬（从前往后）**\n\n原因都是**不能覆盖还没搬走的数据**。",
+      "keyPoints": [
+        "顺序表用连续存储单元存放，逻辑相邻即物理相邻，存储密度为 1",
+        "LOC(a_i)=LOC(a_1)+(i-1)*L，可随机存取，按位序取值 O(1)",
+        "插入在第 i 位之前，搬移 n-i+1 个元素，合法 i 为 1..n+1，平均 n/2",
+        "删除第 i 个元素，搬移 n-i 个元素，合法 i 为 1..n，平均 (n-1)/2",
+        "插入循环从 length-1 倒着搬到 i-1，删除循环从 i 顺着搬到 length-1",
+        "动态顺序表用 malloc 分配，但物理地址仍连续，不是链表"
+      ],
+      "pitfalls": [
+        "插入循环写成 k>=i（应为 k>=i-1），或从前往后搬导致数据被覆盖",
+        "忘记检查表满（length == listsize）就插入，越界写内存",
+        "删除时把合法位序写成 1..n+1，多出一个非法取值",
+        "把「动态分配的顺序表」误判为链表"
+      ],
+      "examples": [
+        {
+          "title": "动态顺序表：初始化 / 插入 / 删除 / 销毁",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef int ElemType;\ntypedef struct {\n    ElemType *elem;      /* 动态分配的空间基址 */\n    int       length;    /* 当前长度 */\n    int       listsize;  /* 当前容量 */\n} SqList;\n\nint InitList(SqList *L, int cap)\n{\n    L->elem = (ElemType *)malloc((size_t)cap * sizeof(ElemType));\n    if (L->elem == NULL) return 0;   /* 存储分配失败 */\n    L->length = 0;\n    L->listsize = cap;\n    return 1;\n}\n\nint ListInsert(SqList *L, int i, ElemType e)\n{\n    int k;\n    if (i < 1 || i > L->length + 1) return 0;   /* 位序非法 */\n    if (L->length >= L->listsize) return 0;     /* 表满 */\n    for (k = L->length - 1; k >= i - 1; k--)\n        L->elem[k + 1] = L->elem[k];\n    L->elem[i - 1] = e;\n    L->length++;\n    return 1;\n}\n\nint ListDelete(SqList *L, int i, ElemType *e)\n{\n    int k;\n    if (i < 1 || i > L->length) return 0;\n    *e = L->elem[i - 1];\n    for (k = i; k < L->length; k++)\n        L->elem[k - 1] = L->elem[k];\n    L->length--;\n    return 1;\n}\n\nvoid DestroyList(SqList *L)\n{\n    free(L->elem);\n    L->elem = NULL;\n    L->length = L->listsize = 0;\n}\n\nint main(void)\n{\n    SqList L;\n    ElemType e = 0;\n    int i;\n    if (!InitList(&L, 8)) { printf(\"malloc failed\\n\"); return 1; }\n    for (i = 1; i <= 5; i++) ListInsert(&L, i, i * i);\n    printf(\"elem:\");\n    for (i = 1; i <= L.length; i++) printf(\" %d\", L.elem[i-1]);\n    printf(\"\\nlength=%d listsize=%d\\n\", L.length, L.listsize);\n    ListInsert(&L, 2, 100);\n    ListDelete(&L, 4, &e);\n    printf(\"insert@2 then delete@4 (deleted=%d):\", e);\n    for (i = 1; i <= L.length; i++) printf(\" %d\", L.elem[i-1]);\n    printf(\"\\n\");\n    DestroyList(&L);\n    printf(\"destroyed, elem == NULL ? %d\\n\", L.elem == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "elem: 1 4 9 16 25\nlength=5 listsize=8\ninsert@2 then delete@4 (deleted=9): 1 100 4 16 25\ndestroyed, elem == NULL ? 1",
+          "note": "注意两处位序边界不同：插入允许 i == length+1（插在表尾之后），删除只允许 i <= length。搬移方向相反：插入倒着搬、删除顺着搬。",
+          "runnable": true
+        },
+        {
+          "title": "实测插入与删除的平均搬移次数",
+          "code": "#include <stdio.h>\n\n#define NMAX 8\n\nint main(void)\n{\n    int i, n;\n    printf(\"n   插入平均搬移(=n/2)   删除平均搬移(=(n-1)/2)\\n\");\n    for (n = 1; n <= NMAX; n++) {\n        int ins = 0, del = 0;\n        for (i = 1; i <= n + 1; i++) ins += (n - i + 1); /* n+1 个可插位置 */\n        for (i = 1; i <= n;     i++) del += (n - i);     /* n 个可删位置 */\n        printf(\"%-3d %-20.3f %.3f\\n\", n,\n               (double)ins / (n + 1), (double)del / n);\n    }\n    return 0;\n}",
+          "stdin": "",
+          "expected": "n   插入平均搬移(=n/2)   删除平均搬移(=(n-1)/2)\n1   0.500                0.000\n2   1.000                0.500\n3   1.500                1.000\n4   2.000                1.500\n5   2.500                2.000\n6   3.000                2.500\n7   3.500                3.000\n8   4.000                3.500",
+          "note": "穷举所有合法位置求平均，结果正是教材结论 n/2 与 (n-1)/2。插入的位置数是 n+1 而不是 n，这是很多同学算错的根源。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [
+        "ds-ch02-pg-001"
+      ],
+      "relatedKnowledge": [
+        "ds-ch01-04",
+        "ds-ch02-01",
+        "ds-ch02-04"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "order": 2
+    },
+    {
+      "id": "ds-ch02-03",
+      "title": "线性表的链式表示（单链表）",
+      "section": "2.3 线性表的链式表示和实现",
+      "summary": "单链表用一组任意的（可以不连续）存储单元存放元素，结点由数据域和指针域组成，通过指针表达逻辑次序。它只能顺序存取，插入删除不需搬移元素但要先 O(n) 找到位置，通常增设头结点以统一空表与首元素的插入删除。",
+      "content": "## 结点结构\n\n```c\ntypedef struct LNode {\n    ElemType       data;   /* 数据域 */\n    struct LNode  *next;   /* 指针域，指向后继结点 */\n} LNode, *LinkList;\n```\n\n- **头指针**：指向链表第一个结点的指针，是链表的**标识**，不可丢失\n- **头结点**：在首元素结点之前附加的一个结点，其 `data` 一般不存信息（或存表长），`next` 指向首元素\n\n## 为什么要带头结点（高频简答）\n\n| 场景 | 不带头结点 | 带头结点 |\n|---|---|---|\n| 空表 | 头指针为 NULL | 头指针指向头结点，`L->next == NULL` |\n| 在表首插入/删除 | 要**单独处理**并修改头指针 | 与其它位置**完全一致** |\n| 空表与非空表 | 处理不统一 | **处理统一** |\n\n带头结点后，头指针永不为 NULL，「表空」的条件变成 `L->next == NULL`。\n\n## 查找第 i 个结点：只能顺序扫描\n\n```c\nLNode *GetElemP(LinkList L, int i)   /* 头结点算第 0 个 */\n{\n    LNode *p = L;\n    int j = 0;\n    while (p != NULL && j < i) { p = p->next; j++; }\n    if (i < 0 || j > i) return NULL;   /* i 太大，走到表尾之外 */\n    return p;\n}\n```\n\n单链表**没有地址公式**，只能从头结点开始顺着 next 一个个数，是**顺序存取**结构，平均查找长度 O(n)。\n\n## 插入：先接后断\n\n在第 i 个元素之前插入，必须先拿到**第 i-1 个结点 p**，再：\n\n```c\ns->next = p->next;   /* ① 先接：新结点指向原来的后继 */\np->next = s;         /* ② 后断：前驱改指新结点 */\n```\n\n⚠ **两句顺序绝不能颠倒**。先写 `p->next = s` 会立刻丢失原来后继的地址，链表从此断裂。\n\n## 删除：留住后继再 free\n\n```c\nq = p->next;            /* q 是被删结点 */\n*e = q->data;\np->next = q->next;      /* 跨过 q */\nfree(q);                /* 必须释放，否则内存泄漏 */\n```\n\n## 建表两种方式\n\n| 方式 | 特点 | 元素次序 |\n|---|---|---|\n| **头插法** | 每次插在头结点之后，`O(1)`，无需尾指针 | **逆序**（常用于链表逆置） |\n| **尾插法** | 需要一个尾指针 `tail`，每次挂在表尾 | **正序**（与输入一致） |\n\n## 复杂度对比（与顺序表）\n\n| 操作 | 单链表 |\n|---|---|\n| 按位序取值 | **O(n)**（顺序表 O(1)） |\n| 已知结点指针后插入/删除 | **O(1)**（顺序表 O(n) 搬移） |\n| 按位序插入/删除（含查找） | O(n)（时间花在找位置上） |",
+      "keyPoints": [
+        "结点 = 数据域 data + 指针域 next，用指针表达逻辑次序，存储单元可以不连续",
+        "头指针是链表标识；头结点附加在首元素之前，使空表与非空表、表首与表中的插入删除处理统一",
+        "带头结点的单链表，表空条件是 L->next == NULL，头指针永不为 NULL",
+        "单链表只能顺序存取，按位序取元素 O(n)，没有 LOC(a_i) 地址公式",
+        "插入必须「先接后断」：s->next=p->next; p->next=s; 顺序颠倒会断链",
+        "删除必须 free 被摘下的结点，否则内存泄漏；头插法建表得到逆序序列"
+      ],
+      "pitfalls": [
+        "插入时先写 p->next=s，导致原后继地址丢失、链表断裂",
+        "在第 i 个元素前插入却去取第 i 个结点（应取第 i-1 个）",
+        "删除结点后忘记 free，或 free 之后还继续用该指针",
+        "混淆头指针与头结点，写出 L==NULL 的空表判断（带头结点时应为 L->next==NULL）"
+      ],
+      "examples": [
+        {
+          "title": "尾插法建立带头结点的单链表 + 遍历 + 销毁",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef int ElemType;\ntypedef struct LNode {\n    ElemType       data;\n    struct LNode  *next;\n} LNode, *LinkList;\n\nint CreateTail(LinkList *L, const ElemType a[], int n)\n{\n    LNode *tail, *s;\n    int i;\n    *L = (LinkList)malloc(sizeof(LNode));   /* 头结点 */\n    if (*L == NULL) return 0;\n    (*L)->next = NULL;                      /* 空表 */\n    tail = *L;\n    for (i = 0; i < n; i++) {\n        s = (LNode *)malloc(sizeof(LNode));\n        if (s == NULL) return 0;\n        s->data = a[i];\n        s->next = NULL;\n        tail->next = s;                     /* 挂到表尾 */\n        tail = s;                           /* 尾指针后移 */\n    }\n    return 1;\n}\n\nvoid ListTraverse(LinkList L)\n{\n    LNode *p = L->next;                     /* 跳过头结点 */\n    printf(\"head\");\n    while (p != NULL) { printf(\" -> %d\", p->data); p = p->next; }\n    printf(\" -> NULL\\n\");\n}\n\nvoid DestroyList(LinkList *L)\n{\n    LNode *p = *L, *q;\n    while (p != NULL) { q = p->next; free(p); p = q; }\n    *L = NULL;\n}\n\nint main(void)\n{\n    LinkList L = NULL;\n    ElemType a[6] = {11, 22, 33, 44, 55, 66};\n    if (!CreateTail(&L, a, 6)) { printf(\"malloc failed\\n\"); return 1; }\n    ListTraverse(L);\n    printf(\"表空? %d\\n\", L->next == NULL);\n    DestroyList(&L);\n    printf(\"destroyed -> %s\\n\", L == NULL ? \"NULL\" : \"?\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "head -> 11 -> 22 -> 33 -> 44 -> 55 -> 66 -> NULL\n表空? 0\ndestroyed -> NULL",
+          "note": "DestroyList 必须先用 q 保存后继再 free(p)，否则 free 之后 p->next 已不可访问。遍历从 L->next 开始，头结点不输出。",
+          "runnable": true
+        },
+        {
+          "title": "按位序插入与删除：演示「先接后断」",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef char ElemType;\ntypedef struct LNode { ElemType data; struct LNode *next; } LNode, *LinkList;\n\n/* 返回第 i 个结点的指针，头结点算第 0 个；越界返回 NULL */\nLNode *GetElemP(LinkList L, int i)\n{\n    LNode *p = L;\n    int j = 0;\n    while (p != NULL && j < i) { p = p->next; j++; }\n    if (i < 0 || j > i) return NULL;\n    return p;\n}\n\nint ListInsert(LinkList L, int i, ElemType e)\n{\n    LNode *p = GetElemP(L, i - 1), *s;   /* 找第 i-1 个结点 */\n    if (p == NULL) return 0;\n    s = (LNode *)malloc(sizeof(LNode));\n    if (s == NULL) return 0;\n    s->data = e;\n    s->next = p->next;    /* ① 先接 */\n    p->next = s;          /* ② 后断 */\n    return 1;\n}\n\nint ListDelete(LinkList L, int i, ElemType *e)\n{\n    LNode *p = GetElemP(L, i - 1), *q;\n    if (p == NULL || p->next == NULL) return 0;\n    q = p->next;\n    *e = q->data;\n    p->next = q->next;\n    free(q);\n    return 1;\n}\n\nint main(void)\n{\n    LNode head, *p, *q;\n    LinkList L = &head;\n    ElemType e = 0;\n    int i;\n\n    head.data = '#'; head.next = NULL;          /* 头结点 */\n    for (i = 1; i <= 5; i++) ListInsert(L, i, (ElemType)('A' + i - 1));\n\n    printf(\"create      :\");\n    for (p = L->next; p != NULL; p = p->next) printf(\" %c\", p->data);\n    ListInsert(L, 3, 'X');\n    printf(\"\\ninsert X @3 :\");\n    for (p = L->next; p != NULL; p = p->next) printf(\" %c\", p->data);\n    ListDelete(L, 2, &e);\n    printf(\"\\ndelete @2=%c :\", e);\n    for (p = L->next; p != NULL; p = p->next) printf(\" %c\", p->data);\n    printf(\"\\n第3个元素 = %c\\n\", GetElemP(L, 3)->data);\n\n    p = L->next;                                /* 释放所有数据结点 */\n    while (p != NULL) { q = p->next; free(p); p = q; }\n    L->next = NULL;\n    printf(\"all data nodes freed, 表空? %d\\n\", L->next == NULL);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "create      : A B C D E\ninsert X @3 : A B X C D E\ndelete @2=B : A X C D E\n第3个元素 = C\nall data nodes freed, 表空? 1",
+          "note": "插入位置 3 意味着「在第 3 个元素之前」，所以取的是第 2 个结点（i-1）。删除位置 2 同样先取第 1 个结点。GetElemP(L,0) 返回头结点，正是这个 -1 逻辑能成立的原因。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch02-01",
+        "ds-ch02-04",
+        "ds-ch01-04"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "order": 3
+    },
+    {
+      "id": "ds-ch02-04",
+      "title": "顺序表与链表的比较、循环链表与双向链表",
+      "section": "2.4 一元多项式的表示及相加（存储结构选择）",
+      "summary": "顺序表存储密度为 1、支持随机存取但插入删除要搬移元素；链表插入删除只改指针、长度可动态变化但只能顺序存取且要多存指针。在此基础上派生出循环链表（表尾指回头结点）、双向链表（增设 prior 域）和静态链表（用数组游标模拟指针）。",
+      "content": "## 顺序表 vs 单链表（必背对比表）\n\n| 比较维度 | 顺序表 | 单链表 |\n|---|---|---|\n| 存储方式 | 地址**连续** | 地址**任意**（可不连续） |\n| 逻辑次序的表达 | 靠**物理位置** | 靠**指针** |\n| 存储密度 | **= 1**（最省空间） | < 1（每结点多存一个指针） |\n| 存取方式 | **随机存取** O(1) | **顺序存取** O(n) |\n| 按值查找（无序） | O(n) | O(n) |\n| 按值查找（有序） | **O(log n)** 可折半 | O(n)，**不能折半** |\n| 插入/删除 | 平均搬移 n/2 个元素，O(n) | 只改指针，**O(1)**（不含查找） |\n| 容量 | 预分配，可能浪费或溢出 | 动态申请，只受内存限制 |\n| 适用场景 | 频繁**按位序访问**、表长稳定 | 频繁**插入删除**、表长变化大 |\n\n## 一句话选择依据\n\n> **查得多选顺序表，改得多选链表；长度定选顺序表，长度变选链表。**\n\n⚠ 特别注意：**链表不能做折半查找**，因为折半需要 `mid` 位置的随机访问能力。这是最常见的判断题陷阱。\n\n## 循环链表\n\n表中**最后一个结点的指针域指向头结点**，整个链表构成一个环。\n\n```text\nL → a1 → a2 → … → an ─┐\n ↑___________________│\n```\n\n- 判空条件从 `L->next == NULL` 变为 `L->next == L`\n- 优点：从任一结点出发都能访问到全表，特别适合**约瑟夫环**这类轮转问题\n- 循环**双向**链表的空表条件：`L->next == L && L->prior == L`\n\n## 双向链表\n\n```c\ntypedef struct DuLNode {\n    ElemType        data;\n    struct DuLNode *prior;   /* 指向前驱 */\n    struct DuLNode *next;    /* 指向后继 */\n} DuLNode, *DuLinkList;\n```\n\n解决了单链表**找前驱必须从头扫描**（O(n)）的问题，有了 prior 后求前驱是 O(1)。\n\n**在 p 之后插入 s（四句，顺序关键）：**\n\n```c\ns->prior = p;\ns->next  = p->next;\np->next->prior = s;    /* 必须在 p->next 被改写之前完成 */\np->next = s;\n```\n\n**删除 p：**\n\n```c\np->prior->next = p->next;\np->next->prior = p->prior;\nfree(p);\n```\n\n## 静态链表\n\n用**数组**描述链式结构：数组分量存 `data` 和**游标 cursor**（下一个元素的下标，代替指针）。\n\n- 兼具「插入删除只改游标、不搬移元素」的链表优点\n- 但**仍是顺序存储**，需要预先分配连续空间，且失去随机存取能力\n- 判空：头结点的游标指向数组末尾（如 `MAXSIZE-1`）\n\n## 存储结构选择总原则\n\n数据结构 = **逻辑结构 + 存储结构 + 运算**。选择存储结构时看三件事：\n1. 操作的**频率**（查找多还是增删多）\n2. 表长的**变化幅度**\n3. 空间与时间的**权衡**（存储密度 vs 操作速度）",
+      "keyPoints": [
+        "顺序表存储密度为 1、随机存取 O(1)，但插入删除平均搬移 n/2 个元素",
+        "链表插入删除只改指针 O(1)，但只能顺序存取，且每结点要多存指针域",
+        "链表不能做折半查找——折半依赖 mid 位置的随机访问",
+        "循环链表尾结点指回头结点，判空条件为 L->next==L；适合约瑟夫环等轮转问题",
+        "双向链表增设 prior，求前驱从 O(n) 降到 O(1)；插入四句中 p->next->prior=s 必须在 p->next=s 之前",
+        "静态链表用数组 + 游标模拟指针，插入删除不搬移元素，但仍是顺序存储"
+      ],
+      "pitfalls": [
+        "认为「链表一定比顺序表快」——按位序访问链表反而慢得多",
+        "在链表上用折半查找，因为无法随机访问 mid",
+        "双向链表插入时先写 p->next=s，导致后继地址丢失、无法再改它的 prior",
+        "把静态链表当成链式存储结构（它的物理地址是连续的）"
+      ],
+      "examples": [
+        {
+          "title": "双向循环链表：插入、删除与正反双向遍历",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef int ElemType;\ntypedef struct DuLNode {\n    ElemType        data;\n    struct DuLNode *prior;\n    struct DuLNode *next;\n} DuLNode, *DuLinkList;\n\nint InitDuList(DuLinkList *L)\n{\n    *L = (DuLinkList)malloc(sizeof(DuLNode));\n    if (*L == NULL) return 0;\n    (*L)->prior = (*L)->next = *L;   /* 空的双向循环链表：头结点自环 */\n    return 1;\n}\n\nint InsertAfter(DuLinkList p, ElemType e)   /* 在 p 之后插入 */\n{\n    DuLNode *s = (DuLNode *)malloc(sizeof(DuLNode));\n    if (s == NULL) return 0;\n    s->data = e;\n    s->prior = p;\n    s->next  = p->next;\n    p->next->prior = s;      /* 必须先改后继的 prior */\n    p->next = s;             /* 再改前驱的 next */\n    return 1;\n}\n\nint DeleteNode(DuLinkList p)                /* p 由调用方保证不是头结点 */\n{\n    if (p == NULL) return 0;\n    p->prior->next = p->next;\n    p->next->prior = p->prior;\n    free(p);\n    return 1;\n}\n\nint main(void)\n{\n    DuLinkList L = NULL, p;\n    DuLNode *q;\n    int i;\n    if (!InitDuList(&L)) { printf(\"malloc failed\\n\"); return 1; }\n\n    p = L;\n    for (i = 1; i <= 5; i++) { InsertAfter(p, i * 10); p = p->next; }\n\n    printf(\"空表判断 L->next==L ? %d\\n\", L->next == L);\n    printf(\"正向:\");\n    for (p = L->next; p != L; p = p->next)  printf(\" %d\", p->data);\n    printf(\"\\n反向:\");\n    for (p = L->prior; p != L; p = p->prior) printf(\" %d\", p->data);\n    printf(\"\\n\");\n\n    p = L->next->next->next;   /* 第 3 个数据结点 */\n    printf(\"待删除 = %d\\n\", p->data);\n    DeleteNode(p);\n    printf(\"删后正向:\");\n    for (p = L->next; p != L; p = p->next)  printf(\" %d\", p->data);\n    printf(\"\\n删后反向:\");\n    for (p = L->prior; p != L; p = p->prior) printf(\" %d\", p->data);\n    printf(\"\\n\");\n\n    p = L->next;               /* 销毁：沿 next 走一圈回到头结点 */\n    while (p != L) { q = p->next; free(p); p = q; }\n    free(L);\n    printf(\"freed\\n\");\n    return 0;\n}",
+          "stdin": "",
+          "expected": "空表判断 L->next==L ? 0\n正向: 10 20 30 40 50\n反向: 50 40 30 20 10\n待删除 = 30\n删后正向: 10 20 40 50\n删后反向: 50 40 20 10\nfreed",
+          "note": "空的双向循环链表满足 L->next==L && L->prior==L。反向遍历靠 prior，这正是双向链表相对单链表的增值：求前驱 O(1)。",
+          "runnable": true
+        },
+        {
+          "title": "循环单链表解约瑟夫环（n=8, m=3）",
+          "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct CNode { int no; struct CNode *next; } CNode;\n\nint main(void)\n{\n    int n = 8, m = 3, i;\n    CNode *L, *p, *prev, *s, *q;\n\n    L = (CNode *)malloc(sizeof(CNode));\n    if (L == NULL) return 1;\n    L->no = 1; L->next = L;        /* 1 号自己成环 */\n    p = L;\n    for (i = 2; i <= n; i++) {     /* 尾插建环 */\n        s = (CNode *)malloc(sizeof(CNode));\n        if (s == NULL) return 1;\n        s->no = i; s->next = L;\n        p->next = s; p = s;\n    }\n\n    printf(\"n=%d m=%d 出列顺序:\", n, m);\n    prev = p;                      /* prev 指向尾结点 */\n    p = L;                         /* p 指向 1 号 */\n    while (p->next != p) {         /* 环中不止一个结点 */\n        for (i = 1; i < m; i++) { prev = p; p = p->next; }\n        printf(\" %d\", p->no);\n        prev->next = p->next;      /* 摘掉 p */\n        q = p; p = p->next; free(q);\n    }\n    printf(\" %d(最后)\\n\", p->no);\n    free(p);\n    return 0;\n}",
+          "stdin": "",
+          "expected": "n=8 m=3 出列顺序: 3 6 1 5 2 8 4 7(最后)",
+          "note": "循环链表的遍历终止条件不是 p==NULL，而是「回到起点」（这里用 p->next==p 表示只剩一个结点）。prev 必须始终跟着 p，摘结点时才有的可改。",
+          "runnable": true
+        }
+      ],
+      "relatedProblems": [],
+      "relatedKnowledge": [
+        "ds-ch02-02",
+        "ds-ch02-03",
+        "ds-ch02-01"
+      ],
+      "relatedViz": [],
+      "category": "ds",
+      "chapter": "第2章 线性表",
+      "order": 4
+    }
+  ]
+}
