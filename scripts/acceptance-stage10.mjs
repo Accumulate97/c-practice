@@ -7,7 +7,7 @@
  *   ② 验的是「三向联动闭环」这条跨板块路径，而不是单个板块内部
  *
  * 用法：npm run build && node scripts/acceptance-stage10.mjs [suite]
- *   suite 省略 = 全跑；可选 list / loop / missing / theme / mobile / errata / search / fallback / a11y / perf
+ *   suite 省略 = 全跑；可选 list / loop / missing / theme / mobile / errata / search / fallback / a11y / perf / player5 / category
  */
 import { spawn } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
@@ -754,6 +754,127 @@ async function main() {
     check('进题目详情才按需 fetch 题目分片，且只拉这一片（不整包下载题库）',
       ccData.length >= 1 && ccData.every((u) => u.startsWith('data/problems/') && !u.endsWith('/index.json')), ccData.join(', ') || '(没拉到任何 data)')
     await pctx.close()
+  }
+
+  /* ════ K. 播放器抽查（阶段 10-5）：随机 5 套演示，播放 / 单步 / 后退 / 重置四键都真动 ════
+   * 抽样口径：以「演示总数」为种子做确定性伪随机抽样 —— 既不写死 id（加演示后自动换样），
+   * 也不会每次跑抽到不同一批导致验收结论不可复现。
+   */
+  if (want('player5')) {
+    let seed = V.demos.length * 7919 + 13
+    const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648 }
+    const pool = [...V.demos]
+    const picks = []
+    for (let i = 0; i < Math.min(5, pool.length); i += 1) picks.push(pool.splice(Math.floor(rnd() * pool.length), 1)[0])
+    const readStep = async () => {
+      const t = await page.locator('[data-role="viz-step"]').innerText()
+      const m = t.match(/(\d+)\s*\/\s*(\d+)/)
+      return { i: Number(m?.[1] ?? 0), n: Number(m?.[2] ?? 0) }
+    }
+    const bad = []
+    const trace = []
+    for (const d of picks) {
+      await page.goto(BASE + `#/viz/${d.id}`, { waitUntil: 'networkidle' })
+      await page.waitForSelector('[data-role="viz-step"]', { timeout: 20000 })
+      await page.waitForTimeout(250)
+      const s0 = await readStep()
+      await page.locator('button[data-role="viz-play"]').click()
+      await page.waitForTimeout(1200)
+      const sPlay = await readStep()
+      const playingLabel = await page.locator('button[data-role="viz-play"]').getAttribute('aria-label')
+      await page.locator('button[data-role="viz-play"]').click()
+      await page.waitForTimeout(300)
+      const sPaused = await readStep()
+      // 暂停要「停得住」：再等 900ms 复查一次。只等 200ms 会把「读步号 → 点暂停」这段
+      // 往返延迟里本来就该走的一步算成 bug（graph-bfs 步间隔短，第一版就是这么假失败的）
+      await page.waitForTimeout(900)
+      const sStill = await readStep()
+      await page.locator('button[aria-label="下一步 ▶"]').click()
+      await page.waitForTimeout(250)
+      const sNext = await readStep()
+      await page.locator('button[aria-label="◀ 上一步"]').click()
+      await page.waitForTimeout(250)
+      const sPrev = await readStep()
+      await page.locator('button[aria-label="⏮ 重置"]').click()
+      await page.waitForTimeout(300)
+      const sReset = await readStep()
+      trace.push(`${d.id}(${s0.i}/${s0.n}→播${sPlay.i}→单步${sNext.i}→退${sPrev.i}→重置${sReset.i})`)
+      if (sPlay.i <= s0.i) bad.push(`${d.id} 播放没推进（${s0.i}→${sPlay.i}）`)
+      if (playingLabel !== '暂停') bad.push(`${d.id} 播放中 aria-label=${playingLabel}`)
+      if (sStill.i !== sPaused.i) bad.push(`${d.id} 点暂停后停不住（${sPaused.i}→${sStill.i}）`)
+      if (sPaused.i < s0.n && sNext.i !== sPaused.i + 1) bad.push(`${d.id} 单步没走一步（${sPaused.i}→${sNext.i}）`)
+      if (sPrev.i !== sNext.i - 1) bad.push(`${d.id} 后退没退一步（${sNext.i}→${sPrev.i}）`)
+      if (sReset.i !== 1) bad.push(`${d.id} 重置没回到第 1 步（→${sReset.i}）`)
+    }
+    check(`随机抽 ${picks.length} 套演示：播放 / 暂停 / 单步 / 后退 / 重置五键都真动（抽样自索引，不写死 id）`,
+      bad.length === 0, bad.length === 0 ? trace.join(' ') : bad.join(' | '))
+  }
+
+  /* ════ L. 两个 category（c / ds）都要走得通（阶段 10-5，通用化硬要求第 5 条）════
+   * 现在库里 ds 只有 1 道题 + 30 张卡片，将来数据结构 450 题入库时这套断言不用改一行：
+   * category 列表、每个 category 的张数、样例题/样例卡片，全部从索引现算。
+   */
+  if (want('category')) {
+    const kCats = [...new Set(K.cards.map((c) => c.category))]
+    const pCats = [...new Set(P.problems.map((p) => p.category))]
+    await page.goto(BASE + '#/knowledge', { waitUntil: 'networkidle' })
+    await page.waitForSelector('[data-role="knowledge-list"] [data-role="row"]')
+    const opts = await page.locator('select[aria-label="按课程筛选"] option').evaluateAll(
+      (els) => els.map((e) => ({ v: e.getAttribute('value') ?? '', t: (e.textContent ?? '').trim() })))
+    check(`知识列表「按课程筛选」下拉含索引里出现的全部 category（${kCats.join(' / ')}）+ 全部课程项`,
+      opts.length === kCats.length + 1 && kCats.every((c) => opts.some((o) => o.v === c)),
+      opts.map((o) => `${o.v || '(全部)'}=${o.t}`).join(' | '))
+    const catBad = []
+    for (const c of kCats) {
+      const expectCount = K.cards.filter((x) => x.category === c).length
+      await page.locator('select[aria-label="按课程筛选"]').selectOption(c)
+      await page.waitForTimeout(350)
+      const got = Number(await page.locator('[data-role="filtered-count"]').innerText())
+      const headers = await page.locator('[data-role="group-header"]').allInnerTexts()
+      if (got !== expectCount) catBad.push(`${c} 筛出 ${got} ≠ 索引 ${expectCount}`)
+      if (headers.length === 0) catBad.push(`${c} 没有分组表头`)
+      // 该 category 下随便挑一张卡片，详情页必须能开、标题必须与索引一致
+      const sample = K.cards.find((x) => x.category === c)
+      await page.goto(BASE + `#/knowledge/${sample.id}`, { waitUntil: 'networkidle' })
+      await page.waitForSelector('[data-role="knowledge-detail"]', { timeout: 20000 })
+      const kMain = (await page.locator('main').innerText()).replace(/\s+/g, ' ')
+      const kTitle = (await page.locator('main h1').innerText()).trim()
+      if (!kMain.includes(sample.id) || kTitle.length === 0) catBad.push(`${sample.id} 详情页正文/标题不对：h1=${kTitle.slice(0, 24)}`)
+      if (/加载失败|出错了/.test(kMain)) catBad.push(`${sample.id} 详情页出现失败文案`)
+      await page.goto(BASE + '#/knowledge', { waitUntil: 'networkidle' })
+      await page.waitForSelector('[data-role="knowledge-list"] [data-role="row"]')
+    }
+    check(`每个 category 筛选后的张数与索引逐条统计一致，且各挑一张卡片详情页都能正确打开（共 ${kCats.length} 类）`,
+      catBad.length === 0, catBad.join(' | ') || kCats.map((c) => `${c}=${K.cards.filter((x) => x.category === c).length} 张`).join('，'))
+
+    const pBad = []
+    for (const c of pCats) {
+      const sample = P.problems.find((p) => p.category === c)
+      await page.goto(BASE + '#/problems', { waitUntil: 'networkidle' })
+      await page.waitForSelector('[data-role="summary"][data-total]', { timeout: 20000 })
+      await page.locator('[data-role="search-input"]').fill(sample.id)
+      await page.waitForTimeout(500)
+      const rows = await page.locator('[data-role="row"]').evaluateAll((els) => els.map((e) => e.dataset.id ?? ''))
+      if (!rows.includes(sample.id)) pBad.push(`${c} 题 ${sample.id} 搜不到（命中 ${rows.length} 行）`)
+      await page.goto(BASE + `#/problems/p/${sample.id}`, { waitUntil: 'networkidle' })
+      await page.waitForSelector('[data-role="related-knowledge"], [data-role="empty"]', { timeout: 20000 })
+      const mainTxt = (await page.locator('main').innerText()).replace(/\s+/g, ' ')
+      if (!mainTxt.includes(sample.id)) pBad.push(`${sample.id} 详情页正文里找不到自己的题号`)
+      if (/加载失败|出错了/.test(mainTxt)) pBad.push(`${sample.id} 详情页出现失败文案`)
+      // 关联卡片：有则必须是本 category 的卡；无则必须是友好空状态，绝不能报错/白屏
+      const rel = await page.locator('[data-role="related-knowledge"] a[href^="#/knowledge/"]').evaluateAll(
+        (els) => els.map((e) => e.getAttribute('href') ?? ''))
+      const relIds = rel.map((h) => h.replace('#/knowledge/', ''))
+      if (relIds.length > 0 && !relIds.every((id) => (K.cards.find((k) => k.id === id)?.category ?? c) === c)) {
+        pBad.push(`${sample.id} 关联卡片跨了 category：${relIds.slice(0, 3).join(',')}`)
+      }
+      if (relIds.length === 0 && (await page.locator('[data-role="related-knowledge"]').count()) > 0) {
+        const t = (await page.locator('[data-role="related-knowledge"]').innerText()).replace(/\s+/g, ' ')
+        if (!/暂无|没有|尚未|无关联/.test(t)) pBad.push(`${sample.id} 无关联卡片却没给空状态文案：${t.slice(0, 50)}`)
+      }
+    }
+    check(`每个 category 的题目：列表搜得到、详情页打得开、关联卡片不跨 category（缺失走空状态）（共 ${pCats.length} 类）`,
+      pBad.length === 0, pBad.join(' | ') || pCats.map((c) => `${c}=${P.problems.filter((p) => p.category === c).length} 题`).join('，'))
   }
 
   /* ════ 控制台 ════ */

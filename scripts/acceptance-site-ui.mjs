@@ -1,9 +1,9 @@
 /**
- * 阶段 4 整站回归（模块 5 完工后的第一个可完整使用版本）：真实浏览器里跑 dist 产物。
+ * 阶段 4 整站回归 → 阶段 10 收口后作为「全站最终验收」主脚本（四道主力题打真 Godbolt）：真实浏览器里跑 dist 产物。
  *
  * 与模块级验收的分工：模块 1–5 各自的脚本验「自己那一段」，本脚本验「串起来还成立」：
  *   ① 四种主力题型端到端各走一遍（编程 / 阅读 / 填空 / 改错），其中编程、填空、改错打真 Godbolt
- *   ② 首页三个板块入口可点，知识库 / 可视化仍是诚实的「本板块将在 阶段 N 落地」占位
+ *   ② 首页三个板块入口可点，且三板块列表页总数与各自 index.json 现算一致（阶段 10 之后已无占位页）
  *   ③ 深浅色主题切换
  *   ④ 四道题做完后回列表页 → 四条「已通过」；F5 刷新后仍在（localStorage）
  *   ⑤ 全程控制台 error / warning / pageerror 为空
@@ -93,21 +93,32 @@ async function main() {
     return verdictLine()
   }
 
-  // ── ① 首页三个板块入口 ──
+  // ── ① 首页三个板块入口 → 三板块列表页真的能用（阶段 10 之后不再是「本板块将在…」占位） ──
+  //    期望值一律从 index.json 现算：后续加 _staging 真题 / 数据结构 / 变式题，这段不用改一行
+  const kIdx = JSON.parse(readFileSync(join(ROOT, 'public/data/knowledge/index.json'), 'utf8'))
+  const pIdx = JSON.parse(readFileSync(join(ROOT, 'public/data/problems/index.json'), 'utf8'))
+  const vIdx = JSON.parse(readFileSync(join(ROOT, 'public/data/viz/index.json'), 'utf8'))
   await page.goto(BASE, { waitUntil: 'networkidle' })
   const cards = await page.locator('a[href*="#/knowledge"], a[href*="#/viz"], a[href*="#/problems"]').count()
   check('首页三个板块入口卡片都在', cards >= 3, `匹配到 ${cards} 个入口链接`)
+
   await page.locator('a:has-text("知识点汇总")').first().click()
-  await page.waitForFunction(() => /本板块将在/.test(document.body.innerText), null, { timeout: 15000 })
-  let txt = await bodyText()
-  check('知识库入口可点，且是诚实的占位（阶段 6）', txt.includes('本板块将在 阶段 6 落地'), (txt.match(/本板块将在[^\n]*/) ?? [''])[0])
+  await page.waitForSelector('[data-role="knowledge-list"] [data-role="row"]', { timeout: 30000 })
+  const kTotal = await page.getAttribute('[data-role="summary"]', 'data-total')
+  check(`知识板块入口可点 → 列表页总数与索引一致（${kIdx.count} 张卡片）`,
+    Number(kTotal) === kIdx.count, `data-total=${kTotal} 索引 count=${kIdx.count}`)
+
   await page.locator('a:has-text("可视化演示")').first().click()
-  await page.waitForFunction(() => /本板块将在/.test(document.body.innerText), null, { timeout: 15000 })
-  txt = await bodyText()
-  check('可视化入口可点，且是诚实的占位（阶段 7–9）', txt.includes('本板块将在 阶段 7–9 落地'), (txt.match(/本板块将在[^\n]*/) ?? [''])[0])
+  await page.waitForSelector('[data-role="viz-card"]', { timeout: 30000 })
+  const vCards = await page.locator('[data-role="viz-card"]').count()
+  check(`可视化板块入口可点 → 演示卡片数与索引一致（${vIdx.demos.length} 套）`,
+    vCards === vIdx.demos.length, `页面 ${vCards} 张 / 索引 ${vIdx.demos.length} 套`)
+
   await page.locator('a:has-text("在线刷题")').first().click()
   await page.waitForSelector('[data-role="summary"][data-total]', { timeout: 30000 })
-  check('刷题入口可点，列表页正常加载 518 题', Number(await page.locator('[data-role="summary"]').getAttribute('data-total')) === 518)
+  const pTotal = await page.getAttribute('[data-role="summary"]', 'data-total')
+  check(`刷题板块入口可点 → 列表页总数与索引一致（${pIdx.count} 题）`,
+    Number(pTotal) === pIdx.count, `data-total=${pTotal} 索引 count=${pIdx.count}`)
 
   // ── ② programming：c-ch03-pg-001 答对 3/3 ──
   await open(PG)
@@ -196,7 +207,7 @@ async function main() {
 try { await main() } catch (e) { check('整站回归流程未抛异常', false, (e instanceof Error ? e.stack : String(e)).split('\n').slice(0, 4).join(' | ')) } finally { preview.kill() }
 
 const failed = checks.filter((c) => !c.ok)
-console.log('\n════ 阶段 4 整站回归汇总 ════')
+console.log('\n════ 全站最终验收（整站回归）汇总 ════')
 console.log(`  ${checks.length} 项检查，失败 ${failed.length} 项`)
 for (const f of failed) console.log('  FAIL ' + f.name + ' ← ' + f.detail)
 process.exitCode = failed.length > 0 ? 1 : 0

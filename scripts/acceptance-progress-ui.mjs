@@ -45,13 +45,32 @@ const problemOf = (id) => readShard(shardOf(id)).problems.find((p) => p.id === i
 const SC_ID = 'c-ch01-sc-001'          // single_choice，answer 是合法下标，可判分
 const FB_ID = 'c-ch01-fb-001'          // fill_blank，库内 answer 为空 → 缺陷面板
 const SA_REF_ID = 'c-ch09-sa-004'      // 18 道简答题里唯一带 reference_answer 的一道
-const SA_NOREF_ID = 'c-ch07-sa-001'    // 无参考答案 → 缺口面板 + 自评
-const CR_DEFECT_ID = 'c-ch03-cr-017'   // code_reading 缺 answer → R3 动态文案
 const SC = problemOf(SC_ID)
 const SC_ANSWER = SC.answer
 const SC_WRONG = SC_ANSWER === 0 ? 1 : 0
 const FB_BLANK_COUNT = (problemOf(FB_ID).blanks ?? []).length
 const DEFECT_CR = INDEX.defects?.codeReadingNoAnswer ?? null
+
+/**
+ * 阶段 10-5：这三处的目标题一律现扫分片，不再写死 id。
+ * 原因：写死那会儿库里确有数据缺口（概念填空 answer 全空 / 简答无参考答案 / 阅读题无 answer），
+ * 后续阶段的详解与答案回填把缺口补齐了，写死的 id 指到的题已经「有答案」，断言必然假失败。
+ * 扫不到缺口就退化成验当前真实形态（能作答 / 有参考答案 / 文字描述题的诚实说明），
+ * 将来加 _staging 真题、数据结构题带进新缺口时，这段又会自己切回缺口分支。
+ */
+const ALL_PROBLEMS = (() => {
+  const out = []
+  for (const f of new Set(INDEX.problems.map((x) => x.file))) out.push(...readShard(String(f).replace(/\.json$/i, '')).problems)
+  return out
+})()
+const FB_NO_ANSWER = (problemOf(FB_ID).blanks ?? []).every((b) => !(b.answer ?? '').trim())
+const SA_GAP = ALL_PROBLEMS.find((x) => x.type === 'short_answer' && !(x.reference_answer ?? '').trim()) ?? null
+const SA_NOREF_ID = SA_GAP?.id ?? ALL_PROBLEMS.find((x) => x.type === 'short_answer' && x.id !== SA_REF_ID)?.id
+const CR_GAP = ALL_PROBLEMS.find((x) => x.type === 'code_reading' && !(x.answer ?? '').trim() && !x.answerIsDescription) ?? null
+const CR_DESC_COUNT = ALL_PROBLEMS.filter((x) => x.type === 'code_reading' && x.answerIsDescription).length
+const CR_GAP_COUNT = ALL_PROBLEMS.filter((x) => x.type === 'code_reading' && !(x.answer ?? '').trim() && !x.answerIsDescription).length
+const CR_DEFECT_ID = CR_GAP?.id ?? ALL_PROBLEMS.find((x) => x.type === 'code_reading' && x.answerIsDescription)?.id
+const CR_IS_DESC = CR_GAP === null
 
 // fill_blank 判分路径的 fixture 答案（注入到 route 响应里，不写回仓库）
 const FB_FIX = [{ index: 1, answer: '编译' }, { index: 2, answer: 'link' }]
@@ -335,15 +354,24 @@ async function main() {
   check('进度页：收藏区列出该题', (await attr('[data-role="starred"]', 'count')) === '1'
     && (await countSel(`[data-role="starred-row"][data-id="${SC_ID}"]`)) === 1)
   await reconcile('阶段 2 结束')
-  // ════ 阶段 3：概念填空 —— 真实数据（89 道 blanks.answer 全空）走缺陷面板 ════
+  // ════ 阶段 3：概念填空 —— 缺口在则走缺陷面板，缺口已补齐则验真作答形态 ════
   await gotoProblem(FB_ID)
-  check('概念填空（真实数据）：answer 为空 → 缺陷面板 + 禁用作答，绝不拿空串当期望',
-    (await countSel('[data-role="defect"]')) === 1
-    && (await attr('[data-role="blank-inputs"]', 'answerable')) === 'false'
-    && (await countSel('[data-role="blank-submit"]')) === 0
-    && Number(await attr('[data-role="blank-inputs"]', 'count')) === FB_BLANK_COUNT,
-    `answerable=${await attr('[data-role="blank-inputs"]', 'answerable')} 缺陷文案=${String(await text('[data-role="defect"]')).slice(0, 90)}`)
-  check('概念填空（真实数据）：缺陷题不写任何记录（不计入正确率与错题本）',
+  if (FB_NO_ANSWER) {
+    check('概念填空（库内 answer 为空）：缺陷面板 + 禁用作答，绝不拿空串当期望',
+      (await countSel('[data-role="defect"]')) === 1
+      && (await attr('[data-role="blank-inputs"]', 'answerable')) === 'false'
+      && (await countSel('[data-role="blank-submit"]')) === 0
+      && Number(await attr('[data-role="blank-inputs"]', 'count')) === FB_BLANK_COUNT,
+      `answerable=${await attr('[data-role="blank-inputs"]', 'answerable')} 缺陷文案=${String(await text('[data-role="defect"]')).slice(0, 90)}`)
+  } else {
+    check(`概念填空（真实数据 ${FB_ID}，answer 已补齐）：不出缺陷面板、允许作答、空位数与分片一致`,
+      (await countSel('[data-role="defect"]')) === 0
+      && (await attr('[data-role="blank-inputs"]', 'answerable')) === 'true'
+      && (await countSel('[data-role="blank-submit"]')) === 1
+      && Number(await attr('[data-role="blank-inputs"]', 'count')) === FB_BLANK_COUNT,
+      `answerable=${await attr('[data-role="blank-inputs"]', 'answerable')} 空位=${await attr('[data-role="blank-inputs"]', 'count')}/${FB_BLANK_COUNT}`)
+  }
+  check('概念填空：没点提交之前不写任何记录（不计入正确率与错题本）',
     (await lsRecords())[FB_ID] === undefined)
 
   // ════ 阶段 4：概念填空 —— 注入带答案的 fixture，验判分路径 ════════════
@@ -387,7 +415,7 @@ async function main() {
     (await lsRecords())[SA_REF_ID] === undefined && (await attr('[data-role="progress-panel"]', 'status')) === 'todo')
   await page.locator('[data-role="sa-reveal"]').click()
   await page.waitForSelector('[data-role="sa-reference"]', { timeout: 10000 })
-  check('简答题：点「显示参考答案」后给出参考答案正文（本题是全库 18 道里唯一带 reference_answer 的）',
+  check('简答题：点「显示参考答案」后给出参考答案正文（不联网、不判分，只供自评）',
     (await attr('[data-role="sa-reference"]', 'hasReference') ?? await attr('[data-role="sa-reference"]', 'has-reference')) === 'true'
     && String(await text('[data-role="sa-reference"]')).length > 30,
     String(await text('[data-role="sa-reference"]')).replace(/\s+/g, ' ').slice(0, 80))
@@ -402,13 +430,20 @@ async function main() {
     /自评/.test(String(await text('[data-role="progress-panel"]'))))
 
   await gotoProblem(SA_NOREF_ID)
-  check('简答题（无参考答案）：如实说明数据缺口，不显示一个空框假装"参考答案是空白"',
-    (await countSel('[data-role="defect"]')) === 1 && /参考答案/.test(String(await text('[data-role="defect"]'))))
+  const saHasRef = !(SA_GAP !== null && SA_GAP.id === SA_NOREF_ID)
+  if (!saHasRef) {
+    check('简答题（无参考答案）：如实说明数据缺口，不显示一个空框假装"参考答案是空白"',
+      (await countSel('[data-role="defect"]')) === 1 && /参考答案/.test(String(await text('[data-role="defect"]'))))
+  } else {
+    check(`简答题（${SA_NOREF_ID}，库内已带参考答案）：不出缺口面板`,
+      (await countSel('[data-role="defect"]')) === 0, `defect=${await countSel('[data-role="defect"]')}`)
+  }
   await page.locator('[data-role="sa-reveal"]').click()
   await page.waitForSelector('[data-role="sa-reference"]', { timeout: 10000 })
-  check('简答题（无参考答案）：展开后 data-has-reference=false，仍有自评按钮',
-    (await attr('[data-role="sa-reference"]', 'hasReference') ?? await attr('[data-role="sa-reference"]', 'has-reference')) === 'false'
-    && (await countSel('[data-role="sa-self-fail"]')) === 1)
+  const saRefFlag = await attr('[data-role="sa-reference"]', 'hasReference') ?? await attr('[data-role="sa-reference"]', 'has-reference')
+  check(`简答题：展开后 data-has-reference 与数据一致（${saHasRef ? 'true' : 'false'}），且始终有自评按钮`,
+    saRefFlag === String(saHasRef) && (await countSel('[data-role="sa-self-fail"]')) === 1,
+    `has-reference=${saRefFlag} 参考答案字数=${String(await text('[data-role="sa-reference"]')).length}`)
   await page.locator('[data-role="sa-self-fail"]').click()
   await page.waitForSelector('[data-role="verdict"]', { timeout: 10000 })
   rec = (await lsRecords())[SA_NOREF_ID]
@@ -635,9 +670,17 @@ async function main() {
   // ════ 阶段 9：R3 文案不再硬编码「19 道」════
   await gotoProblem(CR_DEFECT_ID)
   const defectText = String(await text('[data-role="defect"]'))
-  check(`R3：阅读题缺 answer 的文案动态读 index.json（实测 ${String(DEFECT_CR)} 道），不再写死「19 道」`,
-    DEFECT_CR !== null && defectText.includes(`全站阅读题里有 ${DEFECT_CR} 道属此类`) && !defectText.includes('19 道'),
-    defectText.replace(/\s+/g, ' ').slice(0, 140))
+  if (CR_IS_DESC) {
+    check(`阅读题无 answer（${CR_DEFECT_ID}）：如实说明「问的是结论/理由而非 stdout，故不做自动判分」，不假装能判`,
+      /文字描述/.test(defectText) && /不提供自动判分/.test(defectText) && !defectText.includes('19 道'),
+      defectText.replace(/\s+/g, ' ').slice(0, 120))
+  } else {
+    check(`R3：阅读题缺 answer 的文案动态读 index.json（实测 ${String(DEFECT_CR)} 道），不再写死「19 道」`,
+      DEFECT_CR !== null && defectText.includes(`全站阅读题里有 ${DEFECT_CR} 道属此类`) && !defectText.includes('19 道'),
+      defectText.replace(/\s+/g, ' ').slice(0, 140))
+  }
+  check(`索引 defects.codeReadingNoAnswer 与分片现算逐条吻合（${String(DEFECT_CR)} = 文字描述 ${CR_DESC_COUNT} + 纯缺口 ${CR_GAP_COUNT}）`,
+    Number(DEFECT_CR) === CR_DESC_COUNT + CR_GAP_COUNT, `index=${String(DEFECT_CR)} 现算=${CR_DESC_COUNT + CR_GAP_COUNT}`)
 
   // ════ 阶段 10：硬约束 —— 概念题一个网络判分请求都不发 + 控制台干净 ════
   const judgeRequests = allRequests.filter((u) => /godbolt\.org|\/api\/compiler\//i.test(u))
