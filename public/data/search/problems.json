@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "4f004669c10024d0",
+  "content_sha": "800016c4c9b85499",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 773,
+  "count": 892,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -7156,6 +7156,1196 @@
       "chapter": "第9章 指针",
       "section": "9.4 程序改错题（变式生成）",
       "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-001",
+      "file": "c-ch09.json",
+      "title": "【题 9.1】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-006",
+      "file": "c-ch09.json",
+      "title": "【题 9.2】执行以下程序后",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-002",
+      "file": "c-ch09.json",
+      "title": "【题 9.3】以下程序中调用 scanf 函数给变量 a 输入数值的方法是错误的",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.4】有如下语句 int a=10",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.5】若需要建立如图 9-3 所示的存储结构",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-005",
+      "file": "c-ch09.json",
+      "title": "【题 9.6】已有变量定义和函数调用语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-006",
+      "file": "c-ch09.json",
+      "title": "【题 9.7】设 char *s=\"\\ta\\017bc\"",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-007",
+      "file": "c-ch09.json",
+      "title": "【题 9.8】下面程序段中",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-008",
+      "file": "c-ch09.json",
+      "title": "【题 9.9】下面能正确进行字符串赋值操作的是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-009",
+      "file": "c-ch09.json",
+      "title": "【题 9.10】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-010",
+      "file": "c-ch09.json",
+      "title": "【题 9.11】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-011",
+      "file": "c-ch09.json",
+      "title": "【题 9.12】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-012",
+      "file": "c-ch09.json",
+      "title": "【题 9.13】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-013",
+      "file": "c-ch09.json",
+      "title": "【题 9.14】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-014",
+      "file": "c-ch09.json",
+      "title": "【题 9.15】若有语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-015",
+      "file": "c-ch09.json",
+      "title": "【题 9.16】以下与库函数 strcpy",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-016",
+      "file": "c-ch09.json",
+      "title": "【题 9.17】以下与库函数 strcmp",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-017",
+      "file": "c-ch09.json",
+      "title": "【题 9.18】若有说明语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-018",
+      "file": "c-ch09.json",
+      "title": "【题 9.19】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-007",
+      "file": "c-ch09.json",
+      "title": "【题 9.20】下面程序的功能是从输入的 10 个字符串中找出最长的一串",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-008",
+      "file": "c-ch09.json",
+      "title": "【题 9.21】下面程序的功能是将一个整数字符串转换为一个整数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-009",
+      "file": "c-ch09.json",
+      "title": "【题 9.22】下面程序的功能是将八进制正整数字符串转换为十进制整数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-010",
+      "file": "c-ch09.json",
+      "title": "【题 9.23】下面程序的功能是统计子串 substr 在母串 str 中出现的次数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-011",
+      "file": "c-ch09.json",
+      "title": "【题 9.24】下面程序的功能是在字符串 str 中找出最大的字符并放在第一个位置上",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-012",
+      "file": "c-ch09.json",
+      "title": "【题 9.25】以下程序的功能是删除字符串 s 中的所有空格",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-013",
+      "file": "c-ch09.json",
+      "title": "【题 9.26】下面程序的功能是将字符串 s 中的内容按逆序输出",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-014",
+      "file": "c-ch09.json",
+      "title": "【题 9.27】下面程序的功能是用递归法将一个整数存放到一个字符数组中",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-015",
+      "file": "c-ch09.json",
+      "title": "【题 9.28】下面程序的功能是用递归法将一个整数转换成字符形式输出",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-016",
+      "file": "c-ch09.json",
+      "title": "【题 9.29】下面程序的功能是按字典顺序比较两个字符串 s 和 t 的大小",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-017",
+      "file": "c-ch09.json",
+      "title": "【题 9.30】下面程序的功能是从键盘接收一个字符串",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-018",
+      "file": "c-ch09.json",
+      "title": "【题 9.31】下面程序的功能是将字符串 a 的所有字符传送到字符串 b 中",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-019",
+      "file": "c-ch09.json",
+      "title": "【题 9.32】当运行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-020",
+      "file": "c-ch09.json",
+      "title": "【题 9.33】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-021",
+      "file": "c-ch09.json",
+      "title": "【题 9.34】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-022",
+      "file": "c-ch09.json",
+      "title": "【题 9.35】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-023",
+      "file": "c-ch09.json",
+      "title": "【题 9.36】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-024",
+      "file": "c-ch09.json",
+      "title": "【题 9.37】执行以下程序时",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-025",
+      "file": "c-ch09.json",
+      "title": "【题 9.38】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-026",
+      "file": "c-ch09.json",
+      "title": "【题 9.39】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-027",
+      "file": "c-ch09.json",
+      "title": "【题 9.40】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-028",
+      "file": "c-ch09.json",
+      "title": "【题 9.41】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-029",
+      "file": "c-ch09.json",
+      "title": "【题 9.42】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-030",
+      "file": "c-ch09.json",
+      "title": "【题 9.43】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-031",
+      "file": "c-ch09.json",
+      "title": "【题 9.44】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-032",
+      "file": "c-ch09.json",
+      "title": "【题 9.45】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-033",
+      "file": "c-ch09.json",
+      "title": "【题 9.46】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-034",
+      "file": "c-ch09.json",
+      "title": "【题 9.47】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-035",
+      "file": "c-ch09.json",
+      "title": "【题 9.48】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-036",
+      "file": "c-ch09.json",
+      "title": "【题 9.49】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-037",
+      "file": "c-ch09.json",
+      "title": "【题 9.50】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-038",
+      "file": "c-ch09.json",
+      "title": "【题 9.51】执行下列程序后编译将出现错误",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-039",
+      "file": "c-ch09.json",
+      "title": "【题 9.52】设有以下程序段",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-040",
+      "file": "c-ch09.json",
+      "title": "【题 9.53】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-041",
+      "file": "c-ch09.json",
+      "title": "【题 9.54】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-042",
+      "file": "c-ch09.json",
+      "title": "【题 9.55】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-043",
+      "file": "c-ch09.json",
+      "title": "【题 9.56】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-044",
+      "file": "c-ch09.json",
+      "title": "【题 9.57】若有以下定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-045",
+      "file": "c-ch09.json",
+      "title": "【题 9.58】若有定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-046",
+      "file": "c-ch09.json",
+      "title": "【题 9.59】若有以下定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-047",
+      "file": "c-ch09.json",
+      "title": "【题 9.60】阅读以下程序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-048",
+      "file": "c-ch09.json",
+      "title": "【题 9.61】设有以下定义",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-049",
+      "file": "c-ch09.json",
+      "title": "【题 9.62】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-050",
+      "file": "c-ch09.json",
+      "title": "【题 9.63】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-051",
+      "file": "c-ch09.json",
+      "title": "【题 9.64】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-052",
+      "file": "c-ch09.json",
+      "title": "【题 9.65】设有一个名为 file1 的 C 源程序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-053",
+      "file": "c-ch09.json",
+      "title": "【题 9.66】以下正确的叙述是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-054",
+      "file": "c-ch09.json",
+      "title": "【题 9.67】main 函数的正确说明形式是______",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-019",
+      "file": "c-ch09.json",
+      "title": "【题 9.68】以下程序能找出数组中的最大值和该值所在的元素下标",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-055",
+      "file": "c-ch09.json",
+      "title": "【题 9.69】若有说明",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-056",
+      "file": "c-ch09.json",
+      "title": "【题 9.70】若有说明",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-057",
+      "file": "c-ch09.json",
+      "title": "【题 9.71】若有说明",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-058",
+      "file": "c-ch09.json",
+      "title": "【题 9.72】语句 int ",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-059",
+      "file": "c-ch09.json",
+      "title": "【题 9.73】若有函数 max",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-060",
+      "file": "c-ch09.json",
+      "title": "【题 9.74】已有函数 max",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-061",
+      "file": "c-ch09.json",
+      "title": "【题 9.75】已有定义 int ",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-062",
+      "file": "c-ch09.json",
+      "title": "【题 9.76】若有以下说明和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-sc-063",
+      "file": "c-ch09.json",
+      "title": "【题 9.77】若要对 a 进行++运算",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-003",
+      "file": "c-ch09.json",
+      "title": "【题 9.95】下面程序的功能是将字符串中从第一个数字字符开始的所有字符复制到另一个字符数组中",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-004",
+      "file": "c-ch09.json",
+      "title": "【题 9.96】设有两个字符串 a、b",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-005",
+      "file": "c-ch09.json",
+      "title": "【题 9.97】下面程序的功能是将字符串中的数字字符删除后输出",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-006",
+      "file": "c-ch09.json",
+      "title": "【题 9.98】下面程序的功能是将字符串 b 复制到字符串 a",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-007",
+      "file": "c-ch09.json",
+      "title": "【题 9.99】下面程序的功能是比较两个字符串",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-008",
+      "file": "c-ch09.json",
+      "title": "【题 9.100】本程序用来计算一个英文句子中最长单词的长度",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-009",
+      "file": "c-ch09.json",
+      "title": "【题 9.101】下面程序的功能是将两个字符串 s1 和 s2 连接起来",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-010",
+      "file": "c-ch09.json",
+      "title": "【题 9.102】下面程序的功能是检查字符串 s 中左括号“",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-011",
+      "file": "c-ch09.json",
+      "title": "【题 9.103】下面程序的功能是将十进制正整数转换成十六进制",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-012",
+      "file": "c-ch09.json",
+      "title": "【题 9.104】下面程序的功能是判断输入的字符串是否是“回文”",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-020",
+      "file": "c-ch09.json",
+      "title": "【题 9.119】以下程序的功能是【1】",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-021",
+      "file": "c-ch09.json",
+      "title": "【题 9.122】程序的运行后",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-022",
+      "file": "c-ch09.json",
+      "title": "【题 9.127】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-023",
+      "file": "c-ch09.json",
+      "title": "【题 9.128】以下程序段通过移动指针变量 m",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-024",
+      "file": "c-ch09.json",
+      "title": "【题 9.129】以下程序段通过指针变量 q",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-025",
+      "file": "c-ch09.json",
+      "title": "【题 9.130】以下程序段通过移动指针变量 m",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-026",
+      "file": "c-ch09.json",
+      "title": "【题 9.131】以下程序段通过指针变量 q",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-027",
+      "file": "c-ch09.json",
+      "title": "【题 9.136】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-028",
+      "file": "c-ch09.json",
+      "title": "【题 9.138】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-029",
+      "file": "c-ch09.json",
+      "title": "【题 9.139】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-013",
+      "file": "c-ch09.json",
+      "title": "【题 9.141】下面程序的功能是求矩阵 A 的转置矩阵 B",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-014",
+      "file": "c-ch09.json",
+      "title": "【题 9.143】下面程序可求出图 9-9 中方括号内的元素之积",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-015",
+      "file": "c-ch09.json",
+      "title": "【题 9.147】以下程序将数组 a 中的数据按逆序存放",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-016",
+      "file": "c-ch09.json",
+      "title": "【题 9.148】以下程序在 a 数组中查找与 x 值相同的元素的所在位置",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-017",
+      "file": "c-ch09.json",
+      "title": "【题 9.149】以下程序把 x 插到 a 数组中的下标为 k 的元素中",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-018",
+      "file": "c-ch09.json",
+      "title": "【题 9.150】假设 a 数组中的数据已按由小到大的顺序存放",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-019",
+      "file": "c-ch09.json",
+      "title": "【题 9.153】以下程序可分别求出方阵 a 中两个对角线上元素之和",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-020",
+      "file": "c-ch09.json",
+      "title": "【题 9.154】以下程序找出二维数组 a 中每行的最大值",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-021",
+      "file": "c-ch09.json",
+      "title": "【题 9.155】以下程序把一个十进制整数转换成二进制数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-022",
+      "file": "c-ch09.json",
+      "title": "【题 9.156】以下程序给方阵 a 中所有边上的元素和两个对角线上的元素置 1",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-023",
+      "file": "c-ch09.json",
+      "title": "【题 9.157】以下程序对数组 a 中的数据进行降序排序",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-024",
+      "file": "c-ch09.json",
+      "title": "【题 9.163】下面程序可以逐行输出由 language 数组元素所指向的 5 个字符串",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-025",
+      "file": "c-ch09.json",
+      "title": "【题 9.164】设有 5 个学生",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-fb-030",
+      "file": "c-ch09.json",
+      "title": "【题 9.165】若想输出 b 数组的 10 个元素",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-026",
+      "file": "c-ch09.json",
+      "title": "【题 9.168】设有以下 main 函数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-027",
+      "file": "c-ch09.json",
+      "title": "【题 9.175】已定义函数 findbig 的功能为求 3 个数中的最大值",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-028",
+      "file": "c-ch09.json",
+      "title": "【题 9.176】以下程序通过指针数组 p 和一维数组 a 构成如下所示的二维数组的左下半三角结构",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-029",
+      "file": "c-ch09.json",
+      "title": "【题 9.179】有如下数学公式",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-030",
+      "file": "c-ch09.json",
+      "title": "【题 9.180】函数 process 是一个可对两个整型数 a 和 b 进行计算的通用函数",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-031",
+      "file": "c-ch09.json",
+      "title": "【题 9.181】函数 func1、func2、func3、func4 分别用于计算两个整型数 x 和 y 的和、差、积",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-032",
+      "file": "c-ch09.json",
+      "title": "【题 9.182】请根据运行结果",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch09-cc-033",
+      "file": "c-ch09.json",
+      "title": "【题 9.185】已有定义double x",
+      "tags": [],
+      "chapter": "第9章 指针",
+      "section": "9.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {

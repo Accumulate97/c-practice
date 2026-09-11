@@ -127,21 +127,18 @@
       "chapter": 9,
       "id": "c-ch09",
       "name": "第9章 指针",
-      "converted": 77,
-      "staged": 119,
+      "converted": 196,
+      "staged": 0,
       "byType": {
-        "code_completion": 2,
+        "single_choice": 63,
+        "fill_blank": 30,
+        "code_completion": 33,
         "code_reading": 58,
-        "fill_blank": 5,
         "short_answer": 4,
         "programming": 5,
         "debug": 3
       },
-      "stagedBySubType": {
-        "single_choice": 77,
-        "multi_blank": 40,
-        "code_completion": 2
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 10,
@@ -197,25 +194,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 772,
-    "staged": 251,
+    "converted": 891,
+    "staged": 132,
     "byType": {
-      "single_choice": 235,
-      "fill_blank": 122,
+      "single_choice": 298,
+      "fill_blank": 147,
       "code_reading": 225,
       "short_answer": 23,
-      "code_completion": 104,
+      "code_completion": 135,
       "programming": 48,
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 169,
-      "multi_blank": 42,
-      "code_completion": 40
+      "single_choice": 92,
+      "code_completion": 38,
+      "multi_blank": 2
     },
-    "judgeEvidence": 408,
+    "judgeEvidence": 439,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 104,
+    "rescuedCodeCompletion": 135,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }
