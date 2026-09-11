@@ -175,41 +175,35 @@
       "chapter": 12,
       "id": "c-ch12",
       "name": "第12章 文件",
-      "converted": 15,
-      "staged": 38,
+      "converted": 53,
+      "staged": 0,
       "byType": {
-        "fill_blank": 7,
+        "single_choice": 23,
+        "fill_blank": 8,
+        "code_completion": 14,
         "code_reading": 2,
         "programming": 6
       },
-      "stagedBySubType": {
-        "single_choice": 24,
-        "code_completion": 13,
-        "multi_blank": 1
-      }
+      "stagedBySubType": {}
     }
   ],
   "totals": {
     "records": 1008,
-    "converted": 985,
-    "staged": 38,
+    "converted": 1023,
+    "staged": 0,
     "byType": {
-      "single_choice": 363,
-      "fill_blank": 150,
+      "single_choice": 386,
+      "fill_blank": 151,
       "code_reading": 225,
       "short_answer": 23,
-      "code_completion": 161,
+      "code_completion": 175,
       "programming": 48,
       "debug": 15
     },
-    "stagedBySubType": {
-      "single_choice": 24,
-      "code_completion": 13,
-      "multi_blank": 1
-    },
-    "judgeEvidence": 465,
+    "stagedBySubType": {},
+    "judgeEvidence": 479,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 161,
+    "rescuedCodeCompletion": 175,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }

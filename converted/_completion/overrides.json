@@ -1492,5 +1492,38 @@
       }
     ],
     "explanation": "|| 是逻辑或，在这四个运算符中优先级最低；& 是位与，属双目位运算符，优先级高于 ^、|，更远高于 &&、||，故最低选 C、最高选 B。牢记：所有位运算符都高于逻辑与/逻辑或。"
+  },
+  "题12.21": {
+    "type": "fill_blank",
+    "bloom": "apply",
+    "stem": "【题 12.21】下面程序的功能是实现人员登录。即每当从键盘接收一个姓名，便在文件member.dat中进行查找。若此姓名已存在，则显示相应信息；若文件中没有该姓名，则将其存入文件(若文件member.dat不存在，应在磁盘上建立一个新文件)。当输入姓名时按＜回车＞键或处理过程中出现错误时程序结束。请选择填空。\n\n各空候选项：\n【1】A) \"w\"\nB) \"w＋\"\nC) \"r＋\"\nD) \"a＋\"\n\n【2】A) fgets(name)\nB) gets(name)\nC) scanf(name)\nD) getc(name)\n\n【3】A) ferror(fp)==0\nB) ferror(fp)==1\nC) ferror(fp)!=0\nD) !(ferror(fp)==0)\n\n请分别填写各空的选项字母。",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "D",
+        "accepted": [
+          "D",
+          "\"a+\"",
+          "\"a＋\""
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "B",
+        "accepted": [
+          "B",
+          "gets(name)"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "A",
+        "accepted": [
+          "A",
+          "ferror(fp)==0"
+        ]
+      }
+    ],
+    "explanation": "member.dat 可能不存在且要追加新姓名，必须用 \"a+\"（D），\"r+\" 打不开不存在的文件、\"w+\" 会清空；姓名以回车结束用 gets(name)（B）；注释说\"读写正确就循环\"，即无错才继续，条件为 ferror(fp)==0（A）。"
   }
 }

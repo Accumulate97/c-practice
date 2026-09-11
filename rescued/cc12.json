@@ -1,0 +1,595 @@
+[
+ {
+  "originalId": "题12.31",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char ch;\n  long n = 0;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"letter.txt\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  if ((fp = fopen(\"letter.txt\", \"r\")) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while (/*__BLANK_1__*/)\n    { ch = /*__BLANK_2__*/;\n      if (ch == 'c') n++;\n    }\n  printf(\"n=%ld\\n\", n);\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "!feof(fp)",
+    "accepted": [
+     "!feof(fp)",
+     "feof(fp)==0"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fgetc(fp)",
+    "accepted": [
+     "fgetc(fp)",
+     "getc(fp)"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "abcchc\n",
+    "expected": "n=3",
+    "note": "3 个小写 c"
+   },
+   {
+    "stdin": "",
+    "expected": "n=0",
+    "note": "边界：空文件"
+   },
+   {
+    "stdin": "cccc\n",
+    "expected": "n=4",
+    "note": "全 c"
+   }
+  ],
+  "explanation": "统计文件中某字符的个数，循环条件用【1】!feof(fp) 保证未读到文件尾才继续，循环体内【2】fgetc(fp) 读入一个字符赋给 ch 再与 'c' 比较计数。易错点：原书 if((fp=fopen(...))==NULL); 末尾多一个分号，使判空语句变成空语句，适配版已删去；feof 在读完最后一个字符后仍为假，循环会多执行一次读到 EOF，但 EOF 不等于 'c'，不影响计数结果。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char ch;\n  long n = 0;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"letter.txt\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  if ((fp = fopen(\"letter.txt\", \"r\")) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while ( !feof(fp) )\n    { ch =  fgetc(fp) ;\n      if (ch == 'c') n++;\n    }\n  printf(\"n=%ld\\n\", n);\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.32",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ int p = 0, n = 0, z = 0, temp;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"num.dat\", \"w\");             /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp = /*__BLANK_1__*/;\n  if (fp == NULL)\n    printf(\"Cannot open file!\\n\");\n  else\n    { while (!feof(fp))\n        { if (fscanf(/*__BLANK_2__*/) != 1) break;\n          if (temp > 0) p++;\n          else if (temp < 0) n++;\n          else /*__BLANK_3__*/;\n        }\n      fclose(fp);\n    }\n  printf(\"positive=%d,negative=%d,zero=%d\\n\", p, n, z);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "fopen(\"num.dat\",\"r\")",
+    "accepted": [
+     "fopen(\"num.dat\",\"r\")",
+     "fopen(\"num.dat\", \"r\")"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fp,\"%d\",&temp",
+    "accepted": [
+     "fp,\"%d\",&temp",
+     "fp, \"%d\", &temp"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "z++",
+    "accepted": [
+     "z++",
+     "++z",
+     "z=z+1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1 -2 0 3 -4\n",
+    "expected": "positive=2,negative=2,zero=1",
+    "note": "正负零混合"
+   },
+   {
+    "stdin": "0 0\n",
+    "expected": "positive=0,negative=0,zero=2",
+    "note": "全零"
+   },
+   {
+    "stdin": "",
+    "expected": "positive=0,negative=0,zero=0",
+    "note": "边界：空文件"
+   }
+  ],
+  "explanation": "【1】以只读方式打开整数文件：fopen(\"num.dat\",\"r\")；【2】fscanf 比 scanf 多一个排在最前的文件指针：fp,\"%d\",&temp；【3】temp 既非正也非负即为零，累加 z++。适配版在 fscanf 返回值不为 1 时 break，修正原书 while(!feof(fp)) 在文件尾多读一次、把上一次的旧值重复计数的缺陷；fclose 也移入成功分支，避免对 NULL 关闭。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ int p = 0, n = 0, z = 0, temp;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"num.dat\", \"w\");             /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp =  fopen(\"num.dat\",\"r\") ;\n  if (fp == NULL)\n    printf(\"Cannot open file!\\n\");\n  else\n    { while (!feof(fp))\n        { if (fscanf( fp,\"%d\",&temp ) != 1) break;\n          if (temp > 0) p++;\n          else if (temp < 0) n++;\n          else  z++ ;\n        }\n      fclose(fp);\n    }\n  printf(\"positive=%d,negative=%d,zero=%d\\n\", p, n, z);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.33",
+  "code": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{ char b = 'F';\n  int a = 1;\n  FILE * fp;\n  char buf[64] = \"\";\n  size_t k;\n  fp = fopen(\"e12_33.dat\", \"w\");\n  fprintf(fp, \"%d,%c\", a, b);\n  fclose(fp);\n  printf(\"screen=a=%d,b=%c\\n\", a, b);\n  fp = fopen(\"e12_33.dat\", \"r\");            /* 适配：回读文件内容供判分 */\n  k = fread(buf, 1, sizeof buf - 1, fp);\n  buf[k] = '\\0';\n  fclose(fp);\n  printf(\"file=%s\\n\", buf);\n  printf(\"check1=%d\\n\", strcmp(buf, /*__BLANK_1__*/) == 0);\n  printf(\"check2=%d\\n\", strcmp(\"a=1,b=F\", /*__BLANK_2__*/) == 0);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "\"1,F\"",
+    "accepted": [
+     "\"1,F\""
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "\"a=1,b=F\"",
+    "accepted": [
+     "\"a=1,b=F\""
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "screen=a=1,b=F\nfile=1,F\ncheck1=1\ncheck2=1",
+    "note": "无输入；两处填空与实算结果自检"
+   }
+  ],
+  "explanation": "fprintf(fp,\"%d,%c\",a,b) 把 a=1 按十进制整数、b='F' 按字符写入文件，中间还有格式串里的逗号，故文件 e12_33.dat 中的内容是 1,F；printf 用同一格式串在屏幕输出，结果是 a=1,b=F。易错点：写文件与写屏幕用的是同一个格式串，但 %d、%c 作用在变量上，不要把格式串本身当成文件内容；适配版把两个结果做成字符串填空并回读文件自检。",
+  "solution": "#include <stdio.h>\n#include <string.h>\nint main(void)\n{ char b = 'F';\n  int a = 1;\n  FILE * fp;\n  char buf[64] = \"\";\n  size_t k;\n  fp = fopen(\"e12_33.dat\", \"w\");\n  fprintf(fp, \"%d,%c\", a, b);\n  fclose(fp);\n  printf(\"screen=a=%d,b=%c\\n\", a, b);\n  fp = fopen(\"e12_33.dat\", \"r\");            /* 适配：回读文件内容供判分 */\n  k = fread(buf, 1, sizeof buf - 1, fp);\n  buf[k] = '\\0';\n  fclose(fp);\n  printf(\"file=%s\\n\", buf);\n  printf(\"check1=%d\\n\", strcmp(buf,  \"1,F\" ) == 0);\n  printf(\"check2=%d\\n\", strcmp(\"a=1,b=F\",  \"a=1,b=F\" ) == 0);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.34",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp;\n  FILE * seed;\n  long count = 0;\n  int c;\n  seed = fopen(\"letter.dat\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  if ((fp = fopen(\"letter.dat\", /*__BLANK_1__*/)) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while ((/*__BLANK_2__*/) != EOF)\n    { /*__BLANK_3__*/; }\n  printf(\"count=%ld\\n\", count);\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "\"r\"",
+    "accepted": [
+     "\"r\"",
+     "\"rt\""
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fgetc(fp)",
+    "accepted": [
+     "fgetc(fp)",
+     "getc(fp)"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "count++",
+    "accepted": [
+     "count++",
+     "++count",
+     "count=count+1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "abcdef\n",
+    "expected": "count=7",
+    "note": "6 字母加换行共 7 字符"
+   },
+   {
+    "stdin": "",
+    "expected": "count=0",
+    "note": "边界：空文件"
+   },
+   {
+    "stdin": "xyz",
+    "expected": "count=3",
+    "note": "无换行结尾"
+   }
+  ],
+  "explanation": "【1】只读打开文本文件用 \"r\"；【2】【3】配合完成计数：while 的条件里 (fgetc(fp))!=EOF 每次读入一个字符，循环体 count++ 累加，读到文件尾退出。原书骨架是 while(!feof(fp)){【2】;【3】;}，那样在文件尾会多计 1 个字符，适配版改为以 fgetc 的返回值是否为 EOF 判终，count 才等于文件的真实字符数。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp;\n  FILE * seed;\n  long count = 0;\n  int c;\n  seed = fopen(\"letter.dat\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  if ((fp = fopen(\"letter.dat\",  \"r\" )) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while (( fgetc(fp) ) != EOF)\n    {  count++ ; }\n  printf(\"count=%ld\\n\", count);\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.35",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp;\n  char ch, fname[16];\n  int c;\n  if (scanf(\"%15s%*c\", fname) != 1) return 0;   /* 适配：gets 换 scanf，%*c 吃掉回车 */\n  if ((fp = fopen(fname, \"w\")) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while ((/*__BLANK_1__*/) != '!')\n    fputc(/*__BLANK_2__*/);\n  fclose(fp);\n  fp = fopen(fname, \"r\");                    /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  putchar('\\n');\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "(ch=getchar())",
+    "accepted": [
+     "(ch=getchar())",
+     "ch=getchar()"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "ch,fp",
+    "accepted": [
+     "ch,fp",
+     "ch, fp"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "out.txt\nabc!",
+    "expected": "abc",
+    "note": "! 前的字符入库"
+   },
+   {
+    "stdin": "f.txt\n!",
+    "expected": "",
+    "note": "边界：立即结束"
+   },
+   {
+    "stdin": "f.txt\nhi!x",
+    "expected": "hi",
+    "note": "! 后的字符被丢弃"
+   }
+  ],
+  "explanation": "【1】(ch=getchar()) 先从键盘读入一个字符存入 ch 再与 '!' 比较，外层括号不可省，否则先比较 getchar() 的返回值而 ch 未被赋值；【2】fputc(ch,fp) 的两个实参依次是待写字符与目标文件指针。适配版把不安全的 gets 换成 scanf(\"%15s%*c\") 读文件名，并用 %*c 吃掉文件名后的回车，否则换行符会被当成第一个数据字符写进文件。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp;\n  char ch, fname[16];\n  int c;\n  if (scanf(\"%15s%*c\", fname) != 1) return 0;   /* 适配：gets 换 scanf，%*c 吃掉回车 */\n  if ((fp = fopen(fname, \"w\")) == NULL)\n    { printf(\"Cannot open file!\\n\"); exit(0); }\n  while (( (ch=getchar()) ) != '!')\n    fputc( ch,fp );\n  fclose(fp);\n  fp = fopen(fname, \"r\");                    /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  putchar('\\n');\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.36",
+  "code": "#include <stdio.h>\nstruct rec\n{ int num;\n  float total;\n};\nvoid reout(FILE * fp);                       /* 适配：补写函数原型 */\nint main(void)\n{ FILE * seed;\n  struct rec t;\n  int sn;\n  float st;\n  seed = fopen(\"e12_36.dat\", \"wb\");         /* 适配：二进制文件由 stdin 文本生成 */\n  while (scanf(\"%d%f\", &sn, &st) == 2)\n    { t.num = sn; t.total = st; fwrite(&t, sizeof t, 1, seed); }\n  fclose(seed);\n  seed = fopen(\"e12_36.dat\", \"rb\");\n  reout(seed);\n  fclose(seed);\n  return 0;\n}\nvoid reout(/*__BLANK_1__*/)\n{ struct rec r;\n  while (fread(&r, /*__BLANK_2__*/ , 1, fp) == 1)\n    printf(\"%d,%f\\n\", /*__BLANK_3__*/);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "FILE *fp",
+    "accepted": [
+     "FILE *fp",
+     "FILE * fp"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "sizeof(struct rec)",
+    "accepted": [
+     "sizeof(struct rec)",
+     "sizeof r"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "r.num,r.total",
+    "accepted": [
+     "r.num,r.total",
+     "r.num, r.total"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1 2.5\n3 4\n",
+    "expected": "1,2.500000\n3,4.000000",
+    "note": "两条记录"
+   },
+   {
+    "stdin": "",
+    "expected": "",
+    "note": "边界：空文件"
+   },
+   {
+    "stdin": "7 0.5\n",
+    "expected": "7,0.500000",
+    "note": "单条记录"
+   }
+  ],
+  "explanation": "【1】reout 的形参是文件指针 FILE *fp，函数体内直接用 fp 读文件；【2】fread 的 size 实参是每个结构体占的字节数 sizeof(struct rec)，count 为 1；【3】printf 输出读入成员的当前值 r.num,r.total。适配版把原书 while(!feof(fp)) 改为以 fread 返回值==1 控制循环，避免文件尾多打印一条未初始化记录，并补上结构体定义后缺失的分号。",
+  "solution": "#include <stdio.h>\nstruct rec\n{ int num;\n  float total;\n};\nvoid reout(FILE * fp);                       /* 适配：补写函数原型 */\nint main(void)\n{ FILE * seed;\n  struct rec t;\n  int sn;\n  float st;\n  seed = fopen(\"e12_36.dat\", \"wb\");         /* 适配：二进制文件由 stdin 文本生成 */\n  while (scanf(\"%d%f\", &sn, &st) == 2)\n    { t.num = sn; t.total = st; fwrite(&t, sizeof t, 1, seed); }\n  fclose(seed);\n  seed = fopen(\"e12_36.dat\", \"rb\");\n  reout(seed);\n  fclose(seed);\n  return 0;\n}\nvoid reout( FILE *fp )\n{ struct rec r;\n  while (fread(&r,  sizeof(struct rec)  , 1, fp) == 1)\n    printf(\"%d,%f\\n\",  r.num,r.total );\n}"
+ },
+ {
+  "originalId": "题12.37",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n#define SIZE 4\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char addr[15];\n} stud[SIZE];\nvoid save(void)\n{ FILE * fp;\n  int i;\n  if ((fp = fopen(\"stu_list.dat\", \"wb\")) == NULL)\n    { printf(\"Cannot open file !\\n\"); return; }\n  for (i = 0; i < SIZE; i++)\n    if (fwrite(/*__BLANK_1__*/) != 1)\n      printf(\"File-writing error!\\n\");\n  fclose(fp);\n}\nint main(void)\n{ int i;\n  FILE * fp;\n  for (i = 0; i < SIZE; i++)\n    if (scanf(\"%s%d%d%s\", stud[i].name, /*__BLANK_2__*/ , /*__BLANK_3__*/ , stud[i].addr) != 4) return 0;\n  save();\n  fp = fopen(\"stu_list.dat\", \"rb\");          /* 适配：回读供判分 */\n  for (i = 0; i < SIZE; i++)\n    if (fread(&stud[i], sizeof(struct student_type), 1, fp) == 1)\n      printf(\"%s %d %d %s\\n\", stud[i].name, stud[i].num, stud[i].age, stud[i].addr);\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "&stud[i],sizeof(struct student_type),1,fp",
+    "accepted": [
+     "&stud[i],sizeof(struct student_type),1,fp"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "&stud[i].num",
+    "accepted": [
+     "&stud[i].num"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "&stud[i].age",
+    "accepted": [
+     "&stud[i].age"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "Tom 1 18 BJ\nAmy 2 19 SH\nBob 3 20 GZ\nCyd 4 21 SZ\n",
+    "expected": "Tom 1 18 BJ\nAmy 2 19 SH\nBob 3 20 GZ\nCyd 4 21 SZ",
+    "note": "4 条记录原样回读"
+   },
+   {
+    "stdin": "Li 9 22 HZ\nWu 8 21 NJ\nZh 7 20 TJ\nQi 6 19 CQ\n",
+    "expected": "Li 9 22 HZ\nWu 8 21 NJ\nZh 7 20 TJ\nQi 6 19 CQ",
+    "note": "另一组数据"
+   },
+   {
+    "stdin": "Abcdefghi 5 30 XYZW\nB 6 31 Y\nC 7 32 Z\nD 8 33 W\n",
+    "expected": "Abcdefghi 5 30 XYZW\nB 6 31 Y\nC 7 32 Z\nD 8 33 W",
+    "note": "边界：9 字符姓名"
+   }
+  ],
+  "explanation": "【1】fwrite 的四个实参依次是数据首址、每项字节数、项数、文件指针：&stud[i],sizeof(struct student_type),1,fp，返回值不等于 1 说明该记录写失败；【2】【3】scanf 读整型成员必须传地址 &stud[i].num、&stud[i].age，而 name、addr 是数组名、本身就是地址不必再加 &。适配版把带逗号的格式串改为 %s%d%d%s，因为 %s 遇空白才停，原格式串无法正确切分输入。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\n#define SIZE 4\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char addr[15];\n} stud[SIZE];\nvoid save(void)\n{ FILE * fp;\n  int i;\n  if ((fp = fopen(\"stu_list.dat\", \"wb\")) == NULL)\n    { printf(\"Cannot open file !\\n\"); return; }\n  for (i = 0; i < SIZE; i++)\n    if (fwrite( &stud[i],sizeof(struct student_type),1,fp ) != 1)\n      printf(\"File-writing error!\\n\");\n  fclose(fp);\n}\nint main(void)\n{ int i;\n  FILE * fp;\n  for (i = 0; i < SIZE; i++)\n    if (scanf(\"%s%d%d%s\", stud[i].name,  &stud[i].num  ,  &stud[i].age  , stud[i].addr) != 4) return 0;\n  save();\n  fp = fopen(\"stu_list.dat\", \"rb\");          /* 适配：回读供判分 */\n  for (i = 0; i < SIZE; i++)\n    if (fread(&stud[i], sizeof(struct student_type), 1, fp) == 1)\n      printf(\"%s %d %d %s\\n\", stud[i].name, stud[i].num, stud[i].age, stud[i].addr);\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.38",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char name[10], a;\n  int n;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"e12_38.dat\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp = fopen(/*__BLANK_1__*/);\n  if (fp == 0)\n    { printf(\"Cannot open file !\\n\"); exit(0); }\n  while (fscanf(/*__BLANK_2__*/\"%s %d %c\", name, &n, &a) == 3)\n    { if (n < 50 || a == 'C')\n        printf(\"姓名：%s  生产数量：%d  产品等级：%c\\n\", name, n, a);\n    }\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "\"e12_38.dat\",\"r\"",
+    "accepted": [
+     "\"e12_38.dat\",\"r\""
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fp,",
+    "accepted": [
+     "fp,",
+     "fp ,"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "Tom 40A\nJim 60B\n",
+    "expected": "姓名：Tom  生产数量：40  产品等级：A",
+    "note": "仅数量低于 50 的 Tom 命中"
+   },
+   {
+    "stdin": "Ann 60C\n",
+    "expected": "姓名：Ann  生产数量：60  产品等级：C",
+    "note": "等级为 C 命中"
+   },
+   {
+    "stdin": "",
+    "expected": "",
+    "note": "边界：空文件"
+   }
+  ],
+  "explanation": "【1】只读打开已存在的文本数据文件：\"e12_38.dat\",\"r\"；【2】fscanf 的第一个实参是文件指针，连同其后的逗号一起填 fp,。条件 n<50||a=='C' 是\"或\"关系，满足其一即显示。适配版把格式串改为 \"%s %d %c\"，在 %c 前加空格跳过数字与等级间的空白，否则 %c 会读入空格；循环条件用 fscanf==3 代替 feof 判断，避免文件尾多读一次。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char name[10], a;\n  int n;\n  FILE * fp;\n  FILE * seed;\n  int c;\n  seed = fopen(\"e12_38.dat\", \"w\");          /* 适配：数据文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp = fopen( \"e12_38.dat\",\"r\" );\n  if (fp == 0)\n    { printf(\"Cannot open file !\\n\"); exit(0); }\n  while (fscanf( fp, \"%s %d %c\", name, &n, &a) == 3)\n    { if (n < 50 || a == 'C')\n        printf(\"姓名：%s  生产数量：%d  产品等级：%c\\n\", name, n, a);\n    }\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.39",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp, * fq;\n  int c;\n  /*__BLANK_1__*/ = fopen(\"correct.txt\", \"w\");\n  /*__BLANK_2__*/ = fopen(\"answer.txt\", \"w\");\n  if (fp == NULL)\n    { printf(\"文件 correct.txt 打开错误!\\n\"); exit(0); }\n  if (fq == NULL)\n    { printf(\"文件 answer.txt 打开错误!\\n\"); exit(0); }\n  fprintf(fp, \"%3d%2c\\n\", 1, 'A'); fprintf(fq, \"%3d%2c\\n\", 1, 'B');\n  fprintf(fp, \"%3d%2c\\n\", 2, 'C'); fprintf(fq, \"%3d%2c\\n\", 2, 'C');\n  fprintf(fp, \"%3d%2c\\n\", 3, 'B'); fprintf(fq, \"%3d%2c\\n\", 3, 'B');\n  fprintf(fp, \"%3d%2c\\n\", 4, 'D'); fprintf(fq, \"%3d%2c\\n\", 4, 'A');\n  fprintf(fp, \"%3d%2c\\n\", 5, 'D'); fprintf(fq, \"%3d%2c\\n\", 5, 'D');\n  /*__BLANK_3__*/\n  fp = fopen(\"correct.txt\", \"r\");           /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  fclose(fp);\n  fq = fopen(\"answer.txt\", \"r\");\n  while ((c = fgetc(fq)) != EOF) putchar(c);\n  fclose(fq);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "fp",
+    "accepted": [
+     "fp"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fq",
+    "accepted": [
+     "fq"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "fclose(fp);fclose(fq);",
+    "accepted": [
+     "fclose(fp);fclose(fq);",
+     "fclose(fp); fclose(fq);"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "  1 A\n  2 C\n  3 B\n  4 D\n  5 D\n  1 B\n  2 C\n  3 B\n  4 A\n  5 D",
+    "note": "无输入；先回读 correct.txt 再回读 answer.txt"
+   }
+  ],
+  "explanation": "【1】【2】是两个 fopen 调用结果的接收者，即文件指针变量 fp 与 fq，作赋值运算的左值；【3】两个文件用完必须都关闭：fclose(fp);fclose(fq);，否则缓冲区中最后的数据可能尚未写入磁盘。fprintf 的 %3d%2c 让题号占 3 列、答案占 2 列，两个文件行行对齐，便于逐题核对标准答案与学生答案。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE * fp, * fq;\n  int c;\n   fp  = fopen(\"correct.txt\", \"w\");\n   fq  = fopen(\"answer.txt\", \"w\");\n  if (fp == NULL)\n    { printf(\"文件 correct.txt 打开错误!\\n\"); exit(0); }\n  if (fq == NULL)\n    { printf(\"文件 answer.txt 打开错误!\\n\"); exit(0); }\n  fprintf(fp, \"%3d%2c\\n\", 1, 'A'); fprintf(fq, \"%3d%2c\\n\", 1, 'B');\n  fprintf(fp, \"%3d%2c\\n\", 2, 'C'); fprintf(fq, \"%3d%2c\\n\", 2, 'C');\n  fprintf(fp, \"%3d%2c\\n\", 3, 'B'); fprintf(fq, \"%3d%2c\\n\", 3, 'B');\n  fprintf(fp, \"%3d%2c\\n\", 4, 'D'); fprintf(fq, \"%3d%2c\\n\", 4, 'A');\n  fprintf(fp, \"%3d%2c\\n\", 5, 'D'); fprintf(fq, \"%3d%2c\\n\", 5, 'D');\n   fclose(fp);fclose(fq); \n  fp = fopen(\"correct.txt\", \"r\");           /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  fclose(fp);\n  fq = fopen(\"answer.txt\", \"r\");\n  while ((c = fgetc(fq)) != EOF) putchar(c);\n  fclose(fq);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.40",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char a[4] = \"1357\", b[6] = \"abcdef\";\n  FILE * fp;\n  int c;\n  if ((fp = fopen(/*__BLANK_1__*/)) == NULL) exit(0);\n  fwrite(a, sizeof(char), 4, fp);\n  fwrite(b, /*__BLANK_2__*/ , 1, fp);\n  fclose(fp);\n  fp = fopen(\"letter.dat\", \"rb\");           /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  putchar('\\n');\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "\"letter.dat\",\"wb\"",
+    "accepted": [
+     "\"letter.dat\",\"wb\""
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "6*sizeof(char)",
+    "accepted": [
+     "6*sizeof(char)",
+     "6 * sizeof(char)",
+     "sizeof(b)"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "1357abcdef",
+    "note": "无输入；回读二进制文件得到两数组拼接内容"
+   }
+  ],
+  "explanation": "【1】fopen 的两个实参要一起填：\"letter.dat\",\"wb\"，w 表示新建写、b 表示二进制；【2】fwrite 的 size 实参是每项字节数、count 是项数，b 的 6 个元素要一次写完，故 count=1、size=6*sizeof(char)。对照上一行 fwrite(a,sizeof(char),4,fp) 可见：总字节数相同时，size 与 count 的切分方式可以不同，二者相乘才是写入字节数。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ char a[4] = \"1357\", b[6] = \"abcdef\";\n  FILE * fp;\n  int c;\n  if ((fp = fopen( \"letter.dat\",\"wb\" )) == NULL) exit(0);\n  fwrite(a, sizeof(char), 4, fp);\n  fwrite(b,  6*sizeof(char)  , 1, fp);\n  fclose(fp);\n  fp = fopen(\"letter.dat\", \"rb\");           /* 适配：回读供判分 */\n  while ((c = fgetc(fp)) != EOF) putchar(c);\n  putchar('\\n');\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.42",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <math.h>\nint myprime(int a)\n{ int i, end;\n  end = (int)sqrt((double)a);\n  for (i = 2; i <= end; i++)\n    if (a % i == 0) return 0;\n  return 1;\n}\nint main(void)\n{ int i;\n  FILE * fp;\n  fp = /*__BLANK_1__*/;\n  if (fp == NULL)\n    { printf(\"文件打开错误!\\n\"); exit(0); }\n  for (i = 2; i <= 20; i++)\n    if (/*__BLANK_2__*/)\n      { fprintf(/*__BLANK_3__*/\"%3d\", i);\n        printf(\"%3d\", i);\n      }\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "fopen(\"e12_42.dat\",\"w\")",
+    "accepted": [
+     "fopen(\"e12_42.dat\",\"w\")"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "myprime(i)==1",
+    "accepted": [
+     "myprime(i)==1",
+     "myprime(i)"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "fp,",
+    "accepted": [
+     "fp,",
+     "fp ,"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "  2  3  5  7 11 13 17 19",
+    "note": "无输入；2~20 的素数，%3d 右对齐"
+   }
+  ],
+  "explanation": "【1】以写方式新建输出文件：fopen(\"e12_42.dat\",\"w\")，原书的 d:\\\\file1\\\\ 盘符路径在判分环境不存在，适配为当前目录同名文件；【2】只有素数才输出，条件为 myprime(i)==1；【3】fprintf 的第一个实参是文件指针 fp（含其后逗号），使结果同时写入文件与屏幕。myprime 用 sqrt 取试除上界；存疑：题面说 2～10 而代码循环到 20，按代码实算到 20。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\n#include <math.h>\nint myprime(int a)\n{ int i, end;\n  end = (int)sqrt((double)a);\n  for (i = 2; i <= end; i++)\n    if (a % i == 0) return 0;\n  return 1;\n}\nint main(void)\n{ int i;\n  FILE * fp;\n  fp =  fopen(\"e12_42.dat\",\"w\") ;\n  if (fp == NULL)\n    { printf(\"文件打开错误!\\n\"); exit(0); }\n  for (i = 2; i <= 20; i++)\n    if ( myprime(i)==1 )\n      { fprintf( fp, \"%3d\", i);\n        printf(\"%3d\", i);\n      }\n  fclose(fp);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.44",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE /*__BLANK_1__*/;\n  int c;\n  FILE * seed;\n  seed = fopen(\"file1.c\", \"w\");             /* 适配：源文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp1 = fopen(\"file1.c\", \"r\");\n  fp2 = fopen(\"file2.c\", \"w\");\n  if (fp1 == NULL || fp2 == NULL)\n    { printf(\"Cannot open file !\\n\"); exit(0); }\n  while ((c = getc(fp1)) != EOF) putchar(c);\n  /*__BLANK_2__*/\n  while ((c = getc(fp1)) != EOF) putc(c, /*__BLANK_3__*/);\n  fclose(fp1);\n  fclose(fp2);\n  fp2 = fopen(\"file2.c\", \"r\");              /* 适配：回读供判分 */\n  printf(\"---\\n\");\n  while ((c = fgetc(fp2)) != EOF) putchar(c);\n  fclose(fp2);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "*fp1,*fp2",
+    "accepted": [
+     "*fp1,*fp2",
+     "*fp1, *fp2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "rewind(fp1);",
+    "accepted": [
+     "rewind(fp1);",
+     "rewind(fp1) ;"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "fp2",
+    "accepted": [
+     "fp2"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "hello world\n",
+    "expected": "hello world\n---\nhello world",
+    "note": "先屏幕回显源文件，--- 后为 file2.c 内容"
+   },
+   {
+    "stdin": "ab\n",
+    "expected": "ab\n---\nab",
+    "note": "短文件"
+   },
+   {
+    "stdin": "",
+    "expected": "---",
+    "note": "边界：空源文件"
+   }
+  ],
+  "explanation": "【1】一条声明同时定义两个文件指针：*fp1,*fp2，与前面的 FILE 合起来即 FILE *fp1,*fp2;；【2】第一遍显示已把 fp1 读到文件尾，复制前必须 rewind(fp1); 把位置指针移回开头；【3】putc 的第二实参是目标文件指针 fp2。适配版把原书 while(!feof(fp1)) putc(getc(fp1),fp2) 改为先读后判 EOF，避免文件尾把 EOF 当作字符写进 file2.c。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nint main(void)\n{ FILE  *fp1,*fp2 ;\n  int c;\n  FILE * seed;\n  seed = fopen(\"file1.c\", \"w\");             /* 适配：源文件由 stdin 生成 */\n  while ((c = getchar()) != EOF) fputc(c, seed);\n  fclose(seed);\n  fp1 = fopen(\"file1.c\", \"r\");\n  fp2 = fopen(\"file2.c\", \"w\");\n  if (fp1 == NULL || fp2 == NULL)\n    { printf(\"Cannot open file !\\n\"); exit(0); }\n  while ((c = getc(fp1)) != EOF) putchar(c);\n   rewind(fp1); \n  while ((c = getc(fp1)) != EOF) putc(c,  fp2 );\n  fclose(fp1);\n  fclose(fp2);\n  fp2 = fopen(\"file2.c\", \"r\");              /* 适配：回读供判分 */\n  printf(\"---\\n\");\n  while ((c = fgetc(fp2)) != EOF) putchar(c);\n  fclose(fp2);\n  return 0;\n}"
+ },
+ {
+  "originalId": "题12.45",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nvoid reverse(void);\nFILE * file1, * file2;\nint main(int argc, char * argv[])\n{ const char * n1 = \"e12_45_dst.txt\";\n  const char * n2 = \"e12_45_src.txt\";\n  int c;\n  FILE * seed;\n  if (argc < /*__BLANK_1__*/)\n    { seed = fopen(n2, \"w\");                /* 适配：无命令行参数时源文件由 stdin 生成 */\n      while ((c = getchar()) != EOF) fputc(c, seed);\n      fclose(seed);\n    }\n  else\n    { n1 = argv[1]; n2 = argv[2]; }\n  if ((file1 = fopen(n1, /*__BLANK_2__*/)) == NULL)\n    { printf(\"Can't open the file !\\n\"); exit(0); }\n  if ((file2 = fopen(n2, /*__BLANK_3__*/)) == NULL)\n    { printf(\"Can't open the file !\\n\"); exit(0); }\n  while (!feof(file2))\n    { reverse();\n      fputc('\\n', file1);\n    }\n  fclose(file1);\n  fclose(file2);\n  file1 = fopen(n1, \"r\");                    /* 适配：回读供判分 */\n  if (file1)\n    { while ((c = fgetc(file1)) != EOF) putchar(c);\n      fclose(file1);\n    }\n  return 0;\n}\nvoid reverse(void)\n{ int ch2;\n  if ((!feof(file2)) && ((ch2 = fgetc(file2)) != '\\n') && (ch2 != EOF))\n    { reverse();\n      fputc(ch2, file1);\n    }\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "3",
+    "accepted": [
+     "3"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "\"w\"",
+    "accepted": [
+     "\"w\""
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "\"r\"",
+    "accepted": [
+     "\"r\""
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "abc\ndef\n",
+    "expected": "cba\nfed",
+    "note": "两行各自逆序"
+   },
+   {
+    "stdin": "hello\n",
+    "expected": "olleh",
+    "note": "单行"
+   },
+   {
+    "stdin": "",
+    "expected": "",
+    "note": "边界：空源文件"
+   }
+  ],
+  "explanation": "【1】命令行为 程序名+两个文件名 共 3 个参数，argc<3 即参数不足（适配版此时改由 stdin 生成源文件而非报错退出）；【2】file1 存放逆序结果，是输出文件，用写方式 \"w\"；【3】file2 是被复制的源文件，用读方式 \"r\"。reverse 用递归先深入到行末再回溯写字符，从而实现整行逆序。存疑：书末答案页【2】印作 !=″w″，按语义应为 \"w\"；适配版另给递归补了 EOF 守卫。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nvoid reverse(void);\nFILE * file1, * file2;\nint main(int argc, char * argv[])\n{ const char * n1 = \"e12_45_dst.txt\";\n  const char * n2 = \"e12_45_src.txt\";\n  int c;\n  FILE * seed;\n  if (argc <  3 )\n    { seed = fopen(n2, \"w\");                /* 适配：无命令行参数时源文件由 stdin 生成 */\n      while ((c = getchar()) != EOF) fputc(c, seed);\n      fclose(seed);\n    }\n  else\n    { n1 = argv[1]; n2 = argv[2]; }\n  if ((file1 = fopen(n1,  \"w\" )) == NULL)\n    { printf(\"Can't open the file !\\n\"); exit(0); }\n  if ((file2 = fopen(n2,  \"r\" )) == NULL)\n    { printf(\"Can't open the file !\\n\"); exit(0); }\n  while (!feof(file2))\n    { reverse();\n      fputc('\\n', file1);\n    }\n  fclose(file1);\n  fclose(file2);\n  file1 = fopen(n1, \"r\");                    /* 适配：回读供判分 */\n  if (file1)\n    { while ((c = fgetc(file1)) != EOF) putchar(c);\n      fclose(file1);\n    }\n  return 0;\n}\nvoid reverse(void)\n{ int ch2;\n  if ((!feof(file2)) && ((ch2 = fgetc(file2)) != '\\n') && (ch2 != EOF))\n    { reverse();\n      fputc(ch2, file1);\n    }\n}"
+ },
+ {
+  "originalId": "题12.46",
+  "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char sex;\n} stud[10];\nint main(void)\n{ int i;\n  FILE /*__BLANK_1__*/;\n  struct student_type t;\n  FILE * seed = fopen(\"stud_dat\", \"wb\");    /* 适配：二进制文件由 stdin 文本生成 */\n  if (scanf(\"%d\", &i) != 1) return 0;\n  while (scanf(\"%s%d%d %c\", t.name, &t.num, &t.age, &t.sex) == 4)\n    fwrite(&t, sizeof t, 1, seed);\n  fclose(seed);\n  if ((fp = fopen(\"stud_dat\", \"rb\")) == NULL)\n    { printf(\"cannot open file\\n\"); exit(0); }\n  fseek(/*__BLANK_2__*/);\n  fread(/*__BLANK_3__*/ , sizeof(struct student_type), 1, fp);\n  printf(\"%s%d%d%c\\n\", stud[i].name, stud[i].num, stud[i].age, stud[i].sex);\n  fclose(fp);\n  return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "*fp",
+    "accepted": [
+     "*fp"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fp,i*sizeof(struct student_type),0",
+    "accepted": [
+     "fp,i*sizeof(struct student_type),0",
+     "fp, i * sizeof(struct student_type), 0"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "&stud[i]",
+    "accepted": [
+     "&stud[i]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1\nTom 1 18 M\nAmy 2 19 F\n",
+    "expected": "Amy219F",
+    "note": "取下标 1 的记录"
+   },
+   {
+    "stdin": "0\nBob 7 20 M\n",
+    "expected": "Bob720M",
+    "note": "边界：第一条记录"
+   },
+   {
+    "stdin": "2\nA 1 1 M\nB 2 2 F\nC 3 3 M\n",
+    "expected": "C33M",
+    "note": "三条记录取最后一条"
+   }
+  ],
+  "explanation": "【1】FILE *fp 定义后面要用的文件指针；【2】fseek(fp,i*sizeof(struct student_type),0) 以文件头为起点跳过前 i 个记录，正好定位到第 i 个记录（下标从 0 起）；【3】fread 的首参是数据存放地址 &stud[i]。关键点：只有二进制文件各记录等长，才能用 sizeof 直接算偏移做随机读；文本文件记录长短不一，不能这样定位。",
+  "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct student_type\n{ char name[10];\n  int num;\n  int age;\n  char sex;\n} stud[10];\nint main(void)\n{ int i;\n  FILE  *fp ;\n  struct student_type t;\n  FILE * seed = fopen(\"stud_dat\", \"wb\");    /* 适配：二进制文件由 stdin 文本生成 */\n  if (scanf(\"%d\", &i) != 1) return 0;\n  while (scanf(\"%s%d%d %c\", t.name, &t.num, &t.age, &t.sex) == 4)\n    fwrite(&t, sizeof t, 1, seed);\n  fclose(seed);\n  if ((fp = fopen(\"stud_dat\", \"rb\")) == NULL)\n    { printf(\"cannot open file\\n\"); exit(0); }\n  fseek( fp,i*sizeof(struct student_type),0 );\n  fread( &stud[i]  , sizeof(struct student_type), 1, fp);\n  printf(\"%s%d%d%c\\n\", stud[i].name, stud[i].num, stud[i].age, stud[i].sex);\n  fclose(fp);\n  return 0;\n}"
+ }
+]

@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "c04b896d4efa82d8",
+  "content_sha": "2c137ee3d0e8ac47",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 986,
+  "count": 1024,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -9936,6 +9936,386 @@
       "chapter": "第12章 文件",
       "section": "12.3 编程题",
       "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-001",
+      "file": "c-ch12.json",
+      "title": "【题 12.1】设fp是指向某个文件的指针",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-002",
+      "file": "c-ch12.json",
+      "title": "【题 12.2】若要指定打开c盘上子目录myfile的二进制文件test.bin",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-003",
+      "file": "c-ch12.json",
+      "title": "【题 12.3】若执行fopen函数时发生错误",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-004",
+      "file": "c-ch12.json",
+      "title": "【题 12.4】若要用fopen函数打开一个新的二进制文件",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-005",
+      "file": "c-ch12.json",
+      "title": "【题 12.5】若以″a＋″方式打开一个已存在的文件",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-006",
+      "file": "c-ch12.json",
+      "title": "【题 12.6】正常执行文件关闭操作时",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-007",
+      "file": "c-ch12.json",
+      "title": "【题 12.7】已知函数的调用形式是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-008",
+      "file": "c-ch12.json",
+      "title": "【题 12.8】若有下列定义和说明",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-009",
+      "file": "c-ch12.json",
+      "title": "【题 12.9】fscanf函数的正确调用形式是______",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-010",
+      "file": "c-ch12.json",
+      "title": "【题 12.10】fwrite函数的一般调用形式是______",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-011",
+      "file": "c-ch12.json",
+      "title": "【题 12.11】fgetc函数的作用是从指定文件读入一个字符",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-012",
+      "file": "c-ch12.json",
+      "title": "【题 12.12】若调用fputc函数输出字符成功",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-013",
+      "file": "c-ch12.json",
+      "title": "【题 12.13】标准库函数fgets",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-014",
+      "file": "c-ch12.json",
+      "title": "【题 12.14】设有以下结构体类型",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-015",
+      "file": "c-ch12.json",
+      "title": "【题 12.15】阅读以下程序及对程序功能的描述",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-016",
+      "file": "c-ch12.json",
+      "title": "【题 12.16】函数调用语句fseek",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-017",
+      "file": "c-ch12.json",
+      "title": "【题 12.17】利用fseek函数可实现的操作是______",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-018",
+      "file": "c-ch12.json",
+      "title": "【题 12.18】fseek·函数的正确调用形式是______",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-019",
+      "file": "c-ch12.json",
+      "title": "【题 12.19】函数rewind的作用是______",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-020",
+      "file": "c-ch12.json",
+      "title": "【题 12.20】函数ftell",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-008",
+      "file": "c-ch12.json",
+      "title": "【题 12.21】下面程序的功能是实现人员登录",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-021",
+      "file": "c-ch12.json",
+      "title": "【题 12.22】在执行fopen函数时",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-022",
+      "file": "c-ch12.json",
+      "title": "【题 12.23】在以下read函数的调用形式中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-023",
+      "file": "c-ch12.json",
+      "title": "【题 12.24】函数lseek用来移动文件的位置指针",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-001",
+      "file": "c-ch12.json",
+      "title": "【题 12.31】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-002",
+      "file": "c-ch12.json",
+      "title": "【题 12.32】设文件num.dat中存放了一组整数",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-003",
+      "file": "c-ch12.json",
+      "title": "【题 12.33】执行以下程序段后",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-004",
+      "file": "c-ch12.json",
+      "title": "【题 12.34】下面程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-005",
+      "file": "c-ch12.json",
+      "title": "【题 12.35】下面程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-006",
+      "file": "c-ch12.json",
+      "title": "【题 12.36】下面程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-007",
+      "file": "c-ch12.json",
+      "title": "【题 12.37】以下程序的功能是输入4名学生的姓名、学号、年龄、住址并存入文件stu_list.dat中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-008",
+      "file": "c-ch12.json",
+      "title": "【题 12.38】设在e12_38.dat文件中已存放若干工人的姓名、生产数量、产品等级",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-009",
+      "file": "c-ch12.json",
+      "title": "【题 12.39】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-010",
+      "file": "c-ch12.json",
+      "title": "【题 12.40】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-011",
+      "file": "c-ch12.json",
+      "title": "【题 12.42】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-012",
+      "file": "c-ch12.json",
+      "title": "【题 12.44】以下程序的功能是将文件file1.c的内容输出到屏幕上并复制到文件file2.c中",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-013",
+      "file": "c-ch12.json",
+      "title": "【题 12.45】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-014",
+      "file": "c-ch12.json",
+      "title": "【题 12.46】以下程序的功能是",
+      "tags": [],
+      "chapter": "第12章 文件",
+      "section": "12.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {
