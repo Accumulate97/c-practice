@@ -2,7 +2,7 @@
   "category": "c",
   "chapter": "第6章 数组",
   "generated_at": "2026-09-08",
-  "count": 58,
+  "count": 137,
   "problems": [
     {
       "category": "c",
@@ -1441,6 +1441,2419 @@
           "note": "边界：不含数字字符"
         }
       ],
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.1（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.1】在 C 语言中，引用数组元素时，其数组下标的数据类型不允许是______。",
+      "explanation": "答案D。数组下标只能是整型常量或整型表达式，\"任何类型的表达式\"（如浮点、指针）不允许。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 整型常量",
+        "B) 整型表达式",
+        "C) 整型常量或整型表达式",
+        "D) 任何类型的表达式"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.2（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.2】以下对一维整型数组 a 的正确说明是______。",
+      "explanation": "答案D。方括号内须为常量表达式：A 用圆括号、B/C 用变量（VLA 非本教材口径），只有宏常量 SIZE 合法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int a(10);",
+        "B) int n=0,a[n];",
+        "C) int n;\nscanf(\"%d\",&n);\nint a[n];",
+        "D) #define SIZE 10\nint a[SIZE];"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.3（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.3】若有说明：int a[10];，则对 a 数组元素的正确引用是______。",
+      "explanation": "答案D。a[10-10] 即 a[0] 合法；a[10] 越界、a[3.5] 下标非整型、a(5) 是函数调用写法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a[10 ]",
+        "B) a[3.5]",
+        "C) a(5)",
+        "D) a[10-10]"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.4（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.4】在 C 语言中，一维数组的定义方式为：类型说明符 数组名______。",
+      "explanation": "答案A。一维数组定义形式为：类型说明符 数组名[常量表达式]。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) [常量表达式]",
+        "B) [整型表达式]",
+        "C) [整型常量]或[整型表达式]",
+        "D) [整型变量]"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.5（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.5】以下能对一维数组 a 进行正确初始化的语句形式是______。",
+      "explanation": "答案C。int a[]={0} 由初值推定长度并全部置 0，最规范；A 的圆括号、B 的空花括号非法，D 只显式给出一个初值。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int a[10]=(0,0,0,0,0);",
+        "B) int a[10]={ };",
+        "C) int a[ ]={0};",
+        "D) int a[10]={10*1};"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.6（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.6】以下对二维数组 a 的正确说明是______。",
+      "explanation": "答案C。二维数组可省第一维不可省第二维；A 省第二维，B、D 用圆括号非法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int a[3][ ];",
+        "B) float a(3,4);",
+        "C) double a[ ][4];",
+        "D) float a(3)(4);"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.7（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.7】若有说明：int a[3][4];，则对 a 数组元素的正确引用是______。",
+      "explanation": "答案C。a[1+1][0] 下标为整型表达式且未越界；a[3][4] 越界、a[1,3] 是逗号表达式、a(2)(1) 非法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a[3][4]",
+        "B) a[1,3]",
+        "C) a[1+1][0]",
+        "D) a(2)(1)"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.8（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.8】若有说明：int a[3][4];，则对 a 数组元素的非法引用是______。",
+      "explanation": "答案D。int a[3][4] 列下标范围 0~3，a[0][4] 越界属非法引用。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a[0][2*1]",
+        "B) a[1][3]",
+        "C) a[4-2][0]",
+        "D) a[0][4]"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.9（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.9】以下能对二维数组 a 进行正确初始化的语句是______。",
+      "explanation": "答案B。int a[][3] 由两行初值推定第一维；A 省第二维、C 花括号不配对、D 首行初值 4 个超过列数 3。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int a[2][ ]={{1,0,1},{5,2,3}};",
+        "B) int a[ ][3]={{1,2,3},{4,5,6}};",
+        "C) int a[2][4]={1,2,3},{4,5},{6}};",
+        "D) int a[ ][3]={{1,0,1,0},{ },{1,1}};"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.10（PDF p86 / 书页 p75）",
+      "difficulty": 2,
+      "stem": "【题 6.10】以下不能对二维数组 a 进行正确初始化的语句是______。",
+      "explanation": "答案C。a[2][3] 只允许 2 行初值，给出 3 行越界，不能正确初始化。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) int a[2][3]={0};",
+        "B) int a[ ][3]={{1,2},{0}};",
+        "C) int a[2][3]={{1,2},{3,4},{5,6}};",
+        "D) int a[ ][3]={1,2,3,4,5,6};"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.11（PDF p87 / 书页 p76）",
+      "difficulty": 2,
+      "stem": "【题 6.11】若有初始化语句：int a[3][4]={0};，则下面正确的叙述是______。",
+      "explanation": "答案D。{0} 会把数组全部元素初始化为 0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 只有元素 a[0][0]可得到初值 0",
+        "B) 此初始化语句不正确",
+        "C) 数组 a 中各元素都可得到初值，但其值不一定为 0",
+        "D) 数组 a 中每个元素均可得到初值 0"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.12（PDF p87 / 书页 p76）",
+      "difficulty": 2,
+      "stem": "【题 6.12】若有说明：int a[ ][4]={0,0};，则下面不正确的叙述是______。",
+      "explanation": "答案D。未显式给出的元素也自动补 0，故\"其余元素得不到初值\"的说法错误。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 数组 a 的每个元素都可得到初值 0",
+        "B) 二维数组 a 的第一维大小为 1",
+        "C) 因为二维数组 a 中第二维大小的值除以初值个数的商为 1，故数组 a 的行数为 1",
+        "D) 只有元素 a[0][0]和 a[0][1]可得到初值 0，其余元素均得不到初值 0"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.13（PDF p87 / 书页 p76）",
+      "difficulty": 2,
+      "stem": "【题 6.13】以下各组选项中，均能正确定义二维实型数组 a 的选项是______。",
+      "explanation": "答案C。C 组三个定义均合法（static/auto 带初值可推定第一维）；A 含无初值的 a[][4] 与省第二维的 a[3][]，B、D 含圆括号或省第二维。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) float a[3][4];\nfloat a[ ][4];\nfloat a[3][ ]={{1},{0}};",
+        "B) float a(3,4);\nfloat a[3][4];\nfloat a[ ][ ]={{0};{0}};",
+        "C) float a[3][4];\nstatic float a[ ][4]={{0},{0}};\nauto float a[ ][4]={{0},{0},{0}};",
+        "D) float a[3][4];\nfloat a[3][ ];\nfloat a[ ][4];"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.14（PDF p87 / 书页 p76）",
+      "difficulty": 3,
+      "stem": "【题 6.14】下面程序段______（每行代码前面的数字表示行号）。\n\n```c\n1    int a[3]={3*0};\n2    int i;\n3    for(i=0;i<3;i++) scanf(\"%d\",&a[i]);\n4    for(i=1;i<3;i++) a[0]=a[0]+a[i];\n5    printf(\"%d\\n\",a[0]);\n```",
+      "explanation": "答案A（书）。书认定第 1 行有错，旧口径认为初始化列表 {3*0} 中不应出现表达式；按现行 C 标准各行其实均合法，属书内口径争议，见存疑清单。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 第 1 行有错误",
+        "B) 第 5 行有错误",
+        "C) 第 3 行有错误",
+        "D) 没有错误"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.15（PDF p87 / 书页 p76）",
+      "difficulty": 3,
+      "stem": "【题 6.15】下面程序段______（每行代码前面的数字表示行号）。\n\n```c\n1    float a[10]={0.0};\n2    int i;\n3    for(i=0;i<3;i++) scanf(\"%d\",&a[i]);\n4    for(i=1;i<10;i++) a[0]=a[0]+a[i];\n5    printf(\"%f\\n\",a[0]);\n```",
+      "explanation": "答案C。float 数组却用 %d 读入，第 3 行格式符与变量类型不符。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 没有错误",
+        "B) 第 1 行有错误",
+        "C) 第 3 行有错误",
+        "D) 第 5 行有错误"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.16（PDF p87 / 书页 p76）",
+      "difficulty": 3,
+      "stem": "【题 6.16】下面程序段中有错误的行号是______（每行代码前面的数字表示行号）。\n\n```c\n1    int a[3]={1};\n2    int i;\n3    scanf(\"%d\",&a);\n4    for(i=1;i<3;i++) a[0]=a[0]+a[i];\n5    printf(\"a[0]=%d\\n\",a[0]);\n```",
+      "explanation": "答案D。scanf(\"%d\",&a) 的 &a 是整个数组的地址而非元素地址，第 3 行错。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 4",
+        "C) 5",
+        "D) 3"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.17（PDF p88 / 书页 p77）",
+      "difficulty": 3,
+      "stem": "【题 6.17】下面程序段______（每行代码前面的数字表示行号）。\n\n```c\n1    int a[3]={0},i;\n2    for(i=0;i<3;i++) scanf(\"%d\",&a[i]);\n3    for(i=1;i<4;i++) a[0]=a[0]+a[i];\n4    printf(\"%d\\n\",a[0]);\n```",
+      "explanation": "答案D。第 3 行循环上界 i<4 会访问 a[3]，越界。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 没有错误",
+        "B) 第 1 行有错误",
+        "C) 第 2 行有错误",
+        "D) 第 3 行有错误"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.18（PDF p88 / 书页 p77）",
+      "difficulty": 2,
+      "stem": "【题 6.18】若二维数组 a 有 m 列，则计算任一元素 a[i][j] 在数组中位置的公式为______。（假设 a[0][0] 位于数组的第一个位置上）",
+      "explanation": "答案D。a[0][0] 居第 1 位时，a[i][j] 之前有 i 整行加 j 个元素，位置为 i*m+j+1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) i*m+j",
+        "B) j*m+i",
+        "C) i*m+j-1",
+        "D) i*m+j+1"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.19（PDF p88 / 书页 p77）",
+      "difficulty": 3,
+      "stem": "【题 6.19】对以下定义语句的正确理解是______。\n\n```c\nint a[10]={6,7,8,9,10};\n```",
+      "explanation": "答案B。5 个初值依次赋给 a[0]~a[4]，其余补 0，语句合法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 将 6,7,8,9,10 依次赋给 a[1]～a[5]",
+        "B) 将 6,7,8,9,10 个初值依次赋给 a[0]～a[4]",
+        "C) 将 6,7,8,9,10 个初值依次赋给 a[6]～a[10]",
+        "D) 因为数组长度与初值的个数不相同，所以此初始化语句不正确"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.20（PDF p88 / 书页 p77）",
+      "difficulty": 2,
+      "stem": "【题 6.20】以下不正确的定义语句是______。",
+      "explanation": "答案B。y[5] 只有 5 个元素却给了 6 个初值，定义不正确。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) double x[5]={2.0,4.0,6.0,8.0,10.0};",
+        "B) int y[5]={0,1,3,5,7,9};",
+        "C) char c1[ ]={'1','2','3','4','5'};",
+        "D) char c2[ ]={'\\x10','\\xa','\\x8'};"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.21（PDF p88 / 书页 p77）",
+      "difficulty": 2,
+      "stem": "【题 6.21】若有说明：int a[ ][3]={ 1,2,3,4,5,6,7};，则 a 数组第一维的大小是______。",
+      "explanation": "答案B。7 个初值按每行 3 个排布需要 3 行，末行补 0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 无确定值"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.22（PDF p88 / 书页 p77）",
+      "difficulty": 2,
+      "stem": "【题 6.22】若有定义 float x[4]={1.3,2.4,5.6},y=6;, 则错误的语句是______。",
+      "explanation": "答案B。数组名 x 是地址常量，不能赋给 float 变量 y。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) y=x[3];",
+        "B) y=x+1;",
+        "C) y=x[2]+1;",
+        "D) x[0]=y;"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.23（PDF p88 / 书页 p77）",
+      "difficulty": 3,
+      "stem": "【题 6.23】定义如下变量和数组：\n\n则下面语句的输出结果是______。\n\n```c\nint k;\nint a[3][3]={1,2,3,4,5,6,7,8,9};\n\nfor(k=0;k<3;k++)   printf(\"%d \",a[k][2-k]);\n```",
+      "explanation": "答案A。k=0,1,2 依次取 a[0][2]、a[1][1]、a[2][0]，即 3、5、7。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 3 5 7",
+        "B) 3 6 9",
+        "C) 1 5 9",
+        "D) 1 4 7"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.24（PDF p89 / 书页 p78）",
+      "difficulty": 3,
+      "stem": "【题 6.24】若有以下程序段：\n\n则该程序段的功能是______。\n\n```c\nint a[ ]={4,0,2,3,1},i,j,t;\nfor(i=1;i<5;i++)\n{  t=a[i]; j=i-1;\n   while(j>=0 && t>a[j])\n   {  a[j+1]=a[j]; j--;  }\n   a[j+1]=t;\n}\n```",
+      "explanation": "答案B。while(j>=0 && t>a[j]) 把比 t 小的元素后移再插入，是降序插入排序。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 对数组 a 进行插入排序(升序)",
+        "B) 对数组 a 进行插入排序(降序)",
+        "C) 对数组 a 进行选择排序(升序)",
+        "D) 对数组 a 进行选择排序(降序)"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.25（PDF p89 / 书页 p78）",
+      "difficulty": 2,
+      "stem": "【题 6.25】若有初始化 int a[ ][3]={1,2,3,4,5,6,7};，则以下错误的叙述是______。",
+      "explanation": "答案D。a[3][3] 共 9 个元素，\"包含 7 个元素\"的说法错误。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 引用 a 数组时，元素的两个下标值均不能超过 2",
+        "B) a 数组的第一维大小为 3",
+        "C) a 数组中包含 9 个元素",
+        "D) a 数组中包含 7 个元素"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.26（PDF p89 / 书页 p78）",
+      "difficulty": 3,
+      "stem": "【题 6.26】下面程序段的运行结果是______。\n\n```c\nint a[6][6],i,j;\nfor(i=1;i<6;i++)\n   for(j=1;j<6;j++)\n      a[i][j]=(i/j) * (j/i);\nfor(i=1;i<6;i++)\n{  for(j=1;j<6;j++)\n      printf(\"%2d\",a[i][j]);\n   printf(\"\\n\");\n}\n```",
+      "explanation": "答案C。(i/j)*(j/i) 仅当 i==j 时为 1，其余为 0，输出单位矩阵。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1 1 1 1 1\n1 1 1 1 1\n1 1 1 1 1\n1 1 1 1 1\n1 1 1 1 1",
+        "B) 0 0 0 0 1\n0 0 0 1 0\n0 0 1 0 0\n0 1 0 0 0\n1 0 0 0 0",
+        "C) 1 0 0 0 0\n0 1 0 0 0\n0 0 1 0 0\n0 0 0 1 0\n0 0 0 0 1",
+        "D) 1 0 0 0 1\n0 1 0 1 0\n0 0 1 0 0\n0 1 0 1 0\n1 0 0 0 1"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-026",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.27（PDF p89 / 书页 p78）",
+      "difficulty": 3,
+      "stem": "【题 6.27】下面程序段的运行结果是______。\n\n```c\nint a[6],i;\nfor(i=1;i<6;i++)\n{  a[i]=9*(i-2+4*(i>3))%5;\n   printf(\"%3d\",a[i]);\n}\n```",
+      "explanation": "答案C。代入 i=1..5：9*(-1)%5=-4、0、9%5=4、54%5=4、63%5=3。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) -4 0 4 0 4",
+        "B) -4 0 4 0 3",
+        "C) -4 0 4 4 3",
+        "D) -4 0 4 4 0"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-027",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.28（PDF p90 / 书页 p79）",
+      "difficulty": 2,
+      "stem": "【题 6.28】下面是对数组 s 的初始化，其中错误的语句是______。",
+      "explanation": "答案D。\"abcde\" 加结束符共 6 字节，char s[5] 放不下。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) char s[5]={\"abc\"};",
+        "B) char s[5]={'a','b','c'};",
+        "C) char s[5]=\" \";",
+        "D) char s[5]=\"abcde\";"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-028",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.29（PDF p90 / 书页 p79）",
+      "difficulty": 3,
+      "stem": "【题 6.29】下面程序段的运行结果是______。\n\n```c\nchar c[5]={'a','b','\\0','c','\\0'};\nprintf(\"%s\",c);\n```",
+      "explanation": "答案B。%s 遇第一个 '\\0' 即停止，只输出 ab。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 'a''b'",
+        "B) ab",
+        "C) ab□c",
+        "D) ab□（其中□表示1个空格）"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-029",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.30（PDF p90 / 书页 p79）",
+      "difficulty": 3,
+      "stem": "【题 6.30】对两个数组 a 和 b 进行如下初始化：\n\n则以下叙述正确的是______。\n\n```c\nchar a[ ]=\"ABCDEF\";\nchar b[ ]={'A','B','C','D','E','F'};\n```",
+      "explanation": "答案D。a 含结束符长 7，b 长 6，a 的长度比 b 长。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) a 与 b 数组完全相同",
+        "B) a 与 b 长度相同",
+        "C) a 和 b 中都存放字符串",
+        "D) a 的长度比 b 长"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-030",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.31（PDF p90 / 书页 p79）",
+      "difficulty": 2,
+      "stem": "【题 6.31】有两个字符数组 a、b，则以下正确的输入格式是______。",
+      "explanation": "答案B。scanf(\"%s%s\",a,b) 以数组名为地址合法；gets 一次只能读一个串。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) gets(a,b);",
+        "B) scanf(\"%s%s\",a,b);",
+        "C) scanf(\"%s%s\",&a,&b);",
+        "D) gets(\"a\"),gets(\"b\");"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-031",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.32（PDF p90 / 书页 p79）",
+      "difficulty": 2,
+      "stem": "【题 6.32】有字符数组 a[80]和 b[80]，则正确的输出形式是______。",
+      "explanation": "答案D。puts 一次只输出一个字符串，需 puts(a),puts(b) 两次调用。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) puts(a,b);",
+        "B) printf(\"%s,%s\",a[ ],b[ ]);",
+        "C) putchar(a,b);",
+        "D) puts(a),puts(b);"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-032",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.33（PDF p90 / 书页 p79）",
+      "difficulty": 3,
+      "stem": "【题 6.33】下面程序段的运行结果是______。\n\n```c\nchar a[7]=\"abcdef\";\nchar b[4]=\"ABC\";\nstrcpy(a,b);\nprintf(\"%c\",a[5]);\n```",
+      "explanation": "答案D。strcpy 只覆盖前 4 个字节，a[5] 仍是原来的 'f'。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) □",
+        "B) \\0",
+        "C) e",
+        "D) f（其中□表示1个空格）"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-033",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.34（PDF p90 / 书页 p79）",
+      "difficulty": 3,
+      "stem": "【题 6.34】有下面的程序段：\n\n则______。\n\n```c\nchar a[3],b[ ]=\"China\";\na=b;\nprintf(\"%s\",a);\n```",
+      "explanation": "答案D。数组名是地址常量，a=b 不能通过编译。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 运行后将输出 China",
+        "B) 运行后将输出 Ch",
+        "C) 运行后将输出 Chi",
+        "D) 编译出错"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-034",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.35（PDF p91 / 书页 p80）",
+      "difficulty": 3,
+      "stem": "【题 6.35】下面程序段的运行结果是______。\n\n```c\nchar c[ ]=\"\\t\\v\\\\\\0will\\n\";\nprintf(\"%d\",strlen(c));\n```",
+      "explanation": "答案B。strlen 计到第一个 '\\0' 为止，前面只有 \\t \\v \\\\ 三个字符。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 14",
+        "B) 3",
+        "C) 9",
+        "D) 字符串中有非法字符，输出值不确定"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-035",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.36（PDF p91 / 书页 p80）",
+      "difficulty": 2,
+      "stem": "【题 6.36】判断字符串 a 和 b 是否相等，应当使用______。",
+      "explanation": "答案D。字符串比较必须用 strcmp，== 比较的是两个地址。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) if(a==b)",
+        "B) if(a=b)",
+        "C) if(strcpy(a,b))",
+        "D) if(strcmp(a,b))"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-036",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.37（PDF p91 / 书页 p80）",
+      "difficulty": 2,
+      "stem": "【题 6.37】判断字符串 s1 是否大于字符串 s2，应当使用______。",
+      "explanation": "答案D。s1 大于 s2 当且仅当 strcmp(s1,s2)>0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) if(s1>s2)",
+        "B) if(strcmp(s1,s2))",
+        "C) if(strcmp(s2,s1)>0)",
+        "D) if(strcmp(s1,s2)>0)"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-037",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.38（PDF p91 / 书页 p80）",
+      "difficulty": 3,
+      "stem": "【题 6.38】下面程序段的功能是输出两个字符串中对应相等的字符，请选择填空。\n\n```c\nchar x[ ]=\"programming\";\nchar y[ ]=\"Fortran\";\nint i=0;\nwhile(x[i]!='\\0'   &&  y[i]!='\\0')\n   if(x[i]==y[i])   printf(\"%c\",【 】);\n   else i++;\n```",
+      "explanation": "答案A。字符相等时输出它并让 i 自增；不相等时只 i++ 继续比下一位。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x[i++]",
+        "B) y[++i]",
+        "C) x[i]",
+        "D) y[i]"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-038",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.39（PDF p91 / 书页 p80）",
+      "difficulty": 2,
+      "stem": "【题 6.39】下面描述正确的是______。",
+      "explanation": "答案D。按字典序逐字符比较，\"That\" 的第 3 个字符 a 小于 \"The\" 的 e，故 That 小于 The。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 两个字符串所包含的字符个数相同时，才能比较字符串",
+        "B) 字符个数多的字符串比字符个数少的字符串大",
+        "C) 字符串\"STOP \"与\"STOP\"相等",
+        "D) 字符串\"That\"小于字符串\"The\""
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-039",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.40（PDF p91 / 书页 p80）",
+      "difficulty": 2,
+      "stem": "【题 6.40】以下描述中错误的是______。",
+      "explanation": "答案C。字符数组可存放 ASCII 集中任何字符（含转义字符），\"只能存键盘字符\"错误。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 字符数组中可以存放 ASCII 字符集中的任何字符",
+        "B) 字符数组的字符串可以整体输入、输出",
+        "C) 字符数组中只能存放键盘上可以找到的字符",
+        "D) 不可以用关系运算符对字符数组中的字符串进行比较"
+      ],
+      "answer": 2,
+      "id": "c-ch06-sc-040",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.41（PDF p91 / 书页 p80）",
+      "difficulty": 4,
+      "stem": "【题 6.41】有已排好序的字符串 a，下面的程序是将字符串 s 中的每个字符按 a 中元素的规律插入到 a 中。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{  char a[20]=\"cehiknqtw\",s[ ]=\"fbla\";\n   int i,k,j;\n   for(k=0;s[k]!='\\0';k++)\n   {  j=0;\n      while(s[k]>=a[j] && a[j]!='\\0') j++;\n      for(【1】)【2】;\n      a[j]=s[k];\n   }\n   puts(a);\n   return 0;\n}\n```\n\n【1】的候选项：\nA) i=strlen(a)+k; i>=j; i--\nB) i=strlen(a); i>=j; i--\nC) i=j; i<=strlen(a)+k; i++\nD) i=j; i<=strlen(a); i++\n\n【2】的候选项：\nA) a[i]=a[i+1]\nB) a[i+1]=a[i]\nC) a[i]=a[i-1]\nD) a[i-1]=a[i]\n\n请分别填写各空的选项字母。",
+      "explanation": "答案B、B。插入位置 j 之后的元素须整体后移一位，应从当前串尾 strlen(a) 递减到 j 执行 a[i+1]=a[i]。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "B"
+        },
+        {
+          "index": 2,
+          "answer": "B"
+        }
+      ],
+      "id": "c-ch06-fb-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.42（PDF p92 / 书页 p81）",
+      "difficulty": 4,
+      "stem": "【题 6.42】下面程序的功能是将已按升序排好序的两个字符串 a 和 b 中的字符按升序归并到字符串 c 中。请选择填空。\n\n```c\n#include <stdio.h>\n#include <string.h>\nint main( )\n{  char a[ ]=\"acegikm\",b[ ]=\"bdfhjlnpq\";\n   char c[80],* p;\n   int i=0,j=0,k=0;\n   while(a[i]!='\\0' && b[j]!='\\0')\n   {  if (a[i]<b[j])  { 【1】 }\n      else { 【2】 }\n      k++;\n   }\n   c[k]='\\0';\n   if(【3】) p=b+j;\n   else p=a+i;\n   strcat(c,p);\n   puts(c);\n   return 0;\n}\n```\n\n【1】的候选项：\nA) c[k]=a[i];i++;\nB) c[k]=a[j];i++;\nC) c[k]=a[i];j++;\nD) c[k]=a[j];j++;\n\n【2】的候选项：\nA) c[k]=a[i];i++;\nB) c[k]=a[j];i++;\nC) c[k]=a[i];j++;\nD) c[k]=a[j];j++;\n\n【3】的候选项：\nA) a[i]=='\\0'\nB) a[i]!='\\0'\nC) a[i-1]=='\\0'\nD) a[i-1]!='\\0'\n\n请分别填写各空的选项字母。",
+      "explanation": "答案A、D、A。归并时谁小取谁并推进各自下标；主循环结束后若 a 已取完（a[i]=='\\0'）则把 b 的剩余部分接在 c 后。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "A"
+        },
+        {
+          "index": 2,
+          "answer": "D"
+        },
+        {
+          "index": 3,
+          "answer": "A"
+        }
+      ],
+      "id": "c-ch06-fb-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.43（PDF p92 / 书页 p81）",
+      "difficulty": 3,
+      "stem": "【题 6.43】下面程序的功能是将字符串 s 中所有的字符 c 删除。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   char s[80]; int i,j;\n    gets(s);\n    for(i=j=0; s[i]!='\\0'; i++)\n        if(s[i]!='c') 【 】 ;\n    s[j]='\\0';\n    puts(s);\n    return 0;\n}\n```",
+      "explanation": "答案A。s[j++]=s[i] 在 if 保护下把非 c 字符前移压缩，一条语句同时完成赋值与下标推进。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) s[j++]=s[i]",
+        "B) s[++j]=s[i]",
+        "C) s[j]=s[i]; j++",
+        "D) s[j]=s[i]"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-041",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.44（PDF p93 / 书页 p82）",
+      "difficulty": 4,
+      "stem": "【题 6.44】下面程序的功能是从键盘输入一行字符，统计其中有多少个单词，单词之间用空格分隔。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   char s[80],c1,c2=' '; int i=0,num=0;\n    gets(s);\n    while(s[i]!='\\0')\n    {   c1=s[i];\n        if(i==0) c2=' ';\n        else c2=s[i-1];\n        if(【 】) num++;\n        i++;\n    }\n    printf(\"There are %d words.\\n\",num);\n    return 0;\n}\n```",
+      "explanation": "答案B。当前字符非空格且前一字符是空格，标志一个新单词的开始，num 加 1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) c1==' ' && c2==' '",
+        "B) c1!=' ' && c2==' '",
+        "C) c1==' ' && c2!=' '",
+        "D) c1!=' ' && c2!=' '"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-042",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.45（PDF p93 / 书页 p82）",
+      "difficulty": 3,
+      "stem": "【题 6.45】下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{   char ch[7]={\"12ab56\"}; int i,s=0;\n    for(i=0;ch[i]>='0' && ch[i]<='9';i+=2)\n        s=10*s+ch[i]-'0';\n    printf(\"%d\\n\",s);\n    return 0;\n}\n```",
+      "explanation": "答案A。i 每次加 2：ch[0]='1' 累入后 i=2 遇 'a' 退出循环，s=1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1",
+        "B) 1256",
+        "C) 12ab56",
+        "D) 15"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-043",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.46（PDF p93 / 书页 p82）",
+      "difficulty": 3,
+      "stem": "【题 6.46】当运行以下程序时，从键盘输入：\naa bb<回车>\ncc dd<回车>\n则下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{   char a1[5],a2[5],a3[5],a4[5];\n    scanf(\"%s%s\",a1,a2);\n    gets(a3); gets(a4);\n    puts(a1); puts(a2);\n    puts(a3); puts(a4);\n    return 0;\n}\n```",
+      "explanation": "答案A。scanf 读走 aa、bb 后行内只剩换行，gets(a3) 读到空行，gets(a4) 才读到 cc dd。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) aa\nbb\n\ncc dd",
+        "B) aa\nbb\ncc\ndd",
+        "C) aa\nbb\ncc dd\nee",
+        "D) aa bb\ncc\ndd"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-044",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.47（PDF p94 / 书页 p83）",
+      "difficulty": 3,
+      "stem": "【题 6.47】当运行以下程序时，从键盘输入：ab<回车>\nc<回车>\ndef<回车>\n则下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#define N 6\nint main( )\n{   char c[N];\n    int i=0;\n    for( ; i<N; c[i]=getchar( ),i++);\n    for(i=0; i<N; i++) putchar(c[i]);\n    return 0;\n}\n```",
+      "explanation": "答案D。循环共读 6 个字符（含两个换行）：a b 换行 c 换行 d，原样输出即三行 ab、c、d。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) abcdef",
+        "B) a\nb\nc\nd\ne\nf",
+        "C) b\nc\nd",
+        "D) ab\nc\nd"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-045",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.48（PDF p94 / 书页 p83）",
+      "difficulty": 3,
+      "stem": "【题 6.48】当运行以下程序时，从键盘输入：AhaMA Aha<回车>，则下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{   char s[80], c='a'; int i=0;\n    scanf(\"%s\",s);\n    while(s[i]!='\\0')\n    {   if(s[i]==c) s[i]=s[i]-32;\n        else if(s[i]==c-32) s[i]=s[i]+32;\n        i++;\n    }\n    puts(s);\n    return 0;\n}\n```",
+      "explanation": "答案A。scanf(\"%s\") 只读第一个词 AhaMA；其中 a 与 A 互换大小写后得 ahAMa。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ahAMa",
+        "B) AhAMa",
+        "C) AhAMa ahA",
+        "D) ahAMa ahA"
+      ],
+      "answer": 0,
+      "id": "c-ch06-sc-046",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.49（PDF p95 / 书页 p84）",
+      "difficulty": 3,
+      "stem": "【题 6.49】下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a[80]=\"AB\", b[80]=\"LMNP\"; int i=0;\n    strcat(a,b);\n    while(a[i++]!='\\0') b[i]=a[i];\n    puts(b);\n    return 0;\n}\n```",
+      "explanation": "答案D。strcat 后 a=ABLMNP；while 把 a[1] 起复制到 b[1]，b[0] 保留原 'L'，得 LBLMNP。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) LB",
+        "B) ABLMNP",
+        "C) AB",
+        "D) LBLMNP"
+      ],
+      "answer": 3,
+      "id": "c-ch06-sc-047",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.50（PDF p95 / 书页 p84）",
+      "difficulty": 4,
+      "stem": "【题 6.50】下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{   char str[ ]=\"SSSWLIA\",c; int k;\n    for(k=2;(c=str[k])!='\\0';k++)\n    {   switch(c)\n        {   case 'I':++k;break;\n            case 'L':continue;\n            default :putchar(c); continue;\n        }\n        putchar('*');\n    }\n    return 0;\n}\n```",
+      "explanation": "答案B。k 从 2 起：S、W 走 default 输出；L 被 continue 跳过；I 使 ++k 后 break 补输出 *；共 SW*。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) SSW *",
+        "B) SW *",
+        "C) SW * A",
+        "D) SW"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-048",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.51（PDF p95 / 书页 p84）",
+      "difficulty": 3,
+      "stem": "【题 6.51】下面程序的运行结果是______。\n\n```c\n#include <stdio.h>\nint main( )\n{   char a[ ]=\"morning\",t; int i,j=0;\n    for (i=1;i<7;i++)\n        if(a[j]<a[i]) j=i;\n        t=a[j]; a[j]=a[7];\n    a[7]=a[j]; puts(a);\n    return 0;\n}\n```",
+      "explanation": "答案B。j 记录最大字符 r 的下标 2；循环外 a[2]=a[7]='\\0' 把串截断，puts 输出 mo。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) mogninr",
+        "B) mo",
+        "C) morning",
+        "D) mornin"
+      ],
+      "answer": 1,
+      "id": "c-ch06-sc-049",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.59（PDF p97 / 书页 p86）",
+      "difficulty": 4,
+      "stem": "【题 6.59】下面程序将二维数组 a 的行和列元素互换后存到另一个二维数组 b 中。请填空。",
+      "explanation": "转置即行列互换：内层列循环上界为 j<=2（3 列），赋值 b[j][i]=a[i][j] 完成互换；输出 b 时行数为 3，故 i<=2。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[2][3]={{1,2,3},{4,5,6}};\n    int b[3][2],i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;/*__BLANK_1__*/; j++)\n        {   printf(\"%5d\",a[i][j]);\n            /*__BLANK_2__*/;\n        }\n        printf(\"\\n\");\n    }\n    printf(\"array b:\\n\");\n    for(i=0;/*__BLANK_3__*/; i++)\n    {   for(j=0; j<=1; j++)\n            printf(\"%5d\",b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j<=2",
+          "accepted": [
+            "j<=2",
+            "j<3"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "b[j][i]=a[i][j]",
+          "accepted": [
+            "b[j][i]=a[i][j]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "i<=2",
+          "accepted": [
+            "i<=2",
+            "i<3"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[2][3]={{1,2,3},{4,5,6}};\n    int b[3][2],i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0; j<=2 ; j++)\n        {   printf(\"%5d\",a[i][j]);\n             b[j][i]=a[i][j] ;\n        }\n        printf(\"\\n\");\n    }\n    printf(\"array b:\\n\");\n    for(i=0; i<=2 ; i++)\n    {   for(j=0; j<=1; j++)\n            printf(\"%5d\",b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "array a:\n    1    2    3\n    4    5    6\narray b:\n    1    4\n    2    5\n    3    6",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.61（PDF p97 / 书页 p86）",
+      "difficulty": 3,
+      "stem": "【题 6.61】下面程序的功能是求矩阵 a 的两条对角线上的元素之和。请填空。",
+      "explanation": "副对角线满足 i+j==2，需让 j 从 2 递减到 0 与 i 配对，故初值 j=2、条件 j>=0。主对角线 i==j 已由前一循环求出。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[3][3]={1,3,6,7,9,11,14,15,17},s1=0,s2=0,i,j;\n    for( i=0; i<3; i++)\n        for( j=0; j<3; j++)\n            if( i==j ) s1=s1+a[i][j];\n    for( i=0; i<3; i++)\n        for (/*__BLANK_1__*/; /*__BLANK_2__*/; j--)\n            if ((i+j)==2) s2=s2+a[i][j];\n    printf(\"s1=%d,s2=%d\\n\",s1,s2);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j=2",
+          "accepted": [
+            "j=2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j>=0",
+          "accepted": [
+            "j>=0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[3][3]={1,3,6,7,9,11,14,15,17},s1=0,s2=0,i,j;\n    for( i=0; i<3; i++)\n        for( j=0; j<3; j++)\n            if( i==j ) s1=s1+a[i][j];\n    for( i=0; i<3; i++)\n        for ( j=2 ;  j>=0 ; j--)\n            if ((i+j)==2) s2=s2+a[i][j];\n    printf(\"s1=%d,s2=%d\\n\",s1,s2);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "s1=27,s2=29",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.64（PDF p98 / 书页 p87）",
+      "difficulty": 4,
+      "stem": "【题 6.64】以下程序的功能是求 1000 以内的水仙花数。（提示：所谓水仙花数是指一个 3 位正整数，其各位数字的立方之和等于该正整数。例如：407=4×4×4+0×0×0+7×7×7，故 407 是一个水仙花数。）请填空。",
+      "explanation": "水仙花数是三位数，故 m 从 100 遍历到 999；十位数字用 m/10-x*10（或 m/10%10）取出；命中者存入 a[i] 并计数。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int x,y,z,a[8],m,i=0;\n    printf(\"The special numbers are:\\n\");\n    for (/*__BLANK_1__*/; m++)\n    {   x=m/100;\n        y=/*__BLANK_2__*/;\n        z=m%10;\n        if(x*100+y*10+z==x*x*x+y*y*y+z*z*z)\n        {   /*__BLANK_3__*/; i++;   }\n    }\n    for(x=0;x<i;x++)\n        printf(\"%6d\",a[x]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "m=100; m<1000",
+          "accepted": [
+            "m=100; m<1000",
+            "m=100;m<1000"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "m/10-x*10",
+          "accepted": [
+            "m/10-x*10",
+            "m/10%10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a[i]=m",
+          "accepted": [
+            "a[i]=m"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int x,y,z,a[8],m,i=0;\n    printf(\"The special numbers are:\\n\");\n    for ( m=100; m<1000 ; m++)\n    {   x=m/100;\n        y= m/10-x*10 ;\n        z=m%10;\n        if(x*100+y*10+z==x*x*x+y*y*y+z*z*z)\n        {    a[i]=m ; i++;   }\n    }\n    for(x=0;x<i;x++)\n        printf(\"%6d\",a[x]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "The special numbers are:\n   153   370   371   407",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.65（PDF p98 / 书页 p87）",
+      "difficulty": 4,
+      "stem": "【题 6.65】下面程序的功能是生成并打印某数列的前 20 项，该数列第 1、2 项分别为 0 和 1，以后每个奇数编号的项是前两项之和，偶数编号的项是前两项差的绝对值。生成的 20 个数存放在一维数组 x 中，并按每行 4 项的形式输出。请填空。",
+      "explanation": "奇数编号项为前两项之和、偶数编号项为前两项差的绝对值；一轮填两项后 i 加 2。差要取绝对值需 fabs 并强制为 double。原书第 1 空所在行漏印下标 [i]，本库补正。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]=/*__BLANK_1__*/;\n        x[i+1]=/*__BLANK_2__*/;\n        i=/*__BLANK_3__*/;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x[i-1]+x[i-2]",
+          "accepted": [
+            "x[i-1]+x[i-2]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "fabs((double)(x[i-1]-x[i]))",
+          "accepted": [
+            "fabs((double)(x[i-1]-x[i]))"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "i+2",
+          "accepted": [
+            "i+2"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]= x[i-1]+x[i-2] ;\n        x[i+1]= fabs((double)(x[i-1]-x[i])) ;\n        i= i+2 ;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "    0    1    1    1\n    2    1    3    1\n    4    1    5    1\n    6    1    7    1\n    8    1    9    1",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.69（PDF p100 / 书页 p89）",
+      "difficulty": 4,
+      "stem": "【题 6.69】下面程序将十进制整数转换成八进制。请填空。",
+      "explanation": "除基取余：num[i]=n%8 取当前最低位，n=n/8 缩位；余数是逆序存放的，输出须从 j=i 递减到 1。原书 scanf 行漏分号、printf 实参漏逗号，本库补正。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int i=0, n, j, num[20];\n    printf(\"Enter data that will be converted\\n\");\n    scanf(\"%d\",&n);\n    do\n    {   i++;\n        num[i]=n/*__BLANK_1__*/8;\n        n=n/*__BLANK_2__*/8;\n    } while(n!=0);\n    for(/*__BLANK_3__*/)\n        printf(\"%d \",num[j]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "%",
+          "accepted": [
+            "%"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "/",
+          "accepted": [
+            "/"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "j=i; j>=1; j--",
+          "accepted": [
+            "j=i; j>=1; j--",
+            "j=i;j>=1;j--"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int i=0, n, j, num[20];\n    printf(\"Enter data that will be converted\\n\");\n    scanf(\"%d\",&n);\n    do\n    {   i++;\n        num[i]=n % 8;\n        n=n / 8;\n    } while(n!=0);\n    for( j=i; j>=1; j-- )\n        printf(\"%d \",num[j]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "100\n",
+          "expected": "Enter data that will be converted\n1 4 4",
+          "note": "100 的八进制为 144"
+        },
+        {
+          "stdin": "8\n",
+          "expected": "Enter data that will be converted\n1 0",
+          "note": "8 的八进制为 10"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "Enter data that will be converted\n0",
+          "note": "0 边界"
+        }
+      ],
+      "id": "c-ch06-cc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.70（PDF p100 / 书页 p89）",
+      "difficulty": 4,
+      "stem": "【题 6.70】下面程序的功能是输入 5 个整数，找出最大数和最小数所在的位置，并把二者对调，然后输出调整后的 5 个数。请填空。",
+      "explanation": "两个循环分别记录最小值下标 k 与最大值下标 j；对调即把 min 放到 j 处、max 放到 k 处。书答案页此题三空印作 i=j=k / k=i / a[j]=max;a[k]=min，与程序语义矛盾（后者为无操作），本库按语义补正，见存疑清单。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[5],max,min,i,j=0,k=0;\n    for(i=0;i<5;i++)\n        scanf(\"%d\",&a[i]);\n    min=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]<min) {min=a[i];/*__BLANK_1__*/;}\n    max=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]>max) {max=a[i];/*__BLANK_2__*/;}\n    /*__BLANK_3__*/\n    printf(\"\\nThe position of min is:%3d\\n\",k);\n    printf(\"The position of max is:%3d\\n\",j);\n    for(i=0;i<5;i++)\n        printf(\"%5d\",a[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "k=i",
+          "accepted": [
+            "k=i"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j=i",
+          "accepted": [
+            "j=i"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a[j]=min; a[k]=max;",
+          "accepted": [
+            "a[j]=min; a[k]=max;",
+            "a[j]=min;a[k]=max;"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[5],max,min,i,j=0,k=0;\n    for(i=0;i<5;i++)\n        scanf(\"%d\",&a[i]);\n    min=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]<min) {min=a[i]; k=i ;}\n    max=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]>max) {max=a[i]; j=i ;}\n     a[j]=min; a[k]=max; \n    printf(\"\\nThe position of min is:%3d\\n\",k);\n    printf(\"The position of max is:%3d\\n\",j);\n    for(i=0;i<5;i++)\n        printf(\"%5d\",a[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 8 1 9 5\n",
+          "expected": "\nThe position of min is:  2\nThe position of max is:  3\n    3    8    9    1    5",
+          "note": "最大 9 在下标 3，最小 1 在下标 2"
+        },
+        {
+          "stdin": "5 5 5 5 5\n",
+          "expected": "\nThe position of min is:  0\nThe position of max is:  0\n    5    5    5    5    5",
+          "note": "全相等边界"
+        }
+      ],
+      "id": "c-ch06-cc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.74（PDF p102 / 书页 p91）",
+      "difficulty": 4,
+      "stem": "【题 6.74】下面程序的功能是输出以下 9 阶方阵。请填空。\n1 1 1 1 1 1 1 1 1\n1 2 2 2 2 2 2 2 1\n1 2 3 3 3 3 3 2 1\n1 2 3 4 4 4 3 2 1\n1 2 3 4 5 4 3 2 1\n1 2 3 4 4 4 3 2 1\n1 2 3 3 3 3 3 2 1\n1 2 2 2 2 2 2 2 1\n1 1 1 1 1 1 1 1 1",
+      "explanation": "方阵关于中心对称，每层由上、下、左、右四条边同时赋值；奇数阶中心行需多扫一层，故 m=n/2+1。镜像行号与列号均为 n-i-1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[10][10], n, i, j, m;\n    scanf(\"%d\",&n);\n    if(n%2==0) m=n/2;\n    else/*__BLANK_1__*/;\n    for(i=0;i<m;i++)\n        for(j=i;j<n-i;j++)\n        {   a[i][j]=i+1;\n            a[/*__BLANK_2__*/][j]=i+1;\n            a[j][i]=i+1;\n            a[j][/*__BLANK_3__*/]=i+1;\n        }\n    for(i=0;i<n;i++)\n    {   for(j=0;j<n;j++)\n            printf(\"%d \",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "m=n/2+1",
+          "accepted": [
+            "m=n/2+1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n-i-1",
+          "accepted": [
+            "n-i-1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "n-i-1",
+          "accepted": [
+            "n-i-1"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[10][10], n, i, j, m;\n    scanf(\"%d\",&n);\n    if(n%2==0) m=n/2;\n    else m=n/2+1 ;\n    for(i=0;i<m;i++)\n        for(j=i;j<n-i;j++)\n        {   a[i][j]=i+1;\n            a[ n-i-1 ][j]=i+1;\n            a[j][i]=i+1;\n            a[j][ n-i-1 ]=i+1;\n        }\n    for(i=0;i<n;i++)\n    {   for(j=0;j<n;j++)\n            printf(\"%d \",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9\n",
+          "expected": "1 1 1 1 1 1 1 1 1 \n1 2 2 2 2 2 2 2 1 \n1 2 3 3 3 3 3 2 1 \n1 2 3 4 4 4 3 2 1 \n1 2 3 4 5 4 3 2 1 \n1 2 3 4 4 4 3 2 1 \n1 2 3 3 3 3 3 2 1 \n1 2 2 2 2 2 2 2 1 \n1 1 1 1 1 1 1 1 1",
+          "note": "书给 9 阶样例"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "1 1 1 1 1 \n1 2 2 2 1 \n1 2 3 2 1 \n1 2 2 2 1 \n1 1 1 1 1",
+          "note": "奇数阶"
+        },
+        {
+          "stdin": "4\n",
+          "expected": "1 1 1 1 \n1 2 2 1 \n1 2 2 1 \n1 1 1 1",
+          "note": "偶数阶边界"
+        }
+      ],
+      "id": "c-ch06-cc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.76（PDF p103 / 书页 p92）",
+      "difficulty": 4,
+      "stem": "【题 6.76】下面程序的功能是将二维数组 a 中每个元素向右移一列，最右一列换到最左一列，移后的数组存到另一二维数组 b 中，并按矩阵形式输出 a 和 b。请填空。\n例如，数组 a：\n4 5 6\n1 2 3\n数组 b：\n6 4 5\n3 1 2",
+      "explanation": "右移一列即 a 的第 j 列落到 b 的第 j+1 列，最右列回绕到第 0 列，用 (j+1)%3 表示回绕；随后单独把最右列写入 b 的第 0 列。书原文 b[i][j+1] 在 j=2 时越界写，本库按语义补正为取模，见存疑清单。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[2][3]={4,5,6,1,2,3}, b[2][3];\n    int i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;j<3;j++)\n        {   printf(\"%5d\",a[i][j]);\n            /*__BLANK_1__*/;\n        }\n        printf(\"\\n\");\n    }\n    for(/*__BLANK_2__*/;i++) b[i][0]=a[i][2];\n    printf(\"array b:\\n\");\n    for(i=0;i<2;i++)\n    {   for(j=0;j<3;j++)\n            printf(\"%5d\",b[i][j]);\n        /*__BLANK_3__*/;\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b[i][(j+1)%3]=a[i][j]",
+          "accepted": [
+            "b[i][(j+1)%3]=a[i][j]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i=0;i<2",
+          "accepted": [
+            "i=0;i<2",
+            "i=0; i<2"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "printf(\"\\n\")",
+          "accepted": [
+            "printf(\"\\n\")"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[2][3]={4,5,6,1,2,3}, b[2][3];\n    int i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;j<3;j++)\n        {   printf(\"%5d\",a[i][j]);\n             b[i][(j+1)%3]=a[i][j] ;\n        }\n        printf(\"\\n\");\n    }\n    for( i=0;i<2 ;i++) b[i][0]=a[i][2];\n    printf(\"array b:\\n\");\n    for(i=0;i<2;i++)\n    {   for(j=0;j<3;j++)\n            printf(\"%5d\",b[i][j]);\n         printf(\"\\n\") ;\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "array a:\n    4    5    6\n    1    2    3\narray b:\n    6    4    5\n    3    1    2",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.78（PDF p104 / 书页 p93）",
+      "difficulty": 3,
+      "stem": "【题 6.78】下面程序的功能是检查一个二维数组是否对称(即对所有 i、j 都有 a[i][j]=a[j][i])。请填空。",
+      "explanation": "对称性只需检查上三角（i 从 j+1 起），避免重复比较与对角线自比；一旦发现 a[j][i]!=a[i][j] 就置 found=1 并跳出。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[4][4]={1,2,3,4,2,2,5,6,3,5,3,7,4,6,7,4};\n    int i,j,found=0;\n    for(j=0;j<4;j++)\n        for(/*__BLANK_1__*/; i<4;i++)\n            if(a[j][i]!=a[i][j])\n                {   /*__BLANK_2__*/; break;   }\n    if(found==1) printf(\"No\");\n    else printf(\"Yes\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i=j+1",
+          "accepted": [
+            "i=j+1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "found=1",
+          "accepted": [
+            "found=1"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[4][4]={1,2,3,4,2,2,5,6,3,5,3,7,4,6,7,4};\n    int i,j,found=0;\n    for(j=0;j<4;j++)\n        for( i=j+1 ; i<4;i++)\n            if(a[j][i]!=a[i][j])\n                {    found=1 ; break;   }\n    if(found==1) printf(\"No\");\n    else printf(\"Yes\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "Yes",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.79（PDF p105 / 书页 p94）",
+      "difficulty": 4,
+      "stem": "【题 6.79】下面程序中的数组 a 包括 10 个整型元素，从 a 中第二个元素起，分别将后项减前项之差存入数组 b，并按每行 3 个元素的形式输出数组 b。请填空。",
+      "explanation": "读入与差分循环都遍历 10 个元素，条件均为 i<10；b 从下标 1 起共 9 个差，每行 3 个即 i 为 3 的倍数时换行。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[10], b[10], i;\n    for(i=0;/*__BLANK_1__*/;i++)\n        scanf(\"%d\",&a[i]);\n    for(i=1;/*__BLANK_2__*/;i++)\n        b[i]=a[i]-a[i-1];\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if(/*__BLANK_3__*/) printf(\"\\n\");\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i<10",
+          "accepted": [
+            "i<10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i<10",
+          "accepted": [
+            "i<10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "i%3==0",
+          "accepted": [
+            "i%3==0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[10], b[10], i;\n    for(i=0; i<10 ;i++)\n        scanf(\"%d\",&a[i]);\n    for(i=1; i<10 ;i++)\n        b[i]=a[i]-a[i-1];\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if( i%3==0 ) printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 3 6 10 15 21 28 36 45 55\n",
+          "expected": "  2  3  4\n  5  6  7\n  8  9 10",
+          "note": "差为 2..10"
+        },
+        {
+          "stdin": "5 5 5 5 5 5 5 5 5 5\n",
+          "expected": "  0  0  0\n  0  0  0\n  0  0  0",
+          "note": "全 0 边界"
+        }
+      ],
+      "id": "c-ch06-cc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.82（PDF p106 / 书页 p95）",
+      "difficulty": 4,
+      "stem": "【题 6.82】设数组 a 中的元素均为正整数，以下程序是求 a 中偶数的个数和偶数的平均值。请填空。",
+      "explanation": "奇数用 continue 跳过本次累加与计数；偶数才执行 s+=a[i] 与 k++。10 以内偶数 5 个、和 30，平均 6。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[10]={1,2,3,4,5,6,7,8,9,10};\n    int k,s,i;\n    float ave;\n    for(k=s=i=0;i<10;i++)\n    {   if(a[i]%2 !=0)/*__BLANK_1__*/;\n        s+=/*__BLANK_2__*/;\n        k++;\n    }\n    if( k!=0 )\n    {   ave=s/k; printf(\"%d,%f\\n\",k,ave);   }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "continue",
+          "accepted": [
+            "continue"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i]",
+          "accepted": [
+            "a[i]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[10]={1,2,3,4,5,6,7,8,9,10};\n    int k,s,i;\n    float ave;\n    for(k=s=i=0;i<10;i++)\n    {   if(a[i]%2 !=0) continue ;\n        s+= a[i] ;\n        k++;\n    }\n    if( k!=0 )\n    {   ave=s/k; printf(\"%d,%f\\n\",k,ave);   }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "5,6.000000",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.83（PDF p106 / 书页 p95）",
+      "difficulty": 4,
+      "stem": "【题 6.83】以下程序是将矩阵 a、b 的和存入矩阵 c 中并按矩阵形式输出。请填空。",
+      "explanation": "矩阵加法即对应元素相加 c[i][j]=a[i][j]+b[i][j]；每输出一行后换行保持矩阵形式。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[3][4]={{3,-2,7,5},{1,0,4,-3},{6,8,0,2}};\n    int b[3][4]={{-2,0,1,4},{5,-1,7,6},{6,8,0,2}};\n    int i, j, c[3][4];\n    for(i=0;i<3;i++)\n        for(j=0;j<4;j++)   c[i][j]=/*__BLANK_1__*/;\n    for(i=0;i<3;i++)\n    {   for(j=0;j<4;j++)   printf(\"%3d\",c[i][j]);\n        /*__BLANK_2__*/;\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i][j]+b[i][j]",
+          "accepted": [
+            "a[i][j]+b[i][j]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "printf(\"\\n\")",
+          "accepted": [
+            "printf(\"\\n\")"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[3][4]={{3,-2,7,5},{1,0,4,-3},{6,8,0,2}};\n    int b[3][4]={{-2,0,1,4},{5,-1,7,6},{6,8,0,2}};\n    int i, j, c[3][4];\n    for(i=0;i<3;i++)\n        for(j=0;j<4;j++)   c[i][j]= a[i][j]+b[i][j] ;\n    for(i=0;i<3;i++)\n    {   for(j=0;j<4;j++)   printf(\"%3d\",c[i][j]);\n         printf(\"\\n\") ;\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "  1 -2  8  9\n  6 -1 11  3\n 12 16  0  4",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.84（PDF p106 / 书页 p95）",
+      "difficulty": 4,
+      "stem": "【题 6.84】以下程序是将矩阵 a、b 的乘积存入矩阵 c 中并按矩阵形式输出。请填空。",
+      "explanation": "矩阵乘积的每个元素是 a 的第 i 行与 b 的第 j 列对应乘积之和：累加器 s 须在每格开始前清零（k=s=0），通项 a[i][k]*b[k][j]；每行输出完换行。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[3][2]={2,-1,-4,0,3,1}, b[2][2]={7,-9,-8,10};\n    int i,j,k,s,c[3][2];\n    for(i=0;i<3;i++)\n        for(j=0;j<2;j++)\n        {   for(/*__BLANK_1__*/; k<2;k++)\n                s += /*__BLANK_2__*/;\n            c[i][j]=s;\n        }\n    for(i=0;i<3;i++)\n    {   for(j=0;j<2;j++)   printf(\"%6d\",c[i][j]);\n        /*__BLANK_3__*/\n    }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "k=s=0",
+          "accepted": [
+            "k=s=0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i][k]*b[k][j]",
+          "accepted": [
+            "a[i][k]*b[k][j]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "printf(\"\\n\");",
+          "accepted": [
+            "printf(\"\\n\");"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[3][2]={2,-1,-4,0,3,1}, b[2][2]={7,-9,-8,10};\n    int i,j,k,s,c[3][2];\n    for(i=0;i<3;i++)\n        for(j=0;j<2;j++)\n        {   for( k=s=0 ; k<2;k++)\n                s +=  a[i][k]*b[k][j] ;\n            c[i][j]=s;\n        }\n    for(i=0;i<3;i++)\n    {   for(j=0;j<2;j++)   printf(\"%6d\",c[i][j]);\n         printf(\"\\n\"); \n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "    22   -28\n   -28    36\n    13   -17",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.85（PDF p107 / 书页 p96）",
+      "difficulty": 4,
+      "stem": "【题 6.85】已知以下矩阵：A=4×4 方阵 [1, -0.2, 0, 0 / -0.8, 1, -0.2, -0.2 / 0, -0.8, 1, -0.2 / 0, -0.8, -0.8, 1]，B 为列向量 [B1 B2 B3 B4]，其中矩阵 B 的各行元素值是矩阵 A 的相应行所有元素之和。下面程序的功能是求出矩阵 B 的值。请填空。",
+      "explanation": "行和累加：内层对第 i 行四列做 b[i]+=a[i][j]；输出时按下标取 b[k]。注意 b[i] 先清零再累加。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   float a[4][4]={{1,-0.2,0,0},{-0.8,1,-0.2,-0.2},{0,-0.8,1,-0.2},{0,-0.8,-0.8,1}};\n    float b[4]; int i, j, k;\n    for( i=0 ;i<4 ;i++)\n    {   b[i]=0;\n        for ( j=0 ; j<4; j++)\n            /*__BLANK_1__*/\n    }\n    for ( k=0 ; k<4 ; k++)\n        printf(\"\\n b[%d]=%-6.2f\", k+1,/*__BLANK_2__*/) ;\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b[i]+=a[i][j];",
+          "accepted": [
+            "b[i]+=a[i][j];",
+            "b[i]=b[i]+a[i][j];"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "b[k]",
+          "accepted": [
+            "b[k]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   float a[4][4]={{1,-0.2,0,0},{-0.8,1,-0.2,-0.2},{0,-0.8,1,-0.2},{0,-0.8,-0.8,1}};\n    float b[4]; int i, j, k;\n    for( i=0 ;i<4 ;i++)\n    {   b[i]=0;\n        for ( j=0 ; j<4; j++)\n             b[i]+=a[i][j]; \n    }\n    for ( k=0 ; k<4 ; k++)\n        printf(\"\\n b[%d]=%-6.2f\", k+1, b[k] ) ;\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "\n b[1]=0.80  \n b[2]=-0.20 \n b[3]=-0.00 \n b[4]=-0.60",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.86（PDF p107 / 书页 p96）",
+      "difficulty": 3,
+      "stem": "【题 6.86】以下程序段的功能是求数组 num 中小于零的数据之和。请填空。",
+      "explanation": "筛选负数用 num[i]<0；累加写成 sum=num[i]+sum。原书为无 main 的程序段，本库补 main 外壳以便实机验证。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int num[20]={10,20,1,-20,203,-21,2,-2,-2,11,-21,22,12,-2,-234,-90,22,90,-45,20};\n    int sum=0, i;\n    for( i=0 ; i<=19 ; i++)\n        if (/*__BLANK_1__*/)\n            sum=/*__BLANK_2__*/;\n    printf(\"sum=%6d\", sum);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "num[i]<0",
+          "accepted": [
+            "num[i]<0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "num[i]+sum",
+          "accepted": [
+            "num[i]+sum",
+            "sum+num[i]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int num[20]={10,20,1,-20,203,-21,2,-2,-2,11,-21,22,12,-2,-234,-90,22,90,-45,20};\n    int sum=0, i;\n    for( i=0 ; i<=19 ; i++)\n        if ( num[i]<0 )\n            sum= num[i]+sum ;\n    printf(\"sum=%6d\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "sum=  -437",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.87（PDF p108 / 书页 p97）",
+      "difficulty": 3,
+      "stem": "【题 6.87】以下程序段的功能是【1】，运行后输出结果是【2】。\n\n```c\n#include <stdio.h>\nint main( )\n{   int num[10]={103,1,-20,-203,-21,2,-2,-2,13,-21};\n    int sum=0, i;\n    for( i=0 ; i<10 ; i++)\n        if( num[i]>0 && num[i]%10==3 )\n            sum=num[i]+sum;\n    printf(\"sum=%6d\", sum );\n    return 0;\n}\n```\n\n（原书代码 `if( num[i]>0 num[i]%10==3 )` 漏印逻辑与运算符，此处按语义补为 `&&`。）",
+      "explanation": "答案：功能是求数组中大于 0 且个位数为 3 的元素之和；输出 sum=   116。条件 num[i]>0 && num[i]%10==3 同时要求元素为正且个位是 3，只有 103 与 13 满足，和为 116。%6d 使数值右对齐占 6 列，故 116 前有 3 个空格。易错点：漏看 `>0` 条件而把 -203、-21 之类负数也算进来。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "understand",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "计算数组 num 中大于零且个位数为 3 的数据之和",
+          "accepted": [
+            "计算数组 num 中大于零且个位数为 3 的数据之和",
+            "计算数组num中大于零且个位数为3的数据之和",
+            "求数组 num 中大于 0 且个位数为 3 的元素之和",
+            "求数组num中大于0且个位数为3的元素之和",
+            "统计数组num中大于零且个位数为3的数据之和"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sum=   116",
+          "accepted": [
+            "sum=   116",
+            "sum=116",
+            "116",
+            "sum=  116"
+          ]
+        }
+      ],
+      "id": "c-ch06-fb-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.91（PDF p109 / 书页 p98）",
+      "difficulty": 3,
+      "stem": "【题 6.91】下面程序用“顺序查找法”查找数组 a 中与 x 相等的第一个数。请填空。",
+      "explanation": "找到后必须 break 跳出，否则会继续扫描并重复输出；循环正常结束时 i==8，说明未找到，输出 Can't found !。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[8]={25,57,48,37,12,92,86,33},i,x;\n    scanf(\"%d\",&x);\n    for(i=0;i<8;i++)\n        if(x==a[i])\n        {   printf(\"Found!The index is :%d\\n\",--i); /*__BLANK_1__*/;   }\n    if(/*__BLANK_2__*/)\n        printf(\"Can't found !\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "break",
+          "accepted": [
+            "break"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i==8",
+          "accepted": [
+            "i==8"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[8]={25,57,48,37,12,92,86,33},i,x;\n    scanf(\"%d\",&x);\n    for(i=0;i<8;i++)\n        if(x==a[i])\n        {   printf(\"Found!The index is :%d\\n\",--i);  break ;   }\n    if( i==8 )\n        printf(\"Can't found !\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "86\n",
+          "expected": "Found!The index is :5",
+          "note": "命中下标 6"
+        },
+        {
+          "stdin": "99\n",
+          "expected": "Can't found !",
+          "note": "未命中"
+        }
+      ],
+      "id": "c-ch06-cc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.93（PDF p109 / 书页 p98）",
+      "difficulty": 4,
+      "stem": "【题 6.93】下面程序用插入法对数组 a 进行降序排序。请填空。",
+      "explanation": "插入排序：待插元素 m 与已排序部分从后往前比较，比 m 小的后移一位 a[j+1]=a[j]；退出时 j+1 即插入位置。降序故条件为 m>a[j]。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[5]={4,7,2,5,1},i,j,m;\n    for(i=1;i<5;i++)\n    {   m=a[i];\n        j=/*__BLANK_1__*/;\n        while(j>=0 && m>a[j])\n        {   /*__BLANK_2__*/; j--;   }\n        /*__BLANK_3__*/=m;\n    }\n    for ( i=0; i<5; i++)  printf(\"%d\",a[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i-1",
+          "accepted": [
+            "i-1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[j+1]=a[j]",
+          "accepted": [
+            "a[j+1]=a[j]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a[j+1]",
+          "accepted": [
+            "a[j+1]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[5]={4,7,2,5,1},i,j,m;\n    for(i=1;i<5;i++)\n    {   m=a[i];\n        j= i-1 ;\n        while(j>=0 && m>a[j])\n        {    a[j+1]=a[j] ; j--;   }\n         a[j+1] =m;\n    }\n    for ( i=0; i<5; i++)  printf(\"%d\",a[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "75421",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.94（PDF p110 / 书页 p99）",
+      "difficulty": 4,
+      "stem": "【题 6.94】下面程序用“两路合并法”把两个已按升序排列的数组合并成一个升序数组。请填空。",
+      "explanation": "归并时取较小者入 c：b[j] 更小（即 a[i]>b[j]）时取 b；主循环结束后把未取完的一方依次接上，故两个收尾循环条件分别为 i<3 与 j<5。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int a[3]={5,9,19};\n    int b[5]={12,24,26,37,48};\n    int c[10],i=0,j=0,k=0;\n    while(i<3 && j<5)\n        if(/*__BLANK_1__*/)\n        {   c[k]=b[j]; k++; j++;   }\n        else\n        {   c[k]=a[i]; k++; i++;   }\n    while(/*__BLANK_2__*/)\n    {   c[k]=a[i]; i++; k++;   }\n    while (/*__BLANK_3__*/)\n    {   c[k]=b[j]; k++; j++;   }\n    for(i=0; i<k;i++)   printf(\"%3d\",c[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i]>b[j]",
+          "accepted": [
+            "a[i]>b[j]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i<3",
+          "accepted": [
+            "i<3"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "j<5",
+          "accepted": [
+            "j<5"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int a[3]={5,9,19};\n    int b[5]={12,24,26,37,48};\n    int c[10],i=0,j=0,k=0;\n    while(i<3 && j<5)\n        if( a[i]>b[j] )\n        {   c[k]=b[j]; k++; j++;   }\n        else\n        {   c[k]=a[i]; k++; i++;   }\n    while( i<3 )\n    {   c[k]=a[i]; i++; k++;   }\n    while ( j<5 )\n    {   c[k]=b[j]; k++; j++;   }\n    for(i=0; i<k;i++)   printf(\"%3d\",c[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "  5  9 12 19 24 26 37 48",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.102（PDF p112 / 书页 p101）",
+      "difficulty": 4,
+      "stem": "【题 6.102】下面程序的功能是求出矩阵 x 的上三角元素之积，其中矩阵 x 的行、列数和元素值均由键盘输入。请填空。",
+      "explanation": "上三角含主对角线，故第 i 行从第 i 列起累乘：j=i;j<n;j++，累乘语句 s*=x[i][j]。第一空补全读入循环的行控制 i=0;i<n;i++)。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#define M 10\nint main( )\n{   int x[M][M],n,i,j;\n    long s=1;\n    printf(\"Enter a integer(<=10):\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter %d data on each line for the array x\\n\",n);\n    for(/*__BLANK_1__*/\n        for(j=0;j<n;j++)\n            scanf(\"%d\",&x[i][j]);\n    for(i=0;i<n;i++)\n        for(/*__BLANK_2__*/)\n            /*__BLANK_3__*/\n    printf(\"%ld\\n\",s);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i=0;i<n;i++)",
+          "accepted": [
+            "i=0;i<n;i++)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j=i;j<n;j++",
+          "accepted": [
+            "j=i;j<n;j++"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "s*=x[i][j];",
+          "accepted": [
+            "s*=x[i][j];"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#define M 10\nint main( )\n{   int x[M][M],n,i,j;\n    long s=1;\n    printf(\"Enter a integer(<=10):\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter %d data on each line for the array x\\n\",n);\n    for( i=0;i<n;i++) \n        for(j=0;j<n;j++)\n            scanf(\"%d\",&x[i][j]);\n    for(i=0;i<n;i++)\n        for( j=i;j<n;j++ )\n             s*=x[i][j]; \n    printf(\"%ld\\n\",s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n1 2 3\n4 5 6\n7 8 9\n",
+          "expected": "Enter a integer(<=10):\nEnter 3 data on each line for the array x\n1620",
+          "note": "上三角 1*2*3*5*6*9=972"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "Enter a integer(<=10):\nEnter 1 data on each line for the array x\n7",
+          "note": "1 阶边界"
+        }
+      ],
+      "id": "c-ch06-cc-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.106（PDF p113 / 书页 p102）",
+      "difficulty": 3,
+      "stem": "【题 6.106】下面程序段将输出 computer。请填空。",
+      "explanation": "computer 共 8 个字符，位于原串下标 8~15，故 i 取 0~7（i<=7）且 j=i+8 定位到 c 的起始处。原书为程序段，本库补 main 外壳。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   char c[]=\"It is a computer\"; int i,j;\n    for(i=0;/*__BLANK_1__*/;i++)\n    {   /*__BLANK_2__*/;   printf(\"%c\",c[j]);   }\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i<=7",
+          "accepted": [
+            "i<=7"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j=i+8",
+          "accepted": [
+            "j=i+8"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   char c[]=\"It is a computer\"; int i,j;\n    for(i=0; i<=7 ;i++)\n    {    j=i+8 ;   printf(\"%c\",c[j]);   }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "computer",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.108（PDF p114 / 书页 p103）",
+      "difficulty": 3,
+      "stem": "【题 6.108】下面程序的功能是在一个字符数组中查找一个指定的字符，若数组中含有该字符，则输出该字符在数组中第一次出现的位置（下标值）；否则输出－1。请填空。",
+      "explanation": "串长用 strlen(t) 控制循环；逐字符与 c 比较，命中记下标并 break，否则每轮置 j=-1，未命中最终保持 -1。原书 gets 已按规范改写为 fgets。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char c='a',t[50]; int n,k,j;\n    fgets(t,50,stdin);\n    n=/*__BLANK_1__*/;\n    for(k=0;k<n;k++)\n        if( /*__BLANK_2__*/ )   { j=k; break; }\n        else j=-1;\n    printf(\"%d\",j);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "strlen(t)",
+          "accepted": [
+            "strlen(t)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "t[k]==c",
+          "accepted": [
+            "t[k]==c"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char c='a',t[50]; int n,k,j;\n    fgets(t,50,stdin);\n    n= strlen(t) ;\n    for(k=0;k<n;k++)\n        if(  t[k]==c  )   { j=k; break; }\n        else j=-1;\n    printf(\"%d\",j);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "banana\n",
+          "expected": "1",
+          "note": "首个 a 在下标 1"
+        },
+        {
+          "stdin": "xyz\n",
+          "expected": "-1",
+          "note": "不含 a 输出 -1"
+        }
+      ],
+      "id": "c-ch06-cc-026",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.109（PDF p114 / 书页 p103）",
+      "difficulty": 3,
+      "stem": "【题 6.109】下面程序的功能是在 3 个字符串中找出最小的。请填空。",
+      "explanation": "条件表达式取两者中较小者：strcmp<0 说明 str[0] 小，取 str[0] 否则 str[1]；再与 str[2] 比较后 s 中即最小串，输出 s。原书 gets 已改写为 fgets。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20], str[3][20]; int i;\n    for(i=0; i<3; i++)   fgets(str[i],20,stdin);\n    strcpy(s,(strcmp(str[0],str[1])<0? /*__BLANK_1__*/));\n    if(strcmp(str[2],s)<0)  strcpy(s,str[2]);\n    printf(\"%s\\n\",/*__BLANK_2__*/);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "str[0]:str[1]",
+          "accepted": [
+            "str[0]:str[1]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "s",
+          "accepted": [
+            "s"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20], str[3][20]; int i;\n    for(i=0; i<3; i++)   fgets(str[i],20,stdin);\n    strcpy(s,(strcmp(str[0],str[1])<0?  str[0]:str[1] ));\n    if(strcmp(str[2],s)<0)  strcpy(s,str[2]);\n    printf(\"%s\\n\", s );\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "cherry\napple\nbanana\n",
+          "expected": "apple",
+          "note": "最小为 apple"
+        },
+        {
+          "stdin": "aaa\naaa\naaa\n",
+          "expected": "aaa",
+          "note": "全同边界"
+        }
+      ],
+      "id": "c-ch06-cc-027",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.110（PDF p114 / 书页 p103）",
+      "difficulty": 3,
+      "stem": "【题 6.110】下面程序的功能是从键盘输入一个大写英文字母，要求按字母的顺序打印出 3 个相邻的字母，指定的字母在中间。若指定的字母为 Z，则打印 YZA；若为 A，则打印 ZAB。请填空。",
+      "explanation": "Z 的前邻是 Y，即 c-1；A 的后邻是 B，即 c+1。两个分支各缺一个邻字母的赋值，恰好可用 c-1、c+1 表达回绕。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   char a[3],c; int i;\n    c=getchar( );\n    a[1]=c;\n    if(c=='Z')  { a[2]='A';/*__BLANK_1__*/; }\n    else if (c=='A') {a[0]='Z';/*__BLANK_2__*/; }\n    else { a[0]=c-1; a[2]=c+1;}\n    for(i=0;i<3;i++)  putchar(a[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]=c-1",
+          "accepted": [
+            "a[0]=c-1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[2]=c+1",
+          "accepted": [
+            "a[2]=c+1"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   char a[3],c; int i;\n    c=getchar( );\n    a[1]=c;\n    if(c=='Z')  { a[2]='A'; a[0]=c-1 ; }\n    else if (c=='A') {a[0]='Z'; a[2]=c+1 ; }\n    else { a[0]=c-1; a[2]=c+1;}\n    for(i=0;i<3;i++)  putchar(a[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "Z\n",
+          "expected": "YZA",
+          "note": "回绕 YZA"
+        },
+        {
+          "stdin": "A\n",
+          "expected": "ZAB",
+          "note": "回绕 ZAB"
+        },
+        {
+          "stdin": "M\n",
+          "expected": "LMN",
+          "note": "常规 LMN"
+        }
+      ],
+      "id": "c-ch06-cc-028",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.111（PDF p115 / 书页 p104）",
+      "difficulty": 3,
+      "stem": "【题 6.111】下面程序段的功能是将字符数组 a[6]={'a','b','c','d','e','f'} 变为 a[6]={'f','a','b','c','d','e'}。请填空。",
+      "explanation": "整体右移一位：先把末字符存入 t，再从后往前 a[i]=a[i-1]，最后把 t 放到 a[0]。原书程序段循环方向与花括号排版错乱，本库按右移语义重排并补 main 外壳，见存疑清单。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   char t,a[6]={'a','b','c','d','e','f'}; int i;\n    t=a[5];\n    for(i=5;i>0;i--)   a[i]=/*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    for(i=0;i<=5;i++)   printf(\"%c\",a[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i-1]",
+          "accepted": [
+            "a[i-1]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[0]=t",
+          "accepted": [
+            "a[0]=t"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   char t,a[6]={'a','b','c','d','e','f'}; int i;\n    t=a[5];\n    for(i=5;i>0;i--)   a[i]= a[i-1] ;\n     a[0]=t ;\n    for(i=0;i<=5;i++)   printf(\"%c\",a[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "fabcde",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-029",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.112（PDF p115 / 书页 p104）",
+      "difficulty": 3,
+      "stem": "【题 6.112】下面程序段的功能是将字符串 a 中下标值为偶数的元素由小到大排序，其他元素不变。请填空。",
+      "explanation": "只对偶数下标做选择排序：外层 i 步长 2，内层 j 也步长 2（交换后体内再 j++ 与 for 的 j++ 合计跳过奇数位）；前者大于后者即交换。原书为程序段，本库补 main 外壳。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a[]=\"labchmfye\",t; int i,j;\n    for(i=0;i<7;i+=2)\n        for(j=i+2;j<9;/*__BLANK_1__*/)\n            if(/*__BLANK_2__*/)\n            {   t=a[i]; a[i]=a[j]; a[j]=t; j++;   }\n    puts(a);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j++",
+          "accepted": [
+            "j++"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i]>a[j]",
+          "accepted": [
+            "a[i]>a[j]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a[]=\"labchmfye\",t; int i,j;\n    for(i=0;i<7;i+=2)\n        for(j=i+2;j<9; j++ )\n            if( a[i]>a[j] )\n            {   t=a[i]; a[i]=a[j]; a[j]=t; j++;   }\n    puts(a);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "baecfmhyl",
+          "note": "无输入，实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch06-cc-030",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.113（PDF p115 / 书页 p104）",
+      "difficulty": 3,
+      "stem": "【题 6.113】下面程序段的功能是在任意的字符串 a 中，将与字符 c 相等的所有元素的下标值分别存放在整型数组 b 中。请填空。",
+      "explanation": "命中字符 c 时记录其下标 b[k]=i 并把计数器 k 自增，k 同时充当下一个存放位置。原书 gets 已改写为 fgets。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   char a[80];  int i,b[80],k=0;\n    fgets(a,80,stdin);\n    for(i=0; a[i]!='\\0'; i++)\n        if(  /*__BLANK_1__*/  )   { b[k]=i;  /*__BLANK_2__*/  ; }\n    for(i=0;i<k;i++)  printf(\"%3d\",b[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i]=='c'",
+          "accepted": [
+            "a[i]=='c'"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "k++",
+          "accepted": [
+            "k++"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   char a[80];  int i,b[80],k=0;\n    fgets(a,80,stdin);\n    for(i=0; a[i]!='\\0'; i++)\n        if(   a[i]=='c'   )   { b[k]=i;   k++   ; }\n    for(i=0;i<k;i++)  printf(\"%3d\",b[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abcabc\n",
+          "expected": "  2  5",
+          "note": "c 在下标 2 与 5"
+        },
+        {
+          "stdin": "ddd\n",
+          "expected": "",
+          "note": "无 c 不输出"
+        }
+      ],
+      "id": "c-ch06-cc-031",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.114（PDF p115 / 书页 p104）",
+      "difficulty": 3,
+      "stem": "【题 6.114】有 10 个字符串。下面程序的功能是在每个字符串中找出最大字符，并按一一对应的顺序放入一维数组 a 中，即第 i 个字符串中的最大字符放入 a[i]中，输出每个字符串中的最大字符。请填空。",
+      "explanation": "每行先以首字符为当前最大 a[i]=s[i][0]，再逐字符比较更新 a[i]=s[i][j]。原书 gets 已改写为 fgets。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   char s[10][20]; int a[10],i,j;\n    for(i=0; i<10; i++)     fgets(s[i],20,stdin);\n    for(i=0; i<10; i++)\n    {   /*__BLANK_1__*/;\n        for(j=1; s[i][j]!='\\0'; j++)\n            if(a[i]<s[i][j])  /*__BLANK_2__*/ ;\n    }\n    for(i=0;i<10;i++)     printf(\" %d %c\",i,a[i]);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i]=s[i][0]",
+          "accepted": [
+            "a[i]=s[i][0]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i]=s[i][j]",
+          "accepted": [
+            "a[i]=s[i][j]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   char s[10][20]; int a[10],i,j;\n    for(i=0; i<10; i++)     fgets(s[i],20,stdin);\n    for(i=0; i<10; i++)\n    {    a[i]=s[i][0] ;\n        for(j=1; s[i][j]!='\\0'; j++)\n            if(a[i]<s[i][j])   a[i]=s[i][j]  ;\n    }\n    for(i=0;i<10;i++)     printf(\" %d %c\",i,a[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abc\nxyz\nmmm\naaa\nzzz\nqqq\nkkk\nddd\nppp\nnnn\n",
+          "expected": " 0 c 1 z 2 m 3 a 4 z 5 q 6 k 7 d 8 p 9 n",
+          "note": "各行最大字符"
+        },
+        {
+          "stdin": "a\nb\nc\nd\ne\nf\ng\nh\ni\nj\n",
+          "expected": " 0 a 1 b 2 c 3 d 4 e 5 f 6 g 7 h 8 i 9 j",
+          "note": "单字符行边界"
+        }
+      ],
+      "id": "c-ch06-cc-032",
       "verified": true
     }
   ]

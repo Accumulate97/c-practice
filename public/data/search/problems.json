@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "c1593ec787bcb560",
+  "content_sha": "769a4ac5ccf9fe40",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 616,
+  "count": 695,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -4196,6 +4196,796 @@
       "chapter": "第6章 数组",
       "section": "6.4 程序改错题（变式生成）",
       "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-001",
+      "file": "c-ch06.json",
+      "title": "【题 6.1】在 C 语言中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-002",
+      "file": "c-ch06.json",
+      "title": "【题 6.2】以下对一维整型数组 a 的正确说明是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-003",
+      "file": "c-ch06.json",
+      "title": "【题 6.3】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-004",
+      "file": "c-ch06.json",
+      "title": "【题 6.4】在 C 语言中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-005",
+      "file": "c-ch06.json",
+      "title": "【题 6.5】以下能对一维数组 a 进行正确初始化的语句形式是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-006",
+      "file": "c-ch06.json",
+      "title": "【题 6.6】以下对二维数组 a 的正确说明是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-007",
+      "file": "c-ch06.json",
+      "title": "【题 6.7】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-008",
+      "file": "c-ch06.json",
+      "title": "【题 6.8】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-009",
+      "file": "c-ch06.json",
+      "title": "【题 6.9】以下能对二维数组 a 进行正确初始化的语句是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-010",
+      "file": "c-ch06.json",
+      "title": "【题 6.10】以下不能对二维数组 a 进行正确初始化的语句是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-011",
+      "file": "c-ch06.json",
+      "title": "【题 6.11】若有初始化语句",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-012",
+      "file": "c-ch06.json",
+      "title": "【题 6.12】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-013",
+      "file": "c-ch06.json",
+      "title": "【题 6.13】以下各组选项中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-014",
+      "file": "c-ch06.json",
+      "title": "【题 6.14】下面程序段______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-015",
+      "file": "c-ch06.json",
+      "title": "【题 6.15】下面程序段______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-016",
+      "file": "c-ch06.json",
+      "title": "【题 6.16】下面程序段中有错误的行号是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-017",
+      "file": "c-ch06.json",
+      "title": "【题 6.17】下面程序段______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-018",
+      "file": "c-ch06.json",
+      "title": "【题 6.18】若二维数组 a 有 m 列",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-019",
+      "file": "c-ch06.json",
+      "title": "【题 6.19】对以下定义语句的正确理解是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-020",
+      "file": "c-ch06.json",
+      "title": "【题 6.20】以下不正确的定义语句是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-021",
+      "file": "c-ch06.json",
+      "title": "【题 6.21】若有说明",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-022",
+      "file": "c-ch06.json",
+      "title": "【题 6.22】若有定义 float x[4]={1.3",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-023",
+      "file": "c-ch06.json",
+      "title": "【题 6.23】定义如下变量和数组",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-024",
+      "file": "c-ch06.json",
+      "title": "【题 6.24】若有以下程序段",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-025",
+      "file": "c-ch06.json",
+      "title": "【题 6.25】若有初始化 int a[ ][3]={1",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-026",
+      "file": "c-ch06.json",
+      "title": "【题 6.26】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-027",
+      "file": "c-ch06.json",
+      "title": "【题 6.27】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-028",
+      "file": "c-ch06.json",
+      "title": "【题 6.28】下面是对数组 s 的初始化",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-029",
+      "file": "c-ch06.json",
+      "title": "【题 6.29】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-030",
+      "file": "c-ch06.json",
+      "title": "【题 6.30】对两个数组 a 和 b 进行如下初始化",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-031",
+      "file": "c-ch06.json",
+      "title": "【题 6.31】有两个字符数组 a、b",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-032",
+      "file": "c-ch06.json",
+      "title": "【题 6.32】有字符数组 a[80]和 b[80]",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-033",
+      "file": "c-ch06.json",
+      "title": "【题 6.33】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-034",
+      "file": "c-ch06.json",
+      "title": "【题 6.34】有下面的程序段",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-035",
+      "file": "c-ch06.json",
+      "title": "【题 6.35】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-036",
+      "file": "c-ch06.json",
+      "title": "【题 6.36】判断字符串 a 和 b 是否相等",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-037",
+      "file": "c-ch06.json",
+      "title": "【题 6.37】判断字符串 s1 是否大于字符串 s2",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-038",
+      "file": "c-ch06.json",
+      "title": "【题 6.38】下面程序段的功能是输出两个字符串中对应相等的字符",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-039",
+      "file": "c-ch06.json",
+      "title": "【题 6.39】下面描述正确的是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-040",
+      "file": "c-ch06.json",
+      "title": "【题 6.40】以下描述中错误的是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-007",
+      "file": "c-ch06.json",
+      "title": "【题 6.41】有已排好序的字符串 a",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-008",
+      "file": "c-ch06.json",
+      "title": "【题 6.42】下面程序的功能是将已按升序排好序的两个字符串 a 和 b 中的字符按升序归并到字符串 c 中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-041",
+      "file": "c-ch06.json",
+      "title": "【题 6.43】下面程序的功能是将字符串 s 中所有的字符 c 删除",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-042",
+      "file": "c-ch06.json",
+      "title": "【题 6.44】下面程序的功能是从键盘输入一行字符",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-043",
+      "file": "c-ch06.json",
+      "title": "【题 6.45】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-044",
+      "file": "c-ch06.json",
+      "title": "【题 6.46】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-045",
+      "file": "c-ch06.json",
+      "title": "【题 6.47】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-046",
+      "file": "c-ch06.json",
+      "title": "【题 6.48】当运行以下程序时",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-047",
+      "file": "c-ch06.json",
+      "title": "【题 6.49】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-048",
+      "file": "c-ch06.json",
+      "title": "【题 6.50】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-049",
+      "file": "c-ch06.json",
+      "title": "【题 6.51】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-006",
+      "file": "c-ch06.json",
+      "title": "【题 6.59】下面程序将二维数组 a 的行和列元素互换后存到另一个二维数组 b 中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-007",
+      "file": "c-ch06.json",
+      "title": "【题 6.61】下面程序的功能是求矩阵 a 的两条对角线上的元素之和",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-008",
+      "file": "c-ch06.json",
+      "title": "【题 6.64】以下程序的功能是求 1000 以内的水仙花数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-009",
+      "file": "c-ch06.json",
+      "title": "【题 6.65】下面程序的功能是生成并打印某数列的前 20 项",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-010",
+      "file": "c-ch06.json",
+      "title": "【题 6.69】下面程序将十进制整数转换成八进制",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-011",
+      "file": "c-ch06.json",
+      "title": "【题 6.70】下面程序的功能是输入 5 个整数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-012",
+      "file": "c-ch06.json",
+      "title": "【题 6.74】下面程序的功能是输出以下 9 阶方阵",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-013",
+      "file": "c-ch06.json",
+      "title": "【题 6.76】下面程序的功能是将二维数组 a 中每个元素向右移一列",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-014",
+      "file": "c-ch06.json",
+      "title": "【题 6.78】下面程序的功能是检查一个二维数组是否对称",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-015",
+      "file": "c-ch06.json",
+      "title": "【题 6.79】下面程序中的数组 a 包括 10 个整型元素",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-016",
+      "file": "c-ch06.json",
+      "title": "【题 6.82】设数组 a 中的元素均为正整数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-017",
+      "file": "c-ch06.json",
+      "title": "【题 6.83】以下程序是将矩阵 a、b 的和存入矩阵 c 中并按矩阵形式输出",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-018",
+      "file": "c-ch06.json",
+      "title": "【题 6.84】以下程序是将矩阵 a、b 的乘积存入矩阵 c 中并按矩阵形式输出",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-019",
+      "file": "c-ch06.json",
+      "title": "【题 6.85】已知以下矩阵",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-020",
+      "file": "c-ch06.json",
+      "title": "【题 6.86】以下程序段的功能是求数组 num 中小于零的数据之和",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-009",
+      "file": "c-ch06.json",
+      "title": "【题 6.87】以下程序段的功能是【1】",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-021",
+      "file": "c-ch06.json",
+      "title": "【题 6.91】下面程序用“顺序查找法”查找数组 a 中与 x 相等的第一个数",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-022",
+      "file": "c-ch06.json",
+      "title": "【题 6.93】下面程序用插入法对数组 a 进行降序排序",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-023",
+      "file": "c-ch06.json",
+      "title": "【题 6.94】下面程序用“两路合并法”把两个已按升序排列的数组合并成一个升序数组",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-024",
+      "file": "c-ch06.json",
+      "title": "【题 6.102】下面程序的功能是求出矩阵 x 的上三角元素之积",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-025",
+      "file": "c-ch06.json",
+      "title": "【题 6.106】下面程序段将输出 computer",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-026",
+      "file": "c-ch06.json",
+      "title": "【题 6.108】下面程序的功能是在一个字符数组中查找一个指定的字符",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-027",
+      "file": "c-ch06.json",
+      "title": "【题 6.109】下面程序的功能是在 3 个字符串中找出最小的",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-028",
+      "file": "c-ch06.json",
+      "title": "【题 6.110】下面程序的功能是从键盘输入一个大写英文字母",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-029",
+      "file": "c-ch06.json",
+      "title": "【题 6.111】下面程序段的功能是将字符数组 a[6]={'a'",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-030",
+      "file": "c-ch06.json",
+      "title": "【题 6.112】下面程序段的功能是将字符串 a 中下标值为偶数的元素由小到大排序",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-031",
+      "file": "c-ch06.json",
+      "title": "【题 6.113】下面程序段的功能是在任意的字符串 a 中",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-032",
+      "file": "c-ch06.json",
+      "title": "【题 6.114】有 10 个字符串",
+      "tags": [],
+      "chapter": "第6章 数组",
+      "section": "6.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {

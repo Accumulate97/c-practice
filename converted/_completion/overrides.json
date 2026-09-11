@@ -249,5 +249,70 @@
    }
   ],
   "explanation": "答案D、A。公差 d 应小于首项 a（`d<a`），避免 (a,d) 与 (a+d,…) 重复枚举；等差数列从第 1 项起第 i+1 项（i 从 0 起）为 `a+i*d`。"
+ },
+ "题6.41": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 6.41】有已排好序的字符串 a，下面的程序是将字符串 s 中的每个字符按 a 中元素的规律插入到 a 中。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{  char a[20]=\"cehiknqtw\",s[ ]=\"fbla\";\n   int i,k,j;\n   for(k=0;s[k]!='\\0';k++)\n   {  j=0;\n      while(s[k]>=a[j] && a[j]!='\\0') j++;\n      for(【1】)【2】;\n      a[j]=s[k];\n   }\n   puts(a);\n   return 0;\n}\n```\n\n【1】的候选项：\nA) i=strlen(a)+k; i>=j; i--\nB) i=strlen(a); i>=j; i--\nC) i=j; i<=strlen(a)+k; i++\nD) i=j; i<=strlen(a); i++\n\n【2】的候选项：\nA) a[i]=a[i+1]\nB) a[i+1]=a[i]\nC) a[i]=a[i-1]\nD) a[i-1]=a[i]\n\n请分别填写各空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B"
+   },
+   {
+    "index": 2,
+    "answer": "B"
+   }
+  ],
+  "explanation": "答案B、B。插入位置 j 之后的元素须整体后移一位，应从当前串尾 strlen(a) 递减到 j 执行 a[i+1]=a[i]。"
+ },
+ "题6.42": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 6.42】下面程序的功能是将已按升序排好序的两个字符串 a 和 b 中的字符按升序归并到字符串 c 中。请选择填空。\n\n```c\n#include <stdio.h>\n#include <string.h>\nint main( )\n{  char a[ ]=\"acegikm\",b[ ]=\"bdfhjlnpq\";\n   char c[80],* p;\n   int i=0,j=0,k=0;\n   while(a[i]!='\\0' && b[j]!='\\0')\n   {  if (a[i]<b[j])  { 【1】 }\n      else { 【2】 }\n      k++;\n   }\n   c[k]='\\0';\n   if(【3】) p=b+j;\n   else p=a+i;\n   strcat(c,p);\n   puts(c);\n   return 0;\n}\n```\n\n【1】的候选项：\nA) c[k]=a[i];i++;\nB) c[k]=a[j];i++;\nC) c[k]=a[i];j++;\nD) c[k]=a[j];j++;\n\n【2】的候选项：\nA) c[k]=a[i];i++;\nB) c[k]=a[j];i++;\nC) c[k]=a[i];j++;\nD) c[k]=a[j];j++;\n\n【3】的候选项：\nA) a[i]=='\\0'\nB) a[i]!='\\0'\nC) a[i-1]=='\\0'\nD) a[i-1]!='\\0'\n\n请分别填写各空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "A"
+   },
+   {
+    "index": 2,
+    "answer": "D"
+   },
+   {
+    "index": 3,
+    "answer": "A"
+   }
+  ],
+  "explanation": "答案A、D、A。归并时谁小取谁并推进各自下标；主循环结束后若 a 已取完（a[i]=='\\0'）则把 b 的剩余部分接在 c 后。"
+ },
+ "题6.87": {
+  "type": "fill_blank",
+  "bloom": "understand",
+  "stem": "【题 6.87】以下程序段的功能是【1】，运行后输出结果是【2】。\n\n```c\n#include <stdio.h>\nint main( )\n{   int num[10]={103,1,-20,-203,-21,2,-2,-2,13,-21};\n    int sum=0, i;\n    for( i=0 ; i<10 ; i++)\n        if( num[i]>0 && num[i]%10==3 )\n            sum=num[i]+sum;\n    printf(\"sum=%6d\", sum );\n    return 0;\n}\n```\n\n（原书代码 `if( num[i]>0 num[i]%10==3 )` 漏印逻辑与运算符，此处按语义补为 `&&`。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "计算数组 num 中大于零且个位数为 3 的数据之和",
+    "accepted": [
+     "计算数组 num 中大于零且个位数为 3 的数据之和",
+     "计算数组num中大于零且个位数为3的数据之和",
+     "求数组 num 中大于 0 且个位数为 3 的元素之和",
+     "求数组num中大于0且个位数为3的元素之和",
+     "统计数组num中大于零且个位数为3的数据之和"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "sum=   116",
+    "accepted": [
+     "sum=   116",
+     "sum=116",
+     "116",
+     "sum=  116"
+    ]
+   }
+  ],
+  "explanation": "答案：功能是求数组中大于 0 且个位数为 3 的元素之和；输出 sum=   116。条件 num[i]>0 && num[i]%10==3 同时要求元素为正且个位是 3，只有 103 与 13 满足，和为 116。%6d 使数值右对齐占 6 列，故 116 前有 3 个空格。易错点：漏看 `>0` 条件而把 -203、-21 之类负数也算进来。"
  }
 }

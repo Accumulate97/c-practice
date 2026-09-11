@@ -1,0 +1,1083 @@
+[
+ {
+  "originalId": "题6.59",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 97,
+  "bookPage": 86,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[2][3]={{1,2,3},{4,5,6}};\n    int b[3][2],i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;/*__BLANK_1__*/; j++)\n        {   printf(\"%5d\",a[i][j]);\n            /*__BLANK_2__*/;\n        }\n        printf(\"\\n\");\n    }\n    printf(\"array b:\\n\");\n    for(i=0;/*__BLANK_3__*/; i++)\n    {   for(j=0; j<=1; j++)\n            printf(\"%5d\",b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "j<=2",
+    "accepted": [
+     "j<=2",
+     "j<3"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "b[j][i]=a[i][j]",
+    "accepted": [
+     "b[j][i]=a[i][j]"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "i<=2",
+    "accepted": [
+     "i<=2",
+     "i<3"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "array a:\n    1    2    3\n    4    5    6\narray b:\n    1    4\n    2    5\n    3    6",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "转置即行列互换：内层列循环上界为 j<=2（3 列），赋值 b[j][i]=a[i][j] 完成互换；输出 b 时行数为 3，故 i<=2。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[2][3]={{1,2,3},{4,5,6}};\n    int b[3][2],i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0; j<=2 ; j++)\n        {   printf(\"%5d\",a[i][j]);\n             b[j][i]=a[i][j] ;\n        }\n        printf(\"\\n\");\n    }\n    printf(\"array b:\\n\");\n    for(i=0; i<=2 ; i++)\n    {   for(j=0; j<=1; j++)\n            printf(\"%5d\",b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.61",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 97,
+  "bookPage": 86,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[3][3]={1,3,6,7,9,11,14,15,17},s1=0,s2=0,i,j;\n    for( i=0; i<3; i++)\n        for( j=0; j<3; j++)\n            if( i==j ) s1=s1+a[i][j];\n    for( i=0; i<3; i++)\n        for (/*__BLANK_1__*/; /*__BLANK_2__*/; j--)\n            if ((i+j)==2) s2=s2+a[i][j];\n    printf(\"s1=%d,s2=%d\\n\",s1,s2);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "j=2",
+    "accepted": [
+     "j=2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "j>=0",
+    "accepted": [
+     "j>=0"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "s1=27,s2=29",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "副对角线满足 i+j==2，需让 j 从 2 递减到 0 与 i 配对，故初值 j=2、条件 j>=0。主对角线 i==j 已由前一循环求出。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[3][3]={1,3,6,7,9,11,14,15,17},s1=0,s2=0,i,j;\n    for( i=0; i<3; i++)\n        for( j=0; j<3; j++)\n            if( i==j ) s1=s1+a[i][j];\n    for( i=0; i<3; i++)\n        for ( j=2 ;  j>=0 ; j--)\n            if ((i+j)==2) s2=s2+a[i][j];\n    printf(\"s1=%d,s2=%d\\n\",s1,s2);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.64",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 98,
+  "bookPage": 87,
+  "code": "#include <stdio.h>\nint main( )\n{   int x,y,z,a[8],m,i=0;\n    printf(\"The special numbers are:\\n\");\n    for (/*__BLANK_1__*/; m++)\n    {   x=m/100;\n        y=/*__BLANK_2__*/;\n        z=m%10;\n        if(x*100+y*10+z==x*x*x+y*y*y+z*z*z)\n        {   /*__BLANK_3__*/; i++;   }\n    }\n    for(x=0;x<i;x++)\n        printf(\"%6d\",a[x]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "m=100; m<1000",
+    "accepted": [
+     "m=100; m<1000",
+     "m=100;m<1000"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "m/10-x*10",
+    "accepted": [
+     "m/10-x*10",
+     "m/10%10"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "a[i]=m",
+    "accepted": [
+     "a[i]=m"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "The special numbers are:\n   153   370   371   407",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "水仙花数是三位数，故 m 从 100 遍历到 999；十位数字用 m/10-x*10（或 m/10%10）取出；命中者存入 a[i] 并计数。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int x,y,z,a[8],m,i=0;\n    printf(\"The special numbers are:\\n\");\n    for ( m=100; m<1000 ; m++)\n    {   x=m/100;\n        y= m/10-x*10 ;\n        z=m%10;\n        if(x*100+y*10+z==x*x*x+y*y*y+z*z*z)\n        {    a[i]=m ; i++;   }\n    }\n    for(x=0;x<i;x++)\n        printf(\"%6d\",a[x]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.65",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 98,
+  "bookPage": 87,
+  "code": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]=/*__BLANK_1__*/;\n        x[i+1]=/*__BLANK_2__*/;\n        i=/*__BLANK_3__*/;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "x[i-1]+x[i-2]",
+    "accepted": [
+     "x[i-1]+x[i-2]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "fabs((double)(x[i-1]-x[i]))",
+    "accepted": [
+     "fabs((double)(x[i-1]-x[i]))"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "i+2",
+    "accepted": [
+     "i+2"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "    0    1    1    1\n    2    1    3    1\n    4    1    5    1\n    6    1    7    1\n    8    1    9    1",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "奇数编号项为前两项之和、偶数编号项为前两项差的绝对值；一轮填两项后 i 加 2。差要取绝对值需 fabs 并强制为 double。原书第 1 空所在行漏印下标 [i]，本库补正。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]= x[i-1]+x[i-2] ;\n        x[i+1]= fabs((double)(x[i-1]-x[i])) ;\n        i= i+2 ;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.69",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 100,
+  "bookPage": 89,
+  "code": "#include <stdio.h>\nint main( )\n{   int i=0, n, j, num[20];\n    printf(\"Enter data that will be converted\\n\");\n    scanf(\"%d\",&n);\n    do\n    {   i++;\n        num[i]=n/*__BLANK_1__*/8;\n        n=n/*__BLANK_2__*/8;\n    } while(n!=0);\n    for(/*__BLANK_3__*/)\n        printf(\"%d \",num[j]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "%",
+    "accepted": [
+     "%"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "/",
+    "accepted": [
+     "/"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "j=i; j>=1; j--",
+    "accepted": [
+     "j=i; j>=1; j--",
+     "j=i;j>=1;j--"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "100\n",
+    "expected": "Enter data that will be converted\n1 4 4",
+    "note": "100 的八进制为 144"
+   },
+   {
+    "stdin": "8\n",
+    "expected": "Enter data that will be converted\n1 0",
+    "note": "8 的八进制为 10"
+   },
+   {
+    "stdin": "0\n",
+    "expected": "Enter data that will be converted\n0",
+    "note": "0 边界"
+   }
+  ],
+  "explanation": "除基取余：num[i]=n%8 取当前最低位，n=n/8 缩位；余数是逆序存放的，输出须从 j=i 递减到 1。原书 scanf 行漏分号、printf 实参漏逗号，本库补正。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int i=0, n, j, num[20];\n    printf(\"Enter data that will be converted\\n\");\n    scanf(\"%d\",&n);\n    do\n    {   i++;\n        num[i]=n % 8;\n        n=n / 8;\n    } while(n!=0);\n    for( j=i; j>=1; j-- )\n        printf(\"%d \",num[j]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.70",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 100,
+  "bookPage": 89,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[5],max,min,i,j=0,k=0;\n    for(i=0;i<5;i++)\n        scanf(\"%d\",&a[i]);\n    min=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]<min) {min=a[i];/*__BLANK_1__*/;}\n    max=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]>max) {max=a[i];/*__BLANK_2__*/;}\n    /*__BLANK_3__*/\n    printf(\"\\nThe position of min is:%3d\\n\",k);\n    printf(\"The position of max is:%3d\\n\",j);\n    for(i=0;i<5;i++)\n        printf(\"%5d\",a[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "k=i",
+    "accepted": [
+     "k=i"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "j=i",
+    "accepted": [
+     "j=i"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "a[j]=min; a[k]=max;",
+    "accepted": [
+     "a[j]=min; a[k]=max;",
+     "a[j]=min;a[k]=max;"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "3 8 1 9 5\n",
+    "expected": "\nThe position of min is:  2\nThe position of max is:  3\n    3    8    9    1    5",
+    "note": "最大 9 在下标 3，最小 1 在下标 2"
+   },
+   {
+    "stdin": "5 5 5 5 5\n",
+    "expected": "\nThe position of min is:  0\nThe position of max is:  0\n    5    5    5    5    5",
+    "note": "全相等边界"
+   }
+  ],
+  "explanation": "两个循环分别记录最小值下标 k 与最大值下标 j；对调即把 min 放到 j 处、max 放到 k 处。书答案页此题三空印作 i=j=k / k=i / a[j]=max;a[k]=min，与程序语义矛盾（后者为无操作），本库按语义补正，见存疑清单。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[5],max,min,i,j=0,k=0;\n    for(i=0;i<5;i++)\n        scanf(\"%d\",&a[i]);\n    min=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]<min) {min=a[i]; k=i ;}\n    max=a[0];\n    for(i=1;i<5;i++)\n        if(a[i]>max) {max=a[i]; j=i ;}\n     a[j]=min; a[k]=max; \n    printf(\"\\nThe position of min is:%3d\\n\",k);\n    printf(\"The position of max is:%3d\\n\",j);\n    for(i=0;i<5;i++)\n        printf(\"%5d\",a[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.74",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 102,
+  "bookPage": 91,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[10][10], n, i, j, m;\n    scanf(\"%d\",&n);\n    if(n%2==0) m=n/2;\n    else/*__BLANK_1__*/;\n    for(i=0;i<m;i++)\n        for(j=i;j<n-i;j++)\n        {   a[i][j]=i+1;\n            a[/*__BLANK_2__*/][j]=i+1;\n            a[j][i]=i+1;\n            a[j][/*__BLANK_3__*/]=i+1;\n        }\n    for(i=0;i<n;i++)\n    {   for(j=0;j<n;j++)\n            printf(\"%d \",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "m=n/2+1",
+    "accepted": [
+     "m=n/2+1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "n-i-1",
+    "accepted": [
+     "n-i-1"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "n-i-1",
+    "accepted": [
+     "n-i-1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "9\n",
+    "expected": "1 1 1 1 1 1 1 1 1 \n1 2 2 2 2 2 2 2 1 \n1 2 3 3 3 3 3 2 1 \n1 2 3 4 4 4 3 2 1 \n1 2 3 4 5 4 3 2 1 \n1 2 3 4 4 4 3 2 1 \n1 2 3 3 3 3 3 2 1 \n1 2 2 2 2 2 2 2 1 \n1 1 1 1 1 1 1 1 1",
+    "note": "书给 9 阶样例"
+   },
+   {
+    "stdin": "5\n",
+    "expected": "1 1 1 1 1 \n1 2 2 2 1 \n1 2 3 2 1 \n1 2 2 2 1 \n1 1 1 1 1",
+    "note": "奇数阶"
+   },
+   {
+    "stdin": "4\n",
+    "expected": "1 1 1 1 \n1 2 2 1 \n1 2 2 1 \n1 1 1 1",
+    "note": "偶数阶边界"
+   }
+  ],
+  "explanation": "方阵关于中心对称，每层由上、下、左、右四条边同时赋值；奇数阶中心行需多扫一层，故 m=n/2+1。镜像行号与列号均为 n-i-1。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[10][10], n, i, j, m;\n    scanf(\"%d\",&n);\n    if(n%2==0) m=n/2;\n    else m=n/2+1 ;\n    for(i=0;i<m;i++)\n        for(j=i;j<n-i;j++)\n        {   a[i][j]=i+1;\n            a[ n-i-1 ][j]=i+1;\n            a[j][i]=i+1;\n            a[j][ n-i-1 ]=i+1;\n        }\n    for(i=0;i<n;i++)\n    {   for(j=0;j<n;j++)\n            printf(\"%d \",a[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.76",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 103,
+  "bookPage": 92,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[2][3]={4,5,6,1,2,3}, b[2][3];\n    int i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;j<3;j++)\n        {   printf(\"%5d\",a[i][j]);\n            /*__BLANK_1__*/;\n        }\n        printf(\"\\n\");\n    }\n    for(/*__BLANK_2__*/;i++) b[i][0]=a[i][2];\n    printf(\"array b:\\n\");\n    for(i=0;i<2;i++)\n    {   for(j=0;j<3;j++)\n            printf(\"%5d\",b[i][j]);\n        /*__BLANK_3__*/;\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "b[i][(j+1)%3]=a[i][j]",
+    "accepted": [
+     "b[i][(j+1)%3]=a[i][j]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "i=0;i<2",
+    "accepted": [
+     "i=0;i<2",
+     "i=0; i<2"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "printf(\"\\n\")",
+    "accepted": [
+     "printf(\"\\n\")"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "array a:\n    4    5    6\n    1    2    3\narray b:\n    6    4    5\n    3    1    2",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "右移一列即 a 的第 j 列落到 b 的第 j+1 列，最右列回绕到第 0 列，用 (j+1)%3 表示回绕；随后单独把最右列写入 b 的第 0 列。书原文 b[i][j+1] 在 j=2 时越界写，本库按语义补正为取模，见存疑清单。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[2][3]={4,5,6,1,2,3}, b[2][3];\n    int i,j;\n    printf(\"array a:\\n\");\n    for(i=0;i<=1;i++)\n    {   for(j=0;j<3;j++)\n        {   printf(\"%5d\",a[i][j]);\n             b[i][(j+1)%3]=a[i][j] ;\n        }\n        printf(\"\\n\");\n    }\n    for( i=0;i<2 ;i++) b[i][0]=a[i][2];\n    printf(\"array b:\\n\");\n    for(i=0;i<2;i++)\n    {   for(j=0;j<3;j++)\n            printf(\"%5d\",b[i][j]);\n         printf(\"\\n\") ;\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.78",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 104,
+  "bookPage": 93,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[4][4]={1,2,3,4,2,2,5,6,3,5,3,7,4,6,7,4};\n    int i,j,found=0;\n    for(j=0;j<4;j++)\n        for(/*__BLANK_1__*/; i<4;i++)\n            if(a[j][i]!=a[i][j])\n                {   /*__BLANK_2__*/; break;   }\n    if(found==1) printf(\"No\");\n    else printf(\"Yes\");\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i=j+1",
+    "accepted": [
+     "i=j+1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "found=1",
+    "accepted": [
+     "found=1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "Yes",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "对称性只需检查上三角（i 从 j+1 起），避免重复比较与对角线自比；一旦发现 a[j][i]!=a[i][j] 就置 found=1 并跳出。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[4][4]={1,2,3,4,2,2,5,6,3,5,3,7,4,6,7,4};\n    int i,j,found=0;\n    for(j=0;j<4;j++)\n        for( i=j+1 ; i<4;i++)\n            if(a[j][i]!=a[i][j])\n                {    found=1 ; break;   }\n    if(found==1) printf(\"No\");\n    else printf(\"Yes\");\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.79",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 105,
+  "bookPage": 94,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[10], b[10], i;\n    for(i=0;/*__BLANK_1__*/;i++)\n        scanf(\"%d\",&a[i]);\n    for(i=1;/*__BLANK_2__*/;i++)\n        b[i]=a[i]-a[i-1];\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if(/*__BLANK_3__*/) printf(\"\\n\");\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i<10",
+    "accepted": [
+     "i<10"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "i<10",
+    "accepted": [
+     "i<10"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "i%3==0",
+    "accepted": [
+     "i%3==0"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1 3 6 10 15 21 28 36 45 55\n",
+    "expected": "  2  3  4\n  5  6  7\n  8  9 10",
+    "note": "差为 2..10"
+   },
+   {
+    "stdin": "5 5 5 5 5 5 5 5 5 5\n",
+    "expected": "  0  0  0\n  0  0  0\n  0  0  0",
+    "note": "全 0 边界"
+   }
+  ],
+  "explanation": "读入与差分循环都遍历 10 个元素，条件均为 i<10；b 从下标 1 起共 9 个差，每行 3 个即 i 为 3 的倍数时换行。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[10], b[10], i;\n    for(i=0; i<10 ;i++)\n        scanf(\"%d\",&a[i]);\n    for(i=1; i<10 ;i++)\n        b[i]=a[i]-a[i-1];\n    for(i=1;i<10;i++)\n    {   printf(\"%3d\",b[i]);\n        if( i%3==0 ) printf(\"\\n\");\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.82",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 106,
+  "bookPage": 95,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[10]={1,2,3,4,5,6,7,8,9,10};\n    int k,s,i;\n    float ave;\n    for(k=s=i=0;i<10;i++)\n    {   if(a[i]%2 !=0)/*__BLANK_1__*/;\n        s+=/*__BLANK_2__*/;\n        k++;\n    }\n    if( k!=0 )\n    {   ave=s/k; printf(\"%d,%f\\n\",k,ave);   }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "continue",
+    "accepted": [
+     "continue"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[i]",
+    "accepted": [
+     "a[i]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "5,6.000000",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "奇数用 continue 跳过本次累加与计数；偶数才执行 s+=a[i] 与 k++。10 以内偶数 5 个、和 30，平均 6。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[10]={1,2,3,4,5,6,7,8,9,10};\n    int k,s,i;\n    float ave;\n    for(k=s=i=0;i<10;i++)\n    {   if(a[i]%2 !=0) continue ;\n        s+= a[i] ;\n        k++;\n    }\n    if( k!=0 )\n    {   ave=s/k; printf(\"%d,%f\\n\",k,ave);   }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.83",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 106,
+  "bookPage": 95,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[3][4]={{3,-2,7,5},{1,0,4,-3},{6,8,0,2}};\n    int b[3][4]={{-2,0,1,4},{5,-1,7,6},{6,8,0,2}};\n    int i, j, c[3][4];\n    for(i=0;i<3;i++)\n        for(j=0;j<4;j++)   c[i][j]=/*__BLANK_1__*/;\n    for(i=0;i<3;i++)\n    {   for(j=0;j<4;j++)   printf(\"%3d\",c[i][j]);\n        /*__BLANK_2__*/;\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i][j]+b[i][j]",
+    "accepted": [
+     "a[i][j]+b[i][j]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "printf(\"\\n\")",
+    "accepted": [
+     "printf(\"\\n\")"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "  1 -2  8  9\n  6 -1 11  3\n 12 16  0  4",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "矩阵加法即对应元素相加 c[i][j]=a[i][j]+b[i][j]；每输出一行后换行保持矩阵形式。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[3][4]={{3,-2,7,5},{1,0,4,-3},{6,8,0,2}};\n    int b[3][4]={{-2,0,1,4},{5,-1,7,6},{6,8,0,2}};\n    int i, j, c[3][4];\n    for(i=0;i<3;i++)\n        for(j=0;j<4;j++)   c[i][j]= a[i][j]+b[i][j] ;\n    for(i=0;i<3;i++)\n    {   for(j=0;j<4;j++)   printf(\"%3d\",c[i][j]);\n         printf(\"\\n\") ;\n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.84",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 106,
+  "bookPage": 95,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[3][2]={2,-1,-4,0,3,1}, b[2][2]={7,-9,-8,10};\n    int i,j,k,s,c[3][2];\n    for(i=0;i<3;i++)\n        for(j=0;j<2;j++)\n        {   for(/*__BLANK_1__*/; k<2;k++)\n                s += /*__BLANK_2__*/;\n            c[i][j]=s;\n        }\n    for(i=0;i<3;i++)\n    {   for(j=0;j<2;j++)   printf(\"%6d\",c[i][j]);\n        /*__BLANK_3__*/\n    }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "k=s=0",
+    "accepted": [
+     "k=s=0"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[i][k]*b[k][j]",
+    "accepted": [
+     "a[i][k]*b[k][j]"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "printf(\"\\n\");",
+    "accepted": [
+     "printf(\"\\n\");"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "    22   -28\n   -28    36\n    13   -17",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "矩阵乘积的每个元素是 a 的第 i 行与 b 的第 j 列对应乘积之和：累加器 s 须在每格开始前清零（k=s=0），通项 a[i][k]*b[k][j]；每行输出完换行。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[3][2]={2,-1,-4,0,3,1}, b[2][2]={7,-9,-8,10};\n    int i,j,k,s,c[3][2];\n    for(i=0;i<3;i++)\n        for(j=0;j<2;j++)\n        {   for( k=s=0 ; k<2;k++)\n                s +=  a[i][k]*b[k][j] ;\n            c[i][j]=s;\n        }\n    for(i=0;i<3;i++)\n    {   for(j=0;j<2;j++)   printf(\"%6d\",c[i][j]);\n         printf(\"\\n\"); \n    }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.85",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 107,
+  "bookPage": 96,
+  "code": "#include <stdio.h>\nint main( )\n{   float a[4][4]={{1,-0.2,0,0},{-0.8,1,-0.2,-0.2},{0,-0.8,1,-0.2},{0,-0.8,-0.8,1}};\n    float b[4]; int i, j, k;\n    for( i=0 ;i<4 ;i++)\n    {   b[i]=0;\n        for ( j=0 ; j<4; j++)\n            /*__BLANK_1__*/\n    }\n    for ( k=0 ; k<4 ; k++)\n        printf(\"\\n b[%d]=%-6.2f\", k+1,/*__BLANK_2__*/) ;\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "b[i]+=a[i][j];",
+    "accepted": [
+     "b[i]+=a[i][j];",
+     "b[i]=b[i]+a[i][j];"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "b[k]",
+    "accepted": [
+     "b[k]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "\n b[1]=0.80  \n b[2]=-0.20 \n b[3]=-0.00 \n b[4]=-0.60",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "行和累加：内层对第 i 行四列做 b[i]+=a[i][j]；输出时按下标取 b[k]。注意 b[i] 先清零再累加。",
+  "solution": "#include <stdio.h>\nint main( )\n{   float a[4][4]={{1,-0.2,0,0},{-0.8,1,-0.2,-0.2},{0,-0.8,1,-0.2},{0,-0.8,-0.8,1}};\n    float b[4]; int i, j, k;\n    for( i=0 ;i<4 ;i++)\n    {   b[i]=0;\n        for ( j=0 ; j<4; j++)\n             b[i]+=a[i][j]; \n    }\n    for ( k=0 ; k<4 ; k++)\n        printf(\"\\n b[%d]=%-6.2f\", k+1, b[k] ) ;\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.86",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p096-108.json",
+  "page": 107,
+  "bookPage": 96,
+  "code": "#include <stdio.h>\nint main( )\n{   int num[20]={10,20,1,-20,203,-21,2,-2,-2,11,-21,22,12,-2,-234,-90,22,90,-45,20};\n    int sum=0, i;\n    for( i=0 ; i<=19 ; i++)\n        if (/*__BLANK_1__*/)\n            sum=/*__BLANK_2__*/;\n    printf(\"sum=%6d\", sum);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "num[i]<0",
+    "accepted": [
+     "num[i]<0"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "num[i]+sum",
+    "accepted": [
+     "num[i]+sum",
+     "sum+num[i]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "sum=  -437",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "筛选负数用 num[i]<0；累加写成 sum=num[i]+sum。原书为无 main 的程序段，本库补 main 外壳以便实机验证。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int num[20]={10,20,1,-20,203,-21,2,-2,-2,11,-21,22,12,-2,-234,-90,22,90,-45,20};\n    int sum=0, i;\n    for( i=0 ; i<=19 ; i++)\n        if ( num[i]<0 )\n            sum= num[i]+sum ;\n    printf(\"sum=%6d\", sum);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.91",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 109,
+  "bookPage": 98,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[8]={25,57,48,37,12,92,86,33},i,x;\n    scanf(\"%d\",&x);\n    for(i=0;i<8;i++)\n        if(x==a[i])\n        {   printf(\"Found!The index is :%d\\n\",--i); /*__BLANK_1__*/;   }\n    if(/*__BLANK_2__*/)\n        printf(\"Can't found !\");\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "break",
+    "accepted": [
+     "break"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "i==8",
+    "accepted": [
+     "i==8"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "86\n",
+    "expected": "Found!The index is :5",
+    "note": "命中下标 6"
+   },
+   {
+    "stdin": "99\n",
+    "expected": "Can't found !",
+    "note": "未命中"
+   }
+  ],
+  "explanation": "找到后必须 break 跳出，否则会继续扫描并重复输出；循环正常结束时 i==8，说明未找到，输出 Can't found !。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[8]={25,57,48,37,12,92,86,33},i,x;\n    scanf(\"%d\",&x);\n    for(i=0;i<8;i++)\n        if(x==a[i])\n        {   printf(\"Found!The index is :%d\\n\",--i);  break ;   }\n    if( i==8 )\n        printf(\"Can't found !\");\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.93",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 109,
+  "bookPage": 98,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[5]={4,7,2,5,1},i,j,m;\n    for(i=1;i<5;i++)\n    {   m=a[i];\n        j=/*__BLANK_1__*/;\n        while(j>=0 && m>a[j])\n        {   /*__BLANK_2__*/; j--;   }\n        /*__BLANK_3__*/=m;\n    }\n    for ( i=0; i<5; i++)  printf(\"%d\",a[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i-1",
+    "accepted": [
+     "i-1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[j+1]=a[j]",
+    "accepted": [
+     "a[j+1]=a[j]"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "a[j+1]",
+    "accepted": [
+     "a[j+1]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "75421",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "插入排序：待插元素 m 与已排序部分从后往前比较，比 m 小的后移一位 a[j+1]=a[j]；退出时 j+1 即插入位置。降序故条件为 m>a[j]。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[5]={4,7,2,5,1},i,j,m;\n    for(i=1;i<5;i++)\n    {   m=a[i];\n        j= i-1 ;\n        while(j>=0 && m>a[j])\n        {    a[j+1]=a[j] ; j--;   }\n         a[j+1] =m;\n    }\n    for ( i=0; i<5; i++)  printf(\"%d\",a[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.94",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 110,
+  "bookPage": 99,
+  "code": "#include <stdio.h>\nint main( )\n{   int a[3]={5,9,19};\n    int b[5]={12,24,26,37,48};\n    int c[10],i=0,j=0,k=0;\n    while(i<3 && j<5)\n        if(/*__BLANK_1__*/)\n        {   c[k]=b[j]; k++; j++;   }\n        else\n        {   c[k]=a[i]; k++; i++;   }\n    while(/*__BLANK_2__*/)\n    {   c[k]=a[i]; i++; k++;   }\n    while (/*__BLANK_3__*/)\n    {   c[k]=b[j]; k++; j++;   }\n    for(i=0; i<k;i++)   printf(\"%3d\",c[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i]>b[j]",
+    "accepted": [
+     "a[i]>b[j]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "i<3",
+    "accepted": [
+     "i<3"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "j<5",
+    "accepted": [
+     "j<5"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "  5  9 12 19 24 26 37 48",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "归并时取较小者入 c：b[j] 更小（即 a[i]>b[j]）时取 b；主循环结束后把未取完的一方依次接上，故两个收尾循环条件分别为 i<3 与 j<5。",
+  "solution": "#include <stdio.h>\nint main( )\n{   int a[3]={5,9,19};\n    int b[5]={12,24,26,37,48};\n    int c[10],i=0,j=0,k=0;\n    while(i<3 && j<5)\n        if( a[i]>b[j] )\n        {   c[k]=b[j]; k++; j++;   }\n        else\n        {   c[k]=a[i]; k++; i++;   }\n    while( i<3 )\n    {   c[k]=a[i]; i++; k++;   }\n    while ( j<5 )\n    {   c[k]=b[j]; k++; j++;   }\n    for(i=0; i<k;i++)   printf(\"%3d\",c[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.102",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 112,
+  "bookPage": 101,
+  "code": "#include <stdio.h>\n#define M 10\nint main( )\n{   int x[M][M],n,i,j;\n    long s=1;\n    printf(\"Enter a integer(<=10):\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter %d data on each line for the array x\\n\",n);\n    for(/*__BLANK_1__*/\n        for(j=0;j<n;j++)\n            scanf(\"%d\",&x[i][j]);\n    for(i=0;i<n;i++)\n        for(/*__BLANK_2__*/)\n            /*__BLANK_3__*/\n    printf(\"%ld\\n\",s);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i=0;i<n;i++)",
+    "accepted": [
+     "i=0;i<n;i++)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "j=i;j<n;j++",
+    "accepted": [
+     "j=i;j<n;j++"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "s*=x[i][j];",
+    "accepted": [
+     "s*=x[i][j];"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "3\n1 2 3\n4 5 6\n7 8 9\n",
+    "expected": "Enter a integer(<=10):\nEnter 3 data on each line for the array x\n1620",
+    "note": "上三角 1*2*3*5*6*9=972"
+   },
+   {
+    "stdin": "1\n7\n",
+    "expected": "Enter a integer(<=10):\nEnter 1 data on each line for the array x\n7",
+    "note": "1 阶边界"
+   }
+  ],
+  "explanation": "上三角含主对角线，故第 i 行从第 i 列起累乘：j=i;j<n;j++，累乘语句 s*=x[i][j]。第一空补全读入循环的行控制 i=0;i<n;i++)。",
+  "solution": "#include <stdio.h>\n#define M 10\nint main( )\n{   int x[M][M],n,i,j;\n    long s=1;\n    printf(\"Enter a integer(<=10):\\n\");\n    scanf(\"%d\",&n);\n    printf(\"Enter %d data on each line for the array x\\n\",n);\n    for( i=0;i<n;i++) \n        for(j=0;j<n;j++)\n            scanf(\"%d\",&x[i][j]);\n    for(i=0;i<n;i++)\n        for( j=i;j<n;j++ )\n             s*=x[i][j]; \n    printf(\"%ld\\n\",s);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.106",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 113,
+  "bookPage": 102,
+  "code": "#include <stdio.h>\nint main( )\n{   char c[]=\"It is a computer\"; int i,j;\n    for(i=0;/*__BLANK_1__*/;i++)\n    {   /*__BLANK_2__*/;   printf(\"%c\",c[j]);   }\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i<=7",
+    "accepted": [
+     "i<=7"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "j=i+8",
+    "accepted": [
+     "j=i+8"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "computer",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "computer 共 8 个字符，位于原串下标 8~15，故 i 取 0~7（i<=7）且 j=i+8 定位到 c 的起始处。原书为程序段，本库补 main 外壳。",
+  "solution": "#include <stdio.h>\nint main( )\n{   char c[]=\"It is a computer\"; int i,j;\n    for(i=0; i<=7 ;i++)\n    {    j=i+8 ;   printf(\"%c\",c[j]);   }\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.108",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 114,
+  "bookPage": 103,
+  "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char c='a',t[50]; int n,k,j;\n    fgets(t,50,stdin);\n    n=/*__BLANK_1__*/;\n    for(k=0;k<n;k++)\n        if( /*__BLANK_2__*/ )   { j=k; break; }\n        else j=-1;\n    printf(\"%d\",j);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "strlen(t)",
+    "accepted": [
+     "strlen(t)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "t[k]==c",
+    "accepted": [
+     "t[k]==c"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "banana\n",
+    "expected": "1",
+    "note": "首个 a 在下标 1"
+   },
+   {
+    "stdin": "xyz\n",
+    "expected": "-1",
+    "note": "不含 a 输出 -1"
+   }
+  ],
+  "explanation": "串长用 strlen(t) 控制循环；逐字符与 c 比较，命中记下标并 break，否则每轮置 j=-1，未命中最终保持 -1。原书 gets 已按规范改写为 fgets。",
+  "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char c='a',t[50]; int n,k,j;\n    fgets(t,50,stdin);\n    n= strlen(t) ;\n    for(k=0;k<n;k++)\n        if(  t[k]==c  )   { j=k; break; }\n        else j=-1;\n    printf(\"%d\",j);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.109",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 114,
+  "bookPage": 103,
+  "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20], str[3][20]; int i;\n    for(i=0; i<3; i++)   fgets(str[i],20,stdin);\n    strcpy(s,(strcmp(str[0],str[1])<0? /*__BLANK_1__*/));\n    if(strcmp(str[2],s)<0)  strcpy(s,str[2]);\n    printf(\"%s\\n\",/*__BLANK_2__*/);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "str[0]:str[1]",
+    "accepted": [
+     "str[0]:str[1]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "s",
+    "accepted": [
+     "s"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "cherry\napple\nbanana\n",
+    "expected": "apple",
+    "note": "最小为 apple"
+   },
+   {
+    "stdin": "aaa\naaa\naaa\n",
+    "expected": "aaa",
+    "note": "全同边界"
+   }
+  ],
+  "explanation": "条件表达式取两者中较小者：strcmp<0 说明 str[0] 小，取 str[0] 否则 str[1]；再与 str[2] 比较后 s 中即最小串，输出 s。原书 gets 已改写为 fgets。",
+  "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20], str[3][20]; int i;\n    for(i=0; i<3; i++)   fgets(str[i],20,stdin);\n    strcpy(s,(strcmp(str[0],str[1])<0?  str[0]:str[1] ));\n    if(strcmp(str[2],s)<0)  strcpy(s,str[2]);\n    printf(\"%s\\n\", s );\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.110",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 114,
+  "bookPage": 103,
+  "code": "#include <stdio.h>\nint main( )\n{   char a[3],c; int i;\n    c=getchar( );\n    a[1]=c;\n    if(c=='Z')  { a[2]='A';/*__BLANK_1__*/; }\n    else if (c=='A') {a[0]='Z';/*__BLANK_2__*/; }\n    else { a[0]=c-1; a[2]=c+1;}\n    for(i=0;i<3;i++)  putchar(a[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[0]=c-1",
+    "accepted": [
+     "a[0]=c-1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[2]=c+1",
+    "accepted": [
+     "a[2]=c+1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "Z\n",
+    "expected": "YZA",
+    "note": "回绕 YZA"
+   },
+   {
+    "stdin": "A\n",
+    "expected": "ZAB",
+    "note": "回绕 ZAB"
+   },
+   {
+    "stdin": "M\n",
+    "expected": "LMN",
+    "note": "常规 LMN"
+   }
+  ],
+  "explanation": "Z 的前邻是 Y，即 c-1；A 的后邻是 B，即 c+1。两个分支各缺一个邻字母的赋值，恰好可用 c-1、c+1 表达回绕。",
+  "solution": "#include <stdio.h>\nint main( )\n{   char a[3],c; int i;\n    c=getchar( );\n    a[1]=c;\n    if(c=='Z')  { a[2]='A'; a[0]=c-1 ; }\n    else if (c=='A') {a[0]='Z'; a[2]=c+1 ; }\n    else { a[0]=c-1; a[2]=c+1;}\n    for(i=0;i<3;i++)  putchar(a[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.111",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 115,
+  "bookPage": 104,
+  "code": "#include <stdio.h>\nint main( )\n{   char t,a[6]={'a','b','c','d','e','f'}; int i;\n    t=a[5];\n    for(i=5;i>0;i--)   a[i]=/*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    for(i=0;i<=5;i++)   printf(\"%c\",a[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i-1]",
+    "accepted": [
+     "a[i-1]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[0]=t",
+    "accepted": [
+     "a[0]=t"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "fabcde",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "整体右移一位：先把末字符存入 t，再从后往前 a[i]=a[i-1]，最后把 t 放到 a[0]。原书程序段循环方向与花括号排版错乱，本库按右移语义重排并补 main 外壳，见存疑清单。",
+  "solution": "#include <stdio.h>\nint main( )\n{   char t,a[6]={'a','b','c','d','e','f'}; int i;\n    t=a[5];\n    for(i=5;i>0;i--)   a[i]= a[i-1] ;\n     a[0]=t ;\n    for(i=0;i<=5;i++)   printf(\"%c\",a[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.112",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 115,
+  "bookPage": 104,
+  "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a[]=\"labchmfye\",t; int i,j;\n    for(i=0;i<7;i+=2)\n        for(j=i+2;j<9;/*__BLANK_1__*/)\n            if(/*__BLANK_2__*/)\n            {   t=a[i]; a[i]=a[j]; a[j]=t; j++;   }\n    puts(a);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "j++",
+    "accepted": [
+     "j++"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[i]>a[j]",
+    "accepted": [
+     "a[i]>a[j]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "baecfmhyl",
+    "note": "无输入，实机输出以 Godbolt 为准"
+   }
+  ],
+  "explanation": "只对偶数下标做选择排序：外层 i 步长 2，内层 j 也步长 2（交换后体内再 j++ 与 for 的 j++ 合计跳过奇数位）；前者大于后者即交换。原书为程序段，本库补 main 外壳。",
+  "solution": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char a[]=\"labchmfye\",t; int i,j;\n    for(i=0;i<7;i+=2)\n        for(j=i+2;j<9; j++ )\n            if( a[i]>a[j] )\n            {   t=a[i]; a[i]=a[j]; a[j]=t; j++;   }\n    puts(a);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.113",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 115,
+  "bookPage": 104,
+  "code": "#include <stdio.h>\nint main( )\n{   char a[80];  int i,b[80],k=0;\n    fgets(a,80,stdin);\n    for(i=0; a[i]!='\\0'; i++)\n        if(  /*__BLANK_1__*/  )   { b[k]=i;  /*__BLANK_2__*/  ; }\n    for(i=0;i<k;i++)  printf(\"%3d\",b[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i]=='c'",
+    "accepted": [
+     "a[i]=='c'"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "k++",
+    "accepted": [
+     "k++"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "abcabc\n",
+    "expected": "  2  5",
+    "note": "c 在下标 2 与 5"
+   },
+   {
+    "stdin": "ddd\n",
+    "expected": "",
+    "note": "无 c 不输出"
+   }
+  ],
+  "explanation": "命中字符 c 时记录其下标 b[k]=i 并把计数器 k 自增，k 同时充当下一个存放位置。原书 gets 已改写为 fgets。",
+  "solution": "#include <stdio.h>\nint main( )\n{   char a[80];  int i,b[80],k=0;\n    fgets(a,80,stdin);\n    for(i=0; a[i]!='\\0'; i++)\n        if(   a[i]=='c'   )   { b[k]=i;   k++   ; }\n    for(i=0;i<k;i++)  printf(\"%3d\",b[i]);\n    return 0;\n}"
+ },
+ {
+  "originalId": "题6.114",
+  "chapter": "第6章 数组",
+  "section": "6.3 程序填空题",
+  "sourceBatch": "p108-119.json",
+  "page": 115,
+  "bookPage": 104,
+  "code": "#include <stdio.h>\nint main( )\n{   char s[10][20]; int a[10],i,j;\n    for(i=0; i<10; i++)     fgets(s[i],20,stdin);\n    for(i=0; i<10; i++)\n    {   /*__BLANK_1__*/;\n        for(j=1; s[i][j]!='\\0'; j++)\n            if(a[i]<s[i][j])  /*__BLANK_2__*/ ;\n    }\n    for(i=0;i<10;i++)     printf(\" %d %c\",i,a[i]);\n    return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i]=s[i][0]",
+    "accepted": [
+     "a[i]=s[i][0]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[i]=s[i][j]",
+    "accepted": [
+     "a[i]=s[i][j]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "abc\nxyz\nmmm\naaa\nzzz\nqqq\nkkk\nddd\nppp\nnnn\n",
+    "expected": " 0 c 1 z 2 m 3 a 4 z 5 q 6 k 7 d 8 p 9 n",
+    "note": "各行最大字符"
+   },
+   {
+    "stdin": "a\nb\nc\nd\ne\nf\ng\nh\ni\nj\n",
+    "expected": " 0 a 1 b 2 c 3 d 4 e 5 f 6 g 7 h 8 i 9 j",
+    "note": "单字符行边界"
+   }
+  ],
+  "explanation": "每行先以首字符为当前最大 a[i]=s[i][0]，再逐字符比较更新 a[i]=s[i][j]。原书 gets 已改写为 fgets。",
+  "solution": "#include <stdio.h>\nint main( )\n{   char s[10][20]; int a[10],i,j;\n    for(i=0; i<10; i++)     fgets(s[i],20,stdin);\n    for(i=0; i<10; i++)\n    {    a[i]=s[i][0] ;\n        for(j=1; s[i][j]!='\\0'; j++)\n            if(a[i]<s[i][j])   a[i]=s[i][j]  ;\n    }\n    for(i=0;i<10;i++)     printf(\" %d %c\",i,a[i]);\n    return 0;\n}"
+ }
+]
