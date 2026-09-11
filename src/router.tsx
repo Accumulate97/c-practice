@@ -1,7 +1,6 @@
 import { createHashRouter } from 'react-router-dom'
 import { AppShell } from './components/layout/AppShell'
 import { HomePage } from './pages/HomePage'
-import { SectionPage } from './pages/SectionPage'
 import { ProgressPage } from './pages/ProgressPage'
 import { JudgeLabPage } from './pages/JudgeLabPage'
 import { NotFoundPage } from './pages/NotFoundPage'
@@ -47,9 +46,29 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载题目页…</p>
         ),
       },
-      { path: 'problems/:section', element: <SectionPage /> },
-      { path: 'knowledge', element: <SectionPage /> },
-      { path: 'knowledge/:section', element: <SectionPage /> },
+      // 阶段 10-1：知识板块从 SectionPage 占位换成真页面（列表 + 详情），与题目 / 演示同一口径走路由级 lazy。
+      // 同时删掉 problems/:section —— 列表页早改用 ?chapter= 查询参数，这条只会让打错的深链
+      // 落到一张「阶段 4 待办」的过期占位卡，不如直接交给下面的 404。
+      {
+        path: 'knowledge',
+        lazy: async () => {
+          const mod = await import('./pages/KnowledgeListPage')
+          return { Component: mod.KnowledgeListPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载知识卡片索引…</p>
+        ),
+      },
+      {
+        path: 'knowledge/:id',
+        lazy: async () => {
+          const mod = await import('./pages/KnowledgeDetailPage')
+          return { Component: mod.KnowledgeDetailPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载知识卡片…</p>
+        ),
+      },
       // 阶段 7：可视化板块从「诚实占位」换成真页面。三条都走路由级 lazy ——
       // 5 套渲染器 + Player + 语料 loader 不该由首页付体积（与题目详情页同一口径）。
       // 顺序有讲究：静态段 viz/compare 必须声明在 viz/:demoId 之前，否则 compare 会被当成演示 id。

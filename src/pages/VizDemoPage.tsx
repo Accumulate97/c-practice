@@ -15,6 +15,7 @@ import { Player } from '../modules/viz/Player'
 import { VizNotFound, loadDemo, loadVizIndex } from '../modules/viz/data/loader'
 import { categoryLabel, rendererFor } from '../modules/viz/registry'
 import type { VizDemo } from '../modules/viz/types'
+import { RelatedForViz } from '../modules/knowledge/links'
 
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
@@ -93,6 +94,7 @@ export function VizDemoPage() {
     <Player
       steps={demo.steps}
       header={
+        <>
         <header className="space-y-2">
           <Link to="/viz" className="text-sm underline" style={muted}>← 返回演示列表</Link>
           <h1 className="text-2xl font-semibold" data-role="viz-title">{demo.title}</h1>
@@ -115,6 +117,13 @@ export function VizDemoPage() {
             <p className="font-mono text-xs" style={muted}>输入：[{demo.meta.input.join(', ')}]</p>
           )}
         </header>
+        {/* 阶段 10-1 反向通路：演示 → 卡片 → 题目。放在 header 里而不是 renderStep 里，
+            播放器每换一个 step 都会重跑 renderStep，关联区不该跟着重渲染。 */}
+        <RelatedForViz
+          demoId={demoId}
+          relatedProblems={Array.isArray(demo.relatedProblems) ? demo.relatedProblems : []}
+        />
+        </>
       }
       renderStep={(step) => (
         <div className={demo.code ? 'grid gap-4 lg:grid-cols-[minmax(0,1fr)_22rem]' : ''}>

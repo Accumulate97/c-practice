@@ -175,20 +175,59 @@ const searchIndex = {
   docs: searchDocs,
 }
 
+/**
+ * 知识卡片索引（阶段 10-1 起承载列表页）。
+ *
+ * 分片口径与题目侧完全一致：扫目录 + isShardName() 过滤，新增分片重跑本脚本即自动收录，
+ * 前端不需要改路由表或写死章数（AGENTS.md 通用化要求：禁止硬编码数量）。
+ *
+ * summary / keyPoints 进索引是有体积代价的，但列表页要显示「标题 + 要点摘要」；
+ * 不进索引就得为一行摘要把 20 个分片（≈1.2 MB）全拉下来，那个代价大得多。
+ * 正文 content、示例代码、易错点仍留在分片里，由详情页按 file 懒加载。
+ */
+interface KnowledgeShard { file: string; category: unknown; chapter: unknown; cards: Record<string, unknown>[] }
+
+function loadKnowledgeShards(): KnowledgeShard[] {
+  const dir = join(DATA, 'knowledge')
+  if (!existsSync(dir)) return []
+  const out: KnowledgeShard[] = []
+  for (const name of readdirSync(dir).sort()) {
+    if (!isShardName(name)) continue
+    const parsed = readJson(join(dir, name)) as Record<string, unknown>
+    out.push({
+      file: name,
+      category: parsed.category,
+      chapter: parsed.chapter,
+      cards: Array.isArray(parsed.cards) ? (parsed.cards as Record<string, unknown>[]) : [],
+    })
+  }
+  return out
+}
+
 function knowledgeIndexShaped(): Record<string, unknown> {
-  const nodes = collectIds(join(DATA, 'knowledge'), 'cards')
+  const kShards = loadKnowledgeShards()
+  const kCards = kShards.flatMap((s) =>
+    s.cards.map((c) => ({
+      id: String(c.id),
+      /** 详情页据此定位分片，不再靠 id 前缀猜文件名 */
+      file: s.file,
+      category: typeof c.category === 'string' ? c.category : s.category,
+      chapter: typeof c.chapter === 'string' ? c.chapter : s.chapter,
+      section: typeof c.section === 'string' ? c.section : '',
+      order: typeof c.order === 'number' ? c.order : 0,
+      title: (c.title as string | undefined) ?? firstClause(String(c.summary ?? '')),
+      summary: typeof c.summary === 'string' ? c.summary : '',
+      keyPoints: Array.isArray(c.keyPoints) ? c.keyPoints.filter((k): k is string => typeof k === 'string') : [],
+      relatedProblems: Array.isArray(c.relatedProblems) ? c.relatedProblems : [],
+      relatedViz: Array.isArray(c.relatedViz) ? c.relatedViz : [],
+    })),
+  )
   return {
     _generated: GENERATED,
     content_sha: CONTENT_SHA,
-    count: nodes.length,
-    cards: nodes.map((n) => ({
-      id: n.id,
-      chapter: n.chapter,
-      section: n.section,
-      title: n.title ?? firstClause(String(n.summary ?? '')),
-      relatedProblems: Array.isArray(n.relatedProblems) ? n.relatedProblems : [],
-      relatedViz: Array.isArray(n.relatedViz) ? n.relatedViz : [],
-    })),
+    count: kCards.length,
+    shard_count: kShards.length,
+    cards: kCards,
   }
 }
 

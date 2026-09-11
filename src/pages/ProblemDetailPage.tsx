@@ -18,6 +18,7 @@ import { MatchingRenderer } from '../modules/problems/renderers/MatchingRenderer
 import { ProgressPanel } from '../modules/problems/progress/ProgressPanel'
 import { difficultyStars, typeLabel } from '../modules/problems/type-meta'
 import { loadVizIndex, type VizIndexEntry } from '../modules/viz/data/loader'
+import { RelatedCardsForProblem } from '../modules/knowledge/links'
 
 /**
  * 题目详情页（阶段 4 模块 1 最简版）。
@@ -152,6 +153,14 @@ function Ready({ data }: { data: LoadedProblem }) {
       <TypeRenderer problem={problem} />
 
       <RelatedVizLinks vizIds={problem.vizIds} />
+
+      {/* 阶段 10-1 反向通路：题目 → 知识卡片。题目侧没有 knowledgeIds（实测 518 题 0 条），
+          所以由卡片的 relatedProblems 倒排反查，再按同课程同章补足。索引拉不到就静默不渲染。 */}
+      <RelatedCardsForProblem
+        problemId={problem.id}
+        category={String(entry.category ?? '')}
+        chapter={String(entry.chapter ?? '')}
+      />
 
       <ProgressPanel problemId={problem.id} />
     </>
