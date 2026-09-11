@@ -1,0 +1,969 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-heap-build",
+  "title": "堆的构建与筛选调整",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "/* 大根堆：a[i] >= a[2i+1] 且 a[i] >= a[2i+2] */\n/* 建堆 = 从最后一个非叶结点 n/2-1 起，倒着逐个向下筛选，总代价 O(n) */\nvoid siftDown(int a[], int i, int n) {\n    for (int c = 2 * i + 1; c < n; i = c, c = 2 * i + 1) {\n        if (c + 1 < n && a[c + 1] > a[c]) c++;   /* 取较大的孩子 */\n        if (a[i] >= a[c]) break;                 /* 已经比孩子大，停 */\n        int t = a[i]; a[i] = a[c]; a[c] = t;     /* 下沉 */\n    }\n}\n\nvoid buildMaxHeap(int a[], int n) {\n    for (int i = n / 2 - 1; i >= 0; i--) siftDown(a, i, n);\n}",
+  "meta": {
+    "algorithm": "heapBuild",
+    "counterKeys": [
+      "comparisons",
+      "swaps"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "数组 [4, 7, 2, 9, 1, 6] 按下标层序摆成完全二叉树：i 的左右孩子是 2i+1 和 2i+2。目标建成大根堆（每个父结点都不小于它的孩子）",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "6",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      },
+      "codeLine": 12
+    },
+    {
+      "description": "建堆从最后一个非叶结点 n/2-1 = 2 开始，倒着往前逐个 siftDown。叶子结点天然就是合法的堆，不必处理 —— 这就是建堆总代价只有 O(n) 而不是 O(n log n) 的原因",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "i2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "6",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ],
+              "role": "compare"
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "轮到 siftDown(2)：a[2]=2，它的孩子是 a[5]=6",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "6",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ],
+              "role": "pivot"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "siftDown(2)：a[2]=2，先取较大的孩子 —— 只有一个孩子 a[5]=6，选 a[5]=6",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "6",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "compare"
+                },
+                null
+              ],
+              "role": "active"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 0,
+          "swaps": 0
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "a[2]=2 < a[5]=6，交换两者 —— 6 上浮、2 下沉到下标 5，继续检查",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                null
+              ],
+              "role": "swap"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        }
+      },
+      "codeLine": 9
+    },
+    {
+      "description": "siftDown(5)：下标 5 已经没有孩子，下沉结束。此时以 2 为根的子树是大根堆",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "轮到 siftDown(1)：a[1]=7，它的孩子是 a[3]=9 和 a[4]=1",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 1,
+          "swaps": 1
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "siftDown(1)：a[1]=7，先取较大的孩子 —— 比较 a[3]=9 与 a[4]=1，选 a[3]=9",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "compare"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "active"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 2,
+          "swaps": 1
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "a[1]=7 < a[3]=9，交换两者 —— 9 上浮、7 下沉到下标 3，继续检查",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "9",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "swap"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 3,
+          "swaps": 2
+        }
+      },
+      "codeLine": 9
+    },
+    {
+      "description": "siftDown(3)：下标 3 已经没有孩子，下沉结束。此时以 1 为根的子树是大根堆",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "9",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 3,
+          "swaps": 2
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "轮到 siftDown(0)：a[0]=4，它的孩子是 a[1]=9 和 a[2]=6",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "9",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ],
+          "role": "pivot"
+        },
+        "counters": {
+          "comparisons": 3,
+          "swaps": 2
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "siftDown(0)：a[0]=4，先取较大的孩子 —— 比较 a[1]=9 与 a[2]=6，选 a[1]=9",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "4",
+          "children": [
+            {
+              "key": "i1",
+              "label": "9",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "comparisons": 4,
+          "swaps": 2
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "a[0]=4 < a[1]=9，交换两者 —— 9 上浮、4 下沉到下标 1，继续检查",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "9",
+          "children": [
+            {
+              "key": "i1",
+              "label": "4",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "swap"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ],
+          "role": "swap"
+        },
+        "counters": {
+          "comparisons": 5,
+          "swaps": 3
+        }
+      },
+      "codeLine": 9
+    },
+    {
+      "description": "siftDown(1)：a[1]=4，先取较大的孩子 —— 比较 a[3]=7 与 a[4]=1，选 a[3]=7",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "9",
+          "children": [
+            {
+              "key": "i1",
+              "label": "4",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "compare"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "active"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 6,
+          "swaps": 3
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "a[1]=4 < a[3]=7，交换两者 —— 7 上浮、4 下沉到下标 3，继续检查",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "9",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "swap"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        }
+      },
+      "codeLine": 9
+    },
+    {
+      "description": "siftDown(3)：下标 3 已经没有孩子，下沉结束。此时以 0 为根的子树是大根堆",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "9",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "建堆完成：[9, 7, 6, 4, 1, 2]，源数组是 [4, 7, 2, 9, 1, 6]。堆顶 a[0]=9 就是最大值，堆排序正是反复把堆顶与末尾交换再 siftDown(0)",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "i0",
+          "label": "9",
+          "children": [
+            {
+              "key": "i1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "i3",
+                  "label": "4",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "i4",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "i2",
+              "label": "6",
+              "children": [
+                {
+                  "key": "i5",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "comparisons": 7,
+          "swaps": 4
+        }
+      },
+      "codeLine": 12
+    }
+  ]
+}

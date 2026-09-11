@@ -1,0 +1,757 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "linear-doubly-insert-delete",
+  "title": "双链表插入删除：prev/next 双向协同",
+  "renderer": "nodechain",
+  "category": "linear",
+  "chapter": "第2章 线性表",
+  "relatedProblems": [],
+  "code": "struct DNode { int data; struct DNode *prev, *next; };\n\n/* 在 p 之后插入 x：4 次指针修改，顺序不能乱 */\nvoid insertAfter(struct DNode *p, struct DNode *x) {\n    x->prev = p;          /* 1 新结点先接住前驱 */\n    x->next = p->next;    /* 2 再接住后继（必须在改 p->next 之前） */\n    if (p->next != NULL) p->next->prev = x;  /* 3 后继回指 */\n    p->next = x;          /* 4 前驱后指 */\n}\n\n/* 摘掉 x：2 次指针修改，x 的前后自己接上 */\nvoid removeNode(struct DNode *x) {\n    if (x->prev != NULL) x->prev->next = x->next;\n    if (x->next != NULL) x->next->prev = x->prev;\n    free(x);\n}",
+  "meta": {
+    "algorithm": "linearDoublyInsertDelete",
+    "counterKeys": [
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "双向链表 A ↔ B ↔ C：每个结点有 prev 和 next 两个指针（下方弧线是 prev 回指，直线是 next）。现在要在 B 之后插入 X，再把它删掉",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "malloc 出新结点 X（画在 B 和 C 之间的位置上），此时它的 prev / next 都还是 NULL，尚未接入链表",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "① x->prev = p：新结点先抓住前驱 B。这一步最安全，改的只是 X 自己",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "role": "swap",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "② x->next = p->next：X 再抓住后继 C。**必须在改 B->next 之前做** —— 一旦 B->next 先指向 X，C 就再也找不到了",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "role": "swap",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "③ p->next->prev = x：让后继 C 的 prev 回指 X（C 原来指向 B，现在改指 X）",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "X",
+            "role": "swap",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "④ p->next = x：最后才让 B 的 next 指向 X。4 次指针修改到此完成，插入成功：A ↔ B ↔ X ↔ C",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "X",
+            "role": "swap",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "X",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "插入完成后的稳定状态：X 的 prev/next 与 B、C 的指针互相咬合，双向都能走通",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "X",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "X",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "现在删除 X。① x->prev->next = x->next：让 B 的 next 跳过 X 直接指向 C",
+      "codeLine": 15,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "swap"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "role": "swap",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "X",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "② x->next->prev = x->prev：让 C 的 prev 跳过 X 直接指向 B。这两步先后无所谓，因为读的都是 X 自己的指针",
+      "codeLine": 16,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "X",
+            "label": "X",
+            "role": "swap"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "X",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "X",
+            "to": "B",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "role": "swap",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 6
+        }
+      }
+    },
+    {
+      "description": "③ free(x)：X 被摘除，双链表回到 A ↔ B ↔ C。小结：插入 4 次指针修改（顺序敏感），删除 2 次（顺序无关）+ 1 次 free",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "label": "next"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "label": "next"
+          },
+          {
+            "from": "C",
+            "to": null,
+            "label": "next"
+          },
+          {
+            "from": "A",
+            "to": null,
+            "label": "prev"
+          },
+          {
+            "from": "B",
+            "to": "A",
+            "label": "prev"
+          },
+          {
+            "from": "C",
+            "to": "B",
+            "label": "prev"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 6
+        }
+      }
+    }
+  ]
+}

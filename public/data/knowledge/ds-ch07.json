@@ -95,7 +95,11 @@
         "ds-ch05-03",
         "ds-ch07-01"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "tree-bst-insert",
+        "tree-bst-delete",
+        "tree-avl-rotate"
+      ],
       "category": "ds",
       "chapter": "第7章 查找",
       "order": 2

@@ -1,0 +1,266 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-call-stack",
+  "title": "函数调用栈：栈帧的压入与弹出",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "int g(int x) {\n    int t = x * 2;          /* g 的栈帧：形参 x + 局部变量 t + 返回地址 */\n    return t;\n}\n\nint f(int a) {\n    int b = 1;              /* f 的栈帧压在 main 之上 */\n    return a + b + g(a);    /* 调用 g 时再压一层，g 返回后立即弹出 */\n}\n\nint main(void) {\n    int m = 3;\n    return f(m);            /* main 的栈帧最先压入、最后弹出 */\n}",
+  "meta": {
+    "algorithm": "memoryCallStack",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "进入 main：压入 main 的栈帧（局部变量 m = 3 加返回地址），这是栈的最底层",
+      "codeLine": 12,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "raM",
+                "address": "0x7004",
+                "value": "← OS",
+                "role": "idle",
+                "note": "main · 返回地址"
+              },
+              {
+                "key": "m",
+                "address": "0x7000",
+                "value": "3",
+                "role": "active",
+                "note": "main · 局部变量 m ← 栈顶"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    },
+    {
+      "description": "main 调用 f(m = 3)：f 的栈帧压在 main 之上（形参 a = 3、局部 b = 1、返回地址指回 main）",
+      "codeLine": 13,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "raF",
+                "address": "0x6f08",
+                "value": "← main",
+                "role": "idle",
+                "note": "f · 返回地址"
+              },
+              {
+                "key": "b",
+                "address": "0x6f04",
+                "value": "1",
+                "note": "f · 局部变量 b"
+              },
+              {
+                "key": "a",
+                "address": "0x6f00",
+                "value": "3",
+                "role": "active",
+                "note": "f · 形参 a ← 栈顶"
+              },
+              {
+                "key": "raM",
+                "address": "0x7004",
+                "value": "← OS",
+                "role": "idle",
+                "note": "main · 返回地址"
+              },
+              {
+                "key": "m",
+                "address": "0x7000",
+                "value": "3",
+                "note": "main · 局部变量 m"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    },
+    {
+      "description": "f 内调用 g(a = 3)：再压一层 g 的栈帧（形参 x = 3、局部 t = x*2 = 6），此刻栈深三层",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "raG",
+                "address": "0x6e08",
+                "value": "← f",
+                "role": "idle",
+                "note": "g · 返回地址"
+              },
+              {
+                "key": "t",
+                "address": "0x6e04",
+                "value": "6",
+                "note": "g · 局部变量 t = x*2"
+              },
+              {
+                "key": "x",
+                "address": "0x6e00",
+                "value": "3",
+                "role": "active",
+                "note": "g · 形参 x ← 栈顶"
+              },
+              {
+                "key": "raF",
+                "address": "0x6f08",
+                "value": "← main",
+                "role": "idle",
+                "note": "f · 返回地址"
+              },
+              {
+                "key": "b",
+                "address": "0x6f04",
+                "value": "1",
+                "note": "f · 局部变量 b"
+              },
+              {
+                "key": "a",
+                "address": "0x6f00",
+                "value": "3",
+                "note": "f · 形参 a"
+              },
+              {
+                "key": "raM",
+                "address": "0x7004",
+                "value": "← OS",
+                "role": "idle",
+                "note": "main · 返回地址"
+              },
+              {
+                "key": "m",
+                "address": "0x7000",
+                "value": "3",
+                "note": "main · 局部变量 m"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    },
+    {
+      "description": "g 返回 t = 6：g 的栈帧随即弹出，x、t 随帧销毁，栈回落两层",
+      "codeLine": 3,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "raF",
+                "address": "0x6f08",
+                "value": "← main",
+                "role": "idle",
+                "note": "f · 返回地址"
+              },
+              {
+                "key": "b",
+                "address": "0x6f04",
+                "value": "1",
+                "note": "f · 局部变量 b"
+              },
+              {
+                "key": "a",
+                "address": "0x6f00",
+                "value": "3",
+                "role": "active",
+                "note": "f · 形参 a ← 栈顶"
+              },
+              {
+                "key": "raM",
+                "address": "0x7004",
+                "value": "← OS",
+                "role": "idle",
+                "note": "main · 返回地址"
+              },
+              {
+                "key": "m",
+                "address": "0x7000",
+                "value": "3",
+                "note": "main · 局部变量 m"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    },
+    {
+      "description": "f 算完 a + b + g(a) = 3 + 1 + 6 = 10 后返回：f 的栈帧弹出，形参 a、局部 b 被释放",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "raM",
+                "address": "0x7004",
+                "value": "← OS",
+                "role": "idle",
+                "note": "main · 返回地址"
+              },
+              {
+                "key": "m",
+                "address": "0x7000",
+                "value": "3",
+                "role": "active",
+                "note": "main · 局部变量 m ← 栈顶"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    },
+    {
+      "description": "main 返回退出：最后一层 main 栈帧也弹出 —— 局部变量随栈帧生灭，这正是「函数调用栈」的运行机制",
+      "codeLine": 13,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "函数调用栈（栈顶在上）",
+            "cells": [
+              {
+                "key": "_empty",
+                "address": "——",
+                "value": "（栈空）",
+                "role": "sorted",
+                "note": "所有栈帧均已弹出"
+              }
+            ],
+            "note": "每帧 = 形参 + 局部变量 + 返回地址；先压后弹"
+          }
+        ]
+      }
+    }
+  ]
+}

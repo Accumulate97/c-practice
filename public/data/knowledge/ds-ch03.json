@@ -50,7 +50,9 @@
         "ds-ch03-03",
         "ds-ch03-04"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-stack-push-pop"
+      ],
       "category": "ds",
       "chapter": "第3章 栈和队列",
       "order": 1
@@ -98,7 +100,9 @@
         "ds-ch03-01",
         "ds-ch03-04"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-stack-push-pop"
+      ],
       "category": "ds",
       "chapter": "第3章 栈和队列",
       "order": 2
@@ -147,7 +151,10 @@
         "ds-ch03-04",
         "ds-ch02-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-stack-push-pop",
+        "linear-queue-enqueue-dequeue"
+      ],
       "category": "ds",
       "chapter": "第3章 栈和队列",
       "order": 3
@@ -197,7 +204,10 @@
         "ds-ch03-03",
         "ds-ch05-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-stack-push-pop",
+        "linear-queue-enqueue-dequeue"
+      ],
       "category": "ds",
       "chapter": "第3章 栈和队列",
       "order": 4

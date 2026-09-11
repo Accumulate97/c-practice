@@ -92,7 +92,10 @@
         "ds-ch08-01",
         "ds-ch02-01"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-insertion",
+        "sort-shell"
+      ],
       "category": "ds",
       "chapter": "第8章 排序",
       "order": 2
@@ -140,7 +143,12 @@
         "ds-ch08-01",
         "ds-ch05-02"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-bubble",
+        "sort-quick",
+        "sort-selection",
+        "sort-heapsort"
+      ],
       "category": "ds",
       "chapter": "第8章 排序",
       "order": 3
@@ -188,7 +196,10 @@
         "ds-ch08-01",
         "ds-ch03-02"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-merge",
+        "sort-radix"
+      ],
       "category": "ds",
       "chapter": "第8章 排序",
       "order": 4

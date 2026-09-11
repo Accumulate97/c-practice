@@ -37,7 +37,10 @@
       "code": "#include <stdio.h>\nint max(int x, int y);\nint main( )\n{   int a=1,b=2,c;\n    c=max(a,b);\n    printf(\"max is %d\\n\",c);\n    return(0);\n}\nint max(int x, int y)\n{   int z;\n    z=(x>y)? x:y;\n    return(z);\n}",
       "answer": "max is 2",
       "id": "c-ch07-cr-002",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -122,7 +125,10 @@
       "code": "#include <stdio.h>\nvoid add(int x,int y,int z);\nint main( )\n{  int x=2,y=3,z=0;\n   printf(\"(1) x=%d y=%d z=%d\\n\",x,y,z);\n   add(x,y,z);\n   printf(\"(3) x=%d y=%d z=%d\\n\",x,y,z);\n   return(0);\n}\nvoid add(int x,int y,int z)\n{  z=x+y; x=x * x; y=y * y;\n   printf(\"(2) x=%d y=%d z=%d\\n\",x,y,z);\n}",
       "answer": "(1) x=2 y=3 z=0\n(2) x=4 y=9 z=5\n(3) x=2 y=3 z=0",
       "id": "c-ch07-cr-004",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -156,7 +162,10 @@
       "code": "#include <stdio.h>\nint fact(int value);\nint main( )\n{  printf(\"FACT(5): %d\\n\",fact(5));\n   printf(\"FACT(1): %d\\n\",fact(1));\n   fact(-5);\n   return(0);\n}\nint fact(int value)\n{  if(value<0) { printf(\"FACT(-1):Error!\\n\"); return(-1); }\n   else if(value==1||value==0) return(1);\n   else return(value * fact(value-1));\n}",
       "answer": "FACT(5): 120\nFACT(1): 1\nFACT(-1):Error!",
       "id": "c-ch07-cr-006",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-call-stack"
+      ]
     },
     {
       "category": "c",
@@ -173,7 +182,10 @@
       "code": "#include <stdio.h>\nint sub(int n);\nint main( )\n{  int i=5;\n   printf(\"%d\\n\",sub(i));\n   return(0);\n}\nint sub(int n)\n{  int a;\n   if(n==1) return 1;\n   a=n+sub(n-1);\n   return(a);\n}",
       "answer": "15",
       "id": "c-ch07-cr-007",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-call-stack"
+      ]
     },
     {
       "category": "c",
@@ -275,7 +287,10 @@
         }
       ],
       "id": "c-ch07-cc-002",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -309,7 +324,10 @@
       "code": "#include <stdio.h>\nvoid fun(int m);\nint k=1;\nint main( )\n{  int i=4;\n   fun(i);\n   printf(\"(1) %d,%d\\n\",i,k);\n   return(0);\n}\nvoid fun(int m)\n{  m+=k; k+=m;\n   {  char k='B';\n      printf(\"(2) %d\\n\",k-'A');\n   }\n   printf(\"(3) %d,%d\\n\",m,k);\n}",
       "answer": "(2) 1\n(3) 5,6\n(1) 4,6",
       "id": "c-ch07-cr-012",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -326,7 +344,10 @@
       "code": "#include <stdio.h>\nvoid sub(int x, int y);\nint x1=30,x2=40;\nint main( )\n{  int x3=10,x4=20;\n   sub(x3,x4);\n   sub(x2,x1);\n   printf(\"%d,%d,%d,%d\\n\",x3,x4,x1,x2);\n   return(0);\n}\nvoid sub(int x,int y)\n{  x1=x;\n   x=y;\n   y=x1;\n}",
       "answer": "10,20,40,40",
       "id": "c-ch07-cr-013",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -601,7 +622,10 @@
         "两处递归调用 p(n-1,x) 与 p(n-2,x) 缺一不可"
       ],
       "id": "c-ch07-sa-009",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-call-stack"
+      ]
     },
     {
       "category": "c",
@@ -643,7 +667,10 @@
         "最大值作为函数值 return，供 max=max_value(a) 接收"
       ],
       "id": "c-ch07-sa-011",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -708,7 +735,11 @@
           "note": "边界：两数相等，swap 不被调用"
         }
       ],
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call",
+        "memory-call-stack"
+      ]
     },
     {
       "id": "c-ch07-dbg-011",
@@ -752,7 +783,10 @@
           "note": "边界：0! = 1，检验递归出口"
         }
       ],
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-call-stack"
+      ]
     },
     {
       "id": "c-ch07-dbg-012",
@@ -796,7 +830,10 @@
           "note": "边界：增量为 0，值传递错误在这组数据上不可见"
         }
       ],
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     }
   ]
 }

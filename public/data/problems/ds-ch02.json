@@ -47,7 +47,11 @@
       ],
       "verified": true,
       "ai_generated": true,
-      "generated_at": "2026-09-06"
+      "generated_at": "2026-09-06",
+      "vizIds": [
+        "linear-singly-insert",
+        "linear-singly-delete"
+      ]
     }
   ]
 }

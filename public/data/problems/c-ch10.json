@@ -19,7 +19,10 @@
       "code": "#include <stdio.h>\nstruct n\n  { int x;   char c; };\nint main( )\n{ struct n a={10,'x'};\n  func(a);\n  printf(\"%d,%c\",a.x,a.c);\n  return 0;\n}\nfunc(struct n b)\n{ b.x=20;\n  b.c='y';\n}",
       "answer": "10,x",
       "id": "c-ch10-cr-001",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -104,7 +107,10 @@
       "code": "#include <stdio.h>\nstruct abc\n{ char c;  float v; };\nvoid fun1(struct abc b)\n{  b.c='A';\n   b.v=80.7;\n}\nvoid fun2(struct abc * b)\n{  ( * b).c='C';\n   ( * b).v=92.5;\n}\nint main( )\n{  struct abc a={'B',98.5};\n   fun1(a);\n   printf(\"%c,%4.1f\\n\",a.c,a.v);\n   fun2(&a);\n   printf(\"%c,%4.1f\\n\",a.c,a.v);\n   return 0;\n}",
       "answer": "B,98.5\nC,92.5",
       "id": "c-ch10-cr-004",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-swap-call"
+      ]
     },
     {
       "category": "c",
@@ -203,7 +209,10 @@
         }
       ],
       "id": "c-ch10-cc-003",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-malloc-free"
+      ]
     },
     {
       "category": "c",
@@ -467,7 +476,11 @@
         }
       ],
       "id": "c-ch10-pg-003",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "linear-singly-insert",
+        "memory-malloc-free"
+      ]
     },
     {
       "category": "c",
@@ -500,7 +513,11 @@
         }
       ],
       "id": "c-ch10-pg-004",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "linear-doubly-insert-delete",
+        "linear-singly-insert"
+      ]
     },
     {
       "category": "c",
@@ -533,7 +550,10 @@
         }
       ],
       "id": "c-ch10-pg-005",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "linear-singly-insert"
+      ]
     },
     {
       "category": "c",
@@ -566,7 +586,10 @@
         }
       ],
       "id": "c-ch10-pg-006",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "linear-singly-insert"
+      ]
     },
     {
       "category": "c",

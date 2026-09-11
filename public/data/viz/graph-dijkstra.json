@@ -1,0 +1,2074 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-dijkstra",
+  "title": "Dijkstra 单源最短路径",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "#define INF 1000000\n/* dist[v] = 源点到 v 的当前最短长度；used[v] = v 是否已并入 S 集 */\nvoid dijkstra(int s, int n, const int g[][n], int dist[], int used[]) {\n    for (int v = 0; v < n; v++) { dist[v] = g[s][v]; used[v] = 0; }\n    dist[s] = 0; used[s] = 1;\n    for (int k = 1; k < n; k++) {\n        int u = -1, best = INF;\n        for (int v = 0; v < n; v++)                /* 选 S 外最近的 u */\n            if (!used[v] && dist[v] < best) { best = dist[v]; u = v; }\n        used[u] = 1;\n        for (int v = 0; v < n; v++)                /* 松弛：经 u 中转能否更近 */\n            if (!used[v] && dist[u] + g[u][v] < dist[v])\n                dist[v] = dist[u] + g[u][v];\n    }\n}",
+  "meta": {
+    "algorithm": "graphDijkstra",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "带权无向图，用 Dijkstra 求源点 A 到各点的最短路径。结点内数字是 dist[v]（∞=暂不可达）。绿=已确定(并入 S)，橙=本轮选中，蓝=正在松弛",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20
+          },
+          {
+            "key": "B",
+            "label": "B:∞",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，A 的 dist=0 最小 → 选定它并入 S，认定 A 到 A 的最短距离就是 0",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:∞",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "正式把 A 标为已确定（绿）。现在用它松弛邻居：看「经过 A 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:∞",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "松弛边 A→B（权 6）：dist[A]+6=6 < 原 dist[B]=∞，更新 dist[B]=6",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6,
+            "role": "active"
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "松弛边 A→C（权 1）：dist[A]+1=1 < 原 dist[C]=∞，更新 dist[C]=1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "compare"
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "active"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，C 的 dist=1 最小 → 选定它并入 S，认定 A 到 C 的最短距离就是 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "正式把 C 标为已确定（绿）。现在用它松弛邻居：看「经过 C 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "松弛边 C→D（权 5）：dist[C]+5=6 < 原 dist[D]=∞，更新 dist[D]=6",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5,
+            "role": "active"
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "松弛边 C→E（权 8）：dist[C]+8=9 < 原 dist[E]=∞，更新 dist[E]=9",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:9",
+            "x": 72,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8,
+            "role": "active"
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，B 的 dist=6 最小 → 选定它并入 S，认定 A 到 B 的最短距离就是 6",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:9",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "正式把 B 标为已确定（绿）。现在用它松弛邻居：看「经过 B 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:9",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，D 的 dist=6 最小 → 选定它并入 S，认定 A 到 D 的最短距离就是 6",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E:9",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "正式把 D 标为已确定（绿）。现在用它松弛邻居：看「经过 D 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:9",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "松弛边 D→E（权 2）：dist[D]+2=8 < 原 dist[E]=9，更新 dist[E]=8",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "active"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "松弛边 D→F（权 7）：dist[D]+7=13 < 原 dist[F]=∞，更新 dist[F]=13",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:13",
+            "x": 50,
+            "y": 90,
+            "role": "compare"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7,
+            "role": "active"
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，E 的 dist=8 最小 → 选定它并入 S，认定 A 到 E 的最短距离就是 8",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F:13",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "正式把 E 标为已确定（绿）。现在用它松弛邻居：看「经过 E 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:13",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "松弛边 E→F（权 3）：dist[E]+3=11 < 原 dist[F]=13，更新 dist[F]=11",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F:11",
+            "x": 50,
+            "y": 90,
+            "role": "compare"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "active"
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "在所有「未确定」的结点里，F 的 dist=11 最小 → 选定它并入 S，认定 A 到 F 的最短距离就是 11",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:11",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "正式把 F 标为已确定（绿）。现在用它松弛邻居：看「经过 F 中转」能不能让别点更近",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:11",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "Dijkstra 结束。A 到各点最短距离：A=0，B=6，C=1，D=6，E=8，F=11。要点：每轮贪心地确定「当前最近」的结点，再用它松弛邻居，n-1 轮后全部确定",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:6",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:11",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

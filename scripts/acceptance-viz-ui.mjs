@@ -1,5 +1,5 @@
 /**
- * 阶段 7 可视化板块 UI 验收：真实浏览器里跑 dist 产物，验 Viz 内核 + R1 柱状图 + 8 种排序 + 多算法对比。
+ * 阶段 7-9 可视化板块 UI 验收：真实浏览器里跑 dist 产物，验 Viz 内核 + 五类渲染器（R1 柱状图 / R2 节点链 / R3 树 / R4 图 / R5 内存格）+ 全部演示语料 + 多算法对比 + 题目→演示双向跳转。
  *
  * 与其它 acceptance-*-ui.mjs 同一口径（build → vite preview → playwright-core → 控制台必须干净），差异只在：
  *   ① 期望值一律从 public/data/viz/*.json 现读，脚本里不抄步骤数、不抄计数器数值
@@ -55,6 +55,7 @@ async function waitPreview() {
   throw new Error('vite preview 起不来：' + previewErr.slice(0, 400))
 }
 
+let browser
 const consoleMsgs = []
 const pageErrors = []
 
@@ -64,13 +65,15 @@ async function main() {
 
   // ── ⓪ 索引与语料静态对账（不进浏览器也该成立）──
   const ids = index.demos.map((d) => d.id)
-  check('索引收录 12 个演示，8 种排序全在', index.demos.length === 12 && SORTS.every((s) => ids.includes(s)),
+  const demoFiles = readdirSync(VIZ_DIR).filter((f) => f.endsWith('.json') && f !== 'index.json')
+  check(`索引收录 ${index.demos.length} 个演示（≥30），8 种排序全在，索引与语料文件一一对应`,
+    index.demos.length >= 30 && SORTS.every((s) => ids.includes(s)) && demoFiles.length === index.demos.length && demoFiles.every((f) => ids.includes(f.replace(/\.json$/, ''))),
     `${index.demos.length} 个：${ids.join(',')}`)
   const badMeta = SORTS.filter((s) => entry(s).renderer !== 'bar' || entry(s).category !== 'sort' || entry(s).steps !== corpus(s).steps.length)
   check('8 种排序的 renderer/category/steps 与语料本体一致', badMeta.length === 0, badMeta.length ? '不一致：' + badMeta.join(',') :
     SORTS.map((s) => `${s.replace('sort-', '')}=${entry(s).steps}步`).join(' '))
 
-  const browser = await chromium.launch({ channel: 'chrome', headless: true })
+  browser = await chromium.launch({ channel: 'chrome', headless: true })
   const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } })
   page.on('console', (m) => consoleMsgs.push({ type: m.type(), text: m.text() }))
   page.on('pageerror', (e) => pageErrors.push(e.message))
@@ -184,31 +187,72 @@ async function main() {
   await page.waitForTimeout(300)
   const darkBars = await page.locator('[data-role="viz-bar"]').count()
   await page.screenshot({ path: join(ROOT, 'tmp', 'viz-bubble-dark.png'), fullPage: false })
+  const darkOthers = []
+  for (const id of ['linear-singly-insert', 'tree-inorder', 'graph-dijkstra', 'memory-malloc-free']) {
+    await page.goto(`${BASE}#/viz/${id}`, { waitUntil: 'networkidle' })
+    await page.waitForFunction((t) => document.querySelector('[data-role="viz-title"]')?.textContent.trim() === t, entry(id).title, { timeout: 20000 })
+    darkOthers.push(await page.locator('[data-role="viz-canvas"] > *').count())
+  }
+  await page.screenshot({ path: join(ROOT, 'tmp', 'viz-memory-dark.png'), fullPage: false })
   await page.locator('button[title="浅色"]').click()
   await page.waitForFunction(() => document.documentElement.dataset.theme === 'light', null, { timeout: 5000 })
-  check('深色主题下柱状图照常渲染（CSS 变量适配）', darkBars === N, `${darkBars} 根柱子`)
+  const lightOthers = await page.locator('[data-role="viz-canvas"] > *').count()
+  check('五类渲染器深 / 浅色主题下均正常渲染（CSS 变量适配）',
+    darkBars === N && darkOthers.every((n2) => n2 > 0) && lightOthers > 0,
+    `深色：柱状 ${darkBars} 根，R2/R3/R4/R5 画布子节点 ${darkOthers.join('/')}；切回浅色后 ${lightOthers} 个`)
 
-  // ── ④ R2–R5 骨架：最简样例能打开、能步进 ──
-  for (const id of ['linear-singly-insert', 'tree-bst-insert', 'graph-bfs', 'memory-swap-call']) {
+  // ── ④ 抽 5 个演示（覆盖 R2 节点链 / R3 树 / R4 图 / R5 内存格）：播放 / 暂停 / 单步 / 后退 / 末步 / 重置 ──
+  const SAMPLES = ['linear-singly-insert', 'linear-queue-enqueue-dequeue', 'tree-inorder', 'graph-dijkstra', 'memory-malloc-free']
+  for (const id of SAMPLES) {
     await openDemo(id)
     const c = corpus(id)
     const t = await stepNum()
+    await page.locator('[data-role="viz-play"]').click()
+    await page.waitForFunction((n) => {
+      const m = (document.querySelector('[data-role="viz-step"]')?.textContent ?? '').match(/步骤\s*(\d+)/)
+      return !!m && Number(m[1]) > n
+    }, t.cur, { timeout: 8000 })
+    await page.locator('[data-role="viz-play"]').click()
+    const paused = await stepNum()
+    await blur()
+    await page.keyboard.press('ArrowRight')
+    const fwd = await stepNum()
+    await page.keyboard.press('ArrowLeft')
+    const back = await stepNum()
     await page.locator('button[aria-label="末步 ⏭"]').click()
     const e = await stepNum()
-    check(`${id}（${entry(id).renderer} 骨架样例）：${c.steps.length} 步可步进到末步`,
-      t.cur === 1 && t.total === c.steps.length && e.cur === c.steps.length, `${t.cur}/${t.total} → ${e.cur}/${e.total}`)
-    await page.screenshot({ path: join(ROOT, 'tmp', `viz-${entry(id).renderer}.png`), fullPage: false })
+    await page.locator('button[aria-label="⏮ 重置"]').click()
+    const r = await stepNum()
+    check(`${id}（${entry(id).renderer}）：播放 / 暂停 / 单步 / 后退 / 末步 / 重置全可用，总步数与语料一致`,
+      t.cur === 1 && t.total === c.steps.length && paused.cur > t.cur && fwd.cur === paused.cur + 1 && back.cur === paused.cur && e.cur === c.steps.length && r.cur === 1,
+      `${t.cur}/${t.total} → 播放到 ${paused.cur} → 单步 ${fwd.cur} → 后退 ${back.cur} → 末步 ${e.cur} → 重置 ${r.cur}`)
+    await page.screenshot({ path: join(ROOT, 'tmp', `viz-sample-${id}.png`), fullPage: false })
   }
 
   // ── ⑤ 列表页：12 张卡片 + 对比入口 ──
   await page.goto(`${BASE}#/viz`, { waitUntil: 'networkidle' })
   await page.waitForSelector('[data-role="viz-card"]', { timeout: 20000 })
   const cards = await page.evaluate(() => [...document.querySelectorAll('[data-role="viz-card"]')].map((e) => e.dataset.demo))
-  check('列表页 12 张演示卡片按渲染器分类陈列，id 与索引一致',
-    cards.length === 12 && JSON.stringify(cards.slice().sort()) === JSON.stringify(ids.slice().sort()), `${cards.length} 张`)
+  check(`列表页 ${index.demos.length} 张演示卡片按渲染器分类陈列，id 与索引一致`,
+    cards.length === index.demos.length && JSON.stringify(cards.slice().sort()) === JSON.stringify(ids.slice().sort()), `${cards.length} 张`)
   await page.screenshot({ path: join(ROOT, 'tmp', 'viz-list.png'), fullPage: true })
 
+  // ── ⑤b 双向关联回填：题目详情页展示关联演示并可跳转 ──
+  const shard = JSON.parse(readFileSync(join(ROOT, 'public', 'data', 'problems', 'c-ch09.json'), 'utf8'))
+  const linked = shard.problems.find((pp) => Array.isArray(pp.vizIds) && pp.vizIds.length > 0)
+  const firstViz = ids.find((i) => linked.vizIds.includes(i))
+  await page.goto(`${BASE}#/problems/p/${linked.id}`, { waitUntil: 'networkidle' })
+  await page.waitForSelector('[data-role="related-viz"]', { timeout: 20000 })
+  const rvHrefs = await page.evaluate(() => [...document.querySelectorAll('[data-role="related-viz-link"]')].map((el) => el.getAttribute('href')))
+  await page.locator('[data-role="related-viz-link"]').first().click()
+  await page.waitForFunction((t) => document.querySelector('[data-role="viz-title"]')?.textContent.trim() === t, entry(firstViz).title, { timeout: 20000 })
+  check(`题目详情页 → 关联演示跳转（${linked.id} 关联 ${linked.vizIds.join(',')}）`,
+    rvHrefs.length === linked.vizIds.length && rvHrefs.every((h) => h.includes('/viz/')) && page.url().includes(`/viz/${firstViz}`),
+    `链接 ${rvHrefs.join(' ')}，点击后落在 #${page.url().split('#')[1] ?? ''}`)
+
   // ── ⑥ 多算法对比：并排同步步进 ──
+  await page.goto(`${BASE}#/viz`, { waitUntil: 'networkidle' })
+  await page.waitForSelector('[data-role="viz-compare-entry"]', { timeout: 20000 })
   await page.locator('[data-role="viz-compare-entry"]').click()
   await page.waitForFunction(() => document.querySelectorAll('[data-role="cmp-panel"]').length === 4, null, { timeout: 30000 })
   const cmpStep = () => page.evaluate(() => Number((document.querySelector('[data-role="cmp-step"]')?.textContent ?? '').match(/步骤\s*(\d+)/)?.[1] ?? -1))
@@ -272,7 +316,7 @@ async function main() {
   const after = vizHashes()
   const changed = Object.keys(before).filter((f) => before[f] !== after[f])
   check('npm run gen:viz 一条命令重生成全部语料，退出码 0 且字节级可复现（无手写 JSON）',
-    gen.status === 0 && changed.length === 0 && Object.keys(after).length === 13,
+    gen.status === 0 && changed.length === 0 && Object.keys(after).length === demoFiles.length + 1,
     `exit=${gen.status}，${Object.keys(after).length} 个 JSON，重跑后差异 ${changed.length} 个`)
   const genTail = (gen.stdout ?? '').trim().split('\n').slice(-4).join(' ⏎ ')
   console.log('     gen:viz 输出尾部：' + genTail)
@@ -286,10 +330,10 @@ async function main() {
   await browser.close()
 }
 
-try { await main() } catch (e) { check('可视化 UI 验收流程未抛异常', false, (e instanceof Error ? e.stack : String(e)).split('\n').slice(0, 4).join(' | ')) } finally { preview.kill() }
+try { await main() } catch (e) { check('可视化 UI 验收流程未抛异常', false, (e instanceof Error ? e.stack : String(e)).split('\n').slice(0, 4).join(' | ')) } finally { preview.kill(); try { await browser?.close() } catch { /* 已关闭 */ } }
 
 const failed = checks.filter((c) => !c.ok)
-console.log('\n════ 阶段 7 可视化 UI 验收汇总 ════')
+console.log('\n════ 阶段 7-9 可视化 UI 验收汇总 ════')
 console.log(`  ${checks.length} 项检查，失败 ${failed.length} 项`)
 for (const f of failed) console.log('  FAIL ' + f.name + ' ← ' + f.detail)
-process.exitCode = failed.length > 0 ? 1 : 0
+process.exit(failed.length > 0 ? 1 : 0)

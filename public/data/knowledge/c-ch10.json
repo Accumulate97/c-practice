@@ -423,7 +423,9 @@
         "c-ch10-09",
         "c-ch10-10"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-swap-call"
+      ],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 8
@@ -476,7 +478,9 @@
         "c-ch10-08",
         "c-ch10-10"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-swap-call"
+      ],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 9
@@ -953,7 +957,10 @@
         "c-ch10-20",
         "c-ch09-30"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-singly-insert",
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 18
@@ -1006,7 +1013,9 @@
         "c-ch10-20",
         "c-ch09-33"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-singly-insert"
+      ],
       "category": "c",
       "chapter": "第10章 结构体与共用体",
       "order": 19

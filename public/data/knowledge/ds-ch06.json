@@ -148,7 +148,10 @@
         "ds-ch03-02",
         "ds-ch05-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
       "category": "ds",
       "chapter": "第6章 图",
       "order": 3
@@ -197,7 +200,12 @@
         "ds-ch06-02",
         "ds-ch06-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "graph-prim",
+        "graph-kruskal",
+        "graph-dijkstra",
+        "graph-toposort"
+      ],
       "category": "ds",
       "chapter": "第6章 图",
       "order": 4

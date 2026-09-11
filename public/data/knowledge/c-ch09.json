@@ -44,7 +44,9 @@
         "c-ch09-03",
         "c-ch09-28"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-pointer-address"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 1
@@ -89,7 +91,9 @@
         "c-ch09-07",
         "c-ch09-12"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-pointer-address"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 2
@@ -134,7 +138,9 @@
         "c-ch09-19",
         "c-ch09-24"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-swap-call"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 3
@@ -179,7 +185,9 @@
         "c-ch09-06",
         "c-ch09-12"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 4
@@ -224,7 +232,9 @@
         "c-ch09-06",
         "c-ch09-08"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 5
@@ -269,7 +279,9 @@
         "c-ch09-05",
         "c-ch09-09"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 6
@@ -314,7 +326,9 @@
         "c-ch09-06",
         "c-ch09-09"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 7
@@ -359,7 +373,9 @@
         "c-ch09-07",
         "c-ch09-36"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-pointer-address"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 8
@@ -404,7 +420,9 @@
         "c-ch09-11",
         "c-ch09-12"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 9
@@ -449,7 +467,9 @@
         "c-ch09-12",
         "c-ch09-25"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 10
@@ -764,7 +784,9 @@
         "c-ch09-17",
         "c-ch09-24"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-swap-call"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 17
@@ -854,7 +876,10 @@
         "c-ch09-18",
         "c-ch09-34"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack",
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 19
@@ -1038,7 +1063,9 @@
         "c-ch09-27",
         "c-ch09-28"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-multi-pointer"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 23
@@ -1230,7 +1257,9 @@
         "c-ch09-24",
         "c-ch09-31"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-multi-pointer"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 27
@@ -1282,7 +1311,9 @@
         "c-ch09-30",
         "c-ch09-19"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 28
@@ -1325,7 +1356,9 @@
         "c-ch09-30",
         "c-ch09-31"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 29
@@ -1368,7 +1401,9 @@
         "c-ch09-32",
         "c-ch09-33"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 30
@@ -1420,7 +1455,9 @@
         "c-ch09-28",
         "c-ch09-10"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 31
@@ -1472,7 +1509,9 @@
         "c-ch09-34",
         "c-ch09-01"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 32
@@ -1524,7 +1563,10 @@
         "c-ch09-30",
         "c-ch09-32"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack",
+        "memory-malloc-free"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 33
@@ -1576,7 +1618,9 @@
         "c-ch09-14",
         "c-ch09-32"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 34
@@ -1628,7 +1672,9 @@
         "c-ch09-08",
         "c-ch09-38"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-pointer-address"
+      ],
       "category": "c",
       "chapter": "第9章 指针",
       "order": 35

@@ -1,0 +1,469 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-inorder",
+  "title": "二叉树中序遍历",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "struct TNode { char data; struct TNode *left, *right; };\n\n/* 中序：左 → 根 → 右。BST 的中序序列必然递增 */\nvoid inOrder(const struct TNode *t) {\n    if (t == NULL) return;\n    inOrder(t->left);         /* 1 中序遍历左子树 */\n    printf(\"%c \", t->data);   /* 2 访问根 */\n    inOrder(t->right);        /* 3 中序遍历右子树 */\n}",
+  "meta": {
+    "algorithm": "treeTraversal(in)",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "样例二叉树，做中序（左→根→右）遍历。递归的三个动作顺序决定了访问顺序：先递归左子树，再访问根，最后递归右子树",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "第 1 个访问 D。已访问序列：D（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "第 2 个访问 B。已访问序列：D → B（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "active"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "第 3 个访问 E。已访问序列：D → B → E（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "第 4 个访问 A。已访问序列：D → B → E → A（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "第 5 个访问 F。已访问序列：D → B → E → A → F（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                null
+              ]
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "第 6 个访问 C。已访问序列：D → B → E → A → F → C（绿色是已经访问完的，橙色是本次访问）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                null
+              ],
+              "role": "active"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "中序（左→根→右）遍历结束：D B E A F C，共访问 6 个结点 = 树的结点数。中序序列里根一定把序列切成「左子树 | 根 | 右子树」三段；对二叉排序树做中序遍历得到的必然是递增序列",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "A",
+          "label": "A",
+          "children": [
+            {
+              "key": "B",
+              "label": "B",
+              "children": [
+                {
+                  "key": "D",
+                  "label": "D",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "E",
+                  "label": "E",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "C",
+              "label": "C",
+              "children": [
+                {
+                  "key": "F",
+                  "label": "F",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

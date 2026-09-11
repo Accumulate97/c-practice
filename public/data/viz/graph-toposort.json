@@ -1,0 +1,1245 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-toposort",
+  "title": "拓扑排序（AOV 网）",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "/* 拓扑排序：反复摘掉入度为 0 的顶点，摘完 n 个说明无环 */\nvoid topoSort(int n, const int adj[][n], int indeg[]) {\n    int stack[MAXN], top = 0, cnt = 0;\n    for (int v = 0; v < n; v++)\n        for (int u = 0; u < n; u++) if (adj[u][v]) indeg[v]++;\n    for (int v = 0; v < n; v++) if (indeg[v] == 0) stack[top++] = v;\n    while (top > 0) {\n        int u = stack[--top];\n        printf(\"%c \", 'A' + u);\n        cnt++;\n        for (int v = 0; v < n; v++)\n            if (adj[u][v] && --indeg[v] == 0) stack[top++] = v;\n    }\n    if (cnt < n) printf(\"有环，无拓扑序列\\n\");\n}",
+  "meta": {
+    "algorithm": "graphToposort",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "有向无环图（DAG），结点内数字是当前入度。拓扑排序：反复摘掉入度为 0 的结点并输出，同时把它所有后继的入度减 1。绿=已输出，蓝=在栈待处理，橙=当前。箭头方向=依赖（u→v 表示 u 必须在 v 前）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20
+          },
+          {
+            "key": "B",
+            "label": "B:1",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "初始扫描：入度为 0 的结点是 A（没有任何前驱，可以最先做），全部入栈。栈：[A]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "pivot"
+          },
+          {
+            "key": "B",
+            "label": "B:1",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 A 并输出（拓扑序列：A），随后把 A 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:1",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "A→B：indeg[B] 减到 0（前驱全部输出完），B 入栈。栈：[B]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "A→C：indeg[C] 减到 0（前驱全部输出完），C 入栈。栈：[B, C]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "compare"
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 C 并输出（拓扑序列：A → C），随后把 C 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D:2",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:1",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "C→E：indeg[E] 减到 0（前驱全部输出完），E 入栈。栈：[B, E]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:1",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 E 并输出（拓扑序列：A → C → E），随后把 E 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "pivot"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:1",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F:2",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 B 并输出（拓扑序列：A → C → E → B），随后把 B 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:1",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:1",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "B→D：indeg[D] 减到 0（前驱全部输出完），D 入栈。栈：[D]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:0",
+            "x": 28,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:1",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 D 并输出（拓扑序列：A → C → E → B → D），随后把 D 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:0",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:1",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "D→F：indeg[F] 减到 0（前驱全部输出完），F 入栈。栈：[F]",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:0",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:0",
+            "x": 50,
+            "y": 90,
+            "role": "compare"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "弹出栈顶 F 并输出（拓扑序列：A → C → E → B → D → F），随后把 F 的所有后继入度减 1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:0",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:0",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "拓扑排序完成：A → C → E → B → D → F（输出了全部 6 个结点，说明图中无环）。注意同一张 DAG 常有多个合法拓扑序列，取决于入度 0 结点的出栈顺序",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:0",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C:0",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:0",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:0",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:0",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "directed": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "directed": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "directed": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "directed": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "directed": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "directed": true
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

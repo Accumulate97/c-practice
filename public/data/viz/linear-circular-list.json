@@ -1,0 +1,615 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "linear-circular-list",
+  "title": "循环链表：尾插与绕环遍历",
+  "renderer": "nodechain",
+  "category": "linear",
+  "chapter": "第2章 线性表",
+  "relatedProblems": [],
+  "code": "struct Node { int data; struct Node *next; };\n\n/* 单循环链表：尾结点的 next 指回头结点，不是 NULL */\n/* 尾插法建表只留 tail 指针，插入 O(1)，不必每次绕一圈找尾巴 */\nvoid insertAfterTail(struct Node **tail, int v) {\n    struct Node *nw = malloc(sizeof(struct Node));\n    nw->data = v;\n    nw->next = (*tail)->next;   /* 1 先连：新结点指回头结点 */\n    (*tail)->next = nw;         /* 2 后改：原尾结点指向新结点 */\n    *tail = nw;                 /* 3 tail 前移 */\n}\n\nint length(const struct Node *head) {\n    const struct Node *p = head;\n    int n = 0;\n    do { n++; p = p->next; } while (p != head);   /* 绕回起点才停 */\n    return n;\n}",
+  "meta": {
+    "algorithm": "linearCircularList",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      },
+      "description": "单循环链表：尾结点 C 的 next 不是 NULL，而是指回头结点 A（下方那条回指弧线）。整条链首尾相接成一个环",
+      "codeLine": 3
+    },
+    {
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "pivot"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "tail",
+            "node": "C"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      },
+      "description": "只要额外记住 tail，尾插就不必每次从头绕一圈找尾巴：普通单链表尾插是 O(n)，带 tail 的循环链表是 O(1)",
+      "codeLine": 6
+    },
+    {
+      "description": "malloc 出新结点 D。尾插的关键顺序是「先连后改」：① D->next = tail->next，也就是让 D 指回头结点 A",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "role": "pivot",
+            "label": "next"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "swap",
+            "label": "next"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "tail",
+            "node": "C"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "② tail->next = D：让 C 指向 D。**必须在①之后** —— 如果先改 C->next，A 的地址就丢了，环断成一条链",
+      "codeLine": 10,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "role": "swap",
+            "label": "next"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "tail",
+            "node": "C"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "③ tail = D：尾指针前移。插入完成，A → B → C → D → A 仍然是一个环，全程 3 次指针修改",
+      "codeLine": 11,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "tail",
+            "node": "D"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "遍历第 1 个结点 A：do-while 的停止条件是 p == head（绕回起点），而不是 p == NULL —— 循环链表里永远遇不到 NULL",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "p",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 1,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "遍历第 2 个结点 B：do-while 的停止条件是 p == head（绕回起点），而不是 p == NULL —— 循环链表里永远遇不到 NULL",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "compare"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "p",
+            "node": "B"
+          }
+        ],
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "遍历第 3 个结点 C：do-while 的停止条件是 p == head（绕回起点），而不是 p == NULL —— 循环链表里永远遇不到 NULL",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "compare"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "p",
+            "node": "C"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "遍历第 4 个结点 D：do-while 的停止条件是 p == head（绕回起点），而不是 p == NULL —— 循环链表里永远遇不到 NULL",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "compare"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "compare"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "p",
+            "node": "D"
+          }
+        ],
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "绕完一圈回到 head，p == head 成立退出，长度 = 4。对比：普通单链表尾结点 next = NULL，遍历靠 p != NULL 结束；循环链表靠「回到起点」结束",
+      "codeLine": 17,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "role": "pivot",
+            "label": "next（回指头）"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          },
+          {
+            "label": "p",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 3
+        }
+      }
+    }
+  ]
+}

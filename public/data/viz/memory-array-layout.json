@@ -1,0 +1,346 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-array-layout",
+  "title": "数组内存布局：a[i] ≡ *(a+i)",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "int main(void) {\n    int a[5] = {10, 20, 30, 40, 50};   /* 5 个 int 连续存放：0x1000 起每格 +4 */\n    int *p = a;                        /* 数组名退化为首元素地址，p == &a[0] */\n\n    /* 下面四种写法完全等价，都是「基地址 + 偏移 * sizeof(int)」 */\n    a[2]    == *(a + 2);\n    p[2]    == *(p + 2);\n    *(a+2)  == 30;\n\n    p++;                    /* p 指向 a[1]，地址 0x1004 */\n    *(p + 1) = 99;          /* 改的是 a[2] */\n    return 0;\n}",
+  "meta": {
+    "algorithm": "memoryArrayLayout",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "int a[5] = {10,20,30,40,50}：五个 int 从 0x1000 起连续存放，地址 = 基址 + 下标 * 4",
+      "codeLine": 2,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "30"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "未定义",
+                "role": "idle",
+                "note": "尚未赋值"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "int *p = a：数组名退化为首元素地址，p == &a[0] == 0x1000",
+      "codeLine": 3,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "30"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ a[0]",
+                "role": "active",
+                "note": "存 0x1000"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "a[2] == *(a+2) == p[2] == *(p+2) == 30：四种写法指的是同一格，都是「基址 + 偏移 * sizeof(int)」",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "30",
+                "role": "compare"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ a[0]",
+                "role": "active",
+                "note": "存 0x1000"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "p++：p 后移一个元素，改指 a[1]（地址 0x1004）",
+      "codeLine": 10,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20",
+                "role": "active"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "30"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ a[1]",
+                "role": "compare",
+                "note": "存 0x1004"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "*(p + 1) = 99：p 指 a[1]，p+1 即 a[2]，于是被改写的是 a[2]（30 → 99）",
+      "codeLine": 11,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20",
+                "role": "active"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "99",
+                "role": "swap"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ a[1]",
+                "role": "active",
+                "note": "存 0x1004"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "小结：数组下标 a[i] 只是指针偏移 *(a+i) 的语法糖；看懂内存布局，指针就不再抽象",
+      "codeLine": 12,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "arr",
+            "title": "int a[5] 连续布局",
+            "cells": [
+              {
+                "key": "a0",
+                "address": "0x1000",
+                "value": "10"
+              },
+              {
+                "key": "a1",
+                "address": "0x1004",
+                "value": "20"
+              },
+              {
+                "key": "a2",
+                "address": "0x1008",
+                "value": "99",
+                "role": "sorted"
+              },
+              {
+                "key": "a3",
+                "address": "0x100c",
+                "value": "40"
+              },
+              {
+                "key": "a4",
+                "address": "0x1010",
+                "value": "50"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节"
+          },
+          {
+            "key": "ptr",
+            "title": "指针变量 p",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ a[1]",
+                "role": "sorted",
+                "note": "存 0x1004"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

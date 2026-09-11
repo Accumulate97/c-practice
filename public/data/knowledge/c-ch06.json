@@ -121,7 +121,9 @@
         "c-ch06-04",
         "c-ch05-20"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 3
@@ -162,7 +164,9 @@
         "c-ch06-09",
         "c-ch06-25"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 4
@@ -369,7 +373,9 @@
         "c-ch06-26",
         "c-ch06-04"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 9
@@ -1121,7 +1127,9 @@
         "c-ch06-29",
         "c-ch06-25"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-bubble"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 27
@@ -1162,7 +1170,9 @@
         "c-ch06-29",
         "c-ch06-14"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-selection"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 28
@@ -1204,7 +1214,9 @@
         "c-ch06-28",
         "c-ch06-06"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "sort-insertion"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 29
@@ -1372,7 +1384,9 @@
         "c-ch06-25",
         "c-ch06-17"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "c",
       "chapter": "第6章 数组",
       "order": 33

@@ -1,0 +1,1114 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-dfs",
+  "title": "图的深度优先遍历（DFS）",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "/* 邻接矩阵存储，n 个顶点编号 0..n-1 */\nvoid dfs(int u, int n, const int adj[][n], int visited[]) {\n    visited[u] = 1;\n    printf(\"%c \", 'A' + u);            /* 1 访问 u */\n    for (int v = 0; v < n; v++)\n        if (adj[u][v] && !visited[v])  /* 2 挑一个未访问的邻居 */\n            dfs(v, n, adj, visited);   /* 3 一路走到底才回头 */\n}",
+  "meta": {
+    "algorithm": "graphDfs",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "无向图 6 个结点，从 A 出发做深度优先遍历（DFS）：沿未访问的邻居一条道走到黑，走不动了才回溯。绿=已访问，橙=当前结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "访问 A。访问序列：A。接着按邻接表顺序考察 A 的邻居 B、D",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "B 未访问，从 A 递归深入 B（ DFS 的「深」就体现在这里：优先钻到底）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "访问 B。访问序列：A → B。接着按邻接表顺序考察 B 的邻居 A、C、E",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "C 未访问，从 B 递归深入 C（ DFS 的「深」就体现在这里：优先钻到底）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "访问 C。访问序列：A → B → C。接着按邻接表顺序考察 C 的邻居 B、E",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "E 未访问，从 C 递归深入 E（ DFS 的「深」就体现在这里：优先钻到底）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "访问 E。访问序列：A → B → C → E。接着按邻接表顺序考察 E 的邻居 B、C、D、F",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "D 未访问，从 E 递归深入 D（ DFS 的「深」就体现在这里：优先钻到底）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "访问 D。访问序列：A → B → C → E → D。接着按邻接表顺序考察 D 的邻居 A、E、F",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "F 未访问，从 D 递归深入 F（ DFS 的「深」就体现在这里：优先钻到底）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "访问 F。访问序列：A → B → C → E → D → F。接着按邻接表顺序考察 F 的邻居 D、E",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "DFS 完成，访问序列：A → B → C → E → D → F（visited=6，等于结点数说明图连通）。与 BFS 的「层层扩散」不同，DFS 是「一条道走到黑再回头」",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "A",
+            "to": "D"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "B",
+            "to": "E"
+          },
+          {
+            "from": "C",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "E"
+          },
+          {
+            "from": "D",
+            "to": "F"
+          },
+          {
+            "from": "E",
+            "to": "F"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

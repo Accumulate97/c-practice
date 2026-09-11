@@ -1,0 +1,947 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "linear-queue-enqueue-dequeue",
+  "title": "队列的入队出队（循环队列）",
+  "renderer": "nodechain",
+  "category": "linear",
+  "chapter": "第3章 栈和队列",
+  "relatedProblems": [],
+  "code": "#define MAXQ 5\ntypedef struct { int data[MAXQ]; int front, rear; } CQueue;\n/* 循环队列：少用一个单元，队满条件是 (rear+1)%MAXQ == front */\n\nint enQueue(CQueue *q, int e) {\n    if ((q->rear + 1) % MAXQ == q->front) return 0;   /* 队满 */\n    q->data[q->rear] = e;\n    q->rear = (q->rear + 1) % MAXQ;                   /* rear 走到尾就绕回 0 */\n    return 1;\n}\n\nint deQueue(CQueue *q, int *e) {\n    if (q->front == q->rear) return 0;                /* 队空 */\n    *e = q->data[q->front];\n    q->front = (q->front + 1) % MAXQ;\n    return 1;\n}",
+  "meta": {
+    "algorithm": "linearQueueEnqueueDequeue",
+    "counterKeys": [
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "循环队列：把数组首尾相接看成环（下方弧线是 Q4 → Q0）。front 指向队头元素，rear 指向队尾的**下一个空位**；少用一个单元，队满条件是 (rear+1)%5 == front",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front = rear",
+            "node": "Q0"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 2
+    },
+    {
+      "description": "enQueue(10)：data[0] = 10，然后 rear = (0+1)%5。 rear 前进到 1",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "10",
+            "role": "active",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1",
+            "role": "active"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q0"
+          },
+          {
+            "label": "rear",
+            "node": "Q0"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 1
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "enQueue(20)：data[1] = 20，然后 rear = (1+1)%5。 rear 前进到 2",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "10",
+            "role": "sorted",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "20",
+            "role": "active",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2",
+            "role": "active"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q0"
+          },
+          {
+            "label": "rear",
+            "node": "Q1"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "enQueue(30)：data[2] = 30，然后 rear = (2+1)%5。 rear 前进到 3",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "10",
+            "role": "sorted",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "20",
+            "role": "sorted",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "active",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3",
+            "role": "active"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q0"
+          },
+          {
+            "label": "rear",
+            "node": "Q2"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 3
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "enQueue(40)：data[3] = 40，然后 rear = (3+1)%5。 rear 前进到 4",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "10",
+            "role": "sorted",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "20",
+            "role": "sorted",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "active",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4",
+            "role": "active"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q0"
+          },
+          {
+            "label": "rear",
+            "node": "Q3"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "deQueue()：e = data[0] = 10，然后 front = (0+1)%5 = 1。队头前移，10 出队",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "·",
+            "role": "swap",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "20",
+            "role": "sorted",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1",
+            "role": "swap"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q1"
+          },
+          {
+            "label": "rear",
+            "node": "Q3"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 5
+        }
+      },
+      "codeLine": 12
+    },
+    {
+      "description": "deQueue()：e = data[1] = 20，然后 front = (1+1)%5 = 2。队头前移，20 出队",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "swap",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2",
+            "role": "swap"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q2"
+          },
+          {
+            "label": "rear",
+            "node": "Q3"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 6
+        }
+      },
+      "codeLine": 12
+    },
+    {
+      "description": "enQueue(50)：data[4] = 50，然后 rear = (4+1)%5。 rear 从 4 绕回 0 —— 这就是「循环」",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "50",
+            "role": "active",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0",
+            "role": "active"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q2"
+          },
+          {
+            "label": "rear",
+            "node": "Q4"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 7
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "enQueue(60)：data[0] = 60，然后 rear = (0+1)%5。 rear 前进到 1",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "60",
+            "role": "active",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "50",
+            "role": "sorted",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1",
+            "role": "active"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q2"
+          },
+          {
+            "label": "rear",
+            "node": "Q0"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 6
+    },
+    {
+      "description": "现在 front = 2、rear = 1，(rear+1)%5 = 2 == front → **队满**。注意 Q1 明明是空的，却不能再放：这就是「少用一个单元」换来的判满无歧义",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "60",
+            "role": "sorted",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "50",
+            "role": "sorted",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q2"
+          },
+          {
+            "label": "rear",
+            "node": "Q0"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 5
+    },
+    {
+      "description": "再 enQueue(70)：判满成立直接返回 0。若不留这个空格，队满时 rear 也会追上 front，与队空条件 front == rear 撞车，就分不清是空还是满了",
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "Q0",
+            "label": "60",
+            "role": "sorted",
+            "fields": {
+              "i": "0"
+            }
+          },
+          {
+            "key": "Q1",
+            "label": "·",
+            "role": "idle",
+            "fields": {
+              "i": "1"
+            }
+          },
+          {
+            "key": "Q2",
+            "label": "30",
+            "role": "sorted",
+            "fields": {
+              "i": "2"
+            }
+          },
+          {
+            "key": "Q3",
+            "label": "40",
+            "role": "sorted",
+            "fields": {
+              "i": "3"
+            }
+          },
+          {
+            "key": "Q4",
+            "label": "50",
+            "role": "sorted",
+            "fields": {
+              "i": "4"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Q0",
+            "to": "Q1"
+          },
+          {
+            "from": "Q1",
+            "to": "Q2"
+          },
+          {
+            "from": "Q2",
+            "to": "Q3"
+          },
+          {
+            "from": "Q3",
+            "to": "Q4"
+          },
+          {
+            "from": "Q4",
+            "to": "Q0"
+          }
+        ],
+        "pointers": [
+          {
+            "label": "front",
+            "node": "Q2"
+          },
+          {
+            "label": "rear",
+            "node": "Q0"
+          }
+        ],
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 5
+    }
+  ]
+}

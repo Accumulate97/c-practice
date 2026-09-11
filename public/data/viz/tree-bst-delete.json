@@ -1,0 +1,619 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-bst-delete",
+  "title": "二叉排序树删除：三种情形",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "struct TNode { int key; struct TNode *left, *right; };\n\n/* 三种情形：叶子直接删；单孩子让孩子顶上来；双孩子用中序后继替身 */\nstruct TNode *bstDelete(struct TNode *t, int v) {\n    if (t == NULL) return NULL;\n    if (v < t->key)      t->left  = bstDelete(t->left,  v);\n    else if (v > t->key) t->right = bstDelete(t->right, v);\n    else if (t->left && t->right) {          /* 双孩子：找右子树最小值 */\n        struct TNode *s = t->right;\n        while (s->left) s = s->left;\n        t->key = s->key;                     /* 后继的值抄上来 */\n        t->right = bstDelete(t->right, s->key);\n    } else {                                 /* 0 或 1 个孩子 */\n        struct TNode *c = t->left ? t->left : t->right;\n        free(t);\n        return c;\n    }\n    return t;\n}",
+  "meta": {
+    "algorithm": "bstDelete",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "二叉排序树（左小右大），要删除结点 3。它有左右两个孩子，是三种删除情形里最麻烦的一种",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    {
+                      "key": "n4",
+                      "label": "4",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 4
+    },
+    {
+      "description": "查找 3：3 < 8 往左走（比较 1 次），到结点 3 命中（比较 2 次）",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    {
+                      "key": "n4",
+                      "label": "4",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 5
+    },
+    {
+      "description": "情形判定：3 的左孩子是 1、右孩子是 6，两个孩子都非空。直接 free(3) 会让 1 和 6 两棵子树同时失联，所以不能直接删",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "compare"
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    {
+                      "key": "n4",
+                      "label": "4",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "compare"
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 8
+    },
+    {
+      "description": "找中序后继：到右子树 6，再一路沿 left 往下 —— 6 的左孩子是 4，4 没有左孩子，所以 4 就是 3 的中序后继（比较 2 次）。后继一定是右子树里最小的那个，它至多有右孩子、不会有左孩子",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    {
+                      "key": "n4",
+                      "label": "4",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "active"
+                    },
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "compare"
+                }
+              ]
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 9
+    },
+    {
+      "description": "t->key = s->key：把后继的值 4 抄到结点 3 的位置上（树形一动不动，只换了值）。现在树里出现两个 4：一个是刚抄上来的替身，一个是原来的后继结点",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "4",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    {
+                      "key": "n4",
+                      "label": "4",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "swap"
+                    },
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "role": "active"
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 1
+        }
+      },
+      "codeLine": 11
+    },
+    {
+      "description": "递归到右子树删除原来的 4：4 > ... 沿路径找到它，它是叶子结点，属于「0 个孩子」情形 —— 直接 free，并让 6 的 left = NULL（比较 2 次、指针修改 1 次）",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "4",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    null,
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "compare"
+                }
+              ]
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 15
+    },
+    {
+      "description": "递归返回值写回 t->right（指针修改 1 次）。删除完成：4 顶替了 3 的位置，6 的左孩子为空",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "4",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    null,
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    null
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 3
+        }
+      },
+      "codeLine": 12
+    },
+    {
+      "description": "校验：中序遍历结果是 1 4 6 7 8 10 13 14，仍然严格递增 —— BST 的有序性没被破坏。这就是「用中序后继替身」的意义（共 6 次比较、3 次指针修改）",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n8",
+          "label": "8",
+          "children": [
+            {
+              "key": "n3",
+              "label": "4",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "n6",
+                  "label": "6",
+                  "children": [
+                    null,
+                    {
+                      "key": "n7",
+                      "label": "7",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "sorted"
+                    }
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n10",
+              "label": "10",
+              "children": [
+                null,
+                {
+                  "key": "n14",
+                  "label": "14",
+                  "children": [
+                    {
+                      "key": "n13",
+                      "label": "13",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "sorted"
+                    },
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 3
+        }
+      },
+      "codeLine": 4
+    }
+  ]
+}

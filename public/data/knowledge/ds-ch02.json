@@ -49,7 +49,10 @@
         "ds-ch02-02",
         "ds-ch02-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-singly-insert",
+        "linear-singly-delete"
+      ],
       "category": "ds",
       "chapter": "第2章 线性表",
       "order": 1
@@ -149,7 +152,10 @@
         "ds-ch02-04",
         "ds-ch01-04"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-singly-insert",
+        "linear-singly-delete"
+      ],
       "category": "ds",
       "chapter": "第2章 线性表",
       "order": 3
@@ -198,7 +204,10 @@
         "ds-ch02-03",
         "ds-ch02-01"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "linear-circular-list",
+        "linear-doubly-insert-delete"
+      ],
       "category": "ds",
       "chapter": "第2章 线性表",
       "order": 4

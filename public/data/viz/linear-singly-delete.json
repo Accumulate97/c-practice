@@ -1,0 +1,400 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "linear-singly-delete",
+  "title": "单链表删除：改链找前驱",
+  "renderer": "nodechain",
+  "category": "linear",
+  "chapter": "第2章 线性表",
+  "relatedProblems": [],
+  "code": "struct Node { int data; struct Node *next; };\n\n/* 删除第一个 data == v 的结点：pre 始终落后 p 一个身位 */\nint listDelete(struct Node **head, int v) {\n    struct Node *p = *head, *pre = NULL;\n    while (p != NULL && p->data != v) {   /* 找目标，记住前驱 */\n        pre = p;\n        p = p->next;\n    }\n    if (p == NULL) return 0;              /* 没找到 */\n    if (pre == NULL) *head = p->next;     /* 删的是头结点 */\n    else             pre->next = p->next; /* 先连：绕过 p */\n    free(p);                              /* 后断：释放 p */\n    return 1;\n}",
+  "meta": {
+    "algorithm": "linearSinglyDelete",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "单链表 head → A → B → C → D → ∧，现在要删除结点 C。删除的难点是：必须先记住 C 的前驱，否则摘掉 C 之后链表就断了",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "p 从 head 出发、pre 落后一步（pre = NULL）。p = A：A 不是要找的 C，比较 1 次",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "compare"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "p",
+            "node": "A"
+          },
+          {
+            "label": "pre = NULL",
+            "node": null
+          }
+        ],
+        "counters": {
+          "comparisons": 1,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "pre = A、p = B：B 也不是 C，比较 2 次。循环体每转一圈，pre 和 p 一起往前走一步",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "p",
+            "node": "B"
+          },
+          {
+            "label": "pre",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "pre = B、p = C：p->data 命中，比较 3 次后退出循环。此刻 pre = B 就是 C 的前驱，删除全靠它",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "pivot"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "p",
+            "node": "C"
+          },
+          {
+            "label": "pre",
+            "node": "B"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "第一步「先连」：pre->next = p->next，也就是让 B 直接指向 D。C 被绕过但还没释放，链表此刻已经完整",
+      "codeLine": 11,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "role": "swap"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "role": "swap"
+          },
+          {
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "p",
+            "node": "C"
+          },
+          {
+            "label": "pre",
+            "node": "B"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "第二步「后断」：free(p) 归还 C 的内存，结点从链表里消失。顺序不能颠倒 —— 先 free 再取 p->next 就是访问已释放内存",
+      "codeLine": 12,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A"
+          },
+          {
+            "key": "B",
+            "label": "B"
+          },
+          {
+            "key": "D",
+            "label": "D"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "删除完成：head → A → B → D → ∧。全程 3 次比较、1 次指针修改。若删的是头结点（pre == NULL），则改的是 head = p->next",
+      "codeLine": 10,
+      "snapshot": {
+        "kind": "nodechain",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "from": "B",
+            "to": "D"
+          },
+          {
+            "from": "D",
+            "to": null
+          }
+        ],
+        "pointers": [
+          {
+            "label": "head",
+            "node": "A"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 1
+        }
+      }
+    }
+  ]
+}

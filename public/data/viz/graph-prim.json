@@ -1,0 +1,1419 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-prim",
+  "title": "Prim 最小生成树",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "#define INF 1000000\n/* 从 v0 出发，每轮把「一端在 U 内、另一端在 U 外」的最小边并入 */\nvoid prim(int v0, int n, const int g[][n]) {\n    int lowcost[n], inU[n];\n    for (int v = 0; v < n; v++) { lowcost[v] = g[v0][v]; inU[v] = 0; }\n    inU[v0] = 1; lowcost[v0] = 0;\n    for (int k = 1; k < n; k++) {\n        int u = -1, best = INF;\n        for (int v = 0; v < n; v++)\n            if (!inU[v] && lowcost[v] < best) { best = lowcost[v]; u = v; }\n        inU[u] = 1;                                /* u 并入 U */\n        for (int v = 0; v < n; v++)\n            if (!inU[v] && g[u][v] < lowcost[v]) lowcost[v] = g[u][v];\n    }\n}",
+  "meta": {
+    "algorithm": "graphPrim",
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "带权无向图，用 Prim 从 A 出发构造最小生成树（MST）：每轮把「一端已在 U 内、另一端在 U 外」的最小权边并入。绿=已在 U / MST 边，结点内是 lowcost（到 U 的最小边权，∞=还没连上）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A:0",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:∞",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 A（=0），把它并入 U（起点 A，无入边）。已并入 1 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B:∞",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:∞",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "用 A 的出边刷新 U 外各点的 lowcost：B=6，C=1",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C:1",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 C（=1），把它并入 U，同时把边 A—C（权 1）加入 MST。已并入 2 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:6",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D:∞",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:∞",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "用 C 的出边刷新 U 外各点的 lowcost：B=5，D=5，E=8",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B:5",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:5",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 B（=5），把它并入 U，同时把边 C—B（权 5）加入 MST。已并入 3 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:5",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "用 B 的出边刷新 U 外各点的 lowcost：D=4",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D:4",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 D（=4），把它并入 U，同时把边 B—D（权 4）加入 MST。已并入 4 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E:8",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:∞",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "用 D 的出边刷新 U 外各点的 lowcost：E=2，F=7",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E:2",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F:7",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 E（=2），把它并入 U，同时把边 D—E（权 2）加入 MST。已并入 5 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F:7",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "用 E 的出边刷新 U 外各点的 lowcost：F=3",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F:3",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "U 外 lowcost 最小的是 F（=3），把它并入 U，同时把边 E—F（权 3）加入 MST。已并入 6 个结点",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "用 F 的出边刷新 U 外各点的 lowcost：（无 U 外邻居）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "Prim 完成：MST 含 6 个结点、5 条边（=n-1），总权值=15（绿色高亮即 MST 边）。Prim 每轮只加一条最小边，适合稠密图",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    }
+  ]
+}

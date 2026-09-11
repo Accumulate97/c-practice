@@ -16,6 +16,7 @@
     "acceptance:site-ui": "node scripts/acceptance-site-ui.mjs",
     "acceptance:viz-ui": "node scripts/acceptance-viz-ui.mjs",
     "build": "tsc -b && vite build",
+    "backfill:viz": "node scripts/backfill-viz-links.ts",
     "build:index": "node scripts/build-index.ts",
     "dev": "vite",
     "gen:viz": "node scripts/gen-viz.ts",

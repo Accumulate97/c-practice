@@ -17,6 +17,7 @@ import { ShortAnswerRenderer } from '../modules/problems/renderers/ShortAnswerRe
 import { MatchingRenderer } from '../modules/problems/renderers/MatchingRenderer'
 import { ProgressPanel } from '../modules/problems/progress/ProgressPanel'
 import { difficultyStars, typeLabel } from '../modules/problems/type-meta'
+import { loadVizIndex, type VizIndexEntry } from '../modules/viz/data/loader'
 
 /**
  * 题目详情页（阶段 4 模块 1 最简版）。
@@ -150,8 +151,59 @@ function Ready({ data }: { data: LoadedProblem }) {
 
       <TypeRenderer problem={problem} />
 
+      <RelatedVizLinks vizIds={problem.vizIds} />
+
       <ProgressPanel problemId={problem.id} />
     </>
+  )
+}
+
+/**
+ * 相关可视化（阶段 7-9 双向关联）：读题目的 vizIds（backfill:viz 回填），
+ * 经 viz/index.json 解析成标题后链到 /viz/:demoId。索引加载失败静默跳过 ——
+ * 关联演示是锦上添花，不能因为它挡住作答主流程。无 vizIds 的题不渲染任何节点。
+ */
+function RelatedVizLinks({ vizIds }: { vizIds: unknown }) {
+  const ids = Array.isArray(vizIds) ? vizIds.filter((v): v is string => typeof v === 'string' && v.length > 0) : []
+  const key = ids.join(',')
+  const [entries, setEntries] = useState<VizIndexEntry[] | null>(null)
+
+  useEffect(() => {
+    if (key === '') return
+    let alive = true
+    loadVizIndex()
+      .then((index) => {
+        if (!alive) return
+        const wanted = new Set(key.split(','))
+        setEntries(index.demos.filter((d) => wanted.has(d.id)))
+      })
+      .catch(() => {
+        /* 静默：索引拉不到就不展示关联演示，不弹错误 */
+      })
+    return () => {
+      alive = false
+    }
+  }, [key])
+
+  if (key === '' || entries === null || entries.length === 0) return null
+  return (
+    <section className="rounded-xl border p-4" style={panel} data-role="related-viz">
+      <p className="text-sm font-semibold">🎬 相关可视化演示</p>
+      <p className="mt-1 text-xs" style={muted}>不确定程序怎么执行？先单步看演示，再回来作答。</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {entries.map((d) => (
+          <Link
+            key={d.id}
+            to={'/viz/' + d.id}
+            data-role="related-viz-link"
+            className="rounded-lg border px-3 py-1.5 text-sm hover:underline"
+            style={{ borderColor: 'var(--border)' }}
+          >
+            🎬 {d.title}
+          </Link>
+        ))}
+      </div>
+    </section>
   )
 }
 

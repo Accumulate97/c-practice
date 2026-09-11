@@ -98,7 +98,9 @@
         "ds-ch04-03",
         "ds-ch02-01"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-array-layout"
+      ],
       "category": "ds",
       "chapter": "第4章 串、数组和广义表",
       "order": 2

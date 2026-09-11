@@ -48,7 +48,11 @@
         }
       ],
       "id": "c-ch09-cc-001",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-call-stack",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -65,7 +69,10 @@
       "code": "#include <stdio.h>\nvoid swap(int  * p1,int  * p2)\n{  int p;\n   p= * p1;  * p1= * p2;  * p2=p;\n}\nint main( )\n{   int a=5,b=7, * ptr1, * ptr2;\n    ptr1=&a;  ptr2=&b;\n    swap(ptr1,ptr2);\n    printf(\" * ptr1=%d, * ptr2=%d\\n\", * ptr1, * ptr2);\n    printf(\"a=%d, b=%d\\n\",a,b);\n    return(0);\n}",
       "answer": " * ptr1=7, * ptr2=5\na=7, b=5",
       "id": "c-ch09-cr-001",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -132,7 +139,10 @@
         }
       ],
       "id": "c-ch09-cc-002",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -161,7 +171,10 @@
         }
       ],
       "id": "c-ch09-fb-001",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -213,7 +226,10 @@
       "code": "#include <stdio.h>\nvoid pp(int a, int  * b);\nint  * p;\nint main( )\n{   int a=1,b=2,c=3;\n    p=&b;\n    pp(a+c,&b);\n    printf(\"(1) %d %d %d\\n\",a,b, * p);\n    return(0);\n}\nvoid pp(int a,int  * b)\n{   int c=4;\n    * p= * b+c;\n    a= * p-c;\n    printf(\"(2) %d %d %d\\n\",a, * b, * p);\n}",
       "answer": "(2) 2 6 6\n(1) 1 6 6",
       "id": "c-ch09-cr-005",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -264,7 +280,10 @@
       "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char s[20]=\"abcd\";\n    char  * sp=s;\n    sp++;\n    puts(strcat(sp,\"ABCD\"));\n    return 0;\n}",
       "answer": "bcdABCD",
       "id": "c-ch09-cr-008",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -281,7 +300,10 @@
       "code": "#include <stdio.h>\n#include <string.h>\nint main( )\n{   char  * s1=\"AbcdEf\", * s2=\"aB\";   int t;\n    s1++;\n    t=(strcmp(s1,s2)>0);\n    printf(\"%d\\n\",t);\n    return 0;\n}",
       "answer": "1",
       "id": "c-ch09-cr-009",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -315,7 +337,10 @@
       "code": "#include <stdio.h>\nint main( )\n{   char  s[ ]=\"ab\\'cdefg\\'\", * p=s+1;\n    printf(\"%c\", * (p++));\n    printf(\"%s\",p+2);\n    return(0);\n}",
       "answer": "bdefg'",
       "id": "c-ch09-cr-011",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -384,7 +409,10 @@
       "code": "#include <stdio.h>\nint fun(char  * s)\n{   char  * p=s;\n    while( * p) p++;\n    return(p-s);\n}\nint main( )\n{   char  * a=\"123456789\";\n    int i;\n    i=fun(a+2);\n    printf(\"%d\",i);\n    return(0);\n}",
       "answer": "7",
       "id": "c-ch09-cr-015",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -401,7 +429,10 @@
       "code": "#include <stdio.h>\nchar  * strc(char  * str1,char  * str2);\nint main( )\n{   char  * strc(char  * str1,char  * str2);\n    char s1[80]=\"computer\",s2[ ]=\"language\", * pt;\n    pt=strc(s1,s2);\n    printf(\"%s\\n\",pt);\n    return(0);\n}\nchar  * strc(char  * str1,char  * str2)\n{   char  * p;\n    for(p=str1;  * p!='\\0'; p++);\n    do{  * p++= * str2++; } while( * str2!='\\0');\n    * p='\\0';\n    return(str1);\n}",
       "answer": "computerlanguage",
       "id": "c-ch09-cr-016",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -489,7 +520,10 @@
       "stdin": "apple\ncat\n",
       "answer": "at",
       "id": "c-ch09-cr-021",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -597,7 +631,10 @@
       "stdin": "ASDFGHJ\nAFH\n",
       "answer": "SDGJ",
       "id": "c-ch09-cr-026",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -632,7 +669,10 @@
       "code": "#include <stdio.h>\nint main( )\n{   char  * str[  ]={\"ENGLISH\",\"MATH\",\"MUSIC\",\"PHYSICS\",\"CHEMISTRY\"};\n    char   ** q;\n    int   num;\n    q=str;\n    for( num=1; num<5; num+=2 )\n        printf(\"%s\\n\", * (q++));\n    return(0);\n}",
       "answer": "ENGLISH\nMATH",
       "id": "c-ch09-cr-028",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer"
+      ]
     },
     {
       "category": "c",
@@ -649,7 +689,10 @@
       "code": "#include <stdio.h>\nint main( )\n{ int a[10]={19,23,44,17,37,28,49,36}, * p;\n    p=a;\n    p+=3;\n    printf(\"%d\\n\", * p+3);\n    return(0);\n}",
       "answer": "20",
       "id": "c-ch09-cr-029",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -700,7 +743,10 @@
       "code": "#include <stdio.h>\nint find( int   * a, int n,int   x )\n{    int   * p=a;\n     while( p<a+n && * p !=x )   p++;\n     if ( p<a+n )   return   p-a;\n     else   return   -1;\n}\nint main( )\n{    int a[10]={1,2,3,4,5,6,7,8,9,10};\n     int x=4;\n     printf(\"\\n%d\\n\",find(a,10,x));\n     return(0);\n}",
       "answer": "\n3",
       "id": "c-ch09-cr-032",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -717,7 +763,10 @@
       "code": "#include <stdio.h>\nint func ( int a, int b ,int  * c)\n{    a++;\n     b=b+2;\n     * c=a+b;\n     return b;\n}\nint main( )\n{    int  x=1, y=1, z=1;\n     y=func ( x ,y ,&z );\n     printf (\"\\n%d %d %d\", x,y,z );\n     return(0);\n}",
       "answer": "\n1 3 5",
       "id": "c-ch09-cr-033",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -734,7 +783,10 @@
       "code": "#include <stdio.h>\nint main( )\n{   int a[ ]={2,4,6,8,10,12,14,16,18,20,22,24}, * q[3], k;\n    for ( k=0;k<3;k++)   q[k]=&a[k * 4];\n    printf ( \"%d\\n\",q[2][3] );\n    return 0;\n}",
       "answer": "24",
       "id": "c-ch09-cr-034",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -814,7 +866,11 @@
         }
       ],
       "id": "c-ch09-fb-002",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-array-layout",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -848,7 +904,11 @@
       "code": "#include <stdio.h>\nvoid fut(int  ** s, int p[2][3] )\n{    ** s= * ( * (p+1)+1);    }\nint main( )\n{    int a[2][3]={1,3,5,7,9,11}, * p,x;\n     p=&x;\n     fut(&p,a);\n     printf(\"\\n%d\\n\", * p);\n     return(0);\n}",
       "answer": "\n9",
       "id": "c-ch09-cr-039",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -917,7 +977,11 @@
       "code": "#include <stdio.h>\nint main( )\n{ int b[3][2]={2,4,6,8,10,12};\n     int  * a[2][3], ** q,k,i,j;\n     for(i=0;i<2;i++)\n         for(j=0;j<3;j++)\n             a[i][j]= * (b+j)+i;\n     q=a[0];\n     for(k=0;k<6;k++)\n     { printf(\"%d \", ** q);\n         q++;\n     }     return(0);\n}",
       "answer": "2 6 10 4 8 12 ",
       "id": "c-ch09-cr-043",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1024,7 +1088,10 @@
       "stdin": "basic\nfortran\npascal\nc++\njava\n",
       "answer": "enter 5 strings(1 string on each line)\nThe sorted strings are :\nbasic\nc++\nfortran\njava\npascal",
       "id": "c-ch09-cr-049",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1041,7 +1108,11 @@
       "code": "#include <stdio.h>\nint main( )\n{   int b[6]={2,4,6,8,10,12}, * a[6];\n    int  ** q , k;\n    for (k=0;k<6;k++)   a[k]=&b[k];\n    q=&a[0];\n    for (k=0; k<6; k++)\n    {   printf(\"%4d\", ** q);\n        q++;\n    }\n    return 0;\n}",
       "answer": "   2   4   6   8  10  12",
       "id": "c-ch09-cr-050",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1083,7 +1154,10 @@
         }
       ],
       "id": "c-ch09-fb-003",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1100,7 +1174,10 @@
       "code": "#include <stdio.h>\n#include <ctype.h>\nint main (int argc,char  * argv[ ])\n{   char  * str;\n    int num=0;\n    if(argc<2)   return(0);\n    str=argv[1];\n    while( * str)\n        if(isalpha( * str++))   num++;\n    printf (\"\\nThe count is :%d.\\n\",num);\n    return(0);\n}",
       "answer": "\nThe count is :3.",
       "id": "c-ch09-cr-052",
-      "verified": false
+      "verified": false,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1117,7 +1194,11 @@
       "code": "#include <stdio.h>\nint main( )\n{   char  * str[ ] ={\"Pascal\",\"C language\",\"Dbase\",\"Cobol\"};\n    char  ** p;\n    int k;\n    p=str;\n    for(k=0;k<4;k++)   printf(\"%s\\n\", * (p++));\n    return(0);\n}",
       "answer": "Pascal\nC language\nDbase\nCobol",
       "id": "c-ch09-cr-053",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1152,7 +1233,11 @@
       "code": "#include <stdio.h>\n#include <stdlib.h>\nint main( )\n{   int  * p[5];\n    int  * ptr, i;\n    if ((ptr=(int * )malloc(100 * sizeof(int)))!=NULL)\n    {   p[0]=ptr;\n        for(i=1;i<5;i++)\n            p[i]=p[i-1]+1;\n        for(i=0;i<10;i++)  * ptr++=i;\n        for (i=0;i<5;i++)\n            printf(\"%3d\", * p[i]);\n    }\n    return(0);\n}",
       "answer": "  0  1  2  3  4",
       "id": "c-ch09-cr-055",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-malloc-free",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1186,7 +1271,11 @@
       "code": "#include <stdio.h>\nint main( )\n{   char  * a[ ] ={\"Pascal\",\"C language\",\"dBase\",\"Coble\"};\n    char  ** p;\n    int j;\n    p=a+3;\n    for(j=3;j>=0;j--)    printf(\"%s\\n\", * (p--));\n    return(0);\n}",
       "answer": "Coble\ndBase\nC language\nPascal",
       "id": "c-ch09-cr-057",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-multi-pointer",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1240,7 +1329,10 @@
         }
       ],
       "id": "c-ch09-fb-005",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1257,7 +1349,10 @@
       "code": "#include <stdio.h>\nfloat * search(float ( * pointer)[4]);\nint main( )\n{   static float score[ ][4]={{60,70,80,90},{50,89,67,88},\n                              {34,78,90,66},{80,90,100,70}};\n    float * p; int i,j;\n    for(i=0;i<=3;i++)\n    {   p=search(score+i);\n        if(p== * (score+i))\n        {   printf(\"No. %d scores: \",i);\n            for(j=0;j<4;j++)    printf(\"%5.2f \", * (p+j));\n            printf(\"\\n\");\n        }\n    }\n    return(0);\n}\nfloat * search(float ( * pointer)[4])\n{   int i; float * pt;\n    pt= * (pointer+1);\n    for(i=0;i<=3;i++)\n        if( * ( * (pointer)+i)<60)    pt= * pointer;\n    return(pt);\n}",
       "answer": "No. 1 scores: 50.00 89.00 67.00 88.00 \nNo. 2 scores: 34.00 78.00 90.00 66.00 ",
       "id": "c-ch09-cr-058",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1280,7 +1375,11 @@
         }
       ],
       "id": "c-ch09-pg-001",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-array-layout",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1394,7 +1493,10 @@
         }
       ],
       "id": "c-ch09-pg-004",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1438,7 +1540,11 @@
         }
       ],
       "id": "c-ch09-pg-005",
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-array-layout",
+        "memory-pointer-address"
+      ]
     },
     {
       "category": "c",
@@ -1520,7 +1626,10 @@
           "note": "边界：全 0，自增后为 1"
         }
       ],
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-pointer-address"
+      ]
     },
     {
       "id": "c-ch09-dbg-014",
@@ -1608,7 +1717,10 @@
           "note": "边界：n=1，唯一元素即最大值"
         }
       ],
-      "verified": true
+      "verified": true,
+      "vizIds": [
+        "memory-array-layout"
+      ]
     }
   ]
 }

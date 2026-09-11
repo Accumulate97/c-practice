@@ -1,0 +1,195 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-multi-pointer",
+  "title": "多级指针：pp → p → i",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "int main(void) {\n    int   i  = 7;        /* 0x1000 */\n    int  *p  = &i;       /* 0x2000，存 0x1000 */\n    int **pp = &p;       /* 0x3000，存 0x2000 */\n\n    *pp  = &i;           /* 改 p 本身（*pp 就是 p） */\n    **pp = 8;            /* 改 i：先解一层拿到 p，再解一层拿到 i */\n    ***(&pp) = 9;        /* 三级解引用，等价于 i = 9 */\n    return 0;\n}",
+  "meta": {
+    "algorithm": "memoryMultiPointer",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "int i = 7（0x1000）；int *p = &i（0x2000 存 0x1000）；int **pp = &p（0x3000 存 0x2000），构成 pp → p → i 三级链",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "三级指针链 pp → p → i",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "7",
+                "note": "int"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active",
+                "note": "int * · 存 i 的地址"
+              },
+              {
+                "key": "pp",
+                "address": "0x3000",
+                "value": "→ p",
+                "role": "active",
+                "note": "int ** · 存 p 的地址"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "*pp = &i：解一层 pp 得到的就是 p 本身，这句改写 p 里存的内容（仍指向 i）",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "三级指针链 pp → p → i",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "7",
+                "note": "int"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "swap",
+                "note": "int * · 存 i 的地址"
+              },
+              {
+                "key": "pp",
+                "address": "0x3000",
+                "value": "→ p",
+                "role": "active",
+                "note": "int ** · 存 p 的地址"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "**pp = 8：连续解两层，pp → p → i，最终改的是 i 本身（7 → 8）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "三级指针链 pp → p → i",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "8",
+                "role": "swap",
+                "note": "int"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active",
+                "note": "int * · 存 i 的地址"
+              },
+              {
+                "key": "pp",
+                "address": "0x3000",
+                "value": "→ p",
+                "role": "active",
+                "note": "int ** · 存 p 的地址"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "***(&pp) = 9：&pp 先取到 pp 的地址，再连解三层，依旧落到 i（8 → 9），等价于 i = 9",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "三级指针链 pp → p → i",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "9",
+                "role": "swap",
+                "note": "int"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active",
+                "note": "int * · 存 i 的地址"
+              },
+              {
+                "key": "pp",
+                "address": "0x3000",
+                "value": "→ p",
+                "role": "active",
+                "note": "int ** · 存 p 的地址"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "小结：每多一个星号就多解一层引用；无论几级指针，最终都顺着地址链找到 i",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "三级指针链 pp → p → i",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "9",
+                "role": "sorted",
+                "note": "int"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "sorted",
+                "note": "int * · 存 i 的地址"
+              },
+              {
+                "key": "pp",
+                "address": "0x3000",
+                "value": "→ p",
+                "role": "sorted",
+                "note": "int ** · 存 p 的地址"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

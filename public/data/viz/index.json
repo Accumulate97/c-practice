@@ -1,7 +1,7 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "6ad1395e39c9bcb7",
-  "count": 12,
+  "content_sha": "f037d2ca4e30d1c1",
+  "count": 34,
   "demos": [
     {
       "id": "graph-bfs",
@@ -14,6 +14,96 @@
       "url": "data/viz/graph-bfs.json"
     },
     {
+      "id": "graph-dfs",
+      "chapter": "第6章 图",
+      "title": "图的深度优先遍历（DFS）",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 13,
+      "url": "data/viz/graph-dfs.json"
+    },
+    {
+      "id": "graph-dijkstra",
+      "chapter": "第6章 图",
+      "title": "Dijkstra 单源最短路径",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 21,
+      "url": "data/viz/graph-dijkstra.json"
+    },
+    {
+      "id": "graph-kruskal",
+      "chapter": "第6章 图",
+      "title": "Kruskal 最小生成树",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 11,
+      "url": "data/viz/graph-kruskal.json"
+    },
+    {
+      "id": "graph-prim",
+      "chapter": "第6章 图",
+      "title": "Prim 最小生成树",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 14,
+      "url": "data/viz/graph-prim.json"
+    },
+    {
+      "id": "graph-toposort",
+      "chapter": "第6章 图",
+      "title": "拓扑排序（AOV 网）",
+      "relatedProblems": [],
+      "renderer": "graph",
+      "category": "graph",
+      "steps": 14,
+      "url": "data/viz/graph-toposort.json"
+    },
+    {
+      "id": "linear-circular-list",
+      "chapter": "第2章 线性表",
+      "title": "循环链表：尾插与绕环遍历",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 10,
+      "url": "data/viz/linear-circular-list.json"
+    },
+    {
+      "id": "linear-doubly-insert-delete",
+      "chapter": "第2章 线性表",
+      "title": "双链表插入删除：prev/next 双向协同",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 10,
+      "url": "data/viz/linear-doubly-insert-delete.json"
+    },
+    {
+      "id": "linear-queue-enqueue-dequeue",
+      "chapter": "第3章 栈和队列",
+      "title": "队列的入队出队（循环队列）",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 11,
+      "url": "data/viz/linear-queue-enqueue-dequeue.json"
+    },
+    {
+      "id": "linear-singly-delete",
+      "chapter": "第2章 线性表",
+      "title": "单链表删除：改链找前驱",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 7,
+      "url": "data/viz/linear-singly-delete.json"
+    },
+    {
       "id": "linear-singly-insert",
       "chapter": "第2章 线性表",
       "title": "单链表插入：指针修改顺序",
@@ -22,6 +112,66 @@
       "category": "linear",
       "steps": 5,
       "url": "data/viz/linear-singly-insert.json"
+    },
+    {
+      "id": "linear-stack-push-pop",
+      "chapter": "第3章 栈和队列",
+      "title": "栈的入栈与出栈（顺序栈）",
+      "relatedProblems": [],
+      "renderer": "nodechain",
+      "category": "linear",
+      "steps": 10,
+      "url": "data/viz/linear-stack-push-pop.json"
+    },
+    {
+      "id": "memory-array-layout",
+      "chapter": "第9章 指针",
+      "title": "数组内存布局：a[i] ≡ *(a+i)",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 6,
+      "url": "data/viz/memory-array-layout.json"
+    },
+    {
+      "id": "memory-call-stack",
+      "chapter": "第9章 指针",
+      "title": "函数调用栈：栈帧的压入与弹出",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 6,
+      "url": "data/viz/memory-call-stack.json"
+    },
+    {
+      "id": "memory-malloc-free",
+      "chapter": "第9章 指针",
+      "title": "malloc/free 与野指针",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 7,
+      "url": "data/viz/memory-malloc-free.json"
+    },
+    {
+      "id": "memory-multi-pointer",
+      "chapter": "第9章 指针",
+      "title": "多级指针：pp → p → i",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 5,
+      "url": "data/viz/memory-multi-pointer.json"
+    },
+    {
+      "id": "memory-pointer-address",
+      "chapter": "第9章 指针",
+      "title": "指针与地址：& 与 * 和指针运算",
+      "relatedProblems": [],
+      "renderer": "memory",
+      "category": "memory",
+      "steps": 6,
+      "url": "data/viz/memory-pointer-address.json"
     },
     {
       "id": "memory-swap-call",
@@ -114,6 +264,26 @@
       "url": "data/viz/sort-shell.json"
     },
     {
+      "id": "tree-avl-rotate",
+      "chapter": "第5章 树和二叉树",
+      "title": "AVL 树的失衡与旋转",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 15,
+      "url": "data/viz/tree-avl-rotate.json"
+    },
+    {
+      "id": "tree-bst-delete",
+      "chapter": "第5章 树和二叉树",
+      "title": "二叉排序树删除：三种情形",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 8,
+      "url": "data/viz/tree-bst-delete.json"
+    },
+    {
       "id": "tree-bst-insert",
       "chapter": "第5章 树和二叉树",
       "title": "二叉排序树插入：查找路径",
@@ -122,6 +292,56 @@
       "category": "tree",
       "steps": 19,
       "url": "data/viz/tree-bst-insert.json"
+    },
+    {
+      "id": "tree-heap-build",
+      "chapter": "第5章 树和二叉树",
+      "title": "堆的构建与筛选调整",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 17,
+      "url": "data/viz/tree-heap-build.json"
+    },
+    {
+      "id": "tree-huffman",
+      "chapter": "第5章 树和二叉树",
+      "title": "哈夫曼树的构建",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 11,
+      "url": "data/viz/tree-huffman.json"
+    },
+    {
+      "id": "tree-inorder",
+      "chapter": "第5章 树和二叉树",
+      "title": "二叉树中序遍历",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 8,
+      "url": "data/viz/tree-inorder.json"
+    },
+    {
+      "id": "tree-postorder",
+      "chapter": "第5章 树和二叉树",
+      "title": "二叉树后序遍历",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 8,
+      "url": "data/viz/tree-postorder.json"
+    },
+    {
+      "id": "tree-preorder",
+      "chapter": "第5章 树和二叉树",
+      "title": "二叉树先序遍历",
+      "relatedProblems": [],
+      "renderer": "tree",
+      "category": "tree",
+      "steps": 8,
+      "url": "data/viz/tree-preorder.json"
     }
   ]
 }

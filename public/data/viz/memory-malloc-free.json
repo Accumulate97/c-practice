@@ -1,0 +1,262 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-malloc-free",
+  "title": "malloc/free 与野指针",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "#include <stdlib.h>\n\nint main(void) {\n    int *p = malloc(sizeof(int));   /* 堆上申请 4 字节，假设得到 0x5000 */\n    if (p == NULL) return 1;        /* 申请失败必须判空 */\n    *p = 42;                        /* 只有 p 有效时才能解引用 */\n\n    free(p);                        /* 归还给堆；p 的值没变，但已不可用 */\n    /* *p = 7;  ← 访问已释放内存：未定义行为，这就是野指针 */\n\n    p = NULL;                       /* 置空后误用会立刻崩，比悄悄写坏内存好 */\n    free(p);                        /* free(NULL) 是安全的空操作 */\n    return 0;\n}",
+  "meta": {
+    "algorithm": "memoryMallocFree",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "int *p = malloc(sizeof(int))：在堆上申请 4 字节（假设首地址 0x5000），返回的地址存进栈上的指针 p",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "→ 0x5000",
+                "role": "active",
+                "note": "存堆块首地址"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "?",
+                "role": "active",
+                "note": "malloc 刚分配，未初始化"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "if (p == NULL) return 1：申请后必须判空，p 非空才能继续用；对空指针解引用会让程序崩溃",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "→ 0x5000",
+                "role": "active",
+                "note": "p != NULL，分配成功"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "?",
+                "role": "active",
+                "note": "malloc 刚分配，未初始化"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "*p = 42：p 有效时解引用，把 42 写进那块堆内存",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "→ 0x5000",
+                "role": "active",
+                "note": "p 有效"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "42",
+                "role": "swap",
+                "note": "被 *p 写入"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "free(p)：把这块堆内存还给系统。注意 p 的值没变（仍存 0x5000），但这块内存已不属于你 —— p 成了「野指针」",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "→ 0x5000",
+                "role": "compare",
+                "note": "值没变但已失效"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "已释放",
+                "role": "idle",
+                "note": "归还给堆"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "若此时再 *p = 7：访问已释放内存是未定义行为 —— 这块内存可能已被重新分配，读写会悄悄破坏别的数据",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "→ 0x5000",
+                "role": "swap",
+                "note": "野指针"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "已释放",
+                "role": "swap",
+                "note": "未定义行为"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "p = NULL：free 后立刻把指针置空是好习惯；之后误用会因解引用空指针当场崩溃，把问题暴露出来而不是悄悄写坏内存",
+      "codeLine": 11,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "NULL",
+                "role": "sorted",
+                "note": "置空"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "已释放",
+                "role": "idle",
+                "note": "归还给堆"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "free(p)：p 为 NULL 时 free(NULL) 是合法的空操作，不会二次释放报错",
+      "codeLine": 12,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈（指针变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7000",
+                "value": "NULL",
+                "role": "sorted",
+                "note": "free(NULL) 安全"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆（动态分配）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x5000",
+                "value": "已释放",
+                "role": "idle",
+                "note": "归还给堆"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

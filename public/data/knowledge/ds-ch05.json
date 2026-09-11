@@ -149,7 +149,11 @@
         "ds-ch03-02",
         "ds-ch05-04"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "tree-preorder",
+        "tree-inorder",
+        "tree-postorder"
+      ],
       "category": "ds",
       "chapter": "第5章 树和二叉树",
       "order": 3
@@ -198,7 +202,9 @@
         "ds-ch05-02",
         "ds-ch05-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "tree-huffman"
+      ],
       "category": "ds",
       "chapter": "第5章 树和二叉树",
       "order": 4

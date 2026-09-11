@@ -1,0 +1,1162 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "graph-kruskal",
+  "title": "Kruskal 最小生成树",
+  "renderer": "graph",
+  "category": "graph",
+  "chapter": "第6章 图",
+  "relatedProblems": [],
+  "code": "struct Edge { int u, v, w; };\nint parent[MAXN];                                  /* 并查集：parent[x] 是 x 的双亲 */\n\nint findRoot(int x) {\n    while (parent[x] != x) x = parent[x];\n    return x;\n}\n\n/* 边按权值升序排好，逐条考察：两端不在同一棵树才收，收了就合并 */\nvoid kruskal(struct Edge e[], int m, int n) {\n    for (int i = 0; i < n; i++) parent[i] = i;\n    int taken = 0;\n    for (int i = 0; i < m && taken < n - 1; i++) {\n        int ru = findRoot(e[i].u), rv = findRoot(e[i].v);\n        if (ru != rv) {                            /* 不成环 */\n            parent[ru] = rv;                       /* 两棵树合并 */\n            taken++;\n        }\n    }\n}",
+  "meta": {
+    "algorithm": "graphKruskal",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "Kruskal：先把所有边按权值升序排序，再用并查集逐条考察——两端点不在同一棵树（不成环）才收，收了就合并两棵树；收满 n-1 条即停。看边色：绿=已收入 MST，橙=本条正在收，红=被拒（会成环）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      }
+    },
+    {
+      "description": "考察 A—C（权 1，第 1 条）：find(A)=A ≠ find(C)=C，两端不同树、不成环 → 收下并合并（union 共 1 次，已收 1/5 条）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "active"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "comparisons": 1,
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "考察 D—E（权 2，第 2 条）：find(D)=D ≠ find(E)=E，两端不同树、不成环 → 收下并合并（union 共 2 次，已收 2/5 条）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "active"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3
+          }
+        ],
+        "counters": {
+          "comparisons": 2,
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "考察 E—F（权 3，第 3 条）：find(E)=E ≠ find(F)=F，两端不同树、不成环 → 收下并合并（union 共 3 次，已收 3/5 条）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "active"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "active"
+          }
+        ],
+        "counters": {
+          "comparisons": 3,
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "考察 B—D（权 4，第 4 条）：find(B)=B ≠ find(D)=F，两端不同树、不成环 → 收下并合并（union 共 4 次，已收 4/5 条）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "active"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "active"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 4,
+          "pointerWrites": 4
+        }
+      }
+    },
+    {
+      "description": "考察 B—C（权 5，第 5 条）：find(B)=F ≠ find(C)=C，两端不同树、不成环 → 收下并合并（union 共 5 次，已收 5/5 条）",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "active"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "active"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "active"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 5,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "考察 C—D（权 5，第 6 条）：find 后两端同属一棵树（C==C），收下会成环 → 丢弃",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "compare"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5,
+            "role": "swap"
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 6,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "考察 A—B（权 6，第 7 条）：find 后两端同属一棵树（C==C），收下会成环 → 丢弃",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "compare"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "compare"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6,
+            "role": "swap"
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 7,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "考察 D—F（权 7，第 8 条）：find 后两端同属一棵树（C==C），收下会成环 → 丢弃",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "compare"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7,
+            "role": "swap"
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 8,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "考察 C—E（权 8，第 9 条）：find 后两端同属一棵树（C==C），收下会成环 → 丢弃",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "compare"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "compare"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8,
+            "role": "swap"
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 9,
+          "pointerWrites": 5
+        }
+      }
+    },
+    {
+      "description": "Kruskal 完成：共考察 9 条边，收下 5 条（=n-1），总权值=15，union 5 次。与 Prim 结果一致（同一张图的 MST 权值和唯一）。Kruskal 按边处理、用并查集判环，适合稀疏图",
+      "snapshot": {
+        "kind": "graph",
+        "nodes": [
+          {
+            "key": "A",
+            "label": "A",
+            "x": 15,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "B",
+            "label": "B",
+            "x": 50,
+            "y": 10,
+            "role": "sorted"
+          },
+          {
+            "key": "C",
+            "label": "C",
+            "x": 85,
+            "y": 20,
+            "role": "sorted"
+          },
+          {
+            "key": "D",
+            "label": "D",
+            "x": 28,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "E",
+            "label": "E",
+            "x": 72,
+            "y": 58,
+            "role": "sorted"
+          },
+          {
+            "key": "F",
+            "label": "F",
+            "x": 50,
+            "y": 90,
+            "role": "sorted"
+          }
+        ],
+        "edges": [
+          {
+            "from": "A",
+            "to": "B",
+            "weight": 6
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "weight": 1,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "weight": 5,
+            "role": "sorted"
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "weight": 4,
+            "role": "sorted"
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "weight": 5
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "weight": 8
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "weight": 2,
+            "role": "sorted"
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "weight": 7
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "weight": 3,
+            "role": "sorted"
+          }
+        ],
+        "counters": {
+          "comparisons": 9,
+          "pointerWrites": 5
+        }
+      }
+    }
+  ]
+}

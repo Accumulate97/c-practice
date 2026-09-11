@@ -1,0 +1,179 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "memory-pointer-address",
+  "title": "指针与地址：& 与 * 和指针运算",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [],
+  "code": "int main(void) {\n    int i = 42;          /* i 占 4 字节，假设地址 0x1000 */\n    int *p;              /* p 是一个指针变量，自己也要占内存 */\n    p = &i;              /* 把 i 的地址存进 p：p 指向 i */\n    *p = 99;             /* 解引用：改的是 0x1000 上的 i，不是 p */\n    printf(\"%d\\n\", i);   /* 99 */\n    p = p + 1;           /* 指针加 1 = 跳过 sizeof(int) 个字节，指向 0x1004 */\n    return 0;\n}",
+  "meta": {
+    "algorithm": "memoryPointerAddress",
+    "counterKeys": [],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "int i = 42 占 4 字节（地址 0x1000）；int *p 自己也是个变量，同样要占内存（0x2000），初始化前内容不可预测",
+      "codeLine": 2,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "42"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "随机值",
+                "role": "idle",
+                "note": "未初始化"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "p = &i：把 i 的地址（0x1000）存进 p，此后 p 指向 i",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "42"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active",
+                "note": "存 0x1000"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "*p = 99：解引用即「顺着 p 去改 0x1000 上的 i」（42 → 99），改的是所指对象，不是 p 本身",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "99",
+                "role": "swap",
+                "note": "被 *p 改"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "此时 printf 读 i 得到 99 —— i 与 *p 是同一块内存的两种叫法",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "99",
+                "role": "sorted"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ i",
+                "role": "active"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "p = p + 1：指针加 1 移动 sizeof(int) = 4 字节，p 由指向 0x1000 变为指向 0x1004（不再是 i）",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "99"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ 0x1004",
+                "role": "compare",
+                "note": "+4 字节"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "小结：指针变量存的是地址；解引用改的是所指对象；指针加减按所指类型的字节数缩放",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "mem",
+            "title": "变量与指针",
+            "cells": [
+              {
+                "key": "i",
+                "address": "0x1000",
+                "value": "99"
+              },
+              {
+                "key": "p",
+                "address": "0x2000",
+                "value": "→ 0x1004",
+                "role": "sorted"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

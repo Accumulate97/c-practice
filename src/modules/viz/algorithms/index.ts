@@ -21,6 +21,11 @@ import {
 } from './sort'
 import { SORT_CODE } from './sortCode'
 import { bstInsert, graphBfs, linearSinglyInsert, memorySwapCall, SAMPLE_CODE } from './samples'
+import { linearCircularList, linearDoublyInsertDelete, linearQueueEnqueueDequeue, linearSinglyDelete, linearStackPushPop } from './linear'
+import { avlRotate, bstDelete, heapBuild, huffmanBuild, treeTraversal } from './tree'
+import { graphDfs, graphDijkstra, graphKruskal, graphPrim, graphToposort } from './graph'
+import { memoryArrayLayout, memoryCallStack, memoryMallocFree, memoryMultiPointer, memoryPointerAddress } from './memory'
+import { VIZ_CODE } from './vizCode'
 
 /**
  * 8 种排序共用同一组输入（n = 8）。
@@ -75,6 +80,20 @@ function sortSpec(
     code: SORT_CODE[id],
     generate,
   }
+}
+
+/** 非排序类演示的通用骨架：code 一律按 id 从 vizCode.ts 取，省掉每条重复写 */
+function vizSpec(
+  id: string,
+  title: string,
+  category: string,
+  chapter: string,
+  renderer: VizRendererKind,
+  algorithm: string,
+  counterKeys: string[],
+  generate: (input: number[]) => VizStep[],
+): VizGenSpec {
+  return { id, title, category, chapter, renderer, algorithm, counterKeys, code: VIZ_CODE[id], generate }
 }
 
 export const VIZ_SPECS: VizGenSpec[] = [
@@ -134,6 +153,36 @@ export const VIZ_SPECS: VizGenSpec[] = [
     code: SAMPLE_CODE['memory-swap-call'],
     generate: () => memorySwapCall(),
   },
+
+  // ── R2 节点链（linear；栈/队列归第3章）──────────────────────────
+  vizSpec('linear-singly-delete', '单链表删除：改链找前驱', 'linear', '第2章 线性表', 'nodechain', 'linearSinglyDelete', ['comparisons', 'pointerWrites'], () => linearSinglyDelete()),
+  vizSpec('linear-doubly-insert-delete', '双链表插入删除：prev/next 双向协同', 'linear', '第2章 线性表', 'nodechain', 'linearDoublyInsertDelete', ['pointerWrites'], () => linearDoublyInsertDelete()),
+  vizSpec('linear-stack-push-pop', '栈的入栈与出栈（顺序栈）', 'linear', '第3章 栈和队列', 'nodechain', 'linearStackPushPop', ['pointerWrites'], () => linearStackPushPop()),
+  vizSpec('linear-queue-enqueue-dequeue', '队列的入队出队（循环队列）', 'linear', '第3章 栈和队列', 'nodechain', 'linearQueueEnqueueDequeue', ['pointerWrites'], () => linearQueueEnqueueDequeue()),
+  vizSpec('linear-circular-list', '循环链表：尾插与绕环遍历', 'linear', '第2章 线性表', 'nodechain', 'linearCircularList', ['comparisons', 'pointerWrites'], () => linearCircularList()),
+
+  // ── R3 树（tree / 第5章 树和二叉树）──────────────────────────
+  vizSpec('tree-preorder', '二叉树先序遍历', 'tree', '第5章 树和二叉树', 'tree', 'treeTraversal(pre)', ['visited'], treeTraversal('pre')),
+  vizSpec('tree-inorder', '二叉树中序遍历', 'tree', '第5章 树和二叉树', 'tree', 'treeTraversal(in)', ['visited'], treeTraversal('in')),
+  vizSpec('tree-postorder', '二叉树后序遍历', 'tree', '第5章 树和二叉树', 'tree', 'treeTraversal(post)', ['visited'], treeTraversal('post')),
+  vizSpec('tree-bst-delete', '二叉排序树删除：三种情形', 'tree', '第5章 树和二叉树', 'tree', 'bstDelete', ['comparisons', 'pointerWrites'], () => bstDelete()),
+  vizSpec('tree-heap-build', '堆的构建与筛选调整', 'tree', '第5章 树和二叉树', 'tree', 'heapBuild', ['comparisons', 'swaps'], () => heapBuild()),
+  vizSpec('tree-avl-rotate', 'AVL 树的失衡与旋转', 'tree', '第5章 树和二叉树', 'tree', 'avlRotate', ['pointerWrites'], () => avlRotate()),
+  vizSpec('tree-huffman', '哈夫曼树的构建', 'tree', '第5章 树和二叉树', 'tree', 'huffmanBuild', ['comparisons', 'pointerWrites'], () => huffmanBuild()),
+
+  // ── R4 图（graph / 第6章 图）──────────────────────────
+  vizSpec('graph-dfs', '图的深度优先遍历（DFS）', 'graph', '第6章 图', 'graph', 'graphDfs', ['visited'], () => graphDfs()),
+  vizSpec('graph-dijkstra', 'Dijkstra 单源最短路径', 'graph', '第6章 图', 'graph', 'graphDijkstra', ['visited'], () => graphDijkstra()),
+  vizSpec('graph-prim', 'Prim 最小生成树', 'graph', '第6章 图', 'graph', 'graphPrim', ['visited'], () => graphPrim()),
+  vizSpec('graph-kruskal', 'Kruskal 最小生成树', 'graph', '第6章 图', 'graph', 'graphKruskal', ['comparisons', 'pointerWrites'], () => graphKruskal()),
+  vizSpec('graph-toposort', '拓扑排序（AOV 网）', 'graph', '第6章 图', 'graph', 'graphToposort', ['visited'], () => graphToposort()),
+
+  // ── R5 内存格（memory / 第9章 指针）—— 本站差异化优势 ──────────────────────────
+  vizSpec('memory-pointer-address', '指针与地址：& 与 * 和指针运算', 'memory', '第9章 指针', 'memory', 'memoryPointerAddress', [], () => memoryPointerAddress()),
+  vizSpec('memory-array-layout', '数组内存布局：a[i] ≡ *(a+i)', 'memory', '第9章 指针', 'memory', 'memoryArrayLayout', [], () => memoryArrayLayout()),
+  vizSpec('memory-call-stack', '函数调用栈：栈帧的压入与弹出', 'memory', '第9章 指针', 'memory', 'memoryCallStack', [], () => memoryCallStack()),
+  vizSpec('memory-multi-pointer', '多级指针：pp → p → i', 'memory', '第9章 指针', 'memory', 'memoryMultiPointer', [], () => memoryMultiPointer()),
+  vizSpec('memory-malloc-free', 'malloc/free 与野指针', 'memory', '第9章 指针', 'memory', 'memoryMallocFree', [], () => memoryMallocFree()),
 ]
 
 /** 按 id 查规格（gen-viz.ts 支持只重生成指定演示：npm run gen:viz -- sort-bubble） */

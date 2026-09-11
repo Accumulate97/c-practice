@@ -124,7 +124,9 @@
         "c-ch07-05",
         "c-ch07-08"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 3
@@ -292,7 +294,9 @@
         "c-ch07-15",
         "c-ch07-20"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-swap-call"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 7
@@ -376,7 +380,9 @@
         "c-ch07-10",
         "c-ch07-03"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 9
@@ -419,7 +425,9 @@
         "c-ch07-12",
         "c-ch07-13"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 10
@@ -461,7 +469,9 @@
         "c-ch07-12",
         "c-ch07-13"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 11
@@ -503,7 +513,9 @@
         "c-ch07-14",
         "c-ch06-34"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 12
@@ -545,7 +557,9 @@
         "c-ch07-11",
         "c-ch07-14"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 13
@@ -587,7 +601,9 @@
         "c-ch07-13",
         "c-ch07-12"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 14
@@ -1060,7 +1076,9 @@
         "c-ch07-09",
         "c-ch07-24"
       ],
-      "relatedViz": [],
+      "relatedViz": [
+        "memory-call-stack"
+      ],
       "category": "c",
       "chapter": "第7章 函数",
       "order": 25

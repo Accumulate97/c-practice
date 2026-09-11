@@ -1,0 +1,820 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-huffman",
+  "title": "哈夫曼树的构建",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "struct HNode { int weight; struct HNode *left, *right; };\n\n/* n 个叶子要合并 n-1 次；每次从森林里挑两棵权值最小的 */\nstruct HNode *huffmanTree(int w[], int n) {\n    struct HNode *forest[64];\n    for (int i = 0; i < n; i++) {\n        forest[i] = malloc(sizeof(struct HNode));\n        forest[i]->weight = w[i];\n        forest[i]->left = forest[i]->right = NULL;\n    }\n    int m = n;\n    while (m > 1) {\n        int i1 = 0, i2 = 1;\n        if (forest[i1]->weight > forest[i2]->weight) { int t = i1; i1 = i2; i2 = t; }\n        for (int i = 2; i < m; i++) {              /* 选出最小的两个下标 */\n            if (forest[i]->weight < forest[i1]->weight) { i2 = i1; i1 = i; }\n            else if (forest[i]->weight < forest[i2]->weight) i2 = i;\n        }\n        struct HNode *p = malloc(sizeof(struct HNode));\n        p->weight = forest[i1]->weight + forest[i2]->weight;\n        p->left = forest[i1]; p->right = forest[i2];\n        forest[i1] = p;                            /* 新树放回森林 */\n        forest[i2] = forest[--m];                  /* 末尾元素补空位 */\n    }\n    return forest[0];\n}",
+  "meta": {
+    "algorithm": "huffmanBuild",
+    "counterKeys": [
+      "comparisons",
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "初始森林：5 个权值 5、7、2、13、9 各自是一棵只有根的树。虚根 F 只是把它们并排挂在一起显示，不是哈夫曼树的结点。共需合并 n-1 = 4 次",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "w0",
+              "label": "5",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w1",
+              "label": "7",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w2",
+              "label": "2",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 0,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 4
+    },
+    {
+      "description": "第 1 次合并 · 选最小：扫描森林比较 7 次，挑出权值最小的两棵 —— 2 和 5",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "w0",
+              "label": "5",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "w1",
+              "label": "7",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w2",
+              "label": "2",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 7,
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "合并：新结点权值 = 2 + 5 = 7，2 作左孩子、5 作右孩子（2 次指针修改）。森林剩 4 棵：7、7、9、13",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "m1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "w2",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                {
+                  "key": "w0",
+                  "label": "5",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                }
+              ],
+              "role": "active"
+            },
+            {
+              "key": "w1",
+              "label": "7",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 7,
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 18
+    },
+    {
+      "description": "第 2 次合并 · 选最小：扫描森林比较 5 次，挑出权值最小的两棵 —— 7 和 7",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "m1",
+              "label": "7",
+              "children": [
+                {
+                  "key": "w2",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "w0",
+                  "label": "5",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "w1",
+              "label": "7",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 12,
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "合并：新结点权值 = 7 + 7 = 14，7 作左孩子、7 作右孩子（2 次指针修改）。森林剩 3 棵：9、13、14",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "swap"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                }
+              ],
+              "role": "active"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 12,
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 18
+    },
+    {
+      "description": "第 3 次合并 · 选最小：扫描森林比较 3 次，挑出权值最小的两棵 —— 9 和 13",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "w4",
+              "label": "9",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "w3",
+              "label": "13",
+              "children": [
+                null,
+                null
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "pivot"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 15,
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "合并：新结点权值 = 9 + 13 = 22，9 作左孩子、13 作右孩子（2 次指针修改）。森林剩 2 棵：14、22",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "m3",
+              "label": "22",
+              "children": [
+                {
+                  "key": "w4",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                {
+                  "key": "w3",
+                  "label": "13",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                }
+              ],
+              "role": "active"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 15,
+          "pointerWrites": 6
+        }
+      },
+      "codeLine": 18
+    },
+    {
+      "description": "第 4 次合并 · 选最小：扫描森林比较 1 次，挑出权值最小的两棵 —— 14 和 22",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "F",
+          "label": "F",
+          "role": "idle",
+          "children": [
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "compare"
+            },
+            {
+              "key": "m3",
+              "label": "22",
+              "children": [
+                {
+                  "key": "w4",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "w3",
+                  "label": "13",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "compare"
+            }
+          ]
+        },
+        "counters": {
+          "comparisons": 16,
+          "pointerWrites": 6
+        }
+      },
+      "codeLine": 13
+    },
+    {
+      "description": "合并：新结点权值 = 14 + 22 = 36，14 作左孩子、22 作右孩子（2 次指针修改）。森林剩 1 棵：36",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "m4",
+          "label": "36",
+          "children": [
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "swap"
+            },
+            {
+              "key": "m3",
+              "label": "22",
+              "children": [
+                {
+                  "key": "w4",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "w3",
+                  "label": "13",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "swap"
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "comparisons": 16,
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 18
+    },
+    {
+      "description": "构造完成：森林只剩一棵树，根权值 36 = 全部权值之和。虚根 F 消失，看到的就是哈夫曼树",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "m4",
+          "label": "36",
+          "children": [
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ]
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "m3",
+              "label": "22",
+              "children": [
+                {
+                  "key": "w4",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "key": "w3",
+                  "label": "13",
+                  "children": [
+                    null,
+                    null
+                  ]
+                }
+              ],
+              "role": "pivot"
+            }
+          ],
+          "role": "pivot"
+        },
+        "counters": {
+          "comparisons": 16,
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 21
+    },
+    {
+      "description": "带权路径长度 WPL = 2×3 + 5×3 + 7×2 + 9×2 + 13×2 = 79。权值大的结点离根近、权值小的离根远，WPL 达到最小 —— 这正是哈夫曼编码能让总码长最短的原因",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "m4",
+          "label": "36",
+          "children": [
+            {
+              "key": "m2",
+              "label": "14",
+              "children": [
+                {
+                  "key": "m1",
+                  "label": "7",
+                  "children": [
+                    {
+                      "key": "w2",
+                      "label": "2",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "sorted"
+                    },
+                    {
+                      "key": "w0",
+                      "label": "5",
+                      "children": [
+                        null,
+                        null
+                      ],
+                      "role": "sorted"
+                    }
+                  ],
+                  "role": "pivot"
+                },
+                {
+                  "key": "w1",
+                  "label": "7",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "pivot"
+            },
+            {
+              "key": "m3",
+              "label": "22",
+              "children": [
+                {
+                  "key": "w4",
+                  "label": "9",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                },
+                {
+                  "key": "w3",
+                  "label": "13",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "sorted"
+                }
+              ],
+              "role": "pivot"
+            }
+          ],
+          "role": "pivot"
+        },
+        "counters": {
+          "comparisons": 16,
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 21
+    }
+  ]
+}

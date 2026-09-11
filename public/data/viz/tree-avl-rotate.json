@@ -1,0 +1,510 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "tree-avl-rotate",
+  "title": "AVL 树的失衡与旋转",
+  "renderer": "tree",
+  "category": "tree",
+  "chapter": "第5章 树和二叉树",
+  "relatedProblems": [],
+  "code": "struct ANode { int key, height; struct ANode *left, *right; };\nstatic int h(const struct ANode *n) { return n ? n->height : 0; }\nstatic int bf(const struct ANode *n) { return h(n->left) - h(n->right); }\n\nstruct ANode *rotateR(struct ANode *y) {   /* LL：右单旋 */\n    struct ANode *x = y->left;\n    y->left = x->right;                    /* x 的右子树挂给 y */\n    x->right = y;                          /* y 变成 x 的右孩子 */\n    y->height = 1 + (h(y->left) > h(y->right) ? h(y->left) : h(y->right));\n    x->height = 1 + (h(x->left) > h(x->right) ? h(x->left) : h(x->right));\n    return x;                              /* 新根是 x */\n}\n\nstruct ANode *rotateL(struct ANode *x) {   /* RR：左单旋，与上对称 */\n    struct ANode *y = x->right;\n    x->right = y->left;\n    y->left = x;\n    x->height = 1 + (h(x->left) > h(x->right) ? h(x->left) : h(x->right));\n    y->height = 1 + (h(y->left) > h(y->right) ? h(y->left) : h(y->right));\n    return y;\n}\n/* LR = 先对左孩子左旋，再对自己右旋；RL = 先对右孩子右旋，再对自己左旋 */",
+  "meta": {
+    "algorithm": "avlRotate",
+    "counterKeys": [
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz@0.1.0"
+  },
+  "steps": [
+    {
+      "description": "AVL 树要求任意结点的平衡因子 |左高 - 右高| ≤ 1。插入后一旦某结点失衡，就按「失衡点 + 插入位置」分成 LL / RR / LR / RL 四种情形旋转。下面每种各演示一次，统计的是全程指针修改次数",
+      "snapshot": {
+        "kind": "tree",
+        "root": null,
+        "counters": {
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 2
+    },
+    {
+      "description": "【LL 情形】结点 3 的平衡因子 = 2 - 0 = +2 失衡，新结点 1 插在「左孩子的左子树」上 → 右单旋",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n3",
+          "label": "3",
+          "children": [
+            {
+              "key": "n2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                null
+              ],
+              "role": "pivot"
+            },
+            null
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "pointerWrites": 0
+        }
+      },
+      "codeLine": 5
+    },
+    {
+      "description": "rotateR(3)：x = y->left = 2；y->left = x->right（2 的右子树是空，挂给 3 的左）；x->right = y（3 降为 2 的右孩子）。2 次指针修改",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "LL 旋转结果：2 成为新根，1 在左、3 在右，三个结点平衡因子全为 0 或 ±1，恢复平衡",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 12
+    },
+    {
+      "description": "【RR 情形】结点 1 的平衡因子 = 0 - 2 = -2 失衡，新结点 3 插在「右孩子的右子树」上 → 左单旋，与 LL 完全对称",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n1",
+          "label": "1",
+          "children": [
+            null,
+            {
+              "key": "n2",
+              "label": "2",
+              "children": [
+                null,
+                {
+                  "key": "n3",
+                  "label": "3",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                }
+              ],
+              "role": "pivot"
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "pointerWrites": 2
+        }
+      },
+      "codeLine": 14
+    },
+    {
+      "description": "rotateL(1)：y = x->right = 2；x->right = y->left；y->left = x。2 次指针修改，1 降为 2 的左孩子",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 16
+    },
+    {
+      "description": "RR 旋转结果：同样得到 2(1, 3)。注意 LL 和 RR 的最终形态一样，只是旋转方向相反",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 21
+    },
+    {
+      "description": "【LR 情形】结点 3 的平衡因子 = +2 失衡，但新结点 2 插在「左孩子的右子树」上 —— 单旋解决不了，必须先左旋再右旋",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n3",
+          "label": "3",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                {
+                  "key": "n2",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                }
+              ],
+              "role": "pivot"
+            },
+            null
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "pointerWrites": 4
+        }
+      },
+      "codeLine": 22
+    },
+    {
+      "description": "第一步 rotateL(1)：把 LR 掰成 LL。2 上升到 3 的左孩子位置，1 降为 2 的左孩子。2 次指针修改",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n3",
+          "label": "3",
+          "children": [
+            {
+              "key": "n2",
+              "label": "2",
+              "children": [
+                {
+                  "key": "n1",
+                  "label": "1",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                },
+                null
+              ],
+              "role": "active"
+            },
+            null
+          ]
+        },
+        "counters": {
+          "pointerWrites": 6
+        }
+      },
+      "codeLine": 16
+    },
+    {
+      "description": "第二步 rotateR(3)：现在就是标准 LL 了，右单旋把 2 提为根。又 2 次指针修改，双旋共 4 次",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "LR 旋转结果：2(1, 3)。口诀「先扳成同向、再单旋」",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 22
+    },
+    {
+      "description": "【RL 情形】结点 1 的平衡因子 = -2 失衡，新结点 2 插在「右孩子的左子树」上 → 先对右孩子右旋，再对自己左旋",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n1",
+          "label": "1",
+          "children": [
+            null,
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                {
+                  "key": "n2",
+                  "label": "2",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "active"
+                },
+                null
+              ],
+              "role": "pivot"
+            }
+          ],
+          "role": "compare"
+        },
+        "counters": {
+          "pointerWrites": 8
+        }
+      },
+      "codeLine": 22
+    },
+    {
+      "description": "第一步 rotateR(3)：把 RL 掰成 RR。2 上升到 1 的右孩子位置，3 降为 2 的右孩子。2 次指针修改",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n1",
+          "label": "1",
+          "children": [
+            null,
+            {
+              "key": "n2",
+              "label": "2",
+              "children": [
+                null,
+                {
+                  "key": "n3",
+                  "label": "3",
+                  "children": [
+                    null,
+                    null
+                  ],
+                  "role": "swap"
+                }
+              ],
+              "role": "active"
+            }
+          ]
+        },
+        "counters": {
+          "pointerWrites": 10
+        }
+      },
+      "codeLine": 7
+    },
+    {
+      "description": "第二步 rotateL(1)：标准 RR，左单旋把 2 提为根。2 次指针修改",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ]
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ]
+            }
+          ],
+          "role": "active"
+        },
+        "counters": {
+          "pointerWrites": 12
+        }
+      },
+      "codeLine": 16
+    },
+    {
+      "description": "RL 旋转结果：2(1, 3)。四种旋转殊途同归，都把中间值提为根；单旋 2 次指针修改、双旋 4 次，本演示共 12 次",
+      "snapshot": {
+        "kind": "tree",
+        "root": {
+          "key": "n2",
+          "label": "2",
+          "children": [
+            {
+              "key": "n1",
+              "label": "1",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            },
+            {
+              "key": "n3",
+              "label": "3",
+              "children": [
+                null,
+                null
+              ],
+              "role": "sorted"
+            }
+          ],
+          "role": "sorted"
+        },
+        "counters": {
+          "pointerWrites": 12
+        }
+      },
+      "codeLine": 22
+    }
+  ]
+}
