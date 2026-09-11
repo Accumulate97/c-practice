@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "bae9950b4347d9dc",
+  "content_sha": "c04b896d4efa82d8",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 961,
+  "count": 986,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -9536,6 +9536,256 @@
       "chapter": "第11章 位运算",
       "section": "11.2 填空题",
       "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-010",
+      "file": "c-ch11.json",
+      "title": "【题 11.1】以下运算符中优先级最低的是【1】____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-001",
+      "file": "c-ch11.json",
+      "title": "【题 11.2】若有运算符<<、sizeof、^、&=",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-002",
+      "file": "c-ch11.json",
+      "title": "【题 11.3】在C语言中",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-003",
+      "file": "c-ch11.json",
+      "title": "【题 11.4】sizeof",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-004",
+      "file": "c-ch11.json",
+      "title": "【题 11.5】表达式 a<b||～c&d 的运算顺序是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-005",
+      "file": "c-ch11.json",
+      "title": "【题 11.6】以下叙述中不正确的是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-006",
+      "file": "c-ch11.json",
+      "title": "【题 11.7】以下不能将变量 m 清零的表达式是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-007",
+      "file": "c-ch11.json",
+      "title": "【题 11.8】设字符型变量 ch 中的值为 11011001",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-008",
+      "file": "c-ch11.json",
+      "title": "【题 11.9】表达式 0x13 & 0x17 的值是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-009",
+      "file": "c-ch11.json",
+      "title": "【题 11.10】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-010",
+      "file": "c-ch11.json",
+      "title": "【题 11.11】以下可以将 char 型变量 x 中的大小写字母进行转换",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-011",
+      "file": "c-ch11.json",
+      "title": "【题 11.12】已知整型变量 n1 和 n2 的值相等",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-012",
+      "file": "c-ch11.json",
+      "title": "【题 11.13】在执行完以下 C 语句后",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-013",
+      "file": "c-ch11.json",
+      "title": "【题 11.14】表达式 0x13 | 0x17 的值是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-014",
+      "file": "c-ch11.json",
+      "title": "【题 11.15】若 a=1",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-015",
+      "file": "c-ch11.json",
+      "title": "【题 11.16】若有以下程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-016",
+      "file": "c-ch11.json",
+      "title": "【题 11.17】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-017",
+      "file": "c-ch11.json",
+      "title": "【题 11.18】请读程序段",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-018",
+      "file": "c-ch11.json",
+      "title": "【题 11.19】表达式～0x13 的值是____",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-019",
+      "file": "c-ch11.json",
+      "title": "【题 11.20】在位运算中",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-020",
+      "file": "c-ch11.json",
+      "title": "【题 11.21】在位运算中",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-021",
+      "file": "c-ch11.json",
+      "title": "【题 11.22】设有以下语句",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-022",
+      "file": "c-ch11.json",
+      "title": "【题 11.23】有以下程序 ```c #include <stdio.h> int main",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-001",
+      "file": "c-ch11.json",
+      "title": "【题 11.48】下面程序的功能是实现左右循环移位",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-002",
+      "file": "c-ch11.json",
+      "title": "【题 11.49】以下函数的功能是计算所用计算机中 int 型数据的字长",
+      "tags": [],
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {

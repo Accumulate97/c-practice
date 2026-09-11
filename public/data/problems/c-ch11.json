@@ -2,7 +2,7 @@
   "category": "c",
   "chapter": "第11章 位运算",
   "generated_at": "2026-09-08",
-  "count": 26,
+  "count": 51,
   "problems": [
     {
       "category": "c",
@@ -503,6 +503,626 @@
         "⑤异或性质：与 1 异或翻转、与 0 异或不变"
       ],
       "id": "c-ch11-sa-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.1（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.1】以下运算符中优先级最低的是【1】____，优先级最高的是【2】____。\n\n各空候选项：\n【1】A) &&\nB) &\nC) ||\nD) |\n\n【2】A) &&\nB) &\nC) ||\nD) |\n\n请分别填写各空的选项字母。",
+      "explanation": "|| 是逻辑或，在这四个运算符中优先级最低；& 是位与，属双目位运算符，优先级高于 ^、|，更远高于 &&、||，故最低选 C、最高选 B。牢记：所有位运算符都高于逻辑与/逻辑或。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "C",
+          "accepted": [
+            "C",
+            "||"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "B",
+          "accepted": [
+            "B",
+            "&"
+          ]
+        }
+      ],
+      "id": "c-ch11-fb-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.2（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.2】若有运算符<<、sizeof、^、&=，则它们按优先级由高至低的正确排列次序是____。",
+      "explanation": "sizeof 是单目运算符，优先级很高；<< 是移位，高于位与、位异或、位或；^ 是位异或；&= 属复合赋值，赋值类优先级最低。由高至低为 sizeof、<<、^、&=，选 B。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) sizeof、&=、<<、^",
+        "B) sizeof、<<、^、&=",
+        "C) ^、<<、sizeof、&=",
+        "D) <<、^、&=、sizeof"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.3（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.3】在C语言中，要求运算数必须是整型的运算符是____。",
+      "explanation": "% 是求余运算符，C 规定其两侧运算数必须是整型，对浮点数取余非法，选 B。^、!、> 的运算数可以是任意算术类型，只要求能参与位运算或比较。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ^",
+        "B) %",
+        "C) !",
+        "D) >"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.4（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.4】sizeof(float)是____。",
+      "explanation": "sizeof 是 C 语言的运算符而不是函数，sizeof(float) 在编译期即可求值，其结果是 size_t 类型的无符号整数，所以它是一个整型表达式，选 C；它既不是浮点表达式，也不是非法写法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 一种函数调用",
+        "B) 一个不合法的表示形式",
+        "C) 一个整型表达式",
+        "D) 一个浮点表达式"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.5（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.5】表达式 a<b||～c&d 的运算顺序是____。",
+      "explanation": "~ 是单目运算符最先计算；< 是关系运算，优先级高于位与 &；& 又高于逻辑或 ||，因此顺序为 ~、<、&、||，选 D。整个表达式等价于 (a<b) || ((~c)&d)。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ～、&、<、||",
+        "B) ～、||、&、<",
+        "C) ～、&、||、<",
+        "D) ～、<、&、||"
+      ],
+      "answer": 3,
+      "id": "c-ch11-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.6（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.6】以下叙述中不正确的是____。",
+      "explanation": "&=、|=、^= 都是复合赋值运算符，a op= b 等价于 a = a op b；而 != 是关系运算符“不等于”，并不是复合赋值，C 中也不存在 a=a!b 这种写法，故不正确的叙述是 C。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 表达式 a&=b 等价于 a=a&b",
+        "B) 表达式 a|=b 等价于 a=a|b",
+        "C) 表达式 a!=b 等价于 a=a!b",
+        "D) 表达式 a^=b 等价于 a=a^b"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.7（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.7】以下不能将变量 m 清零的表达式是____。",
+      "explanation": "m&~m、m&0、m^m 三者按位运算后每一位都是 0，必然清零；而 m|m 的结果仍等于 m 本身，只有 m 原本为 0 时才为 0，无法保证清零，故选 D。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) m=m &～m",
+        "B) m=m& 0",
+        "C) m=m^m",
+        "D) m=m | m"
+      ],
+      "answer": 3,
+      "id": "c-ch11-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.8（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.8】设字符型变量 ch 中的值为 11011001，若要保留这一字节中的中间 4 位，而将高、低 2 位清零，则以下能实现此功能的表达式是____。",
+      "explanation": "要保留中间 4 位、把高低各 2 位清零，只能与掩码做按位与；掩码为 00111100B，即十六进制 0x3C、八进制 074，故表达式是 ch&074，选 B。用按位或会把某些位置 1，达不到清零目的。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) ch|074",
+        "B) ch&074",
+        "C) ch&0303",
+        "D) ch|0303"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.9（PDF p258 / 书页 p247）",
+      "difficulty": 2,
+      "stem": "【题 11.9】表达式 0x13 & 0x17 的值是____。",
+      "explanation": "0x13=00010011B，0x17=00010111B，按位与只有双方都为 1 的位才保留，结果为 00010011B，即 0x13，选 B。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0x17",
+        "B) 0x13",
+        "C) 0xf8",
+        "D) 0xec"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.10（PDF p258 / 书页 p247）",
+      "difficulty": 3,
+      "stem": "【题 11.10】请读程序段：以上程序段的输出结果是____。\n\n```c\nchar x=56;\nx=x & 056;\nprintf(\"%d,%o\\n\",x,x);\n```",
+      "explanation": "056 是八进制常量，等于十进制 46=101110B；x=56=111000B，两者按位与得 101000B=40。printf 中 %d 打印十进制 40，%o 打印 40 的八进制形式 50，故输出 40,50，选 C。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 56,70",
+        "B) 0,0",
+        "C) 40,50",
+        "D) 62,76"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.11（PDF p259 / 书页 p248）",
+      "difficulty": 2,
+      "stem": "【题 11.11】以下可以将 char 型变量 x 中的大小写字母进行转换(既：大写变小写，小写变大写)的语句是____。",
+      "explanation": "大小写字母的 ASCII 码只在第 5 位（权值 32）上不同，与 32 异或恰好翻转这一位，从而实现大小写互换，选 A。x+32 只能单向变小写，x|32 只能变小写，x&32 会丢掉其他位。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x=x^32;",
+        "B) x=x+32;",
+        "C) x=x|32;",
+        "D) x=x&32;"
+      ],
+      "answer": 0,
+      "id": "c-ch11-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.12（PDF p259 / 书页 p248）",
+      "difficulty": 2,
+      "stem": "【题 11.12】已知整型变量 n1 和 n2 的值相等，并且不为零，则以下选项中值为零的表达式是____。",
+      "explanation": "n1 与 n2 相等且非零时，按位异或的每一位都相同，结果为 0，选 C。n1|n2 与 n1&n2 都等于原值（非 0），n1||n2 是逻辑或，结果为 1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) n1 | n2",
+        "B) n1 || n2",
+        "C) n1^n2",
+        "D) n1 & n2"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.13（PDF p259 / 书页 p248）",
+      "difficulty": 3,
+      "stem": "【题 11.13】在执行完以下 C 语句后，B 的值是____。\n\n```c\nchar Z='A';\nint B;\nB=((241&15)&&(Z|'a'));\n```",
+      "explanation": "241=0xF1，与 15=0x0F 按位与得 1，非 0；Z|'a' 即 'A'|'a' = 0x41|0x61 = 0x61，也非 0。两个非 0 值做逻辑与 &&，结果为 1，故 B=1，选 B（标准 C 没有 TRUE/FALSE 关键字）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0",
+        "B) 1",
+        "C) TRUE",
+        "D) FALSE"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.14（PDF p259 / 书页 p248）",
+      "difficulty": 2,
+      "stem": "【题 11.14】表达式 0x13 | 0x17 的值是____。",
+      "explanation": "0x13=00010011B，0x17=00010111B，按位或只要有一位为 1 结果即为 1，得 00010111B=0x17，选 B。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0x13",
+        "B) 0x17",
+        "C) 0xE8",
+        "D) 0xc8"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.15（PDF p259 / 书页 p248）",
+      "difficulty": 2,
+      "stem": "【题 11.15】若 a=1,b=2 则 a|b 的值是____。",
+      "explanation": "1=01B，2=10B，按位或得 11B=3，选 D。注意 a|b 是位或；若写成逻辑或 a||b，结果才是 1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 3"
+      ],
+      "answer": 3,
+      "id": "c-ch11-sc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.16（PDF p259 / 书页 p248）",
+      "difficulty": 3,
+      "stem": "【题 11.16】若有以下程序段：则执行以上语句后 x 和 y 的值分别是____。\n\n```c\nint x=1,y=2;\nx=x^y;\ny=y^x;\nx=x^y;\n```",
+      "explanation": "这是经典的异或交换：x=x^y 得 3；y=y^x 得 2^3=1；x=x^y 得 3^1=2。最终 x=2、y=1，选 C。异或交换不需要临时变量，靠的是 x^y^y=x。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) x=1,b=2",
+        "B) x=2,y=2",
+        "C) x=2,y=1",
+        "D) x=1,y=1"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.17（PDF p259 / 书页 p248）",
+      "difficulty": 3,
+      "stem": "【题 11.17】请读程序段：以上程序段的输出结果是____。\n\n```c\nunsigned t=129;\nt=t^00;\nprintf(\"%d,%o\\n\",t,t);\n```",
+      "explanation": "t^00 就是 t^0，与 0 异或不改变原值，t 仍为 129。%d 输出 129，%o 输出 129 的八进制 201（129=2×64+0×8+1），故输出 129,201，选 B。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0,0",
+        "B) 129,201",
+        "C) 126,176",
+        "D) 101,145"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.18（PDF p259 / 书页 p248）",
+      "difficulty": 3,
+      "stem": "【题 11.18】请读程序段：上面程序段的输出结果是____。\n\n```c\nint x=20;\nprintf(\"%d\\n\", ~x );\n```",
+      "explanation": "按位取反满足 ~x = -x-1，所以 ~20 = -21，选 C。它是逐位取反的位运算，要与逻辑非 !x（20 非零，!20=0）严格区分。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 02",
+        "B) －20",
+        "C) －21",
+        "D) －11"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.19（PDF p260 / 书页 p249）",
+      "difficulty": 2,
+      "stem": "【题 11.19】表达式～0x13 的值是____。",
+      "explanation": "0x13=00010011B，逐位取反得 11101100B=0xEC，按原书 16 位 int 高位全补 1，结果为 0xFFEC，选 A。存疑：在 32 位环境下实际值是 0xFFFFFFEC，本题按原书答案入库。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0xFFEC",
+        "B) 0xFF71",
+        "C) 0xFF68",
+        "D) 0xFF17"
+      ],
+      "answer": 0,
+      "id": "c-ch11-sc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.20（PDF p260 / 书页 p249）",
+      "difficulty": 2,
+      "stem": "【题 11.20】在位运算中，操作数每右移一位，其结果相当于____。",
+      "explanation": "右移一位把二进制各位整体向低位挪一格，对非负整数相当于除以 2 并舍去余数，选 B。左移一位才相当于乘 2；负数右移的结果与实现的算术右移有关。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 操作数乘以2",
+        "B) 操作数除以2",
+        "C) 操作数除以4",
+        "D) 操作数乘以4"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.21（PDF p260 / 书页 p249）",
+      "difficulty": 2,
+      "stem": "【题 11.21】在位运算中，操作数每左移一位，其结果相当于____。",
+      "explanation": "左移一位把各位向高位挪一格，低位补 0，在不溢出的前提下相当于乘以 2，选 A。若移出的高位中含有有效信息，就会溢出，结果不再等于乘 2。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 操作数乘以2",
+        "B) 操作数除以2",
+        "C) 操作数除以4",
+        "D) 操作数乘以4"
+      ],
+      "answer": 0,
+      "id": "c-ch11-sc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.22（PDF p260 / 书页 p249）",
+      "difficulty": 3,
+      "stem": "【题 11.22】设有以下语句：则 z 的二进制值是____。\n\n```c\nchar x=3,y=6,z;\nz=x^y<<2;\n```",
+      "explanation": "<< 的优先级高于 ^，先计算 y<<2 = 6<<2 = 24 = 11000B，再与 x=3=00011B 做异或，得 11011B=27，写成八位二进制即 00011011，选 B。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 00010100",
+        "B) 00011011",
+        "C) 00011100",
+        "D) 00011000"
+      ],
+      "answer": 1,
+      "id": "c-ch11-sc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.23（PDF p260 / 书页 p249）",
+      "difficulty": 3,
+      "stem": "【题 11.23】有以下程序\n\n```c\n#include <stdio.h>\nint main( )\n{ unsigned char x,y;\n  x=5^3;   y=~4&4;\n  printf(\"%d %d\\n\",x,y);\n  return 0;\n}\n```",
+      "explanation": "5^3 = 101B^011B = 110B = 6；~4 的每一位与 4 相反，再与 4 按位与必然为 0，故 y=0。x、y 都是 unsigned char，printf 输出 6 0，选 C。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 1  0",
+        "B) 1  4",
+        "C) 6  0",
+        "D) 6  4"
+      ],
+      "answer": 2,
+      "id": "c-ch11-sc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.48（PDF p264 / 书页 p253）",
+      "difficulty": 5,
+      "stem": "【题 11.48】下面程序的功能是实现左右循环移位，当输入位移的位数是一正整数时循环右移，输入一负整数时循环左移。请填空。",
+      "explanation": "循环移位的关键是把移出的位从另一端补回来。右移 n 位时，(value>>n) 留下高 16-n 位，(value<<(16-n)) 把低 n 位顶到高 n 位，两者按位或即成环，故【3】与 moveright 对称，填 z=(value<<n)|(value>>(16-n))。【1】用 n>0 区分右移/左移两种情形；进入左移分支前必须把负的位移数取正，故【2】填 n=-n。易错点：一是原书按 16 位字长写死 16-n，本适配版用 unsigned 加 &0xFFFF 掩码保留 16 位环形语义；二是 n 必须落在 1..15，否则 (16-n) 会移位 16 位以上造成未定义行为。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nunsigned moveright(unsigned value, int n);\nunsigned moveleft(unsigned value, int n);\nint main(void)\n{ unsigned a;\n  int n;\n  scanf(\"%o\", &a);\n  scanf(\"%d\", &n);\n  a &= 0xFFFFu;                     /* 原书按 16 位字长处理 */\n  if (/*__BLANK_1__*/)\n    { printf(\"%o\\n\", moveright(a, n)); }\n  else\n    { /*__BLANK_2__*/;\n      printf(\"%o\\n\", moveleft(a, n));\n    }\n  return 0;\n}\nunsigned moveright(unsigned value, int n)\n{ unsigned z;\n  value &= 0xFFFFu;\n  z = (value >> n) | (value << (16 - n));\n  return z & 0xFFFFu;\n}\nunsigned moveleft(unsigned value, int n)\n{ unsigned z;\n  value &= 0xFFFFu;\n  /*__BLANK_3__*/;\n  return z & 0xFFFFu;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(n>0)",
+          "accepted": [
+            "(n>0)",
+            "n>0",
+            "(n > 0)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n=-n",
+          "accepted": [
+            "n=-n",
+            "n = -n"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "z=(value<<n)|(value>>(16-n))",
+          "accepted": [
+            "z=(value<<n)|(value>>(16-n))",
+            "z = (value << n) | (value >> (16 - n))"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nunsigned moveright(unsigned value, int n);\nunsigned moveleft(unsigned value, int n);\nint main(void)\n{ unsigned a;\n  int n;\n  scanf(\"%o\", &a);\n  scanf(\"%d\", &n);\n  a &= 0xFFFFu;                     /* 原书按 16 位字长处理 */\n  if ( (n>0) )\n    { printf(\"%o\\n\", moveright(a, n)); }\n  else\n    {  n=-n ;\n      printf(\"%o\\n\", moveleft(a, n));\n    }\n  return 0;\n}\nunsigned moveright(unsigned value, int n)\n{ unsigned z;\n  value &= 0xFFFFu;\n  z = (value >> n) | (value << (16 - n));\n  return z & 0xFFFFu;\n}\nunsigned moveleft(unsigned value, int n)\n{ unsigned z;\n  value &= 0xFFFFu;\n   z=(value<<n)|(value>>(16-n)) ;\n  return z & 0xFFFFu;\n}",
+      "testCases": [
+        {
+          "stdin": "175 3\n",
+          "expected": "120017",
+          "note": "八进制 175 循环右移 3 位：低 3 位绕回高位，0o175 → 0o120017"
+        },
+        {
+          "stdin": "175 -3\n",
+          "expected": "1750",
+          "note": "负位移走左移分支，先 n=-n，0o175 循环左移 3 位 → 0o1750"
+        },
+        {
+          "stdin": "77777 0\n",
+          "expected": "77777",
+          "note": "边界：位移 0 位，结果不变；0o77777 恰为 16 位全 1"
+        }
+      ],
+      "id": "c-ch11-cc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第11章 位运算",
+      "section": "11.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.49（PDF p264 / 书页 p253）",
+      "difficulty": 3,
+      "stem": "【题 11.49】以下函数的功能是计算所用计算机中 int 型数据的字长(即二进制位)的位数。(注：不同类型机器上 int 型数据所分配的长度是不同的，该函数具有可移植性。)请填空。",
+      "explanation": "【1】填 ~0：对全 0 按位取反得到各二进制位全为 1 的模式，赋给 unsigned int v 后即“把 int 单元各位置 1”。随后每右移一位 i 自增 1，直到 v 变成 0 退出循环，此时 i 正好等于字长，故【2】填 i。易错点：v 必须是无符号类型，若用 int 则右移是算术右移、符号位不断补 1，v 永远大于 0，循环无法结束；该写法不依赖具体字长，因此具有可移植性。本适配版补了函数原型与 main，Godbolt 32 位环境实测输出 32，原书 16 位机器上输出 16。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint wordlength(void);\nint main(void)\n{ printf(\"%d\\n\", wordlength());\n  return 0;\n}\nint wordlength(void)\n{ int i;\n  unsigned int v = /*__BLANK_1__*/;    /* 将 int 型单元各二进制位置 1 */\n  for (i = 1; (v = v >> 1) > 0; i++);  /* 计算 int 单元中的位数 */\n  return (/*__BLANK_2__*/);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "~0",
+          "accepted": [
+            "~0",
+            "~0u",
+            "0xFFFFFFFFu"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i",
+          "accepted": [
+            "i"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint wordlength(void);\nint main(void)\n{ printf(\"%d\\n\", wordlength());\n  return 0;\n}\nint wordlength(void)\n{ int i;\n  unsigned int v =  ~0 ;    /* 将 int 型单元各二进制位置 1 */\n  for (i = 1; (v = v >> 1) > 0; i++);  /* 计算 int 单元中的位数 */\n  return ( i );\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "32",
+          "note": "无输入；Godbolt 为 32 位 int，实测字长 32（原书 16 位机器上为 16）"
+        }
+      ],
+      "id": "c-ch11-cc-002",
       "verified": true
     }
   ]

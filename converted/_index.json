@@ -160,17 +160,16 @@
       "chapter": 11,
       "id": "c-ch11",
       "name": "第11章 位运算",
-      "converted": 26,
-      "staged": 25,
+      "converted": 51,
+      "staged": 0,
       "byType": {
-        "fill_blank": 9,
+        "fill_blank": 10,
+        "single_choice": 22,
         "code_reading": 16,
+        "code_completion": 2,
         "short_answer": 1
       },
-      "stagedBySubType": {
-        "single_choice": 23,
-        "code_completion": 2
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 12,
@@ -192,25 +191,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 960,
-    "staged": 63,
+    "converted": 985,
+    "staged": 38,
     "byType": {
-      "single_choice": 341,
-      "fill_blank": 149,
+      "single_choice": 363,
+      "fill_blank": 150,
       "code_reading": 225,
       "short_answer": 23,
-      "code_completion": 159,
+      "code_completion": 161,
       "programming": 48,
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 47,
-      "code_completion": 15,
+      "single_choice": 24,
+      "code_completion": 13,
       "multi_blank": 1
     },
-    "judgeEvidence": 463,
+    "judgeEvidence": 465,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 159,
+    "rescuedCodeCompletion": 161,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }

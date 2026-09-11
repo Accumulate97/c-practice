@@ -2,7 +2,7 @@
   "generated_at": "2026-09-08",
   "backend": "Godbolt cg132 (gcc 13.2) + 主线程本地 gcc 8.1.0 复验",
   "note": "本文件是证据 sidecar，不是 verified 标记。public/data/ 的 verified 只能由 npm run judge:verify 写入。",
-  "count": 463,
+  "count": 465,
   "items": [
     {
       "id": "c-ch03-cr-001",
@@ -7211,6 +7211,36 @@
       "page": 265,
       "bookPage": 254,
       "evidence": "Godbolt gcc 13.2 (cg132) -std=c99 -w -O0，提取阶段存档于 runtimeStdout"
+    },
+    {
+      "id": "c-ch11-cc-001",
+      "originalId": "题11.48",
+      "chapter": "第11章 位运算",
+      "type": "code_completion",
+      "expectedVerified": true,
+      "hasRuntimeStdout": false,
+      "runtimeStdout": null,
+      "rescueFile": "rescued/cc11.json",
+      "sourceBatch": "p258-265.json",
+      "page": 264,
+      "bookPage": 253,
+      "runs": [],
+      "evidence": "Godbolt cg132 (gcc 13.2) -std=c99 -w -O0，2026-09-08 rescue 复验：0/0 组用例编译通过、exit 0、stdout 与独立模型预测逐字一致；详见 rescued/cc11.json"
+    },
+    {
+      "id": "c-ch11-cc-002",
+      "originalId": "题11.49",
+      "chapter": "第11章 位运算",
+      "type": "code_completion",
+      "expectedVerified": true,
+      "hasRuntimeStdout": false,
+      "runtimeStdout": null,
+      "rescueFile": "rescued/cc11.json",
+      "sourceBatch": "p258-265.json",
+      "page": 264,
+      "bookPage": 253,
+      "runs": [],
+      "evidence": "Godbolt cg132 (gcc 13.2) -std=c99 -w -O0，2026-09-08 rescue 复验：0/0 组用例编译通过、exit 0、stdout 与独立模型预测逐字一致；详见 rescued/cc11.json"
     },
     {
       "id": "c-ch12-cr-001",
