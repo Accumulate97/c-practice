@@ -2,7 +2,7 @@
   "category": "c",
   "chapter": "第4章 逻辑运算和分支结构",
   "generated_at": "2026-09-08",
-  "count": 92,
+  "count": 111,
   "problems": [
     {
       "category": "c",
@@ -2285,6 +2285,875 @@
           "note": "典型：小月"
         }
       ],
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.14（PDF p33 / 书页 p22）",
+      "difficulty": 3,
+      "stem": "【题 4.14】执行以下语句后 a 的值为【1】，b 的值为【2】。\n\n```c\nint a=5,b=6,w=1,x=2,y=3,z=4;\n(a=w>x)&&(b=y>z);\n```\n\n【1】的候选项：\nA) 5\nB) 0\nC) 2\nD) 1\n\n【2】的候选项：\nA) 6\nB) 0\nC) 1\nD) 4\n\n请分别填写两个空的选项字母。",
+      "explanation": "**答案：B、A**。`&&` 的左操作数带副作用：先算 `w>x` 即 `1>2`，结果为假（0）并赋给 a，故 a=0。C 的 `&&` 具有**短路**特性——左侧为 0 时右侧不再求值，`b=y>z` 完全不执行，b 保持初值 6。易错点：一是按「两个赋值都会发生」的直觉把 b 算成 0；二是没注意赋值表达式 `a=w>x` 的值就是关系运算的结果 0，正是它触发了短路。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "B"
+        },
+        {
+          "index": 2,
+          "answer": "A"
+        }
+      ],
+      "id": "c-ch04-fb-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.54（PDF p39 / 书页 p28）",
+      "difficulty": 3,
+      "stem": "【题 4.54】将以下两条 if 语句合并成一条 if 语句为【 】。\n\n```c\n语句1: if (a>b) scanf(\"%d\",&a);\n        else scanf(\"%d\",&b);\n语句2: if (a<=b) m++;\n        else n++;\n```",
+      "explanation": "考点是 if 语句的等价合并与复合语句的必要性。语句 1 按 `a>b` 决定读入哪个变量，语句 2 按 `a<=b` 决定给哪个计数器加一，两组条件恰好互补，所以能合并为一条 if-else：真分支 `{ scanf(\"%d\",&a); n++; }`，假分支 `{ scanf(\"%d\",&b); m++; }`。易错点：一是漏写花括号，写成 `if(a>b) scanf(\"%d\",&a); n++;` 会让 `n++` 无条件执行；二是把计数写反——`a>b` 对应的是 `n++`（语句 2 的 else 分支），不是 `m++`。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "short_answer",
+      "reference_answer": "```c\nif (a>b) { scanf(\"%d\",&a); n++; }\nelse     { scanf(\"%d\",&b); m++; }\n```\n\n两条原语句的条件 `a>b` 与 `a<=b` 互为否定，因此可以合并：a>b 时「读入 a」并 `n++`；否则「读入 b」并 `m++`。一个分支里有多条语句时必须用 `{ }` 组成复合语句。",
+      "grading_points": [
+        "条件取 a>b，else 分支自然对应 a<=b",
+        "a>b 分支是 scanf 读 a 加 n++",
+        "else 分支是 scanf 读 b 加 m++",
+        "分支内多条语句必须加花括号"
+      ],
+      "id": "c-ch04-sa-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.55（PDF p39 / 书页 p28）",
+      "difficulty": 4,
+      "stem": "【题 4.55】以下程序 a 对应的数学表达式是【1】；程序 b 对应的数学表达式是【2】。\n\n```c\n程序 a:\n#include <stdio.h>\nint main( )\n{ int a,b;\n    scanf(\"%d\",&a);\n    if(a<0) b=-1;\n    else if(a==0)\n        b=0;\n    else b=1;\n    printf(\"a=%d,b=%d\\n\",a,b);\n    return 0;\n}\n\n程序 b:\n#include <stdio.h>\nint main( )\n{ int a,b;\n    scanf(\"%d\",&a);\n    b=0;\n    if(a!=0)\n    if(a>0) b=1;\n    else b=-1;\n    printf(\"a=%d,b=%d\\n\",a,b);\n    return 0;\n}\n```",
+      "explanation": "考点是多分支结构的等价改写。程序 a 用 `if / else if / else` 显式三分支实现符号函数 sign(a)。程序 b 先 `b=0` 处理 a==0，再用 `if(a!=0)` 包住一层 `if(a>0) b=1; else b=-1;`，覆盖范围与 a 完全一致，故两空答案相同。易错点：忽略程序 b 中内层 if-else 是外层 `if(a!=0)` 的语句体——`else` 总是与**最近的未配对 if** 结合，缩进不影响配对，误读会以为 a<0 时 b 仍是 0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "short_answer",
+      "reference_answer": "**【1】程序 a** 对应符号函数（分段函数）：\n\nb = -1（当 a<0）；b = 0（当 a=0）；b = 1（当 a>0）\n\n**【2】程序 b** 与程序 a 对应的数学表达式**完全相同**：\n\nb = -1（当 a<0）；b = 0（当 a=0）；b = 1（当 a>0）\n\n程序 b 的写法是先把 b 置 0 覆盖 a==0 的情形，再在 `a!=0` 成立时按 `a>0` 取 1、否则取 -1，与程序 a 的三分支等价。",
+      "grading_points": [
+        "程序 a 是符号函数 sign(a)：负取 -1、零取 0、正取 1",
+        "程序 b 与程序 a 等价，答案是同一个分段函数",
+        "能说清程序 b 用「先置 0 再分正负」覆盖三种情况"
+      ],
+      "id": "c-ch04-sa-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.62（PDF p41 / 书页 p30）",
+      "difficulty": 4,
+      "stem": "【题 4.62】以下程序的功能是：输入圆的半径r和运算标志m后，按照运算标志进行表4-2中指定的计算。请填空。\n表4-2 运算标志与计算\n运算标志m\t计算\na\t面积\nc\t周长\nb\t二者均计算",
+      "explanation": "三个 if 是并列关系而非 else-if，标志 m 只应命中其中一支：m=='a' 算面积、m=='c' 算周长、m=='b' 两者都算。字符常量必须用单引号且写成 == 而非 =。易错点：把第三空写成 m=='b' 之外还叠加条件，或漏单引号使 'a' 变成未定义变量。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#define pi 3.14159\nint main( )\n{ char m;\n    float r,c,a;\n    printf(\"input mark a c or b && r\\n\");\n    scanf(\"%c %f\",&m,&r);\n    if(/*__BLANK_1__*/)\n        { a=pi * r * r;printf(\"area is %f\",a);}\n    if(/*__BLANK_2__*/)\n        { c=2 * pi * r; printf(\"circle is %f\",c);}\n    if(/*__BLANK_3__*/)\n        { a=pi * r * r;c=2 * pi * r;printf(\"area && circle are%f %f\",a,c);}\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "m=='a'"
+        },
+        {
+          "index": 2,
+          "answer": "m=='c'"
+        },
+        {
+          "index": 3,
+          "answer": "m=='b'"
+        }
+      ],
+      "solution": "#include <stdio.h>\n#define pi 3.14159\nint main( )\n{ char m;\n    float r,c,a;\n    printf(\"input mark a c or b && r\\n\");\n    scanf(\"%c %f\",&m,&r);\n    if( m=='a' )\n        { a=pi * r * r;printf(\"area is %f\",a);}\n    if( m=='c' )\n        { c=2 * pi * r; printf(\"circle is %f\",c);}\n    if( m=='b' )\n        { a=pi * r * r;c=2 * pi * r;printf(\"area && circle are%f %f\",a,c);}\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "a 2.0\n",
+          "expected": "input mark a c or b && r\narea is 12.566360",
+          "note": "典型：只算面积"
+        },
+        {
+          "stdin": "c 1.0\n",
+          "expected": "input mark a c or b && r\ncircle is 6.283180",
+          "note": "典型：只算周长"
+        },
+        {
+          "stdin": "b 1.0\n",
+          "expected": "input mark a c or b && r\narea && circle are3.141590 6.283180",
+          "note": "边界：二者均算，格式串 are 与 %f 间无空格"
+        }
+      ],
+      "id": "c-ch04-cc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.64（PDF p42 / 书页 p31）",
+      "difficulty": 3,
+      "stem": "【题 4.64】以下程序的功能是：输出x、y、z三个数中的最大者。请填空。",
+      "explanation": "第一空必须一次声明 u、v 两个中间变量，否则后面赋值无落脚处。第二空先取 x、y 的较大者入 u（x>y 则 u=x），第三空再拿 u 与 z 比，u>z 则 v=u，否则 v=z，两轮淘汰即得三数最大者。易错点：第三空误写成 x>z，使第一轮结果被绕过。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{   int x=4,y=6,z=7;\n    int /*__BLANK_1__*/;\n    if(/*__BLANK_2__*/) u=x;\n    else u=y;\n    if(/*__BLANK_3__*/) v=u;\n    else v=z;\n    printf(\"v=%d\",v);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "u,v",
+          "accepted": [
+            "u, v"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "x>y",
+          "accepted": [
+            "y<x"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "u>z",
+          "accepted": [
+            "z<u"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{   int x=4,y=6,z=7;\n    int  u,v ;\n    if( x>y ) u=x;\n    else u=y;\n    if( u>z ) v=u;\n    else v=z;\n    printf(\"v=%d\",v);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "v=7",
+          "note": "无输入：x=4,y=6,z=7，两次取大得 7"
+        }
+      ],
+      "id": "c-ch04-cc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.73（PDF p45 / 书页 p34）",
+      "difficulty": 3,
+      "stem": "【题 4.73】下面程序的功能是：根据表4-4中给定的函数关系，对输入的每个x值计算出相应的y值。请填空。\n表4-4 题4.73的函数关系\nx\ty\nx=a或x=-a\t0\n-a<x<a\tsqrt(a*a-x*x)\nx<-a或x>a\tx",
+      "explanation": "表 4-4 的三段要按顺序判定：先判 x==a||x==-a 得 y=0；否则在开区间内（x>-a&&x<a）用 sqrt(a*a-x*x)；其余（|x|>a）y=x。第一空若只写 x==a 会漏掉 x=-a；第二空若写成 x>-a||x<a 则恒真，把第三段吞掉。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <math.h>\nint main( )\n{ int x,a;\n    float y;\n    scanf(\"%d %d\",&x,&a);\n    if(/*__BLANK_1__*/) y=0;\n    else if(/*__BLANK_2__*/) y=sqrt(a * a-x * x);\n    else y=x;\n    printf(\"%f\",y);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x==a||x==-a",
+          "accepted": [
+            "x==a || x==-a",
+            "abs(x)==a"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "x>-a&&x<a",
+          "accepted": [
+            "x<a&&x>-a"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <math.h>\nint main( )\n{ int x,a;\n    float y;\n    scanf(\"%d %d\",&x,&a);\n    if( x==a||x==-a ) y=0;\n    else if( x>-a&&x<a ) y=sqrt(a * a-x * x);\n    else y=x;\n    printf(\"%f\",y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 3\n",
+          "expected": "0.000000",
+          "note": "边界：x=a 落在第一段"
+        },
+        {
+          "stdin": "0 5\n",
+          "expected": "5.000000",
+          "note": "典型：-a<x<a 取半圆"
+        },
+        {
+          "stdin": "10 5\n",
+          "expected": "10.000000",
+          "note": "边界：x>a 走 else 分支 y=x"
+        }
+      ],
+      "id": "c-ch04-cc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.74（PDF p46 / 书页 p35）",
+      "difficulty": 4,
+      "stem": "【题 4.74】以下程序的功能是：根据输入的三角形的三条边，判断是否能组成三角形，若可以则输出它的面积和三角形的类型。请填空。",
+      "explanation": "三角形存在条件是任意两边之和大于第三边，三个不等式用 && 连接，缺一即漏判。存在时才用海伦公式求面积并分类：三边全等为等边（&&），恰有两边相等为等腰（||），顺序不能颠倒，否则等边会被等腰分支截走。边界 1 2 3 因 1+2==3 不满足严格大于而被拒。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <math.h>\nint main( )\n{ float a,b,c;\n    float s,area;\n    scanf(\"%f %f %f\",&a,&b,&c);\n    if(/*__BLANK_1__*/)\n    { s=(a+b+c)/2;\n        area=sqrt(s * (s-a) * (s-b) * (s-c));\n        printf(\"%f\",area);\n        if(/*__BLANK_2__*/)\n            printf(\"等边三角形\");\n        else if(/*__BLANK_3__*/)\n            printf(\"等腰三角形\");\n        else if((a * a+b * b==c * c)||(a * a+c * c==b * b)||(b * b+c * c==a * a))\n            printf(\"直角三角形\");\n        else printf(\"一般三角形\");\n    }\n    else printf(\"不能组成三角形\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a+b>c&&b+c>a&&a+c>b",
+          "accepted": [
+            "a+b>c && b+c>a && a+c>b"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a==b&&b==c",
+          "accepted": [
+            "a==b && b==c"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a==b||a==c||b==c",
+          "accepted": [
+            "a==b || a==c || b==c"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <math.h>\nint main( )\n{ float a,b,c;\n    float s,area;\n    scanf(\"%f %f %f\",&a,&b,&c);\n    if( a+b>c&&b+c>a&&a+c>b )\n    { s=(a+b+c)/2;\n        area=sqrt(s * (s-a) * (s-b) * (s-c));\n        printf(\"%f\",area);\n        if( a==b&&b==c )\n            printf(\"等边三角形\");\n        else if( a==b||a==c||b==c )\n            printf(\"等腰三角形\");\n        else if((a * a+b * b==c * c)||(a * a+c * c==b * b)||(b * b+c * c==a * a))\n            printf(\"直角三角形\");\n        else printf(\"一般三角形\");\n    }\n    else printf(\"不能组成三角形\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4 5\n",
+          "expected": "6.000000直角三角形",
+          "note": "典型：勾股数"
+        },
+        {
+          "stdin": "5 5 8\n",
+          "expected": "12.000000等腰三角形",
+          "note": "典型：等腰非等边"
+        },
+        {
+          "stdin": "1 2 3\n",
+          "expected": "不能组成三角形",
+          "note": "边界：两边之和等于第三边"
+        }
+      ],
+      "id": "c-ch04-cc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.75（PDF p46 / 书页 p35）",
+      "difficulty": 4,
+      "stem": "【题 4.75】以下程序的功能是：某邮局对邮寄包裹有如下规定，若包裹的长、宽、高任一尺寸超过1m或重量超过30kg，不予邮寄；对可以邮寄的包裹每件收手续费0.2元，再加上根据表4-5按不同重量weigh计算的邮资。请填空。\n表4-5 重量与邮资\n重量/kg\t邮资/元\nweigh<10\t0.80\n10<weigh≤20\t0.75\n20<weigh≤30\t0.70",
+      "explanation": "程序用 r==-1 作为「不予邮寄」的标志：尺寸或重量超标时第一空只能给 r 赋 -1，后面 if(r==-1) 才能打印 error。邮资按重量分档，20<weigh<=30 一档对应 r=0.7。总费用 mon=weigh*r+0.2（书末答案印作 wei*r+0.2，wei 为 weigh 的排印脱落，按代码变量名 weigh 补正）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ float len,weigh,hei,wid,mon,r;\n    scanf(\"%f %f %f %f\",&len,&wid,&hei,&weigh);\n    if(len>1||wid>1||hei>1||weigh>30) /*__BLANK_1__*/;\n    else if(weigh<10) r=0.8;\n    else if(weigh<=20) r=0.75;\n    else if(weigh<=30)/*__BLANK_2__*/;\n    if(r==-1) printf(\"error\\n\");\n    else\n       {/*__BLANK_3__*/; printf(\"%f\",mon);}\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "r=-1",
+          "accepted": [
+            "r=-1.0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "r=0.7",
+          "accepted": [
+            "r=0.70"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "mon=weigh*r+0.2",
+          "accepted": [
+            "mon=weigh*r+0.2"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ float len,weigh,hei,wid,mon,r;\n    scanf(\"%f %f %f %f\",&len,&wid,&hei,&weigh);\n    if(len>1||wid>1||hei>1||weigh>30)  r=-1 ;\n    else if(weigh<10) r=0.8;\n    else if(weigh<=20) r=0.75;\n    else if(weigh<=30) r=0.7 ;\n    if(r==-1) printf(\"error\\n\");\n    else\n       { mon=weigh*r+0.2 ; printf(\"%f\",mon);}\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2 2 2 40\n",
+          "expected": "error",
+          "note": "边界：超重拒寄，r 置 -1 作标志"
+        },
+        {
+          "stdin": "0.5 0.5 0.5 5\n",
+          "expected": "4.200000",
+          "note": "典型：weigh<10 邮资 0.80"
+        },
+        {
+          "stdin": "0.5 0.5 0.5 25\n",
+          "expected": "17.700001",
+          "note": "边界：20<weigh<=30 邮资 0.70 实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch04-cc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.76（PDF p47 / 书页 p36）",
+      "difficulty": 4,
+      "stem": "【题 4.76】某服装店经营套服且单件出售。若一次购买不少于50套，则每套80元；若不足50套，则每套90元；只买上衣每件60元；只买裤子每条45元。以下程序的功能是读入所买上衣c和裤子t的件数，计算应付款数m。请填空。",
+      "explanation": "三层嵌套先分「成套/不成套」：c==t 时全按套计价，套数>=50 每套 80 否则 90。不成套再比多少：c>t 表示上衣多，多出的上衣按单件 60 元，套的部分按 t 计；反之裤子多按 45 元补差，且套数门槛看 c>=50。易错点：第三空误用 t>=50，把裤子数量当成了套数门槛。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int c,t,m;\n    printf(\"input the number of coat and trousers you want to buy:\\n\");\n    scanf(\"%d %d\",&c,&t);\n    if(/*__BLANK_1__*/)\n        if(c>=50) m=c * 80;\n        else m=c * 90;\n    else\n        if(/*__BLANK_2__*/)\n            if(t>=50) m=t * 80+(c-t) * 60;\n            else m=t * 90+(c-t) * 60;\n    else\n        if(/*__BLANK_3__*/) m=c * 80+(t-c) * 45;\n        else m=c * 90+(t-c) * 45;\n    printf(\"%d\",m);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "c==t",
+          "accepted": [
+            "c==t"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "c>t",
+          "accepted": [
+            "t<c"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "c>=50",
+          "accepted": [
+            "c>=50"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int c,t,m;\n    printf(\"input the number of coat and trousers you want to buy:\\n\");\n    scanf(\"%d %d\",&c,&t);\n    if( c==t )\n        if(c>=50) m=c * 80;\n        else m=c * 90;\n    else\n        if( c>t )\n            if(t>=50) m=t * 80+(c-t) * 60;\n            else m=t * 90+(c-t) * 60;\n    else\n        if( c>=50 ) m=c * 80+(t-c) * 45;\n        else m=c * 90+(t-c) * 45;\n    printf(\"%d\",m);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "50 50\n",
+          "expected": "input the number of coat and trousers you want to buy:\n4000",
+          "note": "典型：成套 50 套按 80 元"
+        },
+        {
+          "stdin": "60 50\n",
+          "expected": "input the number of coat and trousers you want to buy:\n4600",
+          "note": "典型：上衣多，单件 60 元补差"
+        },
+        {
+          "stdin": "50 60\n",
+          "expected": "input the number of coat and trousers you want to buy:\n4450",
+          "note": "边界：裤子多且套数恰 50"
+        }
+      ],
+      "id": "c-ch04-cc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.78（PDF p47 / 书页 p36）",
+      "difficulty": 3,
+      "stem": "【题 4.78】以下程序段的功能是：针对输入的截止日期(年—yend；月—mend；日—dend)和出生日期(yman，mman，dman)，计算出某人的实际年龄。请填空。",
+      "explanation": "年龄先按年份差算，再看今年生日是否已过：截止月小于出生月（mend<mman）说明生日未到，减 1；月份相同（mend==mman）时还要比日，dend<dman 才减 1。两处 age-- 互斥，用 else if 保证同月未过生日只减一次。易错点：第一空填 <= 会把「恰过生日」也算成未满。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int yend,mend,dend,yman,mman,dman,age;\n    scanf(\"%d %d %d %d %d %d\",&yend,&mend,&dend,&yman,&mman,&dman);\n    age=yend-yman;\n    if(mend /*__BLANK_1__*/ mman) age--;\n    else if(mend /*__BLANK_2__*/ mman && dend /*__BLANK_3__*/ dman) age--;\n    printf(\"%d\\n\",age);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "<"
+        },
+        {
+          "index": 2,
+          "answer": "=="
+        },
+        {
+          "index": 3,
+          "answer": "<"
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int yend,mend,dend,yman,mman,dman,age;\n    scanf(\"%d %d %d %d %d %d\",&yend,&mend,&dend,&yman,&mman,&dman);\n    age=yend-yman;\n    if(mend  <  mman) age--;\n    else if(mend  ==  mman && dend  <  dman) age--;\n    printf(\"%d\\n\",age);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2026 9 11 2000 9 11\n",
+          "expected": "26",
+          "note": "边界：恰过生日，不减"
+        },
+        {
+          "stdin": "2026 9 11 2000 10 1\n",
+          "expected": "25",
+          "note": "典型：截止月早于出生月"
+        },
+        {
+          "stdin": "2026 9 11 2000 9 12\n",
+          "expected": "25",
+          "note": "边界：同月但生日未到"
+        }
+      ],
+      "id": "c-ch04-cc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.85（PDF p49 / 书页 p38）",
+      "difficulty": 3,
+      "stem": "【题 4.85】以下程序可用来实现电路学中状态图的功能：若开关为开(用1表示)的状态，则应该将现有的状态取非(0→1、1→0)；若开关为关的状态，则现有的状态保持不变(状态值由用户输入)。请填空。",
+      "explanation": "开关为开（flag==1）时新状态是原状态取非：!state 把 0 变 1、1 变 0；开关为关时 if 不成立，state 原样保留。注意 C 的 ! 对非 0 一律得 0，故输入 1 得 0、输入 0 得 1，恰好实现电路状态翻转。易错点：写成 -state 或 ~state，结果不再是 0/1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int flag,state;\n    printf(\"Enter a value of switch:\");\n    scanf(\"%d\",&flag);\n    printf(\"Enter a value for new state:\");\n    scanf(\"%d\",&state);\n    if(flag==1)\n        state=/*__BLANK_1__*/;\n    printf(\"Now value of state is:%d\\n\",state);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "!state",
+          "accepted": [
+            "1-state",
+            "state?0:1",
+            "state==0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int flag,state;\n    printf(\"Enter a value of switch:\");\n    scanf(\"%d\",&flag);\n    printf(\"Enter a value for new state:\");\n    scanf(\"%d\",&state);\n    if(flag==1)\n        state= !state ;\n    printf(\"Now value of state is:%d\\n\",state);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 0\n",
+          "expected": "Enter a value of switch:Enter a value for new state:Now value of state is:1",
+          "note": "典型：开关为开，状态取非"
+        },
+        {
+          "stdin": "1 1\n",
+          "expected": "Enter a value of switch:Enter a value for new state:Now value of state is:0",
+          "note": "典型：1 取非为 0"
+        },
+        {
+          "stdin": "0 1\n",
+          "expected": "Enter a value of switch:Enter a value for new state:Now value of state is:1",
+          "note": "边界：开关为关，状态保持"
+        }
+      ],
+      "id": "c-ch04-cc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.86（PDF p49 / 书页 p38）",
+      "difficulty": 3,
+      "stem": "【题 4.86】若 x、y、z 均已正确定义且 x=1、y=2、z=3，则执行以下 if 语句后，x、y、z 中的值分别是【1】、【2】、【3】。\n\n```c\nif(x>z)\n    y=x; x=z; z=y;\n```",
+      "explanation": "**答案：3、2、2**。不带花括号的 if 只管辖**紧随其后的一条语句**，这里 if 的语句体仅是 `y=x;`。条件 `x>z` 即 `1>3` 为假，`y=x` 不执行，y 仍为 2；而 `x=z;` 和 `z=y;` 用分号与 if 隔开，是 if 之外的**顺序语句**，一定会执行：x 先变成 3，z 再取 y 的值 2。易错点：被换行与缩进误导，以为三条语句都属于 if，从而答成 1、2、3。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "3"
+        },
+        {
+          "index": 2,
+          "answer": "2"
+        },
+        {
+          "index": 3,
+          "answer": "2"
+        }
+      ],
+      "id": "c-ch04-fb-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.87（PDF p50 / 书页 p39）",
+      "difficulty": 3,
+      "stem": "【题 4.87】若 x、y、z 均已正确定义且 x=1、y=2、z=3，则执行以下 if 语句后，x、y、z 中的值分别是【1】、【2】、【3】。\n\n```c\nif(x>z)\n    y=x, x=z; z=y;\n```",
+      "explanation": "**答案：1、2、2**。if 的语句体是逗号表达式 `y=x, x=z;`——它整体只算**一条**语句，所以两个赋值都受 `x>z` 控制；条件 `1>3` 为假，两者都不执行，x 仍为 1、y 仍为 2。其后的 `z=y;` 在 if 之外，必然执行，z 取 2。易错点：一是把逗号表达式误读成「只有 `y=x` 属于 if」；二是与题 4.86 混淆——4.86 用分号分隔，只有第一条受 if 管辖，本题用逗号，两条都受管辖。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "1"
+        },
+        {
+          "index": 2,
+          "answer": "2"
+        },
+        {
+          "index": 3,
+          "answer": "2"
+        }
+      ],
+      "id": "c-ch04-fb-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.88（PDF p50 / 书页 p39）",
+      "difficulty": 4,
+      "stem": "【题 4.88】将以下含有switch语句的程序段改写成对应的含有非嵌套if语句的程序段。请填空。",
+      "explanation": "switch 的 case 10 对应 y=(int)(x/10)==10，即 100<=x<110，故第一空 x<110&&x>=100。中间各档由并列 if 顺序覆盖。default 分支对应「不在 60~109 之间」，即 (x<60)||(x>109)，执行 m=0。因为各 if 条件互斥，顺序覆盖不会互相污染。易错点：末条漏写 || 的一侧，使 110 以上或 60 以下漏判。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,m;\n    scanf(\"%d\",&x);\n    if(/*__BLANK_1__*/) m=5;\n    if(x<100&&x>=90) m=4;\n    if(x<90&&x>=80) m=3;\n    if(x<80&&x>=70) m=2;\n    if(x<70&&x>=60) m=1;\n    if(/*__BLANK_2__*/) /*__BLANK_3__*/;\n    printf(\"%d\\n\",m);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x<110&&x>=100",
+          "accepted": [
+            "x>=100&&x<110"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "(x<60)||(x>109)",
+          "accepted": [
+            "x<60||x>109",
+            "(x<60)||(x>=110)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "m=0"
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int x,m;\n    scanf(\"%d\",&x);\n    if( x<110&&x>=100 ) m=5;\n    if(x<100&&x>=90) m=4;\n    if(x<90&&x>=80) m=3;\n    if(x<80&&x>=70) m=2;\n    if(x<70&&x>=60) m=1;\n    if( (x<60)||(x>109) )  m=0 ;\n    printf(\"%d\\n\",m);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "105\n",
+          "expected": "5",
+          "note": "典型：百分以上档"
+        },
+        {
+          "stdin": "65\n",
+          "expected": "1",
+          "note": "典型：60-69 档，末条不命中"
+        },
+        {
+          "stdin": "50\n",
+          "expected": "0",
+          "note": "边界：不及格，由末条兜底 m=0"
+        }
+      ],
+      "id": "c-ch04-cc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.91（PDF p51 / 书页 p40）",
+      "difficulty": 4,
+      "stem": "【题 4.91】根据以下给出的嵌套if语句，填写对应的switch语句，使它完成相同的功能。（假设mark的取值在1～100之间。）",
+      "explanation": "用 mark/10 的整数商把百分制压成 0~10 的档号：0~5 档（mark<60）k=1，故第二空是一串穿透的 case 0: 到 case 5:；9、10 两档（mark>=90）k=5，第三空 case 9: case 10: 后不写 break 与 k=5 相连。中间 6/7/8 档原样保留。易错点：第二空漏 case 0: 使 0~9 分落空。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int mark,k;\n    scanf(\"%d\",&mark);\n    switch(/*__BLANK_1__*/)\n    {   /*__BLANK_2__*/      k=1; break;\n        case  6   : k=2; break;\n        case  7   : k=3; break;\n        case  8   : k=4; break;\n        /*__BLANK_3__*/      k=5;\n    }\n    printf(\"%d\\n\",k);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "mark/10",
+          "accepted": [
+            "mark / 10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "case 0: case 1: case 2: case 3: case 4: case 5:",
+          "accepted": [
+            "case 0:case 1:case 2:case 3:case 4:case 5:"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "case 9: case 10:",
+          "accepted": [
+            "case 9:case 10:"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int mark,k;\n    scanf(\"%d\",&mark);\n    switch( mark/10 )\n    {    case 0: case 1: case 2: case 3: case 4: case 5:       k=1; break;\n        case  6   : k=2; break;\n        case  7   : k=3; break;\n        case  8   : k=4; break;\n         case 9: case 10:       k=5;\n    }\n    printf(\"%d\\n\",k);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "55\n",
+          "expected": "1",
+          "note": "典型：不及格档"
+        },
+        {
+          "stdin": "75\n",
+          "expected": "3",
+          "note": "典型：70-79 档"
+        },
+        {
+          "stdin": "95\n",
+          "expected": "5",
+          "note": "边界：90-100 档，case 穿透到 k=5"
+        }
+      ],
+      "id": "c-ch04-cc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.94（PDF p52 / 书页 p41）",
+      "difficulty": 4,
+      "stem": "【题 4.94】下面程序的功能是：根据表4-6中给定的函数关系，对输入的每个x值，计算出相应的y值。请填空。\n表4-6 题4.94的函数关系\nx\ty\nx<0\t0\n0<=x<10\tx\n10<=x<20\t10\n20<=x<40\t-0.5x+20",
+      "explanation": "技巧是先把区间压成档号 c：x<0 单独给 c=-1，其余用整数除 x/10 得 0、1、2、3…，正好与 switch 的 case 0/1/2/3 对齐表 4-6 的四段。表外（x>=40）c>=4 落 default 置 y=-2，最后用 y!=-2 区分「算出结果」与「越界 error」。易错点：第二空写成 x/10.0 使 c 变成浮点不能进 switch。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int x,c,m;\n    float y;\n    scanf(\"%d\",&x);\n    if(/*__BLANK_1__*/) c=-1;\n    else c=/*__BLANK_2__*/;\n    switch(c)\n    { case -1 : y=0; break;\n      case 0 : y=x; break;\n      case 1 : y=10; break;\n      case 2:\n      case 3 : y=-0.5*x+20; break;\n      default :y=-2;\n    }\n    if(/*__BLANK_3__*/) printf(\"y=%f\",y);\n    else printf(\"error\\n\");\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x<0",
+          "accepted": [
+            "x<0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "x/10",
+          "accepted": [
+            "x / 10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "y!=-2",
+          "accepted": [
+            "y!=-2.0",
+            "y+2!=0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int x,c,m;\n    float y;\n    scanf(\"%d\",&x);\n    if( x<0 ) c=-1;\n    else c= x/10 ;\n    switch(c)\n    { case -1 : y=0; break;\n      case 0 : y=x; break;\n      case 1 : y=10; break;\n      case 2:\n      case 3 : y=-0.5*x+20; break;\n      default :y=-2;\n    }\n    if( y!=-2 ) printf(\"y=%f\",y);\n    else printf(\"error\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "-5\n",
+          "expected": "y=0.000000",
+          "note": "典型：x<0 段 c=-1"
+        },
+        {
+          "stdin": "25\n",
+          "expected": "y=7.500000",
+          "note": "典型：20<=x<40 段 -0.5x+20"
+        },
+        {
+          "stdin": "50\n",
+          "expected": "error",
+          "note": "边界：x>=40 落 default，y=-2 报 error"
+        }
+      ],
+      "id": "c-ch04-cc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.97（PDF p53 / 书页 p42）",
+      "difficulty": 4,
+      "stem": "【题 4.97】假设奖金税率如下(a代表奖金，r代表税率)：\na<500\tr=0%\n500≤a<1000\tr=5%\n1000≤a<2000\tr=8%\n2000≤a<3000\tr=10%\n3000≤a\tr=15%\n以下程序的功能是：对输入的一个奖金数，求税率和应交税款以及实得奖金数(扣除奖金税后)。题中r代表税率，t代表税款，b代表实得奖金数。请填空。",
+      "explanation": "税率表每 500 元一档，故用整数除 a/500 把奖金映射成档号 0~5：0 档免税、1 档 5%、2/3 档 8%、4/5 档 10%，a>=3000 单独置 c=6 对应 15%。case 2 与 case 3 穿透共用 r=0.08。税款 t=a*r，实得 b=a-t。易错点：第一空写成 a/500.0 或忘记 3000 以上已被 if 截走而重复判档。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ float a,r,t,b;\n    int c;\n    scanf(\"%f\",&a);\n    if(a>=3000) c=6;\n    else c=/*__BLANK_1__*/;\n    switch(c)\n    { case 0: r=0;break;\n      case 1: r=0.05;break;\n      case 2:\n      case 3:/*__BLANK_2__*/;break;\n      case 4:\n      case 5: r=0.1;break;\n      case 6: r=0.15;break;\n    }\n    t=a*r;\n    b=a-t;\n    printf(\"r=%f,t=%f,b=%f\",r,t,b);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a/500",
+          "accepted": [
+            "a / 500",
+            "(int)(a/500)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "r=0.08",
+          "accepted": [
+            "r=0.08"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ float a,r,t,b;\n    int c;\n    scanf(\"%f\",&a);\n    if(a>=3000) c=6;\n    else c= a/500 ;\n    switch(c)\n    { case 0: r=0;break;\n      case 1: r=0.05;break;\n      case 2:\n      case 3: r=0.08 ;break;\n      case 4:\n      case 5: r=0.1;break;\n      case 6: r=0.15;break;\n    }\n    t=a*r;\n    b=a-t;\n    printf(\"r=%f,t=%f,b=%f\",r,t,b);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "400\n",
+          "expected": "r=0.000000,t=0.000000,b=400.000000",
+          "note": "典型：a<500 免税"
+        },
+        {
+          "stdin": "1500\n",
+          "expected": "r=0.080000,t=120.000000,b=1380.000000",
+          "note": "典型：1000<=a<2000 税率 8%"
+        },
+        {
+          "stdin": "3500\n",
+          "expected": "r=0.150000,t=525.000000,b=2975.000000",
+          "note": "边界：a>=3000 直接 c=6"
+        }
+      ],
+      "id": "c-ch04-cc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.98（PDF p54 / 书页 p43）",
+      "difficulty": 4,
+      "stem": "【题 4.98】某个自动加油站有a、b、c三种汽油，单价分别为1.50、1.35、1.18(元/千克)，也提供了“自己加”或“协助加”两个服务等级，以便用户可得到5%或10%的优惠。以下程序的功能是：针对用户输入加油量a，汽油品种b和服务类型c(f——自动，m——自己，e——协助)，输出应付款m。请填空。",
+      "explanation": "两个 switch 分别定单价 r1 与优惠率 r2：b 种油单价 1.35，服务类型 e（协助加）对应 10% 优惠，故 case 后填 'e'。应付款 = 加油量 × 单价 × (1-优惠率)，即 m=a*r1*(1-r2)。注意字符常量要带单引号，case 标签只能是常量表达式。易错点：第三空漏乘 (1-r2) 或把优惠写成加。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ float a,r1,r2,m;\n    char b,c;\n    scanf(\"%f %c %c\",&a,&b,&c);\n    switch(b)\n      { case 'a': r1=1.5;break;\n        case 'b':/*__BLANK_1__*/;break;\n        case 'c': r1=1.18;break;\n      }\n    switch(c)\n      { case 'f': r2=0;break;\n        case 'm': r2=0.05;break;\n        case/*__BLANK_2__*/: r2=0.1;break;\n      }\n    m=/*__BLANK_3__*/;\n    printf(\"%f\",m);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "r1=1.35"
+        },
+        {
+          "index": 2,
+          "answer": "'e'",
+          "accepted": [
+            "'e'"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a*r1*(1-r2)",
+          "accepted": [
+            "a*r1*(1.0-r2)",
+            "a*r1-a*r1*r2"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ float a,r1,r2,m;\n    char b,c;\n    scanf(\"%f %c %c\",&a,&b,&c);\n    switch(b)\n      { case 'a': r1=1.5;break;\n        case 'b': r1=1.35 ;break;\n        case 'c': r1=1.18;break;\n      }\n    switch(c)\n      { case 'f': r2=0;break;\n        case 'm': r2=0.05;break;\n        case 'e' : r2=0.1;break;\n      }\n    m= a*r1*(1-r2) ;\n    printf(\"%f\",m);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "10 a f\n",
+          "expected": "15.000000",
+          "note": "典型：a 种油、全自动无优惠"
+        },
+        {
+          "stdin": "10 b m\n",
+          "expected": "12.825000",
+          "note": "典型：b 种油、自己加优惠 5%"
+        },
+        {
+          "stdin": "10 c e\n",
+          "expected": "10.619999",
+          "note": "边界：c 种油、协助加优惠 10% 实机输出以 Godbolt 为准"
+        }
+      ],
+      "id": "c-ch04-cc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.100（PDF p55 / 书页 p44）",
+      "difficulty": 4,
+      "stem": "【题 4.100】以下程序的功能是：计算y年m1月d1日与同年的m2月d2日之间的天数(m2>=m1)，并打印计算结果。若m1=m2且d1=d2则算1天。在闰年时，2月有29天。闰年的年号由以下方式确定：该年号能被4整除但不能被100整除，或者该年号能被400整除则是闰年。例如：输入1997,2,27,3,10<回车>时，输出为12。表明从1997年2月27日到3月10日共有12天。请填空。",
+      "explanation": "闰年判定是「能被 4 整除且不能被 100 整除，或能被 400 整除」，故两空依次为 && 与 ||，结果 y 为 1/0 直接加进 2 月天数 28+y。天数算法：先减去起始日 d1，再逐月累加 m1 到 m2-1 各月天数（小月 30 天即 d+=30），最后加 d2 并 +1 使同日算 1 天。易错点：&& 与 || 位置互换会把 1900 年误判为闰年。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint main( )\n{ int y,m1,d1,m2,d2;\n    int i,d;\n    scanf(\"%d,%d,%d,%d,%d\",&y,&m1,&d1,&m2,&d2);\n    y=(y%4==0/*__BLANK_1__*/y%100!=0/*__BLANK_2__*/y%400==0)? 1:0;\n    d=0-d1;\n    for(i=m1;i<m2;i++)\n      switch(i)\n      { case 1:case 3:case 5:case 7:\n        case 8:case 10:case 12:\n        d+=31;\n        break;\n        case 2: d=d+28+y;\n        break;\n        case 4:case 6:case 9:case 11:\n        /*__BLANK_3__*/;\n      }\n    printf(\"%d\",d+d2+1);\n    return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "&&",
+          "accepted": [
+            "&&"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "||",
+          "accepted": [
+            "||"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "d+=30",
+          "accepted": [
+            "d=d+30"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint main( )\n{ int y,m1,d1,m2,d2;\n    int i,d;\n    scanf(\"%d,%d,%d,%d,%d\",&y,&m1,&d1,&m2,&d2);\n    y=(y%4==0 && y%100!=0 || y%400==0)? 1:0;\n    d=0-d1;\n    for(i=m1;i<m2;i++)\n      switch(i)\n      { case 1:case 3:case 5:case 7:\n        case 8:case 10:case 12:\n        d+=31;\n        break;\n        case 2: d=d+28+y;\n        break;\n        case 4:case 6:case 9:case 11:\n         d+=30 ;\n      }\n    printf(\"%d\",d+d2+1);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1997,2,27,3,10\n",
+          "expected": "12",
+          "note": "书例：平年 2 月 28 天"
+        },
+        {
+          "stdin": "2000,2,27,3,10\n",
+          "expected": "13",
+          "note": "边界：2000 能被 400 整除是闰年"
+        },
+        {
+          "stdin": "2026,1,1,1,1\n",
+          "expected": "1",
+          "note": "边界：同月同日算 1 天"
+        }
+      ],
+      "id": "c-ch04-cc-020",
       "verified": true
     }
   ]

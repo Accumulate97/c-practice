@@ -32,39 +32,34 @@
       "chapter": 3,
       "id": "c-ch03",
       "name": "第3章 最简单的C程序设计",
-      "converted": 51,
-      "staged": 4,
+      "converted": 55,
+      "staged": 0,
       "byType": {
         "single_choice": 26,
+        "fill_blank": 5,
         "code_reading": 18,
-        "fill_blank": 4,
+        "short_answer": 2,
+        "code_completion": 1,
         "programming": 3
       },
-      "stagedBySubType": {
-        "single_choice": 1,
-        "multi_blank": 2,
-        "code_completion": 1
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 4,
       "id": "c-ch04",
       "name": "第4章 逻辑运算和分支结构",
-      "converted": 92,
-      "staged": 19,
+      "converted": 111,
+      "staged": 0,
       "byType": {
         "single_choice": 33,
-        "fill_blank": 18,
+        "fill_blank": 21,
         "code_reading": 24,
-        "code_completion": 6,
+        "short_answer": 2,
+        "code_completion": 20,
         "programming": 8,
         "debug": 3
       },
-      "stagedBySubType": {
-        "single_choice": 1,
-        "multi_blank": 6,
-        "code_completion": 12
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 5,
@@ -211,25 +206,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 517,
-    "staged": 506,
+    "converted": 540,
+    "staged": 483,
     "byType": {
       "single_choice": 102,
-      "fill_blank": 89,
+      "fill_blank": 93,
       "code_reading": 225,
+      "short_answer": 22,
+      "code_completion": 35,
       "programming": 48,
-      "code_completion": 20,
-      "debug": 15,
-      "short_answer": 18
+      "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 318,
-      "multi_blank": 80,
-      "code_completion": 108
+      "single_choice": 316,
+      "multi_blank": 72,
+      "code_completion": 95
     },
-    "judgeEvidence": 324,
+    "judgeEvidence": 339,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 20,
+    "rescuedCodeCompletion": 35,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }

@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "600e4d6def68677d",
+  "content_sha": "f56dfef9277f00c7",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 518,
+  "count": 541,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -1353,6 +1353,46 @@
       "category": "c"
     },
     {
+      "id": "c-ch03-fb-005",
+      "file": "c-ch03.json",
+      "title": "【题 3.13】已有定义 int x",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sa-001",
+      "file": "c-ch03.json",
+      "title": "【题 3.37】以下 printf 语句中 * 号的作用是【1】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sa-002",
+      "file": "c-ch03.json",
+      "title": "【题 3.38】以下 printf 语句中的负号的作用是【1】",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-001",
+      "file": "c-ch03.json",
+      "title": "【题 3.45】若要求下列程序的输出结果为 8.00",
+      "tags": [],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
       "id": "c-ch04-sc-001",
       "file": "c-ch04.json",
       "title": "【题 4.1】逻辑运算符两侧运算对象的数据类型______",
@@ -2285,6 +2325,196 @@
       "chapter": "第4章 逻辑运算和分支结构",
       "section": "4.4 程序改错题（变式生成）",
       "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-019",
+      "file": "c-ch04.json",
+      "title": "【题 4.14】执行以下语句后 a 的值为【1】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sa-001",
+      "file": "c-ch04.json",
+      "title": "【题 4.54】将以下两条 if 语句合并成一条 if 语句为【 】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-sa-002",
+      "file": "c-ch04.json",
+      "title": "【题 4.55】以下程序 a 对应的数学表达式是【1】",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-007",
+      "file": "c-ch04.json",
+      "title": "【题 4.62】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-008",
+      "file": "c-ch04.json",
+      "title": "【题 4.64】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-009",
+      "file": "c-ch04.json",
+      "title": "【题 4.73】下面程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-010",
+      "file": "c-ch04.json",
+      "title": "【题 4.74】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-011",
+      "file": "c-ch04.json",
+      "title": "【题 4.75】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-012",
+      "file": "c-ch04.json",
+      "title": "【题 4.76】某服装店经营套服且单件出售",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-013",
+      "file": "c-ch04.json",
+      "title": "【题 4.78】以下程序段的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-014",
+      "file": "c-ch04.json",
+      "title": "【题 4.85】以下程序可用来实现电路学中状态图的功能",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-020",
+      "file": "c-ch04.json",
+      "title": "【题 4.86】若 x、y、z 均已正确定义且 x=1、y=2、z=3",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-fb-021",
+      "file": "c-ch04.json",
+      "title": "【题 4.87】若 x、y、z 均已正确定义且 x=1、y=2、z=3",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-015",
+      "file": "c-ch04.json",
+      "title": "【题 4.88】将以下含有switch语句的程序段改写成对应的含有非嵌套if语句的程序段",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-016",
+      "file": "c-ch04.json",
+      "title": "【题 4.91】根据以下给出的嵌套if语句",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-017",
+      "file": "c-ch04.json",
+      "title": "【题 4.94】下面程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-018",
+      "file": "c-ch04.json",
+      "title": "【题 4.97】假设奖金税率如下",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-019",
+      "file": "c-ch04.json",
+      "title": "【题 4.98】某个自动加油站有a、b、c三种汽油",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch04-cc-020",
+      "file": "c-ch04.json",
+      "title": "【题 4.100】以下程序的功能是",
+      "tags": [],
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {

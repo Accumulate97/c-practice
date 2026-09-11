@@ -48,6 +48,18 @@ const DRY = argv.includes('--dry');
 // 模型预测逐字一致）。证据与原始记录见 rescued/*.json；verified 仍一律不写。
 const RESCUE_DIR = 'D:/C-practice/rescued';
 const RESCUE = new Map();
+// 收尾②/③ 补完层（2026-09-11 大会话2）：
+//  overrides.json = originalId -> 显式改判（双空选择题/概念填空等 schema 无法由 subType 直推的题）
+//  explain.json   = originalId -> 详解文本（详解随入库同批完成，不再留空串）
+const COMPLETION_DIR = path.join(OUT_DIR, '_completion');
+function readCompletionMap(name) {
+  const p = path.join(COMPLETION_DIR, name);
+  if (!fs.existsSync(p)) return new Map();
+  const j = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return new Map(Object.entries(j || {}));
+}
+const OVERRIDES = readCompletionMap('overrides.json');
+const EXPLAIN = readCompletionMap('explain.json');
 if (fs.existsSync(RESCUE_DIR)) {
   for (const f of fs.readdirSync(RESCUE_DIR).filter(x => x.endsWith('.json'))) {
     const arr = JSON.parse(fs.readFileSync(path.join(RESCUE_DIR, f), 'utf8'));
@@ -179,6 +191,18 @@ function letterToIndex(rec, ans) {
 const CODE_TYPES = new Set(['code_completion', 'debug', 'code_reading', 'programming']);
 const withVerified = p => ({ ...p, verified: !CODE_TYPES.has(p.type) });
 
+/** rescue 记录 → 合规 code_completion（blanks/solution/testCases 齐备且经实机复验） */
+function ccFromRescue(base, resc) {
+  return {
+    kind: 'ok',
+    problem: {
+      ...base, type: 'code_completion', bloom: 'apply',
+      code: resc.code, blanks: resc.blanks, solution: resc.solution, testCases: resc.testCases,
+      explanation: resc.explanation || base.explanation,
+    },
+  };
+}
+
 // ---------------------------------------------------------------- 路由
 /** 返回 {kind:'ok', problem} 或 {kind:'stage', reason, missing, partial} */
 function route(r, answers) {
@@ -195,6 +219,19 @@ function route(r, answers) {
     generated_at: GEN_DATE,
   };
   const stage = (reason, missing, extra = {}) => ({ kind: 'stage', reason, missing, partial: { ...base, ...extra } });
+
+  // 0) 补完层显式改判（2026-09-11）：双空选择题/概念题等，subType 直推不出合规 schema 类型
+  const ov = OVERRIDES.get(r.originalId);
+  if (ov && typeof ov.type === 'string') {
+    const p = { ...base, bloom: ov.bloom || 'understand' };
+    if (typeof ov.stem === 'string') p.stem = ov.stem;
+    if (typeof ov.explanation === 'string' && ov.explanation) p.explanation = ov.explanation;
+    if (ov.type === 'fill_blank') { p.type = 'fill_blank'; p.blanks = ov.blanks; }
+    else if (ov.type === 'short_answer') { p.type = 'short_answer'; p.reference_answer = ov.reference_answer || ''; p.grading_points = ov.grading_points || []; }
+    else if (ov.type === 'single_choice') { p.type = 'single_choice'; p.options = ov.options; p.answer = ov.answer; }
+    else return stage('override type 不支持: ' + ov.type, ['type']);
+    return { kind: 'ok', problem: p };
+  }
 
   // 1) code_reading → cr
   if (sub === 'code_reading') {
@@ -216,7 +253,10 @@ function route(r, answers) {
   }
 
   // 3) multi_blank 有 code → 隔离（code_completion 需 solution + testCases，语料无）
+  //    例外（2026-09-11）：补完层已给 rescue 记录（空位标记+solution+testCases 齐备）时直接合规产出
   if (sub === 'multi_blank' && hasCode(r)) {
+    const rescMb = RESCUE.get(r.originalId);
+    if (rescueOk(rescMb)) return ccFromRescue(base, rescMb);
     return stage('multi_blank 含代码：schema 的 fill_blank 不允许 code 字段；改判 code_completion 又缺 solution 与 testCases',
       ['solution', 'testCases'], { type: 'code_completion', bloom: 'apply', code: r.code, blanks: [], solution: '', testCases: [] });
   }
@@ -224,7 +264,8 @@ function route(r, answers) {
   // 4) code_completion：rescue 命中 → 合规产出；否则隔离
   if (sub === 'code_completion') {
     const resc = RESCUE.get(r.originalId);
-    if (rescueOk(resc)) {
+    if (rescueOk(resc)) return ccFromRescue(base, resc);
+    if (false) {
       return { kind: 'ok', problem: { ...base, type: 'code_completion', bloom: 'apply',
         code: resc.code, blanks: resc.blanks, solution: resc.solution, testCases: resc.testCases,
         // base.explanation 是收尾⑤留下的空串；救援批次已补好详解，有就用，没有才回落空串
@@ -393,7 +434,11 @@ for (const ch of [...chapters.keys()].sort((a, b) => a - b)) {
     });
   }
 
-  const problems = bucket.ok.map(e => withVerified(e.problem));
+  const problems = bucket.ok.map(e => {
+    const p = withVerified(e.problem);
+    if (!p.explanation && EXPLAIN.has(e.raw.originalId)) p.explanation = EXPLAIN.get(e.raw.originalId);
+    return p;
+  });
   const pending = bucket.stage.map(s => ({
     originalId: s.raw.originalId,
     sourceBatch: s.raw.__file,
