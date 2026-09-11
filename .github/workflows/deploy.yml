@@ -1,0 +1,103 @@
+# 部署到 GitHub Pages（项目站点：https://<user>.github.io/C-practice/）
+#
+# 站点是纯静态产物（AGENTS.md 二.1/2），部署形态由两件事决定，二者都已在仓库里落定：
+#   ① vite.config.ts base = './'  → dist/index.html 里全是相对引用，挂在任意子目录都能拉到资源
+#   ② src/router.tsx createHashRouter → 深链走 #/，Pages 没有 rewrite 也不需要 404 兜底
+# 因此工作流不需要 CNAME、不需要 404.html、不需要 SPA fallback，只要把 dist/ 原样传上去。
+#
+# 首次使用需在仓库 Settings → Pages 把 Source 选成 "GitHub Actions"
+# （下面的 configure-pages 带 enablement: true，会自动打开这个开关，无需手点）。
+
+name: 部署到 GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时刻只跑一次部署；不 cancel-in-progress，避免把正在上传的产物掐成半截
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 校验并构建
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node（engines 要求 >=20.19）
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安装依赖（锁文件必须一致）
+        run: npm ci
+
+      - name: 类型检查
+        run: npm run typecheck
+
+      - name: 构建
+        run: npm run build
+
+      # dist/ 里只要出现一处以 / 开头的绝对引用，线上就会 404 —— 这一步是子目录部署的硬闸门
+      - name: 校验产物资源全为相对路径
+        run: npm run verify:pages
+
+      # 数据闸门：error 非 0 就退出非 0（NOT-VERIFIED 是 warn，不拦部署）
+      - name: 校验题目/卡片/演示数据
+        run: npm run verify:data
+
+      # 关掉 Pages 的 Jekyll 处理：否则以 _ 开头的路径会被吞（例如将来出现 _staging 数据目录）
+      - name: 写入 .nojekyll
+        run: touch dist/.nojekyll
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: 上传产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: 发布
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # UI 验收：真实 Chrome 里跑 dist 产物。不阻塞发布（continue-on-error），
+  # 但在 Actions 页面上给出红绿灯，回归时能第一时间看到。
+  ui-acceptance:
+    name: UI 验收（不阻塞发布）
+    needs: build
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: 子目录部署形态验收（dist 挂在 /C-practice/ 下）
+        run: node scripts/acceptance-subpath.mjs
+      - name: 三向联动闭环验收
+        run: node scripts/acceptance-stage10.mjs

@@ -14,6 +14,7 @@
     "acceptance:list-ui": "node scripts/acceptance-list-ui.mjs",
     "acceptance:progress-ui": "node scripts/acceptance-progress-ui.mjs",
     "acceptance:site-ui": "node scripts/acceptance-site-ui.mjs",
+  "acceptance:subpath": "node scripts/acceptance-subpath.mjs",
   "acceptance:stage10": "node scripts/acceptance-stage10.mjs",
     "acceptance:viz-ui": "node scripts/acceptance-viz-ui.mjs",
     "build": "tsc -b && vite build",
