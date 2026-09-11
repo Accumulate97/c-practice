@@ -113,17 +113,15 @@
       "chapter": 8,
       "id": "c-ch08",
       "name": "第8章 编译预处理",
-      "converted": 24,
-      "staged": 32,
+      "converted": 56,
+      "staged": 0,
       "byType": {
+        "single_choice": 26,
+        "fill_blank": 6,
         "code_reading": 19,
         "programming": 5
       },
-      "stagedBySubType": {
-        "single_choice": 27,
-        "multi_blank": 1,
-        "code_completion": 4
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 9,
@@ -199,11 +197,11 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 740,
-    "staged": 283,
+    "converted": 772,
+    "staged": 251,
     "byType": {
-      "single_choice": 209,
-      "fill_blank": 116,
+      "single_choice": 235,
+      "fill_blank": 122,
       "code_reading": 225,
       "short_answer": 23,
       "code_completion": 104,
@@ -211,9 +209,9 @@
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 196,
-      "multi_blank": 43,
-      "code_completion": 44
+      "single_choice": 169,
+      "multi_blank": 42,
+      "code_completion": 40
     },
     "judgeEvidence": 408,
     "withRealExpected": 241,

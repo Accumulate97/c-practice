@@ -2,8 +2,613 @@
   "category": "c",
   "chapter": "第8章 编译预处理",
   "generated_at": "2026-09-08",
-  "count": 24,
+  "count": 56,
   "problems": [
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.1（PDF p152 / 书页 p141）",
+      "difficulty": 2,
+      "stem": "【题 8.1】以下关于编译预处理的叙述中错误的是______。",
+      "explanation": "答案C。预处理命令行可以出现在源程序的任何位置（语句之间、函数体内都可以），并非只能位于所有语句之前，故 C 的叙述错误。A、B、D 均正确：预处理命令以 # 开头、一条命令单独占一行、预处理命令不属于 C 语言本身的语句。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 预处理命令行必须以#开始",
+        "B) 一条有效的预处理命令必须单独占据一行",
+        "C) 预处理命令行只能位于源程序中所有语句之前",
+        "D) 预处理命令不是C语言本身的组成部分"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.2（PDF p152 / 书页 p141）",
+      "difficulty": 2,
+      "stem": "【题 8.2】以下关于宏的叙述中正确的是______。",
+      "explanation": "答案C。宏替换在编译前的预处理阶段完成，运行时无需再做替换，故不占用运行时间。A 错：宏名可以是任意合法标识符，大写只是习惯；B 错：宏替换是纯文本替换，替换时不做语法检查；D 错：宏定义中可以引用已定义过的宏名（嵌套宏）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 宏名必须用大写字母表示",
+        "B) 宏替换时要进行语法检查",
+        "C) 宏替换不占用运行时间",
+        "D) 宏定义中不允许引用已有的宏名"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.3（PDF p152 / 书页 p141）",
+      "difficulty": 2,
+      "stem": "【题 8.3】以下叙述中正确的是______。",
+      "explanation": "答案C。宏替换只在编译前的预处理阶段做文本替换，不产生任何运行时代码，故只占编译时间、不占运行时间。A 错：一行上只能有一条有效的预处理命令；B 错：宏没有类型概念，形参只是文本占位；D 错：宏调用不产生函数调用的压栈、跳转开销。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 在程序的一行上可以出现多个有效的预处理命令行",
+        "B) 使用带参的宏时，参数的类型应与宏定义时的一致",
+        "C) 宏替换不占用运行时间，只占编译时间",
+        "D) 宏调用此函数调用耗费时间"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.4（PDF p152 / 书页 p141）",
+      "difficulty": 3,
+      "stem": "【题 8.4】请读程序：\n上面程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#define ADD(x) x+x\nint main()\n{\n\tint m=1,n=2,k=3;\n\tint sum=ADD(m+n)*k;\n\tprintf(\"sum=%d\",sum);\n\treturn 0;\n}\n```",
+      "explanation": "答案B。ADD(m+n) 文本替换为 m+n+m+n，于是 sum=m+n+m+n*k=1+2+1+2*3=10。易错点：以为宏会先把 m+n 算成 3 再乘 k 得 9 或 18；宏定义中替换体没有加括号，实参的 + 号会直接参与外层运算。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) sum=9",
+        "B) sum=10",
+        "C) sum=12",
+        "D) sum=18"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.5（PDF p152 / 书页 p141）",
+      "difficulty": 3,
+      "stem": "【题 8.5】有以下程序：\n程序执行后的输出结果是______。\n\n```c\n#include <stdio.h>\n#define M(x,y,z) x*y+z\nint main()\n{ int a=1,b=2,c=3;\n  printf(\"%d\\n\",M(a+b,b+c,c+a));\n  return 0;\n}\n```",
+      "explanation": "答案D。M(a+b,b+c,c+a) 逐字替换为 a+b*b+c+c+a，按优先级即 1+2*2+3+3+1=12。易错点：把宏当函数先求出 3、5、4 再算 3*5+4=19；宏替换不计算实参，实参里的运算符会和外层拼在一起。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 19",
+        "B) 17",
+        "C) 15",
+        "D) 12"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.6（PDF p153 / 书页 p142）",
+      "difficulty": 3,
+      "stem": "【题 8.6】以下程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#define MIN(x,y) (x)<(y)?(x):(y)\nint main()\n{ int i=10,j=15,k;\n  k=10*MIN(i,j);\n  printf(\"%d\\n\",k);\n  return 0;\n}\n```",
+      "explanation": "答案B。MIN(i,j) 替换为 (i)<(j)?(i):(j)，与前面的 10* 结合成 10*(i)<(j)?(i):(j)，即 100<15 为假，取 (j)=15。易错点：以为整个宏调用被括号保护而得 10；该宏定义的条件表达式外层没有括号，正是本题陷阱。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 10",
+        "B) 15",
+        "C) 100",
+        "D) 150"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.7（PDF p153 / 书页 p142）",
+      "difficulty": 2,
+      "stem": "【题 8.7】在宏定义# define PI 3. 14159中，宏名PI代替的是一个______。",
+      "explanation": "答案D。宏替换是纯粹的字符（文本）替换：PI 在预处理时被原样替换成 3.14159 这串字符，到编译阶段才按使用上下文确定类型，故 PI 代替的是字符串而不是某种数值常量。A、B、C 都把宏当成了有类型的常量。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 常量",
+        "B) 单精度数",
+        "C) 双精度数",
+        "D) 字符串"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.8（PDF p153 / 书页 p142）",
+      "difficulty": 3,
+      "stem": "【题 8.8】以下程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#define FUDGE(y) 2.84+y\n#define PR(a) printf(\"%d\",(int)(a))\n#define PRINT1(a) PR(a); putchar('\\n')\nint main()\n{ int x=2;\n  PRINT1(FUDGE(5)*x);\n  return 0;\n}\n```",
+      "explanation": "答案B。PRINT1(FUDGE(5)*x) 展开为 printf(\"%d\",(int)(2.84+5*x)); putchar('\\n')，即 (int)(2.84+10)=12。易错点：以为 FUDGE(5) 先算成 7.84 再乘 2 得 15；展开后是 2.84+5*2，乘法优先于加法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 11",
+        "B) 12",
+        "C) 13",
+        "D) 15"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.9（PDF p153 / 书页 p142）",
+      "difficulty": 2,
+      "stem": "【题 8.9】以下有关宏替换的叙述不正确的是______。",
+      "explanation": "答案D。宏名只是标识符，大小写均可，\"必须用大写字母\"只是书写习惯而非语言规定，故 D 的叙述不正确。A、B、C 都正确：宏替换发生在编译前不占运行时间、宏名无类型、替换只是字符替换。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 宏替换不占用运行时间",
+        "B) 宏名无类型",
+        "C) 宏替换只是字符替换",
+        "D) 宏名必须用大写字母表示"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.10（PDF p153 / 书页 p142）",
+      "difficulty": 2,
+      "stem": "【题 8.10】C语言的编译系统对宏命令的处理是______。",
+      "explanation": "答案D。宏命令由编译预处理程序在对源程序其他成分正式编译之前处理完毕，替换后的文本才参与编译；既不在运行时、也不在连接时处理，更不是与其他语句同时编译。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 在程序运行时进行的",
+        "B) 在程序连接时进行的",
+        "C) 和C程序中的其他语句同时进行编译的",
+        "D) 在对源程序中其他成分正式编译之前进行的"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.11（PDF p153 / 书页 p142）",
+      "difficulty": 3,
+      "stem": "【题 8.11】若有宏定义如下：\n则执行以下printf语句后，输出结果是______。\n\n```c\n#define X 5\n#define Y X+1\n#define Z Y*X/2\n\nint a; a=Y;\nprintf(\"%d\\n\",Z);\nprintf(\"%d\\n\",--a);\n```",
+      "explanation": "答案D。Z 展开为 Y*X/2 即 X+1*X/2 = 5+1*5/2 = 5+2 = 7（整数除法截断）；a=Y 即 a=X+1=6，--a 得 5，故先后输出 7 和 5。易错点：把 Y 当成已求值的 6 去算 Z 得 12；宏是文本替换，Y*X 实为 X+1*X。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 7 6",
+        "B) 12 6",
+        "C) 12 5",
+        "D) 7 5"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.12（PDF p154 / 书页 p143）",
+      "difficulty": 3,
+      "stem": "【题 8.12】若有以下宏定义：\n则执行语句z=2 * (N＋Y(5));后的结果是______。\n\n```c\n#define N 2\n#define Y(n) ((N+1)*n)\n```",
+      "explanation": "答案B。z=2*(N+Y(5)) 逐层展开为 2*(2+((2+1)*5)) = 2*17 = 34，语句完全合法。易错点：把 Y(5) 当函数调用先求值；注意 Y 的定义 ((N+1)*n) 自带括号，保证了先加后乘，且内层 N 还会继续展开为 2。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 语句有错误",
+        "B) z=34",
+        "C) z=70",
+        "D) z无定值"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.13（PDF p154 / 书页 p143）",
+      "difficulty": 3,
+      "stem": "【题 8.13】若有宏定义：# define MOD(x,y) x%y\n则执行以下语句后的输出为______。\n\n```c\nint z, a=15, b=100;\nz=MOD(b,a);\nprintf(\"%d\\n\",z++);\n```",
+      "explanation": "答案B。MOD(b,a) 替换为 b%a = 100%15 = 10；printf(\"%d\\n\",z++) 中 z++ 是先用后自增，故输出 10。易错点：把实参顺序弄反算成 15%100=15；或以为 z++ 先加 1 而选 11。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 11",
+        "B) 10",
+        "C) 6",
+        "D) 宏定义不合法"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-013",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.14（PDF p154 / 书页 p143）",
+      "difficulty": 3,
+      "stem": "【题 8.14】以下程序的运行结果是______。\n\n```c\n#define MAX(A,B) (A)>(B)?(A):(B)\n#define PRINT(Y) printf(\"Y=%d\\t\",Y)\nint main()\n{ int a=1, b=2, c=3, d=4, t;\n  t=MAX(a+b,c+d);\n  PRINT(t);\n  return 0;\n}\n```",
+      "explanation": "答案C。MAX(a+b,c+d) 展开为 (a+b)>(c+d)?(a+b):(c+d)，3>7 为假取 c+d=7，故 t=7；PRINT(t) 输出 Y=7。易错点：以为 PRINT(Y) 里的 \"Y\" 会被替换——字符串字面量内的字符不参与宏替换，输出的 Y= 是字面文本。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) Y=3",
+        "B) 存在语法错误",
+        "C) Y=7",
+        "D) Y=0"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-014",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.15（PDF p154 / 书页 p143）",
+      "difficulty": 2,
+      "stem": "【题 8.15】以下程序段中存在错误的是______。",
+      "explanation": "答案D。D 中 `#define S (r) PI*(r)*(r)` 在宏名 S 与 (r) 之间多了一个空格，S 被定义成无参宏、替换体为 `(r) PI*(r)*(r)`，随后 `area=S(a);` 展开成 `(r) PI*(r)*(r)(a);`，语法错误。A、B、C 的宏定义与调用都能正确展开。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) # define array_size __100 int array1[array_size];",
+        "B) # define PI __3. 14159 # define S(r)__PI * (r) * (r) ... area=S(3.2);",
+        "C) # define PI __3. 14159 # define S(r)__PI * (r) * (r) ... area=S(a＋b);",
+        "D) # define PI __3. 14159 # define S (r)__PI * (r) * (r) ... area=S(a);"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-015",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.16（PDF p155 / 书页 p144）",
+      "difficulty": 3,
+      "stem": "【题 8.16】请读程序：\n上面程序的输出结果是______。\n\n```c\n#include <stdio.h>\n#define MUL(x,y) (x)*y\nint main()\n{ int a=3,b=4,c;\n  c=MUL(a++,b++);\n  printf(\"%d\\n\",c);\n  return 0;\n}\n```",
+      "explanation": "答案A。MUL(a++,b++) 展开为 (a++)*b++：a++ 取值 3、b++ 取值 4，c=12。本题宏体中每个形参只出现一次，副作用各发生一次，不会重复自增。易错点：以为 a++、b++ 会被求值多次而选 15、16 或 20。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 12",
+        "B) 15",
+        "C) 20",
+        "D) 16"
+      ],
+      "answer": 0,
+      "id": "c-ch08-sc-016",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.17（PDF p155 / 书页 p144）",
+      "difficulty": 2,
+      "stem": "【题 8.17】# define能做简单的替代，用宏替代计算多项式4 * x * x＋3 * x＋2之值的函数f，正确的宏定义是______。",
+      "explanation": "答案C。用带参宏替代函数 f(x)=4x²+3x+2 必须写成 `#define f(a) (4*a*a+3*a+2)`：形参与实参对应，且整个替换体加括号，防止在外层表达式中被优先级打乱。A 缺整体括号、B 写成无参宏、D 把宏名与替换体位置写反。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) # define f(x)__4 * x * x＋3 * x＋2",
+        "B) # define f __4 * x * x＋3 * x＋2",
+        "C) # define f(a)__(4 * a * a＋3 * a＋2)",
+        "D) # define (4 * a * a＋3 * a＋2)__f(a)"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-017",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.18（PDF p155 / 书页 p144）",
+      "difficulty": 3,
+      "stem": "【题 8.18】对下面程序段：\n正确的判断是______。\n\n```c\n#define A 3\n#define B(a) ((A+1)*a)\n...\nx=3*(A+B(7));\n```",
+      "explanation": "答案B。x=3*(A+B(7)) 展开为 3*(3+((3+1)*7)) = 3*31 = 93。宏定义允许嵌套引用（B 的定义中用了 A），也允许带参数，故\"程序错误\"的 A、D 不对；C 的 21 是误把 B(7) 当成 7 或漏乘。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 程序错误，不许嵌套宏定义",
+        "B) x=93",
+        "C) x=21",
+        "D) 程序错误，宏定义不允许有参数"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-018",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.19（PDF p155 / 书页 p144）",
+      "difficulty": 3,
+      "stem": "【题 8.19】以下程序中，第一个输出值是【1】______，第二个输出值是【2】______。\n\n```c\n#include <stdio.h>\n#define M 3\n#define N (M+1)\n#define NN N*N/2\nint main()\n{ printf(\"%d\\n\",NN);\n  printf(\"%d\",5*NN);\n  return 0;\n}\n```\n\n【1】的候选项：\nA) 3\nB) 4\nC) 6\nD) 8\n\n【2】的候选项：\nA) 17\nB) 18\nC) 30\nD) 40\n\n请分别填写两个空的选项字母。",
+      "explanation": "答案：D、D。NN 展开为 N*N/2 即 (M+1)*(M+1)/2 = 4*4/2 = 8，故第一个输出 8；第二个输出 5*NN = 5*(M+1)*(M+1)/2 = 5*4*4/2 = 40。易错点：把 N 当成已求值的 4，则 NN=4*4/2=8 恰好相同，但 5*NN 若按 5*8=40 也算对——真正的陷阱是若把 NN 读成 N*(N/2)=4*2=8 之外的组合，或漏掉 N 的括号得到 M+1*M+1/2=5，都会选错。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "D",
+          "accepted": [
+            "D",
+            "8"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "D",
+          "accepted": [
+            "D",
+            "40"
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.20（PDF p156 / 书页 p145）",
+      "difficulty": 3,
+      "stem": "【题 8.20】以下程序的输出结果为______。\n\n```c\n#include <stdio.h>\n#define F(y) 3.84+y\n#define PR(a) printf(\"%d\",(int)(a))\n#define PRINT(a) PR(a); putchar('\\n')\nint main()\n{ int x=2;\n  PRINT(F(3)*x);\n  return 0;\n}\n```",
+      "explanation": "答案B。PRINT(F(3)*x) 展开为 printf(\"%d\",(int)(3.84+3*x)); putchar('\\n')，(int)(3.84+6)=9。易错点：以为 F(3) 先算成 6.84 再乘 2 得 13；宏展开后是 3.84+3*2，乘法优先。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-019",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.21（PDF p156 / 书页 p145）",
+      "difficulty": 3,
+      "stem": "【题 8.21】以下程序的输出结果为______。\n\n```c\n#include <stdio.h>\n#define PT 5.5\n#define S(x) PT*x*x\nint main()\n{ int a=1,b=2;\n  printf(\"%4.1f\\n\",S(a+b));\n  return 0;\n}\n```",
+      "explanation": "答案B。S(a+b) 展开为 PT*a+b*a+b = 5.5*1+2*1+2 = 9.5。易错点：以为宏会先算 a+b=3 再平方得 5.5*9=49.5 或 12.5；宏体中形参 x 未加括号，替换后 a+b 被拆开分别参与乘法和加法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 12.0",
+        "B) 9.5",
+        "C) 12.5",
+        "D) 33.5"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-020",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.22（PDF p156 / 书页 p145）",
+      "difficulty": 2,
+      "stem": "【题 8.22】以下在任何情况下计算平方数时都不会引起二义性的宏定义是______。",
+      "explanation": "答案D。只有 `#define POWER(x) ((x)*(x))` 对形参和整体两层都加了括号，实参为 a+b、a++ 等任何表达式都不会产生二义。A 两层都无括号；B 整体无括号，作被减数或被除数时会出错；C 形参无括号，POWER(a+b) 会展开成 a+b*a+b。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) # define POWER(x)__x * x",
+        "B) # define POWER(x)__(x) * (x)",
+        "C) # define POWER(x)__(x * x)",
+        "D) # define POWER(x)__((x) * (x))"
+      ],
+      "answer": 3,
+      "id": "c-ch08-sc-021",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.23（PDF p156 / 书页 p145）",
+      "difficulty": 2,
+      "stem": "【题 8.23】在文件包含预处理命令的使用形式中，当#include后面的文件名用””（双引号）括起时，寻找被包含文件的方式是______。",
+      "explanation": "答案B。#include 后文件名用双引号括起时，编译器先在源程序所在目录中查找被包含文件，找不到再按系统设定的标准方式搜索目录，便于包含用户自编头文件。C、D 的\"仅搜索\"说法不完整。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 直接按系统设定的标准方式搜索目录",
+        "B) 先在源程序所在目录搜索，再按系统设定的标准方式搜索",
+        "C) 仅搜索源程序所在目录",
+        "D) 仅搜索当前目录"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-022",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.24（PDF p157 / 书页 p146）",
+      "difficulty": 2,
+      "stem": "【题 8.24】在文件包含预处理命令的使用形式中，当#include后面的文件名用＜＞（尖括号）括起时，寻找被包含文件的方式是______。",
+      "explanation": "答案C。#include 后文件名用尖括号括起时，直接按系统设定的标准方式（系统包含目录）搜索，用于包含系统头文件，不会先去源文件所在目录查找。D 描述的是双引号形式的行为。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 仅搜索当前目录",
+        "B) 仅搜索源程序所在目录",
+        "C) 直接按系统设定的标准方式搜索目录",
+        "D) 先在源程序所在目录搜索，再按系统设定的标准方式搜索"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-023",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.25（PDF p157 / 书页 p146）",
+      "difficulty": 3,
+      "stem": "【题 8.25】程序中头文件def.h的内容如下：\n程序如下：\n程序执行后的输出结果是______。\n\n```c\n#define H1 5\n#define H2 H1*2\n\n#include <stdio.h>\n#include <def.h>\n#define H3 H1*3\nint main()\n{ int n;\n  n=H3+H2;\n  printf(\"%d\\n\",n);\n  return 0;\n}\n```",
+      "explanation": "答案B。n=H3+H2 逐层展开为 H1*3+H1*2 = 5*3+5*2 = 25。易错点：以为 H2、H3 会先各自求值成 10、15 再相加得 25 恰好相同，但若把 H3+H2 误读成 (H1*3+H1)*2 之类就会得 30 或 20；宏是逐层文本替换，加法优先级低于乘法。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 30",
+        "B) 25",
+        "C) 20",
+        "D) 15"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-024",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.26（PDF p157 / 书页 p146）",
+      "difficulty": 4,
+      "stem": "【题 8.26】请读程序：\n上面程序的运行结果是______。\n\n```c\n#include <stdio.h>\n#define LETTER 0\nint main()\n{ char str[20]=\"C Language\",c;\n  int i;\n  i=0;\n  while((c=str[i])!='\\0')\n    { i++;\n      #if LETTER\n        if (c>='a'&&c<='z')\n          c=c-32;\n      #else\n        if (c>='A'&&c<='Z')\n          c=c+32;\n      #endif\n      printf(\"%c\",c);\n    }\n  return 0;\n}\n```",
+      "explanation": "答案B。LETTER 定义为 0，#if LETTER 为假，编译 #else 分支：把大写字母加 32 转成小写，其余字符原样输出，故 \"C Language\" 打印为 \"c language\"。易错点：把 #if 当成运行时的 if（它是编译期选择）；或记反转换方向（减 32 才是小写转大写）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) C Language",
+        "B) c language",
+        "C) C LANGUAGE",
+        "D) c lANGUAGE"
+      ],
+      "answer": 1,
+      "id": "c-ch08-sc-025",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.27（PDF p158 / 书页 p147）",
+      "difficulty": 2,
+      "stem": "【题 8.27】以下正确的描述是______。",
+      "explanation": "答案C。C 语言规定：凡源程序中行首以 # 标识的控制行都是预处理命令，这是唯一的形式特征。A 不全面（预处理还包括条件编译等）；B 错（预处理命令可出现在源程序任何位置）；D 错（预处理只做文本处理，不做语法检查）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) C语言的预处理功能是指完成宏替换和包含文件的调用",
+        "B) 预处理指令只能位于C源程序文件的首部",
+        "C) 凡是C源程序中行首以#标识的控制行都是预处理命令",
+        "D) C语言的编译预处理就是对源程序进行初步的语法检查"
+      ],
+      "answer": 2,
+      "id": "c-ch08-sc-026",
+      "verified": true
+    },
     {
       "category": "c",
       "chapter": "第8章 编译预处理",
@@ -161,6 +766,68 @@
       "category": "c",
       "chapter": "第8章 编译预处理",
       "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.37（PDF p160 / 书页 p149）",
+      "difficulty": 3,
+      "stem": "【题 8.37】设有宏定义如下：\n则执行以下语句后，s1的值为【1】，s2的值为【2】。\n\n```c\n#define MIN(x,y) (x)>(y)?(x):(y)\n#define T(x,y,r) x*r*y/4\n\nint a=1,b=3,c=5,s1,s2;\ns1=MIN(a=b,b-a);\ns2=T(a++,a*++b,a+b+c);\n```\n",
+      "explanation": "答案：【1】3、【2】28（书给值）。s1=MIN(a=b,b-a) 展开为 (a=b)>(b-a)?(a=b):(b-a)：a=b 使 a=3 且值为 3，b-a=0，3>0 成立，故 s1=3。s2=T(a++,a*++b,a+b+c) 展开为 a++*a+b+c*a*++b/4，按本书\"自增副作用只在各自子表达式内生效\"的口径：3*3+4+5*3*4/4 = 9+4+15 = 28。注意：该表达式在真实 C 中对 a、b 多次无序列修改，属未定义行为，gcc 13.2 实测为 35，与书给 28 不同，本库按书给 28 判分，故备选一并收录。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "3",
+          "accepted": [
+            "3"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "28",
+          "accepted": [
+            "28",
+            "35",
+            "32",
+            "33",
+            "36"
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.38（PDF p160 / 书页 p149）",
+      "difficulty": 3,
+      "stem": "【题 8.38】设有如下定义：\n以下程序段将通过调用宏实现变量x和y内容的交换，请填空。\n\n```c\n#define SWAP(T,X,Y) { T=X; X=Y; Y=T; }\n\ndouble x=2.5,y=6.4,z;\nSWAP (【】);\n```\n",
+      "explanation": "答案：`z,x,y`（或等价的 `z,y,x`）。宏 SWAP(T,X,Y) 展开为 { T=X; X=Y; Y=T; }，需要一个临时变量保存先被覆盖的值：把 z 作为 T、x 作为 X、y 作为 Y，展开后正是 z=x; x=y; y=z; 完成交换。易错点：只写 x,y 两个实参（宏有三个形参）；或把临时变量写成 x，导致 x 的原值在第一次赋值时就被覆盖而丢失。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "z,x,y",
+          "accepted": [
+            "z,x,y",
+            "z, x, y",
+            "z,y,x",
+            "z, y, x"
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.39（PDF p160 / 书页 p149）",
       "difficulty": 4,
       "stem": "【题 8.39】下面程序的运行结果是【 】。",
@@ -275,6 +942,93 @@
       "answer": "8\n20\n12",
       "id": "c-ch08-cr-016",
       "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.46（PDF p162 / 书页 p151）",
+      "difficulty": 3,
+      "stem": "【题 8.46】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。（注：try_me( )函数在 a:\\myfile.txt中有定义。）\n\n```c\n【】\nint main()\n{ printf(\"\\n\");\n  try_me( );\n  printf(\"\\n\");\n  return 0;\n}\n```\n",
+      "explanation": "答案：`#include \"a:\\myfile.txt\"`。try_me 的定义不在本文件而在 a 盘的 myfile.txt 中，必须用文件包含命令把它并入；被包含文件不在系统目录而在指定路径，故文件名要用双引号（或带路径的引号形式）括起。易错点：写成尖括号形式 <a:\\myfile.txt>（尖括号只按系统标准目录搜索，找不到该文件）；或漏写 #include 只写文件名。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "#include \"a:\\myfile.txt\"",
+          "accepted": [
+            "#include \"a:\\myfile.txt\"",
+            "#include \"a:\\myfile.txt\" ",
+            "#include\"a:\\myfile.txt\""
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.47（PDF p162 / 书页 p151）",
+      "difficulty": 4,
+      "stem": "【题 8.47】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。\n注：try_me( )函数在myfile.txt中有定义，其内容如下：\n\n```c\n//a.c\n【1】\n【2】\nint main()\n{ printf(\"\\n\");\n  try_me( );\t\t//函数调用\n  printf(\"\\n\");\n  return 0;\n}\n\n//myfile.txt\ntry_me( )\n  { char c;\n    if((c=getchar( ))!=\"\\n\")\n      try_me( );\n    putchar(c);\n  }\n```\n",
+      "explanation": "答案：【1】`#include <stdio.h>`（程序用了 printf、getchar、putchar）；【2】`#include \"myfile.txt\"`（try_me 的定义在该文件中）。两空顺序可以颠倒，书末注明确说明\"【1】、【2】顺序可颠倒\"。易错点：第二空写成尖括号形式——myfile.txt 是用户文件且不在系统包含目录，应用双引号；第一空若也写成 \"stdio.h\" 虽能编译但不符合惯例。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "#include <stdio.h>",
+          "accepted": [
+            "#include <stdio.h>",
+            "#include \"stdio.h\"",
+            "#include<stdio.h>"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "#include \"myfile.txt\"",
+          "accepted": [
+            "#include \"myfile.txt\"",
+            "#include <myfile.txt>",
+            "#include\"myfile.txt\""
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第8章 编译预处理 题8.48（PDF p163 / 书页 p152）",
+      "difficulty": 3,
+      "stem": "【题 8.48】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。\n\n```c\n#include <stdio.h>\n【】\nint main()\n{ int x=2,y=3;\n  printf(\"%d\\n\",pow(x,y));\n  return 0;\n}\n```\n",
+      "explanation": "答案：`#include <math.h>`。pow(x,y) 是数学库函数，其原型声明在 math.h 中，缺少该包含命令时编译器不认识 pow，程序无法正确编译运行。易错点：误填 stdio.h（它已包含，且只提供 printf）；另注意原书用 %d 输出 double 型的 pow 返回值属类型不匹配，是原书疏漏，与本题所问的包含命令无关。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "#include <math.h>",
+          "accepted": [
+            "#include <math.h>",
+            "#include \"math.h\"",
+            "#include<math.h>"
+          ]
+        }
+      ],
+      "id": "c-ch08-fb-006",
+      "verified": true
     },
     {
       "category": "c",

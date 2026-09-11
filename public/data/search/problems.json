@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "aab40fa6cbf48c8b",
+  "content_sha": "4f004669c10024d0",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 741,
+  "count": 773,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -6051,6 +6051,326 @@
       "chapter": "第8章 编译预处理",
       "section": "8.3 编程题",
       "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-001",
+      "file": "c-ch08.json",
+      "title": "【题 8.1】以下关于编译预处理的叙述中错误的是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-002",
+      "file": "c-ch08.json",
+      "title": "【题 8.2】以下关于宏的叙述中正确的是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-003",
+      "file": "c-ch08.json",
+      "title": "【题 8.3】以下叙述中正确的是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-004",
+      "file": "c-ch08.json",
+      "title": "【题 8.4】请读程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-005",
+      "file": "c-ch08.json",
+      "title": "【题 8.5】有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-006",
+      "file": "c-ch08.json",
+      "title": "【题 8.6】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-007",
+      "file": "c-ch08.json",
+      "title": "【题 8.7】在宏定义# define PI 3. 14159中",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-008",
+      "file": "c-ch08.json",
+      "title": "【题 8.8】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-009",
+      "file": "c-ch08.json",
+      "title": "【题 8.9】以下有关宏替换的叙述不正确的是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-010",
+      "file": "c-ch08.json",
+      "title": "【题 8.10】C语言的编译系统对宏命令的处理是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-011",
+      "file": "c-ch08.json",
+      "title": "【题 8.11】若有宏定义如下",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-012",
+      "file": "c-ch08.json",
+      "title": "【题 8.12】若有以下宏定义",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-013",
+      "file": "c-ch08.json",
+      "title": "【题 8.13】若有宏定义",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-014",
+      "file": "c-ch08.json",
+      "title": "【题 8.14】以下程序的运行结果是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-015",
+      "file": "c-ch08.json",
+      "title": "【题 8.15】以下程序段中存在错误的是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-016",
+      "file": "c-ch08.json",
+      "title": "【题 8.16】请读程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-017",
+      "file": "c-ch08.json",
+      "title": "【题 8.17】# define能做简单的替代",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-018",
+      "file": "c-ch08.json",
+      "title": "【题 8.18】对下面程序段",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-001",
+      "file": "c-ch08.json",
+      "title": "【题 8.19】以下程序中",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-019",
+      "file": "c-ch08.json",
+      "title": "【题 8.20】以下程序的输出结果为______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-020",
+      "file": "c-ch08.json",
+      "title": "【题 8.21】以下程序的输出结果为______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-021",
+      "file": "c-ch08.json",
+      "title": "【题 8.22】以下在任何情况下计算平方数时都不会引起二义性的宏定义是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-022",
+      "file": "c-ch08.json",
+      "title": "【题 8.23】在文件包含预处理命令的使用形式中",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-023",
+      "file": "c-ch08.json",
+      "title": "【题 8.24】在文件包含预处理命令的使用形式中",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-024",
+      "file": "c-ch08.json",
+      "title": "【题 8.25】程序中头文件def.h的内容如下",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-025",
+      "file": "c-ch08.json",
+      "title": "【题 8.26】请读程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-sc-026",
+      "file": "c-ch08.json",
+      "title": "【题 8.27】以下正确的描述是______",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-002",
+      "file": "c-ch08.json",
+      "title": "【题 8.37】设有宏定义如下",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-003",
+      "file": "c-ch08.json",
+      "title": "【题 8.38】设有如下定义",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-004",
+      "file": "c-ch08.json",
+      "title": "【题 8.46】设有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-005",
+      "file": "c-ch08.json",
+      "title": "【题 8.47】设有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch08-fb-006",
+      "file": "c-ch08.json",
+      "title": "【题 8.48】设有以下程序",
+      "tags": [],
+      "chapter": "第8章 编译预处理",
+      "section": "8.2 填空题",
+      "type": "fill_blank",
       "category": "c"
     },
     {

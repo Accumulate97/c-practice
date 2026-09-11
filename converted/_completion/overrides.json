@@ -638,5 +638,133 @@
    }
   ],
   "explanation": "答案：【1】a[0]=2、a[1]=1（确实交换了）；【2】因为数组名作实参时传递的是数组首地址，形参数组 arr 与实参数组 a 指向同一段内存，函数内对 arr[i] 的读写直接作用于原数组，属于地址传递。易错点：与题7.52 对照记忆——\"传值改不动、传址改得动\"；另外 n=2 表示只对前 2 个元素两两交换，不要把 n 误当成数组长度上限之外的东西。"
+ },
+ "题8.19": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.19】以下程序中，第一个输出值是【1】______，第二个输出值是【2】______。\n\n```c\n#include <stdio.h>\n#define M 3\n#define N (M+1)\n#define NN N*N/2\nint main()\n{ printf(\"%d\\n\",NN);\n  printf(\"%d\",5*NN);\n  return 0;\n}\n```\n\n【1】的候选项：\nA) 3\nB) 4\nC) 6\nD) 8\n\n【2】的候选项：\nA) 17\nB) 18\nC) 30\nD) 40\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "D",
+    "accepted": [
+     "D",
+     "8"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "D",
+    "accepted": [
+     "D",
+     "40"
+    ]
+   }
+  ],
+  "explanation": "答案：D、D。NN 展开为 N*N/2 即 (M+1)*(M+1)/2 = 4*4/2 = 8，故第一个输出 8；第二个输出 5*NN = 5*(M+1)*(M+1)/2 = 5*4*4/2 = 40。易错点：把 N 当成已求值的 4，则 NN=4*4/2=8 恰好相同，但 5*NN 若按 5*8=40 也算对——真正的陷阱是若把 NN 读成 N*(N/2)=4*2=8 之外的组合，或漏掉 N 的括号得到 M+1*M+1/2=5，都会选错。"
+ },
+ "题8.37": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.37】设有宏定义如下：\n则执行以下语句后，s1的值为【1】，s2的值为【2】。\n\n```c\n#define MIN(x,y) (x)>(y)?(x):(y)\n#define T(x,y,r) x*r*y/4\n\nint a=1,b=3,c=5,s1,s2;\ns1=MIN(a=b,b-a);\ns2=T(a++,a*++b,a+b+c);\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "3",
+    "accepted": [
+     "3"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "28",
+    "accepted": [
+     "28",
+     "35",
+     "32",
+     "33",
+     "36"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】3、【2】28（书给值）。s1=MIN(a=b,b-a) 展开为 (a=b)>(b-a)?(a=b):(b-a)：a=b 使 a=3 且值为 3，b-a=0，3>0 成立，故 s1=3。s2=T(a++,a*++b,a+b+c) 展开为 a++*a+b+c*a*++b/4，按本书\"自增副作用只在各自子表达式内生效\"的口径：3*3+4+5*3*4/4 = 9+4+15 = 28。注意：该表达式在真实 C 中对 a、b 多次无序列修改，属未定义行为，gcc 13.2 实测为 35，与书给 28 不同，本库按书给 28 判分，故备选一并收录。"
+ },
+ "题8.38": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.38】设有如下定义：\n以下程序段将通过调用宏实现变量x和y内容的交换，请填空。\n\n```c\n#define SWAP(T,X,Y) { T=X; X=Y; Y=T; }\n\ndouble x=2.5,y=6.4,z;\nSWAP (【】);\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "z,x,y",
+    "accepted": [
+     "z,x,y",
+     "z, x, y",
+     "z,y,x",
+     "z, y, x"
+    ]
+   }
+  ],
+  "explanation": "答案：`z,x,y`（或等价的 `z,y,x`）。宏 SWAP(T,X,Y) 展开为 { T=X; X=Y; Y=T; }，需要一个临时变量保存先被覆盖的值：把 z 作为 T、x 作为 X、y 作为 Y，展开后正是 z=x; x=y; y=z; 完成交换。易错点：只写 x,y 两个实参（宏有三个形参）；或把临时变量写成 x，导致 x 的原值在第一次赋值时就被覆盖而丢失。"
+ },
+ "题8.46": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.46】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。（注：try_me( )函数在 a:\\myfile.txt中有定义。）\n\n```c\n【】\nint main()\n{ printf(\"\\n\");\n  try_me( );\n  printf(\"\\n\");\n  return 0;\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "#include \"a:\\myfile.txt\"",
+    "accepted": [
+     "#include \"a:\\myfile.txt\"",
+     "#include \"a:\\myfile.txt\" ",
+     "#include\"a:\\myfile.txt\""
+    ]
+   }
+  ],
+  "explanation": "答案：`#include \"a:\\myfile.txt\"`。try_me 的定义不在本文件而在 a 盘的 myfile.txt 中，必须用文件包含命令把它并入；被包含文件不在系统目录而在指定路径，故文件名要用双引号（或带路径的引号形式）括起。易错点：写成尖括号形式 <a:\\myfile.txt>（尖括号只按系统标准目录搜索，找不到该文件）；或漏写 #include 只写文件名。"
+ },
+ "题8.47": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.47】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。\n注：try_me( )函数在myfile.txt中有定义，其内容如下：\n\n```c\n//a.c\n【1】\n【2】\nint main()\n{ printf(\"\\n\");\n  try_me( );\t\t//函数调用\n  printf(\"\\n\");\n  return 0;\n}\n\n//myfile.txt\ntry_me( )\n  { char c;\n    if((c=getchar( ))!=\"\\n\")\n      try_me( );\n    putchar(c);\n  }\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "#include <stdio.h>",
+    "accepted": [
+     "#include <stdio.h>",
+     "#include \"stdio.h\"",
+     "#include<stdio.h>"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "#include \"myfile.txt\"",
+    "accepted": [
+     "#include \"myfile.txt\"",
+     "#include <myfile.txt>",
+     "#include\"myfile.txt\""
+    ]
+   }
+  ],
+  "explanation": "答案：【1】`#include <stdio.h>`（程序用了 printf、getchar、putchar）；【2】`#include \"myfile.txt\"`（try_me 的定义在该文件中）。两空顺序可以颠倒，书末注明确说明\"【1】、【2】顺序可颠倒\"。易错点：第二空写成尖括号形式——myfile.txt 是用户文件且不在系统包含目录，应用双引号；第一空若也写成 \"stdio.h\" 虽能编译但不符合惯例。"
+ },
+ "题8.48": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 8.48】设有以下程序，为使之正确运行，请在【1】中填入应包含的命令行。\n\n```c\n#include <stdio.h>\n【】\nint main()\n{ int x=2,y=3;\n  printf(\"%d\\n\",pow(x,y));\n  return 0;\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "#include <math.h>",
+    "accepted": [
+     "#include <math.h>",
+     "#include \"math.h\"",
+     "#include<math.h>"
+    ]
+   }
+  ],
+  "explanation": "答案：`#include <math.h>`。pow(x,y) 是数学库函数，其原型声明在 math.h 中，缺少该包含命令时编译器不认识 pow，程序无法正确编译运行。易错点：误填 stdio.h（它已包含，且只提供 printf）；另注意原书用 %d 输出 double 型的 pow 返回值属类型不匹配，是原书疏漏，与本题所问的包含命令无关。"
  }
 }
