@@ -1,0 +1,787 @@
+[
+  {
+    "originalId": "题5.55",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 60,
+    "bookPage": 49,
+    "code": "#include <stdio.h>\nint main( )\n{   int n=0,c;\n    c=getchar();\n    while(/*__BLANK_1__*/)\n    {   if(/*__BLANK_2__*/) n++;\n        c=getchar();\n    }\n    printf(\"%d\\n\",n);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "c!='\\n'",
+        "accepted": [
+          "c!='\\n'"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "c>='0' && c<='9'",
+        "accepted": [
+          "c>='0'&&c<='9'",
+          "c>='0' && c<='9'"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "a1b22\n",
+        "expected": "3",
+        "note": "3 个数字字符"
+      },
+      {
+        "stdin": "\n",
+        "expected": "0",
+        "note": "空行边界"
+      },
+      {
+        "stdin": "09\n",
+        "expected": "2",
+        "note": "0 与 9 都算数字字符"
+      }
+    ],
+    "explanation": "考点是 getchar 逐字符读入与字符分类。循环以换行符结束，故条件为 `c!='\\n'`；数字字符的 ASCII 连续，用 `c>='0' && c<='9'` 判断。注意必须在循环体内再次 getchar 才能推进，否则死循环。原书片段无输出语句，为可判定补了 `printf(\"%d\\n\",n)`。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int n=0,c;\n    c=getchar();\n    while( c!='\\n' )\n    {   if( c>='0' && c<='9' ) n++;\n        c=getchar();\n    }\n    printf(\"%d\\n\",n);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.56",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 60,
+    "bookPage": 49,
+    "code": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   long   i=1;\n    /*__BLANK_1__*/ pi=0;\n    while( i * i<=10e+6 )   { pi=/*__BLANK_2__*/;   i++; }\n    pi=sqrt( 6.0 * pi);\n    printf(\"pi=%10.6lf\\n\",pi);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "double",
+        "accepted": [
+          "double"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "pi+1.0/(i*i)",
+        "accepted": [
+          "pi+1.0/(i*i)"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "pi=  3.141291",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是级数求和与类型选择。累加和含小数，pi 必须声明为 double（float 精度不足）；通项为 1/i^2，写成 `pi+1.0/(i*i)`，分子写 1.0 保证浮点除。循环条件 `i*i<=10e+6` 保证最后一项不小于 1e-6 时继续。本题用到 sqrt，链接需 libm。",
+    "solution": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   long   i=1;\n     double  pi=0;\n    while( i * i<=10e+6 )   { pi= pi+1.0/(i*i) ;   i++; }\n    pi=sqrt( 6.0 * pi);\n    printf(\"pi=%10.6lf\\n\",pi);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.57",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 61,
+    "bookPage": 50,
+    "code": "#include <stdio.h>\nint main( )\n{   int day=0,x1=1020,x2;\n    while(/*__BLANK_1__*/) { x2=/*__BLANK_2__*/; x1=x2; day++; }\n    printf(\"day=%d\\n\",day);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "x1",
+        "accepted": [
+          "x1",
+          "x1!=0"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "x1/2-2",
+        "accepted": [
+          "x1/2-2"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "day=8",
+        "note": "1020→508→252→124→60→28→12→4→0 共 8 天"
+      }
+    ],
+    "explanation": "考点是「卖一半多两个」的迭代：每天剩 `x1/2-2`，卖完即 x1 为 0，故循环条件为 `x1`（非零继续）。整数除法自动截断。易错：把条件写成 `x2`（x2 未初始化）或 `x1>0` 与 `x1` 等价但原书用 `x1`。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int day=0,x1=1020,x2;\n    while( x1 ) { x2= x1/2-2 ; x1=x2; day++; }\n    printf(\"day=%d\\n\",day);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.58",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 61,
+    "bookPage": 50,
+    "code": "#include <stdio.h>\nint main( )\n{   int r,m,n ;\n    scanf(\"%d%d\",&m,&n);\n    if( m<n ) /*__BLANK_1__*/;\n    r=m%n;\n    while(r)    { m=n;   n=r;   r=/*__BLANK_2__*/; }\n    printf(\"%d\\n\",n);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "r=m,m=n,n=r",
+        "accepted": [
+          "r=m,m=n,n=r",
+          "r=m, m=n, n=r"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "m%n",
+        "accepted": [
+          "m%n"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "12 18\n",
+        "expected": "6",
+        "note": "gcd(12,18)=6"
+      },
+      {
+        "stdin": "7 5\n",
+        "expected": "1",
+        "note": "互质边界"
+      },
+      {
+        "stdin": "8 8\n",
+        "expected": "8",
+        "note": "相等边界"
+      }
+    ],
+    "explanation": "考点是辗转相除。要求 m≥n，故 m<n 时用逗号表达式 `r=m,m=n,n=r` 交换三变量；每轮余数 `r=m%n`。注意原书 `#include <stdio.h>;` 的分号属印刷冗余，入库时已去掉，不影响语义。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int r,m,n ;\n    scanf(\"%d%d\",&m,&n);\n    if( m<n )  r=m,m=n,n=r ;\n    r=m%n;\n    while(r)    { m=n;   n=r;   r= m%n ; }\n    printf(\"%d\\n\",n);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.66",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 63,
+    "bookPage": 52,
+    "code": "#include <stdio.h>\nint main ( )\n{   int i=1,j=0;\n    do\n    {   if( /*__BLANK_1__*/ )\n        {   printf(\"%4d\",i);\n            j=j+1;\n            if( /*__BLANK_2__*/ )   printf(\"\\n\");\n        }\n        i=i+1;\n    } while(i<1000);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i%3==2&&i%5==3&&i%7==2",
+        "accepted": [
+          "i%3==2&&i%5==3&&i%7==2",
+          "i%3==2 && i%5==3 && i%7==2"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "j%5==0",
+        "accepted": [
+          "j%5==0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "  23 128 233 338 443\n 548 653 758 863 968",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是多条件筛选与换行控制。三个余数条件用 && 连接：`i%3==2&&i%5==3&&i%7==2`；每打印一个数 j 加 1，`j%5==0` 时换行实现一行 5 个。易错：把「除余」写成除法或漏掉某个条件。",
+    "solution": "#include <stdio.h>\nint main ( )\n{   int i=1,j=0;\n    do\n    {   if(  i%3==2&&i%5==3&&i%7==2  )\n        {   printf(\"%4d\",i);\n            j=j+1;\n            if(  j%5==0  )   printf(\"\\n\");\n        }\n        i=i+1;\n    } while(i<1000);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.67",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 63,
+    "bookPage": 52,
+    "code": "#include <stdio.h>\nint main ( )\n{   int n,count=0, max=0, t;\n    scanf(\"%d\",&n);\n    do\n    {   t=/*__BLANK_1__*/;\n        if(t==0) ++count;\n        else if(max<t) /*__BLANK_2__*/;\n        n/=10;\n    } while(n);\n    printf(\"count=%d,max=%d\",count,max);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "n%10",
+        "accepted": [
+          "n%10"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "max=t",
+        "accepted": [
+          "max=t"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1020\n",
+        "expected": "count=2,max=2",
+        "note": "两个 0，最大数字 2"
+      },
+      {
+        "stdin": "0\n",
+        "expected": "count=1,max=0",
+        "note": "do-while 至少执行一次"
+      },
+      {
+        "stdin": "90807\n",
+        "expected": "count=2,max=9",
+        "note": "混合边界"
+      }
+    ],
+    "explanation": "考点是逐位取数：末位 `n%10`，再 `n/=10` 缩位；do-while 保证 n=0 时也统计一次。零计数与最大值更新互斥（else if）。易错：先 `n/=10` 再取末位会漏掉最低位。",
+    "solution": "#include <stdio.h>\nint main ( )\n{   int n,count=0, max=0, t;\n    scanf(\"%d\",&n);\n    do\n    {   t= n%10 ;\n        if(t==0) ++count;\n        else if(max<t)  max=t ;\n        n/=10;\n    } while(n);\n    printf(\"count=%d,max=%d\",count,max);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.69",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 64,
+    "bookPage": 53,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,s=1,m=0;\n    for(i=1;i<=11;i++) s=s * 11%1000;\n    do { m+=/*__BLANK_1__*/; s=/*__BLANK_2__*/; } while(s);\n    printf(\"m=%d\\n\",m);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "s%10",
+        "accepted": [
+          "s%10"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "s/10",
+        "accepted": [
+          "s/10"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "m=8",
+        "note": "11^11 mod 1000 = 611，6+1+1=8"
+      }
+    ],
+    "explanation": "考点是「边乘边取模」：`s=s*11%1000` 只保留末三位，避免溢出且不影响个、十、百位；再用 `s%10` 取末位累加、`s/=10` 缩位，do-while 把三位全部取完。11^11 末三位为 611，和为 8。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,s=1,m=0;\n    for(i=1;i<=11;i++) s=s * 11%1000;\n    do { m+= s%10 ; s= s/10 ; } while(s);\n    printf(\"m=%d\\n\",m);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.74",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 65,
+    "bookPage": 54,
+    "code": "#include <stdio.h>\nint main( )\n{   int x,i;\n    scanf(\"%d\",&x);\n    i=1;\n    for(  ;  /*__BLANK_1__*/  ;   )\n    {   if(x%i==0) printf(\"%3d\",i);\n        i++;\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i<=x",
+        "accepted": [
+          "i<=x",
+          "i<x+1"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "12\n",
+        "expected": "  1  2  3  4  6 12",
+        "note": "12 的全部因子"
+      },
+      {
+        "stdin": "1\n",
+        "expected": "  1",
+        "note": "1 的因子只有 1"
+      },
+      {
+        "stdin": "7\n",
+        "expected": "  1  7",
+        "note": "素数边界"
+      }
+    ],
+    "explanation": "考点是因子枚举范围：因子不会超过 x 本身，故循环条件为 `i<=x`；i 从 1 起逐个试除，`x%i==0` 即因子。for 的第三表达式留空、改在循环体内 `i++` 推进，是原书的写法。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int x,i;\n    scanf(\"%d\",&x);\n    i=1;\n    for(  ;   i<=x   ;   )\n    {   if(x%i==0) printf(\"%3d\",i);\n        i++;\n    }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.75",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 65,
+    "bookPage": 54,
+    "code": "#include <stdio.h>\nint main( )\n{   int x,y;\n    for(x=0; x<=30; x++)\n    {   y=30-x;\n        if(/*__BLANK_1__*/)    printf(\"%d,%d\\n\",x,y);\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "2*x+4*y==90",
+        "accepted": [
+          "2*x+4*y==90",
+          "2*x+4*y==90"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "15,15",
+        "note": "鸡 15 兔 15"
+      }
+    ],
+    "explanation": "考点是穷举判定：鸡 x 只 2 脚、兔 y 只 4 脚，脚数方程 `2*x+4*y==90`；头数已由 `y=30-x` 保证。易错：写成 `2*x+4*y=90`（赋值）或把鸡兔脚数弄反。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int x,y;\n    for(x=0; x<=30; x++)\n    {   y=30-x;\n        if( 2*x+4*y==90 )    printf(\"%d,%d\\n\",x,y);\n    }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.77",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 66,
+    "bookPage": 55,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,t=1,s=0;\n    for(i=1; i<=101; i+=2)\n        {   /*__BLANK_1__*/;    s=s+t;   /*__BLANK_2__*/; }\n    printf(\"%d\\n\",s);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "t=t*i",
+        "accepted": [
+          "t=t*i",
+          "t*=i"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "t=-t/i",
+        "accepted": [
+          "t=-t/i",
+          "t=t/-i"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "51",
+        "note": "1-3+5-7+…-99+101=51"
+      }
+    ],
+    "explanation": "考点是「带符号项」的构造：先 `t=t*i` 得到带当前符号的奇数项，累加后再 `t=-t/i` 把符号翻转并还原成单位量，下一轮乘以下一个奇数即得变号后的项。若先变号再乘会差一个符号。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,t=1,s=0;\n    for(i=1; i<=101; i+=2)\n        {    t=t*i ;    s=s+t;    t=-t/i ; }\n    printf(\"%d\\n\",s);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.78",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 66,
+    "bookPage": 55,
+    "code": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   int i,n;  double h,s,a=0,b=1.2;\n    n=100;    h=/*__BLANK_1__*/;\n    s=0.5 * (sin(a) * cos(a)+sin(b) * cos(b));\n    for(i=1;i<=n-1;i++)   s+=/*__BLANK_2__*/;\n    s*=h;\n    printf(\"s=%10.4lf\\n\",s);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "(b-a)/n",
+        "accepted": [
+          "(b-a)/n"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "sin(a+i*h)*cos(a+i*h)",
+        "accepted": [
+          "sin(a+i*h)*cos(a+i*h)"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "s=    0.4343",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是梯形公式的程序化：步长 `h=(b-a)/n`；中间节点 `xi=a+i*h` 处函数值 `sin(xi)*cos(xi)` 累加；首末两项已按 0.5 倍计入 s，最后统一乘 h。本题用到 sin/cos，链接需 libm。",
+    "solution": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   int i,n;  double h,s,a=0,b=1.2;\n    n=100;    h= (b-a)/n ;\n    s=0.5 * (sin(a) * cos(a)+sin(b) * cos(b));\n    for(i=1;i<=n-1;i++)   s+= sin(a+i*h)*cos(a+i*h) ;\n    s*=h;\n    printf(\"s=%10.4lf\\n\",s);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.79",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 66,
+    "bookPage": 55,
+    "code": "#include <stdio.h>\nint main( )\n{   int i;  double e,new;\n    /*__BLANK_1__*/;  new=1.0;\n    for(i=1;/*__BLANK_2__*/;i++)\n        {   new/=(double)i;  e+=new; }\n    printf(\"e=%f\\n\",e);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "e=1.0",
+        "accepted": [
+          "e=1.0",
+          "e=1"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "new>=1e-6",
+        "accepted": [
+          "new>=1e-6",
+          "new>=1e-6"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "e=2.718282",
+        "note": "无输入，实机输出以 Godbolt 为准（约 2.718282）"
+      }
+    ],
+    "explanation": "考点是级数递推：e 的初值取首项 1.0；`new` 保存当前项 1/i!，每轮 `new/=i` 递推；精度要求项不小于 1e-6 时继续累加，故循环条件为 `new>=1e-6`。易错：e 未初始化或条件写成 `new<=1e-6`。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i;  double e,new;\n     e=1.0 ;  new=1.0;\n    for(i=1; new>=1e-6 ;i++)\n        {   new/=(double)i;  e+=new; }\n    printf(\"e=%f\\n\",e);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.83",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 67,
+    "bookPage": 56,
+    "code": "#include <stdio.h>\nint main( )\n{   int n=0,i,j,k;\n    for(i=1; i<=9; i++)\n        for(k=0; k<=8; /*__BLANK_1__*/)\n            if( k !=i )\n                for(j=0 ; j<=9; j++)\n                    if(/*__BLANK_2__*/)\n                        n++;\n    printf(\"n=%d\\n\",n);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "k+=2",
+        "accepted": [
+          "k+=2",
+          "k=k+2"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "j!=i && j!=k",
+        "accepted": [
+          "j!=i && j!=k",
+          "j!=i&&j!=k"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "n=328",
+        "note": "百位 1-9、个位偶数、十位与两者不同"
+      }
+    ],
+    "explanation": "考点是约束穷举：三位偶数要求个位 k 为偶数，故 `k+=2` 步进；十位 j 需与百位 i、个位 k 都不同，即 `j!=i && j!=k`；百位与个位不同已由外层 `k!=i` 保证。三层约束齐全才不重不漏。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int n=0,i,j,k;\n    for(i=1; i<=9; i++)\n        for(k=0; k<=8;  k+=2 )\n            if( k !=i )\n                for(j=0 ; j<=9; j++)\n                    if( j!=i && j!=k )\n                        n++;\n    printf(\"n=%d\\n\",n);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.84",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 67,
+    "bookPage": 56,
+    "code": "#include <stdio.h>\nint main( )\n{   int n,k=1,s=0,m;\n    for(n=1;n<=100;n++)\n    {   k=1; s=0;\n        /*__BLANK_1__*/;\n        while(/*__BLANK_2__*/)\n        {   k*=m%10;\n            s+=m%10;\n            /*__BLANK_3__*/;\n        }\n        if(k>s)    printf(\"%d \",n);\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "m=n",
+        "accepted": [
+          "m=n"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "m",
+        "accepted": [
+          "m",
+          "m!=0"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "m/=10",
+        "accepted": [
+          "m/=10"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "23 24 25 26 27 28 29 32 33 34 35 36 37 38 39 42 43 44 45 46 47 48 49 52 53 54 55 56 57 58 59 62 63 64 65 66 67 68 69 72 73 74 75 76 77 78 79 82 83 84 85 86 87 88 89 92 93 94 95 96 97 98 99",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是「不破坏原数」的逐位分解：用副本 `m=n` 做 `m%10` 取末位、`m/=10` 缩位，循环条件 `m` 非零继续；k 累乘、s 累加，最后比较 k>s。若直接对 n 缩位会丢失原数无法输出。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int n,k=1,s=0,m;\n    for(n=1;n<=100;n++)\n    {   k=1; s=0;\n         m=n ;\n        while( m )\n        {   k*=m%10;\n            s+=m%10;\n             m/=10 ;\n        }\n        if(k>s)    printf(\"%d \",n);\n    }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.85",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 68,
+    "bookPage": 57,
+    "code": "#include <stdio.h>\nint main( )\n{   int a,i,m;\n    for(a=1; a<=1000; a++)\n    {   for(  /*__BLANK_1__*/  ; i<=a/2; i++) if( !(a%i) )  /*__BLANK_2__*/  ;\n        if(m==a)   printf(\"%4d\",a);\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "m=0,i=1",
+        "accepted": [
+          "m=0,i=1",
+          "m=0, i=1"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "m+=i",
+        "accepted": [
+          "m+=i",
+          "m=m+i"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "   6  28 496",
+        "note": "1000 以内完全数"
+      }
+    ],
+    "explanation": "考点是完全数判定：每换一个 a 都要把因子和 m 清零、i 从 1 起，故 for 的第一表达式写 `m=0,i=1`；真因子不超过 a/2，命中因子时 `m+=i` 累加；最后 m==a 即完全数。易错：m 不清零会串到下一个 a。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int a,i,m;\n    for(a=1; a<=1000; a++)\n    {   for(   m=0,i=1   ; i<=a/2; i++) if( !(a%i) )   m+=i   ;\n        if(m==a)   printf(\"%4d\",a);\n    }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.86",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 68,
+    "bookPage": 57,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,j,k,l=1;\n    for(i=0; i<=20; i++)\n        for(j=0; j<=50; j++)\n        {   k=/*__BLANK_1__*/;\n            if(/*__BLANK_2__*/)\n            {   printf(\" %2d %2d %2d\",i,j,k);\n                l=l+1;\n                if(l%5==0)  printf(\"\\n\");\n            }\n        }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "100-i*5-j*2",
+        "accepted": [
+          "100-i*5-j*2"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "k>=0",
+        "accepted": [
+          "k>=0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "  0  0 100  0  1 98  0  2 96  0  3 94\n  0  4 92  0  5 90  0  6 88  0  7 86  0  8 84\n  0  9 82  0 10 80  0 11 78  0 12 76  0 13 74\n  0 14 72  0 15 70  0 16 68  0 17 66  0 18 64\n  0 19 62  0 20 60  0 21 58  0 22 56  0 23 54\n  0 24 52  0 25 50  0 26 48  0 27 46  0 28 44\n  0 29 42  0 30 40  0 31 38  0 32 36  0 33 34\n  0 34 32  0 35 30  0 36 28  0 37 26  0 38 24\n  0 39 22  0 40 20  0 41 18  0 42 16  0 43 14\n  0 44 12  0 45 10  0 46  8  0 47  6  0 48  4\n  0 49  2  0 50  0  1  0 95  1  1 93  1  2 91\n  1  3 89  1  4 87  1  5 85  1  6 83  1  7 81\n  1  8 79  1  9 77  1 10 75  1 11 73  1 12 71\n  1 13 69  1 14 67  1 15 65  1 16 63  1 17 61\n  1 18 59  1 19 57  1 20 55  1 21 53  1 22 51\n  1 23 49  1 24 47  1 25 45  1 26 43  1 27 41\n  1 28 39  1 29 37  1 30 35  1 31 33  1 32 31\n  1 33 29  1 34 27  1 35 25  1 36 23  1 37 21\n  1 38 19  1 39 17  1 40 15  1 41 13  1 42 11\n  1 43  9  1 44  7  1 45  5  1 46  3  1 47  1\n  2  0 90  2  1 88  2  2 86  2  3 84  2  4 82\n  2  5 80  2  6 78  2  7 76  2  8 74  2  9 72\n  2 10 70  2 11 68  2 12 66  2 13 64  2 14 62\n  2 15 60  2 16 58  2 17 56  2 18 54  2 19 52\n  2 20 50  2 21 48  2 22 46  2 23 44  2 24 42\n  2 25 40  2 26 38  2 27 36  2 28 34  2 29 32\n  2 30 30  2 31 28  2 32 26  2 33 24  2 34 22\n  2 35 20  2 36 18  2 37 16  2 38 14  2 39 12\n  2 40 10  2 41  8  2 42  6  2 43  4  2 44  2\n  2 45  0  3  0 85  3  1 83  3  2 81  3  3 79\n  3  4 77  3  5 75  3  6 73  3  7 71  3  8 69\n  3  9 67  3 10 65  3 11 63  3 12 61  3 13 59\n  3 14 57  3 15 55  3 16 53  3 17 51  3 18 49\n  3 19 47  3 20 45  3 21 43  3 22 41  3 23 39\n  3 24 37  3 25 35  3 26 33  3 27 31  3 28 29\n  3 29 27  3 30 25  3 31 23  3 32 21  3 33 19\n  3 34 17  3 35 15  3 36 13  3 37 11  3 38  9\n  3 39  7  3 40  5  3 41  3  3 42  1  4  0 80\n  4  1 78  4  2 76  4  3 74  4  4 72  4  5 70\n  4  6 68  4  7 66  4  8 64  4  9 62  4 10 60\n  4 11 58  4 12 56  4 13 54  4 14 52  4 15 50\n  4 16 48  4 17 46  4 18 44  4 19 42  4 20 40\n  4 21 38  4 22 36  4 23 34  4 24 32  4 25 30\n  4 26 28  4 27 26  4 28 24  4 29 22  4 30 20\n  4 31 18  4 32 16  4 33 14  4 34 12  4 35 10\n  4 36  8  4 37  6  4 38  4  4 39  2  4 40  0\n  5  0 75  5  1 73  5  2 71  5  3 69  5  4 67\n  5  5 65  5  6 63  5  7 61  5  8 59  5  9 57\n  5 10 55  5 11 53  5 12 51  5 13 49  5 14 47\n  5 15 45  5 16 43  5 17 41  5 18 39  5 19 37\n  5 20 35  5 21 33  5 22 31  5 23 29  5 24 27\n  5 25 25  5 26 23  5 27 21  5 28 19  5 29 17\n  5 30 15  5 31 13  5 32 11  5 33  9  5 34  7\n  5 35  5  5 36  3  5 37  1  6  0 70  6  1 68\n  6  2 66  6  3 64  6  4 62  6  5 60  6  6 58\n  6  7 56  6  8 54  6  9 52  6 10 50  6 11 48\n  6 12 46  6 13 44  6 14 42  6 15 40  6 16 38\n  6 17 36  6 18 34  6 19 32  6 20 30  6 21 28\n  6 22 26  6 23 24  6 24 22  6 25 20  6 26 18\n  6 27 16  6 28 14  6 29 12  6 30 10  6 31  8\n  6 32  6  6 33  4  6 34  2  6 35  0  7  0 65\n  7  1 63  7  2 61  7  3 59  7  4 57  7  5 55\n  7  6 53  7  7 51  7  8 49  7  9 47  7 10 45\n  7 11 43  7 12 41  7 13 39  7 14 37  7 15 35\n  7 16 33  7 17 31  7 18 29  7 19 27  7 20 25\n  7 21 23  7 22 21  7 23 19  7 24 17  7 25 15\n  7 26 13  7 27 11  7 28  9  7 29  7  7 30  5\n  7 31  3  7 32  1  8  0 60  8  1 58  8  2 56\n  8  3 54  8  4 52  8  5 50  8  6 48  8  7 46\n  8  8 44  8  9 42  8 10 40  8 11 38  8 12 36\n  8 13 34  8 14 32  8 15 30  8 16 28  8 17 26\n  8 18 24  8 19 22  8 20 20  8 21 18  8 22 16\n  8 23 14  8 24 12  8 25 10  8 26  8  8 27  6\n  8 28  4  8 29  2  8 30  0  9  0 55  9  1 53\n  9  2 51  9  3 49  9  4 47  9  5 45  9  6 43\n  9  7 41  9  8 39  9  9 37  9 10 35  9 11 33\n  9 12 31  9 13 29  9 14 27  9 15 25  9 16 23\n  9 17 21  9 18 19  9 19 17  9 20 15  9 21 13\n  9 22 11  9 23  9  9 24  7  9 25  5  9 26  3\n  9 27  1 10  0 50 10  1 48 10  2 46 10  3 44\n 10  4 42 10  5 40 10  6 38 10  7 36 10  8 34\n 10  9 32 10 10 30 10 11 28 10 12 26 10 13 24\n 10 14 22 10 15 20 10 16 18 10 17 16 10 18 14\n 10 19 12 10 20 10 10 21  8 10 22  6 10 23  4\n 10 24  2 10 25  0 11  0 45 11  1 43 11  2 41\n 11  3 39 11  4 37 11  5 35 11  6 33 11  7 31\n 11  8 29 11  9 27 11 10 25 11 11 23 11 12 21\n 11 13 19 11 14 17 11 15 15 11 16 13 11 17 11\n 11 18  9 11 19  7 11 20  5 11 21  3 11 22  1\n 12  0 40 12  1 38 12  2 36 12  3 34 12  4 32\n 12  5 30 12  6 28 12  7 26 12  8 24 12  9 22\n 12 10 20 12 11 18 12 12 16 12 13 14 12 14 12\n 12 15 10 12 16  8 12 17  6 12 18  4 12 19  2\n 12 20  0 13  0 35 13  1 33 13  2 31 13  3 29\n 13  4 27 13  5 25 13  6 23 13  7 21 13  8 19\n 13  9 17 13 10 15 13 11 13 13 12 11 13 13  9\n 13 14  7 13 15  5 13 16  3 13 17  1 14  0 30\n 14  1 28 14  2 26 14  3 24 14  4 22 14  5 20\n 14  6 18 14  7 16 14  8 14 14  9 12 14 10 10\n 14 11  8 14 12  6 14 13  4 14 14  2 14 15  0\n 15  0 25 15  1 23 15  2 21 15  3 19 15  4 17\n 15  5 15 15  6 13 15  7 11 15  8  9 15  9  7\n 15 10  5 15 11  3 15 12  1 16  0 20 16  1 18\n 16  2 16 16  3 14 16  4 12 16  5 10 16  6  8\n 16  7  6 16  8  4 16  9  2 16 10  0 17  0 15\n 17  1 13 17  2 11 17  3  9 17  4  7 17  5  5\n 17  6  3 17  7  1 18  0 10 18  1  8 18  2  6\n 18  3  4 18  4  2 18  5  0 19  0  5 19  1  3\n 19  2  1 20  0  0",
+        "note": "无输入，实机输出以 Godbolt 为准；原书 return 0 误排在循环体内，入库时移到循环外"
+      }
+    ],
+    "explanation": "考点是三重约束降为两重：5 元 i 张、2 元 j 张确定后，1 元张数 `k=100-i*5-j*2`；只有 `k>=0` 才是合法方案。原书把 `return 0;` 误排在 j 循环体内（会导致只输出一行），入库时已移到两重循环之外，语义按题意补正。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,j,k,l=1;\n    for(i=0; i<=20; i++)\n        for(j=0; j<=50; j++)\n        {   k= 100-i*5-j*2 ;\n            if( k>=0 )\n            {   printf(\" %2d %2d %2d\",i,j,k);\n                l=l+1;\n                if(l%5==0)  printf(\"\\n\");\n            }\n        }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.87",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 68,
+    "bookPage": 57,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,j,k;\n    printf(\"\\n hong bai hei\\n\");\n    for (i=0; i<=3; i++)\n        for(/*__BLANK_1__*/; j<=5; j++)\n        {   k=8-i-j;\n            if(/*__BLANK_2__*/)   printf(\" %3d %3d %3d\\n\",i,j,k);\n        }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "j=1",
+        "accepted": [
+          "j=1"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "k>=0 && k<=6",
+        "accepted": [
+          "k>=0 && k<=6",
+          "k>=0&&k<=6"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "\n hong bai hei\n   0   2   6\n   0   3   5\n   0   4   4\n   0   5   3\n   1   1   6\n   1   2   5\n   1   3   4\n   1   4   3\n   1   5   2\n   2   1   5\n   2   2   4\n   2   3   3\n   2   4   2\n   2   5   1\n   3   1   4\n   3   2   3\n   3   3   2\n   3   4   1\n   3   5   0",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是带约束的组合枚举：「必须有白球」故白球 j 从 1 起；黑球 k=8-i-j 不能超过库存 6 且不能为负，故条件 `k>=0 && k<=6`。红球 i≤3、白球 j≤5 由循环上界保证。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,j,k;\n    printf(\"\\n hong bai hei\\n\");\n    for (i=0; i<=3; i++)\n        for( j=1 ; j<=5; j++)\n        {   k=8-i-j;\n            if( k>=0 && k<=6 )   printf(\" %3d %3d %3d\\n\",i,j,k);\n        }\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.93",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 70,
+    "bookPage": 59,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,j,k,count=0;\n    for(i=1; i<=9; i++)\n        for(j=0; j<=9; j++)\n            if(/*__BLANK_1__*/) continue;\n            else\n                for(k=0;  k<=9; k++)\n                    if( /*__BLANK_2__*/ )  count++;\n    printf(\"%d\",count);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i==j",
+        "accepted": [
+          "i==j",
+          "j==i"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "k!=i && k!=j",
+        "accepted": [
+          "k!=i && k!=j",
+          "k!=i&&k!=j"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "648",
+        "note": "9*9*8=648"
+      }
+    ],
+    "explanation": "考点是去重计数：百位 i 与十位 j 相同时用 continue 跳过整轮，故条件 `i==j`；个位 k 需与前两位都不同，即 `k!=i && k!=j`。注意 continue 只跳过当前 j 的一轮，不影响 i 的推进。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,j,k,count=0;\n    for(i=1; i<=9; i++)\n        for(j=0; j<=9; j++)\n            if( i==j ) continue;\n            else\n                for(k=0;  k<=9; k++)\n                    if(  k!=i && k!=j  )  count++;\n    printf(\"%d\",count);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.94",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 70,
+    "bookPage": 59,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,s,k,count=0;\n    for(i=100; i<=1000; i++)\n    {   s=0; k=i;\n        while (/*__BLANK_1__*/)   { s=s+k%10;   k=/*__BLANK_2__*/;}\n        if(s!=5)/*__BLANK_3__*/;\n        else count++;\n    }\n    printf(\"%d\",count);\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "k",
+        "accepted": [
+          "k",
+          "k!=0"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "k/10",
+        "accepted": [
+          "k/10"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "continue",
+        "accepted": [
+          "continue"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "15",
+        "note": "无输入，实机输出以 Godbolt 为准"
+      }
+    ],
+    "explanation": "考点是各位数字和的分解与流程控制：副本 k 非零时循环取末位累加、`k/10` 缩位；和不为 5 时 `continue` 跳过计数进入下一个 i，否则 count++。若第三空填 break 会提前结束整个循环。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,s,k,count=0;\n    for(i=100; i<=1000; i++)\n    {   s=0; k=i;\n        while ( k )   { s=s+k%10;   k= k/10 ;}\n        if(s!=5) continue ;\n        else count++;\n    }\n    printf(\"%d\",count);\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.95",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 70,
+    "bookPage": 59,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,a;\n    for (i=1; i<=10; i++)\n    {   scanf(\"%d\",&a);\n        if(a%7==0)  /*__BLANK_1__*/;\n    }\n    if(/*__BLANK_2__*/) printf(\"%d\\n\",a);\n    else printf(\"not exist\\n\");\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "break",
+        "accepted": [
+          "break"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "i<=10",
+        "accepted": [
+          "i<=10",
+          "i<11"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3 4 5 6 7 8 9 10\n",
+        "expected": "7",
+        "note": "第一个被 7 整除的是 7"
+      },
+      {
+        "stdin": "1 2 3 4 5 6 8 9 10 11\n",
+        "expected": "not exist",
+        "note": "无 7 的倍数"
+      },
+      {
+        "stdin": "7 7 7 7 7 7 7 7 7 7\n",
+        "expected": "7",
+        "note": "首数即命中"
+      }
+    ],
+    "explanation": "考点是提前退出与「是否找到」的判别：命中 `a%7==0` 时 `break` 立即结束输入循环；循环正常走完时 i 会变成 11，故用 `i<=10` 判断是提前退出（找到）还是读完 10 个数（未找到）。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,a;\n    for (i=1; i<=10; i++)\n    {   scanf(\"%d\",&a);\n        if(a%7==0)   break ;\n    }\n    if( i<=10 ) printf(\"%d\\n\",a);\n    else printf(\"not exist\\n\");\n    return 0;\n}"
+  },
+  {
+    "originalId": "题5.96",
+    "chapter": "第5章 循环结构",
+    "section": "5.2 填空题",
+    "sourceBatch": "b05",
+    "page": 71,
+    "bookPage": 60,
+    "code": "#include <stdio.h>\nint main( )\n{   int i,j;\n    for (i=0;   /*__BLANK_1__*/;   i++)\n    {   j=i * 10+6;\n        if(  /*__BLANK_2__*/ )  continue;\n        printf(\"%d \",j);\n    }\n    return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "i<=9",
+        "accepted": [
+          "i<=9",
+          "i<10"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "j%3!=0",
+        "accepted": [
+          "j%3!=0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "6 36 66 96 ",
+        "note": "个位为 6 且被 3 整除"
+      }
+    ],
+    "explanation": "考点是构造法枚举：个位为 6 的两位数可写成 `j=i*10+6`，i 取 0..9 即 6..96，故条件 `i<=9`；不能被 3 整除的用 `j%3!=0` 触发 continue 跳过输出。比逐个判断 1..100 更高效。",
+    "solution": "#include <stdio.h>\nint main( )\n{   int i,j;\n    for (i=0;    i<=9 ;   i++)\n    {   j=i * 10+6;\n        if(   j%3!=0  )  continue;\n        printf(\"%d \",j);\n    }\n    return 0;\n}"
+  }
+]

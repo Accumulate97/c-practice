@@ -121,5 +121,133 @@
    }
   ],
   "explanation": "**答案：1、2、2**。if 的语句体是逗号表达式 `y=x, x=z;`——它整体只算**一条**语句，所以两个赋值都受 `x>z` 控制；条件 `1>3` 为假，两者都不执行，x 仍为 1、y 仍为 2。其后的 `z=y;` 在 if 之外，必然执行，z 取 2。易错点：一是把逗号表达式误读成「只有 `y=x` 属于 if」；二是与题 4.86 混淆——4.86 用分号分隔，只有第一条受 if 管辖，本题用逗号，两条都受管辖。"
+ },
+ "题5.9": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.9】下面程序的功能是从键盘输入的一组字符中统计出大写字母的个数m和小写字母的个数n，并输出m、n中的较大者，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int m=0,n=0; char c;\n    while((【1]!='\\n')\n    {   if(c>='A'&&c<='Z') m++;\n        if(c>='a'&&c<='z') n++;\n    }\n    printf(\"%d\\n\", m<n ? 【2]);\n    return 0;\n}\n```\n\n【1】的候选项：\nA) c=getchar( )\nB) getchar( )\nC) c=getchar( )\nD) scanf(\"%c\",c)\n\n【2】的候选项：\nA) n:m\nB) m:n\nC) m:m\nD) n:n\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "C"
+   },
+   {
+    "index": 2,
+    "answer": "A"
+   }
+  ],
+  "explanation": "答案C、A。【1】必须在 while 条件中把读入的字符赋给 c 且整体加括号：`(c=getchar())!='\\n'`，否则比较的不是刚读入的字符；【2】要输出 m、n 中较大者，`m<n` 为真时取 n，即 `n:m`。"
+ },
+ "题5.10": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.10】下面程序的功能是将小写字母变成对应大写字母后的第二个字母。其中y变成A，z变成B。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   char c;\n    while((c=getchar( ))!='\\n')\n    {   if(c>='a'&&c<='z')\n{   【1】;\n            if(c>'Z')【2】;\n        }\n        printf(\"%c\",c);\n    }\n    return 0;\n}\n```\n\n【1】的候选项：\nA) c+=2\nB) c-=32\nC) c=c+32+2\nD) c=c-32+2\n\n【2】的候选项：\nA) c='B'\nB) c='A'\nC) c-=26\nD) c+=26\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "D"
+   },
+   {
+    "index": 2,
+    "answer": "C"
+   }
+  ],
+  "explanation": "答案D、C。小写转大写需减 32，题意还要「后移两位」，故 `c=c-32+2`；y、z 会越出 `'Z'`，越界时回绕一个字母表：`c-=26`，使 y→A、z→B。"
+ },
+ "题5.19": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.19】下面程序的功能是计算正整数2345的各位数字的平方和，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int n=2345,sum=0;\n    do\n    {   sum=sum+【1】;\n        n=【2】;\n    } while(n);\n    printf(\"sum=%d\",sum);\n    return 0;\n}\n```\n\n【1】的候选项：\nA) n%10\nB) (n%10) * (n%10)\nC) n/10\nD) (n/10) * (n/10)\n\n【2】的候选项：\nA) n/1000\nB) n/100\nC) n/10\nD) n%10\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B"
+   },
+   {
+    "index": 2,
+    "answer": "C"
+   }
+  ],
+  "explanation": "答案B、C。求各位数字平方和需 `(n%10)*(n%10)` 取末位的平方；缩位用 `n=n/10`。D 的 `n%10` 不缩位会死循环。"
+ },
+ "题5.20": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.20】下面程序的功能是从键盘输入若干学号，然后输出学号中百位数字是3的学号(输入0时结束循环)，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   long int num;\n    scanf(\"%ld\",&num);\n    do\n    {   if(【1】) printf(\"%ld \",num);\n        scanf(\"%ld\",&num);\n    } while(【2】);\n    return 0;\n}\n```\n\n【1】的候选项：\nA) num%100/10==3\nB) num/100%10==3\nC) num%10/10==3\nD) num/10%10==3\n\n【2】的候选项：\nA) !num\nB) num>0==0\nC) !num==0\nD) !num!=0\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B"
+   },
+   {
+    "index": 2,
+    "answer": "C"
+   }
+  ],
+  "explanation": "答案B、C。百位数字是 `num/100%10`；输入 0 结束即「num 非 0 时继续循环」，`!num==0` 等价于 `num!=0`。"
+ },
+ "题5.21": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.21】假设等比数列的第一项a=1，公比q=2，下面程序的功能是求满足前n项和小于100的最大n，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int a=1,g=2,n=0,sum=0;\n    do\n    {   【1】;\n        ++n; a*=g;\n    } while(sum<100);\n    【2】;\n    printf(\"%d\\n\",n);\n    return 0;\n}\n```\n\n【1】的候选项：\nA) sum++\nB) sum+=a\nC) sum=a+a\nD) a+=sum\n\n【2】的候选项：\nA) n=n-2\nB) n=n\nC) n++\nD) n-=1\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B"
+   },
+   {
+    "index": 2,
+    "answer": "D"
+   }
+  ],
+  "explanation": "答案B、D。循环体内先累加当前项 `sum+=a`，再计数、再把 a 翻倍；退出时 sum 已 ≥100，即多加了一项，故 n 要减 1 才是「和小于 100」的最大项数。"
+ },
+ "题5.37": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.37】下面程序的功能是计算1～10之间的奇数之和及偶数之和。请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int a=0,b,c=0,i;\n    for(i=0;i<=10;i+=2)\n    {   a+=i;\n        【1】;\n        c+=b;\n    }\n    printf(\"The sum of even=%d\\n\",a);\n    printf(\"The sun of odd=%d\\n\", 【2】 );\n    return 0;\n}\n```\n\n【1】的候选项：\nA) b=i--\nB) b=i+1\nC) b=i++\nD) b=i-1\n\n【2】的候选项：\nA) c-10\nB) c\nC) c-11\nD) c-b\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B"
+   },
+   {
+    "index": 2,
+    "answer": "C"
+   }
+  ],
+  "explanation": "答案B、C。i 取 0,2,…,10 为偶数并累入 a；`b=i+1` 得到对应奇数累入 c，c=1+3+…+11=36，比真正的奇数和 1+3+…+9 多加了 11，故输出 `c-11`。"
+ },
+ "题5.41": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.41】下面程序的功能是求算式xyz＋yzz＝532中x、y、z的值(其中xyz和yzz分别表示一个三位数)，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int x,y,z,i,result=532;\n    for (x=1; x<10; x++)\n        for (y=1; y<10; y++)\n            for( 【1】 ; z<10; z++)\n            {   i=100*x+10*y+z+100*y+10*z+z;\n                if(【2】)\n                    printf(\"x=%d,y=%d,z=%d\\n\",x,y,z);\n            }\n    return 0;\n}\n```\n\n【1】的候选项：\nA) z=x\nB) z=1\nC) z=0\nD) z=y\n\n【2】的候选项：\nA) i/result==1\nB) i=result\nC) i!=result\nD) i==result\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "C"
+   },
+   {
+    "index": 2,
+    "answer": "D"
+   }
+  ],
+  "explanation": "答案C、D。z 需从 0 开始穷举（`z=0`）；拼出的两个三位数之和 i 与 532 比较，命中条件为 `i==result`。"
+ },
+ "题5.42": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 5.42】下面程序是输出一个正整数等差数列的前10项，此数列前4项之和及之积分别是26和880，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int a,d,i,s,f,x;                              //a 是第一项\n    for(a=1; a<30; a++)\n        for(d=1; 【1】 ; d++)\n        {   s=0; f=1; x=a;\n            for(i=1; i<=4; i++)\n            {   s=s+x;\n                f=f*x;\n                x=x+d;\n            }\n            if(s==26 && f==880)\n                for(i=0; i<10; i++)\n                    printf(\"%3d\", 【2】 );\n        }\n    return 0;\n}\n```\n\n【1】的候选项：\nA) d<=a\nB) 空\nC) d<=5\nD) d<a\n\n【2】的候选项：\nA) a+i*d\nB) i*d\nC) a+(i+1)*d\nD) a+d\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "D"
+   },
+   {
+    "index": 2,
+    "answer": "A"
+   }
+  ],
+  "explanation": "答案D、A。公差 d 应小于首项 a（`d<a`），避免 (a,d) 与 (a+d,…) 重复枚举；等差数列从第 1 项起第 i+1 项（i 从 0 起）为 `a+i*d`。"
  }
 }

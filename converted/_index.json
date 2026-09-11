@@ -65,19 +65,17 @@
       "chapter": 5,
       "id": "c-ch05",
       "name": "第5章 循环结构",
-      "converted": 32,
-      "staged": 75,
+      "converted": 107,
+      "staged": 0,
       "byType": {
+        "single_choice": 46,
+        "fill_blank": 8,
+        "code_completion": 22,
         "code_reading": 24,
-        "code_completion": 1,
         "programming": 4,
         "debug": 3
       },
-      "stagedBySubType": {
-        "single_choice": 54,
-        "multi_blank": 19,
-        "code_completion": 2
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 6,
@@ -206,25 +204,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 540,
-    "staged": 483,
+    "converted": 615,
+    "staged": 408,
     "byType": {
-      "single_choice": 102,
-      "fill_blank": 93,
+      "single_choice": 148,
+      "fill_blank": 101,
       "code_reading": 225,
       "short_answer": 22,
-      "code_completion": 35,
+      "code_completion": 56,
       "programming": 48,
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 316,
-      "multi_blank": 72,
-      "code_completion": 95
+      "single_choice": 262,
+      "code_completion": 93,
+      "multi_blank": 53
     },
-    "judgeEvidence": 339,
+    "judgeEvidence": 360,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 35,
+    "rescuedCodeCompletion": 56,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }

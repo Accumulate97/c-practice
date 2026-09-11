@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "f56dfef9277f00c7",
+  "content_sha": "c1593ec787bcb560",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 541,
+  "count": 616,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -2850,6 +2850,756 @@
       "chapter": "第5章 循环结构",
       "section": "5.4 程序改错题（变式生成）",
       "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-001",
+      "file": "c-ch05.json",
+      "title": "【题 5.1】设有程序段",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-002",
+      "file": "c-ch05.json",
+      "title": "【题 5.2】设有以下程序段",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-003",
+      "file": "c-ch05.json",
+      "title": "【题 5.3】语句while",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-004",
+      "file": "c-ch05.json",
+      "title": "【题 5.4】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-005",
+      "file": "c-ch05.json",
+      "title": "【题 5.5】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-006",
+      "file": "c-ch05.json",
+      "title": "【题 5.6】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-007",
+      "file": "c-ch05.json",
+      "title": "【题 5.7】设有程序段",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-008",
+      "file": "c-ch05.json",
+      "title": "【题 5.8】下面程序的功能是将从键盘输入的一对数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-001",
+      "file": "c-ch05.json",
+      "title": "【题 5.9】下面程序的功能是从键盘输入的一组字符中统计出大写字母的个数m和小写字母的个数n",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-002",
+      "file": "c-ch05.json",
+      "title": "【题 5.10】下面程序的功能是将小写字母变成对应大写字母后的第二个字母",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-009",
+      "file": "c-ch05.json",
+      "title": "【题 5.11】下面程序的功能是在输入的一系列正整数中求出最大者",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-010",
+      "file": "c-ch05.json",
+      "title": "【题 5.12】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-011",
+      "file": "c-ch05.json",
+      "title": "【题 5.13】若运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-012",
+      "file": "c-ch05.json",
+      "title": "【题 5.14】以下程序段的功能是计算一个整数的各位数字之和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-013",
+      "file": "c-ch05.json",
+      "title": "【题 5.15】以下能正确计算1×2×3×…×10的程序段是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-014",
+      "file": "c-ch05.json",
+      "title": "【题 5.16】以下程序段______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-015",
+      "file": "c-ch05.json",
+      "title": "【题 5.17】以下描述中正确的是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-016",
+      "file": "c-ch05.json",
+      "title": "【题 5.18】若有如下语句",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-003",
+      "file": "c-ch05.json",
+      "title": "【题 5.19】下面程序的功能是计算正整数2345的各位数字的平方和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-004",
+      "file": "c-ch05.json",
+      "title": "【题 5.20】下面程序的功能是从键盘输入若干学号",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-005",
+      "file": "c-ch05.json",
+      "title": "【题 5.21】假设等比数列的第一项a=1",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-017",
+      "file": "c-ch05.json",
+      "title": "【题 5.22】下面程序的功能是把316表示为两个加数的和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-018",
+      "file": "c-ch05.json",
+      "title": "【题 5.23】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-019",
+      "file": "c-ch05.json",
+      "title": "【题 5.24】若运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-020",
+      "file": "c-ch05.json",
+      "title": "【题 5.25】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-021",
+      "file": "c-ch05.json",
+      "title": "【题 5.26】下面有关for循环的正确描述是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-022",
+      "file": "c-ch05.json",
+      "title": "【题 5.27】对for",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-023",
+      "file": "c-ch05.json",
+      "title": "【题 5.28】若i为整型变量",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-024",
+      "file": "c-ch05.json",
+      "title": "【题 5.29】以下for循环的执行次数是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-025",
+      "file": "c-ch05.json",
+      "title": "【题 5.30】以下不是无限循环的语句为______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-026",
+      "file": "c-ch05.json",
+      "title": "【题 5.31】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-027",
+      "file": "c-ch05.json",
+      "title": "【题 5.32】下面程序段的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-028",
+      "file": "c-ch05.json",
+      "title": "【题 5.33】下列程序段不是死循环的是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-029",
+      "file": "c-ch05.json",
+      "title": "【题 5.34】执行语句for",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-030",
+      "file": "c-ch05.json",
+      "title": "【题 5.35】有一堆零件",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-031",
+      "file": "c-ch05.json",
+      "title": "【题 5.36】下面程序的功能是计算1～50中是7的倍数的数值之和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-006",
+      "file": "c-ch05.json",
+      "title": "【题 5.37】下面程序的功能是计算1～10之间的奇数之和及偶数之和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-032",
+      "file": "c-ch05.json",
+      "title": "【题 5.38】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-033",
+      "file": "c-ch05.json",
+      "title": "【题 5.39】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-034",
+      "file": "c-ch05.json",
+      "title": "【题 5.40】下面程序段的功能是计算1000!的末尾含有多少个零",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-007",
+      "file": "c-ch05.json",
+      "title": "【题 5.41】下面程序的功能是求算式xyz＋yzz＝532中x、y、z的值",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-008",
+      "file": "c-ch05.json",
+      "title": "【题 5.42】下面程序是输出一个正整数等差数列的前10项",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-035",
+      "file": "c-ch05.json",
+      "title": "【题 5.43】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-036",
+      "file": "c-ch05.json",
+      "title": "【题 5.44】以下正确的描述是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-037",
+      "file": "c-ch05.json",
+      "title": "【题 5.45】在下面的程序段中",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-038",
+      "file": "c-ch05.json",
+      "title": "【题 5.46】下面的程序段______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-039",
+      "file": "c-ch05.json",
+      "title": "【题 5.47】与下面程序段等价的是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-040",
+      "file": "c-ch05.json",
+      "title": "【题 5.48】下面程序的功能是将从键盘输入的偶数写成两个素数之和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-041",
+      "file": "c-ch05.json",
+      "title": "【题 5.49】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-042",
+      "file": "c-ch05.json",
+      "title": "【题 5.50】若运行以下程序时",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-043",
+      "file": "c-ch05.json",
+      "title": "【题 5.51】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-044",
+      "file": "c-ch05.json",
+      "title": "【题 5.52】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-045",
+      "file": "c-ch05.json",
+      "title": "【题 5.53】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-046",
+      "file": "c-ch05.json",
+      "title": "【题 5.54】下面程序的运行结果是______",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-002",
+      "file": "c-ch05.json",
+      "title": "【题 5.55】下面程序段是从键盘输入的字符中统计数字字符的个数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-003",
+      "file": "c-ch05.json",
+      "title": "【题 5.56】下面程序的功能是用公式",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-004",
+      "file": "c-ch05.json",
+      "title": "【题 5.57】有1020个西瓜",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-005",
+      "file": "c-ch05.json",
+      "title": "【题 5.58】下面程序的功能是用辗转相除法求两个正整数的最大公约数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-006",
+      "file": "c-ch05.json",
+      "title": "【题 5.66】下面程序的功能是用do-while语句求1~1000之间满足\"用3除余2",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-007",
+      "file": "c-ch05.json",
+      "title": "【题 5.67】下面程序的功能是统计正整数的各位数字中零的个数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-008",
+      "file": "c-ch05.json",
+      "title": "【题 5.69】下面程序的功能是求11^11的个、十、百位上的数字之和",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-009",
+      "file": "c-ch05.json",
+      "title": "【题 5.74】下面程序段是找出整数的所有因子",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-010",
+      "file": "c-ch05.json",
+      "title": "【题 5.75】鸡兔共有30只",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-011",
+      "file": "c-ch05.json",
+      "title": "【题 5.77】下面程序的功能是计算1-3+5-7+…-99+101的值",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-012",
+      "file": "c-ch05.json",
+      "title": "【题 5.78】以下程序是用梯形法求sin",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-013",
+      "file": "c-ch05.json",
+      "title": "【题 5.79】以下程序的功能是根据公式e=1+1/1!+1/2!+1/3!+…",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-014",
+      "file": "c-ch05.json",
+      "title": "【题 5.83】下面程序的功能是统计用数字0~9可以组成多少个没有重复的3位偶数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-015",
+      "file": "c-ch05.json",
+      "title": "【题 5.84】下面程序的功能是输出1~100之间满足每位数的乘积大于每位数的和的数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-016",
+      "file": "c-ch05.json",
+      "title": "【题 5.85】下面程序的功能是求1000以内的所有完全数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-017",
+      "file": "c-ch05.json",
+      "title": "【题 5.86】下面程序的功能是完成用100元人民币换成1元、2元、5元的所有兑换方案",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-018",
+      "file": "c-ch05.json",
+      "title": "【题 5.87】下面程序的功能是从3个红球、5个白球、6个黑球中任意取出8个球",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-019",
+      "file": "c-ch05.json",
+      "title": "【题 5.93】用0~9之间不同的3个数构成一个3位数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-020",
+      "file": "c-ch05.json",
+      "title": "【题 5.94】下面程序的功能是计算100~1000之间有多少个数其各位数字之和是5",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-021",
+      "file": "c-ch05.json",
+      "title": "【题 5.95】下面程序的功能是从键盘输入的10个整数中",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-022",
+      "file": "c-ch05.json",
+      "title": "【题 5.96】下面程序的功能是打印100以内个位数为6且能被3整除的所有数",
+      "tags": [],
+      "chapter": "第5章 循环结构",
+      "section": "5.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {
