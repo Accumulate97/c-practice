@@ -2,8 +2,470 @@
   "category": "c",
   "chapter": "第7章 函数",
   "generated_at": "2026-09-08",
-  "count": 35,
+  "count": 81,
   "problems": [
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.1（PDF p120 / 书页 p109）",
+      "difficulty": 4,
+      "stem": "【题 7.1】以下程序的运行结果是________。\n\n```c\n#include <stdio.h>\nint fun(int n)\n{ int m=0,f=-1,i;\n  for(i=1;i<=n;i++)\n    { m=m+i * f;\n      f=-f;\n    }\n  return m;\n}\nint main( )\n{ printf(\"m=%d\\n\", fun(10));\n  return(0);\n}\n```",
+      "explanation": "答案A。f 初值为 −1 且每轮 `f=-f` 取反，故 fun(10) 计算的是 −1+2−3+4−5+6−7+8−9+10；两两配对 (−1+2)、(−3+4)…(−9+10) 各为 1，共 5 组，m=5，输出 m=5。易错点：把 f 的初值当成 +1 会得到 −5（D）；只累加到 i=9 会得到 −5 或误选 C 的 6。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) m=5",
+        "B) m=－6",
+        "C) m=6",
+        "D) m=－5"
+      ],
+      "answer": 0,
+      "id": "c-ch07-sc-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.2（PDF p120 / 书页 p109）",
+      "difficulty": 2,
+      "stem": "【题 7.2】C语言规定，简单变量作为实参时，它和对应形参之间的数据传递方式是________。",
+      "explanation": "答案B。C 语言规定：简单变量作实参时采用单向值传递，即把实参的值复制一份给形参，形参在函数内的任何修改都不会回传影响实参。A 地址传递只发生在指针或数组名作实参时；C 描述的\"再由形参传回给实参\"是双向传递，C 语言没有这种机制（要回传只能用返回值或指针）；D 错在传递方式由语言规定，用户无法指定。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 地址传递",
+        "B) 单向值传递",
+        "C) 由实参传给形参，再由形参传回给实参",
+        "D) 由用户指定传递方式"
+      ],
+      "answer": 1,
+      "id": "c-ch07-sc-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.3（PDF p120 / 书页 p109）",
+      "difficulty": 3,
+      "stem": "【题 7.3】以下程序有语法性错误，有关错误原因的正确说法是________。\n\n```c\n#include <stdio.h>\nint main( )\n{   int G=5,k;\n    void prt_char( );\n    ...\n    k=prt_char(G);\n    ...\n}\n```",
+      "explanation": "答案C。`void prt_char( );` 说明该函数无返回值，而 `k=prt_char(G);` 又要把它的返回值赋给整型 k，函数说明与函数调用语句自相矛盾。A 错在把这条语句当成函数调用——带类型名 void 的是函数说明（声明），不是调用；B、D 与命名规则无关，C 语言允许用大写字母和下划线作标识符。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 语句 void prt_char( ); 有错，它是函数调用语句，不能用 void 说明",
+        "B) 变量名不能使用大写字母",
+        "C) 函数说明和函数调用语句之间有矛盾",
+        "D) 函数名不能使用下划线"
+      ],
+      "answer": 2,
+      "id": "c-ch07-sc-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.4（PDF p121 / 书页 p110）",
+      "difficulty": 3,
+      "stem": "【题 7.4】以下程序的运行结果是________。\n\n```c\n#include <stdio.h>\nint fun(int a, int b)\n{ if(a>b) return(a+b);\n  else return(a-b);\n}\nint main( )\n{ int x=3, y=8, z=6, r;\n  r=fun(fun(x,y), 2 * z);\n  printf(\"%d\\n\", r);\n  return(0);\n}\n```",
+      "explanation": "答案B。fun(a,b) 在 a>b 时返回 a+b，否则返回 a−b。内层 fun(3,8)：3>8 不成立，返回 3−8=−5；外层 fun(−5, 2*z)=fun(−5,12)：−5>12 不成立，返回 −5−12=−17。易错点：误以为两次都走 a+b 分支而选 C 的 17；或只算内层结果再与 12 相加/相减得到 16、−16。关键是要意识到负数作第一实参时 a>b 恒不成立。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) －16",
+        "B) －17",
+        "C) 17",
+        "D) 16"
+      ],
+      "answer": 1,
+      "id": "c-ch07-sc-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.5（PDF p121 / 书页 p110）",
+      "difficulty": 3,
+      "stem": "【题 7.5】以下程序的运行结果是________。\n\n```c\n#include <stdio.h>\nint f(int x, int y)\n{   return (y-x) * x; }\nint main( )\n{   int a=3,b=4,c=5,d;\n    d=f(f(a,c),f(a,b)+f(c,b));\n    printf(\"%d\\n\",d);\n    return(0);\n}\n```",
+      "explanation": "答案A。f(x,y)=(y−x)*x。f(a,c)=f(3,5)=(5−3)*3=6；f(a,b)=f(3,4)=3；f(c,b)=f(5,4)=(4−5)*5=−5；于是第二个实参为 3+(−5)=−2，d=f(6,−2)=(−2−6)*6=−48。易错点：把 f 误读成 (x−y)*x 会得到 48；把两个内层调用之和算成 3+5=8 会得到 (8−6)*6=12 之类，而 −58（C）正是把 −5 误当成 +5 后 (−2−6) 的符号弄错所致。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) －48",
+        "B) 58",
+        "C) －58",
+        "D) 47"
+      ],
+      "answer": 0,
+      "id": "c-ch07-sc-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.6（PDF p121 / 书页 p110）",
+      "difficulty": 4,
+      "stem": "【题 7.6】以下程序的功能是计算函数 F(x,y,z)=＝(x＋y)/(x－y)＋(z＋y)/(z－y)的值，请选择填空。\n\n```c\n#include <stdio.h>\n#include <math.h>\nfloat f(float,float);\nint main( )\n{   float x,y,z,sum;\n    scanf(\"%f%f%f\", &x, &y, &z);\n    sum=f(【1】)+f(【2】);\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b)\n{   float value;\n    value=a/b;\n    return(value);\n}\n```\n\n【1】的候选项：\nA) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y\n\n【2】的候选项：\nA) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y\n\n请分别填写两个空的选项字母。",
+      "explanation": "答案：B、C。f(a,b) 的函数体是 `value=a/b`，即\"第一实参除以第二实参\"，故要得到 (x+y)/(x−y) 必须传 (x+y, x−y)，要得到 (z+y)/(z−y) 必须传 (z+y, z−y)。易错点：一是把实参顺序写反（选 A/D）得到的是原式的倒数；二是两项都填 x、y 而忽略了 F 的第二个分式用的是 z 与 y。另外当 x=y 或 z=y 时会发生除零，程序未做保护。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "B",
+          "accepted": [
+            "B",
+            "x＋y,x－y",
+            "x+y,x-y"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "C",
+          "accepted": [
+            "C",
+            "z＋y,z－y",
+            "z+y,z-y"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.7（PDF p122 / 书页 p111）",
+      "difficulty": 4,
+      "stem": "【题 7.7】以下程序可选出能被3整除且至少有一位是5的两位数，打印出所有这样的数及其个数。请选择填空。\n\n```c\n#include <stdio.h>\nint sub(int k, int n)\n{   int a1,a2;\n    a2=【1】;\n    a1=k-【2】;\n    if((k%3==0 && a2==5)||(k%3==0 && a1==5))\n    {   printf(\"%d \",k);\n        n++;\n        return n;\n    }\n    else return -1;\n}\nint main( )\n{   int n=0,k,m;\n    for(k=10;k<=99;k++)\n    {   m=sub(k,n);\n        if(m!=-1) n=m;\n    }\n    printf(\"\\nn=%d\",n);\n    return(0);\n}\n```\n\n【1】的候选项：\nA) k * 10\nB) k%10\nC) k/10\nD) k * 10%10\n\n【2】的候选项：\nA) a2 * 10\nB) a2\nC) a2/10\nD) a2%10\n\n请分别填写两个空的选项字母。",
+      "explanation": "答案：C、A。两位数 k 的十位数字是 `k/10`（整数除法自动舍去个位），个位数字则用 `k − 十位*10` 还原，故【1】填 k/10、【2】填 a2*10。易错点：【1】若填 k%10 得到的是个位，与【2】的 a2*10 搭配后 a1=k−个位*10 会变成负数；【2】填 a2 或 a2/10 都无法还原个位。判定条件 `k%3==0 && (a2==5||a1==5)` 正是\"能被 3 整除且至少有一位是 5\"。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "C",
+          "accepted": [
+            "C",
+            "k/10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "A",
+          "accepted": [
+            "A",
+            "a2 * 10",
+            "a2*10"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-002",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.8（PDF p122 / 书页 p111）",
+      "difficulty": 3,
+      "stem": "【题 7.8】以下是有关汉诺塔问题的程序段，若在 main 函数中有调用语句 hanoi(3,‘A’,‘B’,‘C’)；则符合程序段运行结果的选项是________。\n\n```c\nvoid move(char getone,char putone)\n{   printf(\"%c-->%c\\n\",getone,putone);\n}\n\nvoid hanoi(int n,char one,char two,char three)\n{   if(n==1) move(one,three);\n    else\n    {   hanoi(n-1,one,three,two);\n        move(one,three);\n        hanoi(n-1,two,one,three);\n    }\n}\n```",
+      "explanation": "答案C。hanoi(3,A,B,C) 的递归展开：先 hanoi(2,A,C,B) 把上面两片从 A 借 C 移到 B，输出 A-->C、A-->B、C-->B；再 move(A,C) 把最大片移到 C，输出 A-->C；最后 hanoi(2,B,A,C) 把两片从 B 借 A 移到 C，输出 B-->A、B-->C、A-->C，共 2³−1=7 步。易错点：混淆形参 one/two/three 与实参 A/B/C 的对应，把\"借助柱\"当成\"目标柱\"，就会得到 A、B、D 那样的错误序列。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) A-->C\nA-->B\nC-->B\nB-->A\nC-->B\nA-->C\nA-->B",
+        "B) A-->C\nA-->B\nC-->A\nA-->B\nB-->C\nA-->C\nA-->B",
+        "C) A-->C\nA-->B\nC-->B\nA-->C\nB-->A\nB-->C\nA-->C",
+        "D) A-->C\nA-->B\nC-->B\nA-->C\nA-->B\nB-->C\nA-->C"
+      ],
+      "answer": 2,
+      "id": "c-ch07-sc-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.9（PDF p123 / 书页 p112）",
+      "difficulty": 2,
+      "stem": "【题 7.9】若用数组名作为函数调用的实参，则传递给形参的是________。",
+      "explanation": "答案A。数组名作实参时，传递给形参的是数组的首地址，形参数组与实参数组共用同一段内存，因此函数内修改形参元素会直接影响实参。B「第一个元素的值」是 `a[0]` 作实参时的效果；C「全部元素的值」需要逐个复制，C 语言不会这样做；D「元素个数」不会随数组名自动传递，必须另设一个参数（如 int n）。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 数组的首地址",
+        "B) 数组第一个元素的值",
+        "C) 数组中全部元素的值",
+        "D) 数组元素的个数"
+      ],
+      "answer": 0,
+      "id": "c-ch07-sc-007",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.10（PDF p123 / 书页 p112）",
+      "difficulty": 3,
+      "stem": "【题 7.10】折半查找法的思路是：先确定待查元素的范围，将其分成两半，然后测试位于中间点元素的值。如果该待查元素的值大于中间点元素，就缩小待查范围，只测试中点之后的元素；反之，测试中点之前的元素，测试方法同前。函数 binary 的作用是应用折半查找法从存有 10 个有序整数的 a 数组中对关键字 m 进行查找，若找到，返回其下标值；反之，返回－1。请选择填空。\n\n```c\nint binary(int a[10],int m)\n{   int low=0,high=9,mid;\n    while(low<=high)\n    {   mid=(low+high)/2;\n        if(m<a[mid])  【1】;\n        else if(m>a[mid])  【2】;\n        else return(mid);\n    }\n    return(-1);\n}\n```\n\n【1】与【2】的候选项相同：\nA) high=mid－1\nB) low=mid＋1\nC) high=mid＋1\nD) low=mid－1\n\n请分别填写两个空的选项字母。\n\n（原书四个候选项排版为一行，此处按 A/B/C/D 拆行照录。）",
+      "explanation": "答案：A、B。折半查找中 mid=(low+high)/2：当 m<a[mid] 时目标只可能在左半区，应把上界收缩为 mid−1；当 m>a[mid] 时目标只可能在右半区，应把下界抬高为 mid＋1；相等则命中返回 mid。易错点：写成 high=mid 或 low=mid 会使区间无法缩小，当 low<=high 恒成立时造成死循环；把两空的左右方向弄反（选 D、C）则每次都在错误的半区查找，最终返回 −1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "apply",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "A",
+          "accepted": [
+            "A",
+            "high=mid－1",
+            "high=mid-1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "B",
+          "accepted": [
+            "B",
+            "low=mid＋1",
+            "low=mid+1"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-003",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.11（PDF p123 / 书页 p112）",
+      "difficulty": 4,
+      "stem": "【题 7.11】以下程序的正确运行结果是________。\n\n```c\n#include <stdio.h>\n#define MAX 10\nvoid sub2( ), sub1( ), sub3(int * a);\nint a[MAX],i;\nint main( )\n{   printf(\"\\n\"); sub1( ); sub3(a); sub2( ); sub3(a);\n    return(0);\n}\nvoid sub2( )\n{   int a[MAX],i,max;\n    max=5;\n    for(i=0;i<max;i++) a[i]=i;\n}\nvoid sub1( )\n{   for(i=0;i<MAX;i++) a[i]=i+i;\n}\nvoid sub3(int a[ ])\n{   int i;\n    for(i=0; i<MAX; i++) printf(\"%d \",a[i]);\n    printf(\"\\n\");\n}\n```",
+      "explanation": "答案D。sub1 修改的是全局数组 a：a[i]=i+i 得 0 2 4 … 18，第一次 sub3(a) 打印它。sub2 内部重新定义了同名的局部数组 a 和局部变量 i、max，`a[i]=i` 只作用于局部副本，全局 a 一点没变，故第二次 sub3(a) 输出与第一次完全相同。易错点：误以为 sub2 把 a 改成了 0 1 2 3 4 而选 A；也要注意 main 开头的 printf(\"\\n\") 只输出一个空行，不影响后续两行数字。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 0 2 4 6 8 10 12 14 16 18\n0 1 2 3 4",
+        "B) 0 1 2 3 4\n0 2 4 6 8 10 12 14 16 18",
+        "C) 0 1 2 3 4 5 6 7 8 9\n0 1 2 3 4",
+        "D) 0 2 4 6 8 10 12 14 16 18\n0 2 4 6 8 10 12 14 16 18"
+      ],
+      "answer": 3,
+      "id": "c-ch07-sc-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.12（PDF p124 / 书页 p113）",
+      "difficulty": 4,
+      "stem": "【题 7.12】以下程序的正确运行结果是________。\n\n```c\n#include <stdio.h>\nvoid num( )\n{   extern int x,y; int a=15,b=10;\n    x=a-b;\n    y=a+b;\n}\nint x,y;\nint main( )\n{   int a=7,b=5;\n    x=a+b;\n    y=a-b;\n    num( );\n    printf(\"%d,%d\\n\",x,y);\n    return(0);\n}\n```",
+      "explanation": "答案C。num() 中用 `extern int x,y;` 声明引用的是全局变量，执行后 x=15−10=5、y=15+10=25；main 中先前给全局 x、y 赋的 12、2 被覆盖，最后 printf 输出 5,25。易错点：误以为 num 里的 a、b 就是 main 里的 a、b——它们分别是各自函数的局部变量，互不相干；选 A（12,2）是忽略了 num() 对全局变量的覆盖作用。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 12,2",
+        "B) 不确定",
+        "C) 5,25",
+        "D) 1,12"
+      ],
+      "answer": 2,
+      "id": "c-ch07-sc-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.13（PDF p125 / 书页 p114）",
+      "difficulty": 2,
+      "stem": "【题 7.13】在一个C源程序文件中，若要定义一个只允许本源文件中所有函数使用的全局变量，则该变量需要使用的存储类别是________。",
+      "explanation": "答案D。static 用于修饰全局变量（文件作用域变量）时，把它限制为内部链接，只有本源文件内的函数可以访问，其他文件即使 extern 声明也看不见。A extern 的作用恰恰相反，是用来引用其他文件中定义的全局变量；B register、C auto 只能修饰局部变量，不能用于全局变量。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) extern",
+        "B) register",
+        "C) auto",
+        "D) static"
+      ],
+      "answer": 3,
+      "id": "c-ch07-sc-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.14（PDF p125 / 书页 p114）",
+      "difficulty": 3,
+      "stem": "【题 7.14】以下程序的正确运行结果是________。\n\n```c\n#include <stdio.h>\nint f(int a);\nint main( )\n{   int a=2,i;\n    for(i=0; i<3; i++) printf(\"%4d\",f(a));\n    return(0);\n}\nint f(int a)\n{   int b=0; static int c=3;\n    b++; c++;\n    return(a+b+c);\n}\n```",
+      "explanation": "答案D。f 中 b 是普通局部变量，每次调用都重新初始化为 0；c 是 static 局部变量，只初始化一次并跨调用保留。三次调用中 c 依次由 3 增到 4、5、6，b++ 后恒为 1，返回值 a+b+c 即 2+1+4=7、2+1+5=8、2+1+6=9，用 %4d 打印为「   7   8   9」。易错点：以为 c 也每次重置会选 A（7 7 7）；以为 b 也累加会选 C（7 9 11）；%4d 只影响列宽不影响数值。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 7   7   7",
+        "B) 7  10  13",
+        "C) 7   9  11",
+        "D) 7   8   9"
+      ],
+      "answer": 3,
+      "id": "c-ch07-sc-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.15（PDF p125 / 书页 p114）",
+      "difficulty": 3,
+      "stem": "【题 7.15】以下程序的运行结果是________。\n\n```c\n#include <stdio.h>\nvoid fun(int x)\n{   if(x/2>0) fun(x/2-2);\n    printf(\"%d \",x);\n}\nint main( )\n{   fun(20);\n    printf(\"\\n\");\n    return(0);\n}\n```",
+      "explanation": "答案D。递归调用 fun(x/2−2)：20→8→2→−1；当 x=−1 时 x/2=0（C 的整数除法向零取整），`x/2>0` 不成立，递归终止。由于 printf 写在递归调用之后，输出发生在\"回溯\"阶段，故打印顺序与调用顺序相反：−1 2 8 20。易错点：把 printf 放在递归调用之前会得到 20 8 2 −1（A）；漏掉 x=−1 这一层会选 B（2 8 20）；注意 −1/2 在 C 中是 0 而不是 −1。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "single_choice",
+      "bloom": "understand",
+      "options": [
+        "A) 20 8 2 －1",
+        "B) 2 8 20",
+        "C) 8",
+        "D) －1 2 8 20"
+      ],
+      "answer": 3,
+      "id": "c-ch07-sc-012",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.16（PDF p125 / 书页 p114）",
+      "difficulty": 3,
+      "stem": "【题 7.16】为使以下程序顺利运行，请在【1】中填写正确的内容；当输入的数值为 5 7 时，该程序的运行结果是【2】。",
+      "explanation": "【1】填函数原型 double max(double a,double b);。max 的定义写在 main 之后，调用点之前若没有声明，C99 会按隐式声明处理（返回 int 且不再接受 double 实参），gcc 13 直接报 error，程序无法通过编译，所以必须在 main 之前补上原型。【2】运行结果：输入 5 7 时 x=5、y=7，调用 max(y,x) 使 a=7、b=5，a>b 成立，返回 b-a=5-7=-2，printf(\"%lf\") 输出 -2.000000。易错点：一是原型末尾的分号不能漏；二是别被函数名 max 误导，它返回的是 b-a 或 a-b，并不是两数中的较大值。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n/*__BLANK_1__*/\nint main( )\n{   double x,y;\n    scanf(\"%lf%lf\", &x, &y);\n    printf(\"%lf\\n\",max(y,x));\n    return(0);\n}\ndouble max(double a,double b)\n{   return(a>b ? b-a:a-b); }",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "double max(double a,double b);",
+          "accepted": [
+            "double max(double a,double b);",
+            "double max(double,double);",
+            "double max(double a, double b);"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n double max(double a,double b); \nint main( )\n{   double x,y;\n    scanf(\"%lf%lf\", &x, &y);\n    printf(\"%lf\\n\",max(y,x));\n    return(0);\n}\ndouble max(double a,double b)\n{   return(a>b ? b-a:a-b); }",
+      "testCases": [
+        {
+          "stdin": "5 7\n",
+          "expected": "-2.000000",
+          "note": "书给样例：x=5 y=7"
+        },
+        {
+          "stdin": "3.5 2\n",
+          "expected": "-1.500000",
+          "note": "小数与反序"
+        }
+      ],
+      "id": "c-ch07-cc-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.17（PDF p126 / 书页 p115）",
+      "difficulty": 4,
+      "stem": "【题 7.17】以下函数 fun 的功能是：将输入的大写字母，先转换为与其对应的小写字母，然后再转换成该小写字母后的第 3 个字母，返回后输出。例如，若输入的字母为 E，输出的字母则为 h；若输入的字母为 Y，输出的字母则为 b。请填空。",
+      "explanation": "【1】填 c+32：大写字母与对应小写字母的 ASCII 码相差 32，'A'=65、'a'=97，故先 c=c+32 完成大小写转换。【2】填 c=c-23：转换后若落在 'x'~'z'，再加 3 会越过 'z'，必须回绕到 'a' 开头，即 c=c+3-26=c-23。验证：输入 E→'e'(101)，落在 a~w，+3 得 'h'；输入 Y→'y'(121)，落在 x~z，-23 得 98 即 'b'，与题目示例一致。易错点：把两段写成 c=c+3 与 c=c-23 时不要漏掉 else if 的区间边界 'w' 与 'x' 正好衔接。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nchar fun(char c)\n{   c=/*__BLANK_1__*/;\n    if(c>='a'&&c<='w') c=c+3;\n    else if(c>='x'&&c<='z') /*__BLANK_2__*/;\n    return c;\n}\nint main( )\n{   char c;\n    c=getchar( );\n    c=fun(c);\n    putchar(c);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "c+32",
+          "accepted": [
+            "c+32",
+            "c+('a'-'A')",
+            "c + 32"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "c=c-23",
+          "accepted": [
+            "c=c-23",
+            "c-=23",
+            "c=c+3-26"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nchar fun(char c)\n{   c= c+32 ;\n    if(c>='a'&&c<='w') c=c+3;\n    else if(c>='x'&&c<='z')  c=c-23 ;\n    return c;\n}\nint main( )\n{   char c;\n    c=getchar( );\n    c=fun(c);\n    putchar(c);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "E\n",
+          "expected": "h",
+          "note": "书给样例 E→h"
+        },
+        {
+          "stdin": "Y\n",
+          "expected": "b",
+          "note": "书给样例 Y→b（回绕）"
+        },
+        {
+          "stdin": "A\n",
+          "expected": "d",
+          "note": "边界 a→d"
+        }
+      ],
+      "id": "c-ch07-cc-002",
+      "verified": false
+    },
     {
       "category": "c",
       "chapter": "第7章 函数",
@@ -19,6 +481,142 @@
       "code": "#include <stdio.h>\n#include <math.h>\nvoid fun(int n)\nint main( )\n{   int n;\n    scanf(\"%d\",&n);\n    printf(\"%d=\",n);\n    if(n<0) printf(\"-\");\n    n=abs(n);\n    fun(n);\n    return(0);\n}\nvoid fun(int n)\n{   int k,r;\n    for(k=2; k<=sqrt(n); k++)\n    {   r=n%k;\n        while(r==0)\n        {   printf(\"%d\",k);\n            n=n/k;\n            if(n>1) printf(\"*\");\n            r=n%k;\n        }\n    }\n    if(n!=1) printf(\"%d\\n\",n);\n}",
       "answer": "-125=-5*5*5",
       "id": "c-ch07-cr-001",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.19（PDF p127 / 书页 p116）",
+      "difficulty": 3,
+      "stem": "【题 7.19】下面 add 函数的功能是求两个参数的和，并将和值返回调用函数。函数中错误的部分是【1】，改正后为【2】。\n\n```c\nvoid add(float a,float b)\n{   float c;\n    c=a+b;\n    return c;\n}\n```\n",
+      "explanation": "答案：【1】函数头 `void add(float a,float b)`；【2】改为 `float add(float a,float b)`。函数体内 `return c;` 要把 float 型的和返回给调用者，而函数头声明为 void（无返回值），二者矛盾——这是典型的\"返回类型与 return 语句不匹配\"错误。易错点：把 `return c;` 改成 `return;` 虽然能编译通过，但丢掉了\"求和并返回\"的功能，与题目要求不符；正确的修法是让函数返回类型与被返回值的类型一致。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "void add(float a,float b)",
+          "accepted": [
+            "void add(float a,float b)",
+            "函数头 void add(float a,float b)",
+            "void add(float a, float b)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "float add(float a,float b)",
+          "accepted": [
+            "float add(float a,float b)",
+            "float add(float a, float b)",
+            "float add(float,float)"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-004",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.20（PDF p127 / 书页 p116）",
+      "difficulty": 4,
+      "stem": "【题 7.20】以下函数 fun 的功能是：统计一个数中位值为零的个数，以及位值为 1 的个数。若输入 111001，则输出位值为零的个数为 2，位值为 1 的个数为 4，请填空。",
+      "explanation": "【1】填 n%10，取出当前最低位；【2】填 n/10，把已处理的一位砍掉，整数除法自动舍去小数。do-while 保证 n=0 时也至少执行一次，因此 coun0 会统计到这个 0。输入 111001 时依次取到 1、0、0、1、1、1，故 coun0=2、coun1=4，与题目给的输出一致。易错点：一是两空顺序不能颠倒，先取余再整除；二是若写成 while(n) 的普通 while 循环，n=0 时一次都不执行，统计结果会变成 0、0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nvoid fun(long n)\n{   int coun0=0,coun1=0,m;\n    do\n    {   m=/*__BLANK_1__*/;\n        if(m==0) coun0++;\n        if(m==1) coun1++;\n        n=/*__BLANK_2__*/;\n    }while(n);\n    printf(\"coun0=%d,coun1=%d\\n\",coun0,coun1);\n}\nint main( )\n{   long n;\n    printf(\"\\ninput n:\\n \"); scanf(\"%ld\",&n); printf(\"n=%ld\\n\",n);\n    fun(n);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n%10",
+          "accepted": [
+            "n%10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n/10",
+          "accepted": [
+            "n/10"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nvoid fun(long n)\n{   int coun0=0,coun1=0,m;\n    do\n    {   m= n%10 ;\n        if(m==0) coun0++;\n        if(m==1) coun1++;\n        n= n/10 ;\n    }while(n);\n    printf(\"coun0=%d,coun1=%d\\n\",coun0,coun1);\n}\nint main( )\n{   long n;\n    printf(\"\\ninput n:\\n \"); scanf(\"%ld\",&n); printf(\"n=%ld\\n\",n);\n    fun(n);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "111001\n",
+          "expected": "\ninput n:\n n=111001\ncoun0=2,coun1=4",
+          "note": "书给样例"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "\ninput n:\n n=0\ncoun0=1,coun1=0",
+          "note": "边界：n=0 也要进一次循环"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "\ninput n:\n n=10\ncoun0=1,coun1=1",
+          "note": "0 与 1 各一个"
+        }
+      ],
+      "id": "c-ch07-cc-003",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.21（PDF p127 / 书页 p116）",
+      "difficulty": 4,
+      "stem": "【题 7.21】以下函数 fun 的功能是：将输入的一个偶数写成两个素数之和的形式。例如，若输入数值 8，则输出 8=3+5。请填空。",
+      "explanation": "答案：【1】`b+2`、【2】`a-b`。本题用哥德巴赫猜想式拆分：外层 for 从 3 开始以步长 2 递增，只试探奇数 b（偶数除 2 外都不是素数，跳过可省一半判断）；内层用试除法判素——`for(c=2;c<=sqrt(b);c++) if(b%c==0) break;`，若循环自然结束则 c>sqrt(b)，说明 b 是素数，于是令 d=a-b 再判 d 是否素数，两者都是素数就输出 `a=b+d`。易错点一：把【2】写成 `a-b` 之外的形式（如 `b-a`）会导致 d 为负、sqrt 结果无意义；易错点二：原书 `else break;` 使得一旦 b 不是素数就整体退出循环，因此实际只会输出到第一个合数 b 之前的拆分结果，而不是全部分拆，这也是本题输出行数比预想少的原因。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <math.h>\nvoid fun(int a)\n{   int b,c,d;\n    for(b=3; b<=a/2; b=/*__BLANK_1__*/)\n    {   for(c=2; c<=sqrt(b); c++) if(b%c==0) break;\n        if(c>sqrt(b)) d=/*__BLANK_2__*/;\n        else break;\n        for(c=2; c<=sqrt(d); c++) if(d%c==0) break;\n        if(c>sqrt(d)) printf(\"%d=%d+%d\\n\",a,b,d);\n    }\n}\nint main( )\n{   int a;\n    printf(\"\\ninput a:\\n \"); scanf(\"%d\",&a);\n    fun(a);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b+2",
+          "accepted": [
+            "b+2",
+            "b=b+2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a-b",
+          "accepted": [
+            "a-b"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <math.h>\nvoid fun(int a)\n{   int b,c,d;\n    for(b=3; b<=a/2; b= b+2 )\n    {   for(c=2; c<=sqrt(b); c++) if(b%c==0) break;\n        if(c>sqrt(b)) d= a-b ;\n        else break;\n        for(c=2; c<=sqrt(d); c++) if(d%c==0) break;\n        if(c>sqrt(d)) printf(\"%d=%d+%d\\n\",a,b,d);\n    }\n}\nint main( )\n{   int a;\n    printf(\"\\ninput a:\\n \"); scanf(\"%d\",&a);\n    fun(a);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "8\n",
+          "expected": "\ninput a:\n 8=3+5",
+          "note": "书给样例 8=3+5"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "\ninput a:\n 10=3+7\n10=5+5",
+          "note": "10=3+7"
+        },
+        {
+          "stdin": "20\n",
+          "expected": "\ninput a:\n 20=3+17\n20=7+13",
+          "note": "20=3+17"
+        }
+      ],
+      "id": "c-ch07-cc-004",
       "verified": false
     },
     {
@@ -42,6 +640,181 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.23（PDF p128 / 书页 p117）",
+      "difficulty": 4,
+      "stem": "【题 7.23】以下程序的功能是根据输入的y(Y)与n(N)，在屏幕上分别显示出This is YES.与This is NO.。请填空。",
+      "explanation": "【1】填 break：case 'y'/'Y' 与 case 'n'/'N' 共用同一个 switch，若 YES 分支后不写 break 就会「贯穿」继续执行 NO 分支，输入 y 时会同时打印两行。【2】填 getchar()，从键盘读入一个字符赋给 ch。输入 y 时先打印 ch: y，再进入 case 'y' 落穿到 case 'Y' 的语句打印 This is YES.，然后 break 结束。易错点：一是大小写字母必须用两个 case 标签共享同一段语句（穿透在这里是有意为之）；二是 getchar() 后面的括号不能写成 getchar 或漏掉分号。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nvoid YesNo(char ch)\n{   switch(ch)\n    {   case 'y':\n        case 'Y': printf(\"\\nThis is YES.\\n\"); /*__BLANK_1__*/;\n        case 'n':\n        case 'N': printf(\"\\nThis is NO.\\n\");\n    }\n}\nint main( )\n{   char ch;\n    printf(\"\\nEnter a char 'y','Y' or 'n','N':\");\n    ch=/*__BLANK_2__*/;\n    printf(\"ch: %c\",ch);\n    YesNo(ch);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "break",
+          "accepted": [
+            "break"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "getchar()",
+          "accepted": [
+            "getchar()",
+            "getchar( )"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nvoid YesNo(char ch)\n{   switch(ch)\n    {   case 'y':\n        case 'Y': printf(\"\\nThis is YES.\\n\");  break ;\n        case 'n':\n        case 'N': printf(\"\\nThis is NO.\\n\");\n    }\n}\nint main( )\n{   char ch;\n    printf(\"\\nEnter a char 'y','Y' or 'n','N':\");\n    ch= getchar() ;\n    printf(\"ch: %c\",ch);\n    YesNo(ch);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "y\n",
+          "expected": "\nEnter a char 'y','Y' or 'n','N':ch: y\nThis is YES.",
+          "note": "小写 y"
+        },
+        {
+          "stdin": "n\n",
+          "expected": "\nEnter a char 'y','Y' or 'n','N':ch: n\nThis is NO.",
+          "note": "小写 n"
+        },
+        {
+          "stdin": "N\n",
+          "expected": "\nEnter a char 'y','Y' or 'n','N':ch: N\nThis is NO.",
+          "note": "大写 N"
+        }
+      ],
+      "id": "c-ch07-cc-005",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.24（PDF p129 / 书页 p118）",
+      "difficulty": 3,
+      "stem": "【题 7.24】以下 Check 函数的功能是对 value 中的值进行四舍五入，若计算后的值与 ponse 值相等，则显示 WELL DONE!!，否则显示计算后的值。已有函数调用语句 Check(ponse,value)；请填空。",
+      "explanation": "【1】填 (int)(value+0.5)：float 直接强转 int 是「截尾」而非四舍五入，先加 0.5 再截尾就实现了正数的四舍五入，3.6+0.5=4.1→4，3.4+0.5=3.9→3。【2】填 val==ponse，相等时说明学生答对，打印 WELL DONE!!。原书 printf(\"计算后的值：\" + \"：\" + \"%d\",val) 用 + 拼接字符串是 C++ 写法，C 语言里字符串常量不能相加，本库按语义改为 printf(\"计算后的值：%d\",val)。易错点：一是加 0.5 的办法只对非负数成立，负数要先取绝对值再定符号；二是 == 不能写成 =。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nvoid Check(int ponse,float value)\n{   int val;\n    val=/*__BLANK_1__*/;\n    printf(\"计算后的值：%d\",val);\n    if(/*__BLANK_2__*/)  printf(\"\\nWELL DONE!!\\n\");\n    else  printf(\"\\nSorry the correct answer is %d\\n\",val);\n}\nint main( )\n{   int ponse; float value;\n    scanf(\"%d%f\",&ponse,&value);\n    Check(ponse,value);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(int)(value+0.5)",
+          "accepted": [
+            "(int)(value+0.5)",
+            "(int)(value + 0.5)",
+            "(int)(0.5+value)",
+            "(int)((value*10+5)/10)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "val==ponse",
+          "accepted": [
+            "val==ponse",
+            "ponse==val",
+            "val == ponse"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nvoid Check(int ponse,float value)\n{   int val;\n    val= (int)(value+0.5) ;\n    printf(\"计算后的值：%d\",val);\n    if( val==ponse )  printf(\"\\nWELL DONE!!\\n\");\n    else  printf(\"\\nSorry the correct answer is %d\\n\",val);\n}\nint main( )\n{   int ponse; float value;\n    scanf(\"%d%f\",&ponse,&value);\n    Check(ponse,value);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "4 3.6\n",
+          "expected": "计算后的值：4\nWELL DONE!!",
+          "note": "四舍五入后与 ponse 相等"
+        },
+        {
+          "stdin": "4 3.4\n",
+          "expected": "计算后的值：3\nSorry the correct answer is 3",
+          "note": "四舍五入后与 ponse 不等"
+        }
+      ],
+      "id": "c-ch07-cc-006",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.25（PDF p129 / 书页 p118）",
+      "difficulty": 4,
+      "stem": "【题 7.25】以下程序的运行结果是\"output 153 370 371 407\"，该程序的功能是【1】。\n\n```c\n#include <stdio.h>\nint f(int n)\n{   int i,j,k;\n    i=n/100; j=n/10-i * 10; k=n%10;\n    if(i * 100+j * 10+k==i * i * i+j * j * j+k * k * k) return n;\n    else return 0;\n}\nint main( )\n{   int n,k;\n    printf(\"output \");\n    for(n=100; n<1000; n++)\n    {   k=f(n);\n        if(k!=0) printf(\"%d \",k);\n    }\n    printf(\"\\n\");\n    return(0);\n}\n```\n",
+      "explanation": "答案：打印出 100~999 之间的所有水仙花数（各位数字的立方和等于自身的三位数）。f(n) 用 `i=n/100`、`j=n/10−i*10`、`k=n%10` 拆出百、十、个位，若 i³+j³+k³==n 就返回 n，否则返回 0；main 中 `if(k!=0) printf(\"%d \",k)` 只输出满足条件的数，故结果为 `output 153 370 371 407`（已实机验证）。易错点：把功能答成\"求各位数字之和\"或\"输出所有三位数\"，忽略了立方和这一判定条件；另外 j 的取法 `n/10−i*10` 比 `n/10%10` 绕了一步，容易看漏。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "打印出所有水仙花数",
+          "accepted": [
+            "打印出所有水仙花数",
+            "打印出 100~999 之间的所有水仙花数",
+            "找出并输出全部水仙花数",
+            "输出所有的三位水仙花数",
+            "求 100 到 999 之间的水仙花数",
+            "找出并输出 100~999 中所有的水仙花数（各位数字立方和等于自身的三位数）"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-005",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.26（PDF p129 / 书页 p118）",
+      "difficulty": 4,
+      "stem": "【题 7.26】以下程序的功能是用二分法求方程 2x³－4x²＋3x－6=0 的根，并要求绝对误差不超过 0.001。请填空。",
+      "explanation": "【1】填 f(r)*f(m)>0。区间左端 m=-100 处 f(m)<0、右端 n=90 处 f(n)>0，若 f(r) 与 f(m) 同号说明根落在右半区 [r,n]，于是令 m=r 丢掉左半区；否则令 n=r。【2】填 n-m<0.001，区间长度小于允许的绝对误差就停止迭代。方程 2x³-4x²+3x-6=0 有根 x=2，程序最终输出 The fang cheng jie is  2.000。易错点：一是同号判据要与 m=r / n=r 的分支方向配套，写反会发散；二是本题未包含 math.h，用 fabs(n-m)<0.001 会因隐式声明而编译失败。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nfloat f(float x)\n{   return(2 * x * x * x-4 * x * x+3 * x-6); }\n\nint main( )\n{   float m=-100,n=90,r;\n    r=(m+n)/2;\n    while(f(r) * f(n)!=0)\n    {   if(/*__BLANK_1__*/) m=r;\n        else n=r;\n        if(/*__BLANK_2__*/) break;\n        r=(m+n)/2;\n    }\n    printf(\"The fang cheng jie is %6.3f\\n\",r);\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "f(r)*f(m)>0",
+          "accepted": [
+            "f(r)*f(n)<0",
+            "f(r)*f(m)>0",
+            "f(m)*f(r)>0",
+            "f(r)*f(m)>=0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n-m<0.001",
+          "accepted": [
+            "n-m<0.001",
+            "(n-m)<0.001",
+            "n-m<1e-3"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nfloat f(float x)\n{   return(2 * x * x * x-4 * x * x+3 * x-6); }\n\nint main( )\n{   float m=-100,n=90,r;\n    r=(m+n)/2;\n    while(f(r) * f(n)!=0)\n    {   if( f(r)*f(m)>0 ) m=r;\n        else n=r;\n        if( n-m<0.001 ) break;\n        r=(m+n)/2;\n    }\n    printf(\"The fang cheng jie is %6.3f\\n\",r);\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "The fang cheng jie is  1.999",
+          "note": "无输入，二分法收敛到根 x=2"
+        }
+      ],
+      "id": "c-ch07-cc-007",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.27（PDF p130 / 书页 p119）",
       "difficulty": 4,
       "stem": "【题 7.27】若输入一个整数 10，则以下程序的运行结果是【】。",
@@ -53,6 +826,160 @@
       "code": "#include <stdio.h>\nint sub(int a);\nint main( )\n{   int a,e[10],c,i=0;\n    printf(\"输入一整数\\n\");\n    scanf(\"%d\",&a);\n    while(a!=0)\n    {   c=sub(a);\n        a=a/2;\n        e[i]=c;\n        i++;\n    }\n    for(; i>0; i--) printf(\"%d\",e[i-1]);\n    return(0);\n}\nint sub(int a)\n{   int c;\n    c=a%2;\n    return c;\n}",
       "answer": "输入一整数\n1010",
       "id": "c-ch07-cr-003",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.28（PDF p130 / 书页 p119）",
+      "difficulty": 4,
+      "stem": "【题 7.28】以下程序的功能是计算下面函数的值。请填空。\nF(x,y,z)=＝sin(x)/(sin(x－y)sin(x－z))＋sin(y)/(sin(y－z)sin(y－x))＋sin(z)/(sin(z－x)sin(z－y))",
+      "explanation": "【1】填 f(x,y,z)+f(y,z,x)+f(z,x,y)：F 的三项结构完全对称，只是把 (x,y,z) 依次轮换成 (y,z,x)、(z,x,y)，所以调用同一个 f 三次即可，这正是把函数抽出来的意义。【2】填 sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))，即题目给出的 F 表达式本身。易错点：一是 sin 的参数是弧度且差值可能为负，sin(-t)=-sin(t) 会自动带上符号，不要自己加绝对值；二是 x、y、z 不能取两两之差为 π 的整数倍，否则分母 sin 为 0 导致除零。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <math.h>\nfloat f(float, float, float);\nint main( )\n{   float x,y,z,sum;\n    printf(\"\\ninput x,y,z:\\n\");\n    scanf(\"%f%f%f\",&x,&y,&z);\n    sum=/*__BLANK_1__*/;\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b,float c)\n{   float value;\n    value=/*__BLANK_2__*/;\n    return(value);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "f(x,y,z)+f(y,z,x)+f(z,x,y)",
+          "accepted": [
+            "f(x,y,z)+f(y,z,x)+f(z,x,y)",
+            "f(x,y,z)+f(y,z,x)+f(z,x,y)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))",
+          "accepted": [
+            "sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <math.h>\nfloat f(float, float, float);\nint main( )\n{   float x,y,z,sum;\n    printf(\"\\ninput x,y,z:\\n\");\n    scanf(\"%f%f%f\",&x,&y,&z);\n    sum= f(x,y,z)+f(y,z,x)+f(z,x,y) ;\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b,float c)\n{   float value;\n    value= sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b)) ;\n    return(value);\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3\n",
+          "expected": "\ninput x,y,z:\nsum=-0.000000",
+          "note": "三项相消，和约等于 0"
+        },
+        {
+          "stdin": "2 5 9\n",
+          "expected": "\ninput x,y,z:\nsum=0.000000",
+          "note": "另一组不含 π 整数倍的输入"
+        }
+      ],
+      "id": "c-ch07-cc-008",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.29（PDF p131 / 书页 p120）",
+      "difficulty": 4,
+      "stem": "【题 7.29】已有函数 pow，现要求取消变量 i 后 pow 函数的功能不变。请填空。",
+      "explanation": "原程序用 i 从 1 计到 y 共循环 y 次，j 初值 1。取消 i 后必须让 y 自己充当计数器，于是三空依次是：【1】j=1（把原来声明处的初值搬进 for 的第一个表达式，否则 j 是未初始化的垃圾值）；【2】y>0（循环继续条件，等价于 i<=y）；【3】y--（每乘一次 x 就把剩余次数减一）。这样循环体仍执行 y 次，结果不变。易错点：一是修改后的函数头是 int j; 而没有 =1，初值只能在 for 里给，漏掉就是未定义行为；二是【3】写成 y++ 会死循环。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint pow(int x,int y)\n{   int j;\n    for(/*__BLANK_1__*/;/*__BLANK_2__*/;/*__BLANK_3__*/) j=j * x;\n    return(j);\n}\nint main( )\n{   int x,y;\n    scanf(\"%d%d\",&x,&y);\n    printf(\"%d\\n\",pow(x,y));\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j=1",
+          "accepted": [
+            "j=1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "y>0",
+          "accepted": [
+            "y>0",
+            "y>=1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "y--",
+          "accepted": [
+            "y--",
+            "--y"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint pow(int x,int y)\n{   int j;\n    for( j=1 ; y>0 ; y-- ) j=j * x;\n    return(j);\n}\nint main( )\n{   int x,y;\n    scanf(\"%d%d\",&x,&y);\n    printf(\"%d\\n\",pow(x,y));\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "2 10\n",
+          "expected": "1024",
+          "note": "2 的 10 次方"
+        },
+        {
+          "stdin": "3 0\n",
+          "expected": "1",
+          "note": "边界：0 次方得 1"
+        },
+        {
+          "stdin": "5 3\n",
+          "expected": "125",
+          "note": "5 的 3 次方"
+        }
+      ],
+      "id": "c-ch07-cc-009",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.30（PDF p131 / 书页 p120）",
+      "difficulty": 4,
+      "stem": "【题 7.30】以下程序的运行结果是输出如下图形。请填空。\n（原书图形为 7 行星号组成的菱形：自上而下每行星号数依次为 1、3、5、7、5、3、1，星号之间隔一个空格，行首按层级缩进，第 1 行缩进最多、第 4 行星号最多）",
+      "explanation": "【1】填 2*i+1：第 i 行（i 从 0 开始）需要 1、3、5、7 个星号，正好是 2*i+1；配合前面 for(j=0;j<=7-i;j++) 打出的 8-i 个空格，实现逐行右移的居中效果。【2】【3】都填 a(i)：上半部分 i=0,1,2 递增调用，下半部分 i=3,2,1,0 递减调用，两次都调同一个函数，菱形共 1+3+5+7+5+3+1 七行。易错点：一是下半段的 for 条件写成 i>=0 而不是 i>0，所以第 4 行（7 个星号）只出现一次，不会重复；二是 printf(\"* \") 星号后带空格，行宽是星号数的两倍。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nvoid a(int i)\n{   int j,k;\n    for(j=0; j<=7-i; j++) printf(\" \");\n    for(k=0;k</*__BLANK_1__*/; k++) printf(\"* \");\n    printf(\"\\n\");\n}\nint main( )\n{   int i;\n    for(i=0; i<3; i++)     /*__BLANK_2__*/;\n    for(i=3; i>=0; i--)    /*__BLANK_3__*/;\n    return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "2*i+1",
+          "accepted": [
+            "2*i+1",
+            "i*2+1",
+            "2*i+1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a(i)",
+          "accepted": [
+            "a(i)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a(i)",
+          "accepted": [
+            "a(i)"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nvoid a(int i)\n{   int j,k;\n    for(j=0; j<=7-i; j++) printf(\" \");\n    for(k=0;k< 2*i+1 ; k++) printf(\"* \");\n    printf(\"\\n\");\n}\nint main( )\n{   int i;\n    for(i=0; i<3; i++)      a(i) ;\n    for(i=3; i>=0; i--)     a(i) ;\n    return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "        * \n       * * * \n      * * * * * \n     * * * * * * * \n      * * * * * \n       * * * \n        *",
+          "note": "输出 7 行星号菱形"
+        }
+      ],
+      "id": "c-ch07-cc-010",
       "verified": false
     },
     {
@@ -102,7 +1029,59 @@
           "note": "典型：要试到最大值的第 8 倍"
         }
       ],
-      "id": "c-ch07-cc-001",
+      "id": "c-ch07-cc-011",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.32（PDF p132 / 书页 p121）",
+      "difficulty": 3,
+      "stem": "【题 7.32】函数 gongyue 的作用是求整数 num1 和 num2 的最大公约数，并返回该值。请填空。",
+      "explanation": "【1】填 <：辗转相除法要求 a>=b，所以 num1<num2 时先交换，保证进入循环时 a 是大数。【2】填 b!=0（写成 while(b) 等价）：循环体 temp=a%b; a=b; b=temp; 就是欧几里得算法的一步，余数为 0 时最大公约数已经落在 a 里，必须停，否则下一轮 a%b 会除零。输入 12 18 时交换成 a=18、b=12，依次 (18,12)→(12,6)→(6,0)，返回 6。易错点：一是交换必须在 a=num1 赋值之前完成；二是判据不能写成 a!=0，那样会在 b 为 0 时多做一次 a%0。 补充：【1】书给答案为 `>`，即当 num1>num2 时交换使 num1 成为较小者；填 `<` 同样正确，因为欧几里得辗转相除在 a<b 时首轮 `temp=a%b; a=b; b=temp;` 会自动把两者交换，最终返回值一致。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint gongyue(int num1,int num2)\n{  int temp,a,b;\n   if(num1 /*__BLANK_1__*/ num2)\n   {  temp=num1; num1=num2; num2=temp; }\n   a=num1; b=num2;\n   while(/*__BLANK_2__*/)\n   {  temp=a%b; a=b; b=temp; }\n   return(a);\n}\nint main( )\n{  int x,y;\n   scanf(\"%d%d\",&x,&y);\n   printf(\"%d\\n\",gongyue(x,y));\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ">",
+          "accepted": [
+            ">",
+            "<"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "b!=0",
+          "accepted": [
+            "b!=0",
+            "b"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint gongyue(int num1,int num2)\n{  int temp,a,b;\n   if(num1  >  num2)\n   {  temp=num1; num1=num2; num2=temp; }\n   a=num1; b=num2;\n   while( b!=0 )\n   {  temp=a%b; a=b; b=temp; }\n   return(a);\n}\nint main( )\n{  int x,y;\n   scanf(\"%d%d\",&x,&y);\n   printf(\"%d\\n\",gongyue(x,y));\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "12 18\n",
+          "expected": "6",
+          "note": "小数在前，需要先交换"
+        },
+        {
+          "stdin": "60 24\n",
+          "expected": "12",
+          "note": "大数在前，不交换"
+        },
+        {
+          "stdin": "7 5\n",
+          "expected": "1",
+          "note": "互素，结果为 1"
+        }
+      ],
+      "id": "c-ch07-cc-012",
       "verified": false
     },
     {
@@ -126,6 +1105,83 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.34（PDF p133 / 书页 p122）",
+      "difficulty": 4,
+      "stem": "【题 7.34】下面函数 pi 的功能是：根据以下公式，返回满足精度(0.0005)要求的 π 的值。请填空。\n（原书公式为分式排版，线性化为：π/2 = 1 + 1/3 + 1/3 * 2/5 + 1/3 * 2/5 * 3/7 + 1/3 * 2/5 * 3/7 * 4/9 + …）",
+      "explanation": "级数 π/2 = 1 + 1/3 + (1/3)(2/5) + (1/3)(2/5)(3/7) + …，第 k 项由前一项乘 (k-1)/(2k-1) 得到。【1】填 n=1：循环体末尾的 t=n*t/(2*n+1) 要用 n=1 才能把 t 从第 1 项 1 推成第 2 项 1/3，故计数器必须从 1 开始。【2】填 2*s：累加得到的是 π/2，返回前乘 2 才是 π。eps=0.0005 时输出约为 3.141176。易错点：一是 for 的第一个表达式只做一次，把 n=1 写成 n=0 会让第二项算成 0，整个级数只剩 1；二是原书 #include <conio.h> 是非标准头文件（getch 等），本题并未用到，按项目规范删除。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\ndouble pi(double eps)\n{  double s=0.0,t=1.0; int n;\n   for(/*__BLANK_1__*/; t>eps; n++)\n   {  s+=t;\n      t=n * t/(2 * n+1);\n   }\n   return(/*__BLANK_2__*/);\n}\nint main( )\n{  double x=0.0005;\n   printf(\"\\neps=%lf, pi=%lf\",x,pi(x));\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n=1",
+          "accepted": [
+            "n=1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "2*s",
+          "accepted": [
+            "2*s",
+            "s*2",
+            "2.0*s"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\ndouble pi(double eps)\n{  double s=0.0,t=1.0; int n;\n   for( n=1 ; t>eps; n++)\n   {  s+=t;\n      t=n * t/(2 * n+1);\n   }\n   return( 2*s );\n}\nint main( )\n{  double x=0.0005;\n   printf(\"\\neps=%lf, pi=%lf\",x,pi(x));\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "\neps=0.000500, pi=3.140578",
+          "note": "eps=0.0005，输出 π 的近似值"
+        }
+      ],
+      "id": "c-ch07-cc-013",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.35（PDF p133 / 书页 p122）",
+      "difficulty": 4,
+      "stem": "【题 7.35】以下程序的运行结果是【1】，fun 函数的作用是【2】。\n\n```c\n#include <stdio.h>\n#include <math.h>\nint fun(int y, int x)\n{  int z;\n   z=abs(x-y);\n   return(z);\n}\nint main( )\n{  int a=-1,b=-5,c;\n   c=fun(a,b);\n   printf(\"%d\",c);\n   return(0);\n}\n```\n\n（原书只包含 math.h，`abs` 实际声明在 stdlib.h 中，此处照录不影响运行结果。）",
+      "explanation": "答案：【1】4；【2】求两个整数之差的绝对值（已实机验证输出 4）。fun 的形参名是 (y, x)，调用 fun(a,b) 即 fun(−1,−5)，于是形参 y=−1、x=−5，z=abs(x−y)=abs(−5−(−1))=abs(−4)=4。易错点：本题形参顺序与直觉相反，若按\"第一个实参就是 x\"来读会得到 abs(−1+5)=4——数值恰好相同，容易掩盖形参与实参错位的事实，把 a、b 换成 −5、−1 就会暴露差别。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "4",
+          "accepted": [
+            "4"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "求两个整数之差的绝对值",
+          "accepted": [
+            "求两个整数之差的绝对值",
+            "求两整数之差的绝对值",
+            "计算 x 与 y 之差的绝对值并返回",
+            "返回 x-y 的绝对值",
+            "求 |x-y|"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-006",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.36（PDF p134 / 书页 p123）",
       "difficulty": 4,
       "stem": "【题 7.36】函数 f 中的形参 a 为一个 10×10 的二维数组，n 的值为 5，以下程序的运行结果为【 】。",
@@ -138,6 +1194,34 @@
       "answer": "",
       "id": "c-ch07-cr-005",
       "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.37（PDF p134 / 书页 p123）",
+      "difficulty": 4,
+      "stem": "【题 7.37】下面函数 func 的功能是【1】。\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nlong func(long num)\n{  long k=1;\n   num=labs(num);\n   do\n   {  k*=num%10;\n      num/=10;\n   }while(num);\n   return(k);\n}\nint main( )\n{  long n;\n   printf(\"\\nPlease enter a number: \");\n   scanf(\"%ld\",&n);\n   printf(\"\\nThe product of its digits is %ld.\",func(n));\n   return(0);\n}\n```\n\n（原书的 `#include <conio.h>` 是非标准头文件，本库转录时删除，不影响 func 的功能。）",
+      "explanation": "答案：求 |num|（num 的绝对值）各位数字之积。func 先用 labs(num) 取绝对值，再用 do-while 循环反复执行 `k*=num%10`（累乘当前个位）与 `num/=10`（抹掉个位），直到 num 变为 0，返回的 k 就是各位数字的乘积。例如输入 −125 时输出 10（已实机验证）。易错点：一是答成\"各位数字之和\"（那应是 k+=num%10）；二是忽略 do-while 至少执行一次，num=0 时结果为 0；三是数字中含 0（如 105）时乘积必为 0。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "求 num 的各位数字之积",
+          "accepted": [
+            "求 num 的各位数字之积",
+            "计算 |num| 各位数字的乘积并返回",
+            "求 |num| 各位数字之积",
+            "计算 num 绝对值的各位数字之积",
+            "返回 num 各位数字的乘积"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-007",
+      "verified": true
     },
     {
       "category": "c",
@@ -160,6 +1244,85 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.39（PDF p135 / 书页 p124）",
+      "difficulty": 3,
+      "stem": "【题 7.39】以下程序的功能是用递归方法计算 5 位学生的年龄，已知第一位学生年龄最小为 10 岁，其余学生一个比一个大 2 岁，求第 5 位学生的年龄。请填空。\n递归公式如下：\n（原书公式为分段大括号排版，线性化为：age(n) = 10（n=1）；age(n) = age(n-1)+2（n>1））",
+      "explanation": "【1】填 age(n-1)+2，这是递归公式 age(n)=age(n-1)+2 (n>1) 的直译；n==1 时 c=10 是递归出口，保证调用能层层返回而不会无限递归。【2】填 age(n)（此处 n=5，写 age(5) 亦可）。展开过程：age(5)=age(4)+2=age(3)+4=age(2)+6=age(1)+8=18，故输出 age: 18。易错点：一是递归必须同时具备「出口」和「向出口逼近」两个条件，这里靠 n 每次减 1 逼近 n==1；二是 printf 的实参是函数调用本身，不要写成 age(n); 那样只调用不输出。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint age(int n)\n{  int c;\n   if(n==1) c=10;\n   else c=/*__BLANK_1__*/;\n   return(c);\n}\nint main( )\n{  int n=5;\n   printf(\"age: %d\\n\",/*__BLANK_2__*/);\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "age(n-1)+2",
+          "accepted": [
+            "age(n-1)+2",
+            "2+age(n-1)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "age(n)",
+          "accepted": [
+            "age(n)",
+            "age(5)"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint age(int n)\n{  int c;\n   if(n==1) c=10;\n   else c= age(n-1)+2 ;\n   return(c);\n}\nint main( )\n{  int n=5;\n   printf(\"age: %d\\n\", age(n) );\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "age: 18",
+          "note": "输出第 5 位学生的年龄 18"
+        }
+      ],
+      "id": "c-ch07-cc-014",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.40（PDF p135 / 书页 p124）",
+      "difficulty": 4,
+      "stem": "【题 7.40】下面程序的功能是【1】，运行结果是【2】。\n\n```c\n#include <stdio.h>\nlong fib(int g)\n{  switch(g)\n      {  case 0: return 0;\n         case 1: case 2: return 1;\n      }\n   return(fib(g-1)+fib(g-2));\n}\nint main( )\n{  long k;\n   k=fib(7);\n   printf(\"k= %d\\n\",k);\n   return(0);\n}\n```\n",
+      "explanation": "答案：【1】用递归法求斐波那契数列第 7 项（即 fib(7)）；【2】`k= 13`（已实机验证）。switch 给出边界 fib(0)=0、fib(1)=fib(2)=1，其余情况返回 fib(g−1)+fib(g−2)；自底向上递推得 1、1、2、3、5、8、13，故 fib(7)=13。易错点：输出格式 `printf(\"k= %d\\n\",k)` 中等号后有一个空格，答案须原样写成 `k= 13`；另外 k 是 long 型却用 %d 输出，属原书的类型不匹配（64 位平台上通常仍能正确打印），不必当成 bug 去改。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "用递归法求斐波那契数列第 7 项",
+          "accepted": [
+            "用递归法求斐波那契数列第 7 项",
+            "递归求 fib(7)，即斐波那契数列第 7 项",
+            "用递归方法计算斐波那契数列第7项的值",
+            "求斐波那契数列第 7 项"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "k= 13",
+          "accepted": [
+            "k= 13",
+            "k=13",
+            "k=  13",
+            "13"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-008",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.41（PDF p136 / 书页 p125）",
       "difficulty": 4,
       "stem": "【题 7.41】下面程序的运行结果是【 】。",
@@ -171,6 +1334,59 @@
       "code": "#include <stdio.h>\nint sub(int n);\nint main( )\n{  int i=5;\n   printf(\"%d\\n\",sub(i));\n   return(0);\n}\nint sub(int n)\n{  int a;\n   if(n==1) return 1;\n   a=n+sub(n-1);\n   return(a);\n}",
       "answer": "15",
       "id": "c-ch07-cr-007",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.42（PDF p136 / 书页 p125）",
+      "difficulty": 4,
+      "stem": "【题 7.42】以下程序是应用递归算法求某数 a 的平方根，请填空。求平方根的迭代公式如下：\n（原书公式为分式排版，线性化为：x1 = 1/2 * (x0 + a / x0)）",
+      "explanation": "【1】填 (x0+a/x0)/2，正是迭代公式 x1=(x0+a/x0)/2；【2】填 a,x1，即用刚算出的 x1 当作新的 x0 递归下去，被开方数 a 始终不变。递归出口是 fabs(x1-x0)<=0.00001：相邻两次迭代值足够接近就认为收敛，返回 x1。输入 2 得 1.414214，输入 9 得 3.000000，输入 1 时 x1=(1+1)/2=1 与 x0 相等，一次就返回。易错点：一是递归参数顺序不能写成 x1,a，形参表是 (double a,double x0)；二是 fabs 需要 math.h，用 abs 会把 double 截成 int。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#include <math.h>\ndouble mysqrt(double a,double x0)\n{  double x1,y;\n   x1=/*__BLANK_1__*/;\n   if(fabs(x1-x0)>0.00001) y=mysqrt(/*__BLANK_2__*/);\n   else y=x1;\n   return y;\n}\nint main( )\n{  double x;\n   printf(\"Enter x: \"); scanf(\"%lf\",&x);\n   printf(\"The sqrt of %f=%f\\n\",x,mysqrt(x,1.0));\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(x0+a/x0)/2",
+          "accepted": [
+            "(x0+a/x0)/2",
+            "(x0+a/x0)/2.0",
+            "0.5*(x0+a/x0)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a,x1",
+          "accepted": [
+            "a,x1",
+            "a, x1"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#include <math.h>\ndouble mysqrt(double a,double x0)\n{  double x1,y;\n   x1= (x0+a/x0)/2 ;\n   if(fabs(x1-x0)>0.00001) y=mysqrt( a,x1 );\n   else y=x1;\n   return y;\n}\nint main( )\n{  double x;\n   printf(\"Enter x: \"); scanf(\"%lf\",&x);\n   printf(\"The sqrt of %f=%f\\n\",x,mysqrt(x,1.0));\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "2\n",
+          "expected": "Enter x: The sqrt of 2.000000=1.414214",
+          "note": "无理数根，验证收敛精度"
+        },
+        {
+          "stdin": "9\n",
+          "expected": "Enter x: The sqrt of 9.000000=3.000000",
+          "note": "完全平方数得 3.000000"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "Enter x: The sqrt of 1.000000=1.000000",
+          "note": "边界：初值已等于真解"
+        }
+      ],
+      "id": "c-ch07-cc-015",
       "verified": false
     },
     {
@@ -211,6 +1427,256 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.45（PDF p137 / 书页 p126）",
+      "difficulty": 4,
+      "stem": "【题 7.45】阅读下面程序，完成下列问题中的填空。\n问题(1) 此程序在调用函数 f 后的运行结果是【1】。\n(2) 若将函数 f 中的 for(j=i+1; j<4; j++) 改为 for(j=0; j<3-i; j++)，则程序的运行结果是【2】。\n\n```c\n#include <stdio.h>\nvoid f(int s[ ][4])\n{  int i,j,k;\n   for(i=0; i<3; i++)\n         for(j=i+1; j<4; j++)\n         {  k=s[i][j]; s[i][j]=s[j][i]; s[j][i]=k; }\n}\nint main( )\n{  int s[4][4],i,j;\n   for(i=0;i<4;i++)\n         for(j=0;j<4;j++)  s[i][j]=i-j;\n   f(s);\n   for(i=0; i<4; i++)\n   {  printf(\"\\n\");\n      for(j=0; j<4; j++)\n            printf(\"%4d\",s[i][j]);\n   }\n   return(0);\n}\n```\n",
+      "explanation": "两问均已实机验证。(1) 原循环 i=0..2、j=i+1..3 恰好遍历整个上三角一次，`k=s[i][j]; s[i][j]=s[j][i]; s[j][i]=k;` 把上、下三角互换，即矩阵转置；由于 s[i][j]=i−j，转置后 s[i][j]=j−i。(2) 改成 j=0..2−i 后，i=0 时交换 (0,1)(1,0)、(0,2)(2,0)，i=1 时交换 (1,0)(0,1)，i=2 时交换 (2,0)(0,2)——每一对都被交换了两次，等于没换；而 (0,3)(3,0)、(1,3)(3,1)、(2,3)(3,2) 这些下标和大于等于 3 的元素根本没进入循环。故输出与原矩阵一致。易错点：只数\"交换了几次\"而不注意同一对被交换两次会互相抵消。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "short_answer",
+      "reference_answer": "(1) 调用 f 后矩阵被转置（s[i][j] 与 s[j][i] 互换），输出为（每行前有一个换行，每个数用 %4d 占 4 列右对齐）：\n\n```\n   0   1   2   3\n  -1   0   1   2\n  -2  -1   0   1\n  -3  -2  -1   0\n```\n\n(2) 改成 for(j=0; j<3-i; j++) 后，输出与原矩阵完全相同：\n\n```\n   0  -1  -2  -3\n   1   0  -1  -2\n   2   1   0  -1\n   3   2   1   0\n```",
+      "grading_points": [
+        "指出 f 的作用是矩阵转置：三重循环把上三角元素 s[i][j] 与下三角 s[j][i] 交换",
+        "写出 (1) 的四行结果 0 1 2 3 / -1 0 1 2 / -2 -1 0 1 / -3 -2 -1 0（%4d 右对齐）",
+        "说明改成 for(j=0;j<3-i;j++) 后每对 (i,j) 与 (j,i) 被交换两次又换回，且 i+j>=3 的元素（如 s[0][3]、第 3 行）从未参与交换",
+        "写出 (2) 的结果与原矩阵 s[i][j]=i-j 完全相同"
+      ],
+      "id": "c-ch07-sa-001",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.46（PDF p138 / 书页 p127）",
+      "difficulty": 4,
+      "stem": "【题 7.46】以下 search 函数的功能是利用顺序查找法从数组 a 的 10 个元素中对关键字 m 进行查找。顺序查找法的思路是：从第一个元素开始，从前向后依次与关键字比较，直到找到此元素或查找到数组尾部时结束。若找到，则返回此元素的下标；若仍未找到，则返回值－1。请填空。",
+      "explanation": "【1】填 a[i]==m：顺序查找就是从头到尾逐个比较，相等即命中并 return 下标。【2】填 a,m：数组名作实参传的是首地址，形参 int a[10] 实为 int *a，因此函数内对元素的访问与主调函数共享同一段存储。【3】填 no!=-1：search 找不到时返回 -1，用它区分「命中」与「未命中」，命中时打印 no+1 是为了把下标换算成人们习惯的「第几个」。易错点：一是 no=0 也是合法命中下标，判据必须写 no!=-1 而不能写 if(no)；二是原书 main 中用 … 省略了数组输入部分，本库补成先读 10 个元素再读关键字 m。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint search(int a[10],int m)\n{  int i;\n   for(i=0; i<=9; i++) if(/*__BLANK_1__*/) return(i);\n   return(-1);\n}\nint main( )\n{  int a[10],m,i,no;\n   for(i=0;i<10;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&m);\n   no=search(/*__BLANK_2__*/);\n   if(/*__BLANK_3__*/)  printf(\"\\nOK FOUND! %d \",no+1);\n   else      printf(\"\\nSorry Not Found!\");\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i]==m",
+          "accepted": [
+            "a[i]==m",
+            "m==a[i]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a,m",
+          "accepted": [
+            "a,m",
+            "a, m"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "no!=-1",
+          "accepted": [
+            "no!=-1",
+            "-1!=no",
+            "no>=0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint search(int a[10],int m)\n{  int i;\n   for(i=0; i<=9; i++) if( a[i]==m ) return(i);\n   return(-1);\n}\nint main( )\n{  int a[10],m,i,no;\n   for(i=0;i<10;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&m);\n   no=search( a,m );\n   if( no!=-1 )  printf(\"\\nOK FOUND! %d \",no+1);\n   else      printf(\"\\nSorry Not Found!\");\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5 6 7 8 9 10\n5\n",
+          "expected": "\nOK FOUND! 5",
+          "note": "命中中间元素"
+        },
+        {
+          "stdin": "1 2 3 4 5 6 7 8 9 10\n11\n",
+          "expected": "\nSorry Not Found!",
+          "note": "未命中，返回 -1"
+        },
+        {
+          "stdin": "1 2 3 4 5 6 7 8 9 10\n1\n",
+          "expected": "\nOK FOUND! 1",
+          "note": "边界：命中第一个元素"
+        }
+      ],
+      "id": "c-ch07-cc-016",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.47（PDF p138 / 书页 p127）",
+      "difficulty": 5,
+      "stem": "【题 7.47】已定义一个含有 30 个元素的数组 s，函数 fav1 的功能是按顺序分别赋予各元素从 2 开始的偶数，函数 fav2 则按顺序每 5 个元素求一个平均值，并将该值存放在数组 w 中。请填空。",
+      "explanation": "【1】填 s[i]=k：k 从 2.0 开始每轮加 2，把它依次存进 s[0]~s[29] 就得到 2、4、…、60。【2】填 sum=0.0（写 sum=0 亦可）：每存完一个平均值必须把累加器清零，否则下一组 5 个元素会把上一组的和也加进来。fav2 用 (i+1)%5==0 判定「每满 5 个」，w[k] 依次得到 6、16、26、36、46、56。易错点：一是原书 for(i=0;i<SUZE;i++) 把 SIZE 拼成 SUZE，属排版错误，未定义标识符会直接编译失败，本库已改正；二是 printf(\"%.f\") 不输出小数位，结果连成一串数字。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#define SIZE 30\nvoid fav1(float s[ ])\n{  int i;\n   float k=2.0;\n   for(i=0;i<SIZE;i++)\n   {  /*__BLANK_1__*/;\n      k+=2;\n   }\n}\nvoid fav2(float s[ ],float w[ ])\n{  float sum; int k,i;\n   sum=0.0;\n   for(k=0,i=0; i<SIZE; i++)\n   {  sum+=s[i];\n      if((i+1)%5==0)\n      {  w[k]=sum/5;\n         /*__BLANK_2__*/;\n         k++;\n      }\n   }\n}\nint main( )\n{  float s[SIZE],w[SIZE/5]; int i;\n   fav1(s);for(i=0;i<SIZE;i++)  printf(\"%.f\",s[i]);printf(\"\\n\");\n   fav2(s,w);for(i=0;i<SIZE/5;i++)  printf(\"%.f\",w[i]);\n   return 0;\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "s[i]=k",
+          "accepted": [
+            "s[i]=k",
+            "s[i] = k"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sum=0.0",
+          "accepted": [
+            "sum=0.0",
+            "sum=0"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#define SIZE 30\nvoid fav1(float s[ ])\n{  int i;\n   float k=2.0;\n   for(i=0;i<SIZE;i++)\n   {   s[i]=k ;\n      k+=2;\n   }\n}\nvoid fav2(float s[ ],float w[ ])\n{  float sum; int k,i;\n   sum=0.0;\n   for(k=0,i=0; i<SIZE; i++)\n   {  sum+=s[i];\n      if((i+1)%5==0)\n      {  w[k]=sum/5;\n          sum=0.0 ;\n         k++;\n      }\n   }\n}\nint main( )\n{  float s[SIZE],w[SIZE/5]; int i;\n   fav1(s);for(i=0;i<SIZE;i++)  printf(\"%.f\",s[i]);printf(\"\\n\");\n   fav2(s,w);for(i=0;i<SIZE/5;i++)  printf(\"%.f\",w[i]);\n   return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "24681012141618202224262830323436384042444648505254565860\n61626364656",
+          "note": "s 得 2~60 的偶数，w 得每 5 个的平均值"
+        }
+      ],
+      "id": "c-ch07-cc-017",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.48（PDF p139 / 书页 p128）",
+      "difficulty": 4,
+      "stem": "【题 7.48】以下程序的运行结果是【1】，其算法是【2】。\n\n```c\n#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 5,10,-7,3,7 },i,t,j;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t;\n   for(i=0; i<4; i++)\n         for(j=0; j<4-i; j++)\n               if(a[j]>a[j+1]) { t=a[j]; a[j]=a[j+1];a[j+1]=t;}\n}\n```\n",
+      "explanation": "答案：【1】`-7 3 5 7 10 `（已实机验证，每个数后都有一个空格）；【2】冒泡排序（升序）。sort 中外层 i 控制趟数共 4 趟，内层 `j<4−i` 使每趟只在尚未排好的前段比较相邻元素，`if(a[j]>a[j+1])` 时交换，把较大值逐步\"冒\"到末尾，最终数组从小到大有序。易错点：一是漏写输出末尾的空格（printf 用的是 \"%d \"）；二是把内层界当成固定的 4，多算一趟虽不影响结果但说明没理解 4−i 的作用；三是与选择排序混淆——冒泡是\"相邻比较即交换\"，每趟交换多次。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "-7 3 5 7 10 ",
+          "accepted": [
+            "-7 3 5 7 10 ",
+            "-7 3 5 7 10",
+            "-7  3  5  7  10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "冒泡排序（升序）",
+          "accepted": [
+            "冒泡排序（升序）",
+            "冒泡排序",
+            "用冒泡法把数组按升序排序",
+            "冒泡法升序排序",
+            " bubble sort（冒泡排序，从小到大）"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-009",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.49（PDF p139 / 书页 p128）",
+      "difficulty": 4,
+      "stem": "【题 7.49】以下程序的运行结果是【1】，其算法是【2】。\n\n```c\n#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 9,6,8,3,-1 },i;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t,p;\n   for(j=0; j<4; j++)\n   {  p=j;\n      for(i=j; i<=4; i++) if(a[i]<a[p]) p=i;\n      t=a[p]; a[p]=a[j]; a[j]=t;\n   }\n}\n```\n",
+      "explanation": "答案：【1】`-1 3 6 8 9 `（已实机验证，每个数后都有一个空格）；【2】选择排序（升序）。外层 j 表示已排序区的末尾，内层从 i=j 扫到 4 找出最小元素的下标 p，再与 a[j] 交换一次，每趟确定一个最小元素的最终位置。易错点：与冒泡排序的区别在于\"每趟只交换一次\"而不是相邻比较即交换；内层 `i<=4` 覆盖到 a[4]，正好是 5 个元素的最后一个，并未越界；输出同样要注意末尾空格。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "analyze",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "-1 3 6 8 9 ",
+          "accepted": [
+            "-1 3 6 8 9 ",
+            "-1 3 6 8 9",
+            "-1  3  6  8  9"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "选择排序（升序）",
+          "accepted": [
+            "选择排序（升序）",
+            "选择排序",
+            "用选择法把数组按升序排序",
+            "简单选择排序",
+            "selection sort（选择排序，从小到大）"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-010",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.50（PDF p140 / 书页 p129）",
+      "difficulty": 3,
+      "stem": "【题 7.50】函数 del 的作用是删除已按升序排列的数组 a 中的指定元素 x。已有调用语句 n=del(a,n,x)；其中实参 n 为删除前数组元素的个数，赋值号左边的 n 为删除后数组元素的个数。请填空。",
+      "explanation": "【1】填 p++：数组已升序，while 的条件 x>=a[p] && p<n 让 p 一路后移，直到 a[p] 第一次大于 x，此时待删元素就在 a[p-1]。【2】填 a[i]=a[i+1]：从 i=p-1 起把后面每个元素整体前移一位，覆盖掉 a[p-1]，最后 n=n-1 使长度减一。删除 5 时 p 停在 3，i 从 2 开始前移，得到 1 3 7 9。易错点：一是 p<n 必须写在 && 右边作短路保护，否则 x 大于所有元素时 a[p] 会越界；二是循环上界 i<n 会读到 a[n]（越界一格），因随后 n 减一，这个格子已不在有效范围内，属原书代码的瑕疵。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint del(int a[ ],int n,int x)\n{  int p,i;\n   p=0;\n   while(x>=a[p] && p<n)  /*__BLANK_1__*/;\n   for(i=p-1; i<n; i++)  /*__BLANK_2__*/;\n   n=n-1;\n   return n;\n}\nint main( )\n{  int a[20]={0},n,x,i;\n   scanf(\"%d\",&n);\n   for(i=0;i<n;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&x);\n   n=del(a,n,x);\n   printf(\"n=%d\\n\",n);\n   for(i=0;i<n;i++) printf(\"%d \",a[i]);\n   printf(\"\\n\");\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "p++",
+          "accepted": [
+            "p++",
+            "p=p+1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i]=a[i+1]",
+          "accepted": [
+            "a[i]=a[i+1]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint del(int a[ ],int n,int x)\n{  int p,i;\n   p=0;\n   while(x>=a[p] && p<n)   p++ ;\n   for(i=p-1; i<n; i++)   a[i]=a[i+1] ;\n   n=n-1;\n   return n;\n}\nint main( )\n{  int a[20]={0},n,x,i;\n   scanf(\"%d\",&n);\n   for(i=0;i<n;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&x);\n   n=del(a,n,x);\n   printf(\"n=%d\\n\",n);\n   for(i=0;i<n;i++) printf(\"%d \",a[i]);\n   printf(\"\\n\");\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 3 5 7 9\n5\n",
+          "expected": "n=4\n1 3 7 9",
+          "note": "删除中间元素"
+        },
+        {
+          "stdin": "6\n2 4 6 8 10 12\n2\n",
+          "expected": "n=5\n4 6 8 10 12",
+          "note": "删除首元素"
+        },
+        {
+          "stdin": "4\n1 2 3 4\n4\n",
+          "expected": "n=3\n1 2 3",
+          "note": "边界：删除末元素"
+        }
+      ],
+      "id": "c-ch07-cc-018",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.51（PDF p140 / 书页 p129）",
       "difficulty": 4,
       "stem": "【题 7.51】以下程序的运行结果是【 】。",
@@ -223,6 +1689,83 @@
       "answer": "   1   13    5    7 \n   2    4   26    8 \n  10    1    3   12 \n\nThe value is 31",
       "id": "c-ch07-cr-010",
       "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.52（PDF p140 / 书页 p129）",
+      "difficulty": 3,
+      "stem": "【题 7.52】函数 swap(int x,int y)可完成对 x 和 y 值的交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。\n\n```c\na[0]=1; a[1]=2;\nswap(a[0],a[1]);\n```\n\n（原书只给出调用处的程序段，swap 函数体略。）",
+      "explanation": "答案：【1】a[0] 仍为 1、a[1] 仍为 2（没有交换）；【2】因为 swap(int x,int y) 采用单向值传递，形参 x、y 只是实参 a[0]、a[1] 的副本，函数内交换的只是这两个副本，函数返回后副本销毁，实参不受影响。易错点：被函数名 swap 误导，以为\"叫 swap 就一定能交换\"；要真正交换实参必须传地址（形参用指针，如 swap(&a[0],&a[1])）或传数组名，见题7.53 的对照。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "understand",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]=1、a[1]=2（未交换）",
+          "accepted": [
+            "a[0]=1、a[1]=2（未交换）",
+            "1 和 2",
+            "a[0]=1,a[1]=2",
+            "a[0]为1，a[1]为2",
+            "仍然是 1 和 2",
+            "1、2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "值传递，形参是实参的副本",
+          "accepted": [
+            "值传递，形参是实参的副本",
+            "swap 的形参是值传递，x、y 只是 a[0]、a[1] 的副本，交换副本不影响实参",
+            "单向值传递，形参改变不影响实参",
+            "因为是值传递，函数内交换的只是副本"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-011",
+      "verified": true
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.53（PDF p141 / 书页 p130）",
+      "difficulty": 3,
+      "stem": "【题 7.53】函数 swap(arr,n)可对 arr 数组从第 1 个元素到第 n 个元素分别进行两两元素交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。\n\n```c\na[0]=1; a[1]=2;\nswap(a,2);\n```\n\n（原书只给出调用处的程序段，swap 函数体略。）",
+      "explanation": "答案：【1】a[0]=2、a[1]=1（确实交换了）；【2】因为数组名作实参时传递的是数组首地址，形参数组 arr 与实参数组 a 指向同一段内存，函数内对 arr[i] 的读写直接作用于原数组，属于地址传递。易错点：与题7.52 对照记忆——\"传值改不动、传址改得动\"；另外 n=2 表示只对前 2 个元素两两交换，不要把 n 误当成数组长度上限之外的东西。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "bloom": "understand",
+      "type": "fill_blank",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]=2、a[1]=1（已交换）",
+          "accepted": [
+            "a[0]=2、a[1]=1（已交换）",
+            "2 和 1",
+            "a[0]=2,a[1]=1",
+            "a[0]为2，a[1]为1",
+            "2、1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "数组名传的是地址",
+          "accepted": [
+            "数组名传的是地址",
+            "数组名作实参传递的是数组首地址，形参与实参共用同一段内存",
+            "地址传递，形参数组与实参数组是同一块内存",
+            "因为传的是数组首地址，函数内直接修改原数组"
+          ]
+        }
+      ],
+      "id": "c-ch07-fb-012",
+      "verified": true
     },
     {
       "category": "c",
@@ -272,7 +1815,106 @@
           "note": "边界：全 0（%5.2f 前导空格）"
         }
       ],
-      "id": "c-ch07-cc-002",
+      "id": "c-ch07-cc-019",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.55（PDF p141 / 书页 p130）",
+      "difficulty": 3,
+      "stem": "【题 7.55】函数 yanghui 能够按以下形式构成一个杨辉三角形。请填空。\n（原书三角形为图示排版，文字化为：第1行 1；第2行 1 1；第3行 1 2 1；第4行 1 3 3 1；第5行 1 4 6 4 1；第6行 1 5 10 10 5 1；其后为省略号 …）",
+      "explanation": "杨辉三角形每个数等于它肩上两数之和。第一个 for 已经把每行首元素 a[i][1] 和末元素 a[i][i] 都置成 1，所以只需再算中间的。【1】填 i=2：第 0、1 行已由上一循环处理完毕，从第 2 行起才有「中间」元素需要计算。【2】填 j<i：中间列的下标范围是 2 到 i-1，j<i 恰好不含末元素 a[i][i]（它已被置 1）。【3】填 a[i-1][j-1]：与已有的 +a[i-1][j] 合成 a[i][j]=a[i-1][j-1]+a[i-1][j]。易错点：一是二维数组作形参时必须给出列数 [ ][N]，行数可省；二是 j 从 2 开始，若从 1 开始会把已经置好的 a[i][1]=1 覆盖掉。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#define N 11\nvoid yanghui(int a[ ][N])\n{  int i,j;\n   for(i=0; i<N; i++)  { a[i][1]=1; a[i][i]=1; }\n   for(/*__BLANK_1__*/; i<N; i++)\n         for(j=2;/*__BLANK_2__*/; j++)  a[i][j]=/*__BLANK_3__*/+a[i-1][j];\n}\nint main( )\n{  int a[N][N]={0},i,j;\n   yanghui(a);\n   for(i=1;i<N;i++)\n   {  for(j=1;j<=i;j++) printf(\"%4d\",a[i][j]);\n      printf(\"\\n\");\n   }\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i=2",
+          "accepted": [
+            "i=2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j<i",
+          "accepted": [
+            "j<i",
+            "j<=i-1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a[i-1][j-1]",
+          "accepted": [
+            "a[i-1][j-1]"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#define N 11\nvoid yanghui(int a[ ][N])\n{  int i,j;\n   for(i=0; i<N; i++)  { a[i][1]=1; a[i][i]=1; }\n   for( i=2 ; i<N; i++)\n         for(j=2; j<i ; j++)  a[i][j]= a[i-1][j-1] +a[i-1][j];\n}\nint main( )\n{  int a[N][N]={0},i,j;\n   yanghui(a);\n   for(i=1;i<N;i++)\n   {  for(j=1;j<=i;j++) printf(\"%4d\",a[i][j]);\n      printf(\"\\n\");\n   }\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "   1\n   1   1\n   1   2   1\n   1   3   3   1\n   1   4   6   4   1\n   1   5  10  10   5   1\n   1   6  15  20  15   6   1\n   1   7  21  35  35  21   7   1\n   1   8  28  56  70  56  28   8   1\n   1   9  36  84 126 126  84  36   9   1",
+          "note": "输出 10 行杨辉三角形"
+        }
+      ],
+      "id": "c-ch07-cc-020",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.56（PDF p142 / 书页 p131）",
+      "difficulty": 4,
+      "stem": "【题 7.56】下面程序的功能是：从键盘输入一个整数 m(4≤m≤20)，输出如下的整数方阵(存入二维数组 aa)。例如，若输入 4 和 5，则分别输出：\n4 阶方阵（原书为图示排版，文字化为）：第1行 16 9 4 1；第2行 9 4 1 16；第3行 4 1 16 9；第4行 1 16 9 4。\n5 阶方阵：第1行 25 16 9 4 1；第2行 16 9 4 1 25；第3行 9 4 1 25 16；第4行 4 1 25 16 9；第5行 1 25 16 9 4。\n请改正程序中的错误语句，使它能得出正确的结果。改正后的语句是【1】和【2】。（注意：不得增行或删行，也不得更改程序的结构。）",
+      "explanation": "两处错误语句：【1】原写 xx[i-1][j+1]，当 j=n-1 时访问 xx[i-1][n]，越过了该行 n 个元素（下标 0~n-1）的范围，属数组越界读；改成 xx[i-1][(j+1)%n] 用取模实现「循环左移」，j=n-1 时正好回到第 0 列，与紧随其后的 xx[i][n-1]=xx[i-1][0] 结果一致。【2】原写 printf(\"%4f\",aa[i][j])，aa 是 int 数组，用 %f 会按 double 的 8 字节规则去读 4 字节的 int，输出全是垃圾值，必须改成 %4d。易错点：输入 4 时应得到 16 9 4 1 / 9 4 1 16 / 4 1 16 9 / 1 16 9 4，即每行由上一行循环左移一位而来。另：原书把 return(0); 写在外层 for 的花括号内，会导致只输出第一行，本库按题意移到循环之后。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\n#define M 20\nvoid aMatrix(int n,int xx[ ][M])\n{  int i,j;\n   for(j=0; j<n; j++) xx[0][j]=(n-j) * (n-j);\n   for(i=1; i<n; i++)\n   {  for(j=0; j<n; j++)\n          xx[i][j]=/*__BLANK_1__*/;\n      xx[i][n-1]=xx[i-1][0];\n   }\n}\nint main( )\n{  int aa[M][M],i,j,m;\n   printf(\"\\nPlease enter an integer number between 4 and 20: \");\n   scanf(\"%d\",&m);\n   aMatrix(m,aa);\n   printf(\"\\nThe %d * %d matrix generated:\",m,m);\n   for(i=0;i<m;i++)\n   {  printf(\"\\n\");\n      for(j=0;j<m;j++)\n            /*__BLANK_2__*/;\n   }\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "xx[i-1][(j+1)%n]",
+          "accepted": [
+            "xx[i-1][(j+1)%n]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "printf(\"%4d\",aa[i][j])",
+          "accepted": [
+            "printf(\"%4d\",aa[i][j])",
+            "printf(\"%4d\", aa[i][j])"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\n#define M 20\nvoid aMatrix(int n,int xx[ ][M])\n{  int i,j;\n   for(j=0; j<n; j++) xx[0][j]=(n-j) * (n-j);\n   for(i=1; i<n; i++)\n   {  for(j=0; j<n; j++)\n          xx[i][j]= xx[i-1][(j+1)%n] ;\n      xx[i][n-1]=xx[i-1][0];\n   }\n}\nint main( )\n{  int aa[M][M],i,j,m;\n   printf(\"\\nPlease enter an integer number between 4 and 20: \");\n   scanf(\"%d\",&m);\n   aMatrix(m,aa);\n   printf(\"\\nThe %d * %d matrix generated:\",m,m);\n   for(i=0;i<m;i++)\n   {  printf(\"\\n\");\n      for(j=0;j<m;j++)\n             printf(\"%4d\",aa[i][j]) ;\n   }\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "4\n",
+          "expected": "\nPlease enter an integer number between 4 and 20: \nThe 4 * 4 matrix generated:\n  16   9   4   1\n   9   4   1  16\n   4   1  16   9\n   1  16   9   4",
+          "note": "书给样例：4 阶方阵"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "\nPlease enter an integer number between 4 and 20: \nThe 5 * 5 matrix generated:\n  25  16   9   4   1\n  16   9   4   1  25\n   9   4   1  25  16\n   4   1  25  16   9\n   1  25  16   9   4",
+          "note": "书给样例：5 阶方阵"
+        },
+        {
+          "stdin": "6\n",
+          "expected": "\nPlease enter an integer number between 4 and 20: \nThe 6 * 6 matrix generated:\n  36  25  16   9   4   1\n  25  16   9   4   1  36\n  16   9   4   1  36  25\n   9   4   1  36  25  16\n   4   1  36  25  16   9\n   1  36  25  16   9   4",
+          "note": "另一阶数"
+        }
+      ],
+      "id": "c-ch07-cc-021",
       "verified": false
     },
     {
@@ -347,6 +1989,49 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.61（PDF p144 / 书页 p133）",
+      "difficulty": 4,
+      "stem": "【题 7.61】有一数列，第 1 项值为 2，其后每项与前一项值的差为 3，以下函数 fun 的功能是计算前 5 项的累加和，在累加过程中同时输出那些除以 4 后还余 2 的和的值。请填空。",
+      "explanation": "数列首项 a=2、公差 d=3，五项为 2、5、8、11、14。【1】填 a+d，每轮把当前项推进到下一项（等差数列的递推）。【2】填 sum%4==2，题目要求「输出那些除以 4 后还余 2 的和的值」，即对累加和取模判断。累加和依次是 2、7、15、26、40，其中 2%4=2、26%4=2，故输出 sum=2 和 sum=26 两行。易错点：一是 a=a+d 必须写在 sum=sum+a 之后，否则第一项就把 a 推进了，累加的会是 5、8、11、14、17；二是判断对象是 sum 而不是 a，写成 a%4==2 会输出完全不同的行。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nvoid fun(int a,int d)\n{  int i,sum=0;\n   for(i=0;i<5;i++)\n   {  sum=sum+a;\n      a=/*__BLANK_1__*/;\n      if(/*__BLANK_2__*/)   printf(\"sum=%d\\n\",sum);\n   }\n}\nint main( )\n{  int a=2,d=3;\n   fun(a,d);\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a+d",
+          "accepted": [
+            "a+d",
+            "d+a",
+            "a+3"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sum%4==2",
+          "accepted": [
+            "sum%4==2",
+            "sum%4==2"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nvoid fun(int a,int d)\n{  int i,sum=0;\n   for(i=0;i<5;i++)\n   {  sum=sum+a;\n      a= a+d ;\n      if( sum%4==2 )   printf(\"sum=%d\\n\",sum);\n   }\n}\nint main( )\n{  int a=2,d=3;\n   fun(a,d);\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "sum=2\nsum=26",
+          "note": "数列 2,5,8,11,14 的累加和中输出余 2 的"
+        }
+      ],
+      "id": "c-ch07-cc-022",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.62（PDF p144 / 书页 p133）",
       "difficulty": 3,
       "stem": "【题 7.62】以下程序的运行结果是【 】。",
@@ -398,6 +2083,48 @@
       "category": "c",
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
+      "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.65（PDF p146 / 书页 p135）",
+      "difficulty": 4,
+      "stem": "【题 7.65】以下函数 fun 的功能是：统计用数字 0～9 可以组成多少个位值相同的 3 位偶数。请填空。",
+      "explanation": "「位值相同的 3 位偶数」要求三个数字全相等且末位是偶数。三重循环里 i 遍历百位（1~9，百位不能为 0）、k 遍历 0~8、j 遍历 0~9。【1】填 k+2：让 k 只取 0、2、4、6、8 这些偶数，充当个位。【2】填 i==j&&j==k：三个数字全相等才计数。满足条件的组合只有 k=i=j 且 k 为偶数、i>=1，即 2、4、6、8，对应 222、444、666、888，输出 n=4。易错点：一是 k 的步长必须是 2 而不是 1，否则会把奇数末尾的 333、555 等也算进来得到 9；二是 i 从 1 开始已经排除了 000 这种非三位数。",
+      "ai_generated": false,
+      "generated_at": "2026-09-08",
+      "type": "code_completion",
+      "bloom": "apply",
+      "code": "#include <stdio.h>\nint fun( )\n{  int n=0,i,j,k;\n   for(i=1;i<=9;i++)\n      for(k=0;k<=8;k=/*__BLANK_1__*/)\n         for(j=0;j<=9;j++)\n            if(/*__BLANK_2__*/)  n++;\n   return n;\n}\nint main( )\n{  int n;\n   n=fun( );\n   printf(\"n=%d\\n\",n);\n   return(0);\n}",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "k+2",
+          "accepted": [
+            "k+2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "i==j&&j==k",
+          "accepted": [
+            "i==j&&j==k",
+            "i==k&&k==j",
+            "i==j&&i==k"
+          ]
+        }
+      ],
+      "solution": "#include <stdio.h>\nint fun( )\n{  int n=0,i,j,k;\n   for(i=1;i<=9;i++)\n      for(k=0;k<=8;k= k+2 )\n         for(j=0;j<=9;j++)\n            if( i==j&&j==k )  n++;\n   return n;\n}\nint main( )\n{  int n;\n   n=fun( );\n   printf(\"n=%d\\n\",n);\n   return(0);\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "n=4",
+          "note": "输出 n=4，即 222、444、666、888"
+        }
+      ],
+      "id": "c-ch07-cc-023",
+      "verified": false
+    },
+    {
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第7章 函数 题7.66（PDF p146 / 书页 p135）",
       "difficulty": 4,
       "stem": "【题 7.66】以下程序的运行结果是【 】。",
@@ -425,7 +2152,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-001",
+      "id": "c-ch07-sa-002",
       "verified": true
     },
     {
@@ -442,7 +2169,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-002",
+      "id": "c-ch07-sa-003",
       "verified": true
     },
     {
@@ -459,7 +2186,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-003",
+      "id": "c-ch07-sa-004",
       "verified": true
     },
     {
@@ -476,7 +2203,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-004",
+      "id": "c-ch07-sa-005",
       "verified": true
     },
     {
@@ -493,7 +2220,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-005",
+      "id": "c-ch07-sa-006",
       "verified": true
     },
     {
@@ -510,7 +2237,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-006",
+      "id": "c-ch07-sa-007",
       "verified": true
     },
     {
@@ -527,7 +2254,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-007",
+      "id": "c-ch07-sa-008",
       "verified": true
     },
     {
@@ -544,7 +2271,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-008",
+      "id": "c-ch07-sa-009",
       "verified": true
     },
     {
@@ -561,7 +2288,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-009",
+      "id": "c-ch07-sa-010",
       "verified": true
     },
     {
@@ -578,7 +2305,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-010",
+      "id": "c-ch07-sa-011",
       "verified": true
     },
     {
@@ -595,7 +2322,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-011",
+      "id": "c-ch07-sa-012",
       "verified": true
     },
     {
@@ -612,7 +2339,7 @@
       "bloom": "understand",
       "reference_answer": "",
       "grading_points": [],
-      "id": "c-ch07-sa-012",
+      "id": "c-ch07-sa-013",
       "verified": true
     },
     {

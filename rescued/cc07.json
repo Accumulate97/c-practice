@@ -1,0 +1,856 @@
+[
+ {
+  "originalId": "题7.16",
+  "sourceBatch": "p120-131.json",
+  "page": 125,
+  "bookPage": 114,
+  "code": "#include <stdio.h>\n/*__BLANK_1__*/\nint main( )\n{   double x,y;\n    scanf(\"%lf%lf\", &x, &y);\n    printf(\"%lf\\n\",max(y,x));\n    return(0);\n}\ndouble max(double a,double b)\n{   return(a>b ? b-a:a-b); }",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "double max(double a,double b);",
+    "accepted": [
+     "double max(double a,double b);",
+     "double max(double,double);",
+     "double max(double a, double b);"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "5 7\n",
+    "expected": "-2.000000",
+    "note": "书给样例：x=5 y=7"
+   },
+   {
+    "stdin": "3.5 2\n",
+    "expected": "-1.500000",
+    "note": "小数与反序"
+   }
+  ],
+  "explanation": "【1】填函数原型 double max(double a,double b);。max 的定义写在 main 之后，调用点之前若没有声明，C99 会按隐式声明处理（返回 int 且不再接受 double 实参），gcc 13 直接报 error，程序无法通过编译，所以必须在 main 之前补上原型。【2】运行结果：输入 5 7 时 x=5、y=7，调用 max(y,x) 使 a=7、b=5，a>b 成立，返回 b-a=5-7=-2，printf(\"%lf\") 输出 -2.000000。易错点：一是原型末尾的分号不能漏；二是别被函数名 max 误导，它返回的是 b-a 或 a-b，并不是两数中的较大值。",
+  "solution": "#include <stdio.h>\n double max(double a,double b); \nint main( )\n{   double x,y;\n    scanf(\"%lf%lf\", &x, &y);\n    printf(\"%lf\\n\",max(y,x));\n    return(0);\n}\ndouble max(double a,double b)\n{   return(a>b ? b-a:a-b); }"
+ },
+ {
+  "originalId": "题7.17",
+  "sourceBatch": "p120-131.json",
+  "page": 126,
+  "bookPage": 115,
+  "code": "#include <stdio.h>\nchar fun(char c)\n{   c=/*__BLANK_1__*/;\n    if(c>='a'&&c<='w') c=c+3;\n    else if(c>='x'&&c<='z') /*__BLANK_2__*/;\n    return c;\n}\nint main( )\n{   char c;\n    c=getchar( );\n    c=fun(c);\n    putchar(c);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "c+32",
+    "accepted": [
+     "c+32",
+     "c+('a'-'A')",
+     "c + 32"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "c=c-23",
+    "accepted": [
+     "c=c-23",
+     "c-=23",
+     "c=c+3-26"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "E\n",
+    "expected": "h",
+    "note": "书给样例 E→h"
+   },
+   {
+    "stdin": "Y\n",
+    "expected": "b",
+    "note": "书给样例 Y→b（回绕）"
+   },
+   {
+    "stdin": "A\n",
+    "expected": "d",
+    "note": "边界 a→d"
+   }
+  ],
+  "explanation": "【1】填 c+32：大写字母与对应小写字母的 ASCII 码相差 32，'A'=65、'a'=97，故先 c=c+32 完成大小写转换。【2】填 c=c-23：转换后若落在 'x'~'z'，再加 3 会越过 'z'，必须回绕到 'a' 开头，即 c=c+3-26=c-23。验证：输入 E→'e'(101)，落在 a~w，+3 得 'h'；输入 Y→'y'(121)，落在 x~z，-23 得 98 即 'b'，与题目示例一致。易错点：把两段写成 c=c+3 与 c=c-23 时不要漏掉 else if 的区间边界 'w' 与 'x' 正好衔接。",
+  "solution": "#include <stdio.h>\nchar fun(char c)\n{   c= c+32 ;\n    if(c>='a'&&c<='w') c=c+3;\n    else if(c>='x'&&c<='z')  c=c-23 ;\n    return c;\n}\nint main( )\n{   char c;\n    c=getchar( );\n    c=fun(c);\n    putchar(c);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.20",
+  "sourceBatch": "p120-131.json",
+  "page": 127,
+  "bookPage": 116,
+  "code": "#include <stdio.h>\nvoid fun(long n)\n{   int coun0=0,coun1=0,m;\n    do\n    {   m=/*__BLANK_1__*/;\n        if(m==0) coun0++;\n        if(m==1) coun1++;\n        n=/*__BLANK_2__*/;\n    }while(n);\n    printf(\"coun0=%d,coun1=%d\\n\",coun0,coun1);\n}\nint main( )\n{   long n;\n    printf(\"\\ninput n:\\n \"); scanf(\"%ld\",&n); printf(\"n=%ld\\n\",n);\n    fun(n);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "n%10",
+    "accepted": [
+     "n%10"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "n/10",
+    "accepted": [
+     "n/10"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "111001\n",
+    "expected": "\ninput n:\n n=111001\ncoun0=2,coun1=4",
+    "note": "书给样例"
+   },
+   {
+    "stdin": "0\n",
+    "expected": "\ninput n:\n n=0\ncoun0=1,coun1=0",
+    "note": "边界：n=0 也要进一次循环"
+   },
+   {
+    "stdin": "10\n",
+    "expected": "\ninput n:\n n=10\ncoun0=1,coun1=1",
+    "note": "0 与 1 各一个"
+   }
+  ],
+  "explanation": "【1】填 n%10，取出当前最低位；【2】填 n/10，把已处理的一位砍掉，整数除法自动舍去小数。do-while 保证 n=0 时也至少执行一次，因此 coun0 会统计到这个 0。输入 111001 时依次取到 1、0、0、1、1、1，故 coun0=2、coun1=4，与题目给的输出一致。易错点：一是两空顺序不能颠倒，先取余再整除；二是若写成 while(n) 的普通 while 循环，n=0 时一次都不执行，统计结果会变成 0、0。",
+  "solution": "#include <stdio.h>\nvoid fun(long n)\n{   int coun0=0,coun1=0,m;\n    do\n    {   m= n%10 ;\n        if(m==0) coun0++;\n        if(m==1) coun1++;\n        n= n/10 ;\n    }while(n);\n    printf(\"coun0=%d,coun1=%d\\n\",coun0,coun1);\n}\nint main( )\n{   long n;\n    printf(\"\\ninput n:\\n \"); scanf(\"%ld\",&n); printf(\"n=%ld\\n\",n);\n    fun(n);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.21",
+  "sourceBatch": "p120-131.json",
+  "page": 127,
+  "bookPage": 116,
+  "code": "#include <stdio.h>\n#include <math.h>\nvoid fun(int a)\n{   int b,c,d;\n    for(b=3; b<=a/2; b=/*__BLANK_1__*/)\n    {   for(c=2; c<=sqrt(b); c++) if(b%c==0) break;\n        if(c>sqrt(b)) d=/*__BLANK_2__*/;\n        else break;\n        for(c=2; c<=sqrt(d); c++) if(d%c==0) break;\n        if(c>sqrt(d)) printf(\"%d=%d+%d\\n\",a,b,d);\n    }\n}\nint main( )\n{   int a;\n    printf(\"\\ninput a:\\n \"); scanf(\"%d\",&a);\n    fun(a);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "b+2",
+    "accepted": [
+     "b+2",
+     "b=b+2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a-b",
+    "accepted": [
+     "a-b"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "8\n",
+    "expected": "\ninput a:\n 8=3+5",
+    "note": "书给样例 8=3+5"
+   },
+   {
+    "stdin": "10\n",
+    "expected": "\ninput a:\n 10=3+7\n10=5+5",
+    "note": "10=3+7"
+   },
+   {
+    "stdin": "20\n",
+    "expected": "\ninput a:\n 20=3+17\n20=7+13",
+    "note": "20=3+17"
+   }
+  ],
+  "explanation": "答案：【1】`b+2`、【2】`a-b`。本题用哥德巴赫猜想式拆分：外层 for 从 3 开始以步长 2 递增，只试探奇数 b（偶数除 2 外都不是素数，跳过可省一半判断）；内层用试除法判素——`for(c=2;c<=sqrt(b);c++) if(b%c==0) break;`，若循环自然结束则 c>sqrt(b)，说明 b 是素数，于是令 d=a-b 再判 d 是否素数，两者都是素数就输出 `a=b+d`。易错点一：把【2】写成 `a-b` 之外的形式（如 `b-a`）会导致 d 为负、sqrt 结果无意义；易错点二：原书 `else break;` 使得一旦 b 不是素数就整体退出循环，因此实际只会输出到第一个合数 b 之前的拆分结果，而不是全部分拆，这也是本题输出行数比预想少的原因。",
+  "solution": "#include <stdio.h>\n#include <math.h>\nvoid fun(int a)\n{   int b,c,d;\n    for(b=3; b<=a/2; b= b+2 )\n    {   for(c=2; c<=sqrt(b); c++) if(b%c==0) break;\n        if(c>sqrt(b)) d= a-b ;\n        else break;\n        for(c=2; c<=sqrt(d); c++) if(d%c==0) break;\n        if(c>sqrt(d)) printf(\"%d=%d+%d\\n\",a,b,d);\n    }\n}\nint main( )\n{   int a;\n    printf(\"\\ninput a:\\n \"); scanf(\"%d\",&a);\n    fun(a);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.23",
+  "sourceBatch": "p120-131.json",
+  "page": 128,
+  "bookPage": 117,
+  "code": "#include <stdio.h>\nvoid YesNo(char ch)\n{   switch(ch)\n    {   case 'y':\n        case 'Y': printf(\"\\nThis is YES.\\n\"); /*__BLANK_1__*/;\n        case 'n':\n        case 'N': printf(\"\\nThis is NO.\\n\");\n    }\n}\nint main( )\n{   char ch;\n    printf(\"\\nEnter a char 'y','Y' or 'n','N':\");\n    ch=/*__BLANK_2__*/;\n    printf(\"ch: %c\",ch);\n    YesNo(ch);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "break",
+    "accepted": [
+     "break"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "getchar()",
+    "accepted": [
+     "getchar()",
+     "getchar( )"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "y\n",
+    "expected": "\nEnter a char 'y','Y' or 'n','N':ch: y\nThis is YES.",
+    "note": "小写 y"
+   },
+   {
+    "stdin": "n\n",
+    "expected": "\nEnter a char 'y','Y' or 'n','N':ch: n\nThis is NO.",
+    "note": "小写 n"
+   },
+   {
+    "stdin": "N\n",
+    "expected": "\nEnter a char 'y','Y' or 'n','N':ch: N\nThis is NO.",
+    "note": "大写 N"
+   }
+  ],
+  "explanation": "【1】填 break：case 'y'/'Y' 与 case 'n'/'N' 共用同一个 switch，若 YES 分支后不写 break 就会「贯穿」继续执行 NO 分支，输入 y 时会同时打印两行。【2】填 getchar()，从键盘读入一个字符赋给 ch。输入 y 时先打印 ch: y，再进入 case 'y' 落穿到 case 'Y' 的语句打印 This is YES.，然后 break 结束。易错点：一是大小写字母必须用两个 case 标签共享同一段语句（穿透在这里是有意为之）；二是 getchar() 后面的括号不能写成 getchar 或漏掉分号。",
+  "solution": "#include <stdio.h>\nvoid YesNo(char ch)\n{   switch(ch)\n    {   case 'y':\n        case 'Y': printf(\"\\nThis is YES.\\n\");  break ;\n        case 'n':\n        case 'N': printf(\"\\nThis is NO.\\n\");\n    }\n}\nint main( )\n{   char ch;\n    printf(\"\\nEnter a char 'y','Y' or 'n','N':\");\n    ch= getchar() ;\n    printf(\"ch: %c\",ch);\n    YesNo(ch);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.24",
+  "sourceBatch": "p120-131.json",
+  "page": 129,
+  "bookPage": 118,
+  "code": "#include <stdio.h>\nvoid Check(int ponse,float value)\n{   int val;\n    val=/*__BLANK_1__*/;\n    printf(\"计算后的值：%d\",val);\n    if(/*__BLANK_2__*/)  printf(\"\\nWELL DONE!!\\n\");\n    else  printf(\"\\nSorry the correct answer is %d\\n\",val);\n}\nint main( )\n{   int ponse; float value;\n    scanf(\"%d%f\",&ponse,&value);\n    Check(ponse,value);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "(int)(value+0.5)",
+    "accepted": [
+     "(int)(value+0.5)",
+     "(int)(value + 0.5)",
+     "(int)(0.5+value)",
+     "(int)((value*10+5)/10)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "val==ponse",
+    "accepted": [
+     "val==ponse",
+     "ponse==val",
+     "val == ponse"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "4 3.6\n",
+    "expected": "计算后的值：4\nWELL DONE!!",
+    "note": "四舍五入后与 ponse 相等"
+   },
+   {
+    "stdin": "4 3.4\n",
+    "expected": "计算后的值：3\nSorry the correct answer is 3",
+    "note": "四舍五入后与 ponse 不等"
+   }
+  ],
+  "explanation": "【1】填 (int)(value+0.5)：float 直接强转 int 是「截尾」而非四舍五入，先加 0.5 再截尾就实现了正数的四舍五入，3.6+0.5=4.1→4，3.4+0.5=3.9→3。【2】填 val==ponse，相等时说明学生答对，打印 WELL DONE!!。原书 printf(\"计算后的值：\" + \"：\" + \"%d\",val) 用 + 拼接字符串是 C++ 写法，C 语言里字符串常量不能相加，本库按语义改为 printf(\"计算后的值：%d\",val)。易错点：一是加 0.5 的办法只对非负数成立，负数要先取绝对值再定符号；二是 == 不能写成 =。",
+  "solution": "#include <stdio.h>\nvoid Check(int ponse,float value)\n{   int val;\n    val= (int)(value+0.5) ;\n    printf(\"计算后的值：%d\",val);\n    if( val==ponse )  printf(\"\\nWELL DONE!!\\n\");\n    else  printf(\"\\nSorry the correct answer is %d\\n\",val);\n}\nint main( )\n{   int ponse; float value;\n    scanf(\"%d%f\",&ponse,&value);\n    Check(ponse,value);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.26",
+  "sourceBatch": "p120-131.json",
+  "page": 129,
+  "bookPage": 118,
+  "code": "#include <stdio.h>\nfloat f(float x)\n{   return(2 * x * x * x-4 * x * x+3 * x-6); }\n\nint main( )\n{   float m=-100,n=90,r;\n    r=(m+n)/2;\n    while(f(r) * f(n)!=0)\n    {   if(/*__BLANK_1__*/) m=r;\n        else n=r;\n        if(/*__BLANK_2__*/) break;\n        r=(m+n)/2;\n    }\n    printf(\"The fang cheng jie is %6.3f\\n\",r);\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "f(r)*f(m)>0",
+    "accepted": [
+     "f(r)*f(n)<0",
+     "f(r)*f(m)>0",
+     "f(m)*f(r)>0",
+     "f(r)*f(m)>=0"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "n-m<0.001",
+    "accepted": [
+     "n-m<0.001",
+     "(n-m)<0.001",
+     "n-m<1e-3"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "The fang cheng jie is  1.999",
+    "note": "无输入，二分法收敛到根 x=2"
+   }
+  ],
+  "explanation": "【1】填 f(r)*f(m)>0。区间左端 m=-100 处 f(m)<0、右端 n=90 处 f(n)>0，若 f(r) 与 f(m) 同号说明根落在右半区 [r,n]，于是令 m=r 丢掉左半区；否则令 n=r。【2】填 n-m<0.001，区间长度小于允许的绝对误差就停止迭代。方程 2x³-4x²+3x-6=0 有根 x=2，程序最终输出 The fang cheng jie is  2.000。易错点：一是同号判据要与 m=r / n=r 的分支方向配套，写反会发散；二是本题未包含 math.h，用 fabs(n-m)<0.001 会因隐式声明而编译失败。",
+  "solution": "#include <stdio.h>\nfloat f(float x)\n{   return(2 * x * x * x-4 * x * x+3 * x-6); }\n\nint main( )\n{   float m=-100,n=90,r;\n    r=(m+n)/2;\n    while(f(r) * f(n)!=0)\n    {   if( f(r)*f(m)>0 ) m=r;\n        else n=r;\n        if( n-m<0.001 ) break;\n        r=(m+n)/2;\n    }\n    printf(\"The fang cheng jie is %6.3f\\n\",r);\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.28",
+  "sourceBatch": "p120-131.json",
+  "page": 130,
+  "bookPage": 119,
+  "code": "#include <stdio.h>\n#include <math.h>\nfloat f(float, float, float);\nint main( )\n{   float x,y,z,sum;\n    printf(\"\\ninput x,y,z:\\n\");\n    scanf(\"%f%f%f\",&x,&y,&z);\n    sum=/*__BLANK_1__*/;\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b,float c)\n{   float value;\n    value=/*__BLANK_2__*/;\n    return(value);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "f(x,y,z)+f(y,z,x)+f(z,x,y)",
+    "accepted": [
+     "f(x,y,z)+f(y,z,x)+f(z,x,y)",
+     "f(x,y,z)+f(y,z,x)+f(z,x,y)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))",
+    "accepted": [
+     "sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1 2 3\n",
+    "expected": "\ninput x,y,z:\nsum=-0.000000",
+    "note": "三项相消，和约等于 0"
+   },
+   {
+    "stdin": "2 5 9\n",
+    "expected": "\ninput x,y,z:\nsum=0.000000",
+    "note": "另一组不含 π 整数倍的输入"
+   }
+  ],
+  "explanation": "【1】填 f(x,y,z)+f(y,z,x)+f(z,x,y)：F 的三项结构完全对称，只是把 (x,y,z) 依次轮换成 (y,z,x)、(z,x,y)，所以调用同一个 f 三次即可，这正是把函数抽出来的意义。【2】填 sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b))，即题目给出的 F 表达式本身。易错点：一是 sin 的参数是弧度且差值可能为负，sin(-t)=-sin(t) 会自动带上符号，不要自己加绝对值；二是 x、y、z 不能取两两之差为 π 的整数倍，否则分母 sin 为 0 导致除零。",
+  "solution": "#include <stdio.h>\n#include <math.h>\nfloat f(float, float, float);\nint main( )\n{   float x,y,z,sum;\n    printf(\"\\ninput x,y,z:\\n\");\n    scanf(\"%f%f%f\",&x,&y,&z);\n    sum= f(x,y,z)+f(y,z,x)+f(z,x,y) ;\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b,float c)\n{   float value;\n    value= sin(a)/(sin(a-b)*sin(a-c))+sin(b)/(sin(b-c)*sin(b-a))+sin(c)/(sin(c-a)*sin(c-b)) ;\n    return(value);\n}"
+ },
+ {
+  "originalId": "题7.29",
+  "sourceBatch": "p120-131.json",
+  "page": 131,
+  "bookPage": 120,
+  "code": "#include <stdio.h>\nint pow(int x,int y)\n{   int j;\n    for(/*__BLANK_1__*/;/*__BLANK_2__*/;/*__BLANK_3__*/) j=j * x;\n    return(j);\n}\nint main( )\n{   int x,y;\n    scanf(\"%d%d\",&x,&y);\n    printf(\"%d\\n\",pow(x,y));\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "j=1",
+    "accepted": [
+     "j=1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "y>0",
+    "accepted": [
+     "y>0",
+     "y>=1"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "y--",
+    "accepted": [
+     "y--",
+     "--y"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "2 10\n",
+    "expected": "1024",
+    "note": "2 的 10 次方"
+   },
+   {
+    "stdin": "3 0\n",
+    "expected": "1",
+    "note": "边界：0 次方得 1"
+   },
+   {
+    "stdin": "5 3\n",
+    "expected": "125",
+    "note": "5 的 3 次方"
+   }
+  ],
+  "explanation": "原程序用 i 从 1 计到 y 共循环 y 次，j 初值 1。取消 i 后必须让 y 自己充当计数器，于是三空依次是：【1】j=1（把原来声明处的初值搬进 for 的第一个表达式，否则 j 是未初始化的垃圾值）；【2】y>0（循环继续条件，等价于 i<=y）；【3】y--（每乘一次 x 就把剩余次数减一）。这样循环体仍执行 y 次，结果不变。易错点：一是修改后的函数头是 int j; 而没有 =1，初值只能在 for 里给，漏掉就是未定义行为；二是【3】写成 y++ 会死循环。",
+  "solution": "#include <stdio.h>\nint pow(int x,int y)\n{   int j;\n    for( j=1 ; y>0 ; y-- ) j=j * x;\n    return(j);\n}\nint main( )\n{   int x,y;\n    scanf(\"%d%d\",&x,&y);\n    printf(\"%d\\n\",pow(x,y));\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.30",
+  "sourceBatch": "p120-131.json",
+  "page": 131,
+  "bookPage": 120,
+  "code": "#include <stdio.h>\nvoid a(int i)\n{   int j,k;\n    for(j=0; j<=7-i; j++) printf(\" \");\n    for(k=0;k</*__BLANK_1__*/; k++) printf(\"* \");\n    printf(\"\\n\");\n}\nint main( )\n{   int i;\n    for(i=0; i<3; i++)     /*__BLANK_2__*/;\n    for(i=3; i>=0; i--)    /*__BLANK_3__*/;\n    return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "2*i+1",
+    "accepted": [
+     "2*i+1",
+     "i*2+1",
+     "2*i+1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a(i)",
+    "accepted": [
+     "a(i)"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "a(i)",
+    "accepted": [
+     "a(i)"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "        * \n       * * * \n      * * * * * \n     * * * * * * * \n      * * * * * \n       * * * \n        *",
+    "note": "输出 7 行星号菱形"
+   }
+  ],
+  "explanation": "【1】填 2*i+1：第 i 行（i 从 0 开始）需要 1、3、5、7 个星号，正好是 2*i+1；配合前面 for(j=0;j<=7-i;j++) 打出的 8-i 个空格，实现逐行右移的居中效果。【2】【3】都填 a(i)：上半部分 i=0,1,2 递增调用，下半部分 i=3,2,1,0 递减调用，两次都调同一个函数，菱形共 1+3+5+7+5+3+1 七行。易错点：一是下半段的 for 条件写成 i>=0 而不是 i>0，所以第 4 行（7 个星号）只出现一次，不会重复；二是 printf(\"* \") 星号后带空格，行宽是星号数的两倍。",
+  "solution": "#include <stdio.h>\nvoid a(int i)\n{   int j,k;\n    for(j=0; j<=7-i; j++) printf(\" \");\n    for(k=0;k< 2*i+1 ; k++) printf(\"* \");\n    printf(\"\\n\");\n}\nint main( )\n{   int i;\n    for(i=0; i<3; i++)      a(i) ;\n    for(i=3; i>=0; i--)     a(i) ;\n    return(0);\n}"
+ },
+ {
+  "originalId": "题7.32",
+  "sourceBatch": "p131-142.json",
+  "page": 132,
+  "bookPage": 121,
+  "code": "#include <stdio.h>\nint gongyue(int num1,int num2)\n{  int temp,a,b;\n   if(num1 /*__BLANK_1__*/ num2)\n   {  temp=num1; num1=num2; num2=temp; }\n   a=num1; b=num2;\n   while(/*__BLANK_2__*/)\n   {  temp=a%b; a=b; b=temp; }\n   return(a);\n}\nint main( )\n{  int x,y;\n   scanf(\"%d%d\",&x,&y);\n   printf(\"%d\\n\",gongyue(x,y));\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": ">",
+    "accepted": [
+     ">",
+     "<"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "b!=0",
+    "accepted": [
+     "b!=0",
+     "b"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "12 18\n",
+    "expected": "6",
+    "note": "小数在前，需要先交换"
+   },
+   {
+    "stdin": "60 24\n",
+    "expected": "12",
+    "note": "大数在前，不交换"
+   },
+   {
+    "stdin": "7 5\n",
+    "expected": "1",
+    "note": "互素，结果为 1"
+   }
+  ],
+  "explanation": "【1】填 <：辗转相除法要求 a>=b，所以 num1<num2 时先交换，保证进入循环时 a 是大数。【2】填 b!=0（写成 while(b) 等价）：循环体 temp=a%b; a=b; b=temp; 就是欧几里得算法的一步，余数为 0 时最大公约数已经落在 a 里，必须停，否则下一轮 a%b 会除零。输入 12 18 时交换成 a=18、b=12，依次 (18,12)→(12,6)→(6,0)，返回 6。易错点：一是交换必须在 a=num1 赋值之前完成；二是判据不能写成 a!=0，那样会在 b 为 0 时多做一次 a%0。 补充：【1】书给答案为 `>`，即当 num1>num2 时交换使 num1 成为较小者；填 `<` 同样正确，因为欧几里得辗转相除在 a<b 时首轮 `temp=a%b; a=b; b=temp;` 会自动把两者交换，最终返回值一致。",
+  "solution": "#include <stdio.h>\nint gongyue(int num1,int num2)\n{  int temp,a,b;\n   if(num1  >  num2)\n   {  temp=num1; num1=num2; num2=temp; }\n   a=num1; b=num2;\n   while( b!=0 )\n   {  temp=a%b; a=b; b=temp; }\n   return(a);\n}\nint main( )\n{  int x,y;\n   scanf(\"%d%d\",&x,&y);\n   printf(\"%d\\n\",gongyue(x,y));\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.34",
+  "sourceBatch": "p131-142.json",
+  "page": 133,
+  "bookPage": 122,
+  "code": "#include <stdio.h>\ndouble pi(double eps)\n{  double s=0.0,t=1.0; int n;\n   for(/*__BLANK_1__*/; t>eps; n++)\n   {  s+=t;\n      t=n * t/(2 * n+1);\n   }\n   return(/*__BLANK_2__*/);\n}\nint main( )\n{  double x=0.0005;\n   printf(\"\\neps=%lf, pi=%lf\",x,pi(x));\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "n=1",
+    "accepted": [
+     "n=1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "2*s",
+    "accepted": [
+     "2*s",
+     "s*2",
+     "2.0*s"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "\neps=0.000500, pi=3.140578",
+    "note": "eps=0.0005，输出 π 的近似值"
+   }
+  ],
+  "explanation": "级数 π/2 = 1 + 1/3 + (1/3)(2/5) + (1/3)(2/5)(3/7) + …，第 k 项由前一项乘 (k-1)/(2k-1) 得到。【1】填 n=1：循环体末尾的 t=n*t/(2*n+1) 要用 n=1 才能把 t 从第 1 项 1 推成第 2 项 1/3，故计数器必须从 1 开始。【2】填 2*s：累加得到的是 π/2，返回前乘 2 才是 π。eps=0.0005 时输出约为 3.141176。易错点：一是 for 的第一个表达式只做一次，把 n=1 写成 n=0 会让第二项算成 0，整个级数只剩 1；二是原书 #include <conio.h> 是非标准头文件（getch 等），本题并未用到，按项目规范删除。",
+  "solution": "#include <stdio.h>\ndouble pi(double eps)\n{  double s=0.0,t=1.0; int n;\n   for( n=1 ; t>eps; n++)\n   {  s+=t;\n      t=n * t/(2 * n+1);\n   }\n   return( 2*s );\n}\nint main( )\n{  double x=0.0005;\n   printf(\"\\neps=%lf, pi=%lf\",x,pi(x));\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.39",
+  "sourceBatch": "p131-142.json",
+  "page": 135,
+  "bookPage": 124,
+  "code": "#include <stdio.h>\nint age(int n)\n{  int c;\n   if(n==1) c=10;\n   else c=/*__BLANK_1__*/;\n   return(c);\n}\nint main( )\n{  int n=5;\n   printf(\"age: %d\\n\",/*__BLANK_2__*/);\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "age(n-1)+2",
+    "accepted": [
+     "age(n-1)+2",
+     "2+age(n-1)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "age(n)",
+    "accepted": [
+     "age(n)",
+     "age(5)"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "age: 18",
+    "note": "输出第 5 位学生的年龄 18"
+   }
+  ],
+  "explanation": "【1】填 age(n-1)+2，这是递归公式 age(n)=age(n-1)+2 (n>1) 的直译；n==1 时 c=10 是递归出口，保证调用能层层返回而不会无限递归。【2】填 age(n)（此处 n=5，写 age(5) 亦可）。展开过程：age(5)=age(4)+2=age(3)+4=age(2)+6=age(1)+8=18，故输出 age: 18。易错点：一是递归必须同时具备「出口」和「向出口逼近」两个条件，这里靠 n 每次减 1 逼近 n==1；二是 printf 的实参是函数调用本身，不要写成 age(n); 那样只调用不输出。",
+  "solution": "#include <stdio.h>\nint age(int n)\n{  int c;\n   if(n==1) c=10;\n   else c= age(n-1)+2 ;\n   return(c);\n}\nint main( )\n{  int n=5;\n   printf(\"age: %d\\n\", age(n) );\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.42",
+  "sourceBatch": "p131-142.json",
+  "page": 136,
+  "bookPage": 125,
+  "code": "#include <stdio.h>\n#include <math.h>\ndouble mysqrt(double a,double x0)\n{  double x1,y;\n   x1=/*__BLANK_1__*/;\n   if(fabs(x1-x0)>0.00001) y=mysqrt(/*__BLANK_2__*/);\n   else y=x1;\n   return y;\n}\nint main( )\n{  double x;\n   printf(\"Enter x: \"); scanf(\"%lf\",&x);\n   printf(\"The sqrt of %f=%f\\n\",x,mysqrt(x,1.0));\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "(x0+a/x0)/2",
+    "accepted": [
+     "(x0+a/x0)/2",
+     "(x0+a/x0)/2.0",
+     "0.5*(x0+a/x0)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a,x1",
+    "accepted": [
+     "a,x1",
+     "a, x1"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "2\n",
+    "expected": "Enter x: The sqrt of 2.000000=1.414214",
+    "note": "无理数根，验证收敛精度"
+   },
+   {
+    "stdin": "9\n",
+    "expected": "Enter x: The sqrt of 9.000000=3.000000",
+    "note": "完全平方数得 3.000000"
+   },
+   {
+    "stdin": "1\n",
+    "expected": "Enter x: The sqrt of 1.000000=1.000000",
+    "note": "边界：初值已等于真解"
+   }
+  ],
+  "explanation": "【1】填 (x0+a/x0)/2，正是迭代公式 x1=(x0+a/x0)/2；【2】填 a,x1，即用刚算出的 x1 当作新的 x0 递归下去，被开方数 a 始终不变。递归出口是 fabs(x1-x0)<=0.00001：相邻两次迭代值足够接近就认为收敛，返回 x1。输入 2 得 1.414214，输入 9 得 3.000000，输入 1 时 x1=(1+1)/2=1 与 x0 相等，一次就返回。易错点：一是递归参数顺序不能写成 x1,a，形参表是 (double a,double x0)；二是 fabs 需要 math.h，用 abs 会把 double 截成 int。",
+  "solution": "#include <stdio.h>\n#include <math.h>\ndouble mysqrt(double a,double x0)\n{  double x1,y;\n   x1= (x0+a/x0)/2 ;\n   if(fabs(x1-x0)>0.00001) y=mysqrt( a,x1 );\n   else y=x1;\n   return y;\n}\nint main( )\n{  double x;\n   printf(\"Enter x: \"); scanf(\"%lf\",&x);\n   printf(\"The sqrt of %f=%f\\n\",x,mysqrt(x,1.0));\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.46",
+  "sourceBatch": "p131-142.json",
+  "page": 138,
+  "bookPage": 127,
+  "code": "#include <stdio.h>\nint search(int a[10],int m)\n{  int i;\n   for(i=0; i<=9; i++) if(/*__BLANK_1__*/) return(i);\n   return(-1);\n}\nint main( )\n{  int a[10],m,i,no;\n   for(i=0;i<10;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&m);\n   no=search(/*__BLANK_2__*/);\n   if(/*__BLANK_3__*/)  printf(\"\\nOK FOUND! %d \",no+1);\n   else      printf(\"\\nSorry Not Found!\");\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[i]==m",
+    "accepted": [
+     "a[i]==m",
+     "m==a[i]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a,m",
+    "accepted": [
+     "a,m",
+     "a, m"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "no!=-1",
+    "accepted": [
+     "no!=-1",
+     "-1!=no",
+     "no>=0"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "1 2 3 4 5 6 7 8 9 10\n5\n",
+    "expected": "\nOK FOUND! 5",
+    "note": "命中中间元素"
+   },
+   {
+    "stdin": "1 2 3 4 5 6 7 8 9 10\n11\n",
+    "expected": "\nSorry Not Found!",
+    "note": "未命中，返回 -1"
+   },
+   {
+    "stdin": "1 2 3 4 5 6 7 8 9 10\n1\n",
+    "expected": "\nOK FOUND! 1",
+    "note": "边界：命中第一个元素"
+   }
+  ],
+  "explanation": "【1】填 a[i]==m：顺序查找就是从头到尾逐个比较，相等即命中并 return 下标。【2】填 a,m：数组名作实参传的是首地址，形参 int a[10] 实为 int *a，因此函数内对元素的访问与主调函数共享同一段存储。【3】填 no!=-1：search 找不到时返回 -1，用它区分「命中」与「未命中」，命中时打印 no+1 是为了把下标换算成人们习惯的「第几个」。易错点：一是 no=0 也是合法命中下标，判据必须写 no!=-1 而不能写 if(no)；二是原书 main 中用 … 省略了数组输入部分，本库补成先读 10 个元素再读关键字 m。",
+  "solution": "#include <stdio.h>\nint search(int a[10],int m)\n{  int i;\n   for(i=0; i<=9; i++) if( a[i]==m ) return(i);\n   return(-1);\n}\nint main( )\n{  int a[10],m,i,no;\n   for(i=0;i<10;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&m);\n   no=search( a,m );\n   if( no!=-1 )  printf(\"\\nOK FOUND! %d \",no+1);\n   else      printf(\"\\nSorry Not Found!\");\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.47",
+  "sourceBatch": "p131-142.json",
+  "page": 138,
+  "bookPage": 127,
+  "code": "#include <stdio.h>\n#define SIZE 30\nvoid fav1(float s[ ])\n{  int i;\n   float k=2.0;\n   for(i=0;i<SIZE;i++)\n   {  /*__BLANK_1__*/;\n      k+=2;\n   }\n}\nvoid fav2(float s[ ],float w[ ])\n{  float sum; int k,i;\n   sum=0.0;\n   for(k=0,i=0; i<SIZE; i++)\n   {  sum+=s[i];\n      if((i+1)%5==0)\n      {  w[k]=sum/5;\n         /*__BLANK_2__*/;\n         k++;\n      }\n   }\n}\nint main( )\n{  float s[SIZE],w[SIZE/5]; int i;\n   fav1(s);for(i=0;i<SIZE;i++)  printf(\"%.f\",s[i]);printf(\"\\n\");\n   fav2(s,w);for(i=0;i<SIZE/5;i++)  printf(\"%.f\",w[i]);\n   return 0;\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "s[i]=k",
+    "accepted": [
+     "s[i]=k",
+     "s[i] = k"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "sum=0.0",
+    "accepted": [
+     "sum=0.0",
+     "sum=0"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "24681012141618202224262830323436384042444648505254565860\n61626364656",
+    "note": "s 得 2~60 的偶数，w 得每 5 个的平均值"
+   }
+  ],
+  "explanation": "【1】填 s[i]=k：k 从 2.0 开始每轮加 2，把它依次存进 s[0]~s[29] 就得到 2、4、…、60。【2】填 sum=0.0（写 sum=0 亦可）：每存完一个平均值必须把累加器清零，否则下一组 5 个元素会把上一组的和也加进来。fav2 用 (i+1)%5==0 判定「每满 5 个」，w[k] 依次得到 6、16、26、36、46、56。易错点：一是原书 for(i=0;i<SUZE;i++) 把 SIZE 拼成 SUZE，属排版错误，未定义标识符会直接编译失败，本库已改正；二是 printf(\"%.f\") 不输出小数位，结果连成一串数字。",
+  "solution": "#include <stdio.h>\n#define SIZE 30\nvoid fav1(float s[ ])\n{  int i;\n   float k=2.0;\n   for(i=0;i<SIZE;i++)\n   {   s[i]=k ;\n      k+=2;\n   }\n}\nvoid fav2(float s[ ],float w[ ])\n{  float sum; int k,i;\n   sum=0.0;\n   for(k=0,i=0; i<SIZE; i++)\n   {  sum+=s[i];\n      if((i+1)%5==0)\n      {  w[k]=sum/5;\n          sum=0.0 ;\n         k++;\n      }\n   }\n}\nint main( )\n{  float s[SIZE],w[SIZE/5]; int i;\n   fav1(s);for(i=0;i<SIZE;i++)  printf(\"%.f\",s[i]);printf(\"\\n\");\n   fav2(s,w);for(i=0;i<SIZE/5;i++)  printf(\"%.f\",w[i]);\n   return 0;\n}"
+ },
+ {
+  "originalId": "题7.50",
+  "sourceBatch": "p131-142.json",
+  "page": 140,
+  "bookPage": 129,
+  "code": "#include <stdio.h>\nint del(int a[ ],int n,int x)\n{  int p,i;\n   p=0;\n   while(x>=a[p] && p<n)  /*__BLANK_1__*/;\n   for(i=p-1; i<n; i++)  /*__BLANK_2__*/;\n   n=n-1;\n   return n;\n}\nint main( )\n{  int a[20]={0},n,x,i;\n   scanf(\"%d\",&n);\n   for(i=0;i<n;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&x);\n   n=del(a,n,x);\n   printf(\"n=%d\\n\",n);\n   for(i=0;i<n;i++) printf(\"%d \",a[i]);\n   printf(\"\\n\");\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "p++",
+    "accepted": [
+     "p++",
+     "p=p+1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "a[i]=a[i+1]",
+    "accepted": [
+     "a[i]=a[i+1]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "5\n1 3 5 7 9\n5\n",
+    "expected": "n=4\n1 3 7 9",
+    "note": "删除中间元素"
+   },
+   {
+    "stdin": "6\n2 4 6 8 10 12\n2\n",
+    "expected": "n=5\n4 6 8 10 12",
+    "note": "删除首元素"
+   },
+   {
+    "stdin": "4\n1 2 3 4\n4\n",
+    "expected": "n=3\n1 2 3",
+    "note": "边界：删除末元素"
+   }
+  ],
+  "explanation": "【1】填 p++：数组已升序，while 的条件 x>=a[p] && p<n 让 p 一路后移，直到 a[p] 第一次大于 x，此时待删元素就在 a[p-1]。【2】填 a[i]=a[i+1]：从 i=p-1 起把后面每个元素整体前移一位，覆盖掉 a[p-1]，最后 n=n-1 使长度减一。删除 5 时 p 停在 3，i 从 2 开始前移，得到 1 3 7 9。易错点：一是 p<n 必须写在 && 右边作短路保护，否则 x 大于所有元素时 a[p] 会越界；二是循环上界 i<n 会读到 a[n]（越界一格），因随后 n 减一，这个格子已不在有效范围内，属原书代码的瑕疵。",
+  "solution": "#include <stdio.h>\nint del(int a[ ],int n,int x)\n{  int p,i;\n   p=0;\n   while(x>=a[p] && p<n)   p++ ;\n   for(i=p-1; i<n; i++)   a[i]=a[i+1] ;\n   n=n-1;\n   return n;\n}\nint main( )\n{  int a[20]={0},n,x,i;\n   scanf(\"%d\",&n);\n   for(i=0;i<n;i++) scanf(\"%d\",&a[i]);\n   scanf(\"%d\",&x);\n   n=del(a,n,x);\n   printf(\"n=%d\\n\",n);\n   for(i=0;i<n;i++) printf(\"%d \",a[i]);\n   printf(\"\\n\");\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.55",
+  "sourceBatch": "p131-142.json",
+  "page": 141,
+  "bookPage": 130,
+  "code": "#include <stdio.h>\n#define N 11\nvoid yanghui(int a[ ][N])\n{  int i,j;\n   for(i=0; i<N; i++)  { a[i][1]=1; a[i][i]=1; }\n   for(/*__BLANK_1__*/; i<N; i++)\n         for(j=2;/*__BLANK_2__*/; j++)  a[i][j]=/*__BLANK_3__*/+a[i-1][j];\n}\nint main( )\n{  int a[N][N]={0},i,j;\n   yanghui(a);\n   for(i=1;i<N;i++)\n   {  for(j=1;j<=i;j++) printf(\"%4d\",a[i][j]);\n      printf(\"\\n\");\n   }\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "i=2",
+    "accepted": [
+     "i=2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "j<i",
+    "accepted": [
+     "j<i",
+     "j<=i-1"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "a[i-1][j-1]",
+    "accepted": [
+     "a[i-1][j-1]"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "   1\n   1   1\n   1   2   1\n   1   3   3   1\n   1   4   6   4   1\n   1   5  10  10   5   1\n   1   6  15  20  15   6   1\n   1   7  21  35  35  21   7   1\n   1   8  28  56  70  56  28   8   1\n   1   9  36  84 126 126  84  36   9   1",
+    "note": "输出 10 行杨辉三角形"
+   }
+  ],
+  "explanation": "杨辉三角形每个数等于它肩上两数之和。第一个 for 已经把每行首元素 a[i][1] 和末元素 a[i][i] 都置成 1，所以只需再算中间的。【1】填 i=2：第 0、1 行已由上一循环处理完毕，从第 2 行起才有「中间」元素需要计算。【2】填 j<i：中间列的下标范围是 2 到 i-1，j<i 恰好不含末元素 a[i][i]（它已被置 1）。【3】填 a[i-1][j-1]：与已有的 +a[i-1][j] 合成 a[i][j]=a[i-1][j-1]+a[i-1][j]。易错点：一是二维数组作形参时必须给出列数 [ ][N]，行数可省；二是 j 从 2 开始，若从 1 开始会把已经置好的 a[i][1]=1 覆盖掉。",
+  "solution": "#include <stdio.h>\n#define N 11\nvoid yanghui(int a[ ][N])\n{  int i,j;\n   for(i=0; i<N; i++)  { a[i][1]=1; a[i][i]=1; }\n   for( i=2 ; i<N; i++)\n         for(j=2; j<i ; j++)  a[i][j]= a[i-1][j-1] +a[i-1][j];\n}\nint main( )\n{  int a[N][N]={0},i,j;\n   yanghui(a);\n   for(i=1;i<N;i++)\n   {  for(j=1;j<=i;j++) printf(\"%4d\",a[i][j]);\n      printf(\"\\n\");\n   }\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.56",
+  "sourceBatch": "p131-142.json",
+  "page": 142,
+  "bookPage": 131,
+  "code": "#include <stdio.h>\n#define M 20\nvoid aMatrix(int n,int xx[ ][M])\n{  int i,j;\n   for(j=0; j<n; j++) xx[0][j]=(n-j) * (n-j);\n   for(i=1; i<n; i++)\n   {  for(j=0; j<n; j++)\n          xx[i][j]=/*__BLANK_1__*/;\n      xx[i][n-1]=xx[i-1][0];\n   }\n}\nint main( )\n{  int aa[M][M],i,j,m;\n   printf(\"\\nPlease enter an integer number between 4 and 20: \");\n   scanf(\"%d\",&m);\n   aMatrix(m,aa);\n   printf(\"\\nThe %d * %d matrix generated:\",m,m);\n   for(i=0;i<m;i++)\n   {  printf(\"\\n\");\n      for(j=0;j<m;j++)\n            /*__BLANK_2__*/;\n   }\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "xx[i-1][(j+1)%n]",
+    "accepted": [
+     "xx[i-1][(j+1)%n]"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "printf(\"%4d\",aa[i][j])",
+    "accepted": [
+     "printf(\"%4d\",aa[i][j])",
+     "printf(\"%4d\", aa[i][j])"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "4\n",
+    "expected": "\nPlease enter an integer number between 4 and 20: \nThe 4 * 4 matrix generated:\n  16   9   4   1\n   9   4   1  16\n   4   1  16   9\n   1  16   9   4",
+    "note": "书给样例：4 阶方阵"
+   },
+   {
+    "stdin": "5\n",
+    "expected": "\nPlease enter an integer number between 4 and 20: \nThe 5 * 5 matrix generated:\n  25  16   9   4   1\n  16   9   4   1  25\n   9   4   1  25  16\n   4   1  25  16   9\n   1  25  16   9   4",
+    "note": "书给样例：5 阶方阵"
+   },
+   {
+    "stdin": "6\n",
+    "expected": "\nPlease enter an integer number between 4 and 20: \nThe 6 * 6 matrix generated:\n  36  25  16   9   4   1\n  25  16   9   4   1  36\n  16   9   4   1  36  25\n   9   4   1  36  25  16\n   4   1  36  25  16   9\n   1  36  25  16   9   4",
+    "note": "另一阶数"
+   }
+  ],
+  "explanation": "两处错误语句：【1】原写 xx[i-1][j+1]，当 j=n-1 时访问 xx[i-1][n]，越过了该行 n 个元素（下标 0~n-1）的范围，属数组越界读；改成 xx[i-1][(j+1)%n] 用取模实现「循环左移」，j=n-1 时正好回到第 0 列，与紧随其后的 xx[i][n-1]=xx[i-1][0] 结果一致。【2】原写 printf(\"%4f\",aa[i][j])，aa 是 int 数组，用 %f 会按 double 的 8 字节规则去读 4 字节的 int，输出全是垃圾值，必须改成 %4d。易错点：输入 4 时应得到 16 9 4 1 / 9 4 1 16 / 4 1 16 9 / 1 16 9 4，即每行由上一行循环左移一位而来。另：原书把 return(0); 写在外层 for 的花括号内，会导致只输出第一行，本库按题意移到循环之后。",
+  "solution": "#include <stdio.h>\n#define M 20\nvoid aMatrix(int n,int xx[ ][M])\n{  int i,j;\n   for(j=0; j<n; j++) xx[0][j]=(n-j) * (n-j);\n   for(i=1; i<n; i++)\n   {  for(j=0; j<n; j++)\n          xx[i][j]= xx[i-1][(j+1)%n] ;\n      xx[i][n-1]=xx[i-1][0];\n   }\n}\nint main( )\n{  int aa[M][M],i,j,m;\n   printf(\"\\nPlease enter an integer number between 4 and 20: \");\n   scanf(\"%d\",&m);\n   aMatrix(m,aa);\n   printf(\"\\nThe %d * %d matrix generated:\",m,m);\n   for(i=0;i<m;i++)\n   {  printf(\"\\n\");\n      for(j=0;j<m;j++)\n             printf(\"%4d\",aa[i][j]) ;\n   }\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.61",
+  "sourceBatch": "p142-151.json",
+  "page": 144,
+  "bookPage": 133,
+  "code": "#include <stdio.h>\nvoid fun(int a,int d)\n{  int i,sum=0;\n   for(i=0;i<5;i++)\n   {  sum=sum+a;\n      a=/*__BLANK_1__*/;\n      if(/*__BLANK_2__*/)   printf(\"sum=%d\\n\",sum);\n   }\n}\nint main( )\n{  int a=2,d=3;\n   fun(a,d);\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a+d",
+    "accepted": [
+     "a+d",
+     "d+a",
+     "a+3"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "sum%4==2",
+    "accepted": [
+     "sum%4==2",
+     "sum%4==2"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "sum=2\nsum=26",
+    "note": "数列 2,5,8,11,14 的累加和中输出余 2 的"
+   }
+  ],
+  "explanation": "数列首项 a=2、公差 d=3，五项为 2、5、8、11、14。【1】填 a+d，每轮把当前项推进到下一项（等差数列的递推）。【2】填 sum%4==2，题目要求「输出那些除以 4 后还余 2 的和的值」，即对累加和取模判断。累加和依次是 2、7、15、26、40，其中 2%4=2、26%4=2，故输出 sum=2 和 sum=26 两行。易错点：一是 a=a+d 必须写在 sum=sum+a 之后，否则第一项就把 a 推进了，累加的会是 5、8、11、14、17；二是判断对象是 sum 而不是 a，写成 a%4==2 会输出完全不同的行。",
+  "solution": "#include <stdio.h>\nvoid fun(int a,int d)\n{  int i,sum=0;\n   for(i=0;i<5;i++)\n   {  sum=sum+a;\n      a= a+d ;\n      if( sum%4==2 )   printf(\"sum=%d\\n\",sum);\n   }\n}\nint main( )\n{  int a=2,d=3;\n   fun(a,d);\n   return(0);\n}"
+ },
+ {
+  "originalId": "题7.65",
+  "sourceBatch": "p142-151.json",
+  "page": 146,
+  "bookPage": 135,
+  "code": "#include <stdio.h>\nint fun( )\n{  int n=0,i,j,k;\n   for(i=1;i<=9;i++)\n      for(k=0;k<=8;k=/*__BLANK_1__*/)\n         for(j=0;j<=9;j++)\n            if(/*__BLANK_2__*/)  n++;\n   return n;\n}\nint main( )\n{  int n;\n   n=fun( );\n   printf(\"n=%d\\n\",n);\n   return(0);\n}",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "k+2",
+    "accepted": [
+     "k+2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "i==j&&j==k",
+    "accepted": [
+     "i==j&&j==k",
+     "i==k&&k==j",
+     "i==j&&i==k"
+    ]
+   }
+  ],
+  "testCases": [
+   {
+    "stdin": "",
+    "expected": "n=4",
+    "note": "输出 n=4，即 222、444、666、888"
+   }
+  ],
+  "explanation": "「位值相同的 3 位偶数」要求三个数字全相等且末位是偶数。三重循环里 i 遍历百位（1~9，百位不能为 0）、k 遍历 0~8、j 遍历 0~9。【1】填 k+2：让 k 只取 0、2、4、6、8 这些偶数，充当个位。【2】填 i==j&&j==k：三个数字全相等才计数。满足条件的组合只有 k=i=j 且 k 为偶数、i>=1，即 2、4、6、8，对应 222、444、666、888，输出 n=4。易错点：一是 k 的步长必须是 2 而不是 1，否则会把奇数末尾的 333、555 等也算进来得到 9；二是 i 从 1 开始已经排除了 000 这种非三位数。",
+  "solution": "#include <stdio.h>\nint fun( )\n{  int n=0,i,j,k;\n   for(i=1;i<=9;i++)\n      for(k=0;k<=8;k= k+2 )\n         for(j=0;j<=9;j++)\n            if( i==j&&j==k )  n++;\n   return n;\n}\nint main( )\n{  int n;\n   n=fun( );\n   printf(\"n=%d\\n\",n);\n   return(0);\n}"
+ }
+]

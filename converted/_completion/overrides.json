@@ -314,5 +314,329 @@
    }
   ],
   "explanation": "答案：功能是求数组中大于 0 且个位数为 3 的元素之和；输出 sum=   116。条件 num[i]>0 && num[i]%10==3 同时要求元素为正且个位是 3，只有 103 与 13 满足，和为 116。%6d 使数值右对齐占 6 列，故 116 前有 3 个空格。易错点：漏看 `>0` 条件而把 -203、-21 之类负数也算进来。"
+ },
+ "题7.6": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 7.6】以下程序的功能是计算函数 F(x,y,z)=＝(x＋y)/(x－y)＋(z＋y)/(z－y)的值，请选择填空。\n\n```c\n#include <stdio.h>\n#include <math.h>\nfloat f(float,float);\nint main( )\n{   float x,y,z,sum;\n    scanf(\"%f%f%f\", &x, &y, &z);\n    sum=f(【1】)+f(【2】);\n    printf(\"sum=%f\\n\",sum);\n    return(0);\n}\nfloat f(float a,float b)\n{   float value;\n    value=a/b;\n    return(value);\n}\n```\n\n【1】的候选项：\nA) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y\n\n【2】的候选项：\nA) x－y,x＋y\nB) x＋y,x－y\nC) z＋y,z－y\nD) z－y,z＋y\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "x＋y,x－y",
+     "x+y,x-y"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "C",
+    "accepted": [
+     "C",
+     "z＋y,z－y",
+     "z+y,z-y"
+    ]
+   }
+  ],
+  "explanation": "答案：B、C。f(a,b) 的函数体是 `value=a/b`，即\"第一实参除以第二实参\"，故要得到 (x+y)/(x−y) 必须传 (x+y, x−y)，要得到 (z+y)/(z−y) 必须传 (z+y, z−y)。易错点：一是把实参顺序写反（选 A/D）得到的是原式的倒数；二是两项都填 x、y 而忽略了 F 的第二个分式用的是 z 与 y。另外当 x=y 或 z=y 时会发生除零，程序未做保护。"
+ },
+ "题7.7": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 7.7】以下程序可选出能被3整除且至少有一位是5的两位数，打印出所有这样的数及其个数。请选择填空。\n\n```c\n#include <stdio.h>\nint sub(int k, int n)\n{   int a1,a2;\n    a2=【1】;\n    a1=k-【2】;\n    if((k%3==0 && a2==5)||(k%3==0 && a1==5))\n    {   printf(\"%d \",k);\n        n++;\n        return n;\n    }\n    else return -1;\n}\nint main( )\n{   int n=0,k,m;\n    for(k=10;k<=99;k++)\n    {   m=sub(k,n);\n        if(m!=-1) n=m;\n    }\n    printf(\"\\nn=%d\",n);\n    return(0);\n}\n```\n\n【1】的候选项：\nA) k * 10\nB) k%10\nC) k/10\nD) k * 10%10\n\n【2】的候选项：\nA) a2 * 10\nB) a2\nC) a2/10\nD) a2%10\n\n请分别填写两个空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "C",
+    "accepted": [
+     "C",
+     "k/10"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "A",
+    "accepted": [
+     "A",
+     "a2 * 10",
+     "a2*10"
+    ]
+   }
+  ],
+  "explanation": "答案：C、A。两位数 k 的十位数字是 `k/10`（整数除法自动舍去个位），个位数字则用 `k − 十位*10` 还原，故【1】填 k/10、【2】填 a2*10。易错点：【1】若填 k%10 得到的是个位，与【2】的 a2*10 搭配后 a1=k−个位*10 会变成负数；【2】填 a2 或 a2/10 都无法还原个位。判定条件 `k%3==0 && (a2==5||a1==5)` 正是\"能被 3 整除且至少有一位是 5\"。"
+ },
+ "题7.10": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 7.10】折半查找法的思路是：先确定待查元素的范围，将其分成两半，然后测试位于中间点元素的值。如果该待查元素的值大于中间点元素，就缩小待查范围，只测试中点之后的元素；反之，测试中点之前的元素，测试方法同前。函数 binary 的作用是应用折半查找法从存有 10 个有序整数的 a 数组中对关键字 m 进行查找，若找到，返回其下标值；反之，返回－1。请选择填空。\n\n```c\nint binary(int a[10],int m)\n{   int low=0,high=9,mid;\n    while(low<=high)\n    {   mid=(low+high)/2;\n        if(m<a[mid])  【1】;\n        else if(m>a[mid])  【2】;\n        else return(mid);\n    }\n    return(-1);\n}\n```\n\n【1】与【2】的候选项相同：\nA) high=mid－1\nB) low=mid＋1\nC) high=mid＋1\nD) low=mid－1\n\n请分别填写两个空的选项字母。\n\n（原书四个候选项排版为一行，此处按 A/B/C/D 拆行照录。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "A",
+    "accepted": [
+     "A",
+     "high=mid－1",
+     "high=mid-1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "low=mid＋1",
+     "low=mid+1"
+    ]
+   }
+  ],
+  "explanation": "答案：A、B。折半查找中 mid=(low+high)/2：当 m<a[mid] 时目标只可能在左半区，应把上界收缩为 mid−1；当 m>a[mid] 时目标只可能在右半区，应把下界抬高为 mid＋1；相等则命中返回 mid。易错点：写成 high=mid 或 low=mid 会使区间无法缩小，当 low<=high 恒成立时造成死循环；把两空的左右方向弄反（选 D、C）则每次都在错误的半区查找，最终返回 −1。"
+ },
+ "题7.19": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.19】下面 add 函数的功能是求两个参数的和，并将和值返回调用函数。函数中错误的部分是【1】，改正后为【2】。\n\n```c\nvoid add(float a,float b)\n{   float c;\n    c=a+b;\n    return c;\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "void add(float a,float b)",
+    "accepted": [
+     "void add(float a,float b)",
+     "函数头 void add(float a,float b)",
+     "void add(float a, float b)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "float add(float a,float b)",
+    "accepted": [
+     "float add(float a,float b)",
+     "float add(float a, float b)",
+     "float add(float,float)"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】函数头 `void add(float a,float b)`；【2】改为 `float add(float a,float b)`。函数体内 `return c;` 要把 float 型的和返回给调用者，而函数头声明为 void（无返回值），二者矛盾——这是典型的\"返回类型与 return 语句不匹配\"错误。易错点：把 `return c;` 改成 `return;` 虽然能编译通过，但丢掉了\"求和并返回\"的功能，与题目要求不符；正确的修法是让函数返回类型与被返回值的类型一致。"
+ },
+ "题7.25": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.25】以下程序的运行结果是\"output 153 370 371 407\"，该程序的功能是【1】。\n\n```c\n#include <stdio.h>\nint f(int n)\n{   int i,j,k;\n    i=n/100; j=n/10-i * 10; k=n%10;\n    if(i * 100+j * 10+k==i * i * i+j * j * j+k * k * k) return n;\n    else return 0;\n}\nint main( )\n{   int n,k;\n    printf(\"output \");\n    for(n=100; n<1000; n++)\n    {   k=f(n);\n        if(k!=0) printf(\"%d \",k);\n    }\n    printf(\"\\n\");\n    return(0);\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "打印出所有水仙花数",
+    "accepted": [
+     "打印出所有水仙花数",
+     "打印出 100~999 之间的所有水仙花数",
+     "找出并输出全部水仙花数",
+     "输出所有的三位水仙花数",
+     "求 100 到 999 之间的水仙花数",
+     "找出并输出 100~999 中所有的水仙花数（各位数字立方和等于自身的三位数）"
+    ]
+   }
+  ],
+  "explanation": "答案：打印出 100~999 之间的所有水仙花数（各位数字的立方和等于自身的三位数）。f(n) 用 `i=n/100`、`j=n/10−i*10`、`k=n%10` 拆出百、十、个位，若 i³+j³+k³==n 就返回 n，否则返回 0；main 中 `if(k!=0) printf(\"%d \",k)` 只输出满足条件的数，故结果为 `output 153 370 371 407`（已实机验证）。易错点：把功能答成\"求各位数字之和\"或\"输出所有三位数\"，忽略了立方和这一判定条件；另外 j 的取法 `n/10−i*10` 比 `n/10%10` 绕了一步，容易看漏。"
+ },
+ "题7.35": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.35】以下程序的运行结果是【1】，fun 函数的作用是【2】。\n\n```c\n#include <stdio.h>\n#include <math.h>\nint fun(int y, int x)\n{  int z;\n   z=abs(x-y);\n   return(z);\n}\nint main( )\n{  int a=-1,b=-5,c;\n   c=fun(a,b);\n   printf(\"%d\",c);\n   return(0);\n}\n```\n\n（原书只包含 math.h，`abs` 实际声明在 stdlib.h 中，此处照录不影响运行结果。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "4",
+    "accepted": [
+     "4"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "求两个整数之差的绝对值",
+    "accepted": [
+     "求两个整数之差的绝对值",
+     "求两整数之差的绝对值",
+     "计算 x 与 y 之差的绝对值并返回",
+     "返回 x-y 的绝对值",
+     "求 |x-y|"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】4；【2】求两个整数之差的绝对值（已实机验证输出 4）。fun 的形参名是 (y, x)，调用 fun(a,b) 即 fun(−1,−5)，于是形参 y=−1、x=−5，z=abs(x−y)=abs(−5−(−1))=abs(−4)=4。易错点：本题形参顺序与直觉相反，若按\"第一个实参就是 x\"来读会得到 abs(−1+5)=4——数值恰好相同，容易掩盖形参与实参错位的事实，把 a、b 换成 −5、−1 就会暴露差别。"
+ },
+ "题7.37": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.37】下面函数 func 的功能是【1】。\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nlong func(long num)\n{  long k=1;\n   num=labs(num);\n   do\n   {  k*=num%10;\n      num/=10;\n   }while(num);\n   return(k);\n}\nint main( )\n{  long n;\n   printf(\"\\nPlease enter a number: \");\n   scanf(\"%ld\",&n);\n   printf(\"\\nThe product of its digits is %ld.\",func(n));\n   return(0);\n}\n```\n\n（原书的 `#include <conio.h>` 是非标准头文件，本库转录时删除，不影响 func 的功能。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "求 num 的各位数字之积",
+    "accepted": [
+     "求 num 的各位数字之积",
+     "计算 |num| 各位数字的乘积并返回",
+     "求 |num| 各位数字之积",
+     "计算 num 绝对值的各位数字之积",
+     "返回 num 各位数字的乘积"
+    ]
+   }
+  ],
+  "explanation": "答案：求 |num|（num 的绝对值）各位数字之积。func 先用 labs(num) 取绝对值，再用 do-while 循环反复执行 `k*=num%10`（累乘当前个位）与 `num/=10`（抹掉个位），直到 num 变为 0，返回的 k 就是各位数字的乘积。例如输入 −125 时输出 10（已实机验证）。易错点：一是答成\"各位数字之和\"（那应是 k+=num%10）；二是忽略 do-while 至少执行一次，num=0 时结果为 0；三是数字中含 0（如 105）时乘积必为 0。"
+ },
+ "题7.40": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.40】下面程序的功能是【1】，运行结果是【2】。\n\n```c\n#include <stdio.h>\nlong fib(int g)\n{  switch(g)\n      {  case 0: return 0;\n         case 1: case 2: return 1;\n      }\n   return(fib(g-1)+fib(g-2));\n}\nint main( )\n{  long k;\n   k=fib(7);\n   printf(\"k= %d\\n\",k);\n   return(0);\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "用递归法求斐波那契数列第 7 项",
+    "accepted": [
+     "用递归法求斐波那契数列第 7 项",
+     "递归求 fib(7)，即斐波那契数列第 7 项",
+     "用递归方法计算斐波那契数列第7项的值",
+     "求斐波那契数列第 7 项"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "k= 13",
+    "accepted": [
+     "k= 13",
+     "k=13",
+     "k=  13",
+     "13"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】用递归法求斐波那契数列第 7 项（即 fib(7)）；【2】`k= 13`（已实机验证）。switch 给出边界 fib(0)=0、fib(1)=fib(2)=1，其余情况返回 fib(g−1)+fib(g−2)；自底向上递推得 1、1、2、3、5、8、13，故 fib(7)=13。易错点：输出格式 `printf(\"k= %d\\n\",k)` 中等号后有一个空格，答案须原样写成 `k= 13`；另外 k 是 long 型却用 %d 输出，属原书的类型不匹配（64 位平台上通常仍能正确打印），不必当成 bug 去改。"
+ },
+ "题7.45": {
+  "type": "short_answer",
+  "bloom": "analyze",
+  "stem": "【题 7.45】阅读下面程序，完成下列问题中的填空。\n问题(1) 此程序在调用函数 f 后的运行结果是【1】。\n(2) 若将函数 f 中的 for(j=i+1; j<4; j++) 改为 for(j=0; j<3-i; j++)，则程序的运行结果是【2】。\n\n```c\n#include <stdio.h>\nvoid f(int s[ ][4])\n{  int i,j,k;\n   for(i=0; i<3; i++)\n         for(j=i+1; j<4; j++)\n         {  k=s[i][j]; s[i][j]=s[j][i]; s[j][i]=k; }\n}\nint main( )\n{  int s[4][4],i,j;\n   for(i=0;i<4;i++)\n         for(j=0;j<4;j++)  s[i][j]=i-j;\n   f(s);\n   for(i=0; i<4; i++)\n   {  printf(\"\\n\");\n      for(j=0; j<4; j++)\n            printf(\"%4d\",s[i][j]);\n   }\n   return(0);\n}\n```\n",
+  "reference_answer": "(1) 调用 f 后矩阵被转置（s[i][j] 与 s[j][i] 互换），输出为（每行前有一个换行，每个数用 %4d 占 4 列右对齐）：\n\n```\n   0   1   2   3\n  -1   0   1   2\n  -2  -1   0   1\n  -3  -2  -1   0\n```\n\n(2) 改成 for(j=0; j<3-i; j++) 后，输出与原矩阵完全相同：\n\n```\n   0  -1  -2  -3\n   1   0  -1  -2\n   2   1   0  -1\n   3   2   1   0\n```",
+  "grading_points": [
+   "指出 f 的作用是矩阵转置：三重循环把上三角元素 s[i][j] 与下三角 s[j][i] 交换",
+   "写出 (1) 的四行结果 0 1 2 3 / -1 0 1 2 / -2 -1 0 1 / -3 -2 -1 0（%4d 右对齐）",
+   "说明改成 for(j=0;j<3-i;j++) 后每对 (i,j) 与 (j,i) 被交换两次又换回，且 i+j>=3 的元素（如 s[0][3]、第 3 行）从未参与交换",
+   "写出 (2) 的结果与原矩阵 s[i][j]=i-j 完全相同"
+  ],
+  "explanation": "两问均已实机验证。(1) 原循环 i=0..2、j=i+1..3 恰好遍历整个上三角一次，`k=s[i][j]; s[i][j]=s[j][i]; s[j][i]=k;` 把上、下三角互换，即矩阵转置；由于 s[i][j]=i−j，转置后 s[i][j]=j−i。(2) 改成 j=0..2−i 后，i=0 时交换 (0,1)(1,0)、(0,2)(2,0)，i=1 时交换 (1,0)(0,1)，i=2 时交换 (2,0)(0,2)——每一对都被交换了两次，等于没换；而 (0,3)(3,0)、(1,3)(3,1)、(2,3)(3,2) 这些下标和大于等于 3 的元素根本没进入循环。故输出与原矩阵一致。易错点：只数\"交换了几次\"而不注意同一对被交换两次会互相抵消。"
+ },
+ "题7.48": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.48】以下程序的运行结果是【1】，其算法是【2】。\n\n```c\n#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 5,10,-7,3,7 },i,t,j;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t;\n   for(i=0; i<4; i++)\n         for(j=0; j<4-i; j++)\n               if(a[j]>a[j+1]) { t=a[j]; a[j]=a[j+1];a[j+1]=t;}\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "-7 3 5 7 10 ",
+    "accepted": [
+     "-7 3 5 7 10 ",
+     "-7 3 5 7 10",
+     "-7  3  5  7  10"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "冒泡排序（升序）",
+    "accepted": [
+     "冒泡排序（升序）",
+     "冒泡排序",
+     "用冒泡法把数组按升序排序",
+     "冒泡法升序排序",
+     " bubble sort（冒泡排序，从小到大）"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】`-7 3 5 7 10 `（已实机验证，每个数后都有一个空格）；【2】冒泡排序（升序）。sort 中外层 i 控制趟数共 4 趟，内层 `j<4−i` 使每趟只在尚未排好的前段比较相邻元素，`if(a[j]>a[j+1])` 时交换，把较大值逐步\"冒\"到末尾，最终数组从小到大有序。易错点：一是漏写输出末尾的空格（printf 用的是 \"%d \"）；二是把内层界当成固定的 4，多算一趟虽不影响结果但说明没理解 4−i 的作用；三是与选择排序混淆——冒泡是\"相邻比较即交换\"，每趟交换多次。"
+ },
+ "题7.49": {
+  "type": "fill_blank",
+  "bloom": "analyze",
+  "stem": "【题 7.49】以下程序的运行结果是【1】，其算法是【2】。\n\n```c\n#include <stdio.h>\nvoid sort(int a[ ]);\nint main( )\n{  int a[5]={ 9,6,8,3,-1 },i;\n   sort(a);\n   for(i=0; i<=4; i++) printf(\"%d \",a[i]);\n   return(0);\n}\nvoid sort(int a[ ])\n{  int i,j,t,p;\n   for(j=0; j<4; j++)\n   {  p=j;\n      for(i=j; i<=4; i++) if(a[i]<a[p]) p=i;\n      t=a[p]; a[p]=a[j]; a[j]=t;\n   }\n}\n```\n",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "-1 3 6 8 9 ",
+    "accepted": [
+     "-1 3 6 8 9 ",
+     "-1 3 6 8 9",
+     "-1  3  6  8  9"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "选择排序（升序）",
+    "accepted": [
+     "选择排序（升序）",
+     "选择排序",
+     "用选择法把数组按升序排序",
+     "简单选择排序",
+     "selection sort（选择排序，从小到大）"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】`-1 3 6 8 9 `（已实机验证，每个数后都有一个空格）；【2】选择排序（升序）。外层 j 表示已排序区的末尾，内层从 i=j 扫到 4 找出最小元素的下标 p，再与 a[j] 交换一次，每趟确定一个最小元素的最终位置。易错点：与冒泡排序的区别在于\"每趟只交换一次\"而不是相邻比较即交换；内层 `i<=4` 覆盖到 a[4]，正好是 5 个元素的最后一个，并未越界；输出同样要注意末尾空格。"
+ },
+ "题7.52": {
+  "type": "fill_blank",
+  "bloom": "understand",
+  "stem": "【题 7.52】函数 swap(int x,int y)可完成对 x 和 y 值的交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。\n\n```c\na[0]=1; a[1]=2;\nswap(a[0],a[1]);\n```\n\n（原书只给出调用处的程序段，swap 函数体略。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[0]=1、a[1]=2（未交换）",
+    "accepted": [
+     "a[0]=1、a[1]=2（未交换）",
+     "1 和 2",
+     "a[0]=1,a[1]=2",
+     "a[0]为1，a[1]为2",
+     "仍然是 1 和 2",
+     "1、2"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "值传递，形参是实参的副本",
+    "accepted": [
+     "值传递，形参是实参的副本",
+     "swap 的形参是值传递，x、y 只是 a[0]、a[1] 的副本，交换副本不影响实参",
+     "单向值传递，形参改变不影响实参",
+     "因为是值传递，函数内交换的只是副本"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】a[0] 仍为 1、a[1] 仍为 2（没有交换）；【2】因为 swap(int x,int y) 采用单向值传递，形参 x、y 只是实参 a[0]、a[1] 的副本，函数内交换的只是这两个副本，函数返回后副本销毁，实参不受影响。易错点：被函数名 swap 误导，以为\"叫 swap 就一定能交换\"；要真正交换实参必须传地址（形参用指针，如 swap(&a[0],&a[1])）或传数组名，见题7.53 的对照。"
+ },
+ "题7.53": {
+  "type": "fill_blank",
+  "bloom": "understand",
+  "stem": "【题 7.53】函数 swap(arr,n)可对 arr 数组从第 1 个元素到第 n 个元素分别进行两两元素交换。在运行调用函数中的如下语句后，a[0]和 a[1]的值分别为【1】，原因是【2】。\n\n```c\na[0]=1; a[1]=2;\nswap(a,2);\n```\n\n（原书只给出调用处的程序段，swap 函数体略。）",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "a[0]=2、a[1]=1（已交换）",
+    "accepted": [
+     "a[0]=2、a[1]=1（已交换）",
+     "2 和 1",
+     "a[0]=2,a[1]=1",
+     "a[0]为2，a[1]为1",
+     "2、1"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "数组名传的是地址",
+    "accepted": [
+     "数组名传的是地址",
+     "数组名作实参传递的是数组首地址，形参与实参共用同一段内存",
+     "地址传递，形参数组与实参数组是同一块内存",
+     "因为传的是数组首地址，函数内直接修改原数组"
+    ]
+   }
+  ],
+  "explanation": "答案：【1】a[0]=2、a[1]=1（确实交换了）；【2】因为数组名作实参时传递的是数组首地址，形参数组 arr 与实参数组 a 指向同一段内存，函数内对 arr[i] 的读写直接作用于原数组，属于地址传递。易错点：与题7.52 对照记忆——\"传值改不动、传址改得动\"；另外 n=2 表示只对前 2 个元素两两交换，不要把 n 误当成数组长度上限之外的东西。"
  }
 }

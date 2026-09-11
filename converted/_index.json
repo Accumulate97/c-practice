@@ -97,19 +97,17 @@
       "chapter": 7,
       "id": "c-ch07",
       "name": "第7章 函数",
-      "converted": 35,
-      "staged": 46,
+      "converted": 81,
+      "staged": 0,
       "byType": {
+        "single_choice": 12,
+        "fill_blank": 12,
+        "code_completion": 23,
         "code_reading": 18,
-        "code_completion": 2,
-        "short_answer": 12,
+        "short_answer": 13,
         "debug": 3
       },
-      "stagedBySubType": {
-        "single_choice": 15,
-        "code_completion": 22,
-        "multi_blank": 9
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 8,
@@ -201,25 +199,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 694,
-    "staged": 329,
+    "converted": 740,
+    "staged": 283,
     "byType": {
-      "single_choice": 197,
-      "fill_blank": 104,
+      "single_choice": 209,
+      "fill_blank": 116,
       "code_reading": 225,
-      "short_answer": 22,
-      "code_completion": 83,
+      "short_answer": 23,
+      "code_completion": 104,
       "programming": 48,
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 211,
-      "code_completion": 66,
-      "multi_blank": 52
+      "single_choice": 196,
+      "multi_blank": 43,
+      "code_completion": 44
     },
-    "judgeEvidence": 387,
+    "judgeEvidence": 408,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 83,
+    "rescuedCodeCompletion": 104,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }

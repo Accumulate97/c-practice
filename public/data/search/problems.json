@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "769a4ac5ccf9fe40",
+  "content_sha": "aab40fa6cbf48c8b",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 695,
+  "count": 741,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -5351,6 +5351,466 @@
       "chapter": "第7章 函数",
       "section": "7.4 程序改错题（变式生成）",
       "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-001",
+      "file": "c-ch07.json",
+      "title": "【题 7.1】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-002",
+      "file": "c-ch07.json",
+      "title": "【题 7.2】C语言规定",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-003",
+      "file": "c-ch07.json",
+      "title": "【题 7.3】以下程序有语法性错误",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-004",
+      "file": "c-ch07.json",
+      "title": "【题 7.4】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-005",
+      "file": "c-ch07.json",
+      "title": "【题 7.5】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-001",
+      "file": "c-ch07.json",
+      "title": "【题 7.6】以下程序的功能是计算函数 F",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-002",
+      "file": "c-ch07.json",
+      "title": "【题 7.7】以下程序可选出能被3整除且至少有一位是5的两位数",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-006",
+      "file": "c-ch07.json",
+      "title": "【题 7.8】以下是有关汉诺塔问题的程序段",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-007",
+      "file": "c-ch07.json",
+      "title": "【题 7.9】若用数组名作为函数调用的实参",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-003",
+      "file": "c-ch07.json",
+      "title": "【题 7.10】折半查找法的思路是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-008",
+      "file": "c-ch07.json",
+      "title": "【题 7.11】以下程序的正确运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-009",
+      "file": "c-ch07.json",
+      "title": "【题 7.12】以下程序的正确运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-010",
+      "file": "c-ch07.json",
+      "title": "【题 7.13】在一个C源程序文件中",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-011",
+      "file": "c-ch07.json",
+      "title": "【题 7.14】以下程序的正确运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-012",
+      "file": "c-ch07.json",
+      "title": "【题 7.15】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-003",
+      "file": "c-ch07.json",
+      "title": "【题 7.16】为使以下程序顺利运行",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-004",
+      "file": "c-ch07.json",
+      "title": "【题 7.17】以下函数 fun 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-004",
+      "file": "c-ch07.json",
+      "title": "【题 7.19】下面 add 函数的功能是求两个参数的和",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-005",
+      "file": "c-ch07.json",
+      "title": "【题 7.20】以下函数 fun 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-006",
+      "file": "c-ch07.json",
+      "title": "【题 7.21】以下函数 fun 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-007",
+      "file": "c-ch07.json",
+      "title": "【题 7.23】以下程序的功能是根据输入的y",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-008",
+      "file": "c-ch07.json",
+      "title": "【题 7.24】以下 Check 函数的功能是对 value 中的值进行四舍五入",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-005",
+      "file": "c-ch07.json",
+      "title": "【题 7.25】以下程序的运行结果是\"output 153 370 371 407\"",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-009",
+      "file": "c-ch07.json",
+      "title": "【题 7.26】以下程序的功能是用二分法求方程 2x³－4x²＋3x－6=0 的根",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-010",
+      "file": "c-ch07.json",
+      "title": "【题 7.28】以下程序的功能是计算下面函数的值",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-011",
+      "file": "c-ch07.json",
+      "title": "【题 7.29】已有函数 pow",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-012",
+      "file": "c-ch07.json",
+      "title": "【题 7.30】以下程序的运行结果是输出如下图形",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-013",
+      "file": "c-ch07.json",
+      "title": "【题 7.32】函数 gongyue 的作用是求整数 num1 和 num2 的最大公约数",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-014",
+      "file": "c-ch07.json",
+      "title": "【题 7.34】下面函数 pi 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-006",
+      "file": "c-ch07.json",
+      "title": "【题 7.35】以下程序的运行结果是【1】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-007",
+      "file": "c-ch07.json",
+      "title": "【题 7.37】下面函数 func 的功能是【1】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-015",
+      "file": "c-ch07.json",
+      "title": "【题 7.39】以下程序的功能是用递归方法计算 5 位学生的年龄",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-008",
+      "file": "c-ch07.json",
+      "title": "【题 7.40】下面程序的功能是【1】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-016",
+      "file": "c-ch07.json",
+      "title": "【题 7.42】以下程序是应用递归算法求某数 a 的平方根",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sa-013",
+      "file": "c-ch07.json",
+      "title": "【题 7.45】阅读下面程序",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-017",
+      "file": "c-ch07.json",
+      "title": "【题 7.46】以下 search 函数的功能是利用顺序查找法从数组 a 的 10 个元素中对关键字 m 进行查找",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-018",
+      "file": "c-ch07.json",
+      "title": "【题 7.47】已定义一个含有 30 个元素的数组 s",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-009",
+      "file": "c-ch07.json",
+      "title": "【题 7.48】以下程序的运行结果是【1】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-010",
+      "file": "c-ch07.json",
+      "title": "【题 7.49】以下程序的运行结果是【1】",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-019",
+      "file": "c-ch07.json",
+      "title": "【题 7.50】函数 del 的作用是删除已按升序排列的数组 a 中的指定元素 x",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-011",
+      "file": "c-ch07.json",
+      "title": "【题 7.52】函数 swap",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-012",
+      "file": "c-ch07.json",
+      "title": "【题 7.53】函数 swap",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-020",
+      "file": "c-ch07.json",
+      "title": "【题 7.55】函数 yanghui 能够按以下形式构成一个杨辉三角形",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-021",
+      "file": "c-ch07.json",
+      "title": "【题 7.56】下面程序的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-022",
+      "file": "c-ch07.json",
+      "title": "【题 7.61】有一数列",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-023",
+      "file": "c-ch07.json",
+      "title": "【题 7.65】以下函数 fun 的功能是",
+      "tags": [],
+      "chapter": "第7章 函数",
+      "section": "7.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {
