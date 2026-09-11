@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "800016c4c9b85499",
+  "content_sha": "bae9950b4347d9dc",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 892,
+  "count": 961,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -8586,6 +8586,696 @@
       "chapter": "第10章 结构体与共用体",
       "section": "10.3 编程题",
       "type": "short_answer",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.1】设有以下语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-002",
+      "file": "c-ch10.json",
+      "title": "【题 10.2】下列关于结构的说法错误的是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-003",
+      "file": "c-ch10.json",
+      "title": "【题 10.3】以下关于结构体的叙述中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-004",
+      "file": "c-ch10.json",
+      "title": "【题 10.4】以下结构体类型说明和变量定义中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-005",
+      "file": "c-ch10.json",
+      "title": "【题 10.5】以下对结构体类型变量 st 的定义中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-006",
+      "file": "c-ch10.json",
+      "title": "【题 10.6】已知学生记录及变量的定义如下 以下能给 s 中的 year 成员赋值 184 的语句是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-007",
+      "file": "c-ch10.json",
+      "title": "【题 10.7】说明一个结构体变量时",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-008",
+      "file": "c-ch10.json",
+      "title": "【题 10.8】设有以下说明语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-009",
+      "file": "c-ch10.json",
+      "title": "【题 10.9】C 语言结构体类型变量在程序执行期间________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-010",
+      "file": "c-ch10.json",
+      "title": "【题 10.10】若有如下定义 则以下赋值语句中错误的是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-011",
+      "file": "c-ch10.json",
+      "title": "【题 10.11】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-012",
+      "file": "c-ch10.json",
+      "title": "【题 10.12】根据下面的定义",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-013",
+      "file": "c-ch10.json",
+      "title": "【题 10.13】若有以下声明语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-014",
+      "file": "c-ch10.json",
+      "title": "【题 10.14】若有如下定义",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-015",
+      "file": "c-ch10.json",
+      "title": "【题 10.15】下面程序的运行结果是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-016",
+      "file": "c-ch10.json",
+      "title": "【题 10.16】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-017",
+      "file": "c-ch10.json",
+      "title": "【题 10.17】以下 scanf 函数调用语句中对结构体变量成员的引用",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-018",
+      "file": "c-ch10.json",
+      "title": "【题 10.18】设有以下定义和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-019",
+      "file": "c-ch10.json",
+      "title": "【题 10.19】设有如下定义",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-020",
+      "file": "c-ch10.json",
+      "title": "【题 10.20】若有以下说明和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-021",
+      "file": "c-ch10.json",
+      "title": "【题 10.21】设有以下程序",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-022",
+      "file": "c-ch10.json",
+      "title": "【题 10.22】若有以下说明和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-023",
+      "file": "c-ch10.json",
+      "title": "【题 10.23】设有以下语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-024",
+      "file": "c-ch10.json",
+      "title": "【题 10.24】以下程序的输出结果是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-025",
+      "file": "c-ch10.json",
+      "title": "【题 10.25】若有以下说明和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-026",
+      "file": "c-ch10.json",
+      "title": "【题 10.26】设有如下定义",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-027",
+      "file": "c-ch10.json",
+      "title": "【题 10.27】以下对结构体变量 stu1 中成员 age 的非法引用是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-028",
+      "file": "c-ch10.json",
+      "title": "【题 10.28】设有以下说明和定义语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-fb-001",
+      "file": "c-ch10.json",
+      "title": "【题 10.29】以下程序的功能是",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-029",
+      "file": "c-ch10.json",
+      "title": "【题 10.30】若要利用下面的程序片段使指针变量 p 指向一个存储整型变量的存储单元",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-030",
+      "file": "c-ch10.json",
+      "title": "【题 10.31】若已建立下面的链表结构",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-031",
+      "file": "c-ch10.json",
+      "title": "【题 10.32】假定已建立以下动态链表结构",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-032",
+      "file": "c-ch10.json",
+      "title": "【题 10.33】若已建立如图 10-4 所示的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-033",
+      "file": "c-ch10.json",
+      "title": "【题 10.34】当说明一个共用体变量时",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-034",
+      "file": "c-ch10.json",
+      "title": "【题 10.35】以下对 C 语言中共用体类型数据的叙述正确的是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-035",
+      "file": "c-ch10.json",
+      "title": "【题 10.36】若有以下定义和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-036",
+      "file": "c-ch10.json",
+      "title": "【题 10.37】设有以下说明",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-037",
+      "file": "c-ch10.json",
+      "title": "【题 10.38】C 语言共用体类型变量在程序运行期间________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-038",
+      "file": "c-ch10.json",
+      "title": "【题 10.39】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-fb-002",
+      "file": "c-ch10.json",
+      "title": "【题 10.40】为下面程序中每个打印语句后的注释行填空选择正确的输出结果",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-039",
+      "file": "c-ch10.json",
+      "title": "【题 10.41】以下程序的运行结果是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-040",
+      "file": "c-ch10.json",
+      "title": "【题 10.42】使用 typedef 定义一个新类型的正确步骤是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-041",
+      "file": "c-ch10.json",
+      "title": "【题 10.43】下面对 typedef 的叙述中不正确的是________",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-042",
+      "file": "c-ch10.json",
+      "title": "【题 10.44】下面试图为 double 说明一个新类型名 real 的语句中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-043",
+      "file": "c-ch10.json",
+      "title": "【题 10.45】若要说明一个类型名 TPC",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.1 选择题",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-005",
+      "file": "c-ch10.json",
+      "title": "【题 10.46】设有如下结构体说明",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-006",
+      "file": "c-ch10.json",
+      "title": "【题 10.52】函数stdave的功能是",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-007",
+      "file": "c-ch10.json",
+      "title": "【题 10.53】函数findbook的功能是",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-008",
+      "file": "c-ch10.json",
+      "title": "【题 10.55】以下程序用来按学生姓名查询其排名和平均成绩",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-009",
+      "file": "c-ch10.json",
+      "title": "【题 10.57】以下程序用\"比较计数\"法对结构数组a按字段num进行降序排列",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-010",
+      "file": "c-ch10.json",
+      "title": "【题 10.59】以下程序调用readrec函数把10名学生的学号、姓名、4项成绩以及平均分放在一个结构体数组中",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-011",
+      "file": "c-ch10.json",
+      "title": "【题 10.63】以下程序是用来统计学生成绩",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-012",
+      "file": "c-ch10.json",
+      "title": "【题 10.64】以下程序输入若干人员的姓名",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-013",
+      "file": "c-ch10.json",
+      "title": "【题 10.65】为建立如图10-5所示的存储结构",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-014",
+      "file": "c-ch10.json",
+      "title": "【题 10.66】以下程序段的功能是统计链表中结点的个数",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-015",
+      "file": "c-ch10.json",
+      "title": "【题 10.67】已知head指向一个带头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-016",
+      "file": "c-ch10.json",
+      "title": "【题 10.68】已知head指向一个带头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-017",
+      "file": "c-ch10.json",
+      "title": "【题 10.69】已知head指向单链表的第一个结点",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-018",
+      "file": "c-ch10.json",
+      "title": "【题 10.70】以下min3函数的功能是",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-019",
+      "file": "c-ch10.json",
+      "title": "【题 10.71】已知head指向单链表的第一个结点",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-020",
+      "file": "c-ch10.json",
+      "title": "【题 10.72】已知head指向单链表的第一个结点",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-021",
+      "file": "c-ch10.json",
+      "title": "【题 10.73】设有以下定义和语句",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-022",
+      "file": "c-ch10.json",
+      "title": "【题 10.75】以下程序用以读入两个学生的情况存入结构数组",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-023",
+      "file": "c-ch10.json",
+      "title": "【题 10.79】以下程序对输入的两个数进行正确性判断",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-024",
+      "file": "c-ch10.json",
+      "title": "【题 10.81】已知head指向一个带头结点的单向链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-025",
+      "file": "c-ch10.json",
+      "title": "【题 10.82】以下程序实现带有头结点的单链表的建立",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-026",
+      "file": "c-ch10.json",
+      "title": "【题 10.83】以下函数实现如图10-7所示的功能",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-027",
+      "file": "c-ch10.json",
+      "title": "【题 10.84】已知head指向一个不带头结点的环形链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-028",
+      "file": "c-ch10.json",
+      "title": "【题 10.85】以下函数实现建立由几个结点组成的环形链表",
+      "tags": [],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.2 填空题",
+      "type": "code_completion",
       "category": "c"
     },
     {

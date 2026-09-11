@@ -1406,5 +1406,67 @@
    }
   ],
   "explanation": "第 3 行 for(k=0;k<10;k++,b++) 中对数组名 b 自增：数组名是地址常量而非指针变量，不能做 ++ 的左值，编译即报错。正确做法是另设指针或改用 b[k]。其余各行语法与逻辑均无误，故错误行是第 3 行。"
+ },
+ "题10.29": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 10.29】以下程序的功能是：读入一行字符(如：a,…,y,z)，按输入时的逆序建立一个如图 10-1 所示的链接式的结点序列，即先输入的位于链表尾(如图 10-1 所示)，然后再按输入的相反顺序输出，并释放全部结点。请选择正确的内容填入【 】中。 图 10-1（原书内存示意图，此处为题面文字化描述）：表头两字段标注 info | link；链自左向右依次为结点 ['z'|—] → 结点 ['y'|—] → … → 结点 ['a'|'\\0']，即最后读入的 z 位于表头、最先读入的 a 位于表尾且其 link 为空。\n\n```c\n#include <stdio.h>\n#define getnode(type) 【1】malloc(sizeof(type))\nint main( )\n{\n  struct node\n    {\n      char info;\n      struct node * link;\n    } * top, * p;\n  char c;\n  top=NULL;\n  while((c=getchar())【2】)\n  {\n    p=getnode(struct node);\n    p->info=c;\n    p->link=top;\n    top=p;\n  }\nwhile(top)\n  {\n    【3】;\n    top=top->link;\n    putchar(p->info);\n    free(p);\n  }\n  return 0;\n}\n```\n\n各空候选项：\n【1】A) (type)\nB) (type * )\nC) type\nD) type *\n\n【2】A) =='\\0'\nB) !='\\0'\nC) =='\\n'\nD) !='\\n'\n\n【3】A) top=p\nB) p=top\nC) p==top\nD) top==p\n\n请分别填写各空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "(type * )",
+     "(type*)"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "D",
+    "accepted": [
+     "D",
+     "!='\\n'",
+     "!='\\n'"
+    ]
+   },
+   {
+    "index": 3,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "p=top",
+     "p=top"
+    ]
+   }
+  ],
+  "explanation": "getnode 宏要把 malloc 返回的 void* 强转成所指类型指针，故【1】选 B (type*)；输入以换行符结束，未读到换行就继续建结点入栈，故【2】选 D !='\\n'；输出循环里先让 p 指向栈顶结点再出栈，故【3】选 B p=top。易错：【2】选 B !='\\0' 会把换行符也当作普通字符入栈；原书末行 rture 0 系 return 0 误印。"
+ },
+ "题10.40": {
+  "type": "fill_blank",
+  "bloom": "apply",
+  "stem": "【题 10.40】为下面程序中每个打印语句后的注释行填空选择正确的输出结果。\n\n```c\n#include <stdio.h>\nmain( )\n{ int j;\n  union { int a;\n          long b;\n          unsigned char c;\n        }m;\n  m.b=0x12345678;\n  printf(\"%x\\n\",m.a);      /* 【1】 */\n  printf(\"%x\\n\",m.c);      /* 【2】 */\n  return 0;\n}\n```\n\n各空候选项：\n【1】A) 1234\nB) 5678\nC) 12345678\nD) 0\n\n【2】A) 12\nB) 78\nC) 1234\nD) 5678\n\n请分别填写各空的选项字母。",
+  "blanks": [
+   {
+    "index": 1,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "5678",
+     "C",
+     "12345678"
+    ]
+   },
+   {
+    "index": 2,
+    "answer": "B",
+    "accepted": [
+     "B",
+     "78",
+     "78"
+    ]
+   }
+  ],
+  "explanation": "共用体各成员共享同一段内存。m.b=0x12345678 后，按原书 16 位 int 环境 m.a 只占低两字节 0x5678，故【1】选 B；m.c 是最低字节 0x78，故【2】选 B。易错/存疑：现代 32 位环境下 int 占 4 字节，【1】实机输出为 12345678（选项 C），本库按书给 B 并同时接受 C。"
  }
 }

@@ -1,0 +1,1081 @@
+[
+  {
+    "originalId": "题10.46",
+    "code": "#include <stdio.h>\nstruct ST\n{ int a; float b;\n  struct ST  * c;\n  double x[3];\n}st1;\n/*__BLANK_1__*/ s[10];\nint main(void)\n{ int i;\n  for(i=0;i<10;i++)\n    { s[i].a=i;  s[i].b=i*1.5f;  s[i].c=NULL;  s[i].x[0]=i; }\n  printf(\"%d\\n\",(int)(sizeof(s)/sizeof(s[0])));\n  printf(\"%d %.1f %.1f\\n\",s[9].a,(double)s[9].b,s[9].x[0]);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "struct ST",
+        "accepted": [
+          "struct ST"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "10\n9 13.5 9.0",
+        "note": "无输入：输出元素个数与末元素三个域的值"
+      }
+    ],
+    "explanation": "空位在对数组 s 的类型说明处，要求 s 的每个元素都是上面那个结构体类型，故填 struct ST —— 结构体类型名前的关键字 struct 不能省，也不能写成已定义的变量 st1。原书结构体说明末尾的 st1[?] 是排版残留，此处按 }st1; 收录。为可自动判分，本题包装成完整程序：给 10 个元素赋值后，先用 sizeof(s)/sizeof(s[0]) 输出元素个数 10，再输出末元素的 a、b、x[0]。易错点：漏写 struct、误填 struct ST * （那定义的是指针数组）、或把 st1 当类型名。",
+    "solution": "#include <stdio.h>\nstruct ST\n{ int a; float b;\n  struct ST  * c;\n  double x[3];\n}st1;\n struct ST  s[10];\nint main(void)\n{ int i;\n  for(i=0;i<10;i++)\n    { s[i].a=i;  s[i].b=i*1.5f;  s[i].c=NULL;  s[i].x[0]=i; }\n  printf(\"%d\\n\",(int)(sizeof(s)/sizeof(s[0])));\n  printf(\"%d %.1f %.1f\\n\",s[9].a,(double)s[9].b,s[9].x[0]);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.52",
+    "code": "#include <stdio.h>\n#define M  5\n#define N  30\nstruct student\n{ int num;\n  char name[10];\n  float score[M];\n  float ave;\n};\nvoid stdave (struct student s[ ], int n)\n{ int i,j;\n  float sum;\n  for (i=0;i<n;i++)\n  {\n    sum= /*__BLANK_1__*/;\n     for(j=0;j<M;j++)\n        sum=sum+/*__BLANK_2__*/;\n     /*__BLANK_3__*/=sum/M;\n  }\n}\nint main( )\n{ struct student pers[N];\n  int n,i,j;\n  scanf(\"%d\",&n);\n  for(i=0;i<n;i++)\n    for(j=0;j<M;j++) scanf(\"%f\",&pers[i].score[j]);\n  stdave (pers,n);\n  for(i=0;i<n;i++) printf(\"%.2f\\n\",(double)pers[i].ave);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "0.0",
+        "accepted": [
+          "0.0",
+          "0"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "s[i].score[j]",
+        "accepted": [
+          "s[i].score[j]",
+          "(*(s+i)).score[j]"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "s[i].ave",
+        "accepted": [
+          "s[i].ave",
+          "(*(s+i)).ave"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "3\n60 70 80 90 100\n55 65 75 85 95\n100 100 100 100 100\n",
+        "expected": "80.00\n75.00\n100.00",
+        "note": "常规：3 个学生各 5 门课"
+      },
+      {
+        "stdin": "1\n0 0 0 0 0\n",
+        "expected": "0.00",
+        "note": "边界：只有 1 个学生且全 0 分"
+      },
+      {
+        "stdin": "2\n89.5 90.5 78.25 60 100\n1 2 3 4 5\n",
+        "expected": "83.65\n3.00",
+        "note": "含小数与极端分差"
+      }
+    ],
+    "explanation": "【1】每个学生重新累加前必须把 sum 清零，填 0.0（填 0 亦可，会自动转 float）。【2】内层按课程下标 j 累加当前学生 i 的成绩，填 s[i].score[j]，等价写法 (*(s+i)).score[j]。【3】把平均值写回该学生的 ave 域，填 s[i].ave=sum/M。原书 main 用 ⋮ 省略了输入输出，此处补成：先读学生数 n，再读 n×M 个成绩，调用 stdave 后按 %.2f 输出各人平均分。易错点：【1】漏清零会把上一个学生的总分带进来；【3】写成 s[i].ave/M 或 sum/M 丢掉了赋值目标。",
+    "solution": "#include <stdio.h>\n#define M  5\n#define N  30\nstruct student\n{ int num;\n  char name[10];\n  float score[M];\n  float ave;\n};\nvoid stdave (struct student s[ ], int n)\n{ int i,j;\n  float sum;\n  for (i=0;i<n;i++)\n  {\n    sum=  0.0 ;\n     for(j=0;j<M;j++)\n        sum=sum+ s[i].score[j] ;\n      s[i].ave =sum/M;\n  }\n}\nint main( )\n{ struct student pers[N];\n  int n,i,j;\n  scanf(\"%d\",&n);\n  for(i=0;i<n;i++)\n    for(j=0;j<M;j++) scanf(\"%f\",&pers[i].score[j]);\n  stdave (pers,n);\n  for(i=0;i<n;i++) printf(\"%.2f\\n\",(double)pers[i].ave);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.53",
+    "code": "#include <stdio.h>\n#include <string.h>\n#define M 100\nstruct data\n{ int id;\n  char name[20];\n  double price;\n} book[M]={ {101,\"C\",29.5},{102,\"Pascal\",31.0},{103,\"Data\",40.5},\n            {104,\"Math\",22.0},{105,\"English\",18.5} };\nint findbook(struct data s[], char nam[])\n{ int i;\n  for(i=0;i<M;i++)\n     if(strcmp(/*__BLANK_1__*/)==0) return i;\n  /*__BLANK_2__*/;\n}\nint main(void)\n{ char nam[20];  int k;\n  scanf(\"%19s\",nam);\n  k=findbook(book,nam);\n  if(k>=0) printf(\"%d %s %.2f\\n\",book[k].id,book[k].name,book[k].price);\n  else printf(\"%d\\n\",k);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "s[i].name, nam",
+        "accepted": [
+          "s[i].name, nam",
+          "nam, s[i].name"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "return -1",
+        "accepted": [
+          "return -1",
+          "return(-1)"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "Pascal\n",
+        "expected": "102 Pascal 31.00",
+        "note": "命中第 2 本"
+      },
+      {
+        "stdin": "C\n",
+        "expected": "101 C 29.50",
+        "note": "边界：命中首元素（下标 0）"
+      },
+      {
+        "stdin": "Java\n",
+        "expected": "-1",
+        "note": "查无此书，返回 -1"
+      }
+    ],
+    "explanation": "【1】strcmp 比较两个字符串，参数必须是当前元素的书名与待查书名，填 s[i].name, nam；两参数互换（nam, s[i].name）结果相同，因为只判断是否等于 0。【2】循环走完 M 个元素都没命中，按题意返回 -1，填 return -1。原书 book[M] 未给初值，此处把 M 保持 100 不变、只对前 5 个元素赋初值，其余元素由全局数组零初始化（name 为空串，不会误命中），并补上 main 完成读入书名、调用、输出。易错点：【1】写成 s[i] 或 s.name 类型不符；【2】漏 return 会走到函数末尾产生未定义返回值。",
+    "solution": "#include <stdio.h>\n#include <string.h>\n#define M 100\nstruct data\n{ int id;\n  char name[20];\n  double price;\n} book[M]={ {101,\"C\",29.5},{102,\"Pascal\",31.0},{103,\"Data\",40.5},\n            {104,\"Math\",22.0},{105,\"English\",18.5} };\nint findbook(struct data s[], char nam[])\n{ int i;\n  for(i=0;i<M;i++)\n     if(strcmp( s[i].name, nam )==0) return i;\n   return -1 ;\n}\nint main(void)\n{ char nam[20];  int k;\n  scanf(\"%19s\",nam);\n  k=findbook(book,nam);\n  if(k>=0) printf(\"%d %s %.2f\\n\",book[k].id,book[k].name,book[k].price);\n  else printf(\"%d\\n\",k);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.55",
+    "code": "#include <stdio.h>\n#include <string.h>\n#define NUM 4\nstruct student\n{ int rank;  char * name;  float score; };\n/*__BLANK_1__*/ stu[]={ 3, \"Tom\", 89.3,\n             4, \"Mary\", 78.2,\n             1, \"Jack\", 95.1,\n             2, \"Jim\", 90.6,\n           };\nint main( )\n{ char str[10];   int i;\n  do { printf(\"Enter a name:\");\n       scanf(\"%9s\",str);\n       for (i=0;i<NUM;i++)\n           if(/*__BLANK_2__*/)\n           { printf(\"name    : %8s\\n\",stu[i].name);\n             printf(\"rank    : %3d\\n\",stu[i].rank);\n             printf(\"average : %5.1f\\n\",(double)stu[i].score);\n             /*__BLANK_3__*/;\n           }\n           if(i>=NUM) printf(\"Not found\\n\");\n     } while(strcmp(str,\"0\")!=0);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "struct student",
+        "accepted": [
+          "struct student"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "strcmp(str,stu[i].name)==0",
+        "accepted": [
+          "strcmp(str,stu[i].name)==0",
+          "strcmp(stu[i].name,str)==0",
+          "!strcmp(str,stu[i].name)"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "break",
+        "accepted": [
+          "break"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "Tom\nJim\n0\n",
+        "expected": "Enter a name:name    :      Tom\nrank    :   3\naverage :  89.3\nEnter a name:name    :      Jim\nrank    :   2\naverage :  90.6\nEnter a name:Not found",
+        "note": "两次命中后输入 0 结束"
+      },
+      {
+        "stdin": "Mary\n0\n",
+        "expected": "Enter a name:name    :     Mary\nrank    :   4\naverage :  78.2\nEnter a name:Not found",
+        "note": "命中 rank 为 4 的记录"
+      },
+      {
+        "stdin": "Nobody\n0\n",
+        "expected": "Enter a name:Not found\nEnter a name:Not found",
+        "note": "边界：查无此人，输出 Not found"
+      }
+    ],
+    "explanation": "【1】初值表每行三个值对应 rank/name/score，数组元素类型是结构体，填 struct student。【2】姓名是字符串，必须用 strcmp 比较，填 strcmp(str,stu[i].name)==0，strcmp 两参数互换或写成 !strcmp(...) 等价。【3】找到后立即 break 跳出 for，使 i<NUM，后面的 if(i>=NUM) 才不会误报 Not found。留痕：原书 printf 用 %3s 输出 int 型 rank 属误印，此处改 %3d；scanf 的 %s 改为 %9s 防溢出。易错点：【3】填 continue 或漏填会导致继续比较并在末尾误判未找到。",
+    "solution": "#include <stdio.h>\n#include <string.h>\n#define NUM 4\nstruct student\n{ int rank;  char * name;  float score; };\n struct student  stu[]={ 3, \"Tom\", 89.3,\n             4, \"Mary\", 78.2,\n             1, \"Jack\", 95.1,\n             2, \"Jim\", 90.6,\n           };\nint main( )\n{ char str[10];   int i;\n  do { printf(\"Enter a name:\");\n       scanf(\"%9s\",str);\n       for (i=0;i<NUM;i++)\n           if( strcmp(str,stu[i].name)==0 )\n           { printf(\"name    : %8s\\n\",stu[i].name);\n             printf(\"rank    : %3d\\n\",stu[i].rank);\n             printf(\"average : %5.1f\\n\",(double)stu[i].score);\n              break ;\n           }\n           if(i>=NUM) printf(\"Not found\\n\");\n     } while(strcmp(str,\"0\")!=0);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.57",
+    "code": "#include <stdio.h>\n#define N 8\nstruct c\n{ int num;  int con; } a[16];\nint main( )\n{ int i,j;\n  for(i=0;i<N;i++)\n    { scanf(\"%d\",&a[i].num);\n      a[i].con=0;\n    }\n  for(i=N-1;i>=1;i--)\n      for(j=i-1;j>=0;j--)\n          if(a[i].num<a[j].num)\n              /*__BLANK_1__*/;\n          else /*__BLANK_2__*/;\n  for(i=0;i<N;i++)\n      printf(\"%d,%d\\n\",a[i].num,a[i].con);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "a[j].con++",
+        "accepted": [
+          "a[j].con++",
+          "a[j].con=a[j].con+1"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "a[i].con++",
+        "accepted": [
+          "a[i].con++",
+          "a[i].con=a[i].con+1"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5 3 8 1 9 2 7 4\n",
+        "expected": "5,4\n3,2\n8,6\n1,0\n9,7\n2,1\n7,5\n4,3",
+        "note": "常规 8 个互不相同的数"
+      },
+      {
+        "stdin": "7 7 7 7 7 7 7 7\n",
+        "expected": "7,0\n7,1\n7,2\n7,3\n7,4\n7,5\n7,6\n7,7",
+        "note": "边界：全部相等，走 else 分支"
+      },
+      {
+        "stdin": "9 8 7 6 5 4 3 2\n",
+        "expected": "9,7\n8,6\n7,5\n6,4\n5,3\n4,2\n3,1\n2,0",
+        "note": "已按降序排列"
+      }
+    ],
+    "explanation": "两层循环保证每对元素只比较一次。若 a[i].num<a[j].num，说明 a[j].num 比 a[i].num 大，即 a[j] 的“小于它的元素个数”又多了一个，故【1】填 a[j].con++；否则（a[i].num>=a[j].num）a[i] 的计数加一，【2】填 a[i].con++。con 的最终含义是“数组中比本元素小的元素个数”，因此在降序序列中的位置应为 N-1-con，原书题面把 con 直接说成排序位置并不严谨，本题以实际输出为准。易错点：两处 ++ 的对象写反，会使每个元素的 con 恰好变成 N-1-正确值。",
+    "solution": "#include <stdio.h>\n#define N 8\nstruct c\n{ int num;  int con; } a[16];\nint main( )\n{ int i,j;\n  for(i=0;i<N;i++)\n    { scanf(\"%d\",&a[i].num);\n      a[i].con=0;\n    }\n  for(i=N-1;i>=1;i--)\n      for(j=i-1;j>=0;j--)\n          if(a[i].num<a[j].num)\n               a[j].con++ ;\n          else  a[i].con++ ;\n  for(i=0;i<N;i++)\n      printf(\"%d,%d\\n\",a[i].num,a[i].con);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.59",
+    "code": "#include <stdio.h>\n#include <string.h>\nstruct stud\n{ char num[5], name[10];\n  int s[4];  int ave;\n};\nvoid readrec(struct stud * rec);\nvoid writerec(struct stud * s);\nint main( )\n{ struct stud st[30];\n  int k;\n  for(k=0; k<10; k++) readrec(&st[k]);\n  writerec(st);\n  return 0;\n}\nvoid readrec(struct stud * rec)\n{ int i, sum;  char ch;\n  fgets(rec->num,5,stdin);  rec->num[strcspn(rec->num,\"\\n\")]='\\0';\n  fgets(rec->name,10,stdin); rec->name[strcspn(rec->name,\"\\n\")]='\\0';\n  for(i=0;i<4;i++) scanf(\"%d\",/*__BLANK_1__*/);              //读入 4 项成绩\n  ch=getchar( );                                    //跳过输入数据最后的回车符\n  (void)ch;\n  sum=0;\n  for(i=0;i<4;i++) sum +=/*__BLANK_2__*/;                     //累加 4 项成绩\n  rec->ave= sum/4.0;\n}\nvoid writerec(struct stud * s)\n{ int k, i;\n  for (k=0; k<10; k++)\n     { printf(\"NUM: %s MANE: %s\\n\",(* (s+k)).num,(* (s+k)).name );\n       for(i=0; i<4; i++)\n           printf(\" MARK: %5d\",/*__BLANK_3__*/);              //输出 4 项成绩\n       printf(\" AVE: %5d\\n\",(* (s+k)).ave);\n     }\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "&rec->s[i]",
+        "accepted": [
+          "&rec->s[i]",
+          "&(*rec).s[i]",
+          "rec->s+i"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "rec->s[i]",
+        "accepted": [
+          "rec->s[i]",
+          "(*rec).s[i]"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "(*(s+k)).s[i]",
+        "accepted": [
+          "(*(s+k)).s[i]",
+          "s[k].s[i]",
+          "(s+k)->s[i]"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "101\nAnn\n60 70 80 90\n102\nBob\n61 71 79 90\n103\nCid\n62 72 78 90\n104\nDan\n63 73 77 90\n105\nEva\n64 74 76 90\n106\nFay\n65 75 75 90\n107\nGus\n66 76 74 90\n108\nHal\n67 77 73 90\n109\nIvy\n68 78 72 90\n110\nJoe\n69 79 71 90\n",
+        "expected": "NUM: 101 MANE: Ann\n MARK:    60 MARK:    70 MARK:    80 MARK:    90 AVE:    75\nNUM: 102 MANE: Bob\n MARK:    61 MARK:    71 MARK:    79 MARK:    90 AVE:    75\nNUM: 103 MANE: Cid\n MARK:    62 MARK:    72 MARK:    78 MARK:    90 AVE:    75\nNUM: 104 MANE: Dan\n MARK:    63 MARK:    73 MARK:    77 MARK:    90 AVE:    75\nNUM: 105 MANE: Eva\n MARK:    64 MARK:    74 MARK:    76 MARK:    90 AVE:    76\nNUM: 106 MANE: Fay\n MARK:    65 MARK:    75 MARK:    75 MARK:    90 AVE:    76\nNUM: 107 MANE: Gus\n MARK:    66 MARK:    76 MARK:    74 MARK:    90 AVE:    76\nNUM: 108 MANE: Hal\n MARK:    67 MARK:    77 MARK:    73 MARK:    90 AVE:    76\nNUM: 109 MANE: Ivy\n MARK:    68 MARK:    78 MARK:    72 MARK:    90 AVE:    77\nNUM: 110 MANE: Joe\n MARK:    69 MARK:    79 MARK:    71 MARK:    90 AVE:    77",
+        "note": "常规：10 名学生成绩各不相同"
+      },
+      {
+        "stdin": "101\nAnn\n0 0 0 0\n102\nBob\n0 0 0 0\n103\nCid\n0 0 0 0\n104\nDan\n0 0 0 0\n105\nEva\n0 0 0 0\n106\nFay\n0 0 0 0\n107\nGus\n0 0 0 0\n108\nHal\n0 0 0 0\n109\nIvy\n0 0 0 0\n110\nJoe\n0 0 0 0\n",
+        "expected": "NUM: 101 MANE: Ann\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 102 MANE: Bob\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 103 MANE: Cid\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 104 MANE: Dan\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 105 MANE: Eva\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 106 MANE: Fay\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 107 MANE: Gus\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 108 MANE: Hal\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 109 MANE: Ivy\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0\nNUM: 110 MANE: Joe\n MARK:     0 MARK:     0 MARK:     0 MARK:     0 AVE:     0",
+        "note": "边界：4 项成绩全为 0"
+      },
+      {
+        "stdin": "101\nAnn\n100 99 98 97\n102\nBob\n100 99 98 97\n103\nCid\n100 99 98 97\n104\nDan\n100 99 98 97\n105\nEva\n100 99 98 97\n106\nFay\n100 99 98 97\n107\nGus\n100 99 98 97\n108\nHal\n100 99 98 97\n109\nIvy\n100 99 98 97\n110\nJoe\n100 99 98 97\n",
+        "expected": "NUM: 101 MANE: Ann\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 102 MANE: Bob\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 103 MANE: Cid\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 104 MANE: Dan\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 105 MANE: Eva\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 106 MANE: Fay\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 107 MANE: Gus\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 108 MANE: Hal\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 109 MANE: Ivy\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98\nNUM: 110 MANE: Joe\n MARK:   100 MARK:    99 MARK:    98 MARK:    97 AVE:    98",
+        "note": "高分段，ave 存在整型截断"
+      }
+    ],
+    "explanation": "【1】scanf 需要地址，rec 是指针，第 i 项成绩的地址填 &rec->s[i]，等价 &(*rec).s[i] 或 rec->s+i。【2】累加的是值，填 rec->s[i]。【3】输出时形参名是 s、下标是 k，填 (*(s+k)).s[i]，等价 s[k].s[i]、(s+k)->s[i]。留痕：原书 gets(rec.num) 既误用 . 又用了不安全的 gets，此处改为 rec->num 并用 fgets 去尾换行；readrec/writerec 原为隐式 int 返回，C99 已不允许，补 void；ave 是 int 而 sum/4.0 是 double，赋值时截断（原书如此，输出以实机为准）。",
+    "solution": "#include <stdio.h>\n#include <string.h>\nstruct stud\n{ char num[5], name[10];\n  int s[4];  int ave;\n};\nvoid readrec(struct stud * rec);\nvoid writerec(struct stud * s);\nint main( )\n{ struct stud st[30];\n  int k;\n  for(k=0; k<10; k++) readrec(&st[k]);\n  writerec(st);\n  return 0;\n}\nvoid readrec(struct stud * rec)\n{ int i, sum;  char ch;\n  fgets(rec->num,5,stdin);  rec->num[strcspn(rec->num,\"\\n\")]='\\0';\n  fgets(rec->name,10,stdin); rec->name[strcspn(rec->name,\"\\n\")]='\\0';\n  for(i=0;i<4;i++) scanf(\"%d\", &rec->s[i] );              //读入 4 项成绩\n  ch=getchar( );                                    //跳过输入数据最后的回车符\n  (void)ch;\n  sum=0;\n  for(i=0;i<4;i++) sum += rec->s[i] ;                     //累加 4 项成绩\n  rec->ave= sum/4.0;\n}\nvoid writerec(struct stud * s)\n{ int k, i;\n  for (k=0; k<10; k++)\n     { printf(\"NUM: %s MANE: %s\\n\",(* (s+k)).num,(* (s+k)).name );\n       for(i=0; i<4; i++)\n           printf(\" MARK: %5d\", (*(s+k)).s[i] );              //输出 4 项成绩\n       printf(\" AVE: %5d\\n\",(* (s+k)).ave);\n     }\n}"
+  },
+  {
+    "originalId": "题10.63",
+    "code": "#include <stdio.h>\n#include <string.h>\ntypedef struct\n{ char name[30];  int grade; }student;\nstudent class[40];\nvoid sortclass(student * , int );\nvoid swap( student * , student * );\nint main( )\n{ int ns, cutoff,i;\n  printf(\"number of student: \\n\");\n  scanf(\"%d\",&ns);\n  printf(\"Enter name and grade for each student: \\n\");\n  for(i=0; i<ns; i++)\n    scanf(\"%s %d\",/*__BLANK_1__*/);\n  sortclass(class,ns);\n  cutoff= (ns * 7)/10-1;\n  printf(\"\\n\");\n  for(i=0;i<ns;i++)\n    { printf(\"%-6s %3d\",class[i].name,class[i].grade);\n      if(i<=cutoff) printf(\"  pass \\n\");\n      else printf(\"  fail \\n\");\n    }\n  return 0;\n}\nvoid sortclass(student st[], int nst)\n{ int i, j, pick;\n  for(i=0;i<(nst-1);i++)\n    { pick=i;\n      for(/*__BLANK_2__*/; j++)\n        if (st[j].grade > st[pick].grade)\n           pick=j;\n      swap(/*__BLANK_3__*/);\n    }\n}\nvoid swap(student * ps1,student * ps2)\n  { student temp;\n    strcpy(temp.name, ps1->name);\n    temp.grade=ps1->grade;\n    strcpy(ps1->name, ps2->name);\n    ps1->grade=ps2->grade;\n    strcpy(ps2->name, temp.name);\n    ps2->grade=temp.grade;\n  }",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "class[i].name,&class[i].grade",
+        "accepted": [
+          "class[i].name,&class[i].grade",
+          "class[i].name, &class[i].grade"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "j=i+1;j<nst",
+        "accepted": [
+          "j=i+1;j<nst",
+          "j=i+1; j<nst"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "&st[i],&st[pick]",
+        "accepted": [
+          "&st[i],&st[pick]",
+          "st+i,st+pick"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "10\nAnn 88 Bob 75 Cid 92 Dan 60 Eva 71 Fay 99 Gus 64 Hal 83 Ivy 57 Joe 90\n",
+        "expected": "number of student: \nEnter name and grade for each student: \n\nFay     99  pass \nCid     92  pass \nJoe     90  pass \nAnn     88  pass \nHal     83  pass \nBob     75  pass \nEva     71  pass \nGus     64  fail \nDan     60  fail \nIvy     57  fail",
+        "note": "常规：10 人，前 70% 判 pass"
+      },
+      {
+        "stdin": "1\nAnn 88\n",
+        "expected": "number of student: \nEnter name and grade for each student: \n\nAnn     88  fail",
+        "note": "边界：只有 1 人，cutoff 为 -1 全判 fail"
+      },
+      {
+        "stdin": "3\nBob 70 Ann 70 Cid 70\n",
+        "expected": "number of student: \nEnter name and grade for each student: \n\nBob     70  pass \nAnn     70  pass \nCid     70  fail",
+        "note": "成绩全相等的稳定情形"
+      }
+    ],
+    "explanation": "【1】scanf 用 %s %d 读姓名和成绩，姓名是数组名本身即地址、成绩要取地址，填 class[i].name,&class[i].grade。【2】选择排序内层从 i 的后一个开始扫到 nst-1，填 j=i+1;j<nst（for 的第三式 j++ 已给出）。【3】把当前最优元素与位置 i 的元素交换，swap 收两个指针，填 &st[i],&st[pick]，等价 st+i,st+pick。注意 cutoff=(ns*7)/10-1，ns=1 时 cutoff=-1，唯一的学生也会被判 fail，这是原书算法的边界特征。易错点：【1】给 name 多取一次地址；【3】漏 & 传成结构体值。",
+    "solution": "#include <stdio.h>\n#include <string.h>\ntypedef struct\n{ char name[30];  int grade; }student;\nstudent class[40];\nvoid sortclass(student * , int );\nvoid swap( student * , student * );\nint main( )\n{ int ns, cutoff,i;\n  printf(\"number of student: \\n\");\n  scanf(\"%d\",&ns);\n  printf(\"Enter name and grade for each student: \\n\");\n  for(i=0; i<ns; i++)\n    scanf(\"%s %d\", class[i].name,&class[i].grade );\n  sortclass(class,ns);\n  cutoff= (ns * 7)/10-1;\n  printf(\"\\n\");\n  for(i=0;i<ns;i++)\n    { printf(\"%-6s %3d\",class[i].name,class[i].grade);\n      if(i<=cutoff) printf(\"  pass \\n\");\n      else printf(\"  fail \\n\");\n    }\n  return 0;\n}\nvoid sortclass(student st[], int nst)\n{ int i, j, pick;\n  for(i=0;i<(nst-1);i++)\n    { pick=i;\n      for( j=i+1;j<nst ; j++)\n        if (st[j].grade > st[pick].grade)\n           pick=j;\n      swap( &st[i],&st[pick] );\n    }\n}\nvoid swap(student * ps1,student * ps2)\n  { student temp;\n    strcpy(temp.name, ps1->name);\n    temp.grade=ps1->grade;\n    strcpy(ps1->name, ps2->name);\n    ps1->grade=ps2->grade;\n    strcpy(ps2->name, temp.name);\n    ps2->grade=temp.grade;\n  }"
+  },
+  {
+    "originalId": "题10.64",
+    "code": "#include <stdio.h>\n#include <string.h>\n#define MAX 101\nstruct aa\n{ char name[5]; char tel[8]; } ;\nvoid readin(struct aa * a , int * n);\nvoid search(struct aa b[], char * x, int n);\nint main( )\n{ struct aa s[MAX];\n  int num;   char name[5];\n  readin(s,&num);\n  printf(\"Enter a name: \"); scanf(\"%4s\",name);\n  search(s,name,num);\n  printf(\"\\n\");\n  return 0;\n}\nvoid readin(struct aa * a , int * n)\n{ int i=1;\n  scanf(\"%4s\",a[i].name); scanf(\"%7s\",a[i].tel);\n  while (strcmp(/*__BLANK_1__*/,\"#\"))\n   { i++; scanf(\"%4s\",a[i].name); scanf(\"%7s\",a[i].tel); }\n  * n=  --i;\n}\nvoid search(/*__BLANK_2__*/, char * x, int n)\n{ int i;\n  strcpy(b[0].name,x); i=n;\n  while (strcmp(b[i].name,x)) i--;\n  if (/*__BLANK_3__*/) printf(\"name:%s tel:%s\\n\",b[i].name,b[i].tel );\n  else     printf(\"Not been found !\");\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "a[i].name",
+        "accepted": [
+          "a[i].name",
+          "(a+i)->name"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "struct aa *b",
+        "accepted": [
+          "struct aa *b",
+          "struct aa b[]",
+          "struct aa * b"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "i",
+        "accepted": [
+          "i",
+          "i!=0",
+          "i>0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "Tom 1234567\nJim 2345678\nAnn 3456789\n# 0\nTom\n",
+        "expected": "Enter a name: name:Tom tel:1234567",
+        "note": "命中首条记录"
+      },
+      {
+        "stdin": "Tom 1234567\nJim 2345678\nAnn 3456789\n# 0\nAnn\n",
+        "expected": "Enter a name: name:Ann tel:3456789",
+        "note": "命中末条记录（i==n）"
+      },
+      {
+        "stdin": "Tom 1234567\nJim 2345678\n# 0\nBob\n",
+        "expected": "Enter a name: Not been found !",
+        "note": "边界：查无此人，退到哨兵 b[0]"
+      }
+    ],
+    "explanation": "【1】循环条件是“刚读入的姓名不是 #”，填 a[i].name（等价 (a+i)->name）。【2】search 要用下标访问 b[0]…b[n]，形参是结构体指针，填 struct aa *b，等价 struct aa b[]。【3】哨兵法把待查名复制到 b[0]，从后往前找，找到时 i>=1、落到哨兵时 i==0，故填 i（等价 i!=0、i>0）。留痕：原书 struct aa 的 name[5] 装不下题面所说 6 位字母，测试数据改用 ≤4 位姓名；gets 改 scanf（%4s/%7s）以避免溢出与换行残留；readin/search 由隐式 int 改为 void 并补原型。",
+    "solution": "#include <stdio.h>\n#include <string.h>\n#define MAX 101\nstruct aa\n{ char name[5]; char tel[8]; } ;\nvoid readin(struct aa * a , int * n);\nvoid search(struct aa b[], char * x, int n);\nint main( )\n{ struct aa s[MAX];\n  int num;   char name[5];\n  readin(s,&num);\n  printf(\"Enter a name: \"); scanf(\"%4s\",name);\n  search(s,name,num);\n  printf(\"\\n\");\n  return 0;\n}\nvoid readin(struct aa * a , int * n)\n{ int i=1;\n  scanf(\"%4s\",a[i].name); scanf(\"%7s\",a[i].tel);\n  while (strcmp( a[i].name ,\"#\"))\n   { i++; scanf(\"%4s\",a[i].name); scanf(\"%7s\",a[i].tel); }\n  * n=  --i;\n}\nvoid search( struct aa *b , char * x, int n)\n{ int i;\n  strcpy(b[0].name,x); i=n;\n  while (strcmp(b[i].name,x)) i--;\n  if ( i ) printf(\"name:%s tel:%s\\n\",b[i].name,b[i].tel );\n  else     printf(\"Not been found !\");\n}"
+  },
+  {
+    "originalId": "题10.65",
+    "code": "#include <stdio.h>\nstruct s {  char data;\n            /*__BLANK_1__*/\n          }node;\nint main(void)\n{ struct s n1,n2,*p;\n  node.data='X';  node.next=&n1;\n  n1.data='A';    n1.next=&n2;\n  n2.data='B';    n2.next=NULL;\n  for(p=&node; p!=NULL; p=p->next) printf(\"%c\",p->data);\n  printf(\"\\n%d\\n\",(int)(node.next->next->data));\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "struct s *next;",
+        "accepted": [
+          "struct s *next;",
+          "struct s * next;"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "XAB\n66",
+        "note": "无输入：串起 3 个结点后遍历输出"
+      }
+    ],
+    "explanation": "图 10-5 的结点有两个域：数据域 data 与指向同类型结点的指针域 next，故填 struct s *next; —— 结构体自引用必须用“struct 标签 + 指针”，不能写 struct s next;（自身类型的成员会导致无限大小），也不能省略 struct。分号是定义的一部分，必须写。本题包装成完整程序：用 node、n1、n2 三个结点串成以 NULL 结尾的链，遍历输出各 data，再输出第三个结点的字符编码。易错点：漏 * 编译报“成员类型不完整”，漏分号则与 }node; 粘连成语法错误。",
+    "solution": "#include <stdio.h>\nstruct s {  char data;\n             struct s *next; \n          }node;\nint main(void)\n{ struct s n1,n2,*p;\n  node.data='X';  node.next=&n1;\n  n1.data='A';    n1.next=&n2;\n  n2.data='B';    n2.next=NULL;\n  for(p=&node; p!=NULL; p=p->next) printf(\"%c\",p->data);\n  printf(\"\\n%d\\n\",(int)(node.next->next->data));\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.66",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n  {char data;  struct link * next; } ;\nint main(void)\n{ struct link * p, * first=NULL, * tail=NULL;\n  int c=0, ch;\n  while((ch=getchar())!='\\n' && ch!=EOF)\n    { struct link * q=(struct link *)malloc(sizeof(struct link));\n      q->data=(char)ch;  q->next=NULL;\n      if(first==NULL) first=q; else tail->next=q;\n      tail=q;\n    }\n  p=first;\n  while(/*__BLANK_1__*/)\n   {/*__BLANK_2__*/;\n    p=/*__BLANK_3__*/;\n   }\n  printf(\"%d\\n\",c);\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "p!=NULL",
+        "accepted": [
+          "p!=NULL",
+          "p",
+          "p!=0",
+          "NULL!=p"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "c++",
+        "accepted": [
+          "c++",
+          "c=c+1",
+          "++c"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p->next",
+        "accepted": [
+          "p->next",
+          "(*p).next"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "abcde\n",
+        "expected": "5",
+        "note": "常规：5 个结点"
+      },
+      {
+        "stdin": "a\n",
+        "expected": "1",
+        "note": "边界：单结点"
+      },
+      {
+        "stdin": "\n",
+        "expected": "0",
+        "note": "边界：空链表（first 为 NULL）"
+      }
+    ],
+    "explanation": "不带头结点的链表，first 就是首结点地址，统计个数需沿 next 走到 NULL 为止：【1】循环条件填 p!=NULL（等价 p、p!=0）；【2】每访问一个结点计数一次，填 c++；【3】指针后移，填 p->next（等价 (*p).next）。原书是带 ⋮ 的程序段，此处补全成完整程序：逐字符读入一行建成链表后再统计，空行对应空链表，c 保持 0。易错点：【1】写成 p->next!=NULL 会少算最后一个结点；【3】写成 p++ 是按结构体大小顺移内存，完全错误。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n  {char data;  struct link * next; } ;\nint main(void)\n{ struct link * p, * first=NULL, * tail=NULL;\n  int c=0, ch;\n  while((ch=getchar())!='\\n' && ch!=EOF)\n    { struct link * q=(struct link *)malloc(sizeof(struct link));\n      q->data=(char)ch;  q->next=NULL;\n      if(first==NULL) first=q; else tail->next=q;\n      tail=q;\n    }\n  p=first;\n  while( p!=NULL )\n   { c++ ;\n    p= p->next ;\n   }\n  printf(\"%d\\n\",c);\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.67",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n{ int data; struct link * next; } ;\nint sum(/*__BLANK_1__*/)\n{  struct link * p;   int s=0;\n   p=head->next;\n   while (p) { s +=/*__BLANK_2__*/; p=/*__BLANK_3__*/; }\n   return (s);\n}\nint main( )\n{ struct link * head;  int x;\n  head=(struct link *)malloc(sizeof(struct link));\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { struct link * p=(struct link *)malloc(sizeof(struct link));\n      p->data=x; p->next=head->next; head->next=p;\n    }\n  printf(\"%d\\n\",sum(head));\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "struct link * head",
+        "accepted": [
+          "struct link * head",
+          "struct link *head"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p->data",
+        "accepted": [
+          "p->data",
+          "(*p).data"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p->next",
+        "accepted": [
+          "p->next",
+          "(*p).next"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3 4 5\n",
+        "expected": "15",
+        "note": "常规：5 个结点求和"
+      },
+      {
+        "stdin": "-3 7\n",
+        "expected": "4",
+        "note": "含负数，和为 4"
+      },
+      {
+        "stdin": "\n",
+        "expected": "0",
+        "note": "边界：只有头结点，和为 0"
+      }
+    ],
+    "explanation": "【1】函数体里用 head->next 取首结点，说明形参是指向头结点的指针，填 struct link * head。【2】累加当前结点数据域，填 p->data（等价 (*p).data）。【3】沿链后移，填 p->next。留痕：原书函数名为 sum 且为隐式 int 返回、定义处还多写了一个分号（sum(【1】) ;），C99 不允许隐式 int，此处补 int 并删掉误写的分号，同时把定义前移到 main 之前省去原型。易错点：【1】写成 struct link head（传值）则 head->next 无法访问；【2】累加 p->next 会把指针当整数。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n{ int data; struct link * next; } ;\nint sum( struct link * head )\n{  struct link * p;   int s=0;\n   p=head->next;\n   while (p) { s += p->data ; p= p->next ; }\n   return (s);\n}\nint main( )\n{ struct link * head;  int x;\n  head=(struct link *)malloc(sizeof(struct link));\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { struct link * p=(struct link *)malloc(sizeof(struct link));\n      p->data=x; p->next=head->next; head->next=p;\n    }\n  printf(\"%d\\n\",sum(head));\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.68",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n{ int data; struct link * next; } ;\nvoid fmax( struct link * head,/*__BLANK_1__*/)\n{ struct link * p;\n  p =(* head).next;  * s=p;\n  while (p!=NULL)\n  { p=/*__BLANK_2__*/;\n    if (p!=NULL && (* p).data >/*__BLANK_3__*/) * s=p;\n  }\n}\nint main( )\n{ struct link * head, * q;  int x;\n  head=(struct link *)malloc(sizeof(struct link));\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { struct link * p=(struct link *)malloc(sizeof(struct link));\n      p->data=x; p->next=head->next; head->next=p;\n    }\n  fmax( head, &q); printf(\"max=%d\\n\",q->data );\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "struct link **s",
+        "accepted": [
+          "struct link **s",
+          "struct link ** s",
+          "struct link *s[]"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p->next",
+        "accepted": [
+          "p->next",
+          "(*p).next"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "(**s).data",
+        "accepted": [
+          "(**s).data",
+          "(*s)->data",
+          "s[0]->data"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "3 7 2 9 4\n",
+        "expected": "max=9",
+        "note": "常规：最大值在中间"
+      },
+      {
+        "stdin": "5\n",
+        "expected": "max=5",
+        "note": "边界：单结点"
+      },
+      {
+        "stdin": "-3 -7 -2\n",
+        "expected": "max=-2",
+        "note": "全负数，最大为 -2"
+      }
+    ],
+    "explanation": "结果要通过形参带回调用者，必须传指针的地址：【1】填 struct link **s（等价 struct link *s[]）。【2】沿链后移，填 p->next。【3】与当前已记录的最大值比较，即解引用两级指针取 data，填 (**s).data（等价 (*s)->data）。留痕：原书结构体成员误写为 struct link next;（漏 *，自身类型不完整无法编译），已改为 struct link * next;；原书 p=p->next 之后直接 (*p).data，走到链尾会对 NULL 解引用，已加 p!=NULL && 守卫。易错点：【3】写成 (*s).data 少解一层。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct link\n{ int data; struct link * next; } ;\nvoid fmax( struct link * head, struct link **s )\n{ struct link * p;\n  p =(* head).next;  * s=p;\n  while (p!=NULL)\n  { p= p->next ;\n    if (p!=NULL && (* p).data > (**s).data ) * s=p;\n  }\n}\nint main( )\n{ struct link * head, * q;  int x;\n  head=(struct link *)malloc(sizeof(struct link));\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { struct link * p=(struct link *)malloc(sizeof(struct link));\n      p->data=x; p->next=head->next; head->next=p;\n    }\n  fmax( head, &q); printf(\"max=%d\\n\",q->data );\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.69",
+    "code": "#include <stdlib.h>\n#include <stdio.h>\nstruct student\n  { int info;  struct student * link; } ;\nvoid print(struct student * head)\n{ struct student * p;\n  printf(\"\\n the linklist is:\");\n  p=head;\n  if(head!=NULL)\n    do\n      { printf(\"%d\",/*__BLANK_1__*/);\n        p=/*__BLANK_2__*/;\n      }\n    while(/*__BLANK_3__*/);\n}\nint main( )\n{ struct student * head=NULL, * tail=NULL;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      if(head==NULL) head=q; else tail->link=q;\n      tail=q;\n    }\n  print(head);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "p->info",
+        "accepted": [
+          "p->info",
+          "(*p).info"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p->link",
+        "accepted": [
+          "p->link",
+          "(*p).link"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p!=NULL",
+        "accepted": [
+          "p!=NULL",
+          "p",
+          "p!=0",
+          "NULL!=p"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3\n",
+        "expected": "\n the linklist is:123",
+        "note": "常规：3 个结点"
+      },
+      {
+        "stdin": "7\n",
+        "expected": "\n the linklist is:7",
+        "note": "边界：单结点，do-while 至少执行一次"
+      },
+      {
+        "stdin": "\n",
+        "expected": "\n the linklist is:",
+        "note": "边界：空链表，只输出提示串"
+      }
+    ],
+    "explanation": "do-while 先执行后判断，正好配合外层 if(head!=NULL) 保证至少有一个结点：【1】输出当前结点的数据域 p->info（等价 (*p).info）；【2】指针后移 p=p->link；【3】循环条件是后移后的 p 非空，填 p!=NULL（等价 p、p!=0）。原书 main 只有 ⋮，此处补成：按输入顺序尾插建链再调用 print。易错点：【3】填 p->link!=NULL 会漏印最后一个结点；【1】填 head->info 则每次都打印首结点造成死循环。",
+    "solution": "#include <stdlib.h>\n#include <stdio.h>\nstruct student\n  { int info;  struct student * link; } ;\nvoid print(struct student * head)\n{ struct student * p;\n  printf(\"\\n the linklist is:\");\n  p=head;\n  if(head!=NULL)\n    do\n      { printf(\"%d\", p->info );\n        p= p->link ;\n      }\n    while( p!=NULL );\n}\nint main( )\n{ struct student * head=NULL, * tail=NULL;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      if(head==NULL) head=q; else tail->link=q;\n      tail=q;\n    }\n  print(head);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.70",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct node { int data;\n              struct node * link;\n            };\nint min3( struct node * first )\n  { struct node * p=first;\n    int m, m3= p->data+ p->link->data+ p->link->link->data;\n    for( p=p->link; p!=first; p=/*__BLANK_1__*/)\n        { m= p->data+ p->link->data+ p->link->link->data;\n          if(/*__BLANK_2__*/) m3=m;}\n    return(m3);\n  }\nint main(void)\n{ struct node * first=NULL, * tail=NULL;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct node * q=(struct node *)malloc(sizeof(struct node));\n      q->data=x; q->link=NULL;\n      if(first==NULL) first=q; else tail->link=q;\n      tail=q;\n    }\n  if(first==NULL){ printf(\"empty\\n\"); return 0; }\n  tail->link=first;\n  printf(\"%d\\n\",min3(first));\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "p->link",
+        "accepted": [
+          "p->link",
+          "(*p).link"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "m<m3",
+        "accepted": [
+          "m<m3",
+          "m3>m"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 2 3 4 5\n",
+        "expected": "6",
+        "note": "常规：5 个结点，最小和为 1+2+3"
+      },
+      {
+        "stdin": "9 1 2 3\n",
+        "expected": "6",
+        "note": "最小和在中间位置"
+      },
+      {
+        "stdin": "5 5 5\n",
+        "expected": "15",
+        "note": "边界：恰好 3 个结点且全相等"
+      }
+    ],
+    "explanation": "环形链表中 p->link->link 总能取到（可能绕回头部），所以每组三个相邻结点的和都可计算。【1】for 的第三式沿链前进，填 p->link；循环以 p!=first 结束，正好遍历每个起点一次。【2】发现更小的和就更新 m3，填 m<m3（等价 m3>m）。原书 main 部分只有 ⋮，此处补成：按输入建链、把尾结点的 link 指回 first 构成环，再调用 min3 输出。注意结点少于 3 个时 p->link->link 会重复计数甚至绕圈，测试数据均 ≥3 个。易错点：【1】写成 p++ 或 first->link。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct node { int data;\n              struct node * link;\n            };\nint min3( struct node * first )\n  { struct node * p=first;\n    int m, m3= p->data+ p->link->data+ p->link->link->data;\n    for( p=p->link; p!=first; p= p->link )\n        { m= p->data+ p->link->data+ p->link->link->data;\n          if( m<m3 ) m3=m;}\n    return(m3);\n  }\nint main(void)\n{ struct node * first=NULL, * tail=NULL;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct node * q=(struct node *)malloc(sizeof(struct node));\n      q->data=x; q->link=NULL;\n      if(first==NULL) first=q; else tail->link=q;\n      tail=q;\n    }\n  if(first==NULL){ printf(\"empty\\n\"); return 0; }\n  tail->link=first;\n  printf(\"%d\\n\",min3(first));\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.71",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct student\n{ int info;   struct student * link; } ;\nstruct student * insert(struct student * head,struct student * stud)\n{ struct student * p0, * p1, * p2;\n  p1=head;\n  p0=stud;\n  if(head==NULL)\n    { head=p0; p0->link=NULL;}\n  else\n   {\n        while((p0->info < p1->info)&&(p1->link!=NULL))\n          { p2=p1; p1=p1->link;}\n        if(p0->info>=p1->info)\n          { if(head==p1) {/*__BLANK_1__*/;head=p0;}\n            else { p2->link=p0;/*__BLANK_2__*/;}\n           }\n        else\n          { p1->link=p0;/*__BLANK_3__*/;}\n   }\n  return(head);\n}\nint main(void)\n{ struct student * head=NULL, * p;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      head=insert(head,q);\n    }\n  for(p=head;p!=NULL;p=p->link) printf(\"%d \",p->info);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "p0->link=head",
+        "accepted": [
+          "p0->link=head",
+          "p0->link=p1",
+          "(*p0).link=head"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p0->link=p1",
+        "accepted": [
+          "p0->link=p1",
+          "(*p0).link=p1"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p0->link=NULL",
+        "accepted": [
+          "p0->link=NULL",
+          "p0->link=0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5 3 8 1\n",
+        "expected": "8 5 3 1",
+        "note": "常规：乱序插入后应为降序"
+      },
+      {
+        "stdin": "9\n",
+        "expected": "9",
+        "note": "边界：空表插入第一个结点"
+      },
+      {
+        "stdin": "4 4 4\n",
+        "expected": "4 4 4",
+        "note": "边界：值全相等，均插到表头"
+      }
+    ],
+    "explanation": "插入要维护“新结点 p0 的 link 指向它的后继”。【1】插在表头之前：p0->link=head（此时 head==p1，写成 p0->link=p1 亦可），随后 head=p0。【2】插在 p2 与 p1 之间：p2->link=p0 已给出，还需 p0->link=p1。【3】插到表尾：p1->link=p0 已给出，新结点成为尾结点，故 p0->link=NULL。留痕：原书第二个 if 没有包在 else 分支里，head==NULL 时 p1 为 NULL 却被解引用（p1->info），此处补一对花括号把它并入 else。易错点：漏【3】会留下野指针。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct student\n{ int info;   struct student * link; } ;\nstruct student * insert(struct student * head,struct student * stud)\n{ struct student * p0, * p1, * p2;\n  p1=head;\n  p0=stud;\n  if(head==NULL)\n    { head=p0; p0->link=NULL;}\n  else\n   {\n        while((p0->info < p1->info)&&(p1->link!=NULL))\n          { p2=p1; p1=p1->link;}\n        if(p0->info>=p1->info)\n          { if(head==p1) { p0->link=head ;head=p0;}\n            else { p2->link=p0; p0->link=p1 ;}\n           }\n        else\n          { p1->link=p0; p0->link=NULL ;}\n   }\n  return(head);\n}\nint main(void)\n{ struct student * head=NULL, * p;  int x;\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      head=insert(head,q);\n    }\n  for(p=head;p!=NULL;p=p->link) printf(\"%d \",p->info);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.72",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\nstruct student\n{ int info;  struct student  * link;\n};\nstruct student  * del(struct student  * head,int num)\n{ struct student  * p1, * p2;\n  if(head==NULL)\n    printf(\"\\nlist null!\\n\");\n  else\n    { p1=head;\n      while(/*__BLANK_1__*/)\n        { p2=p1;p1=p1->link;}\n      if(num==p1->info)\n        { if(p1==head) /*__BLANK_2__*/;\n          else /*__BLANK_3__*/;\n          printf(\"delete:%d\\n\",num);\n          }\n      else printf(\"%d not been found!\\n\",num);\n    }\n  return(head);\n}\nint main(void)\n{ struct student * head=NULL, * tail=NULL, * p;  int x,num;\n  scanf(\"%d\",&num);\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      if(head==NULL) head=q; else tail->link=q;\n      tail=q;\n    }\n  head=del(head,num);\n  for(p=head;p!=NULL;p=p->link) printf(\"%d \",p->info);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "num!=p1->info && p1->link!=NULL",
+        "accepted": [
+          "num!=p1->info && p1->link!=NULL",
+          "p1->info!=num&&p1->link!=NULL",
+          "num!=p1->info&&p1->link!=NULL"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "head=p1->link",
+        "accepted": [
+          "head=p1->link",
+          "head=head->link"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p2->link=p1->link",
+        "accepted": [
+          "p2->link=p1->link",
+          "(*p2).link=(*p1).link"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "2\n1 2 3 4\n",
+        "expected": "delete:2\n1 3 4",
+        "note": "删除中间结点"
+      },
+      {
+        "stdin": "1\n1 2 3\n",
+        "expected": "delete:1\n2 3",
+        "note": "边界：删除首结点，head 改变"
+      },
+      {
+        "stdin": "9\n1 2 3\n",
+        "expected": "9 not been found!\n1 2 3",
+        "note": "边界：查无此值"
+      }
+    ],
+    "explanation": "【1】查找循环要同时防两件事：还没找到（num!=p1->info）且后面还有结点（p1->link!=NULL），两者用 && 连接，顺序不可颠倒，否则会对 NULL 取 info。【2】待删结点就是首结点时，头指针后移：head=p1->link。【3】否则由前驱接管：p2->link=p1->link。输入约定：第一个整数是待删值 num，其余整数按序建链。原书 del 定义在 main 之后且未 free 被删结点，此处把定义前移以避免隐式声明。易错点：【1】漏掉 p1->link!=NULL 会在删尾结点或查不到时解引用 NULL。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\nstruct student\n{ int info;  struct student  * link;\n};\nstruct student  * del(struct student  * head,int num)\n{ struct student  * p1, * p2;\n  if(head==NULL)\n    printf(\"\\nlist null!\\n\");\n  else\n    { p1=head;\n      while( num!=p1->info && p1->link!=NULL )\n        { p2=p1;p1=p1->link;}\n      if(num==p1->info)\n        { if(p1==head)  head=p1->link ;\n          else  p2->link=p1->link ;\n          printf(\"delete:%d\\n\",num);\n          }\n      else printf(\"%d not been found!\\n\",num);\n    }\n  return(head);\n}\nint main(void)\n{ struct student * head=NULL, * tail=NULL, * p;  int x,num;\n  scanf(\"%d\",&num);\n  while(scanf(\"%d\",&x)==1)\n    { struct student * q=(struct student *)malloc(sizeof(struct student));\n      q->info=x; q->link=NULL;\n      if(head==NULL) head=q; else tail->link=q;\n      tail=q;\n    }\n  head=del(head,num);\n  for(p=head;p!=NULL;p=p->link) printf(\"%d \",p->info);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.73",
+    "code": "#include <stdio.h>\nunion\n{ int n;  double x; } num;\nint main(void)\n{ num.n=10;\n  num.x=10.5;\n  printf(/*__BLANK_1__*/,/*__BLANK_2__*/);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "\"%lf\"",
+        "accepted": [
+          "\"%lf\"",
+          "\"%f\""
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "num.x",
+        "accepted": [
+          "num.x"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "",
+        "expected": "10.500000",
+        "note": "无输入：输出共用体中最后写入的成员"
+      }
+    ],
+    "explanation": "共用体各成员共占同一段存储，后写的覆盖先写的：先 num.n=10 再 num.x=10.5，最终有效成员是 double 型的 x，因此【2】填 num.x，【1】的格式说明必须是 %lf（printf 中 %lf 与 %f 等价，都按 double 输出）。若误填 %d 与 num.n，会按整型重新解释这 8 个字节，得到毫无意义的值。留痕：原书空位在引号内（printf(\"【1】\",【2】)），答案页给的是 %lf；本平台把整个格式串作为一个空位，故参考答案连引号一起写成 \"%lf\"。",
+    "solution": "#include <stdio.h>\nunion\n{ int n;  double x; } num;\nint main(void)\n{ num.n=10;\n  num.x=10.5;\n  printf( \"%lf\" , num.x );\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.75",
+    "code": "#include <stdio.h>\nstruct\n{ char name[10];  int number;  char sex;\n  union body\n    { char eye;\n      struct\n        { int hength;\n          int weight;\n        } f;\n    } body;\n} per[2];\nint main( )\n{ int i;\n  for(i=0;i<2;i++)\n    { scanf(\"%9s %d %c\",per[i].name,&per[i].number,&per[i].sex);\n      if(per[i].sex=='m')\n         scanf(\" %c\",/*__BLANK_1__*/);\n      else if(per[i].sex=='f')\n         scanf(\"%d %d\",/*__BLANK_2__*/,/*__BLANK_3__*/);\n      else printf(\"input error\\n\");\n    }\n  for(i=0;i<2;i++)\n    { printf(\"%s %d %c \",per[i].name,per[i].number,per[i].sex);\n      if(per[i].sex=='m') printf(\"%c\\n\",per[i].body.eye);\n      else if(per[i].sex=='f') printf(\"%d %d\\n\",per[i].body.f.hength,per[i].body.f.weight);\n      else printf(\"\\n\");\n    }\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "&per[i].body.eye",
+        "accepted": [
+          "&per[i].body.eye"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "&per[i].body.f.hength",
+        "accepted": [
+          "&per[i].body.f.hength"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "&per[i].body.f.weight",
+        "accepted": [
+          "&per[i].body.f.weight"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "Tom 101 m Y\nAnn 102 f 165 50\n",
+        "expected": "Tom 101 m Y\nAnn 102 f 165 50",
+        "note": "一男一女，分别走两个分支"
+      },
+      {
+        "stdin": "Bob 1 m N\nJim 2 m Y\n",
+        "expected": "Bob 1 m N\nJim 2 m Y",
+        "note": "两个男生，共用体只用 eye"
+      },
+      {
+        "stdin": "Ann 9 f 150 40\nEva 8 f 170 60\n",
+        "expected": "Ann 9 f 150 40\nEva 8 f 170 60",
+        "note": "两个女生，eye 与 f 重叠存储"
+      }
+    ],
+    "explanation": "共用体 body 中，男生只用 eye（视力 Y/N），女生只用 f（身高、体重），二者共占同一存储。scanf 要地址：【1】填 &per[i].body.eye；【2】【3】填 &per[i].body.f.hength 与 &per[i].body.f.weight，路径必须是“数组元素 . 共用体成员 . 内层结构体成员”。留痕：原书成员名 hength 疑为 height 的误印，此处按原书保留以保证与答案一致；scanf(\"%s %d %c\",&per[i].name,...) 中对数组名取地址是多余的，已去掉 &；读 eye 的 %c 前补一个空格以跳过残留换行，否则读到的是 '\\n'。",
+    "solution": "#include <stdio.h>\nstruct\n{ char name[10];  int number;  char sex;\n  union body\n    { char eye;\n      struct\n        { int hength;\n          int weight;\n        } f;\n    } body;\n} per[2];\nint main( )\n{ int i;\n  for(i=0;i<2;i++)\n    { scanf(\"%9s %d %c\",per[i].name,&per[i].number,&per[i].sex);\n      if(per[i].sex=='m')\n         scanf(\" %c\", &per[i].body.eye );\n      else if(per[i].sex=='f')\n         scanf(\"%d %d\", &per[i].body.f.hength , &per[i].body.f.weight );\n      else printf(\"input error\\n\");\n    }\n  for(i=0;i<2;i++)\n    { printf(\"%s %d %c \",per[i].name,per[i].number,per[i].sex);\n      if(per[i].sex=='m') printf(\"%c\\n\",per[i].body.eye);\n      else if(per[i].sex=='f') printf(\"%d %d\\n\",per[i].body.f.hength,per[i].body.f.weight);\n      else printf(\"\\n\");\n    }\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.79",
+    "code": "#include <stdio.h>\nenum ErrorData {Right,Less0,Great100,MinMaxErr};\nchar  * ErrorMessage[]={\n        \"Enter Data Right\",\n        \"Data<0 Error\",\n        \"Data>100 Error\",\n        \"x>y Error\"\n};\nint error(int min,int max);\nint main( )\n{ int status, x,y;\n  do { printf(\"please enter two number:(x,y)\");\n       scanf(\"%d%d\",&x,&y);\n       status=/*__BLANK_1__*/;\n       printf(\"%s\\n\",ErrorMessage[/*__BLANK_2__*/]);\n     } while(status!=Right);\n  printf(\"Result=%d\\n\",x* x+y* y);\n  return 0;\n}\nint error(int min,int max)\n   { if(max<min) return MinMaxErr;\n     else if(max>100) return Great100;\n     else if(min<0) return Less0;\n     else /*__BLANK_3__*/;\n   }",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "error(x,y)",
+        "accepted": [
+          "error(x,y)",
+          "error( x,y )"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "status",
+        "accepted": [
+          "status"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "return Right",
+        "accepted": [
+          "return Right",
+          "return(Right)",
+          "return 0"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "3 4\n",
+        "expected": "please enter two number:(x,y)Enter Data Right\nResult=25",
+        "note": "一次通过，Result=25"
+      },
+      {
+        "stdin": "-1 5\n3 4\n",
+        "expected": "please enter two number:(x,y)Data<0 Error\nplease enter two number:(x,y)Enter Data Right\nResult=25",
+        "note": "先报 Data<0 Error 再正确"
+      },
+      {
+        "stdin": "200 300\n5 1\n2 3\n",
+        "expected": "please enter two number:(x,y)Data>100 Error\nplease enter two number:(x,y)x>y Error\nplease enter two number:(x,y)Enter Data Right\nResult=13",
+        "note": "依次触发 Great100、MinMaxErr 后正确"
+      }
+    ],
+    "explanation": "枚举 ErrorData 的四个枚举值恰好是 ErrorMessage 数组的四个下标。【1】调用判断函数取得状态：error(x,y)（形参名 min/max 对应实参 x/y）。【2】用状态值作下标取出对应消息：ErrorMessage[status]。【3】三种错误都不成立时数据正确，返回 Right，填 return Right（Right 值为 0，写 return 0 亦可）。留痕：原书 error 定义在 main 之后又无原型，C99 下属隐式声明，此处补上 int error(int,int); 原型；printf(ErrorMessage[...]) 属非字面量格式串（-Wformat-security），改为 printf(\"%s\\n\",...)。",
+    "solution": "#include <stdio.h>\nenum ErrorData {Right,Less0,Great100,MinMaxErr};\nchar  * ErrorMessage[]={\n        \"Enter Data Right\",\n        \"Data<0 Error\",\n        \"Data>100 Error\",\n        \"x>y Error\"\n};\nint error(int min,int max);\nint main( )\n{ int status, x,y;\n  do { printf(\"please enter two number:(x,y)\");\n       scanf(\"%d%d\",&x,&y);\n       status= error(x,y) ;\n       printf(\"%s\\n\",ErrorMessage[ status ]);\n     } while(status!=Right);\n  printf(\"Result=%d\\n\",x* x+y* y);\n  return 0;\n}\nint error(int min,int max)\n   { if(max<min) return MinMaxErr;\n     else if(max>100) return Great100;\n     else if(min<0) return Less0;\n     else  return Right ;\n   }"
+  },
+  {
+    "originalId": "题10.81",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\nvoid PURGE(linklist  * head)\n{ linklist  * p, * q;\n  q=head->next;\n  if (q==NULL) return;\n  p=q->next;\n  while (p != NULL)\n    if (p->data==q->data)\n      {/*__BLANK_1__*/; free(p); p=q->next; }\n    else\n      { q=p;/*__BLANK_2__*/; }\n}\nint main(void)\n{ linklist * head=(linklist *)malloc(sizeof(linklist)), * tail=head, * p;\n  int x;\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { linklist * s=(linklist *)malloc(sizeof(linklist));\n      s->data=x; s->next=NULL; tail->next=s; tail=s;\n    }\n  PURGE(head);\n  for(p=head->next;p!=NULL;p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "q->next=p->next",
+        "accepted": [
+          "q->next=p->next",
+          "(*q).next=(*p).next"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p=p->next",
+        "accepted": [
+          "p=p->next",
+          "p=(*p).next"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "1 1 2 2 2 3\n",
+        "expected": "1 2 3",
+        "note": "常规：多处连续重复"
+      },
+      {
+        "stdin": "5\n",
+        "expected": "5",
+        "note": "边界：只有一个数据结点"
+      },
+      {
+        "stdin": "1 2 3 4\n",
+        "expected": "1 2 3 4",
+        "note": "边界：无重复，链表原样保留"
+      }
+    ],
+    "explanation": "q 始终指向“已去重部分”的最后一个结点，p 是它的后继。若 p->data==q->data 说明 p 是重复结点，先把它从链上摘下来：【1】填 q->next=p->next，随后 free(p)、再让 p 回到 q 的新后继。否则 p 保留，q 前移到 p，【2】填 p=p->next 继续考察下一个。原书 main 用 ... 省略，此处补成带头结点的建表与输出；函数名 PURGE 原为隐式 int 返回，C99 不允许，已改 void。易错点：【1】写成 p->next=q->next 方向反了会破坏链；【2】写成 q=q->next 会跳过结点。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\nvoid PURGE(linklist  * head)\n{ linklist  * p, * q;\n  q=head->next;\n  if (q==NULL) return;\n  p=q->next;\n  while (p != NULL)\n    if (p->data==q->data)\n      { q->next=p->next ; free(p); p=q->next; }\n    else\n      { q=p; p=p->next ; }\n}\nint main(void)\n{ linklist * head=(linklist *)malloc(sizeof(linklist)), * tail=head, * p;\n  int x;\n  head->next=NULL;\n  while(scanf(\"%d\",&x)==1)\n    { linklist * s=(linklist *)malloc(sizeof(linklist));\n      s->data=x; s->next=NULL; tail->next=s; tail=s;\n    }\n  PURGE(head);\n  for(p=head->next;p!=NULL;p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.82",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\ntypedef char datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\n\nvoid  CREATLIST(/*__BLANK_1__*/)\n{ char ch;\n  linklist  * s,  * r;\n  * phd=malloc(sizeof(linklist));\n  r= * phd;\n  ch=getchar( );\n  while ( ch != '$')\n    { s=malloc(sizeof(linklist));\n      s->data=ch;\n      r->next=s;\n      r=s;\n      ch=getchar( );\n      }\n  r->next =/*__BLANK_2__*/;\n}\n\nint main( )\n{ linklist  * head, * p;\n  head=NULL;\n  CREATLIST(/*__BLANK_3__*/);\n  for(p=head->next;p!=NULL;p=p->next) printf(\"%c\",p->data);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "linklist **phd",
+        "accepted": [
+          "linklist **phd",
+          "linklist ** phd"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "NULL",
+        "accepted": [
+          "NULL",
+          "0"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "&head",
+        "accepted": [
+          "&head"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "abc$",
+        "expected": "abc",
+        "note": "常规：3 个字符后以 $ 结束"
+      },
+      {
+        "stdin": "a$",
+        "expected": "a",
+        "note": "边界：只有 1 个结点"
+      },
+      {
+        "stdin": "data structure$",
+        "expected": "data structure",
+        "note": "含空格的较长输入"
+      }
+    ],
+    "explanation": "头指针要由函数带回调用者，只能传它的地址：【1】填 linklist **phd（函数体内 * phd=malloc(...) 印证了这一点），【3】实参填 &head。【2】尾插结束后必须给最后一个结点的 next 置空，填 NULL（写 0 亦可）。原书 typdef 是拼写错误，已改为 typedef；main 中的 ⋮ 补成遍历输出。注意输入以 $ 作为结束标记且 $ 本身不入表，若输入为空（第一个字符就是 $）则得到只有头结点的空表。易错点：【1】少写一个 * 会使 * phd=... 编译失败。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\ntypedef char datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\n\nvoid  CREATLIST( linklist **phd )\n{ char ch;\n  linklist  * s,  * r;\n  * phd=malloc(sizeof(linklist));\n  r= * phd;\n  ch=getchar( );\n  while ( ch != '$')\n    { s=malloc(sizeof(linklist));\n      s->data=ch;\n      r->next=s;\n      r=s;\n      ch=getchar( );\n      }\n  r->next = NULL ;\n}\n\nint main( )\n{ linklist  * head, * p;\n  head=NULL;\n  CREATLIST( &head );\n  for(p=head->next;p!=NULL;p=p->next) printf(\"%c\",p->data);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.83",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node * next;\n  } linklist;\nlinklist  * CONNECT(ra,rb)/*__BLANK_1__*/;\n{ linklist  * p;\n  p=ra->next;\n  ra->next=/*__BLANK_2__*/;\n  free(rb->next);\n  rb->next=/*__BLANK_3__*/;\n  return(rb);\n}\nlinklist * buildc(int base,int n)\n{ linklist * h=(linklist *)malloc(sizeof(linklist)), * r=h;\n  int i;\n  h->data=0;\n  for(i=1;i<=n;i++)\n    { linklist * s=(linklist *)malloc(sizeof(linklist));\n      s->data=base+i; r->next=s; r=s; }\n  r->next=h;\n  return r;\n}\nint main(void)\n{ int n1,n2;  linklist *ra,*rb,*hd,*p;\n  scanf(\"%d%d\",&n1,&n2);\n  ra=buildc(0,n1);\n  rb=buildc(n1,n2);\n  rb=CONNECT(ra,rb);\n  hd=rb->next;\n  for(p=hd->next;p!=hd;p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n\");\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "linklist *ra,*rb",
+        "accepted": [
+          "linklist *ra,*rb",
+          "linklist * ra,* rb",
+          "linklist *ra, *rb"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "rb->next->next",
+        "accepted": [
+          "rb->next->next",
+          "(*rb->next).next"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p",
+        "accepted": [
+          "p"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "3 2\n",
+        "expected": "1 2 3 4 5",
+        "note": "常规：3 结点表接 2 结点表"
+      },
+      {
+        "stdin": "1 1\n",
+        "expected": "1 2",
+        "note": "边界：两表各 1 个数据结点"
+      },
+      {
+        "stdin": "4 3\n",
+        "expected": "1 2 3 4 5 6 7",
+        "note": "较长链表，验证释放表 2 头结点后仍成环"
+      }
+    ],
+    "explanation": "两表都带头结点、用尾指针表示。p 先保存表 1 的头结点（ra->next）。【2】把表 1 尾结点的 next 接到表 2 的第一个数据结点上，即跳过表 2 的头结点：rb->next->next。随后 free 掉表 2 的头结点。【3】把表 2 尾结点的 next 指回表 1 的头结点 p，形成更大的环，返回 rb 仍是尾指针。【1】是 K&R 老式定义的参数声明表，按原书填 linklist *ra,*rb（原书 typdef 拼写错误已改正）。易错点：【2】只填 rb->next 会把两个头结点都留在环里；【3】填 ra 会把尾结点当接头结点。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node * next;\n  } linklist;\nlinklist  * CONNECT(ra,rb) linklist *ra,*rb ;\n{ linklist  * p;\n  p=ra->next;\n  ra->next= rb->next->next ;\n  free(rb->next);\n  rb->next= p ;\n  return(rb);\n}\nlinklist * buildc(int base,int n)\n{ linklist * h=(linklist *)malloc(sizeof(linklist)), * r=h;\n  int i;\n  h->data=0;\n  for(i=1;i<=n;i++)\n    { linklist * s=(linklist *)malloc(sizeof(linklist));\n      s->data=base+i; r->next=s; r=s; }\n  r->next=h;\n  return r;\n}\nint main(void)\n{ int n1,n2;  linklist *ra,*rb,*hd,*p;\n  scanf(\"%d%d\",&n1,&n2);\n  ra=buildc(0,n1);\n  rb=buildc(n1,n2);\n  rb=CONNECT(ra,rb);\n  hd=rb->next;\n  for(p=hd->next;p!=hd;p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n\");\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.84",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n{ datatype data;\n  struct node * next;\n} linklist;\nlinklist * build(int m)\n{ int i;  linklist * head, * p, * s;\n  p=(linklist *)malloc(sizeof(linklist)); head=p; p->data=1;\n  for(i=2;i<=m;i++)\n    { s=(linklist *)malloc(sizeof(linklist)); s->data=i; p->next=s; p=s; }\n  p->next=head;\n  return head;\n}\nint selectking(linklist  * head,int c)\n{ linklist  * p, * q; int t;\n  p=head;   t=0;\n  do\n     { t++;\n       if ((t%c)!=0)\n          { q=p;\n            /*__BLANK_1__*/;\n          }\n       else\n          {\n            q->next=/*__BLANK_2__*/;\n            p=p->next;\n          }\n       }\n   while (/*__BLANK_3__*/);\n   return (p->data);\n}\nint main(void)\n{ int m,c;\n  scanf(\"%d%d\",&m,&c);\n  printf(\"%d\\n\",selectking(build(m),c));\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "p=p->next",
+        "accepted": [
+          "p=p->next",
+          "p=(*p).next"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "p->next",
+        "accepted": [
+          "p->next",
+          "(*p).next"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "p->next!=p",
+        "accepted": [
+          "p->next!=p",
+          "p->next!=p ",
+          "(*p).next!=p"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5 2\n",
+        "expected": "3",
+        "note": "常规：5 只猴子每数到 2 淘汰"
+      },
+      {
+        "stdin": "8 3\n",
+        "expected": "7",
+        "note": "8 只猴子每数到 3 淘汰"
+      },
+      {
+        "stdin": "1 3\n",
+        "expected": "1",
+        "note": "边界：只有 1 只猴子，直接是大王"
+      }
+    ],
+    "explanation": "q 是 p 的前驱。报数不是 c 的倍数时只前移：q=p 后【1】填 p=p->next。数到 c 的倍数时淘汰 p：让前驱跳过它，【2】填 p->next（随后 p=p->next 指向下一个继续报数）。环中只剩一个结点的标志是它自己指向自己，故【3】填 p->next!=p，此时 p 即猴王。原书 typdef 拼写错误已改，main 的 ⋮ 补成读入 m、c 并输出结果；被删结点未 free（原书如此）。易错点：c=1 时首次循环就走 else 分支，q 尚未赋值，属原书算法的固有缺陷，测试数据均取 c>=2。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n{ datatype data;\n  struct node * next;\n} linklist;\nlinklist * build(int m)\n{ int i;  linklist * head, * p, * s;\n  p=(linklist *)malloc(sizeof(linklist)); head=p; p->data=1;\n  for(i=2;i<=m;i++)\n    { s=(linklist *)malloc(sizeof(linklist)); s->data=i; p->next=s; p=s; }\n  p->next=head;\n  return head;\n}\nint selectking(linklist  * head,int c)\n{ linklist  * p, * q; int t;\n  p=head;   t=0;\n  do\n     { t++;\n       if ((t%c)!=0)\n          { q=p;\n             p=p->next ;\n          }\n       else\n          {\n            q->next= p->next ;\n            p=p->next;\n          }\n       }\n   while ( p->next!=p );\n   return (p->data);\n}\nint main(void)\n{ int m,c;\n  scanf(\"%d%d\",&m,&c);\n  printf(\"%d\\n\",selectking(build(m),c));\n  return 0;\n}"
+  },
+  {
+    "originalId": "题10.85",
+    "code": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\n/*__BLANK_1__*/initial(m) int m;\n{ int i;\n  linklist  * head, * p,  * s;\n  p=(linklist  * ) malloc(sizeof(linklist));\n  head=p;\n  p->data=1;\n  for(i=2;i<=m;i++)\n    { s =(linklist  * ) malloc(sizeof(linklist));\n      s->data=i;\n      p->next =/*__BLANK_2__*/;\n      p=s;\n    }\n  p->next =/*__BLANK_3__*/;\n  return head;\n}\nint main(void)\n{ int m,i;  linklist * head,* p;\n  scanf(\"%d\",&m);\n  head=initial(m);\n  for(p=head,i=1;i<=m;i++,p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n%d\\n\",(int)(p==head));\n  return 0;\n}",
+    "blanks": [
+      {
+        "index": 1,
+        "answer": "linklist *",
+        "accepted": [
+          "linklist *",
+          "linklist  *"
+        ]
+      },
+      {
+        "index": 2,
+        "answer": "s",
+        "accepted": [
+          "s"
+        ]
+      },
+      {
+        "index": 3,
+        "answer": "head",
+        "accepted": [
+          "head"
+        ]
+      }
+    ],
+    "testCases": [
+      {
+        "stdin": "5\n",
+        "expected": "1 2 3 4 5 \n1",
+        "note": "常规：建 5 个结点的环"
+      },
+      {
+        "stdin": "1\n",
+        "expected": "1 \n1",
+        "note": "边界：m=1，循环不执行，自身成环"
+      },
+      {
+        "stdin": "8\n",
+        "expected": "1 2 3 4 5 6 7 8 \n1",
+        "note": "较长环，末结点 next 回到 head"
+      }
+    ],
+    "explanation": "【1】函数最后 return head，而 head 是 linklist *，且这是 K&R 老式定义（参数类型写在 int m; 里），所以空处是返回类型 linklist *。【2】尾插：新结点 s 接到当前尾结点 p 之后，填 p->next=s，随后 p=s 前移。【3】循环结束后 p 是最后一个结点，要与头结点相接成环，填 p->next=head。原书 typdef 拼写错误已改正；main 的 ⋮ 补成读入 m、按序输出 m 个 data，并用 p==head 验证确实成环（输出 1）。易错点：【3】填 NULL 就成了普通单链表，遍历时会越界。",
+    "solution": "#include <stdio.h>\n#include <stdlib.h>\ntypedef int datatype;\ntypedef struct node\n  { datatype data;\n    struct node  * next;\n  } linklist;\n linklist * initial(m) int m;\n{ int i;\n  linklist  * head, * p,  * s;\n  p=(linklist  * ) malloc(sizeof(linklist));\n  head=p;\n  p->data=1;\n  for(i=2;i<=m;i++)\n    { s =(linklist  * ) malloc(sizeof(linklist));\n      s->data=i;\n      p->next = s ;\n      p=s;\n    }\n  p->next = head ;\n  return head;\n}\nint main(void)\n{ int m,i;  linklist * head,* p;\n  scanf(\"%d\",&m);\n  head=initial(m);\n  for(p=head,i=1;i<=m;i++,p=p->next) printf(\"%d \",p->data);\n  printf(\"\\n%d\\n\",(int)(p==head));\n  return 0;\n}"
+  }
+]

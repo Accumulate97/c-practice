@@ -144,19 +144,17 @@
       "chapter": 10,
       "id": "c-ch10",
       "name": "第10章 结构体与共用体",
-      "converted": 24,
-      "staged": 69,
+      "converted": 93,
+      "staged": 0,
       "byType": {
+        "single_choice": 43,
+        "fill_blank": 2,
+        "code_completion": 28,
         "code_reading": 12,
-        "code_completion": 4,
         "programming": 7,
         "short_answer": 1
       },
-      "stagedBySubType": {
-        "single_choice": 45,
-        "code_completion": 23,
-        "multi_blank": 1
-      }
+      "stagedBySubType": {}
     },
     {
       "chapter": 11,
@@ -194,25 +192,25 @@
   ],
   "totals": {
     "records": 1008,
-    "converted": 891,
-    "staged": 132,
+    "converted": 960,
+    "staged": 63,
     "byType": {
-      "single_choice": 298,
-      "fill_blank": 147,
+      "single_choice": 341,
+      "fill_blank": 149,
       "code_reading": 225,
       "short_answer": 23,
-      "code_completion": 135,
+      "code_completion": 159,
       "programming": 48,
       "debug": 15
     },
     "stagedBySubType": {
-      "single_choice": 92,
-      "code_completion": 38,
-      "multi_blank": 2
+      "single_choice": 47,
+      "code_completion": 15,
+      "multi_blank": 1
     },
-    "judgeEvidence": 439,
+    "judgeEvidence": 463,
     "withRealExpected": 241,
-    "rescuedCodeCompletion": 135,
+    "rescuedCodeCompletion": 159,
     "authoredDebug": 15,
     "authoredSkipped": 0
   }
