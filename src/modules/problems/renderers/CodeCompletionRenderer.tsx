@@ -44,9 +44,9 @@ const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 
 const TONE_COLOR = {
-  good: 'var(--color-viz-sorted)',
-  bad: 'var(--color-viz-swap)',
-  unknown: 'var(--color-viz-compare)',
+  good: 'var(--fg-ok)',
+  bad: 'var(--fg-bad)',
+  unknown: 'var(--fg-warn)',
 } as const
 
 const KIND_META: Record<BlankMatch['kind'], { label: string; icon: string; tone: keyof typeof TONE_COLOR }> = {
@@ -237,12 +237,13 @@ export function CodeCompletionRenderer({ problem }: Props) {
                     key={b.index}
                     type="button"
                     onClick={() => editorRef.current?.focusSlot(b.index)}
-                    className="rounded-md border px-2 py-0.5 text-xs"
+                    className="rounded-md border px-2 py-1 text-xs"   /* 点击目标 ≥24px（WCAG 2.5.8） */
                     style={{
                       borderColor: active ? 'var(--color-brand)' : 'var(--border)',
-                      color: filled ? 'var(--color-viz-sorted)' : 'var(--fg-muted)',
+                      color: filled ? 'var(--fg-ok)' : 'var(--fg-muted)',
                       background: active ? 'var(--code-selection)' : 'transparent',
                     }}
+                    aria-label={`跳到空位 ${b.index}${b.hint ? '：' + b.hint : ''}`}
                     title={b.hint ?? `跳到空位 ${b.index}`}
                   >
                     空位 {b.index}
@@ -351,7 +352,7 @@ export function CodeCompletionRenderer({ problem }: Props) {
           )}
 
           {overall && report && (
-            <section className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR[overall.tone] }}>
+            <section role="status" aria-live="polite" className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR[overall.tone] }}>
               <p className="text-base font-semibold" style={{ color: TONE_COLOR[overall.tone] }}>{overall.label}</p>
               <p className="mt-1 text-sm" style={muted}>{overall.detail}</p>
               {inconclusiveCount > 0 && (
@@ -479,7 +480,7 @@ function CaseCard({ result }: { result: TestCaseResult }) {
       </div>
 
       {diff !== null && (
-        <p className="mt-2 text-xs" style={{ color: 'var(--color-viz-swap)' }}>
+        <p className="mt-2 text-xs" style={{ color: 'var(--fg-bad)' }}>
           首处差异在第 {diff} 行。归一化：CRLF→LF、逐行剥行尾空白、剥末尾换行；行中空行与行尾空格保留后再剥。
         </p>
       )}
@@ -509,7 +510,7 @@ function CaseCard({ result }: { result: TestCaseResult }) {
 function SelfCheck({ cases }: { cases: { stdin: string; expected: string; note?: string }[] }) {
   return (
     <details className="mt-3 text-xs">
-      <summary className="cursor-pointer" style={{ color: 'var(--color-viz-compare)' }}>
+      <summary className="cursor-pointer" style={{ color: 'var(--fg-warn)' }}>
         判分后端不可用：展开查看本题各组的输入与期望输出，自行在本地比对（不计正确率、不置 verified）
       </summary>
       <ol className="mt-2 space-y-3">

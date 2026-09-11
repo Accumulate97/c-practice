@@ -63,8 +63,8 @@ const SORTS: { key: SortKey; label: string }[] = [
 
 const STATUS_META: Record<ListStatus, { label: string; short: string; color: string; dot: string }> = {
   todo: { label: '未做', short: '未做', color: 'var(--fg-muted)', dot: '○' },
-  attempted: { label: '尝试过未通过', short: '尝试过', color: 'var(--color-viz-compare)', dot: '◐' },
-  passed: { label: '已通过', short: '已通过', color: 'var(--color-viz-sorted)', dot: '●' },
+  attempted: { label: '尝试过未通过', short: '尝试过', color: 'var(--fg-warn)', dot: '◐' },
+  passed: { label: '已通过', short: '已通过', color: 'var(--fg-ok)', dot: '●' },
 }
 const STATUS_ORDER: ListStatus[] = ['todo', 'attempted', 'passed']
 
@@ -425,15 +425,15 @@ function Ready({ index }: { index: ProblemIndex }) {
       ) : (
         <>
           <div className="overflow-x-auto rounded-xl border" style={panel}>
-            <table className="w-full min-w-[58rem] border-collapse text-sm" data-role="problem-table">
+            <table className="w-full min-w-[58rem] border-collapse text-sm" data-role="problem-table" aria-label="题目列表">
               <thead>
                 <tr className="text-xs" style={muted}>
-                  <th className="px-3 py-2 text-left font-medium">题号</th>
-                  <th className="px-3 py-2 text-left font-medium">章节</th>
-                  <th className="px-3 py-2 text-left font-medium">题型</th>
-                  <th className="px-3 py-2 text-left font-medium">难度</th>
-                  <th className="px-3 py-2 text-left font-medium">题干摘要</th>
-                  <th className="px-3 py-2 text-left font-medium">状态</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">题号</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">章节</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">题型</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">难度</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">题干摘要</th>
+                  <th scope="col" className="px-3 py-2 text-left font-medium">状态</th>
                 </tr>
               </thead>
               <tbody>
@@ -487,7 +487,7 @@ function ProblemRow({ problem, status }: { problem: ProblemIndexEntry; status: L
       style={{ borderColor: 'var(--border)' }}
     >
       <td className="px-3 py-2 whitespace-nowrap text-xs">
-        <Link to={to} title={problem.id} className="font-mono hover:underline" style={{ color: 'var(--color-brand)' }}>
+        <Link to={to} title={problem.id} className="font-mono hover:underline" style={{ color: 'var(--fg-link)' }}>
           {shortId(problem.id)}
         </Link>
       </td>
@@ -505,7 +505,7 @@ function ProblemRow({ problem, status }: { problem: ProblemIndexEntry; status: L
           {typeLabel(problem.type)}
         </span>
       </td>
-      <td className="px-3 py-2 whitespace-nowrap text-xs" style={{ color: 'var(--color-viz-compare)' }} title={`难度 ${problem.difficulty} / 5`}>
+      <td className="px-3 py-2 whitespace-nowrap text-xs" style={{ color: 'var(--fg-warn)' }} title={`难度 ${problem.difficulty} / 5`}>
         {difficultyStars(problem.difficulty)}
       </td>
       <td className="px-3 py-2">

@@ -203,7 +203,7 @@ export function VizComparePage() {
           </section>
 
           {loadError && (
-            <p className="rounded-xl border p-3 text-sm" style={{ borderColor: 'var(--color-viz-swap)', color: 'var(--color-viz-swap)' }}>
+            <p className="rounded-xl border p-3 text-sm" style={{ borderColor: 'var(--fg-bad)', color: 'var(--fg-bad)' }}>
               语料加载失败：{loadError}
             </p>
           )}
@@ -247,7 +247,7 @@ function ComparePanel({ demo, index }: { demo: VizDemo; index: number }) {
           </span>
         ))}
         {ended && demo.steps.length > 0 && (
-          <span className="rounded border px-1.5 py-0.5" style={{ borderColor: 'var(--color-viz-sorted)', color: 'var(--color-viz-sorted)' }} data-role="cmp-ended">
+          <span className="rounded border px-1.5 py-0.5" style={{ borderColor: 'var(--fg-ok)', color: 'var(--fg-ok)' }} data-role="cmp-ended">
             已结束，停在末步
           </span>
         )}

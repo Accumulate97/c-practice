@@ -58,7 +58,7 @@ export function VizDemoPage() {
   if (phase.kind === 'missing') {
     return (
       <section className="rounded-xl border p-6" style={{ ...panel, borderColor: 'var(--color-viz-swap)' }}>
-        <p className="text-sm font-semibold" style={{ color: 'var(--color-viz-swap)' }}>找不到这个演示</p>
+        <p className="text-sm font-semibold" style={{ color: 'var(--fg-bad)' }}>找不到这个演示</p>
         <p className="mt-1 text-sm" style={muted}>索引里没有 {phase.id}，可能链接打错了，或语料还没生成。</p>
         <Link to="/viz" className="mt-3 inline-block text-sm underline">← 返回演示列表</Link>
       </section>

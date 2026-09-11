@@ -32,9 +32,12 @@ import { shortId, typeLabel } from '../modules/problems/type-meta'
 const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg-elev)' }
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 const control: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg)', color: 'var(--fg)' }
-const GOOD = 'var(--color-viz-sorted)'
-const BAD = 'var(--color-viz-swap)'
-const WARN = 'var(--color-viz-compare)'
+const GOOD = 'var(--fg-ok)'
+const BAD = 'var(--fg-bad)'
+const WARN = 'var(--fg-warn)'
+// 进度条填充是图形，另用可视化令牌：文字要 AA 的 4.5:1，色块只需 3:1，两者不能共用一个值
+const GOOD_BG = 'var(--color-viz-sorted)'
+const WARN_BG = 'var(--color-viz-compare)'
 
 type Phase = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 'ready'; index: ProblemIndex }
 
@@ -365,8 +368,8 @@ function Overview({ stat, recordCount, orphanIds, problemCount, wrongBookCount, 
 function Bar({ passed, attempted, total }: { passed: number; attempted: number; total: number }) {
   return (
     <div className="mt-2 flex h-2 overflow-hidden rounded-full border" style={{ borderColor: 'var(--border)', background: 'var(--bg)' }} data-role="overall-bar">
-      <div style={{ width: `${percentOf(passed, total)}%`, background: GOOD }} data-role="bar-passed" />
-      <div style={{ width: `${percentOf(attempted, total)}%`, background: WARN }} data-role="bar-attempted" />
+      <div style={{ width: `${percentOf(passed, total)}%`, background: GOOD_BG }} data-role="bar-passed" />
+      <div style={{ width: `${percentOf(attempted, total)}%`, background: WARN_BG }} data-role="bar-attempted" />
     </div>
   )
 }
@@ -376,17 +379,17 @@ function BucketTable({ title, role, keyAttr, buckets }: { title: string; role: s
     <section className="rounded-xl border p-4" style={panel} data-role={role} data-rows={String(buckets.length)}>
       <h2 className="text-sm font-semibold">{title}</h2>
       <div className="mt-3 overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-sm" aria-label={title}>
           <thead>
             <tr className="text-xs" style={muted}>
-              <th className="py-1 pr-2 text-left font-medium">{title.replace('按', '')}</th>
-              <th className="py-1 px-2 text-right font-medium">题数</th>
-              <th className="py-1 px-2 text-right font-medium">已通过</th>
-              <th className="py-1 px-2 text-right font-medium">尝试过</th>
-              <th className="py-1 px-2 text-right font-medium">未做</th>
-              <th className="py-1 px-2 text-right font-medium">正确率</th>
-              <th className="py-1 px-2 text-right font-medium">错题</th>
-              <th className="py-1 pl-2 text-left font-medium w-1/4">完成度</th>
+              <th scope="col" className="py-1 pr-2 text-left font-medium">{title.replace('按', '')}</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">题数</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">已通过</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">尝试过</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">未做</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">正确率</th>
+              <th scope="col" className="py-1 px-2 text-right font-medium">错题</th>
+              <th scope="col" className="py-1 pl-2 text-left font-medium w-1/4">完成度</th>
             </tr>
           </thead>
           <tbody>
@@ -401,8 +404,8 @@ function BucketTable({ title, role, keyAttr, buckets }: { title: string; role: s
                 <td className="py-1.5 px-2 text-right" style={{ color: b.wrongBook > 0 ? BAD : undefined }}>{b.wrongBook}</td>
                 <td className="py-1.5 pl-2">
                   <div className="flex h-1.5 overflow-hidden rounded-full" style={{ background: 'var(--bg)' }}>
-                    <div style={{ width: `${percentOf(b.passed, b.total)}%`, background: GOOD }} />
-                    <div style={{ width: `${percentOf(b.attempted, b.total)}%`, background: WARN }} />
+                    <div style={{ width: `${percentOf(b.passed, b.total)}%`, background: GOOD_BG }} />
+                    <div style={{ width: `${percentOf(b.attempted, b.total)}%`, background: WARN_BG }} />
                   </div>
                   <div className="mt-0.5 text-xs" style={muted}>{percentOf(b.passed, b.total)}%</div>
                 </td>

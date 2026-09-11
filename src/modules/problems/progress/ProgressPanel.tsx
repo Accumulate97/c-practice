@@ -25,8 +25,8 @@ const control: CSSProperties = { borderColor: 'var(--border)', background: 'var(
 
 const STATUS_META: Record<ListStatus, { label: string; color: string; dot: string }> = {
   todo: { label: '未做', color: 'var(--fg-muted)', dot: '○' },
-  attempted: { label: '尝试过未通过', color: 'var(--color-viz-compare)', dot: '◐' },
-  passed: { label: '已通过', color: 'var(--color-viz-sorted)', dot: '●' },
+  attempted: { label: '尝试过未通过', color: 'var(--fg-warn)', dot: '◐' },
+  passed: { label: '已通过', color: 'var(--fg-ok)', dot: '●' },
 }
 
 const KIND_LABEL: Record<AnswerKind, string> = {
@@ -89,7 +89,7 @@ export function ProgressPanel({ problemId }: Props) {
           type="button"
           onClick={() => setStarred(problemId, !(record?.starred ?? false))}
           className="ml-auto rounded-lg border px-3 py-1 text-xs"
-          style={{ ...control, color: record?.starred ? 'var(--color-viz-compare)' : 'var(--fg-muted)' }}
+          style={{ ...control, color: record?.starred ? 'var(--fg-warn)' : 'var(--fg-muted)' }}
           data-role="star-toggle"
           data-starred={record?.starred === true ? 'true' : 'false'}
           aria-pressed={record?.starred === true}
@@ -106,7 +106,7 @@ export function ProgressPanel({ problemId }: Props) {
       ) : (
         <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:grid-cols-4" style={muted} data-role="record-summary">
           <div><dt className="inline">提交次数</dt><dd className="inline font-semibold" style={{ color: 'var(--fg)' }}> {record.attempts}</dd></div>
-          <div><dt className="inline">错误次数</dt><dd className="inline font-semibold" style={{ color: record.wrongCount > 0 ? 'var(--color-viz-swap)' : 'var(--fg)' }}> {record.wrongCount}</dd></div>
+          <div><dt className="inline">错误次数</dt><dd className="inline font-semibold" style={{ color: record.wrongCount > 0 ? 'var(--fg-bad)' : 'var(--fg)' }}> {record.wrongCount}</dd></div>
           <div><dt className="inline">首次尝试</dt><dd className="inline"> {formatDateTime(record.firstAttemptAt)}</dd></div>
           <div><dt className="inline">最近尝试</dt><dd className="inline"> {formatDateTime(record.lastAt)}</dd></div>
           {record.firstPassedAt !== null && (
@@ -121,7 +121,7 @@ export function ProgressPanel({ problemId }: Props) {
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs" data-role="wrongbook-state" data-in-wrongbook={inBook ? 'true' : 'false'}>
         {inBook ? (
           <>
-            <span style={{ color: 'var(--color-viz-swap)' }}>在错题本里</span>
+            <span style={{ color: 'var(--fg-bad)' }}>在错题本里</span>
             <button type="button" onClick={() => dismissWrong(problemId)} className="rounded-lg border px-2 py-1" style={control} data-role="wrong-dismiss">
               我已掌握，移出错题本
             </button>
@@ -151,7 +151,7 @@ export function ProgressPanel({ problemId }: Props) {
             {lastAnswer}
           </pre>
           {record.lastAnswerTruncated && (
-            <p className="mt-1" style={{ color: 'var(--color-viz-compare)' }}>
+            <p className="mt-1" style={{ color: 'var(--fg-warn)' }}>
               只保存了前 {lastAnswer.length} 个字符（localStorage 有容量上限），这份回看不完整。
             </p>
           )}

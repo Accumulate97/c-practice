@@ -12,6 +12,21 @@ const NAV = [
 export function AppShell() {
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12">
+      {/* 无障碍（阶段 10-4）：键盘用户第一个 Tab 就能跳过整条导航 */}
+      <a
+        href="#main"
+        data-role="skip-link"
+        onClick={(e) => {
+          e.preventDefault()   // HashRouter 会把 #main 当路由，默认行为必须掐掉
+          const m = document.getElementById('main')
+          m?.focus()
+          m?.scrollIntoView({ block: 'start' })
+        }}
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-2 focus:z-50 focus:rounded-md focus:border focus:px-3 focus:py-2 focus:text-sm"
+        style={{ borderColor: 'var(--border)', background: 'var(--bg)', color: 'var(--fg)' }}
+      >
+        跳到主要内容
+      </a>
       <header className="sticky top-0 z-10 -mx-4 mb-6 border-b bg-[var(--bg)]/95 px-4 py-3 backdrop-blur" style={{ borderColor: 'var(--border)' }}>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="text-lg font-semibold">{APP_NAME}</span>
@@ -20,7 +35,7 @@ export function AppShell() {
           </span>
           <span className="ml-auto"><ThemeToggle /></span>
         </div>
-        <nav className="mt-2 flex flex-wrap gap-1 text-sm">
+        <nav aria-label="主导航" className="mt-2 flex flex-wrap gap-1 text-sm">
           {NAV.map((n) => (
             <NavLink
               key={n.to}
@@ -38,7 +53,7 @@ export function AppShell() {
           ))}
         </nav>
       </header>
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         <Outlet />
       </main>
       <footer className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 border-t pt-4 text-xs" style={{ borderColor: 'var(--border)', color: 'var(--fg-muted)' }}>

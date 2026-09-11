@@ -8,7 +8,7 @@ interface Props {
 export function PhasePlaceholder({ phase, done = [], todo = [] }: Props) {
   return (
     <section className="rounded-xl border p-6" style={{ borderColor: 'var(--border)' }}>
-      <p className="text-sm font-medium" style={{ color: 'var(--color-brand)' }}>
+      <p className="text-sm font-medium" style={{ color: 'var(--fg-link)' }}>
         本板块将在 {phase} 落地
       </p>
       {done.length > 0 && (

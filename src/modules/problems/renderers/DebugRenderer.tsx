@@ -28,9 +28,9 @@ const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 
 const TONE_COLOR = {
-  good: 'var(--color-viz-sorted)',
-  bad: 'var(--color-viz-swap)',
-  unknown: 'var(--color-viz-compare)',
+  good: 'var(--fg-ok)',
+  bad: 'var(--fg-bad)',
+  unknown: 'var(--fg-warn)',
 } as const
 
 interface Overall {
@@ -296,7 +296,7 @@ export function DebugRenderer({ problem }: Props) {
 
       {overall && report && (
         <>
-          <section className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR[overall.tone] }}>
+          <section role="status" aria-live="polite" className="rounded-xl border p-4" style={{ ...panel, borderColor: TONE_COLOR[overall.tone] }}>
             <p className="text-base font-semibold" style={{ color: TONE_COLOR[overall.tone] }}>{overall.label}</p>
             <p className="mt-1 text-sm" style={muted}>{overall.detail}</p>
             {unknownCount > 0 && (

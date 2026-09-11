@@ -7,7 +7,7 @@
  *   ② 验的是「三向联动闭环」这条跨板块路径，而不是单个板块内部
  *
  * 用法：npm run build && node scripts/acceptance-stage10.mjs [suite]
- *   suite 省略 = 全跑；可选 list / loop / missing / theme / mobile / errata / search / fallback
+ *   suite 省略 = 全跑；可选 list / loop / missing / theme / mobile / errata / search / fallback / a11y / perf
  */
 import { spawn } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
@@ -28,6 +28,105 @@ const checks = []
 function check(name, ok, detail = '') {
   checks.push({ name, ok: !!ok, detail: String(detail) })
   console.log(`${ok ? 'PASS' : 'FAIL'} ${name}${detail ? ' ｜ ' + String(detail).slice(0, 300) : ''}`)
+}
+
+/**
+ * 无障碍体检（阶段 10-4）：在真实浏览器里算，不靠肉眼。
+ * 四条口径：① 交互控件必须有可访问名称（aria-label / 关联 label / 文本）
+ *           ② 正文对比度 ≥ 4.5:1，大字（≥24px 或 ≥18.66px 粗体）≥ 3:1（WCAG 1.4.3）
+ *           ③ 表格要有名称、表头要有 scope（WCAG 1.3.1）
+ *           ④ 点击目标 ≥ 24×24 CSS px（WCAG 2.5.8）；控件裹在 label 里时按 label 的整体算
+ * 颜色解析支持 rgb/rgba/hex/oklab/oklch —— Tailwind v4 的半透明底色算出来是 oklab，
+ * 只认 rgb 会把白底当成黑底，报一片假阳性（本次打磨踩过）。
+ */
+function auditA11y() {
+  const out = { theme: document.documentElement.dataset.theme, unnamed: [], contrast: [], tables: [], small: [], h1: document.querySelectorAll('h1').length }
+  const hidden = (el) => { let n = el; while (n && n.nodeType === 1) { if (n.getAttribute('aria-hidden') === 'true') return true; n = n.parentElement } return false }
+  const nm = (el) => {
+    const al = el.getAttribute('aria-label'); if (al && al.trim()) return al.trim()
+    const lb = el.getAttribute('aria-labelledby')
+    if (lb) { const t = lb.split(/\s+/).map((id) => document.getElementById(id)).filter(Boolean).map((x) => (x.innerText || '').trim()).join(' '); if (t) return t }
+    if (el.id) { const l = document.querySelector(`label[for="${CSS.escape(el.id)}"]`); if (l && (l.innerText || '').trim()) return l.innerText.trim() }
+    const wrap = el.closest('label'); if (wrap && (wrap.innerText || '').trim()) return wrap.innerText.trim()
+    if (el.tagName === 'IMG') { const a = el.getAttribute('alt'); if (a !== null) return a }
+    const tt = el.getAttribute('title'); if (tt && tt.trim()) return tt.trim()
+    return (el.innerText || el.textContent || '').trim()
+  }
+  for (const el of document.querySelectorAll('button,a[href],input,select,textarea,[role=button],[role=link],[role=checkbox],[role=tab]')) {
+    if (el.getAttribute('type') === 'hidden' || hidden(el)) continue
+    const st = getComputedStyle(el); if (st.display === 'none' || st.visibility === 'hidden') continue
+    const r = el.getBoundingClientRect(); if (r.width === 0 && r.height === 0) continue
+    if (!nm(el)) out.unnamed.push({ t: el.tagName.toLowerCase() + (el.type ? `[${el.type}]` : ''), html: el.outerHTML.slice(0, 110).replace(/\s+/g, ' ') })
+    if (el.matches('button,input,select,textarea')) {
+      const box = el.closest('label') ?? el
+      const br = box.getBoundingClientRect()
+      if (br.width < 24 || br.height < 24) out.small.push({ nm: nm(el).slice(0, 20), w: Math.round(br.width), h: Math.round(br.height) })
+    }
+  }
+  for (const el of document.querySelectorAll('img')) { if (!hidden(el) && !el.hasAttribute('alt')) out.unnamed.push({ t: 'img-no-alt', html: el.outerHTML.slice(0, 90) }) }
+  for (const tb of document.querySelectorAll('table')) {
+    const named = tb.querySelector('caption') !== null || (tb.getAttribute('aria-label') ?? '').length > 0
+    const th = [...tb.querySelectorAll('th')]
+    if (!named) out.tables.push(`无名称（${(tb.getAttribute('data-role') || tb.className || '').toString().slice(0, 40)}）`)
+    else if (th.length > 0 && !th.every((x) => x.getAttribute('scope') !== null)) out.tables.push(`表头缺 scope（${tb.getAttribute('aria-label') ?? ''}）`)
+  }
+  const toRgb = (c) => {
+    c = c.trim()
+    let m = c.match(/^rgba?\(([^)]+)\)$/)
+    if (m) { const p = m[1].split(/[\s,/]+/).filter(Boolean).map(Number); return { r: p[0], g: p[1], b: p[2], a: p[3] === undefined ? 1 : p[3] } }
+    m = c.match(/^#([0-9a-f]{3,8})$/i)
+    if (m) { let h = m[1]; if (h.length <= 4) h = h.split('').map((x) => x + x).join(''); const n = parseInt(h.slice(0, 6), 16); return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255, a: h.length === 8 ? parseInt(h.slice(6, 8), 16) / 255 : 1 } }
+    m = c.match(/^ok(lab|lch)\(([^)]+)\)$/)
+    if (m) {
+      const p = m[2].split(/[\s,/]+/).filter(Boolean).map(Number)
+      let L, A, B, al
+      if (m[1] === 'oklab') { L = p[0]; A = p[1]; B = p[2]; al = p[3] === undefined ? 1 : p[3] }
+      else { L = p[0]; const C = p[1], H = (p[2] || 0) * Math.PI / 180; A = C * Math.cos(H); B = C * Math.sin(H); al = p[3] === undefined ? 1 : p[3] }
+      const l_ = Math.pow(L + 0.3963377774 * A + 0.2158037573 * B, 3)
+      const m_ = Math.pow(L - 0.1055613458 * A - 0.0638541728 * B, 3)
+      const s_ = Math.pow(L - 0.0894841775 * A - 1.2914855480 * B, 3)
+      const rr = 4.0767416621 * l_ - 3.3077115913 * m_ + 0.2309699292 * s_
+      const gg = -1.2684380046 * l_ + 2.6097574011 * m_ - 0.3413193965 * s_
+      const bb = -0.0041960863 * l_ - 0.7034186147 * m_ + 1.7076147010 * s_
+      const f = (v) => { v = Math.min(1, Math.max(0, v)); return v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055 }
+      return { r: f(rr) * 255, g: f(gg) * 255, b: f(bb) * 255, a: al }
+    }
+    return null
+  }
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4) }; return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b) }
+  const over = (fg, bg) => ({ r: fg.r * fg.a + bg.r * (1 - fg.a), g: fg.g * fg.a + bg.g * (1 - fg.a), b: fg.b * fg.a + bg.b * (1 - fg.a), a: 1 })
+  const ratio = (a, b) => { const l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05) }
+  const bgOf = (el) => {
+    const stack = []; let n = el
+    while (n && n.nodeType === 1) { const c = toRgb(getComputedStyle(n).backgroundColor); if (c) stack.push(c); n = n.parentElement }
+    let base = { r: 255, g: 255, b: 255, a: 1 }
+    for (let i = stack.length - 1; i >= 0; i -= 1) { const c = stack[i]; base = c.a >= 1 ? { r: c.r, g: c.g, b: c.b, a: 1 } : over(c, base) }
+    return base
+  }
+  const seen = new Set()
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+  let node
+  while ((node = walker.nextNode()) !== null) {
+    const text = (node.nodeValue || '').trim(); if (text.length === 0) continue
+    const el = node.parentElement; if (el === null || hidden(el)) continue
+    const st = getComputedStyle(el); if (st.visibility === 'hidden' || st.display === 'none' || Number(st.opacity) === 0) continue
+    const rc = el.getBoundingClientRect(); if (rc.width < 2 || rc.height < 2) continue
+    const fgRaw = toRgb(st.color); if (fgRaw === null) continue
+    const bg = bgOf(el)
+    const fg = fgRaw.a >= 1 ? fgRaw : over(fgRaw, bg)
+    const r = ratio(fg, bg)
+    const fs = parseFloat(st.fontSize)
+    const bold = parseInt(st.fontWeight, 10) >= 700
+    const need = (fs >= 24 || (fs >= 18.66 && bold)) ? 3 : 4.5
+    if (r < need) {
+      const key = `${st.color}|${Math.round(fs)}|${bold ? 1 : 0}|${text.slice(0, 10)}`
+      if (!seen.has(key)) {
+        seen.add(key)
+        out.contrast.push({ r: Number(r.toFixed(2)), need, fs, tag: el.tagName.toLowerCase(), text: text.slice(0, 20), fg: st.color, bg: `rgb(${Math.round(bg.r)},${Math.round(bg.g)},${Math.round(bg.b)})` })
+      }
+    }
+  }
+  return out
 }
 
 /* ---------- 从索引现算「卡片 → 演示 → 题目 → 卡片」的一条可走通链路 ---------- */
@@ -327,19 +426,30 @@ async function main() {
     check('深浅色主题下 8 个页面前景/背景色都可区分', bad.length === 0, bad.join('; ') || `${pages.length} 页 × 2 主题`)
   }
 
-  /* ════ E. 375px 窄屏 ════ */
+  /* ════ E. 375px 窄屏（阶段 10-4 加强）════ */
   if (want('mobile')) {
     const mctx = await browser.newContext({ viewport: { width: 375, height: 780 }, isMobile: true, hasTouch: true })
     const mp = await mctx.newPage()
+    // 覆盖：三板块列表页 + 四种主力题型 + 两种概念题详情页 + 卡片详情 + 对比页 + 勘误表
+    // 目标一律从索引现挑（通用化硬要求：加了 _staging / 数据结构题后这段不用改）
+    const pick = (t) => P.problems.find((p) => p.type === t)?.id ?? P.problems[0].id
     const targets = [
+      '#/',
       '#/knowledge',
       `#/knowledge/${chain?.card.id ?? K.cards[0].id}`,
       '#/problems',
-      `#/problems/p/${P.problems.find((p) => p.type === 'code_completion')?.id ?? P.problems[0].id}`,
-      `#/problems/p/${P.problems.find((p) => p.type === 'programming')?.id ?? P.problems[0].id}`,
+      `#/problems/p/${pick('programming')}`,
+      `#/problems/p/${pick('code_completion')}`,
+      `#/problems/p/${pick('debug')}`,
+      `#/problems/p/${pick('code_reading')}`,
+      `#/problems/p/${pick('single_choice')}`,
+      `#/problems/p/${pick('fill_blank')}`,
+      '#/viz',
       `#/viz/${V.demos.find((d) => d.renderer === 'bar')?.id ?? V.demos[0].id}`,
       `#/viz/${V.demos.find((d) => d.renderer === 'tree')?.id ?? V.demos[0].id}`,
+      '#/viz/compare',
       '#/progress',
+      '#/errata',
     ]
     const overflow = []
     for (const h of targets) {
@@ -348,12 +458,41 @@ async function main() {
       const r = await mp.evaluate(() => ({ s: document.documentElement.scrollWidth, c: document.documentElement.clientWidth }))
       if (r.s > r.c + 1) overflow.push(`${h} scrollWidth=${r.s} > clientWidth=${r.c}`)
     }
-    check('375px 下 8 个关键页面无横向溢出', overflow.length === 0, overflow.join('; ') || '全部页面无溢出')
+    check(`375px 下 ${targets.length} 个关键页面无横向溢出`, overflow.length === 0, overflow.join('; ') || '全部页面无溢出')
 
-    // 窄屏下播放器控件与作答按钮可点
+    // 宽表格（题目列表 min-w 58rem）必须靠自己的容器横滚，不能把整个页面撑破
+    await mp.goto(BASE + '#/problems', { waitUntil: 'networkidle' })
+    await mp.waitForSelector('[data-role="problem-table"]')
+    const scroller = await mp.evaluate(() => {
+      const box = document.querySelector('[data-role="problem-table"]')?.parentElement
+      return {
+        inner: box?.scrollWidth ?? 0, outer: box?.clientWidth ?? 0,
+        page: document.documentElement.scrollWidth, view: document.documentElement.clientWidth,
+      }
+    })
+    check('375px 下题目宽表格在容器内横滚，页面本身不溢出',
+      scroller.inner > scroller.outer && scroller.page <= scroller.view + 1,
+      `表格 ${scroller.inner}px > 容器 ${scroller.outer}px；页面 ${scroller.page}/${scroller.view}`)
+
+    // 窄屏作答：提交按钮完整落在视口内（不是被裁掉一半只能看不能点）
+    await mp.goto(BASE + `#/problems/p/${pick('code_completion')}`, { waitUntil: 'networkidle' })
+    const submit = mp.locator('button:has-text("提交判分")').first()
+    await submit.scrollIntoViewIfNeeded()
+    const sbox = await submit.boundingBox()
+    check('375px 下「提交判分」按钮完整可见可点',
+      sbox !== null && sbox.width > 0 && sbox.x >= -1 && sbox.x + sbox.width <= 376,
+      sbox === null ? '找不到按钮' : `x=${sbox.x.toFixed(0)} 宽=${sbox.width.toFixed(0)}`)
+
+    // 窄屏播放器：控件可点，且单步真的推进了一步（不是按钮在但点了没反应）
     await mp.goto(BASE + `#/viz/${V.demos.find((d) => d.renderer === 'bar')?.id ?? V.demos[0].id}`, { waitUntil: 'networkidle' })
+    await mp.waitForSelector('[data-role="viz-step"]')
+    const stepBefore = (await mp.locator('[data-role="viz-step"]').innerText()).trim()
+    await mp.locator('button[aria-label="下一步 ▶"]').click()
+    await mp.waitForTimeout(250)
+    const stepAfter = (await mp.locator('[data-role="viz-step"]').innerText()).trim()
     const btns = await mp.locator('button:visible').count()
-    check('375px 下演示播放控件可见可点', btns >= 4, `可见按钮 ${btns} 个`)
+    check('375px 下演示播放控件可见可点，单步真的走了一步',
+      btns >= 4 && stepBefore !== stepAfter, `可见按钮 ${btns} 个；${stepBefore} → ${stepAfter}`)
     await mctx.close()
   }
 
@@ -441,6 +580,180 @@ async function main() {
     check('降级提示明说「不计正确率、不置 verified」', /不计正确率/.test(txt) && /不置 verified|未判定/.test(txt))
     check('降级态绝不伪造「判分通过」', !txt.includes('判分通过'), target.id)
     await fctx.close()
+  }
+
+  /* ════ I. 无障碍（阶段 10-4）════
+   * 两条口径：① 机器可测的（可访问名称 / 对比度 / 表格 / 点击目标 / 标题层级）用 auditA11y 在
+   *    深浅两主题 × 17 个页面上全量扫，一处不过就算不过；
+   * ② 机器不好测的（键盘可操作主流程）用真键盘走一遍：跳转链接 → main、列表 → 详情、播放器快捷键。
+   * 主题一律点按钮切，不直接写 localStorage —— persist 的形状是 {state:{mode}}，手写会踩闪白那个坑。
+   */
+  if (want('a11y')) {
+    const byType = (t) => P.problems.find((p) => p.type === t)?.id ?? P.problems[0].id
+    const a11yPages = [
+      '#/', '#/knowledge', `#/knowledge/${chain?.card.id ?? K.cards[0].id}`, '#/problems',
+      `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
+      `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
+      `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
+      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/errata', '#/judge-lab', '#/nope-404',
+    ]
+    const a11yBad = []
+    for (const theme of ['light', 'dark']) {
+      await page.goto(BASE + '#/', { waitUntil: 'networkidle' })
+      const cur = await page.evaluate(() => document.documentElement.dataset.theme)
+      if (cur !== theme) {
+        await page.locator(`button[aria-label="${theme === 'dark' ? '深色' : '浅色'}主题"]`).click()
+        await page.waitForTimeout(250)
+      }
+      for (const h of a11yPages) {
+        await page.evaluate((x) => { location.hash = x }, h)
+        await page.waitForTimeout(400)
+        const r = await page.evaluate(auditA11y)
+        if (r.theme !== theme) a11yBad.push(`${h} 主题=${r.theme}≠${theme}`)
+        if (r.h1 !== 1) a11yBad.push(`${h}@${theme} h1=${r.h1}`)
+        for (const k of ['unnamed', 'contrast', 'tables', 'small']) {
+          if (r[k].length > 0) a11yBad.push(`${h}@${theme} ${k}×${r[k].length} ${JSON.stringify(r[k][0]).slice(0, 160)}`)
+        }
+      }
+    }
+    check(`无障碍体检：${a11yPages.length} 页 × 深浅两主题全绿（0 无名控件 / 0 对比度不足 / 0 表格缺陷 / 0 点击目标过小 / 每页恰好 1 个 h1）`,
+      a11yBad.length === 0, a11yBad.slice(0, 5).join(' | ') || `${a11yPages.length * 2} 次体检 0 问题`)
+
+    /* 键盘：焦点入口 + 跳转链接真的把焦点交给 main */
+    // 必须先 about:blank 再回来：hash-only 的 goto 不重载文档，上一段点过的主题按钮还留着焦点，
+    // 直接 Tab 会从那儿往后数（本次就这么假失败过一回，报「第一个 Tab 落在 🖥️」）
+    await page.goto('about:blank')
+    await page.goto(BASE + '#/', { waitUntil: 'networkidle' })
+    await page.evaluate(() => { const a = document.activeElement; if (a instanceof HTMLElement) a.blur() })
+    await page.keyboard.press('Tab')
+    const first = await page.evaluate(() => {
+      const el = document.activeElement
+      const st = el ? getComputedStyle(el) : null
+      return { text: (el?.textContent ?? '').trim().slice(0, 24), outline: st ? (parseFloat(st.outlineWidth) || 0) : 0 }
+    })
+    check('键盘：第一个 Tab 落在「跳到主要内容」跳转链接上，且有可见焦点环（outline ≥ 2px）',
+      /跳到主要内容/.test(first.text) && first.outline >= 2, JSON.stringify(first))
+    await page.keyboard.press('Enter')
+    await page.waitForTimeout(300)
+    const landed = await page.evaluate(() => document.activeElement?.id ?? '')
+    check('键盘：Enter 之后焦点落到 <main id="main">（不用鼠标也能续着往下 Tab）', landed === 'main', `activeElement.id=${landed || '(空)'}`)
+
+    /* 键盘：知识列表 → 卡片详情 */
+    await page.goto(BASE + '#/knowledge', { waitUntil: 'networkidle' })
+    await page.waitForSelector('[data-role="knowledge-list"] [data-role="row"]')
+    await page.evaluate(() => { const a = document.activeElement; if (a instanceof HTMLElement) a.blur() })
+    let tabs = -1
+    for (let i = 1; i <= 80; i += 1) {
+      await page.keyboard.press('Tab')
+      const hit = await page.evaluate(() => (document.activeElement?.getAttribute?.('href') ?? '').startsWith('#/knowledge/'))
+      if (hit) { tabs = i; break }
+    }
+    check('键盘：知识列表页 80 次 Tab 内能聚焦到卡片详情链接', tabs > 0, `第 ${tabs} 次 Tab 命中`)
+    if (tabs > 0) {
+      await page.keyboard.press('Enter')
+      await page.waitForFunction(() => location.hash.startsWith('#/knowledge/') && location.hash.length > '#/knowledge/'.length, null, { timeout: 15000 })
+      await page.waitForSelector('[data-role="knowledge-detail"]', { timeout: 15000 })
+      check('键盘：Enter 打开卡片详情页（详情可访问名 data-role="knowledge-detail"）', true, await hash())
+    }
+
+    /* 键盘：播放器快捷键（空格播放/暂停、← → 单步、Home/End 跳首尾） */
+    const kbDemo = V.demos.find((d) => d.renderer === 'bar')?.id ?? V.demos[0].id
+    await page.goto(BASE + `#/viz/${kbDemo}`, { waitUntil: 'networkidle' })
+    await page.waitForSelector('[data-role="viz-step"]')
+    const stepText = async () => (await page.locator('[data-role="viz-step"]').innerText()).trim()
+    const s0 = await stepText()
+    await page.evaluate(() => { const a = document.activeElement; if (a instanceof HTMLElement) a.blur() })
+    await page.keyboard.press('Space')
+    await page.waitForTimeout(300)
+    const playing = await page.locator('button[data-role="viz-play"][aria-label="暂停"]').count()
+    await page.keyboard.press('Space')
+    await page.waitForTimeout(200)
+    const paused = await page.locator('button[data-role="viz-play"][aria-label="播放"]').count()
+    check('键盘：演示页空格 = 播放/暂停切换（aria-label 跟着变，读屏能听出状态）', playing === 1 && paused === 1, `播放态 ${playing} 暂停态 ${paused}`)
+    await page.keyboard.press('End')
+    await page.waitForTimeout(300)
+    const sEnd = await stepText()
+    await page.keyboard.press('ArrowLeft')
+    await page.waitForTimeout(300)
+    const sPrev = await stepText()
+    await page.keyboard.press('Home')
+    await page.waitForTimeout(300)
+    const sHome = await stepText()
+    check('键盘：End / ← / Home 真的移动了步骤，且 Home 回到第 1 步',
+      sEnd !== sPrev && sPrev !== sHome && sHome === s0, `${s0} →End ${sEnd} →← ${sPrev} →Home ${sHome}`)
+
+    /* 读屏：判分结论区必须是 live region，否则结果出来了听屏用户听不见 */
+    await page.goto(BASE + `#/problems/p/${byType('single_choice')}`, { waitUntil: 'networkidle' })
+    await page.waitForSelector('[data-role="choice-option"], [data-role="option"]', { timeout: 20000 })
+    await page.locator('[data-role="choice-option"], [data-role="option"]').first().click()
+    await page.waitForSelector('[data-role="verdict"]', { timeout: 20000 })
+    const live = await page.evaluate(() => {
+      const el = document.querySelector('[data-role="verdict"]')
+      return { role: el?.getAttribute('role') ?? '', live: el?.getAttribute('aria-live') ?? '' }
+    })
+    check('读屏：单选题判定结论区是 role="status" aria-live="polite"（结果自动播报）',
+      live.role === 'status' && live.live === 'polite', JSON.stringify(live))
+  }
+
+  /* ════ J. 性能：路由级懒加载 + 语料按需拉取（阶段 10-4）════
+   * 首页必须零演示体积：播放器 / 填空编辑器 / Markdown 表格都只能待在懒加载 chunk 里，
+   * 详情语料（data/viz/{id}.json、题目分片）只能进对应页面才 fetch。
+   * 坑：hash-only 导航不会重新加载模块，所以「首页快照」必须真 goto 一次才准。
+   */
+  if (want('perf')) {
+    const pctx = await browser.newContext({ viewport: { width: 1280, height: 900 } })
+    const pp = await pctx.newPage()
+    let jsUrls = []
+    let dataUrls = []
+    pp.on('response', (res) => {
+      const u = res.url()
+      if (!u.startsWith(BASE)) return
+      const rel = u.slice(BASE.length).split('?')[0]
+      if (rel.endsWith('.js')) jsUrls.push(rel)
+      else if (u.includes('/data/')) dataUrls.push(rel)   // rel 没有前导斜杠，只能按完整 URL 判
+    })
+    const jsWith = async (urls, marker) => {
+      for (const u of urls) {
+        try { if ((await (await fetch(BASE + u)).text()).includes(marker)) return u } catch { /* 忽略 */ }
+      }
+      return null
+    }
+
+    await pp.goto(BASE, { waitUntil: 'networkidle' })
+    await pp.waitForTimeout(600)
+    const homeJs = [...jsUrls]
+    const homeData = [...dataUrls]
+    check('首页不预取任何详情语料（data 请求 ≤3 个且全是 index.json，语料留到进页再拉）',
+      homeData.length <= 3 && homeData.every((u) => u.endsWith('/index.json')), homeData.join(', ') || '首页 0 个 data 请求')
+    const leak = []
+    for (const [marker, what] of [['viz-play', '演示播放器'], ['cm-blank-badge', 'CodeMirror 填空编辑器'], ['md-table', 'Markdown 表格']]) {
+      if (await jsWith(homeJs, marker) !== null) leak.push(what)
+    }
+    check('首页 JS 里不含演示播放器 / 填空编辑器 / Markdown 表格（都在路由级懒加载块里，首页零体积）',
+      leak.length === 0, leak.length === 0 ? `首页 ${homeJs.length} 个 JS，三项重资产均未出现` : `首页泄漏：${leak.join('、')}`)
+
+    jsUrls = []; dataUrls = []
+    const perfDemo = V.demos.find((d) => d.renderer === 'bar')?.id ?? V.demos[0].id
+    await pp.evaluate((h) => { location.hash = h }, `#/viz/${perfDemo}`)
+    await pp.waitForSelector('[data-role="viz-play"]', { timeout: 20000 })
+    await pp.waitForTimeout(800)
+    const vizJs = [...jsUrls]
+    const vizData = [...dataUrls]
+    check('进演示页才加载播放器 chunk', await jsWith(vizJs, 'viz-play') !== null, `新增加载 ${vizJs.length} 个 JS`)
+    check('进演示页才按需 fetch 该演示语料 data/viz/{id}.json',
+      vizData.some((u) => u.endsWith(`/viz/${perfDemo}.json`)), vizData.join(', ') || '(没拉到任何 data)')
+
+    jsUrls = []; dataUrls = []
+    const perfCc = P.problems.find((p) => p.type === 'code_completion')?.id ?? P.problems[0].id
+    await pp.evaluate((h) => { location.hash = h }, `#/problems/p/${perfCc}`)
+    await pp.waitForSelector('.cm-blank-badge', { timeout: 30000 })
+    await pp.waitForTimeout(800)
+    const ccJs = [...jsUrls]
+    const ccData = [...dataUrls]
+    check('进程序填空题才加载填空编辑器 chunk', await jsWith(ccJs, 'cm-blank-badge') !== null, `新增加载 ${ccJs.length} 个 JS`)
+    check('进题目详情才按需 fetch 题目分片，且只拉这一片（不整包下载题库）',
+      ccData.length >= 1 && ccData.every((u) => u.startsWith('data/problems/') && !u.endsWith('/index.json')), ccData.join(', ') || '(没拉到任何 data)')
+    await pctx.close()
   }
 
   /* ════ 控制台 ════ */

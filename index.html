@@ -10,7 +10,9 @@
       // 主题防闪烁：在首帧之前把 data-theme 打到 <html> 上
       try {
         var s = localStorage.getItem('cpractice:settings:v1')
-        var t = s ? (JSON.parse(s).theme || 'auto') : 'auto'
+        var p = s ? JSON.parse(s) : null
+        // zustand persist 存的是 { state: { mode }, version }；旧版本用过 { theme }
+        var t = (p && (p.state ? p.state.mode : p.theme)) || 'auto'
         var dark = t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)
         document.documentElement.dataset.theme = dark ? 'dark' : 'light'
       } catch (e) {}

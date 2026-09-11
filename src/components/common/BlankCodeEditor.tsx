@@ -150,7 +150,7 @@ const cHighlight = HighlightStyle.define([
   { tag: [T.propertyName, T.variableName], color: 'var(--fg)' },
   { tag: [T.operator, T.punctuation, T.operatorKeyword], color: 'var(--code-op)' },
   { tag: T.processingInstruction, color: 'var(--code-preproc)' },
-  { tag: T.invalid, color: 'var(--color-viz-swap)' },
+  { tag: T.invalid, color: 'var(--fg-bad)' },
 ])
 
 const baseTheme = EditorView.theme({

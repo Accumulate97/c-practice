@@ -94,7 +94,7 @@ export function ProblemDetailPage() {
 
       {phase.kind === 'notfound' && (
         <section className="rounded-xl border p-6" style={{ ...panel, borderColor: 'var(--color-viz-swap)' }}>
-          <p className="text-sm font-semibold" style={{ color: 'var(--color-viz-swap)' }}>找不到这道题</p>
+          <p className="text-sm font-semibold" style={{ color: 'var(--fg-bad)' }}>找不到这道题</p>
           <p className="mt-2 text-sm" style={muted}>{phase.message}</p>
           <p className="mt-2 text-xs" style={muted}>
             若列表页能显示但这里报「索引里没有」，说明 index.json 与分片不一致，跑 npm run build:index 重建索引。
@@ -138,7 +138,7 @@ function Ready({ data }: { data: LoadedProblem }) {
             className="rounded-full border px-2 py-0.5"
             style={{
               borderColor: 'var(--border)',
-              color: entry.verified ? 'var(--color-viz-sorted)' : 'var(--color-viz-compare)',
+              color: entry.verified ? 'var(--fg-ok)' : 'var(--fg-warn)',
             }}
             title="verified 只允许 npm run judge:verify 在 Godbolt 实机编译+执行+比对通过后置位，禁止手填"
           >

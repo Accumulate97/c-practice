@@ -23,9 +23,9 @@ export const muted: CSSProperties = { color: 'var(--fg-muted)' }
 export const control: CSSProperties = { borderColor: 'var(--border)', background: 'var(--bg)', color: 'var(--fg)' }
 
 export const TONE = {
-  good: 'var(--color-viz-sorted)',
-  bad: 'var(--color-viz-swap)',
-  warn: 'var(--color-viz-compare)',
+  good: 'var(--fg-ok)',
+  bad: 'var(--fg-bad)',
+  warn: 'var(--fg-warn)',
 } as const
 
 export type Tone = keyof typeof TONE
@@ -103,6 +103,8 @@ export function VerdictBanner({
       className="rounded-xl border p-4"
       style={{ ...panel, borderColor: TONE[tone] }}
       data-role="verdict"
+      role="status"
+      aria-live="polite"
       data-tone={tone}
     >
       <p className="text-sm font-semibold" style={{ color: TONE[tone] }}>{title}</p>

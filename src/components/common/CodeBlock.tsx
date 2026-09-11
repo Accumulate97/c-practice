@@ -133,7 +133,7 @@ export function CodeBlock({ code, lang = 'c', title, showCopy = true, dataRole =
             aria-label={copied ? '已复制到剪贴板' : '复制这段代码'}
             data-role="copy-code"
             data-copied={copied ? 'true' : 'false'}
-            className="ml-auto shrink-0 rounded border px-2 py-0.5 text-xs hover:underline"
+            className="ml-auto shrink-0 rounded border px-2 py-1 text-xs hover:underline"
             style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
           >
             {copied ? '✓ 已复制' : '复制'}

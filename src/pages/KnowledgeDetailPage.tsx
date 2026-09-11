@@ -65,7 +65,7 @@ export function KnowledgeDetailPage() {
   if (phase.kind === 'missing') {
     return (
       <section className="rounded-xl border p-6" style={{ ...panel, borderColor: 'var(--color-viz-swap)' }} data-role="notfound">
-        <p className="text-sm font-semibold" style={{ color: 'var(--color-viz-swap)' }}>找不到这张知识卡片</p>
+        <p className="text-sm font-semibold" style={{ color: 'var(--fg-bad)' }}>找不到这张知识卡片</p>
         <p className="mt-2 text-sm" style={muted}>知识卡片索引里没有 {phase.id}，可能链接打错了，或这张卡片还没写。</p>
         <Link to="/knowledge" className="mt-3 inline-block text-sm underline">← 返回知识点汇总</Link>
       </section>
@@ -191,7 +191,7 @@ function Ready({ data }: { data: LoadedCard }) {
           style={{ ...panel, borderColor: 'var(--color-viz-compare)' }}
           data-role="pitfalls"
         >
-          <p className="text-sm font-semibold" style={{ color: 'var(--color-viz-compare)' }}>⚠️ 易错点</p>
+          <p className="text-sm font-semibold" style={{ color: 'var(--fg-warn)' }}>⚠️ 易错点</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
             {pitfalls.map((p) => (
               <li key={p}>{p}</li>
@@ -301,12 +301,12 @@ function Tables({ tables }: { tables: unknown }) {
         return (
           <div key={caption + i} className="overflow-x-auto rounded-xl border p-3" style={panel}>
             {caption.length > 0 && <p className="mb-2 text-sm font-semibold">{caption}</p>}
-            <table className="w-full border-collapse text-xs">
+            <table className="w-full border-collapse text-xs" aria-label={caption.length > 0 ? caption : '语法速查表'}>
               {header.length > 0 && (
                 <thead>
                   <tr>
                     {Array.from({ length: cols }, (_, c) => (
-                      <th key={c} className="border px-2 py-1 text-left" style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}>
+                      <th key={c} scope="col" className="border px-2 py-1 text-left" style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}>
                         {header[c] ?? ''}
                       </th>
                     ))}

@@ -103,14 +103,14 @@ const STATE_LABEL: Record<JudgeResponse['state'], string> = {
 }
 
 const STATE_COLOR: Record<JudgeResponse['state'], string> = {
-  accepted: 'var(--color-viz-sorted)',
-  'wrong-answer': 'var(--color-viz-swap)',
-  'compile-error': 'var(--color-viz-swap)',
-  'runtime-error': 'var(--color-viz-swap)',
-  timeout: 'var(--color-viz-swap)',
-  truncated: 'var(--color-viz-swap)',
-  degraded: 'var(--color-viz-compare)',
-  'backend-unavailable': 'var(--color-viz-compare)',
+  accepted: 'var(--fg-ok)',
+  'wrong-answer': 'var(--fg-bad)',
+  'compile-error': 'var(--fg-bad)',
+  'runtime-error': 'var(--fg-bad)',
+  timeout: 'var(--fg-bad)',
+  truncated: 'var(--fg-bad)',
+  degraded: 'var(--fg-warn)',
+  'backend-unavailable': 'var(--fg-warn)',
 }
 /** 降级时的预存输出查询：只认参考程序，其它代码一律不编造 */
 function lookupPrecomputed(code: string, stdin: string): string | null {
@@ -268,11 +268,11 @@ export function JudgeLabPage() {
               <option key={p.key} value={p.key}>{p.label}</option>
             ))}
           </select>
-          <label className="flex items-center gap-1">
+          <label className="flex items-center gap-1 py-1">
             <input type="checkbox" checked={offline} onChange={(e) => setOffline(e.target.checked)} />
             模拟后端不可用（验证降级路径）
           </label>
-          {busy && <span style={{ color: 'var(--color-viz-compare)' }}>
+          {busy && <span style={{ color: 'var(--fg-warn)' }}>
             {progress ? `第 ${progress.caseIndex}/${progress.total} 组进行中…` : '请求进行中…'}
           </span>}
         </div>
@@ -308,21 +308,21 @@ export function JudgeLabPage() {
             <b style={{ color: STATE_COLOR[single.state] }}>{STATE_LABEL[single.state]}</b>
             <span className="text-sm">{single.summary}</span>
             {singleMs !== null && <span className="text-xs" style={{ color: 'var(--fg-muted)' }}>端到端 {singleMs} ms</span>}
-            {single.source === 'precomputed' && <span className="text-xs" style={{ color: 'var(--color-viz-compare)' }}>数据来自构建期预存</span>}
+            {single.source === 'precomputed' && <span className="text-xs" style={{ color: 'var(--fg-warn)' }}>数据来自构建期预存</span>}
           </div>
           <div className="mt-3 grid gap-3 text-xs sm:grid-cols-2">
             <pre className="overflow-auto rounded-md border p-2 font-mono" style={box}>实际输出：{single.actual || '(空)'}</pre>
             <pre className="overflow-auto rounded-md border p-2 font-mono" style={box}>期望输出：{single.expected || '(空)'}</pre>
           </div>
           {single.diagnostics.length > 0 && (
-            <table className="mt-3 w-full text-xs">
+            <table className="mt-3 w-full text-xs" aria-label="编译诊断信息">
               <thead><tr className="text-left" style={{ color: 'var(--fg-muted)' }}>
-                <th className="py-1">位置</th><th>级别</th><th>信息</th></tr></thead>
+                <th scope="col" className="py-1">位置</th><th scope="col">级别</th><th scope="col">信息</th></tr></thead>
               <tbody>
                 {single.diagnostics.map((d, i) => (
                   <tr key={`${d.line}:${d.column}:${i}`}>
                     <td className="py-1 font-mono">{d.line}:{d.column}</td>
-                    <td style={{ color: d.severity === 'error' ? 'var(--color-viz-swap)' : 'var(--color-viz-compare)' }}>
+                    <td style={{ color: d.severity === 'error' ? 'var(--fg-bad)' : 'var(--fg-warn)' }}>
                       {d.severity === 'error' ? '错误' : '警告'}
                     </td>
                     <td className="font-mono">{d.message}</td>
@@ -337,9 +337,9 @@ export function JudgeLabPage() {
       {batch && (
         <section className="rounded-xl border p-4" style={box}>
           <h2 className="text-sm font-semibold">4 组用例串行实测报告</h2>
-          <table className="mt-2 w-full text-xs">
+          <table className="mt-2 w-full text-xs" aria-label="批量实测报告">
             <thead><tr className="text-left" style={{ color: 'var(--fg-muted)' }}>
-              <th className="py-1">组</th><th>stdin</th><th>判定</th><th>耗时</th><th>缓存</th><th>说明</th></tr></thead>
+              <th scope="col" className="py-1">组</th><th scope="col">stdin</th><th scope="col">判定</th><th scope="col">耗时</th><th scope="col">缓存</th><th scope="col">说明</th></tr></thead>
             <tbody>
               {batch.results.map((r) => (
                 <tr key={r.index} className="border-t" style={box}>
@@ -357,7 +357,7 @@ export function JudgeLabPage() {
             各请求耗时：{batch.timings.join(' / ')} ms；
             总耗时 <b>{batch.totalMs} ms</b>；通过 {batch.acceptedCount}/{batch.results.length}；缓存命中 {batch.cacheHits} 次。
           </p>
-          {verdictText && <p className="mt-1 text-sm font-medium" style={{ color: 'var(--color-brand)' }}>{verdictText}</p>}
+          {verdictText && <p className="mt-1 text-sm font-medium" style={{ color: 'var(--fg-link)' }}>{verdictText}</p>}
         </section>
       )}
 

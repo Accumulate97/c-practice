@@ -21,6 +21,12 @@
   --fg: #0f172a;
   --fg-muted: #64748b;
   --border: #e2e8f0;
+  /* 文字级语义色：可视化令牌（--color-viz-*）是给色块用的，拿来做正文只有 2.0–2.5:1，
+     达不到 WCAG AA 的 4.5:1，所以文字另开一组（阶段 10-4 无障碍打磨） */
+  --fg-ok: #047857;
+  --fg-bad: #b91c1c;
+  --fg-warn: #b45309;
+  --fg-link: #2563eb;
 }
 :root[data-theme='dark'] {
   --bg: #0b1120;
@@ -28,6 +34,10 @@
   --fg: #e2e8f0;
   --fg-muted: #94a3b8;
   --border: #29344a;
+  --fg-ok: #34d399;
+  --fg-bad: #fca5a5;
+  --fg-warn: #fbbf24;
+  --fg-link: #60a5fa;
 }
 
 @layer base {
@@ -38,9 +48,23 @@
     font-family: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--color-brand); text-decoration: none; }
+  a { color: var(--fg-link); text-decoration: none; }
   a:hover { text-decoration: underline; }
   :focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+
+  /* 进度滑块：appearance-none 之后轨道/滑块都要自己画；
+     padding-block + background-clip 让轨道仍是 8px 细条，但可点区域撑到 24px（WCAG 2.5.8） */
+  input[type='range'] { min-height: 24px; padding-block: 8px; background-clip: content-box; }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; height: 16px; border-radius: 9999px;
+    background: var(--color-brand); border: 2px solid var(--bg); cursor: pointer;
+  }
+  input[type='range']::-moz-range-thumb {
+    width: 16px; height: 16px; border-radius: 9999px; border: 2px solid var(--bg);
+    background: var(--color-brand); cursor: pointer;
+  }
 }
 
 @media print {
@@ -61,7 +85,7 @@
   --code-comment: #6a737d;
   --code-keyword: #a626a4;
   --code-string: #0a7d33;
-  --code-number: #b5660b;
+  --code-number: #a05a00;
   --code-type: #0b5cad;
   --code-func: #6f42c1;
   --code-op: #475063;

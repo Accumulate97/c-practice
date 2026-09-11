@@ -406,7 +406,7 @@ function Badge({ on, label, title }: { on: boolean; label: string; title: string
     <span
       title={title}
       className="rounded border px-1.5 py-0.5"
-      style={on ? { borderColor: 'var(--color-brand)', color: 'var(--color-brand)' } : { ...chip, opacity: 0.55 }}
+      style={on ? { borderColor: 'var(--color-brand)', color: 'var(--fg-link)' } : { ...chip, opacity: 0.55 }}
     >
       {label}
     </span>
@@ -465,7 +465,7 @@ function PageButton({
       aria-current={active ? 'page' : undefined}
       data-page-button={dataPage}
       className="rounded-md border px-2.5 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-40"
-      style={active ? { borderColor: 'var(--color-brand)', color: 'var(--color-brand)' } : { ...control }}
+      style={active ? { borderColor: 'var(--color-brand)', color: 'var(--fg-link)' } : { ...control }}
     >
       {label}
     </button>

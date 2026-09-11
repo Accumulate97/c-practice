@@ -29,9 +29,9 @@ const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 
 const TONE_COLOR = {
-  good: 'var(--color-viz-sorted)',
-  bad: 'var(--color-viz-swap)',
-  unknown: 'var(--color-viz-compare)',
+  good: 'var(--fg-ok)',
+  bad: 'var(--fg-bad)',
+  unknown: 'var(--fg-warn)',
 } as const
 
 const TONE_OF_SELF_CHECK: Record<SelfCheckOutcome['kind'], keyof typeof TONE_COLOR> = {
@@ -187,7 +187,7 @@ export function CodeReadingRenderer({ problem }: Props) {
           <section className="rounded-xl border p-4" style={panel}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-sm font-semibold" style={muted}>你写出的运行结果</h2>
-              <label className="flex items-center gap-1 text-xs" style={muted}>
+              <label className="flex items-center gap-1 py-1.5 text-xs" style={muted}>
                 <input
                   type="checkbox"
                   checked={showSpaces}
@@ -253,6 +253,8 @@ export function CodeReadingRenderer({ problem }: Props) {
 
       {grade && (
         <section
+          role="status"
+          aria-live="polite"
           className="rounded-xl border p-4"
           style={{ ...panel, borderColor: grade.state === 'accepted' ? TONE_COLOR.good : TONE_COLOR.bad }}
         >

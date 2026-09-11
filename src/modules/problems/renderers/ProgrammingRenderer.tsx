@@ -35,9 +35,9 @@ const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 
 const TONE_COLOR = {
-  good: 'var(--color-viz-sorted)',
-  bad: 'var(--color-viz-swap)',
-  unknown: 'var(--color-viz-compare)',
+  good: 'var(--fg-ok)',
+  bad: 'var(--fg-bad)',
+  unknown: 'var(--fg-warn)',
 } as const
 
 interface Overall {
@@ -179,7 +179,7 @@ export function ProgrammingRenderer({ problem }: Props) {
             重置代码
           </button>
           {cases.length === 0 && (
-            <span className="text-xs" style={{ color: 'var(--color-viz-swap)' }}>本题缺少测试用例，无法判分</span>
+            <span className="text-xs" style={{ color: 'var(--fg-bad)' }}>本题缺少测试用例，无法判分</span>
           )}
         </div>
       </section>
@@ -230,7 +230,7 @@ export function ProgrammingRenderer({ problem }: Props) {
       )}
 
       {report && (
-        <section className="space-y-3">
+        <section className="space-y-3" role="status" aria-live="polite">
           <h2 className="text-sm font-semibold" style={muted}>
             用例级判分结果（{report.acceptedCount}/{report.results.length} 组通过）
           </h2>
@@ -247,7 +247,7 @@ export function ProgrammingRenderer({ problem }: Props) {
 function SelfCheck({ cases }: { cases: { stdin: string; expected: string; note?: string }[] }) {
   return (
     <details className="mt-3 text-xs">
-      <summary className="cursor-pointer" style={{ color: 'var(--color-viz-compare)' }}>
+      <summary className="cursor-pointer" style={{ color: 'var(--fg-warn)' }}>
         判分后端不可用：展开查看本题各组的输入与期望输出，自行在本地比对（不计正确率、不置 verified）
       </summary>
       <ol className="mt-2 space-y-3">
@@ -289,7 +289,7 @@ function CaseCard({ result }: { result: TestCaseResult }) {
       </div>
 
       {diff !== null && (
-        <p className="mt-2 text-xs" style={{ color: 'var(--color-viz-swap)' }}>
+        <p className="mt-2 text-xs" style={{ color: 'var(--fg-bad)' }}>
           首处差异在第 {diff} 行。归一化规则：CRLF→LF、逐行剥行尾空白、剥末尾换行；行中空行与行尾空格保留后再剥。
         </p>
       )}

@@ -160,7 +160,7 @@ export function renderInline(text: string): ReactNode[] {
       // 站内链接（HashRouter）：href="#/problems/p/xxx" 直接改 hash，路由自己接住
       const lm = /^\[([^\]\n]+)\]\(([^)\s]+)\)$/.exec(token)
       out.push(
-        <a key={key++} href={lm?.[2] ?? '#'} className="underline decoration-dotted" style={{ color: 'var(--color-brand)' }}>
+        <a key={key++} href={lm?.[2] ?? '#'} className="underline decoration-dotted" style={{ color: 'var(--fg-link)' }}>
           {lm?.[1] ?? token}
         </a>,
       )
@@ -228,7 +228,7 @@ export function Markdown({ source }: { source: string }) {
               <blockquote
                 key={i}
                 className="rounded-r border-l-4 py-1 pl-3 text-sm"
-                style={{ borderColor: 'var(--color-viz-compare)', background: 'var(--bg-elev)', color: 'var(--fg-muted)' }}
+                style={{ borderColor: 'var(--fg-warn)', background: 'var(--bg-elev)', color: 'var(--fg-muted)' }}
               >
                 {renderInline(block.text)}
               </blockquote>
@@ -237,14 +237,22 @@ export function Markdown({ source }: { source: string }) {
             return <CodeBlock key={i} code={block.code} lang={block.lang || 'text'} />
           case 'table': {
             const cols = Math.max(block.head.length, ...block.rows.map((r) => r.length), 1)
+            // 表格自身没有标题，就近取上方最近的小标题当可访问名称（阶段 10-4）
+            const near = (() => {
+              for (let h = i - 1; h >= 0; h -= 1) {
+                const b = blocks[h]
+                if (b !== undefined && b.kind === 'heading' && b.text.length > 0) return b.text
+              }
+              return '内容表格'
+            })()
             return (
               <div key={i} className="overflow-x-auto">
-                <table className="w-full border-collapse text-xs" data-role="md-table">
+                <table className="w-full border-collapse text-xs" data-role="md-table" aria-label={near}>
                   {block.head.length > 0 && (
                     <thead>
                       <tr>
                         {Array.from({ length: cols }, (_, c) => (
-                          <th key={c} className="border px-2 py-1 text-left font-semibold" style={thStyle}>
+                          <th key={c} scope="col" className="border px-2 py-1 text-left font-semibold" style={thStyle}>
                             {renderInline(block.head[c] ?? '')}
                           </th>
                         ))}

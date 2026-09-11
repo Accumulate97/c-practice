@@ -18,14 +18,14 @@ export const STATE_LABEL: Record<ResultState, string> = {
 }
 
 export const STATE_COLOR: Record<ResultState, string> = {
-  accepted: 'var(--color-viz-sorted)',
-  'wrong-answer': 'var(--color-viz-swap)',
-  'compile-error': 'var(--color-viz-swap)',
-  'runtime-error': 'var(--color-viz-swap)',
-  timeout: 'var(--color-viz-swap)',
-  truncated: 'var(--color-viz-swap)',
-  degraded: 'var(--color-viz-compare)',
-  'backend-unavailable': 'var(--color-viz-compare)',
+  accepted: 'var(--fg-ok)',
+  'wrong-answer': 'var(--fg-bad)',
+  'compile-error': 'var(--fg-bad)',
+  'runtime-error': 'var(--fg-bad)',
+  timeout: 'var(--fg-bad)',
+  truncated: 'var(--fg-bad)',
+  degraded: 'var(--fg-warn)',
+  'backend-unavailable': 'var(--fg-warn)',
 }
 
 /**
