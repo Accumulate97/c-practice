@@ -38,6 +38,22 @@ const DIFFICULTIES = [1, 2, 3, 4, 5]
 
 type SortKey = 'default' | 'index' | 'diff-asc' | 'diff-desc'
 
+/**
+ * 阶段 10-3 · 搜索：把一条索引记录拍平成小写字符串再做子串匹配。
+ * 口径完全落在**已经加载的索引**上（title / tags / id / section / chapter / 题型名），
+ * 所以不多发一个请求、不引第三方搜索库；public/data/search/problems.json 仍是将来上
+ * MiniSearch 时的建库源（字段口径与本函数一致），当前不接线。
+ * 空格分词 = AND 语义：多个词都要命中，方便「指针 填空」这类组合筛。
+ */
+const haystack = (p: ProblemIndexEntry): string =>
+  [p.id, p.title, p.section, p.chapter, typeLabel(p.type), ...(p.tags ?? [])].join(' ').toLowerCase()
+
+const matchesTerms = (p: ProblemIndexEntry, terms: string[]): boolean => {
+  if (terms.length === 0) return true
+  const hay = haystack(p)
+  return terms.every((t) => hay.includes(t))
+}
+
 const SORTS: { key: SortKey; label: string }[] = [
   { key: 'default', label: '章节 + 题号（默认）' },
   { key: 'index', label: '题库原序（按小节）' },
@@ -136,6 +152,7 @@ function Ready({ index }: { index: ProblemIndex }) {
   const type = params.get('type') ?? ''
   const difficulty = params.get('difficulty') ?? ''
   const status = params.get('status') ?? ''
+  const query = (params.get('q') ?? '').trim()
   const sortParam = params.get('sort') ?? 'default'
   const sortKey: SortKey = SORTS.some((s) => s.key === sortParam) ? (sortParam as SortKey) : 'default'
   const sizeParam = Number(params.get('size') ?? DEFAULT_PAGE_SIZE)
@@ -178,16 +195,22 @@ function Ready({ index }: { index: ProblemIndex }) {
     return counts
   }, [index])
 
-  /** 章节 + 题型 + 难度三维先过一遍；状态维单独过，好让状态 chips 显示「当前范围内的」计数 */
+  const queryTerms = useMemo(
+    () => query.toLowerCase().split(/\s+/).filter((t) => t.length > 0),
+    [query],
+  )
+
+  /** 章节 + 题型 + 难度 + 关键词四维先过一遍；状态维单独过，好让状态 chips 显示「当前范围内的」计数 */
   const narrowed = useMemo(
     () =>
       index.problems.filter(
         (p) =>
           (chapter.length === 0 || shardKey(p.file) === chapter) &&
           (type.length === 0 || p.type === type) &&
-          (difficulty.length === 0 || String(p.difficulty) === difficulty),
+          (difficulty.length === 0 || String(p.difficulty) === difficulty) &&
+          matchesTerms(p, queryTerms),
       ),
-    [index, chapter, type, difficulty],
+    [index, chapter, type, difficulty, queryTerms],
   )
 
   const statusCounts = useMemo(() => {
@@ -224,13 +247,27 @@ function Ready({ index }: { index: ProblemIndex }) {
   const from = sorted.length === 0 ? 0 : (page - 1) * pageSize + 1
   const to = (page - 1) * pageSize + rows.length
 
-  const activeFilterCount = [chapter, type, difficulty, status].filter((v) => v.length > 0).length
+  const activeFilterCount = [chapter, type, difficulty, status, query].filter((v) => v.length > 0).length
   const chapterName = chapters.find((c) => c.key === chapter)?.name ?? ''
 
   return (
     <>
       <section className="space-y-3 rounded-xl border p-4" style={panel}>
         <div className="flex flex-wrap items-end gap-3">
+          <label className="min-w-[13rem] flex-1 text-xs" style={muted}>
+            <span className="mb-1 block">搜索</span>
+            <input
+              type="search"
+              data-role="search-input"
+              aria-label="搜索题目：题号、标题、标签、小节或题型，空格分词需全部命中"
+              placeholder="题号 / 标题 / 标签 / 小节，空格分词"
+              value={query}
+              onChange={(e) => patch({ q: e.target.value })}
+              className="w-full rounded-lg border px-2 py-1.5 text-sm"
+              style={control}
+            />
+          </label>
+
           <label className="text-xs" style={muted}>
             <span className="mb-1 block">章节</span>
             <select
@@ -359,6 +396,7 @@ function Ready({ index }: { index: ProblemIndex }) {
         {' · '}筛出 <b data-role="filtered-count" style={{ color: 'var(--fg)' }}>{sorted.length}</b> 题
         {sorted.length > 0 && <> · 显示第 {from}–{to} 条 · 第 {page}/{pageCount} 页</>}
         {chapterName.length > 0 && <> · 章节：{chapterName}</>}
+        {query.length > 0 && <> · 搜索：{query}</>}
       </p>
 
       {sorted.length === 0 ? (
@@ -366,6 +404,7 @@ function Ready({ index }: { index: ProblemIndex }) {
           <p className="text-base font-semibold">无匹配题目</p>
           <p className="mt-2 text-sm" style={muted}>
             当前筛选条件（{[
+              query.length > 0 ? `关键词「${query}」` : null,
               chapterName.length > 0 ? chapterName : null,
               type.length > 0 ? typeLabel(type) : null,
               difficulty.length > 0 ? `难度 ${difficulty}` : null,

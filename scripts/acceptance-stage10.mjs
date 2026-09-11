@@ -7,7 +7,7 @@
  *   ② 验的是「三向联动闭环」这条跨板块路径，而不是单个板块内部
  *
  * 用法：npm run build && node scripts/acceptance-stage10.mjs [suite]
- *   suite 省略 = 全跑；可选 loop / list / missing / theme / mobile / search / fallback
+ *   suite 省略 = 全跑；可选 list / loop / missing / theme / mobile / errata / search / fallback
  */
 import { spawn } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
@@ -355,6 +355,92 @@ async function main() {
     const btns = await mp.locator('button:visible').count()
     check('375px 下演示播放控件可见可点', btns >= 4, `可见按钮 ${btns} 个`)
     await mctx.close()
+  }
+
+  /* ════ F. 勘误表（阶段 10-3） ════ */
+  if (want('errata')) {
+    await goto('#/')
+    await page.waitForSelector('[data-role="errata-link"]')
+    await page.locator('[data-role="errata-link"]').click()
+    await page.waitForFunction(() => location.hash === '#/errata', null, { timeout: 20000 })
+    await page.waitForSelector('[data-role="errata-body"]')
+    const bodyText = (await page.locator('[data-role="errata-body"]').innerText()).replace(/\s+/g, ' ')
+    check('页脚入口能进勘误表页，正文取自 data/errata.md', bodyText.includes('原书勘误表') && bodyText.includes('处理原则'), `${bodyText.length} 字`)
+
+    // 表格里的题号必须是能点进题目的站内链接，且 id 真的存在于题库索引（防文档写错题号）
+    const hrefs = await page.locator('[data-role="errata-body"] a[href^="#/problems/p/"]').evaluateAll((els) => els.map((e) => e.getAttribute('href') ?? ''))
+    check('勘误表里的题号渲染成站内链接（不是死文本）', hrefs.length > 0, `${hrefs.length} 条：${hrefs.slice(0, 3).join(', ')}`)
+    const ids = new Set(P.problems.map((x) => x.id))
+    const dangling = hrefs.map((h) => h.replace('#/problems/p/', '')).filter((id) => !ids.has(id))
+    check('勘误表引用的题目 id 全部存在于题库索引', dangling.length === 0, dangling.length === 0 ? `${hrefs.length} 条全部命中` : `查无此题：${dangling.join(', ')}`)
+
+    const firstId = (hrefs[0] ?? '').replace('#/problems/p/', '')
+    await page.locator('[data-role="errata-body"] a[href^="#/problems/p/"]').first().click()
+    await page.waitForFunction((id) => location.hash === `#/problems/p/${id}`, firstId, { timeout: 20000 })
+    await page.waitForSelector('main h1')
+    check('勘误表 → 题目详情：链接可点且落到正确题目', (await page.locator('main').innerText()).includes(firstId), firstId)
+
+    // errata.md 拉不到 → 给重试提示，不白屏（新开 context：hash-only 导航不会重载模块）
+    const actx = await browser.newContext({ viewport: { width: 1280, height: 900 } })
+    const ap = await actx.newPage()
+    await ap.route('**/data/errata.md', (route) => route.fulfill({ status: 404, body: 'nope' }))
+    await ap.goto(BASE + '#/errata', { waitUntil: 'domcontentloaded' })
+    await ap.waitForSelector('[data-role="load-error"]')
+    check('errata.md 404 → 勘误表页显示失败提示 + 重试（不影响刷题）', (await ap.locator('[data-role="load-error"]').innerText()).includes('勘误表暂时读不到'))
+    await actx.close()
+  }
+
+  /* ════ G. 题目列表搜索接线（阶段 10-3） ════ */
+  if (want('search')) {
+    await goto('#/problems')
+    await page.waitForSelector('[data-role="summary"][data-total]')
+    const total = Number(await page.getAttribute('[data-role="summary"]', 'data-total'))
+    check('题目列表页总数来自索引（不硬编码）', total === P.count, `data-total=${total} 索引 count=${P.count}`)
+    await page.waitForSelector('[data-role="search-input"]')
+    const expectFiltered = (n) => page.waitForFunction(
+      (v) => document.querySelector('[data-role="summary"]')?.getAttribute('data-filtered') === String(v), n, { timeout: 15000 })
+
+    // ① 完整题号 → 精确 1 条
+    const one = P.problems[0]
+    await page.fill('[data-role="search-input"]', one.id)
+    await expectFiltered(1)
+    const rowIds = await page.locator('[data-role="row"]').evaluateAll((els) => els.map((e) => e.dataset.id))
+    check('搜索完整题号 → 精确命中 1 条', rowIds.length === 1 && rowIds[0] === one.id, rowIds.join(','))
+
+    // ② 小节字符串 → 命中数与索引现算一致（口径：id/title/section/chapter/tags 子串）
+    const sec = P.problems.map((x) => String(x.section ?? '')).find((v) => v.length > 3) ?? ''
+    const expectSec = P.problems.filter((x) => [x.id, x.title, x.section, x.chapter, ...(x.tags ?? [])].join(' ').toLowerCase().includes(sec.toLowerCase())).length
+    await page.fill('[data-role="search-input"]', sec)
+    await expectFiltered(expectSec)
+    check('按小节搜索：命中数与索引现算一致', expectSec > 0, `「${sec}」→ ${expectSec} 条`)
+
+    // ③ 无匹配 → 友好空状态 + 一键清空
+    await page.fill('[data-role="search-input"]', 'zzz-不存在的关键词-zzz')
+    await page.waitForSelector('[data-role="empty"]')
+    const emptyText = (await page.locator('[data-role="empty"]').innerText()).replace(/\s+/g, ' ')
+    check('搜索无匹配 → 友好空状态（回显关键词，不白屏）', emptyText.includes('无匹配题目') && emptyText.includes('zzz-不存在的关键词-zzz'), emptyText.slice(0, 90))
+    await page.locator('[data-role="empty"] button').click()
+    await expectFiltered(P.count)
+    check('空状态一键清空筛选 → 回到全量', true, `恢复 ${P.count} 题`)
+  }
+
+  /* ════ H. 判分后端全挂时的降级（AGENTS.md 二·5 诚实性红线） ════ */
+  if (want('fallback')) {
+    // 站内只注册了 godbolt 一个后端（Piston 401 / Judge0 要 key，均经 ADR-0001 裁决否决），
+    // 所以「备用后端」验的不是切换，而是**降级必须诚实**：说清未判定、不计正确率、绝不伪造通过。
+    const target = P.problems.find((x) => x.type === 'debug') ?? P.problems[0]
+    const fctx = await browser.newContext({ viewport: { width: 1280, height: 900 } })
+    const fp = await fctx.newPage()
+    await fp.route('**://godbolt.org/**', (route) => route.fulfill({ status: 503, contentType: 'text/plain', body: 'Service Unavailable' }))
+    await fp.goto(BASE + `#/problems/p/${target.id}`, { waitUntil: 'domcontentloaded' })
+    await fp.waitForSelector('button:has-text("提交判分")', { timeout: 30000 })
+    await fp.locator('button:has-text("提交判分")').first().click()
+    await fp.waitForFunction(() => /本次未判定|判分后端暂不可用/.test(document.body.innerText), null, { timeout: 90000 })
+    const txt = (await fp.locator('main').innerText()).replace(/\s+/g, ' ')
+    check('Godbolt 全挂（503）→ 走降级：显示「本次未判定」而不是白屏', /本次未判定/.test(txt), txt.slice(0, 110))
+    check('降级提示明说「不计正确率、不置 verified」', /不计正确率/.test(txt) && /不置 verified|未判定/.test(txt))
+    check('降级态绝不伪造「判分通过」', !txt.includes('判分通过'), target.id)
+    await fctx.close()
   }
 
   /* ════ 控制台 ════ */

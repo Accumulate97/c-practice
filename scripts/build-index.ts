@@ -12,7 +12,7 @@
  *
  * 用法：node scripts/build-index.ts
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { createRequire } from 'node:module'
 import { dirname, join, resolve } from 'node:path'
@@ -271,3 +271,16 @@ emit(join('knowledge', 'index.json'), knowledgeIndex)
 emit(join('viz', 'index.json'), vizIndex)
 console.log('题目 ' + cards.length + ' 道 / 分片 ' + shards.length + ' 个；知识卡片 ' + Number(knowledgeIndex.count) + ' 张 / 演示 ' + Number(vizIndex.count) + ' 个')
 console.log('数据缺口：code_reading 缺 answer ' + problemIndex.defects.codeReadingNoAnswer + ' 道（不进判分，前端文案从这里读）')
+
+/**
+ * 勘误表同步（阶段 10-3）。真源是 docs/errata.md，站内 #/errata 渲染的是它的副本 ——
+ * 顺手在生成索引时拷一份，杜绝「文档改了站点没改」的漂移；文档缺失只提示、不阻断索引生成。
+ */
+const ERRATA_SRC = join(ROOT, 'docs', 'errata.md')
+if (existsSync(ERRATA_SRC)) {
+  const errataDest = join(DATA, 'errata.md')
+  copyFileSync(ERRATA_SRC, errataDest)
+  console.log('同步 docs/errata.md → data/errata.md  (' + readFileSync(errataDest, 'utf8').length + ' 字符)')
+} else {
+  console.log('! 未找到 docs/errata.md，跳过勘误表同步（站内 #/errata 会走空状态）')
+}

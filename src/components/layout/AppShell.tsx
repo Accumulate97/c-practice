@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { APP_NAME, sections } from '../../app/config'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -41,8 +41,12 @@ export function AppShell() {
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="mt-10 border-t pt-4 text-xs" style={{ borderColor: 'var(--border)', color: 'var(--fg-muted)' }}>
-        进度保存在本机 localStorage · 代码经第三方公共编译服务在线执行 · 依据仓库内 00–08 规范文件构建
+      <footer className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 border-t pt-4 text-xs" style={{ borderColor: 'var(--border)', color: 'var(--fg-muted)' }}>
+        <span>进度保存在本机 localStorage · 代码经第三方公共编译服务在线执行 · 依据仓库内 00–08 规范文件构建</span>
+        {/* 阶段 10-3：勘误表入口放页脚 —— 它是查证性内容，不该占主导航的位置 */}
+        <Link data-role="errata-link" to="/errata" className="underline decoration-dotted" style={{ color: 'var(--fg-muted)' }}>
+          📕 原书勘误表
+        </Link>
       </footer>
     </div>
   )

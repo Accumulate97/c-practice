@@ -139,7 +139,9 @@ export function parseMarkdown(source: string): MdBlock[] {
  * 反引号分支放在最前，所以 `int *p;` 里的星号不会被当成斜体（语料里这种写法非常多，
  * 顺序错了整段指针讲解都会被撕成 <em>）。斜体要求两侧非空白，避免 a * b * c 这类算式误伤。
  */
-const INLINE = /(`[^`]+`|\*\*(?!\s)[\s\S]+?(?<!\s)\*\*|\*(?!\s)[^*\n]+?(?<!\s)\*)/g
+// 链接放在最前面，且 href 只认 `#` / `/` / `http(s)://` 开头 —— 这样 C 代码里的
+// `int *op[3](int,int)`、`a[i](x)` 不会被当成 [文本](url) 撕开。
+const INLINE = /(\[[^\]\n]+\]\((?:#|\/|https?:\/\/)[^)\s]*\)|`[^`]+`|\*\*(?!\s)[\s\S]+?(?<!\s)\*\*|\*(?!\s)[^*\n]+?(?<!\s)\*)/g
 
 const inlineCodeStyle: CSSProperties = {
   background: 'var(--bg-elev)',
@@ -154,7 +156,15 @@ export function renderInline(text: string): ReactNode[] {
     const at = m.index ?? 0
     if (at > last) out.push(text.slice(last, at))
     const token = m[0]
-    if (token.startsWith('`')) {
+    if (token.startsWith('[')) {
+      // 站内链接（HashRouter）：href="#/problems/p/xxx" 直接改 hash，路由自己接住
+      const lm = /^\[([^\]\n]+)\]\(([^)\s]+)\)$/.exec(token)
+      out.push(
+        <a key={key++} href={lm?.[2] ?? '#'} className="underline decoration-dotted" style={{ color: 'var(--color-brand)' }}>
+          {lm?.[1] ?? token}
+        </a>,
+      )
+    } else if (token.startsWith('`')) {
       out.push(
         <code key={key++} className="rounded px-1 py-0.5 font-mono text-[0.92em]" style={inlineCodeStyle}>
           {token.slice(1, -1)}

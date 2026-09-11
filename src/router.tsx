@@ -102,6 +102,18 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载演示…</p>
         ),
       },
+      // 阶段 10-3：原书勘误表。内容是 data/errata.md（由 build:index 从 docs/errata.md 拷来），
+      // 页面本身只有一个 Markdown 渲染器，仍走路由级 lazy，首页不为它付体积。
+      {
+        path: 'errata',
+        lazy: async () => {
+          const mod = await import('./pages/ErrataPage')
+          return { Component: mod.ErrataPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载勘误表…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台，阶段 4 判分器进刷题页后可移除
       { path: 'judge-lab', element: <JudgeLabPage /> },
