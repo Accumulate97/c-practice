@@ -1,10 +1,10 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "50d6ec09d7bef531",
+  "content_sha": "7edc628f201baa68",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1183,
-  "shard_count": 15,
+  "count": 1223,
+  "shard_count": 16,
   "shards": [
     {
       "file": "c-ch01.json",
@@ -110,6 +110,13 @@
       "chapter": "第3章 栈和队列",
       "count": 60,
       "url": "data/problems/ds-ch03.json"
+    },
+    {
+      "file": "ds-ch04.json",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "count": 40,
+      "url": "data/problems/ds-ch04.json"
     }
   ],
   "problems": [
@@ -15790,7 +15797,7 @@
       "section": "3.2 栈的顺序表示与实现",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序栈",
         "逆序"
@@ -15806,7 +15813,7 @@
       "section": "3.5 循环队列的顺序表示",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "循环队列",
         "元素个数"
@@ -15822,7 +15829,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "括号匹配"
@@ -15838,7 +15845,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "进制转换"
@@ -15854,7 +15861,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "后缀表达式"
@@ -15870,7 +15877,7 @@
       "section": "3.3 栈的链式表示与实现",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "链栈",
         "逆序"
@@ -15886,7 +15893,7 @@
       "section": "3.1 栈的定义与后进先出特性",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "递归",
         "系统栈"
@@ -15902,7 +15909,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "回文"
@@ -15918,7 +15925,7 @@
       "section": "3.2 栈的顺序表示与实现",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序栈",
         "基本操作"
@@ -15934,7 +15941,7 @@
       "section": "3.5 循环队列的顺序表示",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "循环队列",
         "基本操作"
@@ -15950,7 +15957,7 @@
       "section": "3.4 队列的定义与链式表示",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "链队列",
         "带头结点"
@@ -15966,7 +15973,7 @@
       "section": "3.5 循环队列的顺序表示",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "循环队列",
         "tag"
@@ -15982,7 +15989,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "队列",
         "杨辉三角"
@@ -15998,7 +16005,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "出栈序列"
@@ -16014,7 +16021,7 @@
       "section": "3.2 栈的顺序表示与实现",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "共享栈",
         "顺序栈"
@@ -16030,7 +16037,7 @@
       "section": "3.2 栈的顺序表示与实现",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序栈",
         "逆序输出"
@@ -16046,7 +16053,7 @@
       "section": "3.5 循环队列的顺序表示",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "循环队列",
         "约瑟夫环"
@@ -16062,7 +16069,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "括号匹配"
@@ -16078,7 +16085,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "后缀表达式"
@@ -16094,7 +16101,7 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "队列",
@@ -16111,7 +16118,7 @@
       "section": "3.5 循环队列的顺序表示",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "循环队列",
         "循环移位"
@@ -16127,13 +16134,665 @@
       "section": "3.6 栈与队列的应用",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "栈",
         "进制转换"
       ],
       "title": "编写程序",
       "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch04-sc-001",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "串",
+        "定义"
+      ],
+      "title": "下列关于串的说法中",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-002",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "串",
+        "存储密度"
+      ],
+      "title": "串的链式存储中",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-001",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "串",
+        "子串"
+      ],
+      "title": "设串 S = \"datastructure\"",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-003",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "模式匹配",
+        "复杂度"
+      ],
+      "title": "设主串长度为 n、模式串长度为 m",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-004",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "title": "关于 KMP 算法的 next 数组",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-002",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "KMP",
+        "next",
+        "nextval"
+      ],
+      "title": "模式串 p = \"abcabc\"",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-005",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "KMP",
+        "比较次数"
+      ],
+      "title": "主串 S = \"aaaaab\"",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cx-001",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "title": "写出下列程序段的时间复杂度",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-006",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组",
+        "地址计算",
+        "列优先"
+      ],
+      "title": "二维数组 A[1..8][1..10] 按列优先顺序存储",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-007",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "数组",
+        "特点"
+      ],
+      "title": "数组一旦被定义",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-003",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "title": "三维数组 A[2][3][4] 按行优先存储",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-008",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "数组",
+        "存储"
+      ],
+      "title": "一维数组采用顺序存储的主要优点是",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-009",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "title": "n 阶对称矩阵 A 只存储下三角",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-004",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "title": "5 阶对称矩阵 A 的下三角",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-010",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "三对角矩阵",
+        "压缩存储"
+      ],
+      "title": "n 阶三对角矩阵",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-011",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "上三角矩阵",
+        "压缩存储"
+      ],
+      "title": "n 阶上三角矩阵",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-012",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "稀疏矩阵",
+        "定义"
+      ],
+      "title": "通常把满足下列哪个条件的矩阵称为稀疏矩阵？",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-013",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "三元组",
+        "稀疏矩阵"
+      ],
+      "title": "用三元组顺序表存储稀疏矩阵时",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-005",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "稀疏矩阵",
+        "快速转置"
+      ],
+      "title": "稀疏矩阵的三元组普通转置算法时间复杂度为 ____",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-014",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 3,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "十字链表",
+        "稀疏矩阵"
+      ],
+      "title": "用十字链表存储稀疏矩阵时",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-015",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "广义表",
+        "长度",
+        "深度"
+      ],
+      "title": "广义表 LS = ",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-fb-006",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "广义表",
+        "表头",
+        "表尾"
+      ],
+      "title": "广义表 A = ",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-016",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "广义表",
+        "定义"
+      ],
+      "title": "广义表与线性表的本质区别在于",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-sc-017",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "广义表",
+        "递归定义"
+      ],
+      "title": "已知广义表 A = ",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-tf-001",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "广义表",
+        "空表"
+      ],
+      "title": "空表 ",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-001",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "定长顺序串",
+        "存储密度"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-001",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "定长顺序串",
+        "子串",
+        "连接"
+      ],
+      "title": "下列程序实现定长顺序串",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-002",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-003",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-002",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "title": "下列程序用朴素 BF 算法实现模式匹配",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-003",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "title": "下列程序实现 KMP 的 next 数组求解",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-pg-001",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "KMP",
+        "模式匹配"
+      ],
+      "title": "请实现完整的 KMP 模式匹配程序",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-004",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-004",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "地址计算",
+        "行优先",
+        "列优先"
+      ],
+      "title": "下列程序由元素地址反求其在二维数组中的下标",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-005",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "对称矩阵",
+        "压缩存储",
+        "下三角"
+      ],
+      "title": "下列程序把 5 阶对称矩阵的下三角按行优先压缩存储",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-005",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "三对角矩阵",
+        "带状矩阵",
+        "压缩存储"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-006",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "上三角矩阵",
+        "压缩存储",
+        "地址公式"
+      ],
+      "title": "下列程序把 5 阶上三角矩阵",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-006",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": false,
+      "tags": [
+        "稀疏矩阵",
+        "三元组顺序表",
+        "行序为主序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cc-007",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "稀疏矩阵",
+        "快速转置",
+        "三元组顺序表"
+      ],
+      "title": "下列程序用快速转置算法求三元组顺序表表示的稀疏矩阵的转置",
+      "file": "ds-ch04.json"
+    },
+    {
+      "id": "ds-ch04-cr-007",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "广义表",
+        "深度",
+        "递归"
+      ],
+      "title": "下列程序递归求广义表的深度",
+      "file": "ds-ch04.json"
     }
   ],
   "defects": {

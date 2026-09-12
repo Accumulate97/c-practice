@@ -1,0 +1,1606 @@
+{
+  "category": "ds",
+  "chapter": "第4章 串、数组和广义表",
+  "problems": [
+    {
+      "id": "ds-ch04-sc-001",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "下列关于串的说法中，正确的是（　　）。",
+      "options": [
+        "串的长度是串中字符的个数，不包括 C 语言的结束标志",
+        "空串就是由一个空格字符组成的串",
+        "串只能采用顺序存储",
+        "串的逻辑结构是非线性的"
+      ],
+      "answer": 0,
+      "explanation": "串是由零个或多个字符组成的有限序列，其长度就是字符个数；C 语言用 \u0000 作结束标志，它不计入串长。空串长度为 0，而空格串至少含一个空格，二者不同。串在逻辑上仍是线性结构（一对一），存储上既可顺序也可链式。易错点：把\"空串\"与\"空格串\"混为一谈，前者 StrLength 为 0，后者大于 0。",
+      "tags": [
+        "串",
+        "定义"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-002",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "串的链式存储中，若每个结点的数据域可存放 4 个字符，串长为 10，最后一个结点未被占用的位置用 # 填充，则该链串的存储密度约为（　　）。",
+      "options": [
+        "1",
+        "0.83",
+        "0.4",
+        "2.5"
+      ],
+      "answer": 1,
+      "explanation": "10 个字符需要 3 个结点（4+4+2），共提供 12 个字符位置，存储密度 = 10/12 ≈ 0.83。结点越大存储密度越高，但插入删除越不方便，这是链串设计的权衡。易错点：存储密度是\"有效数据/结点总容量\"，不含指针开销时按字符位置算；若把指针域也计入，密度还会更低。",
+      "tags": [
+        "串",
+        "存储密度"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-001",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设串 S = \"datastructure\"，则 S 的长度为 ____；S 中含有的不同字符个数为 ____；\"structure\" 是 S 的 ____（填\"子串\"或\"子序列\"）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "13"
+        },
+        {
+          "index": 2,
+          "answer": "8"
+        },
+        {
+          "index": 3,
+          "answer": "子串"
+        }
+      ],
+      "explanation": "datastructure 共 13 个字符，逐个统计不同字符：d、a、t、s、r、u、c、e，共 8 种（a 出现 2 次，t 出现 3 次，r、u 各 2 次）。\"structure\" 是 S 中连续出现的一段字符，因此是子串；子序列只要求保持先后次序而不要求连续，所以子串一定是子序列，反之不然。易错点：把\"串长\"、\"不同字符个数\"、\"子串个数\"三者混为一谈，子串个数与位置有关，为 n(n+1)/2 + 1。",
+      "tags": [
+        "串",
+        "子串"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-003",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设主串长度为 n、模式串长度为 m，朴素的 BF（Brute-Force）模式匹配算法在最坏情况下的时间复杂度是（　　）。",
+      "options": [
+        "O(n)",
+        "O(m)",
+        "O(n + m)",
+        "O(n × m)"
+      ],
+      "answer": 3,
+      "explanation": "BF 每失配一次就把主串指针回退到本趟起点后一位，模式串从头再比。最坏情形（如主串 aaaaab、模式 aaab）下每一趟都要比较约 m 次，共 n-m+1 趟，故为 O(n×m)。KMP 通过 next 数组避免主串指针回溯，把复杂度降为 O(n+m)。易错点：BF 的平均性能接近 O(n)，但考题问的是最坏情况。",
+      "tags": [
+        "模式匹配",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-004",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "关于 KMP 算法的 next 数组，下列说法正确的是（　　）。",
+      "options": [
+        "next 数组的值与主串内容有关",
+        "next 数组只由模式串自身决定，与主串无关",
+        "next 数组必须在匹配过程中动态计算",
+        "next[j] 表示模式串前 j 个字符中最长相等前后缀的长度本身"
+      ],
+      "answer": 1,
+      "explanation": "next[j] 刻画的是\"模式串前 j-1 个字符中，最长相等前缀与后缀的长度 + 1\"，只依赖模式串，可在匹配前一次算好（O(m)），匹配时主串指针不回溯。选项 D 错在没有\"+1\"：按严蔚敏下标从 1 开始的定义，next[j] = 最长相等前后缀长度 + 1，next[1] = 0。",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-002",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "模式串 p = \"abcabc\"（下标从 1 开始），按严蔚敏定义，其 next 数组依次为 ____（用空格分隔 6 个数），改进后的 nextval 数组依次为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "0 1 1 1 2 3",
+          "accepted": [
+            "0,1,1,1,2,3",
+            "0 1 1 1 2 3"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "0 1 1 0 1 1",
+          "accepted": [
+            "0,1,1,0,1,1"
+          ]
+        }
+      ],
+      "explanation": "next[1]=0，next[2]=next[3]=next[4]=1（前 1、2、3 个字符无相等前后缀）；前 4 个 \"abca\" 最长相等前后缀为 \"a\"，长度 1，故 next[5]=2；前 5 个 \"abcab\" 为 \"ab\"，长度 2，故 next[6]=3。nextval 修正：当 p[j]==p[next[j]] 时取 nextval[next[j]]，于是 nextval[4]=0、nextval[5]=1、nextval[6]=1。易错点：忘记 next 值比长度大 1。",
+      "tags": [
+        "KMP",
+        "next",
+        "nextval"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-005",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "主串 S = \"aaaaab\"，模式串 T = \"aaab\"。用 BF 算法（每次失配后主串指针回溯）进行匹配，共需进行（　　）次字符比较才能匹配成功。",
+      "options": [
+        "12",
+        "15",
+        "20",
+        "24"
+      ],
+      "answer": 0,
+      "explanation": "BF 每趟失配后主串指针回退重比。主串 aaaaab、模式 aaab：第 1 趟从 S[1] 起比较 a、a、a 后第 4 次比较 S[4]=a 与 T[4]=b 失配（4 次）；第 2 趟从 S[2] 起同样 4 次失配；第 3 趟从 S[3] 起比较 S[3]S[4]S[5]S[6] = a a a b，与模式完全相同，4 次比较后成功。合计 4+4+4 = 12 次。若改用 KMP，主串指针不回溯，只需约 8 次比较。易错点：漏算成功那一趟也要比较 m 次。",
+      "tags": [
+        "KMP",
+        "比较次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cx-001",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序段的时间复杂度（用大 O 表示）。\n```\n/* 二维数组行优先存储的地址计算 */\nint A[10][20];   /* 下标范围 0..9, 0..19，每个 int 占 4 字节 */\n/* 设 A[0][0] 的起始地址为 100，求 A[3][5] 的地址 */\n```",
+      "answer": "360",
+      "code": "/* 二维数组行优先存储的地址计算 */\nint A[10][20];   /* 下标范围 0..9, 0..19，每个 int 占 4 字节 */\n/* 设 A[0][0] 的起始地址为 100，求 A[3][5] 的地址 */",
+      "accepted": [
+        "A[3][5]=360",
+        "360 字节处",
+        "0x168"
+      ],
+      "explanation": "行优先存放时，A[i][j] 前面共有 i*列数 + j 个元素，故地址 = 基址 + (i*20 + j)*4 = 100 + (3*20+5)*4 = 100 + 65*4 = 360。若是列优先，则前面有 j*行数 + i 个元素，结果不同。易错点：把\"列数\"当成行数——乘的是每行的元素个数；下标从 1 开始时还要各减 1。",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-006",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "二维数组 A[1..8][1..10] 按列优先顺序存储，每个元素占 2 个字节，A[1][1] 的存储地址为 1000，则 A[5][8] 的地址是（　　）。",
+      "options": [
+        "1120",
+        "1112",
+        "1160",
+        "1078"
+      ],
+      "answer": 0,
+      "explanation": "列优先时先排满第 1 列再排第 2 列，A[i][j] 之前共有 (j-1)*8 + (i-1) 个元素。代入得 (8-1)*8 + (5-1) = 56 + 4 = 60，地址 = 1000 + 60*2 = 1120。易错点：行优先公式是 (i-1)*10 + (j-1) = 40+7 = 47，地址 1094；做题前必须先确认存储次序，两种次序不可混用。",
+      "tags": [
+        "数组",
+        "地址计算",
+        "列优先"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-007",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "数组一旦被定义，其维数和上下界就固定不变，因此对数组通常只进行的两种运算是（　　）。",
+      "options": [
+        "插入和删除",
+        "存取和修改",
+        "排序和查找",
+        "合并和分裂"
+      ],
+      "answer": 1,
+      "explanation": "数组是定长线性表的推广，元素个数与位置固定，插入删除会改变结构，故一般只提供\"按地址存取\"和\"修改元素值\"两种操作。正因如此数组宜用顺序存储：地址可由下标直接计算，存取时间 O(1)。易错点：认为数组可以像顺序表那样随意插入删除。",
+      "tags": [
+        "数组",
+        "特点"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-003",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "三维数组 A[2][3][4] 按行优先存储，每个元素占 4 字节，首元素地址为 0。则数组共有 ____ 个元素，元素 A[1][2][3] 的地址为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "24"
+        },
+        {
+          "index": 2,
+          "answer": "92"
+        }
+      ],
+      "explanation": "元素总数 = 2×3×4 = 24。行优先存放时，A[i][j][k] 之前的元素个数为 i×(3×4) + j×4 + k，代入 i=1、j=2、k=3 得 12 + 8 + 3 = 23，即它是第 24 个（最后一个）元素，地址 = 0 + 23×4 = 92。易错点：每一维的\"跨度\"等于其后所有维长的乘积——第一维跨度 12、第二维跨度 4、第三维跨度 1；把跨度记错会得到 156 之类的错误结果。",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-008",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "一维数组采用顺序存储的主要优点是（　　）。",
+      "options": [
+        "便于插入和删除",
+        "存储密度小于 1",
+        "可按公式直接计算任一元素的地址，实现随机存取",
+        "不需要额外的存储空间"
+      ],
+      "answer": 2,
+      "explanation": "顺序存储下元素在内存中连续排列，地址 = 基址 + 下标*元素长度，因此可在 O(1) 时间内随机访问任意元素，这正是数组最常用的原因。顺序存储的存储密度为 1，但它不便于插入删除（需移动元素）。易错点：把\"随机存取\"理解为\"随机顺序访问\"，它指的是访问时间与位置无关。",
+      "tags": [
+        "数组",
+        "存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-009",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "n 阶对称矩阵 A 只存储下三角（含主对角线）元素，按行优先存入一维数组 B（下标从 1 开始）。当 i ≥ j 时，A[i][j] 存放在 B 中的位置 k 为（　　）。",
+      "options": [
+        "k = i*(i-1)/2 + j",
+        "k = i*(i+1)/2 + j",
+        "k = j*(j-1)/2 + i",
+        "k = i*j"
+      ],
+      "answer": 0,
+      "explanation": "下三角第 1 行有 1 个元素、第 2 行 2 个……第 i-1 行有 i-1 个，合计 i(i-1)/2 个；A[i][j] 是第 i 行的第 j 个，故 k = i(i-1)/2 + j（1 起始）。若数组下标从 0 开始则再减 1。当 i < j 时由对称性访问 A[j][i]，即 k = j(j-1)/2 + i。压缩后空间从 n² 降到 n(n+1)/2。",
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-004",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "5 阶对称矩阵 A 的下三角（含对角线）按行优先压缩存入 B[0..14]，则 A[3][2]（下标从 1 开始）存放在 B 的下标 ____ 处；B 数组共需 ____ 个存储单元。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "4"
+        },
+        {
+          "index": 2,
+          "answer": "15"
+        }
+      ],
+      "explanation": "0 起始下标公式 k = i(i-1)/2 + j - 1 = 3*2/2 + 2 - 1 = 4，故存于 B[4]。下三角（含对角线）元素个数为 n(n+1)/2 = 5*6/2 = 15，即 B[0..14]。由于对称矩阵上三角元素可由下三角推出，压缩存储使空间由 25 降到 15。易错点：忘记 0 起始时要减 1；把 n(n+1)/2 记成 n(n-1)/2。",
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-010",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "n 阶三对角矩阵（只有主对角线及其上下各一条对角线上有非零元素）压缩存储时，元素 A[i][j] 为非零元素的充要条件是（　　）。",
+      "options": [
+        "|i - j| <= 1",
+        "i + j <= n",
+        "i == j",
+        "|i - j| <= 2"
+      ],
+      "answer": 0,
+      "explanation": "三对角矩阵又称带状矩阵，非零元素集中在 |i-j| ≤ 1 的三条对角线上，共 3n-2 个非零元素，可按行优先压缩到一维数组。若按行优先存放且下标从 0 开始，A[i][j]（1 起始）对应 k = 2i + j - 3。易错点：把条件写成 |i-j| ≤ 2（那是五对角）。",
+      "tags": [
+        "三对角矩阵",
+        "压缩存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-011",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "n 阶上三角矩阵（i ≤ j 处存元素，其余位置均为同一常数 c）采用压缩存储，需要的存储单元个数是（　　）。",
+      "options": [
+        "n(n+1)/2",
+        "n(n+1)/2 + 1",
+        "n²",
+        "n(n-1)/2 + 1"
+      ],
+      "answer": 1,
+      "explanation": "上三角（含对角线）元素个数为 n + (n-1) + … + 1 = n(n+1)/2；下三角位置全部是同一个常数 c，只需再用 1 个单元存放它，故共 n(n+1)/2 + 1 个。易错点：忘记常数 c 需要一个额外单元；若题目改为下三角压缩存 n(n+1)/2 个，则上三角的常数另计。",
+      "tags": [
+        "上三角矩阵",
+        "压缩存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-012",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "通常把满足下列哪个条件的矩阵称为稀疏矩阵？（　　）",
+      "options": [
+        "非零元素个数远少于矩阵元素总数，且非零元素分布无规律",
+        "所有元素都为 0",
+        "行数远大于列数",
+        "非零元素集中在对角线上"
+      ],
+      "answer": 0,
+      "explanation": "稀疏矩阵没有严格数量界限，一般指非零元素占比很低（如低于 5%）且分布不规则的矩阵。若像对称矩阵、对角矩阵那样分布有规律，属于\"特殊矩阵\"，用固定公式压缩即可；稀疏矩阵因分布无规律，必须用三元组表或十字链表逐个记录非零元素的位置。易错点：混淆特殊矩阵与稀疏矩阵。",
+      "tags": [
+        "稀疏矩阵",
+        "定义"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-013",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "用三元组顺序表存储稀疏矩阵时，每个非零元素对应的三元组包含（　　）。",
+      "options": [
+        "行下标、列下标、元素值",
+        "行下标、元素值、下一个结点指针",
+        "元素值、所在对角线号、序号",
+        "行下标、列下标、下一个结点指针"
+      ],
+      "answer": 0,
+      "explanation": "三元组 (row, col, value) 记录了非零元素的位置与取值，通常还用一个表头三元组存放总行数、总列数与非零元素个数。由于失去了\"下标即地址\"的特性，三元组存储不再是随机存取结构，访问 A[i][j] 需要查找。十字链表则在每个结点上再加两个指针，便于插入删除。",
+      "tags": [
+        "三元组",
+        "稀疏矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-005",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "稀疏矩阵的三元组普通转置算法时间复杂度为 ____（设非零元素个数 t、列数 nu），快速转置算法需要两个辅助向量 num[] 和 ____，其时间复杂度为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "O(nu × t)",
+          "accepted": [
+            "O(nu*t)",
+            "O(nu·t)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "cpot[]",
+          "accepted": [
+            "copt",
+            "cpot"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "O(nu + t)"
+        }
+      ],
+      "explanation": "普通转置对每一列都扫描一遍三元组表，共 nu 趟、每趟 t 次，故 O(nu×t)。快速转置先统计每列非零元素个数 num[col]，再累加得到每列第一个元素在转置表中的恰当位置 cpot[col]，一趟扫描即可就位，复杂度 O(nu+t)，代价是两个长度为 nu 的辅助向量。易错点：认为快速转置需要排序。",
+      "tags": [
+        "稀疏矩阵",
+        "快速转置"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-014",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "用十字链表存储稀疏矩阵时，每个非零元素结点包含的域有（　　）。",
+      "options": [
+        "行、列、值、指向同行下一结点的指针、指向同列下一结点的指针",
+        "行、列、值",
+        "行、列、值、一个后继指针",
+        "值与两个前驱指针"
+      ],
+      "answer": 0,
+      "explanation": "十字链表把同一行的非零元素链成一条链、同一列的也链成一条链，因此结点需要 5 个域：row、col、value、down（或 right）、right（或 down）。它适合频繁插入删除的稀疏矩阵，代价是每结点两个指针、存储密度低。易错点：与三元组顺序表混淆，后者只有三个域且不支持 O(1) 插入。",
+      "tags": [
+        "十字链表",
+        "稀疏矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-015",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "广义表 LS = ((a, b), (c, d))，则 LS 的长度和深度分别是（　　）。",
+      "options": [
+        "2 和 2",
+        "4 和 2",
+        "2 和 1",
+        "4 和 1"
+      ],
+      "answer": 0,
+      "explanation": "长度指最外层元素的个数：LS 有两个元素 (a,b) 与 (c,d)，故长度为 2（不是 4，原子个数不等于长度）。深度指括号嵌套的最大层数：LS 本身一层，其元素又各一层，故深度为 2；原子的深度为 0，空表 () 的深度为 1。易错点：把长度数成所有原子的个数。",
+      "tags": [
+        "广义表",
+        "长度",
+        "深度"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-fb-006",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "广义表 A = (a, (b, (c, d)))，则 A 的长度为 ____，深度为 ____，head(A) 为 ____，tail(A) 为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "2"
+        },
+        {
+          "index": 2,
+          "answer": "3"
+        },
+        {
+          "index": 3,
+          "answer": "a",
+          "accepted": [
+            "原子 a"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "((b, (c, d)))",
+          "accepted": [
+            "((b,(c,d)))"
+          ]
+        }
+      ],
+      "explanation": "A 最外层有 a 与 (b,(c,d)) 两个元素，长度 2；嵌套层数为 A → (b,(c,d)) → (c,d)，深度 3。head 取第一个元素（可以是原子），得 a；tail 取除第一个元素外其余元素组成的表，必须仍是广义表，故为 ((b,(c,d)))，外层括号不可省。易错点：认为 tail(A) = (b,(c,d))，那是 head(tail(A))。",
+      "tags": [
+        "广义表",
+        "表头",
+        "表尾"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-016",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "广义表与线性表的本质区别在于（　　）。",
+      "options": [
+        "广义表长度可变",
+        "广义表的元素可以是原子，也可以是子表（具有层次结构）",
+        "广义表只能顺序存储",
+        "广义表元素之间有先后次序"
+      ],
+      "answer": 1,
+      "explanation": "线性表要求所有元素都是不可再分的原子且属于同一数据对象；广义表允许元素本身是一个广义表，从而形成多层次结构，是线性表的推广。广义表的元素仍有先后次序，也可用链式存储（头尾链表或扩展线性链表）。易错点：把\"长度可变\"当作区别，那只是链表特性。",
+      "tags": [
+        "广义表",
+        "定义"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-sc-017",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "已知广义表 A = (a, b, (c, d), e)，则 tail(head(tail(tail(A)))) 的结果是（　　）。",
+      "options": [
+        "(c, d)",
+        "((d))",
+        "(d)",
+        "d"
+      ],
+      "answer": 2,
+      "explanation": "逐步求值：tail(A) = (b, (c,d), e)；再 tail 得 ((c,d), e)；head 得 (c,d)；再 head 得 c？注意最外层还有一次 tail：tail(head(...)) = tail((c,d)) = (d)。故结果为 (d)，它是一个只含原子 d 的广义表，而不是原子 d。易错点：忘记 tail 的返回值一定是广义表，需保留外层括号。",
+      "tags": [
+        "广义表",
+        "递归定义"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-tf-001",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "空表 () 的长度为 0，深度为 1；而原子 a 的长度不定义、深度为 0。",
+      "answer": true,
+      "explanation": "正确。深度的递归定义是：原子的深度为 0，空表的深度为 1，非空表的深度为 1 + 各元素深度的最大值。长度只对有括号的表定义，空表长度为 0。例如表 (()) 只含一个元素（即空表），长度为 1、深度为 2。易错点：把空表深度当作 0。",
+      "tags": [
+        "广义表",
+        "空表"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-001",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <string.h>\n\n#define MAXSTRLEN 10\n\ntypedef char SString[MAXSTRLEN + 1];   /* 下标 0 单元存放串长 */\n\nvoid StrAssign(SString s, const char *t)\n{\n    int len = (int)strlen(t), i;\n\n    if (len > MAXSTRLEN)\n        len = MAXSTRLEN;\n    for (i = 1; i <= len; i++)\n        s[i] = t[i - 1];\n    s[0] = (char)len;\n}\n\nint StrCompare(SString s, SString t)\n{\n    int i;\n\n    for (i = 1; i <= s[0] && i <= t[0]; i++)\n        if (s[i] != t[i])\n            return s[i] - t[i];\n    return s[0] - t[0];\n}\n\nint main(void)\n{\n    SString s, t;\n    char a[100], b[100];\n    int i, cmp;\n\n    scanf(\"%99s %99s\", a, b);\n    StrAssign(s, a);\n    StrAssign(t, b);\n    printf(\"%d %d\\n\", (int)s[0], (int)t[0]);\n    cmp = StrCompare(s, t);\n    printf(\"%d\\n\", cmp > 0 ? 1 : (cmp < 0 ? -1 : 0));\n    for (i = 1; i <= s[0]; i++)\n        printf(\"%c\", s[i]);\n    for (i = 1; i <= t[0]; i++)\n        printf(\"%c\", t[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\nabc abcd\n```",
+      "answer": "3 4\n-1\nabcabcd",
+      "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXSTRLEN 10\n\ntypedef char SString[MAXSTRLEN + 1];   /* 下标 0 单元存放串长 */\n\nvoid StrAssign(SString s, const char *t)\n{\n    int len = (int)strlen(t), i;\n\n    if (len > MAXSTRLEN)\n        len = MAXSTRLEN;\n    for (i = 1; i <= len; i++)\n        s[i] = t[i - 1];\n    s[0] = (char)len;\n}\n\nint StrCompare(SString s, SString t)\n{\n    int i;\n\n    for (i = 1; i <= s[0] && i <= t[0]; i++)\n        if (s[i] != t[i])\n            return s[i] - t[i];\n    return s[0] - t[0];\n}\n\nint main(void)\n{\n    SString s, t;\n    char a[100], b[100];\n    int i, cmp;\n\n    scanf(\"%99s %99s\", a, b);\n    StrAssign(s, a);\n    StrAssign(t, b);\n    printf(\"%d %d\\n\", (int)s[0], (int)t[0]);\n    cmp = StrCompare(s, t);\n    printf(\"%d\\n\", cmp > 0 ? 1 : (cmp < 0 ? -1 : 0));\n    for (i = 1; i <= s[0]; i++)\n        printf(\"%c\", s[i]);\n    for (i = 1; i <= t[0]; i++)\n        printf(\"%c\", t[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "abc abcd\n",
+      "explanation": "程序用定长顺序存储：s[0] 存串长，字符从 s[1] 开始。输入 abc、abcd 得串长 3 和 4；比较时前 3 个字符全相同，循环结束后返回 s[0]-t[0] = -1，故第二行为 -1；最后顺次输出两串字符得 abcabcd。易错点：串长相同时 StrCompare 返回 0，而\"前缀\"关系下由长度差决定符号；MAXSTRLEN 限制会把超长串截断。",
+      "tags": [
+        "定长顺序串",
+        "存储密度"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-001",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序实现定长顺序串（s[0] 存串长）的求子串与串连接操作。请填写空白，使程序能正确输出子串与连接结果。\n```\n#include <stdio.h>\n#include <string.h>\n\n#define MAXSTRLEN 20\n\ntypedef char SString[MAXSTRLEN + 1];\n\nvoid StrAssign(SString s, const char *t)\n{\n    int len = (int)strlen(t), i;\n\n    if (len > MAXSTRLEN)\n        len = MAXSTRLEN;\n    for (i = 1; i <= len; i++)\n        s[i] = t[i - 1];\n    s[0] = (char)len;\n}\n\n/* 取 s 中第 pos 个字符起、长度为 len 的子串放入 sub，合法返回 1 */\nint SubString(SString sub, SString s, int pos, int len)\n{\n    int i;\n\n    if (pos < 1 || pos > s[0] || len < 0 || /*__BLANK_1__*/)\n        return 0;\n    for (i = 1; i <= len; i++)\n        /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 1;\n}\n\n/* 连接 s 与 t 到 u，若结果超长则截断并返回 0，否则返回 1 */\nint Concat(SString u, SString s, SString t)\n{\n    int i, uncut = 1;\n\n    for (i = 1; i <= s[0]; i++)\n        u[i] = s[i];\n    if (/*__BLANK_4__*/)\n    {\n        for (i = 1; i <= MAXSTRLEN - s[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)MAXSTRLEN;\n        uncut = 0;\n    }\n    else\n    {\n        for (i = 1; i <= t[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)(s[0] + t[0]);\n    }\n    return uncut;\n}\n\nint main(void)\n{\n    SString s, t, sub, u;\n    char a[100], b[100];\n    int pos, len, i;\n\n    scanf(\"%99s %99s %d %d\", a, b, &pos, &len);\n    StrAssign(s, a);\n    StrAssign(t, b);\n    if (SubString(sub, s, pos, len))\n    {\n        for (i = 1; i <= sub[0]; i++)\n            printf(\"%c\", sub[i]);\n        printf(\"\\n\");\n    }\n    else\n        printf(\"error\\n\");\n    Concat(u, s, t);\n    for (i = 1; i <= u[0]; i++)\n        printf(\"%c\", u[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "pos + len - 1 > s[0]",
+          "accepted": [
+            "pos + len > s[0] + 1"
+          ],
+          "hint": "子串不能越过原串末尾"
+        },
+        {
+          "index": 2,
+          "answer": "sub[i] = s[pos + i - 1];",
+          "accepted": [
+            "sub[i]=s[pos+i-1];"
+          ],
+          "hint": "原串下标从 1 开始"
+        },
+        {
+          "index": 3,
+          "answer": "sub[0] = (char)len;",
+          "accepted": [
+            "sub[0] = len;"
+          ],
+          "hint": "别忘记写子串长度"
+        },
+        {
+          "index": 4,
+          "answer": "s[0] + t[0] > MAXSTRLEN",
+          "accepted": [
+            "s[0]+t[0]>MAXSTRLEN"
+          ],
+          "hint": "两串长度之和超过容量就要截断"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXSTRLEN 20\n\ntypedef char SString[MAXSTRLEN + 1];\n\nvoid StrAssign(SString s, const char *t)\n{\n    int len = (int)strlen(t), i;\n\n    if (len > MAXSTRLEN)\n        len = MAXSTRLEN;\n    for (i = 1; i <= len; i++)\n        s[i] = t[i - 1];\n    s[0] = (char)len;\n}\n\n/* 取 s 中第 pos 个字符起、长度为 len 的子串放入 sub，合法返回 1 */\nint SubString(SString sub, SString s, int pos, int len)\n{\n    int i;\n\n    if (pos < 1 || pos > s[0] || len < 0 || /*__BLANK_1__*/)\n        return 0;\n    for (i = 1; i <= len; i++)\n        /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 1;\n}\n\n/* 连接 s 与 t 到 u，若结果超长则截断并返回 0，否则返回 1 */\nint Concat(SString u, SString s, SString t)\n{\n    int i, uncut = 1;\n\n    for (i = 1; i <= s[0]; i++)\n        u[i] = s[i];\n    if (/*__BLANK_4__*/)\n    {\n        for (i = 1; i <= MAXSTRLEN - s[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)MAXSTRLEN;\n        uncut = 0;\n    }\n    else\n    {\n        for (i = 1; i <= t[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)(s[0] + t[0]);\n    }\n    return uncut;\n}\n\nint main(void)\n{\n    SString s, t, sub, u;\n    char a[100], b[100];\n    int pos, len, i;\n\n    scanf(\"%99s %99s %d %d\", a, b, &pos, &len);\n    StrAssign(s, a);\n    StrAssign(t, b);\n    if (SubString(sub, s, pos, len))\n    {\n        for (i = 1; i <= sub[0]; i++)\n            printf(\"%c\", sub[i]);\n        printf(\"\\n\");\n    }\n    else\n        printf(\"error\\n\");\n    Concat(u, s, t);\n    for (i = 1; i <= u[0]; i++)\n        printf(\"%c\", u[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <string.h>\n\n#define MAXSTRLEN 20\n\ntypedef char SString[MAXSTRLEN + 1];\n\nvoid StrAssign(SString s, const char *t)\n{\n    int len = (int)strlen(t), i;\n\n    if (len > MAXSTRLEN)\n        len = MAXSTRLEN;\n    for (i = 1; i <= len; i++)\n        s[i] = t[i - 1];\n    s[0] = (char)len;\n}\n\n/* 取 s 中第 pos 个字符起、长度为 len 的子串放入 sub，合法返回 1 */\nint SubString(SString sub, SString s, int pos, int len)\n{\n    int i;\n\n    if (pos < 1 || pos > s[0] || len < 0 || pos + len - 1 > s[0])\n        return 0;\n    for (i = 1; i <= len; i++)\n        sub[i] = s[pos + i - 1];;\n    sub[0] = (char)len;;\n    return 1;\n}\n\n/* 连接 s 与 t 到 u，若结果超长则截断并返回 0，否则返回 1 */\nint Concat(SString u, SString s, SString t)\n{\n    int i, uncut = 1;\n\n    for (i = 1; i <= s[0]; i++)\n        u[i] = s[i];\n    if (s[0] + t[0] > MAXSTRLEN)\n    {\n        for (i = 1; i <= MAXSTRLEN - s[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)MAXSTRLEN;\n        uncut = 0;\n    }\n    else\n    {\n        for (i = 1; i <= t[0]; i++)\n            u[s[0] + i] = t[i];\n        u[0] = (char)(s[0] + t[0]);\n    }\n    return uncut;\n}\n\nint main(void)\n{\n    SString s, t, sub, u;\n    char a[100], b[100];\n    int pos, len, i;\n\n    scanf(\"%99s %99s %d %d\", a, b, &pos, &len);\n    StrAssign(s, a);\n    StrAssign(t, b);\n    if (SubString(sub, s, pos, len))\n    {\n        for (i = 1; i <= sub[0]; i++)\n            printf(\"%c\", sub[i]);\n        printf(\"\\n\");\n    }\n    else\n        printf(\"error\\n\");\n    Concat(u, s, t);\n    for (i = 1; i <= u[0]; i++)\n        printf(\"%c\", u[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "datastructure struct 3 5\n",
+          "expected": "tastr\ndatastructurestruct",
+          "note": "取第 3 个起 5 个字符"
+        },
+        {
+          "stdin": "abc def 1 3\n",
+          "expected": "abc\nabcdef",
+          "note": "取整串"
+        },
+        {
+          "stdin": "abc def 2 5\n",
+          "expected": "error\nabcdef",
+          "note": "越界：应输出 error"
+        }
+      ],
+      "explanation": "定长顺序串用 s[0] 存长度、字符存于 s[1..s[0]]。SubString 的合法性检查有四条：pos ≥ 1、pos ≤ 串长、len ≥ 0、pos+len-1 ≤ 串长；复制时下标要偏移 pos+i-1，并补写 sub[0]。Concat 需判断 s[0]+t[0] 是否超过 MAXSTRLEN，超过时只装得下的部分并把 u[0] 置为 MAXSTRLEN。易错点：漏写 sub[0] 或 u[0]，后续输出就全错。",
+      "tags": [
+        "定长顺序串",
+        "子串",
+        "连接"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-002",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <string.h>\n\n/* 返回 T 在 S 中首次出现的位置（从 1 开始），不存在返回 0 */\nint Index(const char S[], const char T[])\n{\n    int n = (int)strlen(S), m = (int)strlen(T), i, j;\n\n    if (m == 0 || m > n)\n        return 0;\n    for (i = 0; i <= n - m; i++)\n    {\n        for (j = 0; j < m; j++)\n            if (S[i + j] != T[j])\n                break;\n        if (j == m)\n            return i + 1;\n    }\n    return 0;\n}\n\nint main(void)\n{\n    char S[100], T[100];\n\n    scanf(\"%99s %99s\", S, T);\n    printf(\"%d\\n\", Index(S, T));\n    return 0;\n}\n```\n运行时输入：\n```\nababcabcacbab abcac\n```",
+      "answer": "6",
+      "code": "#include <stdio.h>\n#include <string.h>\n\n/* 返回 T 在 S 中首次出现的位置（从 1 开始），不存在返回 0 */\nint Index(const char S[], const char T[])\n{\n    int n = (int)strlen(S), m = (int)strlen(T), i, j;\n\n    if (m == 0 || m > n)\n        return 0;\n    for (i = 0; i <= n - m; i++)\n    {\n        for (j = 0; j < m; j++)\n            if (S[i + j] != T[j])\n                break;\n        if (j == m)\n            return i + 1;\n    }\n    return 0;\n}\n\nint main(void)\n{\n    char S[100], T[100];\n\n    scanf(\"%99s %99s\", S, T);\n    printf(\"%d\\n\", Index(S, T));\n    return 0;\n}",
+      "stdin": "ababcabcacbab abcac\n",
+      "explanation": "这是教材经典算例：主串 ababcabcacbab（13 字符）、模式串 abcac（5 字符）。BF 从 S[0] 起逐趟尝试，直到主串下标 5（即第 6 个字符）处 S[5..9] = a b c a c 与模式完全相同，内层循环结束时 j == m，函数返回 i+1 = 6。易错点：返回的是 1 起始的位置而非 0 起始下标；m > n 时应直接返回 0。",
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-003",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    next[1] = 0;\n    while (i < m)\n    {\n        if (j == 0 || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            next[i] = j;\n        }\n        else\n            j = next[j];\n    }\n}\n\nint main(void)\n{\n    char T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    scanf(\"%99s\", T);\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\nabcabc\n```",
+      "answer": "0 1 1 1 2 3",
+      "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    next[1] = 0;\n    while (i < m)\n    {\n        if (j == 0 || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            next[i] = j;\n        }\n        else\n            j = next[j];\n    }\n}\n\nint main(void)\n{\n    char T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    scanf(\"%99s\", T);\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "abcabc\n",
+      "explanation": "get_next 用\"自己与自己匹配\"的方式求 next：next[1]=0，之后若 T[i-1]==T[j-1] 则 i、j 同时后移并令 next[i]=j，否则 j 回退到 next[j]。对 abcabc 依次得 next = 0 1 1 1 2 3，含义是失配时模式串应把第 next[j] 个字符对准主串当前位置继续比较。易错点：数组下标从 1 开始，故代码里访问字符要用 T[i-1]；next 值比最长相等前后缀长度大 1。",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-002",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用朴素 BF 算法实现模式匹配（主串与模式串下标均从 0 开始，返回 1 起始的位置）。请填写空白。\n```\n#include <stdio.h>\n#include <string.h>\n\nint Index(const char S[], const char T[])\n{\n    int n = (int)strlen(S), m = (int)strlen(T), i = 0, j = 0;\n\n    if (m == 0 || m > n)\n        return 0;\n    while (i < n && j < m)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            i++;\n            j++;\n        }\n        else\n        {\n            /*__BLANK_2__*/;\n            /*__BLANK_3__*/;\n        }\n    }\n    if (/*__BLANK_4__*/)\n        return i - m + 1;\n    return 0;\n}\n\nint main(void)\n{\n    char S[100], T[100];\n\n    scanf(\"%99s %99s\", S, T);\n    printf(\"%d\\n\", Index(S, T));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "S[i] == T[j]",
+          "accepted": [
+            "S[i]==T[j]"
+          ],
+          "hint": "字符相等则同时后移"
+        },
+        {
+          "index": 2,
+          "answer": "i = i - j + 1;",
+          "accepted": [
+            "i = i - j + 1"
+          ],
+          "hint": "主串指针回溯到本趟起点的下一位"
+        },
+        {
+          "index": 3,
+          "answer": "j = 0;",
+          "accepted": [
+            "j=0;"
+          ],
+          "hint": "模式串从头再比"
+        },
+        {
+          "index": 4,
+          "answer": "j >= m",
+          "accepted": [
+            "j == m"
+          ],
+          "hint": "模式串全部匹配成功"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <string.h>\n\nint Index(const char S[], const char T[])\n{\n    int n = (int)strlen(S), m = (int)strlen(T), i = 0, j = 0;\n\n    if (m == 0 || m > n)\n        return 0;\n    while (i < n && j < m)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            i++;\n            j++;\n        }\n        else\n        {\n            /*__BLANK_2__*/;\n            /*__BLANK_3__*/;\n        }\n    }\n    if (/*__BLANK_4__*/)\n        return i - m + 1;\n    return 0;\n}\n\nint main(void)\n{\n    char S[100], T[100];\n\n    scanf(\"%99s %99s\", S, T);\n    printf(\"%d\\n\", Index(S, T));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <string.h>\n\nint Index(const char S[], const char T[])\n{\n    int n = (int)strlen(S), m = (int)strlen(T), i = 0, j = 0;\n\n    if (m == 0 || m > n)\n        return 0;\n    while (i < n && j < m)\n    {\n        if (S[i] == T[j])\n        {\n            i++;\n            j++;\n        }\n        else\n        {\n            i = i - j + 1;;\n            j = 0;;\n        }\n    }\n    if (j >= m)\n        return i - m + 1;\n    return 0;\n}\n\nint main(void)\n{\n    char S[100], T[100];\n\n    scanf(\"%99s %99s\", S, T);\n    printf(\"%d\\n\", Index(S, T));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "ababcabcacbab abcac\n",
+          "expected": "6",
+          "note": "经典算例，位置 6"
+        },
+        {
+          "stdin": "hello world\n",
+          "expected": "0",
+          "note": "不存在，返回 0"
+        },
+        {
+          "stdin": "aaa aa\n",
+          "expected": "1",
+          "note": "重叠匹配，位置 1"
+        }
+      ],
+      "explanation": "BF 的核心是失配后的两次回退：主串指针回到 i-j+1（本趟起点的下一个位置），模式串指针归零。循环退出后若 j 达到 m 说明匹配成功，起始下标为 i-m，返回 1 起始位置即 i-m+1。最坏时间复杂度 O(n×m)。易错点：主串回溯写成 i++ 会漏掉可能的匹配位置；判定成功要用 j>=m 而不是 i>=n。",
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-003",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "下列程序实现 KMP 的 next 数组求解，并输出模式串每个位置对应的 next 值（下标从 1 开始）。请填写空白。\n```\n#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    /*__BLANK_1__*/;\n    while (i < m)\n    {\n        if (/*__BLANK_2__*/ || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            /*__BLANK_3__*/;\n        }\n        else\n            /*__BLANK_4__*/;\n    }\n}\n\nint main(void)\n{\n    char T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    scanf(\"%99s\", T);\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "next[1] = 0;",
+          "accepted": [
+            "next[1]=0;"
+          ],
+          "hint": "约定第 1 个字符失配时模式串后移一位"
+        },
+        {
+          "index": 2,
+          "answer": "j == 0",
+          "accepted": [
+            "j==0"
+          ],
+          "hint": "j 为 0 表示无可匹配前缀，直接推进"
+        },
+        {
+          "index": 3,
+          "answer": "next[i] = j;",
+          "accepted": [
+            "next[i]=j"
+          ],
+          "hint": "j 即最长相等前后缀长度加 1"
+        },
+        {
+          "index": 4,
+          "answer": "j = next[j];",
+          "accepted": [
+            "j=next[j];"
+          ],
+          "hint": "j 回退，i 不动"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    /*__BLANK_1__*/;\n    while (i < m)\n    {\n        if (/*__BLANK_2__*/ || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            /*__BLANK_3__*/;\n        }\n        else\n            /*__BLANK_4__*/;\n    }\n}\n\nint main(void)\n{\n    char T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    scanf(\"%99s\", T);\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    next[1] = 0;;\n    while (i < m)\n    {\n        if (j == 0 || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            next[i] = j;;\n        }\n        else\n            j = next[j];;\n    }\n}\n\nint main(void)\n{\n    char T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    scanf(\"%99s\", T);\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abcabc\n",
+          "expected": "0 1 1 1 2 3",
+          "note": "next = 0 1 1 1 2 3"
+        },
+        {
+          "stdin": "aabaa\n",
+          "expected": "0 1 2 1 2",
+          "note": "next = 0 1 2 1 2"
+        },
+        {
+          "stdin": "a\n",
+          "expected": "0",
+          "note": "边界：单字符，next = 0"
+        }
+      ],
+      "explanation": "求 next 的过程相当于模式串自己匹配自己：j 表示当前已匹配的前缀长度，若 T[i-1]==T[j-1] 则前缀可延长一位（i++、j++、next[i]=j），否则 j 跳到 next[j] 继续尝试更短的相等前后缀。i 永不回退，故求 next 的复杂度是 O(m)。易错点：j==0 必须作为\"直接推进\"的条件之一，否则会死循环或漏解。",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-pg-001",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "请实现完整的 KMP 模式匹配程序：读入主串 S 与模式串 T（均不含空格），先输出 T 的 next 数组（下标从 1 开始，空格分隔），再输出 T 在 S 中首次出现的位置（1 起始，不存在输出 0）。要求主串指针在匹配过程中不回溯。\n\n输入格式：一行两个不含空格的字符串，第一个是主串 S（长度 ≤ 99），第二个是模式串 T（长度 ≤ 99）。\n\n输出格式：两行：第一行是 T 的 next 数组，各值用空格分隔；第二行是匹配位置（1 起始，不存在为 0）。",
+      "testCases": [
+        {
+          "stdin": "ababcabcacbab abcac\n",
+          "expected": "0 1 1 1 2\n6",
+          "note": "next = 0 1 1 1 2，位置 6"
+        },
+        {
+          "stdin": "hello hello\n",
+          "expected": "0 1 1 1 1\n1",
+          "note": "完全相同，位置 1"
+        },
+        {
+          "stdin": "abc abcd\n",
+          "expected": "0 1 1 1\n0",
+          "note": "边界：模式串长于主串，位置 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <string.h>\n\n#define MAXLEN 100\n\nvoid get_next(const char T[], int next[])\n{\n    int i = 1, j = 0, m = (int)strlen(T);\n\n    next[1] = 0;\n    while (i < m)\n    {\n        if (j == 0 || T[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n            next[i] = j;\n        }\n        else\n            j = next[j];\n    }\n}\n\nint Index_KMP(const char S[], const char T[], const int next[])\n{\n    int i = 1, j = 1, n = (int)strlen(S), m = (int)strlen(T);\n\n    while (i <= n && j <= m)\n    {\n        if (j == 0 || S[i - 1] == T[j - 1])\n        {\n            i++;\n            j++;\n        }\n        else\n            j = next[j];\n    }\n    if (j > m)\n        return i - m;\n    return 0;\n}\n\nint main(void)\n{\n    char S[MAXLEN], T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    if (scanf(\"%99s %99s\", S, T) != 2)\n        return 1;\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    printf(\"%d\\n\", Index_KMP(S, T, next));\n    return 0;\n}",
+      "input_format": "一行两个不含空格的字符串，第一个是主串 S（长度 ≤ 99），第二个是模式串 T（长度 ≤ 99）。",
+      "output_format": "两行：第一行是 T 的 next 数组，各值用空格分隔；第二行是匹配位置（1 起始，不存在为 0）。",
+      "code_starter": "#include <stdio.h>\n#include <string.h>\n#define MAXLEN 100\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    char S[MAXLEN], T[MAXLEN];\n    int next[MAXLEN], i, m;\n\n    if (scanf(\"%99s %99s\", S, T) != 2)\n        return 1;\n    m = (int)strlen(T);\n    get_next(T, next);\n    for (i = 1; i <= m; i++)\n        printf(\"%d \", next[i]);\n    printf(\"\\n\");\n    printf(\"%d\\n\", Index_KMP(S, T, next));\n    return 0;\n}",
+      "explanation": "KMP 由两部分组成：O(m) 求 next 数组、O(n) 完成匹配，总复杂度 O(n+m)。匹配时若 S[i-1] != T[j-1]，则令 j = next[j]（模式串右移，等价于用已匹配的后缀对齐前缀），主串指针 i 永不回退；j 退到 0 表示模式串整体右移一位。成功时 j > m，起始位置为 i-m。易错点：next 与字符串下标的 0/1 起始差异是最常见的错误来源。",
+      "tags": [
+        "KMP",
+        "模式匹配"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-004",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 计算 A[rows][cols] 中 A[i][j] 的地址；rm 为 1 表示行优先，0 表示列优先 */\nlong Address(long base, int rows, int cols, int size, int i, int j, int rm)\n{\n    long offset;\n\n    if (rm)\n        offset = (long)(i * cols + j) * size;\n    else\n        offset = (long)(j * rows + i) * size;\n    return base + offset;\n}\n\nint main(void)\n{\n    long base;\n    int rows, cols, size, i, j, rm;\n\n    scanf(\"%ld %d %d %d %d %d %d\", &base, &rows, &cols, &size, &i, &j, &rm);\n    printf(\"%ld\\n\", Address(base, rows, cols, size, i, j, rm));\n    return 0;\n}\n```\n运行时输入：\n```\n100 10 20 4 3 5 1\n```",
+      "answer": "360",
+      "code": "#include <stdio.h>\n\n/* 计算 A[rows][cols] 中 A[i][j] 的地址；rm 为 1 表示行优先，0 表示列优先 */\nlong Address(long base, int rows, int cols, int size, int i, int j, int rm)\n{\n    long offset;\n\n    if (rm)\n        offset = (long)(i * cols + j) * size;\n    else\n        offset = (long)(j * rows + i) * size;\n    return base + offset;\n}\n\nint main(void)\n{\n    long base;\n    int rows, cols, size, i, j, rm;\n\n    scanf(\"%ld %d %d %d %d %d %d\", &base, &rows, &cols, &size, &i, &j, &rm);\n    printf(\"%ld\\n\", Address(base, rows, cols, size, i, j, rm));\n    return 0;\n}",
+      "stdin": "100 10 20 4 3 5 1\n",
+      "explanation": "输入表示：基址 100、10 行 20 列、元素 4 字节、求 A[3][5]、行优先。行优先时 A[i][j] 前有 i*cols + j = 3*20 + 5 = 65 个元素，地址 = 100 + 65*4 = 360。若 rm 为 0（列优先）则前面有 j*rows + i 个元素，公式完全不同。易错点：乘的是\"每行元素个数\"即列数；下标若从 1 开始需先减 1 再代入公式。",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-004",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序由元素地址反求其在二维数组中的下标（rm=1 行优先，rm=0 列优先），请填写 4 处空白使程序功能完整。\n```\n#include <stdio.h>\n\n/* 二维数组 A[rows][cols] 按 rm 方式顺序存储：rm=1 行优先，rm=0 列优先。\n   基址 base，每个元素占 size 字节。由地址 addr 反求下标 i、j：\n   地址不合法（未对齐或越界）返回 0，合法返回 1。 */\nint Locate(long base, int rows, int cols, int size, long addr, int rm, int *pi, int *pj)\n{\n    long off;\n    int total = rows * cols;\n\n    if (size <= 0 || rows <= 0 || cols <= 0)\n        return 0;\n    if (addr < base || (addr - base) % size != 0)\n        return 0;\n    off = /*__BLANK_1__*/;\n    if (off >= total)\n        return 0;\n    if (rm)\n    {\n        *pi = /*__BLANK_2__*/;\n        *pj = /*__BLANK_3__*/;\n    }\n    else\n    {\n        *pj = off / rows;\n        *pi = /*__BLANK_4__*/;\n    }\n    return 1;\n}\n\nint main(void)\n{\n    long base, addr;\n    int rows, cols, size, rm, i, j;\n\n    if (scanf(\"%ld %d %d %d %ld %d\", &base, &rows, &cols, &size, &addr, &rm) != 6)\n        return 1;\n    if (Locate(base, rows, cols, size, addr, rm, &i, &j))\n        printf(\"A[%d][%d]\\n\", i, j);\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(addr - base) / size",
+          "accepted": [
+            "(addr-base)/size"
+          ],
+          "hint": "元素序号 = 偏移字节数 / 元素大小"
+        },
+        {
+          "index": 2,
+          "answer": "off / cols",
+          "accepted": [
+            "off/cols"
+          ],
+          "hint": "行优先：行下标 = 序号 / 列数"
+        },
+        {
+          "index": 3,
+          "answer": "off % cols",
+          "accepted": [
+            "off%cols"
+          ],
+          "hint": "行优先：列下标 = 序号 % 列数"
+        },
+        {
+          "index": 4,
+          "answer": "off % rows",
+          "accepted": [
+            "off%rows"
+          ],
+          "hint": "列优先：行下标 = 序号 % 行数"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n/* 二维数组 A[rows][cols] 按 rm 方式顺序存储：rm=1 行优先，rm=0 列优先。\n   基址 base，每个元素占 size 字节。由地址 addr 反求下标 i、j：\n   地址不合法（未对齐或越界）返回 0，合法返回 1。 */\nint Locate(long base, int rows, int cols, int size, long addr, int rm, int *pi, int *pj)\n{\n    long off;\n    int total = rows * cols;\n\n    if (size <= 0 || rows <= 0 || cols <= 0)\n        return 0;\n    if (addr < base || (addr - base) % size != 0)\n        return 0;\n    off = /*__BLANK_1__*/;\n    if (off >= total)\n        return 0;\n    if (rm)\n    {\n        *pi = /*__BLANK_2__*/;\n        *pj = /*__BLANK_3__*/;\n    }\n    else\n    {\n        *pj = off / rows;\n        *pi = /*__BLANK_4__*/;\n    }\n    return 1;\n}\n\nint main(void)\n{\n    long base, addr;\n    int rows, cols, size, rm, i, j;\n\n    if (scanf(\"%ld %d %d %d %ld %d\", &base, &rows, &cols, &size, &addr, &rm) != 6)\n        return 1;\n    if (Locate(base, rows, cols, size, addr, rm, &i, &j))\n        printf(\"A[%d][%d]\\n\", i, j);\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n/* 二维数组 A[rows][cols] 按 rm 方式顺序存储：rm=1 行优先，rm=0 列优先。\n   基址 base，每个元素占 size 字节。由地址 addr 反求下标 i、j：\n   地址不合法（未对齐或越界）返回 0，合法返回 1。 */\nint Locate(long base, int rows, int cols, int size, long addr, int rm, int *pi, int *pj)\n{\n    long off;\n    int total = rows * cols;\n\n    if (size <= 0 || rows <= 0 || cols <= 0)\n        return 0;\n    if (addr < base || (addr - base) % size != 0)\n        return 0;\n    off = (addr - base) / size;\n    if (off >= total)\n        return 0;\n    if (rm)\n    {\n        *pi = off / cols;\n        *pj = off % cols;\n    }\n    else\n    {\n        *pj = off / rows;\n        *pi = off % rows;\n    }\n    return 1;\n}\n\nint main(void)\n{\n    long base, addr;\n    int rows, cols, size, rm, i, j;\n\n    if (scanf(\"%ld %d %d %d %ld %d\", &base, &rows, &cols, &size, &addr, &rm) != 6)\n        return 1;\n    if (Locate(base, rows, cols, size, addr, rm, &i, &j))\n        printf(\"A[%d][%d]\\n\", i, j);\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "100 3 4 4 120 1\n",
+          "expected": "A[1][1]",
+          "note": "行优先：偏移 20 字节 → 序号 5 → 行 1 列 1"
+        },
+        {
+          "stdin": "100 3 4 4 120 0\n",
+          "expected": "A[2][1]",
+          "note": "列优先：同一地址 → 行 2 列 1"
+        },
+        {
+          "stdin": "0 2 3 4 44 1\n",
+          "expected": "invalid",
+          "note": "边界：序号 11 超出 2×3=6 个元素"
+        },
+        {
+          "stdin": "100 1 1 4 100 1\n",
+          "expected": "A[0][0]",
+          "note": "边界：1×1 数组的基址本身"
+        },
+        {
+          "stdin": "100 3 4 4 102 1\n",
+          "expected": "invalid",
+          "note": "边界：地址未按元素大小对齐"
+        }
+      ],
+      "explanation": "地址与下标互为逆运算：偏移字节数 addr-base 除以元素大小 size 得到线性序号 off（从 0 开始）。行优先时 off = i*cols + j，故 i = off/cols、j = off%cols；列优先时 off = j*rows + i，故 j = off/rows、i = off%rows。程序先用取余判断地址是否落在元素边界上，再用 off >= rows*cols 判越界。易错点：除数与模数取的是\"另一维\"的长度——行优先除以列数，列优先除以行数，混淆会得到行列颠倒的下标；另外下标从 1 开始的教材公式必须先减 1 再代入。",
+      "tags": [
+        "地址计算",
+        "行优先",
+        "列优先"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-02"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-005",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序把 5 阶对称矩阵的下三角按行优先压缩存储，并能取出任意位置的元素，请填写 4 处空白。\n```\n#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶对称矩阵 A 的下三角（含主对角线）按行优先压缩存入 B */\nvoid Compress(int A[][N], int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (/*__BLANK_1__*/; j <= i; j++)\n            /*__BLANK_2__*/\n}\n\n/* 取对称矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int i, int j)\n{\n    int t;\n\n    if (i < j)\n    {\n        t = i;\n        i = j;\n        /*__BLANK_3__*/\n    }\n    /*__BLANK_4__*/\n}\n\nint main(void)\n{\n    int A[N][N], B[M];\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    Compress(A, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j = 0",
+          "accepted": [
+            "j=0"
+          ],
+          "hint": "内层列下标从 0 开始"
+        },
+        {
+          "index": 2,
+          "answer": "B[k++] = A[i][j];",
+          "accepted": [
+            "B[k++]=A[i][j];",
+            "B[k] = A[i][j]; k++;"
+          ],
+          "hint": "顺序存入并后移"
+        },
+        {
+          "index": 3,
+          "answer": "j = t;",
+          "accepted": [
+            "j=t;"
+          ],
+          "hint": "交换 i、j 化到下三角"
+        },
+        {
+          "index": 4,
+          "answer": "return B[i * (i + 1) / 2 + j];",
+          "accepted": [
+            "return B[i*(i+1)/2+j];"
+          ],
+          "hint": "下三角元素的下标公式"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶对称矩阵 A 的下三角（含主对角线）按行优先压缩存入 B */\nvoid Compress(int A[][N], int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (/*__BLANK_1__*/; j <= i; j++)\n            /*__BLANK_2__*/\n}\n\n/* 取对称矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int i, int j)\n{\n    int t;\n\n    if (i < j)\n    {\n        t = i;\n        i = j;\n        /*__BLANK_3__*/\n    }\n    /*__BLANK_4__*/\n}\n\nint main(void)\n{\n    int A[N][N], B[M];\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    Compress(A, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶对称矩阵 A 的下三角（含主对角线）按行优先压缩存入 B */\nvoid Compress(int A[][N], int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j <= i; j++)\n            B[k++] = A[i][j];\n}\n\n/* 取对称矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int i, int j)\n{\n    int t;\n\n    if (i < j)\n    {\n        t = i;\n        i = j;\n        j = t;\n    }\n    return B[i * (i + 1) / 2 + j];\n}\n\nint main(void)\n{\n    int A[N][N], B[M];\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    Compress(A, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5\n2 6 7 8 9\n3 7 10 11 12\n4 8 11 13 14\n5 9 12 14 15\n",
+          "expected": "1 2 3 4 5\n2 6 7 8 9\n3 7 10 11 12\n4 8 11 13 14\n5 9 12 14 15",
+          "note": "标准对称矩阵，还原后应与输入一致"
+        },
+        {
+          "stdin": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n",
+          "expected": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0",
+          "note": "边界：全零矩阵"
+        },
+        {
+          "stdin": "1 0 0 0 0\n0 2 0 0 0\n0 0 3 0 0\n0 0 0 4 0\n0 0 0 0 5\n",
+          "expected": "1 0 0 0 0\n0 2 0 0 0\n0 0 3 0 0\n0 0 0 4 0\n0 0 0 0 5",
+          "note": "边界：对角矩阵"
+        },
+        {
+          "stdin": "1 9 9 9 9\n2 6 9 9 9\n3 7 10 9 9\n4 8 11 13 9\n5 9 12 14 15\n",
+          "expected": "1 2 3 4 5\n2 6 7 8 9\n3 7 10 11 12\n4 8 11 13 14\n5 9 12 14 15",
+          "note": "上三角是垃圾值：只存下三角，取值仍正确"
+        }
+      ],
+      "explanation": "对称矩阵满足 A[i][j]=A[j][i]，只需存下三角（含主对角线）共 n(n+1)/2 = 15 个元素。按行优先压缩时下三角元素 A[i][j]（i>=j）对应 B[i(i+1)/2 + j]，其中 i(i+1)/2 是前 i 行的元素总数。取值时若 i<j，先用临时变量交换 i、j 把它化到下三角，再套同一公式。易错点：一是忘记交换，i<j 时会算出错误下标甚至越界；二是把公式误记为 i(i-1)/2 + j，那是上三角按行压缩的口径；三是下标从 1 开始时公式要相应改成 i(i+1)/2 + j - 1。",
+      "tags": [
+        "对称矩阵",
+        "压缩存储",
+        "下三角"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-005",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#define N 5\n\n/* 三对角矩阵：只有 |i-j| <= 1 的元素可能非零，3N-2 个元素按行优先\n   压缩存入 B[0..3N-3]，下标从 0 开始 */\nint Get(const int B[], int i, int j)\n{\n    if (i < 0 || i >= N || j < 0 || j >= N)\n        return 0;\n    if (i - j > 1 || j - i > 1)\n        return 0;\n    return B[2 * i + j];\n}\n\nint main(void)\n{\n    int B[3 * N - 2];\n    int i, j, k;\n\n    for (k = 0; k < 3 * N - 2; k++)\n        if (scanf(\"%d\", &B[k]) != 1)\n            return 1;\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n1 2 3 4 5 6 7 8 9 10 11 12 13\n```",
+      "answer": "1 2 0 0 0\n3 4 5 0 0\n0 6 7 8 0\n0 0 9 10 11\n0 0 0 12 13",
+      "code": "#include <stdio.h>\n\n#define N 5\n\n/* 三对角矩阵：只有 |i-j| <= 1 的元素可能非零，3N-2 个元素按行优先\n   压缩存入 B[0..3N-3]，下标从 0 开始 */\nint Get(const int B[], int i, int j)\n{\n    if (i < 0 || i >= N || j < 0 || j >= N)\n        return 0;\n    if (i - j > 1 || j - i > 1)\n        return 0;\n    return B[2 * i + j];\n}\n\nint main(void)\n{\n    int B[3 * N - 2];\n    int i, j, k;\n\n    for (k = 0; k < 3 * N - 2; k++)\n        if (scanf(\"%d\", &B[k]) != 1)\n            return 1;\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "1 2 3 4 5 6 7 8 9 10 11 12 13\n",
+      "explanation": "三对角（带状）矩阵只有 |i-j| <= 1 的元素可能非零，5 阶时共 3N-2 = 13 个，按行优先压缩后下标从 0 开始时 A[i][j] 对应 B[2i+j]：首行占 2 个、中间每行占 3 个、末行占 2 个，累加即得该式。程序先判下标越界，再判是否落在三条对角线之外，两种情况都返回 0。输入 1..13 时主对角线依次是 1、4、7、10、13。易错点：一是把 2i+j 误记成 3i+j，那是\"每行都按 3 个对齐\"的口径，忽略了首行只有 2 个元素；二是忘记带外元素返回 0 而直接访问 B，会读到未初始化的存储。",
+      "tags": [
+        "三对角矩阵",
+        "带状矩阵",
+        "压缩存储"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-006",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序把 5 阶上三角矩阵（含主对角线）按行优先压缩存储，下三角的公共常量单独存放，请填写 4 处空白。\n```\n#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶上三角矩阵 A（含主对角线）按行优先压缩存入 B[0..M-1]，\n   下三角的公共常量 c 存入 B[M] */\nvoid Compress(int A[][N], int c, int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (/*__BLANK_1__*/; j < N; j++)\n            /*__BLANK_2__*/\n    /*__BLANK_3__*/\n}\n\n/* 取上三角矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int c, int i, int j)\n{\n    if (i > j)\n        return c;\n    /*__BLANK_4__*/\n}\n\nint main(void)\n{\n    int A[N][N], B[M + 1], c;\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    if (scanf(\"%d\", &c) != 1)\n        return 1;\n    Compress(A, c, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, c, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j = i",
+          "accepted": [
+            "j=i"
+          ],
+          "hint": "只存上三角，列下标从 i 开始"
+        },
+        {
+          "index": 2,
+          "answer": "B[k++] = A[i][j];",
+          "accepted": [
+            "B[k++]=A[i][j];",
+            "B[k] = A[i][j]; k++;"
+          ],
+          "hint": "顺序存入并后移"
+        },
+        {
+          "index": 3,
+          "answer": "B[k] = c;",
+          "accepted": [
+            "B[k]=c;",
+            "B[M] = c;"
+          ],
+          "hint": "末尾存放公共常量 c"
+        },
+        {
+          "index": 4,
+          "answer": "return B[i * (N - 1) - i * (i - 1) / 2 + j];",
+          "accepted": [
+            "return B[i*(N-1)-i*(i-1)/2+j];",
+            "return B[i * (N - 1) - i * (i - 1) / 2 + j];"
+          ],
+          "hint": "上三角元素下标公式"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶上三角矩阵 A（含主对角线）按行优先压缩存入 B[0..M-1]，\n   下三角的公共常量 c 存入 B[M] */\nvoid Compress(int A[][N], int c, int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (/*__BLANK_1__*/; j < N; j++)\n            /*__BLANK_2__*/\n    /*__BLANK_3__*/\n}\n\n/* 取上三角矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int c, int i, int j)\n{\n    if (i > j)\n        return c;\n    /*__BLANK_4__*/\n}\n\nint main(void)\n{\n    int A[N][N], B[M + 1], c;\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    if (scanf(\"%d\", &c) != 1)\n        return 1;\n    Compress(A, c, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, c, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define N 5\n#define M (N * (N + 1) / 2)\n\n/* 把 N 阶上三角矩阵 A（含主对角线）按行优先压缩存入 B[0..M-1]，\n   下三角的公共常量 c 存入 B[M] */\nvoid Compress(int A[][N], int c, int B[])\n{\n    int i, j, k = 0;\n\n    for (i = 0; i < N; i++)\n        for (j = i; j < N; j++)\n            B[k++] = A[i][j];\n    B[k] = c;\n}\n\n/* 取上三角矩阵的第 i 行第 j 列元素，下标从 0 开始 */\nint Get(const int B[], int c, int i, int j)\n{\n    if (i > j)\n        return c;\n    return B[i * (N - 1) - i * (i - 1) / 2 + j];\n}\n\nint main(void)\n{\n    int A[N][N], B[M + 1], c;\n    int i, j;\n\n    for (i = 0; i < N; i++)\n        for (j = 0; j < N; j++)\n            if (scanf(\"%d\", &A[i][j]) != 1)\n                return 1;\n    if (scanf(\"%d\", &c) != 1)\n        return 1;\n    Compress(A, c, B);\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d \", Get(B, c, i, j));\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5\n0 6 7 8 9\n0 0 10 11 12\n0 0 0 13 14\n0 0 0 0 15\n-1\n",
+          "expected": "1 2 3 4 5\n-1 6 7 8 9\n-1 -1 10 11 12\n-1 -1 -1 13 14\n-1 -1 -1 -1 15",
+          "note": "下三角全部输出常量 -1"
+        },
+        {
+          "stdin": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0\n",
+          "expected": "0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0\n0 0 0 0 0",
+          "note": "边界：全零矩阵，c 也是 0"
+        },
+        {
+          "stdin": "1 0 0 0 0\n0 1 0 0 0\n0 0 1 0 0\n0 0 0 1 0\n0 0 0 0 1\n9\n",
+          "expected": "1 0 0 0 0\n9 1 0 0 0\n9 9 1 0 0\n9 9 9 1 0\n9 9 9 9 1",
+          "note": "边界：单位矩阵，下三角取 c=9"
+        }
+      ],
+      "explanation": "上三角矩阵第 i 行存 N-i 个元素，(i,j)（i<=j）之前共有 i*N - i(i-1)/2 个，再加同行内偏移 j-i，化简得 k = i(N-1) - i(i-1)/2 + j；n 阶上三角压缩后占 n(n+1)/2 个单元，下三角的公共常量 c 额外占 1 个，共 16 个，存储量由 25 降到 16。取值时 i>j 直接返回 c，不必查表。易错点：一是照搬下三角公式 i(i+1)/2 + j；二是漏存 c，取值时越界访问 B[M] 之外的单元；三是常量区放在序列开头会使全部下标整体偏移 1。",
+      "tags": [
+        "上三角矩阵",
+        "压缩存储",
+        "地址公式"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-006",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#define MAXSIZE 50\n\ntypedef struct\n{\n    int i;      /* 行下标，从 1 开始 */\n    int j;      /* 列下标，从 1 开始 */\n    int e;      /* 元素值 */\n} Triple;\n\ntypedef struct\n{\n    Triple data[MAXSIZE + 1];\n    int mu, nu, tu;     /* 行数、列数、非零元素个数 */\n} TSMatrix;\n\n/* 按行序为主序读入矩阵，建立三元组顺序表 */\nvoid CreateSMatrix(TSMatrix *M)\n{\n    int r, c, x;\n\n    if (scanf(\"%d %d\", &M->mu, &M->nu) != 2)\n    {\n        M->mu = 0;\n        M->nu = 0;\n        M->tu = 0;\n        return;\n    }\n    M->tu = 0;\n    for (r = 1; r <= M->mu; r++)\n        for (c = 1; c <= M->nu; c++)\n        {\n            if (scanf(\"%d\", &x) != 1)\n                x = 0;\n            if (x != 0 && M->tu < MAXSIZE)\n            {\n                M->tu++;\n                M->data[M->tu].i = r;\n                M->data[M->tu].j = c;\n                M->data[M->tu].e = x;\n            }\n        }\n}\n\nint main(void)\n{\n    TSMatrix M;\n    int k;\n\n    CreateSMatrix(&M);\n    printf(\"%d %d %d\\n\", M.mu, M.nu, M.tu);\n    for (k = 1; k <= M.tu; k++)\n        printf(\"%d %d %d\\n\", M.data[k].i, M.data[k].j, M.data[k].e);\n    return 0;\n}\n```\n运行时输入：\n```\n3 4\n0 0 5 0\n1 0 0 2\n0 0 0 0\n```",
+      "answer": "3 4 3\n1 3 5\n2 1 1\n2 4 2",
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 50\n\ntypedef struct\n{\n    int i;      /* 行下标，从 1 开始 */\n    int j;      /* 列下标，从 1 开始 */\n    int e;      /* 元素值 */\n} Triple;\n\ntypedef struct\n{\n    Triple data[MAXSIZE + 1];\n    int mu, nu, tu;     /* 行数、列数、非零元素个数 */\n} TSMatrix;\n\n/* 按行序为主序读入矩阵，建立三元组顺序表 */\nvoid CreateSMatrix(TSMatrix *M)\n{\n    int r, c, x;\n\n    if (scanf(\"%d %d\", &M->mu, &M->nu) != 2)\n    {\n        M->mu = 0;\n        M->nu = 0;\n        M->tu = 0;\n        return;\n    }\n    M->tu = 0;\n    for (r = 1; r <= M->mu; r++)\n        for (c = 1; c <= M->nu; c++)\n        {\n            if (scanf(\"%d\", &x) != 1)\n                x = 0;\n            if (x != 0 && M->tu < MAXSIZE)\n            {\n                M->tu++;\n                M->data[M->tu].i = r;\n                M->data[M->tu].j = c;\n                M->data[M->tu].e = x;\n            }\n        }\n}\n\nint main(void)\n{\n    TSMatrix M;\n    int k;\n\n    CreateSMatrix(&M);\n    printf(\"%d %d %d\\n\", M.mu, M.nu, M.tu);\n    for (k = 1; k <= M.tu; k++)\n        printf(\"%d %d %d\\n\", M.data[k].i, M.data[k].j, M.data[k].e);\n    return 0;\n}",
+      "stdin": "3 4\n0 0 5 0\n1 0 0 2\n0 0 0 0\n",
+      "explanation": "三元组顺序表把每个非零元记为（行下标、列下标、值），并按\"行序为主序\"存放，表头 mu、nu、tu 分别是行数、列数与非零元个数。本例 3 行 4 列的矩阵有 3 个非零元，先输出表头 3 4 3，再依次输出 1 3 5、2 1 1、2 4 2。data[0] 单元被闲置，有效元素从下标 1 开始，这是严蔚敏/朱战立教材的常见约定。易错点：一是循环从 k=0 开始会打印未初始化的 data[0]；二是 tu=0 的全零矩阵只输出表头行；三是三元组虽然按行序排列，但已失去随机存取特性，取 A[i][j] 必须顺序查找。",
+      "tags": [
+        "稀疏矩阵",
+        "三元组顺序表",
+        "行序为主序"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cc-007",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序用快速转置算法求三元组顺序表表示的稀疏矩阵的转置，请填写 4 处空白。\n```\n#include <stdio.h>\n\n#define MAXSIZE 50\n\ntypedef struct\n{\n    int i;      /* 行下标，从 1 开始 */\n    int j;      /* 列下标，从 1 开始 */\n    int e;      /* 元素值 */\n} Triple;\n\ntypedef struct\n{\n    Triple data[MAXSIZE + 1];\n    int mu, nu, tu;     /* 行数、列数、非零元素个数 */\n} TSMatrix;\n\n/* 按行序为主序读入矩阵，建立三元组顺序表 */\nvoid CreateSMatrix(TSMatrix *M)\n{\n    int r, c, x;\n\n    if (scanf(\"%d %d\", &M->mu, &M->nu) != 2)\n    {\n        M->mu = 0;\n        M->nu = 0;\n        M->tu = 0;\n        return;\n    }\n    M->tu = 0;\n    for (r = 1; r <= M->mu; r++)\n        for (c = 1; c <= M->nu; c++)\n        {\n            if (scanf(\"%d\", &x) != 1)\n                x = 0;\n            if (x != 0 && M->tu < MAXSIZE)\n            {\n                M->tu++;\n                M->data[M->tu].i = r;\n                M->data[M->tu].j = c;\n                M->data[M->tu].e = x;\n            }\n        }\n}\n\n/* 快速转置：num[col] 为原矩阵每列非零元个数，\n   cpot[col] 为该列第一个非零元在 T->data 中的适当位置 */\nvoid FastTransposeSMatrix(const TSMatrix *M, TSMatrix *T)\n{\n    int col, t, p, q;\n    int num[MAXSIZE + 1], cpot[MAXSIZE + 1];\n\n    T->mu = M->nu;\n    T->nu = M->mu;\n    T->tu = M->tu;\n    if (T->tu == 0)\n        return;\n    for (col = 1; col <= M->nu; col++)\n        /*__BLANK_1__*/\n    for (t = 1; t <= M->tu; t++)\n    {\n        col = M->data[t].j;\n        /*__BLANK_2__*/\n    }\n    cpot[1] = 1;\n    for (col = 2; col <= M->nu; col++)\n        cpot[col] = cpot[col - 1] + num[col - 1];\n    for (p = 1; p <= M->tu; p++)\n    {\n        col = M->data[p].j;\n        q = /*__BLANK_3__*/;\n        T->data[q].i = M->data[p].j;\n        T->data[q].j = M->data[p].i;\n        T->data[q].e = M->data[p].e;\n        /*__BLANK_4__*/\n    }\n}\n\nint main(void)\n{\n    TSMatrix M, T;\n    int k;\n\n    CreateSMatrix(&M);\n    FastTransposeSMatrix(&M, &T);\n    printf(\"%d %d %d\\n\", T.mu, T.nu, T.tu);\n    for (k = 1; k <= T.tu; k++)\n        printf(\"%d %d %d\\n\", T.data[k].i, T.data[k].j, T.data[k].e);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "num[col] = 0;",
+          "accepted": [
+            "num[col]=0;"
+          ],
+          "hint": "每列非零元个数先清零"
+        },
+        {
+          "index": 2,
+          "answer": "num[col]++;",
+          "accepted": [
+            "num[col] += 1;",
+            "++num[col];"
+          ],
+          "hint": "统计该列的非零元个数"
+        },
+        {
+          "index": 3,
+          "answer": "cpot[col]",
+          "accepted": [
+            "cpot[col]"
+          ],
+          "hint": "该列当前的存放位置"
+        },
+        {
+          "index": 4,
+          "answer": "cpot[col]++;",
+          "accepted": [
+            "cpot[col] += 1;",
+            "++cpot[col];"
+          ],
+          "hint": "同列下一个元素的位置后移"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 50\n\ntypedef struct\n{\n    int i;      /* 行下标，从 1 开始 */\n    int j;      /* 列下标，从 1 开始 */\n    int e;      /* 元素值 */\n} Triple;\n\ntypedef struct\n{\n    Triple data[MAXSIZE + 1];\n    int mu, nu, tu;     /* 行数、列数、非零元素个数 */\n} TSMatrix;\n\n/* 按行序为主序读入矩阵，建立三元组顺序表 */\nvoid CreateSMatrix(TSMatrix *M)\n{\n    int r, c, x;\n\n    if (scanf(\"%d %d\", &M->mu, &M->nu) != 2)\n    {\n        M->mu = 0;\n        M->nu = 0;\n        M->tu = 0;\n        return;\n    }\n    M->tu = 0;\n    for (r = 1; r <= M->mu; r++)\n        for (c = 1; c <= M->nu; c++)\n        {\n            if (scanf(\"%d\", &x) != 1)\n                x = 0;\n            if (x != 0 && M->tu < MAXSIZE)\n            {\n                M->tu++;\n                M->data[M->tu].i = r;\n                M->data[M->tu].j = c;\n                M->data[M->tu].e = x;\n            }\n        }\n}\n\n/* 快速转置：num[col] 为原矩阵每列非零元个数，\n   cpot[col] 为该列第一个非零元在 T->data 中的适当位置 */\nvoid FastTransposeSMatrix(const TSMatrix *M, TSMatrix *T)\n{\n    int col, t, p, q;\n    int num[MAXSIZE + 1], cpot[MAXSIZE + 1];\n\n    T->mu = M->nu;\n    T->nu = M->mu;\n    T->tu = M->tu;\n    if (T->tu == 0)\n        return;\n    for (col = 1; col <= M->nu; col++)\n        /*__BLANK_1__*/\n    for (t = 1; t <= M->tu; t++)\n    {\n        col = M->data[t].j;\n        /*__BLANK_2__*/\n    }\n    cpot[1] = 1;\n    for (col = 2; col <= M->nu; col++)\n        cpot[col] = cpot[col - 1] + num[col - 1];\n    for (p = 1; p <= M->tu; p++)\n    {\n        col = M->data[p].j;\n        q = /*__BLANK_3__*/;\n        T->data[q].i = M->data[p].j;\n        T->data[q].j = M->data[p].i;\n        T->data[q].e = M->data[p].e;\n        /*__BLANK_4__*/\n    }\n}\n\nint main(void)\n{\n    TSMatrix M, T;\n    int k;\n\n    CreateSMatrix(&M);\n    FastTransposeSMatrix(&M, &T);\n    printf(\"%d %d %d\\n\", T.mu, T.nu, T.tu);\n    for (k = 1; k <= T.tu; k++)\n        printf(\"%d %d %d\\n\", T.data[k].i, T.data[k].j, T.data[k].e);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXSIZE 50\n\ntypedef struct\n{\n    int i;      /* 行下标，从 1 开始 */\n    int j;      /* 列下标，从 1 开始 */\n    int e;      /* 元素值 */\n} Triple;\n\ntypedef struct\n{\n    Triple data[MAXSIZE + 1];\n    int mu, nu, tu;     /* 行数、列数、非零元素个数 */\n} TSMatrix;\n\n/* 按行序为主序读入矩阵，建立三元组顺序表 */\nvoid CreateSMatrix(TSMatrix *M)\n{\n    int r, c, x;\n\n    if (scanf(\"%d %d\", &M->mu, &M->nu) != 2)\n    {\n        M->mu = 0;\n        M->nu = 0;\n        M->tu = 0;\n        return;\n    }\n    M->tu = 0;\n    for (r = 1; r <= M->mu; r++)\n        for (c = 1; c <= M->nu; c++)\n        {\n            if (scanf(\"%d\", &x) != 1)\n                x = 0;\n            if (x != 0 && M->tu < MAXSIZE)\n            {\n                M->tu++;\n                M->data[M->tu].i = r;\n                M->data[M->tu].j = c;\n                M->data[M->tu].e = x;\n            }\n        }\n}\n\n/* 快速转置：num[col] 为原矩阵每列非零元个数，\n   cpot[col] 为该列第一个非零元在 T->data 中的适当位置 */\nvoid FastTransposeSMatrix(const TSMatrix *M, TSMatrix *T)\n{\n    int col, t, p, q;\n    int num[MAXSIZE + 1], cpot[MAXSIZE + 1];\n\n    T->mu = M->nu;\n    T->nu = M->mu;\n    T->tu = M->tu;\n    if (T->tu == 0)\n        return;\n    for (col = 1; col <= M->nu; col++)\n        num[col] = 0;\n    for (t = 1; t <= M->tu; t++)\n    {\n        col = M->data[t].j;\n        num[col]++;\n    }\n    cpot[1] = 1;\n    for (col = 2; col <= M->nu; col++)\n        cpot[col] = cpot[col - 1] + num[col - 1];\n    for (p = 1; p <= M->tu; p++)\n    {\n        col = M->data[p].j;\n        q = cpot[col];\n        T->data[q].i = M->data[p].j;\n        T->data[q].j = M->data[p].i;\n        T->data[q].e = M->data[p].e;\n        cpot[col]++;\n    }\n}\n\nint main(void)\n{\n    TSMatrix M, T;\n    int k;\n\n    CreateSMatrix(&M);\n    FastTransposeSMatrix(&M, &T);\n    printf(\"%d %d %d\\n\", T.mu, T.nu, T.tu);\n    for (k = 1; k <= T.tu; k++)\n        printf(\"%d %d %d\\n\", T.data[k].i, T.data[k].j, T.data[k].e);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4\n0 0 5 0\n1 0 0 2\n0 0 0 0\n",
+          "expected": "4 3 3\n1 2 1\n3 1 5\n4 2 2",
+          "note": "3×4 转置成 4×3"
+        },
+        {
+          "stdin": "1 1\n0\n",
+          "expected": "1 1 0",
+          "note": "边界：无非零元，tu=0 时不做任何搬运"
+        },
+        {
+          "stdin": "2 2\n1 2\n3 4\n",
+          "expected": "2 2 4\n1 1 1\n1 2 3\n2 1 2\n2 2 4",
+          "note": "满矩阵：转置后仍按行序为主序"
+        },
+        {
+          "stdin": "2 3\n0 0 0\n0 0 7\n",
+          "expected": "3 2 1\n3 2 7",
+          "note": "边界：单个非零元在末行末列"
+        }
+      ],
+      "explanation": "快速转置用两个辅助数组把转置的时间从简单转置的 O(nu*tu) 降到 O(nu+tu)：num[col] 统计原矩阵每列非零元个数，cpot[col] 表示该列第一个非零元在转置表 data 中的存放位置，递推式 cpot[col] = cpot[col-1] + num[col-1]，且 cpot[1]=1。转置时逐个取出原表元素，放到 cpot[col] 处并把 cpot[col] 后移一位，同列元素因此仍按行号递增，结果满足行序为主序。易错点：一是放置后忘记 cpot[col]++，同列多个元素会互相覆盖；二是 num 未清零会得到随机值；三是转置后 mu 与 nu 要互换。",
+      "tags": [
+        "稀疏矩阵",
+        "快速转置",
+        "三元组顺序表"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "vizIds": [
+        "memory-array-layout"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch04-cr-007",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "下列程序递归求广义表的深度（每行输入一个广义表，输出其深度）。写出程序的运行结果。\n```\n#include <stdio.h>\n\n#define MAXLEN 100\n\n/* s 是广义表的字符串形式，如 \"(a,(b,c))\"；pos 为当前扫描位置 */\nint Depth(const char *s, int *pos)\n{\n    int max = 0, d;\n\n    (*pos)++;                       /* 跳过左括号 */\n    while (s[*pos] != '\\0' && s[*pos] != ')')\n    {\n        if (s[*pos] == '(')\n        {\n            d = Depth(s, pos);      /* 递归求子表深度 */\n            if (d > max)\n                max = d;\n        }\n        else\n            (*pos)++;               /* 原子结点，深度记 0 */\n        if (s[*pos] == ',')\n            (*pos)++;\n    }\n    (*pos)++;                       /* 跳过右括号 */\n    return max + 1;\n}\n\nint main(void)\n{\n    char s[MAXLEN];\n    int pos;\n\n    while (scanf(\"%99s\", s) == 1)\n    {\n        pos = 0;\n        printf(\"%d\\n\", Depth(s, &pos));\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n(a,(b,(c,d)))\n()\n(a,b)\n((a,b),(c,(d,e)),f)\n```",
+      "answer": "3\n1\n1\n3",
+      "code": "#include <stdio.h>\n\n#define MAXLEN 100\n\n/* s 是广义表的字符串形式，如 \"(a,(b,c))\"；pos 为当前扫描位置 */\nint Depth(const char *s, int *pos)\n{\n    int max = 0, d;\n\n    (*pos)++;                       /* 跳过左括号 */\n    while (s[*pos] != '\\0' && s[*pos] != ')')\n    {\n        if (s[*pos] == '(')\n        {\n            d = Depth(s, pos);      /* 递归求子表深度 */\n            if (d > max)\n                max = d;\n        }\n        else\n            (*pos)++;               /* 原子结点，深度记 0 */\n        if (s[*pos] == ',')\n            (*pos)++;\n    }\n    (*pos)++;                       /* 跳过右括号 */\n    return max + 1;\n}\n\nint main(void)\n{\n    char s[MAXLEN];\n    int pos;\n\n    while (scanf(\"%99s\", s) == 1)\n    {\n        pos = 0;\n        printf(\"%d\\n\", Depth(s, &pos));\n    }\n    return 0;\n}",
+      "stdin": "(a,(b,(c,d)))\n()\n(a,b)\n((a,b),(c,(d,e)),f)\n",
+      "explanation": "广义表的深度定义为括弧的最大重数：空表 () 的深度为 1，原子的深度为 0，非空表的深度等于各子表深度的最大值加 1。程序用 pos 作全局扫描指针，遇 ( 递归求子表深度并更新最大值，遇原子跳过一格，遇 , 跳过一格，遇 ) 结束本层并返回 max+1。四行输入依次为 (a,(b,(c,d))) 三层、() 一层、(a,b) 一层、((a,b),(c,(d,e)),f) 最深子表是 (c,(d,e)) 共两层再加外层为三层。易错点：把空表深度当成 0；递归返回后不跳过逗号会导致同一子表被反复扫描甚至死循环。",
+      "tags": [
+        "广义表",
+        "深度",
+        "递归"
+      ],
+      "knowledgeIds": [
+        "ds-ch04-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第4章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    }
+  ]
+}

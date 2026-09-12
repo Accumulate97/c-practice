@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "46b63689db20b4f0",
+  "content_sha": "e560c2533c99ff67",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1183,
+  "count": 1223,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -12483,6 +12483,538 @@
       "chapter": "第3章 栈和队列",
       "section": "3.6 栈与队列的应用",
       "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-001",
+      "file": "ds-ch04.json",
+      "title": "下列关于串的说法中",
+      "tags": [
+        "串",
+        "定义"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-002",
+      "file": "ds-ch04.json",
+      "title": "串的链式存储中",
+      "tags": [
+        "串",
+        "存储密度"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-001",
+      "file": "ds-ch04.json",
+      "title": "设串 S = \"datastructure\"",
+      "tags": [
+        "串",
+        "子串"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-003",
+      "file": "ds-ch04.json",
+      "title": "设主串长度为 n、模式串长度为 m",
+      "tags": [
+        "模式匹配",
+        "复杂度"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-004",
+      "file": "ds-ch04.json",
+      "title": "关于 KMP 算法的 next 数组",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-002",
+      "file": "ds-ch04.json",
+      "title": "模式串 p = \"abcabc\"",
+      "tags": [
+        "KMP",
+        "next",
+        "nextval"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-005",
+      "file": "ds-ch04.json",
+      "title": "主串 S = \"aaaaab\"",
+      "tags": [
+        "KMP",
+        "比较次数"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cx-001",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-006",
+      "file": "ds-ch04.json",
+      "title": "二维数组 A[1..8][1..10] 按列优先顺序存储",
+      "tags": [
+        "数组",
+        "地址计算",
+        "列优先"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-007",
+      "file": "ds-ch04.json",
+      "title": "数组一旦被定义",
+      "tags": [
+        "数组",
+        "特点"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-003",
+      "file": "ds-ch04.json",
+      "title": "三维数组 A[2][3][4] 按行优先存储",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-008",
+      "file": "ds-ch04.json",
+      "title": "一维数组采用顺序存储的主要优点是",
+      "tags": [
+        "数组",
+        "存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-009",
+      "file": "ds-ch04.json",
+      "title": "n 阶对称矩阵 A 只存储下三角",
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-004",
+      "file": "ds-ch04.json",
+      "title": "5 阶对称矩阵 A 的下三角",
+      "tags": [
+        "对称矩阵",
+        "压缩存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-010",
+      "file": "ds-ch04.json",
+      "title": "n 阶三对角矩阵",
+      "tags": [
+        "三对角矩阵",
+        "压缩存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-011",
+      "file": "ds-ch04.json",
+      "title": "n 阶上三角矩阵",
+      "tags": [
+        "上三角矩阵",
+        "压缩存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-012",
+      "file": "ds-ch04.json",
+      "title": "通常把满足下列哪个条件的矩阵称为稀疏矩阵？",
+      "tags": [
+        "稀疏矩阵",
+        "定义"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-013",
+      "file": "ds-ch04.json",
+      "title": "用三元组顺序表存储稀疏矩阵时",
+      "tags": [
+        "三元组",
+        "稀疏矩阵"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-005",
+      "file": "ds-ch04.json",
+      "title": "稀疏矩阵的三元组普通转置算法时间复杂度为 ____",
+      "tags": [
+        "稀疏矩阵",
+        "快速转置"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-014",
+      "file": "ds-ch04.json",
+      "title": "用十字链表存储稀疏矩阵时",
+      "tags": [
+        "十字链表",
+        "稀疏矩阵"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-015",
+      "file": "ds-ch04.json",
+      "title": "广义表 LS = ",
+      "tags": [
+        "广义表",
+        "长度",
+        "深度"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-fb-006",
+      "file": "ds-ch04.json",
+      "title": "广义表 A = ",
+      "tags": [
+        "广义表",
+        "表头",
+        "表尾"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-016",
+      "file": "ds-ch04.json",
+      "title": "广义表与线性表的本质区别在于",
+      "tags": [
+        "广义表",
+        "定义"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-sc-017",
+      "file": "ds-ch04.json",
+      "title": "已知广义表 A = ",
+      "tags": [
+        "广义表",
+        "递归定义"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-tf-001",
+      "file": "ds-ch04.json",
+      "title": "空表 ",
+      "tags": [
+        "广义表",
+        "空表"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-001",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "定长顺序串",
+        "存储密度"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-001",
+      "file": "ds-ch04.json",
+      "title": "下列程序实现定长顺序串",
+      "tags": [
+        "定长顺序串",
+        "子串",
+        "连接"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.1 串的定义与存储结构",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-002",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-003",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-002",
+      "file": "ds-ch04.json",
+      "title": "下列程序用朴素 BF 算法实现模式匹配",
+      "tags": [
+        "BF",
+        "模式匹配"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-003",
+      "file": "ds-ch04.json",
+      "title": "下列程序实现 KMP 的 next 数组求解",
+      "tags": [
+        "KMP",
+        "next"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-pg-001",
+      "file": "ds-ch04.json",
+      "title": "请实现完整的 KMP 模式匹配程序",
+      "tags": [
+        "KMP",
+        "模式匹配"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.2 串的模式匹配（BF 与 KMP）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-004",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "数组",
+        "地址计算"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-004",
+      "file": "ds-ch04.json",
+      "title": "下列程序由元素地址反求其在二维数组中的下标",
+      "tags": [
+        "地址计算",
+        "行优先",
+        "列优先"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.3 数组的顺序存储与地址计算",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-005",
+      "file": "ds-ch04.json",
+      "title": "下列程序把 5 阶对称矩阵的下三角按行优先压缩存储",
+      "tags": [
+        "对称矩阵",
+        "压缩存储",
+        "下三角"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-005",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "三对角矩阵",
+        "带状矩阵",
+        "压缩存储"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-006",
+      "file": "ds-ch04.json",
+      "title": "下列程序把 5 阶上三角矩阵",
+      "tags": [
+        "上三角矩阵",
+        "压缩存储",
+        "地址公式"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.4 特殊矩阵的压缩存储",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-006",
+      "file": "ds-ch04.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "稀疏矩阵",
+        "三元组顺序表",
+        "行序为主序"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cc-007",
+      "file": "ds-ch04.json",
+      "title": "下列程序用快速转置算法求三元组顺序表表示的稀疏矩阵的转置",
+      "tags": [
+        "稀疏矩阵",
+        "快速转置",
+        "三元组顺序表"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.5 稀疏矩阵的三元组与十字链表",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch04-cr-007",
+      "file": "ds-ch04.json",
+      "title": "下列程序递归求广义表的深度",
+      "tags": [
+        "广义表",
+        "深度",
+        "递归"
+      ],
+      "chapter": "第4章 串、数组和广义表",
+      "section": "4.6 广义表",
+      "type": "code_reading",
       "category": "ds"
     }
   ]
