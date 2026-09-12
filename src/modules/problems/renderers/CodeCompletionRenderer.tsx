@@ -240,7 +240,7 @@ export function CodeCompletionRenderer({ problem }: Props) {
                     className="rounded-md border px-2 py-1 text-xs"   /* 点击目标 ≥24px（WCAG 2.5.8） */
                     style={{
                       borderColor: active ? 'var(--color-brand)' : 'var(--border)',
-                      color: filled ? 'var(--fg-ok)' : 'var(--fg-muted)',
+                      color: active ? 'var(--fg)' : filled ? 'var(--fg-ok)' : 'var(--fg-muted)', // 阶段D 无障碍修正：选中态底色为 --code-selection，配 --fg-muted 对比度只有 3.5:1
                       background: active ? 'var(--code-selection)' : 'transparent',
                     }}
                     aria-label={`跳到空位 ${b.index}${b.hint ? '：' + b.hint : ''}`}

@@ -45,19 +45,23 @@ export function MasteryHeatmap({ index, records }: { index: ProblemIndex; record
         每格数字 = 已通过 / 该格题数（通过口径与上方统计表一致：曾经全绿即算）。颜色越绿掌握越好，红=做过还没通过，灰=未开始。
       </p>
       <div className="mt-3 overflow-x-auto">
-        <table className="border-collapse text-xs" data-role="heatmap-table">
+        <table
+            className="border-collapse text-xs"
+            data-role="heatmap-table"
+            aria-label="章节 × 题型掌握度热力图：每格数字为已通过题数 / 该格总题数"
+          >
           <thead>
             <tr>
-              <th className="sticky left-0 z-10 px-2 py-1 text-left font-medium" style={{ background: 'var(--bg-elev)', color: 'var(--fg-muted)' }}>章节 \ 题型</th>
+              <th scope="col" className="sticky left-0 z-10 px-2 py-1 text-left font-medium" style={{ background: 'var(--bg-elev)', color: 'var(--fg-muted)' }}>章节 \ 题型</th>
               {data.types.map((t) => (
-                <th key={t} className="px-2 py-1 text-center font-medium whitespace-nowrap" style={{ color: 'var(--fg-muted)' }}>{typeLabel(t)}</th>
+                <th key={t} scope="col" className="px-2 py-1 text-center font-medium whitespace-nowrap" style={{ color: 'var(--fg-muted)' }}>{typeLabel(t)}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {data.rows.map((row) => (
               <tr key={row.key} data-role="heatmap-row" data-chapter={row.key}>
-                <th className="sticky left-0 z-10 whitespace-nowrap px-2 py-1 text-left font-normal" style={{ background: 'var(--bg-elev)' }} title={row.key}>{row.label}</th>
+                <th scope="row" className="sticky left-0 z-10 whitespace-nowrap px-2 py-1 text-left font-normal" style={{ background: 'var(--bg-elev)' }} title={row.key}>{row.label}</th>
                 {data.types.map((t) => {
                   const c = row.cells.get(t)!
                   return (

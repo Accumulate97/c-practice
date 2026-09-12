@@ -153,3 +153,8 @@ console.log('\n════ 模块 4 UI 验收汇总 ════')
 console.log(`  ${checks.length} 项检查，失败 ${failed.length} 项`)
 for (const f of failed) console.log('  FAIL ' + f.name + ' ← ' + f.detail)
 process.exitCode = failed.length > 0 ? 1 : 0
+
+// 兜底看门狗（阶段D 补，2026-09-13）：main() 中途抛异常时 browser.close() 被跳过，
+// 残留 chrome 子进程会一直占着 stdio 句柄，node 事件循环永不退出 —— 曾把整批验收卡死 15 分钟。
+// unref 后不影响正常退出；若 3 秒后仍有句柄赖着不走，按已记录的退出码强制收工。
+setTimeout(() => process.exit(process.exitCode ?? 0), 3000).unref()

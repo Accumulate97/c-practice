@@ -3,7 +3,7 @@
  *
  * Node 侧能算的（各维筛选命中数、排序序列）一律拿 index.json 现算当基准，脚本里不抄死数字；
  * 浏览器侧只验「UI 真的按这套规则渲染了」+ 四件静态数据算不出来的事：
- *   ① 518 条不一次性渲染（首屏 50 行；翻完 6 页取到的 id 集合 == 索引全集）
+ *   ① 全库题目不一次性渲染（首屏 50 行；翻完所有页取到的 id 集合 == 索引全集）
  *   ② 硬约束：列表页只 fetch index.json，**一个分片都不碰**；点进详情页才出现分片请求
  *   ③ 状态三色：答错→尝试过未通过、答对→已通过、F5 刷新后仍在（localStorage）
  *   ④ 筛选条件写在 URL 里，深链直达可复现；点 chip 是客户端筛选，不整页重载
@@ -36,7 +36,23 @@ const CR_ANSWER = (CR.answer ?? '').trim()
 const CH09 = countWhere((p) => shardKey(p.file) === 'c-ch09')
 const CH09_DEBUG = INDEX.problems.filter((p) => shardKey(p.file) === 'c-ch09' && p.type === 'debug').map((p) => p.id)
 const DEBUG_TOTAL = countWhere((p) => p.type === 'debug')
-const EMPTY_COMBO = { chapter: 'c-ch12', type: 'debug' } // 第12章 文件：15 题里没有 debug
+// 阶段D 修正（2026-09-13）：原写死 { chapter: 'c-ch12', type: 'debug' }，但阶段B 新增 c-ch12-dbg-001..003 后
+// 该组合已不再为空，导致空状态断言失败 + 「清空全部筛选」点击超时（2 个 FAIL 同源）。
+// 现改为从 index.json 现算一个命中数为 0 的章节×题型组合，不再随题库增长而失效。
+// 同时把原本写死的总题数 518 / 最高难度 4 / 最低难度 2 全部改为从索引现算。
+const ALL_TYPES = [...new Set(INDEX.problems.map((p) => p.type))]
+const EMPTY_COMBO = (() => {
+  for (const shard of INDEX.shards) {
+    const key = shardKey(shard.file)
+    for (const type of ALL_TYPES) {
+      if (countWhere((p) => shardKey(p.file) === key && p.type === type) === 0) return { chapter: key, type }
+    }
+  }
+  throw new Error('找不到命中数为 0 的章节×题型组合')
+})()
+const TOTAL = INDEX.count
+const MAX_DIFF = Math.max(...INDEX.problems.map((p) => p.difficulty))
+const MIN_DIFF = Math.min(...INDEX.problems.map((p) => p.difficulty))
 
 const checks = []
 function check(name, ok, detail = '') {
@@ -92,8 +108,8 @@ async function main() {
   // ── ① 首屏：518 题、只加载索引、不一次性渲染 ──
   await load('/problems')
   let s = await sum()
-  check('列表读到的总数 = index.json 的 count', s.total === INDEX.count && INDEX.count === 518, `data-total=${s.total}，index.count=${INDEX.count}`)
-  check('首屏只渲染一页（默认 50 行），不是 518 行', s.rows === 50 && s.pageCount === Math.ceil(518 / 50), `rows=${s.rows} pageCount=${s.pageCount}`)
+  check(`列表读到的总数 = index.json 的 count（${TOTAL} 道）`, s.total === INDEX.count && INDEX.count === TOTAL, `data-total=${s.total}，index.count=${INDEX.count}`)
+  check(`首屏只渲染一页（默认 50 行），不是全库 ${TOTAL} 行`, s.rows === 50 && s.pageCount === Math.ceil(TOTAL / 50), `rows=${s.rows} pageCount=${s.pageCount}`)
   check('列表页只请求了 index.json，未请求任何分片', dataRequests.filter((f) => f !== 'index.json').length === 0, '请求：' + (dataRequests.join(', ') || '（无）'))
   const firstIds = await rowIds()
   check('默认顺序 = 章节 + 题号（与 Node 侧基准逐项相同）', JSON.stringify(firstIds) === JSON.stringify(DEFAULT_ORDER.slice(0, 50).map((p) => p.id)), `首行 ${firstIds[0]} 末行 ${firstIds[49]}`)
@@ -101,13 +117,13 @@ async function main() {
   // ── ② 翻完所有页，id 集合 == 索引全集 ──
   await load('/problems?size=100')
   const all = []
-  for (let p = 1; p <= Math.ceil(518 / 100); p += 1) {
+  for (let p = 1; p <= Math.ceil(TOTAL / 100); p += 1) {
     await page.evaluate((p) => { location.hash = `/problems?size=100&page=${p}` }, p)
     await page.waitForFunction((p) => Number(document.querySelector('[data-role="summary"]')?.dataset.page) === p, p, { timeout: 15000 })
     all.push(...(await rowIds()))
   }
-  check('翻页取到的 id 集合 == 索引 518 条（无重复无遗漏）',
-    all.length === 518 && new Set(all).size === 518 && new Set(all).size === new Set(INDEX.problems.map((p) => p.id)).size,
+  check(`翻页取到的 id 集合 == 索引 ${TOTAL} 条（无重复无遗漏）`,
+    all.length === TOTAL && new Set(all).size === TOTAL && new Set(all).size === new Set(INDEX.problems.map((p) => p.id)).size,
     `取到 ${all.length} 条，去重 ${new Set(all).size} 条`)
 
   // ── ③ 章节筛选：13 章逐章核对（含用户点名的 ch09 指针） ──
@@ -119,7 +135,7 @@ async function main() {
     const expect = countWhere((p) => shardKey(p.file) === key)
     chapterRows.push({ key, name: shard.chapter, ui: s.filtered, json: expect, ok: s.filtered === expect && s.filtered === shard.count })
   }
-  check('13 个章节筛选命中数全部与 index.json 一致', chapterRows.every((c) => c.ok),
+  check(`${INDEX.shards.length} 个章节筛选命中数全部与 index.json 一致`, chapterRows.every((c) => c.ok),
     chapterRows.map((c) => `${c.key}=${c.ui}${c.ok ? '' : '≠' + c.json}`).join(' '))
   const ch09 = chapterRows.find((c) => c.key === 'c-ch09')
   check('章节筛选：ch09 指针 = ' + CH09 + ' 题', ch09.ui === CH09, `UI ${ch09.ui} / index ${CH09}（任务书写的 73 = 77 − 4 道简答题）`)
@@ -161,10 +177,10 @@ async function main() {
 
   await load('/problems?sort=diff-desc&size=100')
   const diffs = await page.evaluate(() => [...document.querySelectorAll('[data-role="row"]')].map((r) => Number(r.dataset.difficulty)))
-  check('按难度降序：整页难度单调不增且首行为最高难度 4', diffs.every((d, i) => i === 0 || diffs[i - 1] >= d) && diffs[0] === 4, `前 8 行难度 ${diffs.slice(0, 8).join(',')}`)
+  check(`按难度降序：整页难度单调不增且首行为最高难度 ${MAX_DIFF}`, diffs.every((d, i) => i === 0 || diffs[i - 1] >= d) && diffs[0] === MAX_DIFF, `前 8 行难度 ${diffs.slice(0, 8).join(',')}`)
   await load('/problems?sort=diff-asc&size=100')
   const diffsAsc = await page.evaluate(() => [...document.querySelectorAll('[data-role="row"]')].map((r) => Number(r.dataset.difficulty)))
-  check('按难度升序：整页难度单调不减且首行为最低难度 2', diffsAsc.every((d, i) => i === 0 || diffsAsc[i - 1] <= d) && diffsAsc[0] === 2, `前 8 行难度 ${diffsAsc.slice(0, 8).join(',')}`)
+  check(`按难度升序：整页难度单调不减且首行为最低难度 ${MIN_DIFF}`, diffsAsc.every((d, i) => i === 0 || diffsAsc[i - 1] <= d) && diffsAsc[0] === MIN_DIFF, `前 8 行难度 ${diffsAsc.slice(0, 8).join(',')}`)
   await load('/problems?sort=index&size=20')
   check('题库原序排序 = index.json 原序', JSON.stringify(await rowIds()) === JSON.stringify(INDEX.problems.slice(0, 20).map((p) => p.id)))
 
@@ -205,8 +221,8 @@ async function main() {
   check(`空状态：${EMPTY_COMBO.chapter} + ${EMPTY_COMBO.type} 显示「无匹配题目」而非空白`,
     s.filtered === 0 && emptyTxt.includes('无匹配题目') && (await page.locator('[data-role="row"]').count()) === 0, emptyTxt.split('\n')[0])
   await page.locator('[data-role="empty"] button:has-text("清空全部筛选")').click()
-  await waitFiltered(518)
-  check('空状态里的「清空全部筛选」一键回到 518 题', (await sum()).filtered === 518)
+  await waitFiltered(TOTAL)
+  check(`空状态里的「清空全部筛选」一键回到 ${TOTAL} 题`, (await sum()).filtered === TOTAL)
   await page.screenshot({ path: join(ROOT, 'tmp', 'acc-list-empty.png'), fullPage: true })
 
   // ── ⑪ 状态三色：答错 → 答对 → 刷新保留 ──
@@ -256,7 +272,7 @@ async function main() {
   await load('/problems?status=attempted')
   check('状态筛选「只看尝试过未通过」= 0 题（everPassed 不回退）', (await sum()).filtered === 0)
   await load('/problems?status=todo')
-  check('状态筛选「只看未做」= 517 题', (await sum()).filtered === 517, `UI ${(await sum()).filtered}`)
+  check(`状态筛选「只看未做」= ${TOTAL - 1} 题（全库减去流程里刚做对的那 1 道）`, (await sum()).filtered === TOTAL - 1, `UI ${(await sum()).filtered}`)
 
   await load(`/problems?chapter=c-ch09&size=100`)
   await page.reload({ waitUntil: 'networkidle' })
@@ -296,3 +312,8 @@ console.log('\n════ 模块 5 UI 验收汇总 ════')
 console.log(`  ${checks.length} 项检查，失败 ${failed.length} 项`)
 for (const f of failed) console.log('  FAIL ' + f.name + ' ← ' + f.detail)
 process.exitCode = failed.length > 0 ? 1 : 0
+
+// 兜底看门狗（阶段D 补，2026-09-13）：main() 中途抛异常时 browser.close() 被跳过，
+// 残留 chrome 子进程会一直占着 stdio 句柄，node 事件循环永不退出 —— 曾把整批验收卡死 15 分钟。
+// unref 后不影响正常退出；若 3 秒后仍有句柄赖着不走，按已记录的退出码强制收工。
+setTimeout(() => process.exit(process.exitCode ?? 0), 3000).unref()

@@ -116,7 +116,7 @@
   --code-blank-focus-bg: #56431a;
   --code-blank-badge-bg: #24304a;
   --code-blank-badge-fg: #b9c6dd;
-  --code-blank-badge-active-bg: #3b82f6;
+  --code-blank-badge-active-bg: #1d4ed8; /* 阶段D 无障碍修正：原 #3b82f6 配白字仅 3.68:1，不足 WCAG AA 4.5:1 */
   --code-blank-badge-active-fg: #ffffff;
 }
 
