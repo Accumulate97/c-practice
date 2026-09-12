@@ -1730,6 +1730,1727 @@
       ],
       "id": "c-ch12-cc-014",
       "verified": true
+    },
+    {
+      "id": "c-ch12-cr-003",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"v.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"v.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')\n            n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\nHello World\n```",
+      "answer": "n=3",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"v.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"v.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')\n            n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "stdin": "Hello World\n",
+      "explanation": "结论：输出 n=3。推理：标准输入 \"Hello World\" 连同换行被逐字符写入 v.txt，随后用 fgetc 逐个读回，只有小写元音 a e i o u 才计数，命中的是 Hello 中的 e、o 与 World 中的 o，共 3 个。易错点：判断条件里没有大写元音，H 与 W 不参与；换行符也算被读到的字符但不满足元音条件；接收 fgetc 返回值的 c 必须是 int，写成 char 会在 c 为无符号的平台上把 EOF 误判成字符 255。",
+      "tags": [
+        "fgetc",
+        "字符统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-10"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-004",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char w[64];\n    int c, n = 0;\n\n    seed = fopen(\"w.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"w.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%63s\", w) == 1)\n        n++;\n    fclose(fp);\n    printf(\"words=%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\none two  three\n```",
+      "answer": "words=3",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char w[64];\n    int c, n = 0;\n\n    seed = fopen(\"w.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"w.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%63s\", w) == 1)\n        n++;\n    fclose(fp);\n    printf(\"words=%d\\n\", n);\n    return 0;\n}",
+      "stdin": "one two  three\n",
+      "explanation": "结论：输出 words=3。推理：fscanf 的 %s 会自动跳过前导空白（空格、制表符、换行），读到下一个空白为止，因此连续两个空格不会产生空单词，one、two、three 各算一次，返回值为成功赋值的项数 1。易错点：%s 不做边界检查，必须用 %63s 限制宽度以防溢出 w[64]；若改用 fgetc 手工统计则需要自己维护\"在词内/词外\"状态；循环条件写成 !feof(fp) 会多算一次。",
+      "tags": [
+        "fscanf",
+        "单词统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-005",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"l.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"l.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n        n++;\n    fclose(fp);\n    printf(\"lines=%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\na\nb\nc\n```",
+      "answer": "lines=3",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"l.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"l.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n        n++;\n    fclose(fp);\n    printf(\"lines=%d\\n\", n);\n    return 0;\n}",
+      "stdin": "a\nb\nc\n",
+      "explanation": "结论：输出 lines=3。推理：fgets 每次最多读 sizeof(line)-1 个字符，遇到换行符就把换行一并存入并结束本次读取，读到文件末尾且无字符可读时返回 NULL，三行输入恰好循环三次。易错点：若某一行超过 79 个字符，fgets 会把它拆成多次读取，行数就会虚增；文本方式写入再读回时换行符经过转换仍是一个 \n，所以计数不受平台影响；最后一行没有换行符时也会被算作一行。",
+      "tags": [
+        "fgets",
+        "行数统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-18"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-006",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, s = 0, c;\n\n    seed = fopen(\"s.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"s.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n        s += x;\n    fclose(fp);\n    printf(\"sum=%d\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n1 2 3 4 5\n```",
+      "answer": "sum=15",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, s = 0, c;\n\n    seed = fopen(\"s.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"s.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n        s += x;\n    fclose(fp);\n    printf(\"sum=%d\\n\", s);\n    return 0;\n}",
+      "stdin": "1 2 3 4 5\n",
+      "explanation": "结论：输出 sum=15。推理：fscanf 用 %d 逐个读取整数，%d 会自动跳过空白并识别可选符号，读到无法构成整数的内容或文件末尾时返回 0 或 EOF，循环随之结束，1+2+3+4+5=15。易错点：循环条件必须判 fscanf 的返回值等于 1，写成 while (!feof(fp)) 会把最后一次失败的 x 重复累加；s 初值为 0 不可省；若文件中出现字母，fscanf 立即失败并停止，后面的整数不会被读到。",
+      "tags": [
+        "fscanf",
+        "求和"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-007",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"d.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"d.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}\n```\n运行时输入：\n```\nabcdefg\n```",
+      "answer": "len=7",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"d.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"d.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "stdin": "abcdefg",
+      "explanation": "结论：输出 len=7。推理：先把 7 个字符以二进制方式写入 d.bin，再用 fseek(fp, 0L, SEEK_END) 把位置标记移到文件末尾，此时 ftell 返回的偏移量就是文件字节数 7。易错点：位移量必须写成 long 型常量 0L；接收 ftell 结果的变量要用 long 并用 %ld 输出，ftell 失败返回 -1L；这里特意用 \"wb\"/\"rb\" 且输入不带换行，避免文本方式下换行被转换成两字节而使长度与字符数不一致。",
+      "tags": [
+        "fseek",
+        "ftell",
+        "文件长度"
+      ],
+      "knowledgeIds": [
+        "c-ch12-20"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-008",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c;\n\n    seed = fopen(\"r.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"r.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    c = fgetc(fp);\n    rewind(fp);\n    printf(\"%c %c\\n\", (char)c, (char)fgetc(fp));\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\nXYZ\n```",
+      "answer": "X X",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c;\n\n    seed = fopen(\"r.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"r.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    c = fgetc(fp);\n    rewind(fp);\n    printf(\"%c %c\\n\", (char)c, (char)fgetc(fp));\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "XYZ",
+      "explanation": "结论：输出 X X。推理：第一次 fgetc 读到 X，rewind(fp) 把文件位置标记重置回开头并清除结束与出错标志，第二次 fgetc 又读到 X，因此两个字符相同。易错点：rewind 无返回值，等价于 fseek(fp, 0L, SEEK_SET) 外加清除 feof/ferror 标志；printf 的两个实参中 (char)c 取的是已保存的变量值，不依赖 fgetc 的调用时刻，所以这里不受实参求值顺序影响，但若把两次 fgetc 都写进同一个 printf 就可能踩到求值顺序的坑。",
+      "tags": [
+        "rewind",
+        "fgetc"
+      ],
+      "knowledgeIds": [
+        "c-ch12-20"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-009",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\nHello\n```",
+      "answer": "Hello",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "Hello\n",
+      "explanation": "结论：输出 Hello（原样打印复制结果）。推理：程序把 stdin 播种到 src.txt，再以\"读一个字符、写一个字符\"的方式复制到 dst.txt，最后重新打开 dst.txt 用 putchar 输出到屏幕。易错点：fputc 的第二个参数必须是目标文件指针，写成 fp 就把数据写回源文件；复制前 dst.txt 以 \"w\" 打开会清空原内容；两个文件用完都要 fclose，否则缓冲区数据可能没有落盘。",
+      "tags": [
+        "文件复制",
+        "fputc"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-010",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char buf[80];\n    int c;\n\n    seed = fopen(\"f.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"f.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if (fgets(buf, 5, fp) != NULL)\n        printf(\"[%s]\\n\", buf);\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\nabcdefghij\n```",
+      "answer": "[abcd]",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char buf[80];\n    int c;\n\n    seed = fopen(\"f.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"f.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if (fgets(buf, 5, fp) != NULL)\n        printf(\"[%s]\\n\", buf);\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "abcdefghij",
+      "explanation": "结论：输出 [abcd]。推理：fgets 的第二个参数 n=5 表示最多读入 n-1=4 个字符，然后自动补上字符串结束标志 \u0000，所以缓冲区里只有 a、b、c、d 四个字符。易错点：这是 fgets 最经典的考点，n 包含结束符的位置；由于本次没有读到换行符，剩下的 efghij 仍留在文件中，下一次 fgets 会继续读；把 n 写成 sizeof(buf)+1 或忘记留一个位置给 \u0000 会造成缓冲区溢出。",
+      "tags": [
+        "fgets",
+        "参数n",
+        "截断"
+      ],
+      "knowledgeIds": [
+        "c-ch12-13"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-011",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"e.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"e.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (!feof(fp))\n    {\n        c = fgetc(fp);\n        n++;\n    }\n    fclose(fp);\n    printf(\"n=%d last=%d\\n\", n, c);\n    return 0;\n}\n```\n运行时输入：\n```\nabc\n```",
+      "answer": "n=4 last=-1",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"e.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"e.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (!feof(fp))\n    {\n        c = fgetc(fp);\n        n++;\n    }\n    fclose(fp);\n    printf(\"n=%d last=%d\\n\", n, c);\n    return 0;\n}",
+      "stdin": "abc",
+      "explanation": "结论：输出 n=4 last=-1。推理：文件只有 3 个字符，但 feof 反映的是\"上一次读取是否已越过文件末尾\"，读完第三个字符 c 时结束标志尚未置位，于是又进入第四次循环，这次 fgetc 返回 EOF（-1）并置位，n 被多计一次。易错点：这是教材反复强调的反面写法，正确形式是把读取动作本身作为条件 while ((c = fgetc(fp)) != EOF)；last 打印 -1 说明最后一次读到的不是有效字符，据此可判断程序多循环了一次。",
+      "tags": [
+        "feof",
+        "多循环一次"
+      ],
+      "knowledgeIds": [
+        "c-ch12-17"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-012",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, pos = 0, neg = 0, c;\n\n    seed = fopen(\"p.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"p.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        if (x > 0)\n            pos++;\n        else if (x < 0)\n            neg++;\n    }\n    fclose(fp);\n    printf(\"%d %d\\n\", pos, neg);\n    return 0;\n}\n```\n运行时输入：\n```\n3 -1 0 7 -5\n```",
+      "answer": "2 2",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, pos = 0, neg = 0, c;\n\n    seed = fopen(\"p.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"p.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        if (x > 0)\n            pos++;\n        else if (x < 0)\n            neg++;\n    }\n    fclose(fp);\n    printf(\"%d %d\\n\", pos, neg);\n    return 0;\n}",
+      "stdin": "3 -1 0 7 -5\n",
+      "explanation": "结论：输出 2 2。推理：文件中的五个整数依次是 3、-1、0、7、-5，正数有 3 与 7 共 2 个，负数有 -1 与 -5 共 2 个，0 两个分支都不满足所以不计入任何一方。易错点：else if 的写法保证了 0 被跳过，若把第二个分支写成 else 就会把 0 算作负数；fscanf 返回 1 表示成功读到一个整数，遇到非数字内容会返回 0 使循环结束，因此文件里混入字母时后面的数据全部读不到。",
+      "tags": [
+        "fscanf",
+        "分类统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-013",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int c, i;\n\n    if ((fp = fopen(\"num.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    for (i = 1; i <= 3; i++)\n        fprintf(fp, \"%d*%d=%d\\n\", i, i, i * i);\n    fclose(fp);\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1*1=1\n2*2=4\n3*3=9",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int c, i;\n\n    if ((fp = fopen(\"num.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    for (i = 1; i <= 3; i++)\n        fprintf(fp, \"%d*%d=%d\\n\", i, i, i * i);\n    fclose(fp);\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出三行 1*1=1、2*2=4、3*3=9。推理：fprintf 与 printf 的用法完全相同，只是输出目标是文件指针；循环三次写入三条格式化字符串，随后重新以只读方式打开并用 putchar 把每个字符送到屏幕。易错点：写完必须先 fclose 再重新打开，否则缓冲区里的内容还没落盘就读不到；fprintf 的第一个参数是文件指针，位置不能与 printf 混用；文件以 \"w\" 打开时每次运行都会清空重写，不会累积。",
+      "tags": [
+        "fprintf",
+        "格式化写文件"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-014",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct S\n{\n    int a;\n    char c;\n};\n\nint main(void)\n{\n    FILE *fp;\n    struct S arr[3] = {{1, 'x'}, {2, 'y'}, {3, 'z'}};\n    struct S r[3];\n    int i, n;\n\n    if ((fp = fopen(\"s.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(arr, sizeof(struct S), 3, fp);\n    fclose(fp);\n    if ((fp = fopen(\"s.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    n = (int)fread(r, sizeof(struct S), 3, fp);\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\\n\", r[i].a, r[i].c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "n=3\n1x\n2y\n3z",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct S\n{\n    int a;\n    char c;\n};\n\nint main(void)\n{\n    FILE *fp;\n    struct S arr[3] = {{1, 'x'}, {2, 'y'}, {3, 'z'}};\n    struct S r[3];\n    int i, n;\n\n    if ((fp = fopen(\"s.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(arr, sizeof(struct S), 3, fp);\n    fclose(fp);\n    if ((fp = fopen(\"s.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    n = (int)fread(r, sizeof(struct S), 3, fp);\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\\n\", r[i].a, r[i].c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 n=3 后三行 1x、2y、3z。推理：fwrite 与 fread 的第 2、3 个参数分别是每个数据项的字节数和项数，这里按 sizeof(struct S) 为单位一次读写 3 个结构体，返回值是实际完成的项数，所以 n 等于 3，数据原样恢复。易错点：结构体因内存对齐通常有填充字节，sizeof(struct S) 一般是 8 而不是 5，但读写双方单位一致就不影响结果；必须用 \"wb\"/\"rb\" 二进制方式，否则 Windows 下换行转换会破坏数据；读回的结构体数组 r 未初始化，只有 fread 成功才有意义。",
+      "tags": [
+        "fwrite",
+        "fread",
+        "结构体"
+      ],
+      "knowledgeIds": [
+        "c-ch12-15"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-015",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[5] = {1, 2, 3, 4, 5};\n    long len;\n\n    if ((fp = fopen(\"a.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(a, sizeof(int), 5, fp);\n    fclose(fp);\n    if ((fp = fopen(\"a.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "len=20",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[5] = {1, 2, 3, 4, 5};\n    long len;\n\n    if ((fp = fopen(\"a.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(a, sizeof(int), 5, fp);\n    fclose(fp);\n    if ((fp = fopen(\"a.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 len=20。推理：以二进制方式写出 5 个 int，每个 int 在本题平台上占 4 字节，文件长度就是 5×4=20 字节；用 fseek 定位到末尾后 ftell 得到的正是这个字节数。易错点：若改用文本方式 fprintf(fp, \"%d\", a[i]) 写出，\"12345\" 只占 5 字节，可见同一个整数用二进制存储通常比文本存储更省空间；接收 ftell 的变量必须是 long 并用 %ld 输出；二进制文件不能用记事本直接阅读。",
+      "tags": [
+        "fwrite",
+        "二进制长度"
+      ],
+      "knowledgeIds": [
+        "c-ch12-15"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-016",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[5] = {10, 20, 30, 40, 50};\n    int x = 0;\n\n    if ((fp = fopen(\"b.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(a, sizeof(int), 5, fp);\n    fclose(fp);\n    if ((fp = fopen(\"b.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 2L * sizeof(int), SEEK_SET);\n    fread(&x, sizeof(int), 1, fp);\n    fclose(fp);\n    printf(\"x=%d\\n\", x);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "x=30",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[5] = {10, 20, 30, 40, 50};\n    int x = 0;\n\n    if ((fp = fopen(\"b.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(a, sizeof(int), 5, fp);\n    fclose(fp);\n    if ((fp = fopen(\"b.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 2L * sizeof(int), SEEK_SET);\n    fread(&x, sizeof(int), 1, fp);\n    fclose(fp);\n    printf(\"x=%d\\n\", x);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 x=30。推理：二进制文件中每个 int 占 sizeof(int)=4 字节，第 3 个元素（下标 2）的起始偏移量是 2×4=8，fseek 把位置标记移到那里后 fread 读出一个 int，正是 a[2]=30。易错点：偏移量必须按\"下标 × 数据项大小\"计算并写成 long 型表达式，忘记乘 sizeof(int) 会定位到错误位置；随机存取只适用于二进制文件，文本文件因换行符转换使字节偏移与字符序号不一致；fread 的第 1 个参数要取地址 &x。",
+      "tags": [
+        "fseek",
+        "随机读取"
+      ],
+      "knowledgeIds": [
+        "c-ch12-21"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-017",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    long len;\n\n    if ((fp = fopen(\"t.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fprintf(fp, \"%d\", 10000);\n    fclose(fp);\n    if ((fp = fopen(\"t.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "len=5",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    long len;\n\n    if ((fp = fopen(\"t.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fprintf(fp, \"%d\", 10000);\n    fclose(fp);\n    if ((fp = fopen(\"t.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 len=5。推理：fprintf 用 %d 把整数 10000 转换成字符序列 1、0、0、0、0 写入文本文件，共 5 个字符 5 个字节。易错点：同一个整数若用 fwrite 以二进制方式存储只占 sizeof(int)=4 字节，文本存储的字节数取决于数值的十进制位数，负数还要多一个符号位字符，0 只占 1 字节；这里写入内容不含换行符，所以文本方式的换行转换不影响长度计算；用 %ld 输出 long 型结果，写成 %d 在 64 位平台上会出错。",
+      "tags": [
+        "文本存储",
+        "二进制存储"
+      ],
+      "knowledgeIds": [
+        "c-ch12-22"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-018",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"in.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"in.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"out.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc((c >= 'a' && c <= 'z') ? c - 32 : c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"out.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\nabc XYZ\n```",
+      "answer": "ABC XYZ",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"in.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"in.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"out.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc((c >= 'a' && c <= 'z') ? c - 32 : c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"out.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "abc XYZ\n",
+      "explanation": "结论：输出 ABC XYZ。推理：只有落在 a 到 z 之间的字符才减 32 转成大写，其余字符（含大写字母、空格、换行）原样写入 out.txt，最后再把 out.txt 打印出来。易错点：判断必须用字符常量比较而不是直接减 32，否则空格会变成负值；减 32 的依据是大写与小写字母的 ASCII 码相差 32，更规范的写法是用 toupper 并包含 ctype.h；三目运算符的两个分支类型要一致，fputc 的第一个参数按 int 传递。",
+      "tags": [
+        "文件复制",
+        "大小写转换"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-019",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"n.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"n.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        n++;\n        printf(\"%d:%s\", n, line);\n    }\n    fclose(fp);\n    return 0;\n}\n```\n运行时输入：\n```\naa\nbb\n```",
+      "answer": "1:aa\n2:bb",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"n.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"n.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        n++;\n        printf(\"%d:%s\", n, line);\n    }\n    fclose(fp);\n    return 0;\n}",
+      "stdin": "aa\nbb\n",
+      "explanation": "结论：输出两行 1:aa 与 2:bb。推理：fgets 会把行末的换行符一起读进 line，所以 printf 的格式串里只写了行号和冒号而没有再补 \n，输出的换行来自文件内容本身。易错点：若格式串写成 \"%d:%s\n\"，每行后面会多出一个空行；最后一行没有换行符时输出末尾也不会有换行；行号变量 n 要放在 fgets 成功之后再自增，否则空文件会打印出错误的行号。",
+      "tags": [
+        "fgets",
+        "行号输出"
+      ],
+      "knowledgeIds": [
+        "c-ch12-18"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-020",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, s = 0, k = 0, c;\n\n    seed = fopen(\"m.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"m.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        s += x;\n        k++;\n    }\n    fclose(fp);\n    printf(\"k=%d s=%d\\n\", k, s);\n    return 0;\n}\n```\n运行时输入：\n```\n12 34ab 56\n```",
+      "answer": "k=2 s=46",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, s = 0, k = 0, c;\n\n    seed = fopen(\"m.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"m.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        s += x;\n        k++;\n    }\n    fclose(fp);\n    printf(\"k=%d s=%d\\n\", k, s);\n    return 0;\n}",
+      "stdin": "12 34ab 56\n",
+      "explanation": "结论：输出 k=2 s=46。推理：%d 先读到 12，再跳过空格读到 34，此时输入位置停在字母 a 上；第三次 fscanf 遇到 a 无法匹配整数，返回 0，循环立即结束，所以只统计到 2 个数、和为 46，后面的 56 根本不会被读到。易错点：fscanf 失败时不会跳过那个非法字符，位置标记停在原处，若不做处理会造成死循环；返回值含义是成功赋值的项数，与 EOF（-1）不同，判断时应写成 == 1；这类\"数据被污染导致提前中断\"是文件读取的常见故障。",
+      "tags": [
+        "fscanf",
+        "读取中断"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-021",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序先把标准输入的全部内容写入磁盘文件，再对该文件做处理。写出程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, sp = 0, nl = 0;\n\n    seed = fopen(\"b.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"b.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        if (c == ' ')\n            sp++;\n        else if (c == '\\n')\n            nl++;\n    }\n    fclose(fp);\n    printf(\"sp=%d nl=%d\\n\", sp, nl);\n    return 0;\n}\n```\n运行时输入：\n```\na b c\nd e\n```",
+      "answer": "sp=3 nl=2",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, sp = 0, nl = 0;\n\n    seed = fopen(\"b.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"b.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        if (c == ' ')\n            sp++;\n        else if (c == '\\n')\n            nl++;\n    }\n    fclose(fp);\n    printf(\"sp=%d nl=%d\\n\", sp, nl);\n    return 0;\n}",
+      "stdin": "a b c\nd e\n",
+      "explanation": "结论：输出 sp=3 nl=2。推理：输入逐字符为 a、空格、b、空格、c、换行、d、空格、e、换行，其中空格 3 个、换行符 2 个，其余字母不计入任何一方。易错点：以文本方式写入再以文本方式读回时，Windows 上的 \r\n 会被还原成单个 \n，因此换行计数与平台无关；但用 ftell 量这类文件的长度在 Windows 上会偏大，求长度应改用二进制方式。",
+      "tags": [
+        "fgetc",
+        "空白统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-10"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cr-022",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"nofile.txt\", \"r\")) == NULL)\n        printf(\"fail\\n\");\n    else\n    {\n        printf(\"ok\\n\");\n        fclose(fp);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\nabc\n```",
+      "answer": "fail",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"nofile.txt\", \"r\")) == NULL)\n        printf(\"fail\\n\");\n    else\n    {\n        printf(\"ok\\n\");\n        fclose(fp);\n    }\n    return 0;\n}",
+      "stdin": "abc\n",
+      "explanation": "结论：输出 fail。推理：\"r\" 方式要求文件必须已经存在，nofile.txt 从未被创建，fopen 失败返回 NULL，程序进入失败分支打印 fail。易错点：只有 \"w\" 与 \"a\" 方式在文件不存在时才会自动新建，\"r\" 不会；每次 fopen 之后都必须判空再用，否则对 NULL 指针做 fgetc 会导致运行时崩溃；EOF 是 fgetc 的返回值而不是 fopen 的失败标志，二者不能混用。",
+      "tags": [
+        "fopen",
+        "失败检查"
+      ],
+      "knowledgeIds": [
+        "c-ch12-06"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-015",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == /*__BLANK_2__*/)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = /*__BLANK_1__*/) != EOF)\n        if (c == 'e')\n            n++;\n    /*__BLANK_3__*/;\n    printf(\"n=%d\\n\", n);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fgetc(fp)"
+        },
+        {
+          "index": 2,
+          "answer": "NULL"
+        },
+        {
+          "index": 3,
+          "answer": "fclose(fp)",
+          "accepted": [
+            "fclose (fp)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == /*__BLANK_2__*/)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = /*__BLANK_1__*/) != EOF)\n        if (c == 'e')\n            n++;\n    /*__BLANK_3__*/;\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        if (c == 'e')\n            n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "letter\n",
+          "expected": "n=2"
+        },
+        {
+          "stdin": "abc\n",
+          "expected": "n=0"
+        },
+        {
+          "stdin": "eeeee\n",
+          "expected": "n=5"
+        }
+      ],
+      "explanation": "结论：三空依次为 fgetc(fp)、NULL、fclose(fp)，三组输出 n=2 / n=0 / n=5。推理：fgetc 从文件读一个字符，读到末尾返回 EOF；fopen 失败返回 NULL，必须判空后再使用文件指针；处理完毕调用 fclose 把缓冲区刷盘并释放资源。易错点：接收 fgetc 返回值的 c 必须是 int 型，用 char 接收会把 EOF 与字符 255 混淆；判空要写 == NULL 而不是 == EOF；条件表达式中 fgetc(fp) 外面的括号不能省，因为 != 的优先级高于 =。",
+      "tags": [
+        "fgetc",
+        "失败检查",
+        "fclose"
+      ],
+      "knowledgeIds": [
+        "c-ch12-10"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-016",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"lines.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"lines.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ != NULL)\n    {\n        n++;\n        printf(\"%d:%s\", n, line);\n    }\n    /*__BLANK_2__*/;\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fgets(line, sizeof(line), fp)",
+          "accepted": [
+            "fgets(line, 80, fp)",
+            "fgets(line,sizeof(line),fp)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "fclose(fp)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"lines.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"lines.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ != NULL)\n    {\n        n++;\n        printf(\"%d:%s\", n, line);\n    }\n    /*__BLANK_2__*/;\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n = 0;\n\n    seed = fopen(\"lines.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"lines.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        n++;\n        printf(\"%d:%s\", n, line);\n    }\n    fclose(fp);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "aa\nbb\n",
+          "expected": "1:aa\n2:bb"
+        },
+        {
+          "stdin": "single\n",
+          "expected": "1:single"
+        },
+        {
+          "stdin": "p\nq\nr\n",
+          "expected": "1:p\n2:q\n3:r"
+        }
+      ],
+      "explanation": "结论：两空依次为 fgets(line, sizeof(line), fp) 与 fclose(fp)。推理：fgets 成功时返回第一个参数即缓冲区地址，读到文件末尾且无字符可读时返回 NULL，所以把它直接作为循环条件即可完成逐行遍历；因为 fgets 会把行末换行符一起读入，printf 的格式串无需再补 \n。易错点：第二个参数是缓冲区总容量，实际最多读 n-1 个字符，写 sizeof(line) 比硬编码 80 更安全；若某行长度超过 79，会被拆成多次读取导致行数虚增；循环结束后必须 fclose。",
+      "tags": [
+        "fgets",
+        "逐行读取"
+      ],
+      "knowledgeIds": [
+        "c-ch12-18"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-017",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, n = 0, s = 0, c;\n\n    seed = fopen(\"num.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ == 1)\n    {\n        n++;\n        /*__BLANK_2__*/;\n    }\n    fclose(fp);\n    printf(\"n=%d s=%d\\n\", n, s);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fscanf(fp, \"%d\", &x)",
+          "accepted": [
+            "fscanf(fp,\"%d\",&x)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "s += x",
+          "accepted": [
+            "s = s + x",
+            "s+=x"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, n = 0, s = 0, c;\n\n    seed = fopen(\"num.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ == 1)\n    {\n        n++;\n        /*__BLANK_2__*/;\n    }\n    fclose(fp);\n    printf(\"n=%d s=%d\\n\", n, s);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, n = 0, s = 0, c;\n\n    seed = fopen(\"num.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        n++;\n        s += x;\n    }\n    fclose(fp);\n    printf(\"n=%d s=%d\\n\", n, s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5\n",
+          "expected": "n=5 s=15"
+        },
+        {
+          "stdin": "7\n",
+          "expected": "n=1 s=7"
+        },
+        {
+          "stdin": "10 -3 0 8\n",
+          "expected": "n=4 s=15"
+        }
+      ],
+      "explanation": "结论：两空依次为 fscanf(fp, \"%d\", &x) 与 s += x，三组输出 n=5 s=15 / n=1 s=7 / n=4 s=15。推理：fscanf 的返回值是成功赋值的项数，读到一个整数时返回 1，读到文件末尾或格式不匹配时返回 EOF 或 0，因此 == 1 是逐个数读取的标准循环条件。易错点：第一个参数是文件指针而不是格式串；%d 对应的实参必须取地址 &x；累加语句要写在计数之后也可以，但 n 与 s 都必须在使用前初始化为 0。",
+      "tags": [
+        "fscanf",
+        "返回值"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-018",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"data.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    len = /*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fseek(fp, 0L, SEEK_END)",
+          "accepted": [
+            "fseek(fp,0L,SEEK_END)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "ftell(fp)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"data.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    len = /*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"data.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abcdefgh\n",
+          "expected": "len=9"
+        },
+        {
+          "stdin": "abc\n",
+          "expected": "len=4"
+        },
+        {
+          "stdin": "",
+          "expected": "len=0"
+        }
+      ],
+      "explanation": "结论：两空依次为 fseek(fp, 0L, SEEK_END) 与 ftell(fp)。推理：ftell 返回位置标记距文件开头的字节数，所以先用 fseek 以文件末尾为基准、偏移 0 把标记移到末尾，再取 ftell 就得到文件长度。易错点：位移量要写成 long 型常量 0L；起点常量是 SEEK_END，写成 SEEK_SET 会把标记移到开头使 len 恒为 0；这里用 \"wb\"/\"rb\" 二进制方式播种与读取，避免文本方式下换行符在 Windows 上被转换成两字节而使长度偏大。",
+      "tags": [
+        "fseek",
+        "ftell",
+        "文件长度"
+      ],
+      "knowledgeIds": [
+        "c-ch12-19"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-019",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        /*__BLANK_1__*/;\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        /*__BLANK_2__*/;\n    fclose(fp);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fputc(c, out)",
+          "accepted": [
+            "fputc(c,out)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "putchar(c)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        /*__BLANK_1__*/;\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        /*__BLANK_2__*/;\n    fclose(fp);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "Hello\n",
+          "expected": "Hello"
+        },
+        {
+          "stdin": "a b c\n",
+          "expected": "a b c"
+        },
+        {
+          "stdin": "12345\n",
+          "expected": "12345"
+        }
+      ],
+      "explanation": "结论：两空依次为 fputc(c, out) 与 putchar(c)。推理：文件复制的核心是\"从源文件读一个字符，就往目标文件写一个字符\"，fputc 的第二个参数必须是目标文件指针；复制完成后重新打开 dst.txt，用 putchar 把内容送到标准输出以检查结果。易错点：写成 fputc(c, fp) 会把字符写回源文件、目标文件为空；putchar(c) 等价于 fputc(c, stdout)；两个文件都要 fclose，且 fclose 的顺序不影响结果但都不能漏。",
+      "tags": [
+        "文件复制",
+        "fputc",
+        "putchar"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-020",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[20], b[20], i, n, k;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if ((fp = fopen(\"arr.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    fclose(fp);\n    if ((fp = fopen(\"arr.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    k = (int)/*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"k=%d\\n\", k);\n    for (i = 0; i < k; i++)\n        printf(\"%d\\n\", b[i]);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fwrite(a, sizeof(int), n, fp)",
+          "accepted": [
+            "fwrite(a, sizeof(int), (size_t)n, fp)",
+            "fwrite(a, 4, n, fp)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "fread(b, sizeof(int), n, fp)",
+          "accepted": [
+            "fread(b, sizeof(int), (size_t)n, fp)",
+            "fread(b, 4, n, fp)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[20], b[20], i, n, k;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if ((fp = fopen(\"arr.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    fclose(fp);\n    if ((fp = fopen(\"arr.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    k = (int)/*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"k=%d\\n\", k);\n    for (i = 0; i < k; i++)\n        printf(\"%d\\n\", b[i]);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    int a[20], b[20], i, n, k;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if ((fp = fopen(\"arr.dat\", \"wb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fwrite(a, sizeof(int), n, fp);\n    fclose(fp);\n    if ((fp = fopen(\"arr.dat\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    k = (int)fread(b, sizeof(int), n, fp);\n    fclose(fp);\n    printf(\"k=%d\\n\", k);\n    for (i = 0; i < k; i++)\n        printf(\"%d\\n\", b[i]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n11 22 33 44 55\n",
+          "expected": "k=5\n11\n22\n33\n44\n55"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "k=1\n7"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "k=0"
+        }
+      ],
+      "explanation": "结论：两空依次为 fwrite(a, sizeof(int), n, fp) 与 fread(b, sizeof(int), n, fp)。推理：fwrite/fread 的第 2、3 个参数分别是每个数据项的字节数与项数，一次调用即可整块写出或读入 n 个 int，返回值是实际完成的项数，所以 k 等于 n，数组内容原样恢复。易错点：必须用 \"wb\"/\"rb\" 二进制方式打开；块大小与项数在读写两端要保持一致，否则数据错位；n 为 0 时 fwrite 返回 0、文件长度为 0，程序应正常输出 k=0 而不是崩溃。",
+      "tags": [
+        "fwrite",
+        "fread",
+        "二进制块"
+      ],
+      "knowledgeIds": [
+        "c-ch12-15"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-021",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"t.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"t.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    printf(\"n=%d\\n\", n);\n    if (/*__BLANK_1__*/)\n        printf(\"end\\n\");\n    else if (/*__BLANK_2__*/)\n        printf(\"error\\n\");\n    fclose(fp);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "feof(fp)"
+        },
+        {
+          "index": 2,
+          "answer": "ferror(fp)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"t.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"t.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    printf(\"n=%d\\n\", n);\n    if (/*__BLANK_1__*/)\n        printf(\"end\\n\");\n    else if (/*__BLANK_2__*/)\n        printf(\"error\\n\");\n    fclose(fp);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"t.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"t.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    printf(\"n=%d\\n\", n);\n    if (feof(fp))\n        printf(\"end\\n\");\n    else if (ferror(fp))\n        printf(\"error\\n\");\n    fclose(fp);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abc\n",
+          "expected": "n=4\nend"
+        },
+        {
+          "stdin": "xy\n",
+          "expected": "n=3\nend"
+        },
+        {
+          "stdin": "",
+          "expected": "n=0\nend"
+        }
+      ],
+      "explanation": "结论：两空依次为 feof(fp) 与 ferror(fp)，三组均输出 end。推理：EOF 有两种成因，正常读到文件末尾时 feof 为真，发生读写错误时 ferror 为真，所以循环结束后应当用这两个函数区分。易错点：feof 不能用作读取循环的条件，因为结束标志只有在一次读取越过末尾之后才置位，用 while (!feof(fp)) 会多循环一次；三组用例中文件内容分别是 4、3、0 个字符，空文件时循环一次都不执行但仍属正常结束，输出 n=0 与 end。",
+      "tags": [
+        "feof",
+        "ferror",
+        "结束与出错"
+      ],
+      "knowledgeIds": [
+        "c-ch12-17"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-022",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"d2.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = /*__BLANK_1__*/) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fopen(\"d2.txt\", \"r\")",
+          "accepted": [
+            "fopen(\"d2.txt\",\"r\")"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"d2.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = /*__BLANK_1__*/) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"d2.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"d2.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abc\n",
+          "expected": "n=4"
+        },
+        {
+          "stdin": "hello world\n",
+          "expected": "n=12"
+        },
+        {
+          "stdin": "",
+          "expected": "n=0"
+        }
+      ],
+      "explanation": "结论：该空填 fopen(\"d2.txt\", \"r\")，三组输出 n=4 / n=12 / n=0。推理：以只读方式 \"r\" 打开刚播种好的文件，再用 fgetc 逐字符统计；\"r\" 要求文件已存在，因此必须先完成播种。易错点：模式串必须是字符串字面量并带双引号，写成 r 会被当成未定义标识符；\"w\" 会清空原内容、\"a\" 只在末尾追加，只读统计必须用 \"r\"；打开后一定要判空，否则文件不存在时对 NULL 调用 fgetc 会崩溃。",
+      "tags": [
+        "fopen",
+        "模式"
+      ],
+      "knowledgeIds": [
+        "c-ch12-05"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-023",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n;\n\n    seed = fopen(\"g.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"g.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ != NULL)\n    {\n        n = (int)/*__BLANK_2__*/;\n        if (n > 0 && line[n - 1] == '\\n')\n            n--;\n        printf(\"%d\\n\", n);\n    }\n    fclose(fp);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fgets(line, sizeof(line), fp)",
+          "accepted": [
+            "fgets(line, 80, fp)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "strlen(line)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n;\n\n    seed = fopen(\"g.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"g.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (/*__BLANK_1__*/ != NULL)\n    {\n        n = (int)/*__BLANK_2__*/;\n        if (n > 0 && line[n - 1] == '\\n')\n            n--;\n        printf(\"%d\\n\", n);\n    }\n    fclose(fp);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[80];\n    int c, n;\n\n    seed = fopen(\"g.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"g.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        n = (int)strlen(line);\n        if (n > 0 && line[n - 1] == '\\n')\n            n--;\n        printf(\"%d\\n\", n);\n    }\n    fclose(fp);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abc\nde\n",
+          "expected": "3\n2"
+        },
+        {
+          "stdin": "x\ny\nz\n",
+          "expected": "1\n1\n1"
+        },
+        {
+          "stdin": "hello\n",
+          "expected": "5"
+        }
+      ],
+      "explanation": "结论：两空依次为 fgets(line, sizeof(line), fp) 与 strlen(line)，三组分别输出 3 与 2、三个 1、5。推理：fgets 把整行连同换行符读入 line，strlen 求出的长度包含换行符，所以末尾若是 \n 就减 1，得到不含换行的真实行长。易错点：必须包含 string.h 才能用 strlen；strlen 的参数是字符数组名即首地址，返回 size_t，赋给 int 时显式转换可避免警告；n > 0 的判断不能省，否则空行时 line[n-1] 会越界访问。",
+      "tags": [
+        "fgets",
+        "strlen",
+        "行长统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-13"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-cc-024",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    char s[80], line[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    if ((fp = fopen(\"s.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    fclose(fp);\n    if ((fp = fopen(\"s.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"[%s]\\n\", line);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fputs(s, fp)",
+          "accepted": [
+            "fputs(s,fp)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "fgets(line, sizeof(line), fp)",
+          "accepted": [
+            "fgets(line, 80, fp)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    char s[80], line[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    if ((fp = fopen(\"s.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_1__*/;\n    fclose(fp);\n    if ((fp = fopen(\"s.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    /*__BLANK_2__*/;\n    fclose(fp);\n    printf(\"[%s]\\n\", line);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp;\n    char s[80], line[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    if ((fp = fopen(\"s.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fputs(s, fp);\n    fclose(fp);\n    if ((fp = fopen(\"s.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fgets(line, sizeof(line), fp);\n    fclose(fp);\n    printf(\"[%s]\\n\", line);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "[hello]"
+        },
+        {
+          "stdin": "abc\n",
+          "expected": "[abc]"
+        },
+        {
+          "stdin": "C99\n",
+          "expected": "[C99]"
+        }
+      ],
+      "explanation": "结论：两空依次为 fputs(s, fp) 与 fgets(line, sizeof(line), fp)。推理：fputs 把字符串整体写入文件且不会自动追加换行符，fgets 再从文件中读回一行存入 line，最后用 %s 输出并加上方括号以显示边界。易错点：fputs 的第一个参数是字符串（字符数组名或字符串常量），第二个是文件指针，顺序不能颠倒；与 puts 不同，fputs 不会自动补换行；scanf 用 %79s 限宽可防止 s[80] 溢出。",
+      "tags": [
+        "fputs",
+        "fgets"
+      ],
+      "knowledgeIds": [
+        "c-ch12-12"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-dbg-001",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != NULL)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != NULL)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abc\n",
+          "expected": "n=4"
+        },
+        {
+          "stdin": "hello\n",
+          "expected": "n=6"
+        },
+        {
+          "stdin": "",
+          "expected": "n=0"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int c, n = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        n++;\n    fclose(fp);\n    printf(\"n=%d\\n\", n);\n    return 0;\n}",
+      "bugs": [
+        "fgetc 读到文件末尾或发生错误时返回 EOF（值为 -1），而不是 NULL；用 != NULL 判断时 EOF 与 NULL 不相等，条件永远成立，循环无法正常结束，程序会一直计数下去直到超时或崩溃。",
+        "计数变量 n 是局部变量，不会自动清零；不初始化就执行 n++ 属于使用未定义值，输出的字符数将是一个随机数，必须先写成 n = 0。"
+      ],
+      "explanation": "结论：两处错误分别是把循环条件中的 != NULL 改为 != EOF，以及把计数变量声明 int c, n; 改为 int c, n = 0;。改正后三组输出 n=4 / n=6 / n=0。推理：fgetc 的返回类型是 int，取值是 0~255 的字符码或 EOF，NULL 是指针空值，语义完全不同，只有与 EOF 比较才能在文件读完时终止循环；而累加型计数变量必须显式初始化，否则结果不可预测。易错点：这两个错误编译时都只可能给出警告而不报错，运行表现分别是死循环与随机结果；条件表达式中 fgetc(fp) 外面的括号也必须保留，否则 != 的优先级高于 = 会让 c 只取到 0 或 1。",
+      "tags": [
+        "fgetc",
+        "EOF",
+        "变量初始化"
+      ],
+      "knowledgeIds": [
+        "c-ch12-10"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-dbg-002",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, fp);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, fp);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "Hello\n",
+          "expected": "Hello"
+        },
+        {
+          "stdin": "a b c\n",
+          "expected": "a b c"
+        },
+        {
+          "stdin": "xyz\n",
+          "expected": "xyz"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    if ((out = fopen(\"dst.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        fputc(c, out);\n    fclose(out);\n    fclose(fp);\n    if ((fp = fopen(\"dst.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "bugs": [
+        "fputc 的第二个参数是目标文件指针；写成源文件指针 fp 相当于把刚读出的字符又写回源文件，目标文件 dst.txt 一个字符也没收到，最后打印出来是空内容，复制彻底失败。",
+        "dst.txt 是要写入的目标文件，必须以 \"w\"（只写、不存在则新建）方式打开；用 \"r\" 打开时文件若不存在会返回 NULL 使程序直接退出，即使文件存在也无法向其写入数据。"
+      ],
+      "explanation": "结论：两处错误分别是把 fputc(c, fp) 改为 fputc(c, out)，以及把目标文件的打开方式 \"r\" 改为 \"w\"。改正后三组分别输出 Hello / a b c / xyz。推理：文件复制需要两个不同的文件指针，fp 负责读源文件、out 负责写目标文件，读出的每个字符必须写入 out；而目标文件是新建并写入的，只能用 \"w\"（或二进制场合用 \"wb\"），\"r\" 只允许读且要求文件已存在。易错点：这两个错误的表象都是\"程序能跑但目标文件是空的\"，极难定位，说明复制类题目要同时检查打开方式与写入目标；复制结束后 out 与 fp 都要 fclose，否则缓冲区中的字符可能没有落盘。",
+      "tags": [
+        "文件复制",
+        "fputc",
+        "打开方式"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-dbg-003",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int len;\n    int c;\n\n    seed = fopen(\"len.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"len.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_SET);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int len;\n    int c;\n\n    seed = fopen(\"len.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"len.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_SET);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "abcdefgh\n",
+          "expected": "len=9"
+        },
+        {
+          "stdin": "abc\n",
+          "expected": "len=4"
+        },
+        {
+          "stdin": "",
+          "expected": "len=0"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len;\n    int c;\n\n    seed = fopen(\"len.bin\", \"wb\");\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n    if ((fp = fopen(\"len.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        exit(0);\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    fclose(fp);\n    printf(\"len=%ld\\n\", len);\n    return 0;\n}",
+      "bugs": [
+        "要求文件长度必须先把位置标记移到文件末尾；SEEK_SET 表示以文件开头为基准，偏移 0 后标记仍停在 0 处，ftell 恒返回 0，永远求不出文件长度。",
+        "ftell 的返回类型是 long，接收变量必须声明为 long；用 int 接收在文件较大或 long 占 8 字节的平台上会发生截断，而且与格式串 %ld 的类型不匹配，输出结果不可靠。"
+      ],
+      "explanation": "结论：两处错误分别是把 fseek 的基准 SEEK_SET 改为 SEEK_END，以及把 int len; 改为 long len;。改正后三组输出 len=9 / len=4 / len=0。推理：ftell 返回的是位置标记距文件开头的字节数，只有先 fseek 到 SEEK_END（文件末尾）再 ftell 才能得到文件总长度；ftell 的返回类型是 long，所以接收变量与格式串都应当按 long 处理。易错点：SEEK_SET、SEEK_CUR、SEEK_END 分别以文件开头、当前位置、文件末尾为基准，三者极易记混；偏移量要写成 0L 这样的 long 常量；播种与读取都用二进制方式，才能保证文件字节数与输入字符数严格一致（8 个字符加 1 个换行符共 9 字节）。",
+      "tags": [
+        "fseek",
+        "SEEK_END",
+        "ftell",
+        "long"
+      ],
+      "knowledgeIds": [
+        "c-ch12-19"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-007",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：先把标准输入的全部内容写入文本文件 data.txt，然后分别统计该文件的字符数（含换行符）、单词数（以空白字符分隔的连续非空白字符段）与行数，最后在一行中按\"字符数 单词数 行数\"的顺序输出三个整数，中间各用一个空格分隔。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入即为要写入 data.txt 的文本（可以为空）。\n\n输出格式：一行三个整数：字符数、单词数、行数，用空格分隔。",
+      "testCases": [
+        {
+          "stdin": "hello world\nfoo\n",
+          "expected": "16 3 2"
+        },
+        {
+          "stdin": "",
+          "expected": "0 0 0"
+        },
+        {
+          "stdin": "single\n",
+          "expected": "7 1 1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[256];\n    int c, nc = 0, nw = 0, nl = 0, inword = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        nc++;\n        if (c == ' ' || c == '\\t' || c == '\\n')\n            inword = 0;\n        else if (!inword)\n        {\n            inword = 1;\n            nw++;\n        }\n    }\n    fclose(fp);\n\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n        return 1;\n    while (fgets(line, sizeof(line), fp) != NULL)\n        nl++;\n    fclose(fp);\n\n    printf(\"%d %d %d\\n\", nc, nw, nl);\n    return 0;\n}",
+      "input_format": "全部标准输入即为要写入 data.txt 的文本（可以为空）。",
+      "output_format": "一行三个整数：字符数、单词数、行数，用空格分隔。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp, *seed;\n    char line[256];\n    int c, nc = 0, nw = 0, nl = 0, inword = 0;\n\n    seed = fopen(\"data.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        nc++;\n        if (c == ' ' || c == '\\t' || c == '\\n')\n            inword = 0;\n        else if (!inword)\n        {\n            inword = 1;\n            nw++;\n        }\n    }\n    fclose(fp);\n\n    if ((fp = fopen(\"data.txt\", \"r\")) == NULL)\n        return 1;\n    while (fgets(line, sizeof(line), fp) != NULL)\n        nl++;\n    fclose(fp);\n\n    printf(\"%d %d %d\\n\", nc, nw, nl);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 16 3 2、0 0 0、7 1 1。推理：字符数用 fgetc 逐字符累加；单词数用\"在词内/词外\"状态机，遇到空白置 inword=0，遇到非空白且当前不在词内时计数一次并置位；行数用 fgets 逐行读取的次数。易错点：第一次遍历后文件位置已在末尾，统计行数前必须重新 fopen 或 rewind，否则一行也读不到；状态机中 inword 初值为 0 不能省；空文件时三项都是 0，程序不应崩溃。",
+      "tags": [
+        "文件操作全流程",
+        "字符/单词/行统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-08"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-008",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写程序：把标准输入的全部内容写入文件 src.txt，再把它复制到 up.txt，复制过程中将所有小写字母转换为对应的大写字母，其他字符保持不变；最后把 up.txt 的全部内容输出到屏幕（不要额外添加换行）。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入即为要写入 src.txt 的文本（可以为空）。\n\n输出格式：转换后 up.txt 的全部内容，原样输出。",
+      "testCases": [
+        {
+          "stdin": "abc XYZ 123\n",
+          "expected": "ABC XYZ 123"
+        },
+        {
+          "stdin": "",
+          "expected": ""
+        },
+        {
+          "stdin": "Hello, World!\n",
+          "expected": "HELLO, WORLD!"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    if ((out = fopen(\"up.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        if (c >= 'a' && c <= 'z')\n            c = c - 32;\n        fputc(c, out);\n    }\n    fclose(out);\n    fclose(fp);\n\n    if ((fp = fopen(\"up.txt\", \"r\")) == NULL)\n        return 1;\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "input_format": "全部标准输入即为要写入 src.txt 的文本（可以为空）。",
+      "output_format": "转换后 up.txt 的全部内容，原样输出。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp, *out, *seed;\n    int c;\n\n    seed = fopen(\"src.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"src.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    if ((out = fopen(\"up.txt\", \"w\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while ((c = fgetc(fp)) != EOF)\n    {\n        if (c >= 'a' && c <= 'z')\n            c = c - 32;\n        fputc(c, out);\n    }\n    fclose(out);\n    fclose(fp);\n\n    if ((fp = fopen(\"up.txt\", \"r\")) == NULL)\n        return 1;\n    while ((c = fgetc(fp)) != EOF)\n        putchar(c);\n    fclose(fp);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 ABC XYZ 123、空、HELLO, WORLD!。推理：从 src.txt 读一个字符，若在小写区间内就减 32 转成大写，再写入 up.txt；复制完成后重新打开 up.txt 逐字符 putchar 到屏幕。易错点：必须限定 c 在 a 到 z 之间才转换，否则空格、数字、标点会被减 32 变成别的字符；fputc 的第二个参数是目标文件指针 out 而不是源指针 fp；两个文件都要 fclose，输出时不要再多打一个换行。",
+      "tags": [
+        "文件复制",
+        "大小写转换"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-009",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写程序：把标准输入的全部内容写入文件 num.txt，然后用 fscanf 逐个读取其中的整数，在一行中按\"个数 和 最大值 最小值\"的顺序输出四个整数，中间各用一个空格分隔；若文件中一个整数也没有，则输出 0 0 0 0。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入即为要写入 num.txt 的文本，其中含有若干个整数（可以为零个），用空白分隔。\n\n输出格式：一行四个整数：个数、和、最大值、最小值，用空格分隔；无整数时输出 0 0 0 0。",
+      "testCases": [
+        {
+          "stdin": "3 7 1 9\n",
+          "expected": "4 20 9 1"
+        },
+        {
+          "stdin": "",
+          "expected": "0 0 0 0"
+        },
+        {
+          "stdin": "-2 -8 0\n",
+          "expected": "3 -10 0 -8"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, n = 0, s = 0, mx = 0, mn = 0, c;\n\n    seed = fopen(\"num.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        if (n == 0)\n        {\n            mx = x;\n            mn = x;\n        }\n        else\n        {\n            if (x > mx)\n                mx = x;\n            if (x < mn)\n                mn = x;\n        }\n        n++;\n        s += x;\n    }\n    fclose(fp);\n    printf(\"%d %d %d %d\\n\", n, s, mx, mn);\n    return 0;\n}",
+      "input_format": "全部标准输入即为要写入 num.txt 的文本，其中含有若干个整数（可以为零个），用空白分隔。",
+      "output_format": "一行四个整数：个数、和、最大值、最小值，用空格分隔；无整数时输出 0 0 0 0。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp, *seed;\n    int x, n = 0, s = 0, mx = 0, mn = 0, c;\n\n    seed = fopen(\"num.txt\", \"w\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"num.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    while (fscanf(fp, \"%d\", &x) == 1)\n    {\n        if (n == 0)\n        {\n            mx = x;\n            mn = x;\n        }\n        else\n        {\n            if (x > mx)\n                mx = x;\n            if (x < mn)\n                mn = x;\n        }\n        n++;\n        s += x;\n    }\n    fclose(fp);\n    printf(\"%d %d %d %d\\n\", n, s, mx, mn);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 4 20 9 1、0 0 0 0、3 -10 0 -8。推理：用 fscanf 的返回值等于 1 作为循环条件逐个读入整数，第一次读到时同时初始化最大值与最小值，之后分别比较更新；个数与和各自累加。易错点：mx、mn 不能初始化为 0，否则全负数的数据会得出错误的最大值 0，必须用\"第一个数初始化\"的写法；n 为 0 时按题意输出四个 0；遇到非数字内容 fscanf 立即返回 0 结束循环，不会陷入死循环。",
+      "tags": [
+        "fscanf",
+        "最值统计"
+      ],
+      "knowledgeIds": [
+        "c-ch12-14"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-010",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：把标准输入的全部内容以二进制方式写入文件 data.bin，然后输出两行：第一行是该文件的字节长度；第二行是文件内容按字节倒序后的结果（若长度为 0 则第二行不输出）。要求用 fseek 定位后逐字节读取，不得把整个文件一次读入数组。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入即为要写入 data.bin 的内容（可以为空）。\n\n输出格式：第一行一个整数，为文件字节长度；长度大于 0 时第二行输出倒序后的内容。",
+      "testCases": [
+        {
+          "stdin": "abcdef",
+          "expected": "6\nfedcba"
+        },
+        {
+          "stdin": "",
+          "expected": "0"
+        },
+        {
+          "stdin": "Hello",
+          "expected": "5\nolleH"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    FILE *fp, *seed;\n    long len, i;\n    int c;\n\n    seed = fopen(\"data.bin\", \"wb\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"data.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    printf(\"%ld\\n\", len);\n    for (i = len - 1; i >= 0; i--)\n    {\n        fseek(fp, i, SEEK_SET);\n        c = fgetc(fp);\n        putchar(c);\n    }\n    if (len > 0)\n        putchar('\\n');\n    fclose(fp);\n    return 0;\n}",
+      "input_format": "全部标准输入即为要写入 data.bin 的内容（可以为空）。",
+      "output_format": "第一行一个整数，为文件字节长度；长度大于 0 时第二行输出倒序后的内容。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp, *seed;\n    long len, i;\n    int c;\n\n    seed = fopen(\"data.bin\", \"wb\");\n    if (seed == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, seed);\n    fclose(seed);\n\n    if ((fp = fopen(\"data.bin\", \"rb\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    fseek(fp, 0L, SEEK_END);\n    len = ftell(fp);\n    printf(\"%ld\\n\", len);\n    for (i = len - 1; i >= 0; i--)\n    {\n        fseek(fp, i, SEEK_SET);\n        c = fgetc(fp);\n        putchar(c);\n    }\n    if (len > 0)\n        putchar('\\n');\n    fclose(fp);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 6 与 fedcba、单独的 0、5 与 olleH。推理：以二进制方式播种可保证字节数与输入字符数严格一致；先 fseek 到 SEEK_END 用 ftell 求长度，再从 len-1 递减到 0，每次用 fseek(fp, i, SEEK_SET) 定位后 fgetc 读一个字节输出，实现倒序。易错点：循环变量必须是 long 且条件写成 i >= 0，用无符号类型会因回绕变成死循环；空文件时不输出第二行的换行，避免出现多余空行；用文本方式播种时 Windows 会把 \n 写成两字节，导致长度与倒序结果都与预期不符。",
+      "tags": [
+        "二进制文件",
+        "fseek",
+        "倒序输出"
+      ],
+      "knowledgeIds": [
+        "c-ch12-21"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-011",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "定义结构体 struct Student（含 int num 学号与 int score 成绩）。程序先把标准输入写入文本文件 stu.txt，从中读入 n 与 n 条记录；再用 fwrite 以二进制方式把这 n 个结构体整块写入 stu.dat，用 fread 整块读回到同一数组；最后按成绩从高到低排序（成绩相同的保持读入时的先后顺序），每行输出\"学号 成绩\"。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入为：第一行一个整数 n（1 ≤ n ≤ 100），随后 n 行，每行两个整数：学号与成绩。\n\n输出格式：共 n 行，每行两个整数：学号与成绩，按成绩降序排列，中间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "3\n101 78\n102 95\n103 88\n",
+          "expected": "102 95\n103 88\n101 78"
+        },
+        {
+          "stdin": "1\n7 60\n",
+          "expected": "7 60"
+        },
+        {
+          "stdin": "4\n1 50\n2 50\n3 49\n4 100\n",
+          "expected": "4 100\n1 50\n2 50\n3 49"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    FILE *fp, *bin;\n    struct Student st[100], t;\n    int c, n, i, j;\n\n    fp = fopen(\"stu.txt\", \"w\");\n    if (fp == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, fp);\n    fclose(fp);\n\n    if ((fp = fopen(\"stu.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    if (fscanf(fp, \"%d\", &n) != 1 || n < 1 || n > 100)\n    {\n        fclose(fp);\n        return 1;\n    }\n    for (i = 0; i < n; i++)\n        if (fscanf(fp, \"%d %d\", &st[i].num, &st[i].score) != 2)\n        {\n            fclose(fp);\n            return 1;\n        }\n    fclose(fp);\n\n    if ((bin = fopen(\"stu.dat\", \"wb\")) == NULL)\n        return 1;\n    if (fwrite(st, sizeof(struct Student), (size_t)n, bin) != (size_t)n)\n    {\n        fclose(bin);\n        return 1;\n    }\n    fclose(bin);\n\n    if ((bin = fopen(\"stu.dat\", \"rb\")) == NULL)\n        return 1;\n    if (fread(st, sizeof(struct Student), (size_t)n, bin) != (size_t)n)\n    {\n        fclose(bin);\n        return 1;\n    }\n    fclose(bin);\n\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (st[j].score < st[j + 1].score)\n            {\n                t = st[j];\n                st[j] = st[j + 1];\n                st[j + 1] = t;\n            }\n\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", st[i].num, st[i].score);\n    return 0;\n}",
+      "input_format": "全部标准输入为：第一行一个整数 n（1 ≤ n ≤ 100），随后 n 行，每行两个整数：学号与成绩。",
+      "output_format": "共 n 行，每行两个整数：学号与成绩，按成绩降序排列，中间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp, *bin;\n    struct Student st[100], t;\n    int c, n, i, j;\n\n    fp = fopen(\"stu.txt\", \"w\");\n    if (fp == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, fp);\n    fclose(fp);\n\n    if ((fp = fopen(\"stu.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    if (fscanf(fp, \"%d\", &n) != 1 || n < 1 || n > 100)\n    {\n        fclose(fp);\n        return 1;\n    }\n    for (i = 0; i < n; i++)\n        if (fscanf(fp, \"%d %d\", &st[i].num, &st[i].score) != 2)\n        {\n            fclose(fp);\n            return 1;\n        }\n    fclose(fp);\n\n    if ((bin = fopen(\"stu.dat\", \"wb\")) == NULL)\n        return 1;\n    if (fwrite(st, sizeof(struct Student), (size_t)n, bin) != (size_t)n)\n    {\n        fclose(bin);\n        return 1;\n    }\n    fclose(bin);\n\n    if ((bin = fopen(\"stu.dat\", \"rb\")) == NULL)\n        return 1;\n    if (fread(st, sizeof(struct Student), (size_t)n, bin) != (size_t)n)\n    {\n        fclose(bin);\n        return 1;\n    }\n    fclose(bin);\n\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (st[j].score < st[j + 1].score)\n            {\n                t = st[j];\n                st[j] = st[j + 1];\n                st[j + 1] = t;\n            }\n\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", st[i].num, st[i].score);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 102 95 / 103 88 / 101 78、7 60、4 100 / 1 50 / 2 50 / 3 49。推理：fwrite 与 fread 以 sizeof(struct Student) 为单位一次读写 n 个结构体，返回值应等于 n，据此判断整块存取是否成功；排序用冒泡并以严格小于作为交换条件，保证成绩相同时不发生交换、原顺序得以保留（稳定排序）。易错点：结构体因内存对齐含填充字节，读写两端必须用同一个 sizeof 表达式，写成 sizeof(int)*2 会错位；文件必须以 \"wb\"/\"rb\" 打开；结构体变量可以整体赋值，所以交换用临时变量 t 即可，无需逐成员复制。",
+      "tags": [
+        "fwrite",
+        "fread",
+        "结构体数组",
+        "排序"
+      ],
+      "knowledgeIds": [
+        "c-ch12-16"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-pg-012",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：把标准输入写入文本文件 lines.txt，然后逐行读取该文件，输出两行：第一行是最长一行的长度（不含行末换行符），第二行是该行内容；若并列最长则输出最先出现的那一行；若文件为空则只输出一行 0。（说明：本题运行环境中没有现成数据文件，程序应先把标准输入的全部内容写入自己创建的磁盘文件，再对该文件完成题目要求的处理。）\n\n输入格式：全部标准输入即为要写入 lines.txt 的文本（可以为空）。\n\n输出格式：文件非空时输出两行：最长行的长度与该行内容；文件为空时只输出一行 0。",
+      "testCases": [
+        {
+          "stdin": "abc\nhello\nxy\n",
+          "expected": "5\nhello"
+        },
+        {
+          "stdin": "",
+          "expected": "0"
+        },
+        {
+          "stdin": "one\ntwo\n",
+          "expected": "3\none"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nint main(void)\n{\n    FILE *fp;\n    char line[1024], best[1024];\n    int c, len, bestlen = -1;\n\n    fp = fopen(\"lines.txt\", \"w\");\n    if (fp == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, fp);\n    fclose(fp);\n\n    if ((fp = fopen(\"lines.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    best[0] = '\\0';\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        len = (int)strlen(line);\n        while (len > 0 && (line[len - 1] == '\\n' || line[len - 1] == '\\r'))\n        {\n            len--;\n            line[len] = '\\0';\n        }\n        if (len > bestlen)\n        {\n            bestlen = len;\n            strcpy(best, line);\n        }\n    }\n    fclose(fp);\n\n    if (bestlen < 0)\n    {\n        printf(\"0\\n\");\n        return 0;\n    }\n    printf(\"%d\\n%s\\n\", bestlen, best);\n    return 0;\n}",
+      "input_format": "全部标准输入即为要写入 lines.txt 的文本（可以为空）。",
+      "output_format": "文件非空时输出两行：最长行的长度与该行内容；文件为空时只输出一行 0。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    FILE *fp;\n    char line[1024], best[1024];\n    int c, len, bestlen = -1;\n\n    fp = fopen(\"lines.txt\", \"w\");\n    if (fp == NULL)\n        return 1;\n    while ((c = getchar()) != EOF)\n        fputc(c, fp);\n    fclose(fp);\n\n    if ((fp = fopen(\"lines.txt\", \"r\")) == NULL)\n    {\n        printf(\"Cannot open file!\\n\");\n        return 1;\n    }\n    best[0] = '\\0';\n    while (fgets(line, sizeof(line), fp) != NULL)\n    {\n        len = (int)strlen(line);\n        while (len > 0 && (line[len - 1] == '\\n' || line[len - 1] == '\\r'))\n        {\n            len--;\n            line[len] = '\\0';\n        }\n        if (len > bestlen)\n        {\n            bestlen = len;\n            strcpy(best, line);\n        }\n    }\n    fclose(fp);\n\n    if (bestlen < 0)\n    {\n        printf(\"0\\n\");\n        return 0;\n    }\n    printf(\"%d\\n%s\\n\", bestlen, best);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 5 与 hello、单独的 0、3 与 one。推理：用 fgets 逐行读入，strlen 得到的长度含行末换行符，要先从尾部剥掉 \n 与 \r 再参与比较；只有严格大于当前最优长度才更新 best 与 bestlen，因此并列时保留最先出现的行。易错点：bestlen 初值取 -1 而不是 0，这样空行（长度为 0）也能被正确记录为最长行；必须包含 string.h；剥换行的循环要先自减 len 再写 line[len]=0，否则 len 为 0 时会写到 line[-1] 造成越界。",
+      "tags": [
+        "fgets",
+        "最长行"
+      ],
+      "knowledgeIds": [
+        "c-ch12-18"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-024",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "以 \"r\" 方式打开一个并不存在的文本文件时，fopen 的返回值是（　　）。",
+      "options": [
+        "指向该文件的 FILE 指针，同时自动新建该文件",
+        "NULL",
+        "EOF",
+        "程序立即终止运行"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：\"r\" 是只读方式，要求文件必须已经存在；文件不存在时打开失败，fopen 返回 NULL，因此每次 fopen 之后都要判空再使用，只有 \"w\" 与 \"a\" 在文件不存在时才会新建文件。易错点：EOF 的值是 -1，它是 fgetc、getchar 等读字符函数的失败标志，不是 fopen 的返回值，二者绝不能混用；用 \"w\" 打开一个已存在的文件会把原内容全部清空，想在末尾追加必须用 \"a\"。",
+      "tags": [
+        "fopen",
+        "打开方式",
+        "失败检查"
+      ],
+      "knowledgeIds": [
+        "c-ch12-05"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-025",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于文本文件与二进制文件，下列说法正确的是（　　）。",
+      "options": [
+        "文本文件把数据转换成 ASCII 字符逐个存储，二进制文件按数据在内存中的原始字节存储",
+        "二进制文件一定比文本文件小，而且更便于人工阅读",
+        "C 语言只能用带 b 的模式打开二进制文件，否则完全无法读写",
+        "同一个整数 10000，用文本方式与二进制方式存储所占的字节数相同"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：文本文件把数值转换成字符序列存储，整数 10000 写成 1、0、0、0、0 共 5 字节；二进制文件直接存放内存中的原始表示，int 占 4 字节就存 4 字节，所以两者字节数一般不同。易错点：D 与事实相反；B 也说反了，二进制文件省空间但用记事本打开是乱码；C 不准确，b 只是模式后缀，在 Linux 下 \"r\" 与 \"rb\" 行为一致，真正的差别体现在 Windows 上文本方式会把 \n 与 \r\n 互相转换。",
+      "tags": [
+        "文本文件",
+        "二进制文件"
+      ],
+      "knowledgeIds": [
+        "c-ch12-02"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-026",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "用 fgetc 逐个读取文件字符时，接收返回值的变量应当声明为 int 而不是 char，主要原因是（　　）。",
+      "options": [
+        "fgetc 的返回类型是 void，必须用 int 承接",
+        "char 型变量不能存储字母字符",
+        "EOF 的值是 -1，若用 char 接收，在 char 为无符号类型的平台上会变成 255，与真实字符无法区分，导致循环判断出错",
+        "int 型变量读取文件的速度明显更快"
+      ],
+      "answer": 2,
+      "explanation": "结论：选 C。推理：fgetc 的返回类型是 int，取值要么是 0~255 的字符码，要么是 EOF(-1)；只有 int 才能同时容纳这两类值，用 char 接收会在无符号 char 平台上把 -1 折成 255，使 != EOF 恒成立而陷入死循环。易错点：A 说反了，fgetc 返回 int；B、D 与类型选择无关；标准写法是 int c; while ((c = fgetc(fp)) != EOF)，其中 fgetc(fp) 外面的括号必须保留，因为 != 的优先级高于 =。",
+      "tags": [
+        "fgetc",
+        "返回值类型",
+        "EOF"
+      ],
+      "knowledgeIds": [
+        "c-ch12-10"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-027",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "设 char buf[20];，文件当前行内容为 \"abcdefghijklmnopqr\"（18 个字符，其后是换行符），执行 fgets(buf, 10, fp) 之后，buf 中实际存放的字符个数（不含结尾的 '\\0'）是（　　）。",
+      "options": [
+        "10",
+        "9",
+        "18",
+        "20"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B，即 9 个。推理：fgets 的第二个参数 n 表示最多读入 n-1 个字符，然后自动补一个字符串结束标志 \u0000，所以 n=10 时缓冲区里最多有 9 个有效字符，本题读入的是 abcdefghi。易错点：若本行剩余字符不足 n-1 个，fgets 会把换行符一起读进来并留在缓冲区中，这正是判断\"读到行尾还是被截断\"的依据；把第二个参数写成 sizeof(buf)+1 会导致缓冲区溢出；剩余未读的字符仍留在文件里，下一次 fgets 会继续读。",
+      "tags": [
+        "fgets",
+        "参数n"
+      ],
+      "knowledgeIds": [
+        "c-ch12-13"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-028",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "调用 fseek(fp, -10L, SEEK_END) 的作用是（　　）。",
+      "options": [
+        "把文件位置标记移到距文件开头 10 字节处",
+        "把文件位置标记移到距文件末尾 10 字节处",
+        "从当前位置向文件尾方向移动 10 字节",
+        "把文件截断为 10 字节"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：SEEK_END 表示以文件末尾为基准，位移量取负表示向文件头方向回退，所以标记落在距末尾 10 字节的位置，常用来读取文件倒数第 10 个字符。易错点：SEEK_SET 以文件开头为基准、SEEK_CUR 以当前位置为基准，三个常量极易记混；位移量必须写成 long 型（带 L 后缀）；fseek 一般只用于二进制文件，文本文件因换行符转换使字节偏移与字符序号不一致，定位结果不可靠。",
+      "tags": [
+        "fseek",
+        "SEEK_END"
+      ],
+      "knowledgeIds": [
+        "c-ch12-21"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-sc-029",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设可执行文件名为 prog.exe，在命令行输入 prog.exe a.txt b.txt，则 main(int argc, char *argv[]) 中 argc 的值与 argv[1] 的内容分别是（　　）。",
+      "options": [
+        "2 和 \"a.txt\"",
+        "3 和 \"a.txt\"",
+        "3 和 \"prog.exe\"",
+        "2 和 \"b.txt\""
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：argc 统计命令行的全部字段数，程序名本身算第一个字段，所以是 3；argv 是字符串指针数组，argv[0] 指向 \"prog.exe\"，argv[1] 指向 \"a.txt\"，argv[2] 指向 \"b.txt\"。易错点：不要误以为 argv[0] 是第一个参数；argv[argc] 恒为 NULL，可以用它作为遍历的终止条件；argc 与 argv 的名字可以自定义，但类型与顺序必须保持 int 与 char *[]。",
+      "tags": [
+        "argc",
+        "argv",
+        "命令行参数"
+      ],
+      "knowledgeIds": [
+        "c-ch12-23"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-fb-009",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "关闭文件应调用 ______ 函数，它会把缓冲区中尚未写入磁盘的数据全部刷出，成功时返回 0，失败时返回 EOF。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fclose",
+          "accepted": [
+            "fclose()",
+            "fc1ose"
+          ]
+        }
+      ],
+      "explanation": "结论：填 fclose。推理：以写方式操作文件时数据先进入缓冲区，只有关闭文件（或调用 fflush）才能保证缓冲区内容真正写入磁盘，fclose 成功返回 0、失败返回 EOF。易错点：忘记 fclose 是文件程序最常见的错误，可能丢失最后一段数据；fclose 之后该文件指针不能再使用，若还要操作同一文件必须重新 fopen；虽然程序正常结束时会关闭已打开的文件，但异常退出未必可靠，应当显式关闭每一个打开的文件。",
+      "tags": [
+        "fclose",
+        "缓冲区刷写"
+      ],
+      "knowledgeIds": [
+        "c-ch12-07"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-fb-010",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "文件复制的核心语句是 while ((c = fgetc(fp)) != EOF) 后跟一条语句 ______;（要求把字符 c 写入 out 所指向的目标文件）",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "fputc(c, out)",
+          "accepted": [
+            "fputc(c,out)",
+            "fputc (c, out)"
+          ]
+        }
+      ],
+      "explanation": "结论：填 fputc(c, out)。推理：fputc 的第一个参数是要写出的字符，第二个参数是目标文件指针，把从源文件读到的每个字符逐个写入目标文件即完成复制。易错点：两个参数顺序不能颠倒，写成 fputc(out, c) 或 fputc(c, fp) 都会导致复制失败；循环条件中 fgetc(fp) 必须用括号括起，因为 != 的优先级高于 =；目标文件应以 \"w\" 或 \"wb\" 方式打开，复制结束后源文件与目标文件都要 fclose。",
+      "tags": [
+        "文件复制",
+        "fputc"
+      ],
+      "knowledgeIds": [
+        "c-ch12-11"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-fb-011",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "ftell 函数的作用是返回文件位置标记距文件开头的字节数，其返回类型是 long，调用失败时返回 ______。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "-1L",
+          "accepted": [
+            "-1",
+            "-1l"
+          ]
+        }
+      ],
+      "explanation": "结论：填 -1L。推理：ftell 返回 long 型的位置偏移量，出错时返回 -1L，因此判断失败要与 -1L 比较，而不是与 0 比较。易错点：常与 fseek(fp, 0L, SEEK_END) 配合求文件长度；接收变量必须用 long 并以 %ld 输出，用 int 接收在大文件上会溢出；rewind(fp) 的作用等价于 fseek(fp, 0L, SEEK_SET) 并清除文件结束与出错标志，但它没有返回值。",
+      "tags": [
+        "ftell",
+        "返回值"
+      ],
+      "knowledgeIds": [
+        "c-ch12-20"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "只要文件位置标记到达文件末尾，feof(fp) 就立即返回真值，因此读完最后一个有效字符之后它就为真。",
+      "answer": false,
+      "explanation": "结论：错误。推理：feof 反映的是\"上一次读操作是否已经越过文件末尾\"这一状态标志，只有当一次读取确实撞到末尾之后该标志才被置位；刚读完最后一个有效字符时 feof 仍为假，必须再读一次才会变真。易错点：这正是 while (!feof(fp)) { c = fgetc(fp); n++; } 会多循环一次的根源，正确写法是把读取动作本身作为循环条件 while ((c = fgetc(fp)) != EOF)；feof 的真正用途是在循环结束后配合 ferror 区分\"正常结束\"与\"读取出错\"。",
+      "tags": [
+        "feof",
+        "结束标志"
+      ],
+      "knowledgeIds": [
+        "c-ch12-17"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch12-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "fwrite(buf, size, count, fp) 一次调用只能写出一个数据项，要写出多个数据项必须用循环反复调用。",
+      "answer": false,
+      "explanation": "结论：错误。推理：fwrite 的第 2、3 个参数分别是每个数据项的字节数与项数，一次调用即可连续写出 count 个数据项，其返回值是实际成功写出的项数，因此写数组时根本不需要循环。易错点：常见写法 fwrite(arr, sizeof(int), 10, fp) 一次写出 10 个 int；也可以写成 fwrite(arr, 10 * sizeof(int), 1, fp)，但此时返回值是 1 而不是 10，判断成功与否要与写法对应；与 fread 配对读取时两端的块大小与项数必须一致，否则数据会错位。",
+      "tags": [
+        "fwrite",
+        "块读写"
+      ],
+      "knowledgeIds": [
+        "c-ch12-15"
+      ],
+      "source": "变式（源自 c-ch12 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }

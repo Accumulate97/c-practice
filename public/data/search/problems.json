@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "7a86490e709d26ae",
+  "content_sha": "c03c9b9365770b88",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 2024,
+  "count": 2074,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -17677,6 +17677,675 @@
       "chapter": "第12章 文件",
       "section": "12.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-003",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fgetc",
+        "字符统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-004",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fscanf",
+        "单词统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-005",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fgets",
+        "行数统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-006",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fscanf",
+        "求和"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-007",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fseek",
+        "ftell",
+        "文件长度"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-008",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "rewind",
+        "fgetc"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-009",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "文件复制",
+        "fputc"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-010",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fgets",
+        "参数n",
+        "截断"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-011",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "feof",
+        "多循环一次"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-012",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fscanf",
+        "分类统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-013",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "fprintf",
+        "格式化写文件"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-014",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "fwrite",
+        "fread",
+        "结构体"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-015",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "fwrite",
+        "二进制长度"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-016",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "fseek",
+        "随机读取"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-017",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "文本存储",
+        "二进制存储"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-018",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "文件复制",
+        "大小写转换"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-019",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fgets",
+        "行号输出"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-020",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fscanf",
+        "读取中断"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-021",
+      "file": "c-ch12.json",
+      "title": "下列程序先把标准输入的全部内容写入磁盘文件",
+      "tags": [
+        "fgetc",
+        "空白统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cr-022",
+      "file": "c-ch12.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "fopen",
+        "失败检查"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-015",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fgetc",
+        "失败检查",
+        "fclose"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-016",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fgets",
+        "逐行读取"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-017",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fscanf",
+        "返回值"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-018",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fseek",
+        "ftell",
+        "文件长度"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-019",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "文件复制",
+        "fputc",
+        "putchar"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-020",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fwrite",
+        "fread",
+        "二进制块"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-021",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "feof",
+        "ferror",
+        "结束与出错"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-022",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fopen",
+        "模式"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-023",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fgets",
+        "strlen",
+        "行长统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-cc-024",
+      "file": "c-ch12.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "fputs",
+        "fgets"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-dbg-001",
+      "file": "c-ch12.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "fgetc",
+        "EOF",
+        "变量初始化"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-dbg-002",
+      "file": "c-ch12.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "文件复制",
+        "fputc",
+        "打开方式"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-dbg-003",
+      "file": "c-ch12.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "fseek",
+        "SEEK_END",
+        "ftell",
+        "long"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-007",
+      "file": "c-ch12.json",
+      "title": "编写程序",
+      "tags": [
+        "文件操作全流程",
+        "字符/单词/行统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-008",
+      "file": "c-ch12.json",
+      "title": "编写程序",
+      "tags": [
+        "文件复制",
+        "大小写转换"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-009",
+      "file": "c-ch12.json",
+      "title": "编写程序",
+      "tags": [
+        "fscanf",
+        "最值统计"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-010",
+      "file": "c-ch12.json",
+      "title": "编写程序",
+      "tags": [
+        "二进制文件",
+        "fseek",
+        "倒序输出"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-011",
+      "file": "c-ch12.json",
+      "title": "定义结构体 struct Student",
+      "tags": [
+        "fwrite",
+        "fread",
+        "结构体数组",
+        "排序"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-pg-012",
+      "file": "c-ch12.json",
+      "title": "编写程序",
+      "tags": [
+        "fgets",
+        "最长行"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-024",
+      "file": "c-ch12.json",
+      "title": "以 \"r\" 方式打开一个并不存在的文本文件时",
+      "tags": [
+        "fopen",
+        "打开方式",
+        "失败检查"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-025",
+      "file": "c-ch12.json",
+      "title": "关于文本文件与二进制文件",
+      "tags": [
+        "文本文件",
+        "二进制文件"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-026",
+      "file": "c-ch12.json",
+      "title": "用 fgetc 逐个读取文件字符时",
+      "tags": [
+        "fgetc",
+        "返回值类型",
+        "EOF"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-027",
+      "file": "c-ch12.json",
+      "title": "设 char buf[20]",
+      "tags": [
+        "fgets",
+        "参数n"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-028",
+      "file": "c-ch12.json",
+      "title": "调用 fseek",
+      "tags": [
+        "fseek",
+        "SEEK_END"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-sc-029",
+      "file": "c-ch12.json",
+      "title": "设可执行文件名为 prog.exe",
+      "tags": [
+        "argc",
+        "argv",
+        "命令行参数"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-009",
+      "file": "c-ch12.json",
+      "title": "关闭文件应调用 ______ 函数",
+      "tags": [
+        "fclose",
+        "缓冲区刷写"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-010",
+      "file": "c-ch12.json",
+      "title": "文件复制的核心语句是 while ",
+      "tags": [
+        "文件复制",
+        "fputc"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-fb-011",
+      "file": "c-ch12.json",
+      "title": "ftell 函数的作用是返回文件位置标记距文件开头的字节数",
+      "tags": [
+        "ftell",
+        "返回值"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-tf-001",
+      "file": "c-ch12.json",
+      "title": "只要文件位置标记到达文件末尾",
+      "tags": [
+        "feof",
+        "结束标志"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch12-tf-002",
+      "file": "c-ch12.json",
+      "title": "fwrite",
+      "tags": [
+        "fwrite",
+        "块读写"
+      ],
+      "chapter": "第12章 文件",
+      "section": "12.4 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {
