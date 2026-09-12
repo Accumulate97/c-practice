@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "2c137ee3d0e8ac47",
+  "content_sha": "8b7db93d93c5b226",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1024,
+  "count": 1123,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -10319,6 +10319,420 @@
       "category": "c"
     },
     {
+      "id": "ds-ch01-sc-001",
+      "file": "ds-ch01.json",
+      "title": "数据结构作为一门独立课程",
+      "tags": [
+        "数据结构三要素",
+        "绪论"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-002",
+      "file": "ds-ch01.json",
+      "title": "下列关于数据的逻辑结构与存储结构的叙述中",
+      "tags": [
+        "逻辑结构",
+        "存储结构"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-003",
+      "file": "ds-ch01.json",
+      "title": "下列各项中",
+      "tags": [
+        "存储结构",
+        "绪论"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-004",
+      "file": "ds-ch01.json",
+      "title": "下列关于数据元素与数据项的叙述中",
+      "tags": [
+        "数据元素",
+        "数据项",
+        "基本概念"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-005",
+      "file": "ds-ch01.json",
+      "title": "设 n 为正整数",
+      "tags": [
+        "时间复杂度",
+        "对数阶",
+        "频度分析"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-006",
+      "file": "ds-ch01.json",
+      "title": "设 n 为正整数",
+      "tags": [
+        "频度分析",
+        "时间复杂度",
+        "求和公式"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-007",
+      "file": "ds-ch01.json",
+      "title": "算法的时间复杂度记作 T",
+      "tags": [
+        "渐进记号",
+        "大O",
+        "时间复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-008",
+      "file": "ds-ch01.json",
+      "title": "下列各组时间复杂度按增长速率由小到大排列",
+      "tags": [
+        "复杂度比较",
+        "渐进阶"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-009",
+      "file": "ds-ch01.json",
+      "title": "抽象数据类型",
+      "tags": [
+        "ADT",
+        "抽象数据类型",
+        "封装"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.3 抽象数据类型的表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-sc-010",
+      "file": "ds-ch01.json",
+      "title": "算法 A 处理规模 n 的数据需要 T",
+      "tags": [
+        "渐进分析",
+        "常数因子",
+        "复杂度比较"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-001",
+      "file": "ds-ch01.json",
+      "title": "数据结构包含三方面的内容",
+      "tags": [
+        "数据结构三要素"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-002",
+      "file": "ds-ch01.json",
+      "title": "数据的逻辑结构分为四类",
+      "tags": [
+        "逻辑结构",
+        "四种逻辑结构"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-003",
+      "file": "ds-ch01.json",
+      "title": "设 n 为正整数",
+      "tags": [
+        "时间复杂度",
+        "对数阶",
+        "频度分析"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-004",
+      "file": "ds-ch01.json",
+      "title": "递归函数 int f",
+      "tags": [
+        "递归",
+        "时间复杂度",
+        "空间复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-005",
+      "file": "ds-ch01.json",
+      "title": "设 n 为正整数",
+      "tags": [
+        "时间复杂度",
+        "频度分析",
+        "反解循环次数"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-006",
+      "file": "ds-ch01.json",
+      "title": "算法的五个基本特性是",
+      "tags": [
+        "算法特性",
+        "有穷性",
+        "确定性"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-007",
+      "file": "ds-ch01.json",
+      "title": "抽象数据类型的三个组成部分是",
+      "tags": [
+        "ADT",
+        "封装",
+        "信息隐蔽"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.3 抽象数据类型的表示与实现",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-fb-008",
+      "file": "ds-ch01.json",
+      "title": "与链式存储结构相比",
+      "tags": [
+        "顺序存储",
+        "链式存储",
+        "时空权衡"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.2 基本概念和术语",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-001",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "频度分析",
+        "双重循环",
+        "时间复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-002",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "对数阶",
+        "循环次数",
+        "时间复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-003",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "斐波那契",
+        "指数复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-004",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "递归工作栈",
+        "进制转换"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-005",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "频度分析",
+        "循环步长",
+        "时间复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cr-006",
+      "file": "ds-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "欧几里得算法",
+        "最大公约数",
+        "对数复杂度"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cc-001",
+      "file": "ds-ch01.json",
+      "title": "下列程序统计数组中严格大于平均值的元素个数",
+      "tags": [
+        "数组",
+        "平均值",
+        "算法实现"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cc-002",
+      "file": "ds-ch01.json",
+      "title": "下列程序用快速幂计算 a^b mod p",
+      "tags": [
+        "快速幂",
+        "对数复杂度",
+        "取模运算"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-cc-003",
+      "file": "ds-ch01.json",
+      "title": "下列程序统计不超过 n 的素数个数",
+      "tags": [
+        "素数",
+        "试除法",
+        "复杂度优化"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-pg-001",
+      "file": "ds-ch01.json",
+      "title": "输入正整数 n",
+      "tags": [
+        "双重循环",
+        "时间复杂度",
+        "溢出"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-pg-002",
+      "file": "ds-ch01.json",
+      "title": "输入正整数 n",
+      "tags": [
+        "对数阶",
+        "循环",
+        "向上取整"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch01-pg-003",
+      "file": "ds-ch01.json",
+      "title": "输入两个正整数 a、b",
+      "tags": [
+        "辗转相除",
+        "最大公约数",
+        "最小公倍数",
+        "溢出"
+      ],
+      "chapter": "第1章 绪论",
+      "section": "1.4 算法和算法分析",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
       "id": "ds-ch02-pg-001",
       "file": "ds-ch02.json",
       "title": "已知顺序表 L 中元素个数为 length",
@@ -10330,6 +10744,960 @@
       ],
       "chapter": "第2章 线性表",
       "section": "2.4.2 顺序表中基本操作的实现",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-001",
+      "file": "ds-ch02.json",
+      "title": "线性表的逻辑结构特征是",
+      "tags": [
+        "线性表",
+        "逻辑结构"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.1 线性表的定义与基本操作",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-002",
+      "file": "ds-ch02.json",
+      "title": "下列关于线性表的叙述中",
+      "tags": [
+        "线性表",
+        "存储结构"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.1 线性表的定义与基本操作",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-003",
+      "file": "ds-ch02.json",
+      "title": "顺序表中每个元素占 4 个字节",
+      "tags": [
+        "顺序表",
+        "地址计算"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-004",
+      "file": "ds-ch02.json",
+      "title": "在长度为 n 的顺序表中第 i",
+      "tags": [
+        "顺序表",
+        "插入",
+        "元素移动"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-005",
+      "file": "ds-ch02.json",
+      "title": "在等概率前提下",
+      "tags": [
+        "顺序表",
+        "平均移动次数",
+        "复杂度推导"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-006",
+      "file": "ds-ch02.json",
+      "title": "顺序表最主要的缺点是",
+      "tags": [
+        "顺序表",
+        "优缺点"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-007",
+      "file": "ds-ch02.json",
+      "title": "顺序表属于",
+      "tags": [
+        "顺序表",
+        "随机存取"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-008",
+      "file": "ds-ch02.json",
+      "title": "单链表带头结点的主要目的是",
+      "tags": [
+        "单链表",
+        "头结点"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-009",
+      "file": "ds-ch02.json",
+      "title": "设 p 指向单链表",
+      "tags": [
+        "单链表",
+        "插入",
+        "指针操作"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-010",
+      "file": "ds-ch02.json",
+      "title": "设 p 指向单链表中某结点且 p->next 不为空",
+      "tags": [
+        "单链表",
+        "删除",
+        "free"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-011",
+      "file": "ds-ch02.json",
+      "title": "在只有头指针、含 n 个结点的单链表表尾插入一个新结点",
+      "tags": [
+        "单链表",
+        "时间复杂度",
+        "尾插"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-012",
+      "file": "ds-ch02.json",
+      "title": "用头插法",
+      "tags": [
+        "单链表",
+        "头插法",
+        "逆序"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-013",
+      "file": "ds-ch02.json",
+      "title": "带头结点的循环单链表 head 为空的判定条件是",
+      "tags": [
+        "循环链表",
+        "判空"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-014",
+      "file": "ds-ch02.json",
+      "title": "设 rear 是指向带表头结点的循环单链表尾结点的指针",
+      "tags": [
+        "循环链表",
+        "尾指针",
+        "时间复杂度"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-015",
+      "file": "ds-ch02.json",
+      "title": "在双向链表结点 p 之后插入结点 s",
+      "tags": [
+        "双向链表",
+        "插入",
+        "指针操作"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-016",
+      "file": "ds-ch02.json",
+      "title": "若线性表的主要运算是按序号查找元素",
+      "tags": [
+        "存储结构选择",
+        "顺序表",
+        "链表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.5 顺序表与链表的比较",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-017",
+      "file": "ds-ch02.json",
+      "title": "存储密度是指结点数据本身所占存储量与结点结构所占总存储量之比",
+      "tags": [
+        "存储密度",
+        "空间开销"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.5 顺序表与链表的比较",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-018",
+      "file": "ds-ch02.json",
+      "title": "一个顺序表当前长度 n=8、容量 capacity=8",
+      "tags": [
+        "顺序表",
+        "扩容",
+        "均摊分析"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-019",
+      "file": "ds-ch02.json",
+      "title": "下列关于静态链表的叙述中",
+      "tags": [
+        "静态链表",
+        "游标"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-020",
+      "file": "ds-ch02.json",
+      "title": "已知 L 为带头结点的单链表",
+      "tags": [
+        "单链表",
+        "删除",
+        "数据搬移技巧"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-021",
+      "file": "ds-ch02.json",
+      "title": "设顺序表 L 的元素依次为 12、35、8、21、9",
+      "tags": [
+        "顺序表",
+        "删除",
+        "元素移动"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-022",
+      "file": "ds-ch02.json",
+      "title": "在含 n 个结点的单链表中",
+      "tags": [
+        "单链表",
+        "前插",
+        "时间复杂度"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-023",
+      "file": "ds-ch02.json",
+      "title": "下面关于线性表存储结构的比较",
+      "tags": [
+        "存储结构比较",
+        "顺序表",
+        "链表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.5 顺序表与链表的比较",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-sc-024",
+      "file": "ds-ch02.json",
+      "title": "设顺序表用数组 a[0..MAXN-1] 存放、length 记录当前长度",
+      "tags": [
+        "顺序表",
+        "插入",
+        "循环边界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-001",
+      "file": "ds-ch02.json",
+      "title": "顺序表每个元素占 8 个字节",
+      "tags": [
+        "顺序表",
+        "地址计算"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-002",
+      "file": "ds-ch02.json",
+      "title": "在长度为 20 的顺序表中",
+      "tags": [
+        "顺序表",
+        "插入",
+        "元素移动"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-003",
+      "file": "ds-ch02.json",
+      "title": "在长度为 20 的顺序表中",
+      "tags": [
+        "顺序表",
+        "删除",
+        "元素移动"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-004",
+      "file": "ds-ch02.json",
+      "title": "等概率条件下",
+      "tags": [
+        "顺序表",
+        "平均移动次数",
+        "推导"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-005",
+      "file": "ds-ch02.json",
+      "title": "带头结点的单链表 L",
+      "tags": [
+        "单链表",
+        "头结点",
+        "判空"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-006",
+      "file": "ds-ch02.json",
+      "title": "带头结点的循环单链表 head 为空的判定条件是 ____",
+      "tags": [
+        "循环链表",
+        "判空"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-007",
+      "file": "ds-ch02.json",
+      "title": "设 p 指向单链表中某结点",
+      "tags": [
+        "单链表",
+        "插入",
+        "指针操作"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-008",
+      "file": "ds-ch02.json",
+      "title": "设 p 指向单链表中某结点且 p->next 非空",
+      "tags": [
+        "单链表",
+        "删除",
+        "free"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-009",
+      "file": "ds-ch02.json",
+      "title": "顺序表的存储密度 ____ 1",
+      "tags": [
+        "存储密度",
+        "空间开销"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.5 顺序表与链表的比较",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-010",
+      "file": "ds-ch02.json",
+      "title": "顺序表支持 ____ 存取",
+      "tags": [
+        "存取方式",
+        "顺序表",
+        "链表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.5 顺序表与链表的比较",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-011",
+      "file": "ds-ch02.json",
+      "title": "单链表结点类型定义如下",
+      "tags": [
+        "单链表",
+        "结构体定义",
+        "typedef"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-012",
+      "file": "ds-ch02.json",
+      "title": "下列函数求带头结点单链表的表长",
+      "tags": [
+        "单链表",
+        "表长",
+        "遍历"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-013",
+      "file": "ds-ch02.json",
+      "title": "用头插法建立单链表",
+      "tags": [
+        "单链表",
+        "头插法",
+        "尾插法"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-014",
+      "file": "ds-ch02.json",
+      "title": "在含 n 个结点的单链表中按序号取第 i 个元素",
+      "tags": [
+        "时间复杂度",
+        "单链表",
+        "顺序表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-015",
+      "file": "ds-ch02.json",
+      "title": "删除单链表中不再需要的结点后",
+      "tags": [
+        "内存管理",
+        "free",
+        "内存泄漏"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-016",
+      "file": "ds-ch02.json",
+      "title": "在双向链表结点 p 之后插入新结点 s",
+      "tags": [
+        "双向链表",
+        "插入",
+        "删除"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-017",
+      "file": "ds-ch02.json",
+      "title": "静态链表用 ____ 描述结点",
+      "tags": [
+        "静态链表",
+        "游标",
+        "存储结构"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-fb-018",
+      "file": "ds-ch02.json",
+      "title": "顺序表用 a[0..MAXN-1] 存放元素、length 为当前长度",
+      "tags": [
+        "顺序表",
+        "插入",
+        "循环边界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-001",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序表",
+        "逆置",
+        "就地"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-002",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序表",
+        "逆置",
+        "奇数长度"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-003",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序表",
+        "逆置",
+        "边界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-004",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "单链表",
+        "头插法",
+        "逆序"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-005",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "单链表",
+        "头插法",
+        "重复元素"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-006",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序表",
+        "删除",
+        "双指针压缩"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-007",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序表",
+        "删除",
+        "空表边界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-008",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "有序表",
+        "插入",
+        "后移"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-009",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "有序表",
+        "插入",
+        "表头边界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-010",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "单链表",
+        "双指针",
+        "倒数第k"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cr-011",
+      "file": "ds-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "单链表",
+        "双指针",
+        "k越界"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-001",
+      "file": "ds-ch02.json",
+      "title": "下列程序实现顺序表的按位插入",
+      "tags": [
+        "顺序表",
+        "插入",
+        "元素后移"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-002",
+      "file": "ds-ch02.json",
+      "title": "下列程序实现顺序表的按位删除",
+      "tags": [
+        "顺序表",
+        "删除",
+        "元素前移"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-003",
+      "file": "ds-ch02.json",
+      "title": "下列程序实现顺序表的按值查找",
+      "tags": [
+        "顺序表",
+        "按值查找",
+        "位序"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-004",
+      "file": "ds-ch02.json",
+      "title": "下列程序把两个非递减有序顺序表合并为一个非递减有序表",
+      "tags": [
+        "有序表",
+        "归并",
+        "双指针"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-005",
+      "file": "ds-ch02.json",
+      "title": "下列程序取带头结点单链表中第 i 个元素的值",
+      "tags": [
+        "单链表",
+        "按序号查找",
+        "头结点"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-006",
+      "file": "ds-ch02.json",
+      "title": "下列程序在带头结点单链表的第 i 个位置之前插入元素 e",
+      "tags": [
+        "单链表",
+        "插入",
+        "前驱定位"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-007",
+      "file": "ds-ch02.json",
+      "title": "下列程序删除带头结点单链表的第 i 个结点并带回其值",
+      "tags": [
+        "单链表",
+        "删除",
+        "free"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-008",
+      "file": "ds-ch02.json",
+      "title": "下列程序用头插法就地逆置带头结点单链表",
+      "tags": [
+        "单链表",
+        "就地逆置",
+        "头插法"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-009",
+      "file": "ds-ch02.json",
+      "title": "下列程序用尾插法建立带头结点的单链表并统计表长",
+      "tags": [
+        "单链表",
+        "尾插建表",
+        "表长"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-cc-010",
+      "file": "ds-ch02.json",
+      "title": "下列程序在非循环双向链表中",
+      "tags": [
+        "双向链表",
+        "插入",
+        "指针次序"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.4 循环链表与双向链表",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-002",
+      "file": "ds-ch02.json",
+      "title": "设顺序表 L 中存放 n 个整数",
+      "tags": [
+        "顺序表",
+        "删除",
+        "O(n)压缩"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-003",
+      "file": "ds-ch02.json",
+      "title": "设单链表 L 不带头结点",
+      "tags": [
+        "单链表",
+        "逆置",
+        "无头结点"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-004",
+      "file": "ds-ch02.json",
+      "title": "设带头结点单链表 L 中存放 n 个整数",
+      "tags": [
+        "单链表",
+        "拆分",
+        "奇偶位序"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-005",
+      "file": "ds-ch02.json",
+      "title": "已知两条带头结点的单链表 La、Lb 中的元素均按值递增有序",
+      "tags": [
+        "单链表",
+        "归并",
+        "有序表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-006",
+      "file": "ds-ch02.json",
+      "title": "设顺序表 L 中存放 n 个整数",
+      "tags": [
+        "顺序表",
+        "循环移位",
+        "数组"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.2 线性表的顺序表示（顺序表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch02-pg-007",
+      "file": "ds-ch02.json",
+      "title": "已知带头结点单链表 L 中的元素按值递增有序",
+      "tags": [
+        "单链表",
+        "去重",
+        "有序表"
+      ],
+      "chapter": "第2章 线性表",
+      "section": "2.3 线性表的链式表示（单链表）",
       "type": "programming",
       "category": "ds"
     }
