@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "ed3d2d122d6bb3f7",
+  "content_sha": "81f9096f7a5d7aa6",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1674,
+  "count": 1724,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -6316,6 +6316,671 @@
       "chapter": "第5章 循环结构",
       "section": "5.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-025",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-026",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-027",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-028",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-029",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-030",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-031",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-032",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-033",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-034",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-035",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-036",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-037",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-038",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-039",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-040",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-041",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-042",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-043",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cr-044",
+      "file": "c-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-023",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "for循环",
+        "累加求和"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-024",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-025",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-026",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "while循环",
+        "辗转相除"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-027",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "for循环",
+        "素数判定"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-028",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "break",
+        "哨兵循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-029",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "continue",
+        "累加求和"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-030",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "嵌套循环",
+        "乘法口诀表"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-031",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "for循环",
+        "符号交替"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-cc-032",
+      "file": "c-ch05.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "while循环",
+        "哨兵循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-007",
+      "file": "c-ch05.json",
+      "title": "下列程序的功能是计算 1..n",
+      "tags": [
+        "off-by-one",
+        "累加求和"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-008",
+      "file": "c-ch05.json",
+      "title": "下列程序用辗转相除法求两个正整数的最大公约数",
+      "tags": [
+        "辗转相除",
+        "while循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-dbg-009",
+      "file": "c-ch05.json",
+      "title": "下列程序的功能是计算 1..n",
+      "tags": [
+        "平方和",
+        "累加求和"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-005",
+      "file": "c-ch05.json",
+      "title": "编写函数 long long fact",
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-006",
+      "file": "c-ch05.json",
+      "title": "编写函数 int isPrime",
+      "tags": [
+        "素数判定",
+        "试除法"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-007",
+      "file": "c-ch05.json",
+      "title": "编写函数 int gcd",
+      "tags": [
+        "辗转相除",
+        "最大公约数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-008",
+      "file": "c-ch05.json",
+      "title": "编写函数 void fib",
+      "tags": [
+        "迭代递推",
+        "斐波那契"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-009",
+      "file": "c-ch05.json",
+      "title": "编写函数 int digitSum",
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-pg-010",
+      "file": "c-ch05.json",
+      "title": "编写函数 int isPrime",
+      "tags": [
+        "穷举法",
+        "素数判定"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-047",
+      "file": "c-ch05.json",
+      "title": "一个 for 循环 for ",
+      "tags": [
+        "循环三要素",
+        "执行次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-048",
+      "file": "c-ch05.json",
+      "title": "关于 while 和 do…while 循环",
+      "tags": [
+        "while与do-while区别"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-049",
+      "file": "c-ch05.json",
+      "title": "在循环体中",
+      "tags": [
+        "break与continue区别"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-050",
+      "file": "c-ch05.json",
+      "title": "语句 for ",
+      "tags": [
+        "for的省略形式",
+        "无限循环"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-051",
+      "file": "c-ch05.json",
+      "title": "设 n 为正整数",
+      "tags": [
+        "循环嵌套",
+        "执行次数"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-sc-052",
+      "file": "c-ch05.json",
+      "title": "循环 for ",
+      "tags": [
+        "逗号表达式",
+        "双变量控制"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-009",
+      "file": "c-ch05.json",
+      "title": "循环 for ",
+      "tags": [
+        "循环体执行次数",
+        "步长"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-010",
+      "file": "c-ch05.json",
+      "title": "要计算 1 到 n",
+      "tags": [
+        "off-by-one",
+        "循环边界"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-fb-011",
+      "file": "c-ch05.json",
+      "title": "用 sum 累加求和",
+      "tags": [
+        "累加求和",
+        "初值"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-tf-001",
+      "file": "c-ch05.json",
+      "title": "continue 语句的作用是终止整个循环",
+      "tags": [
+        "continue",
+        "break区别"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch05-tf-002",
+      "file": "c-ch05.json",
+      "title": "for 循环的初始化表达式、条件表达式和步进表达式三者都可以省略",
+      "tags": [
+        "for的省略形式"
+      ],
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {

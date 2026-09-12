@@ -1,9 +1,9 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "d80423c5c86c306c",
+  "content_sha": "55c92fce3bd54e89",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1674,
+  "count": 1724,
   "shard_count": 20,
   "shards": [
     {
@@ -38,7 +38,7 @@
       "file": "c-ch05.json",
       "category": "c",
       "chapter": "第5章 循环结构",
-      "count": 107,
+      "count": 157,
       "url": "data/problems/c-ch05.json"
     },
     {
@@ -5135,7 +5135,7 @@
       "section": "4.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.57】以下程序的功能是【 】",
       "file": "c-ch04.json"
@@ -5904,7 +5904,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "短路求值",
         "逻辑运算符",
@@ -5921,7 +5921,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "短路求值",
         "逻辑运算符",
@@ -5938,7 +5938,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "短路求值",
         "逻辑运算符",
@@ -5955,7 +5955,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "短路求值",
         "逻辑运算符",
@@ -5972,7 +5972,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "短路求值",
         "逻辑运算符",
@@ -5989,7 +5989,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if嵌套",
         "悬挂else",
@@ -6006,7 +6006,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if嵌套",
         "悬挂else",
@@ -6023,7 +6023,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if嵌套",
         "悬挂else",
@@ -6040,7 +6040,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if嵌套",
         "悬挂else",
@@ -6057,7 +6057,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if嵌套",
         "悬挂else",
@@ -6074,7 +6074,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6091,7 +6091,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6108,7 +6108,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6125,7 +6125,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6142,7 +6142,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6159,7 +6159,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "条件运算符",
         "三目运算"
@@ -6175,7 +6175,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "条件运算符",
         "三目运算"
@@ -6191,7 +6191,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "条件运算符",
         "三目运算"
@@ -6207,7 +6207,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符分类",
         "闰年",
@@ -6224,7 +6224,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符分类",
         "闰年",
@@ -6241,7 +6241,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "if",
         "求最大值"
@@ -6257,7 +6257,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "闰年",
         "逻辑表达式"
@@ -6273,7 +6273,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "分段函数",
         "else if链"
@@ -6289,7 +6289,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符分类",
         "大小写转换"
@@ -6305,7 +6305,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "区间条件",
         "三角形判定"
@@ -6321,7 +6321,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "天数"
@@ -6337,7 +6337,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "贯穿"
@@ -6353,7 +6353,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "整数除法映射",
@@ -6370,7 +6370,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "德摩根律",
         "逻辑表达式"
@@ -6386,7 +6386,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "区间条件",
         "交换"
@@ -6402,7 +6402,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "赋值误作比较",
         "空语句"
@@ -6418,7 +6418,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "break",
@@ -6435,7 +6435,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "连写比较",
         "取余",
@@ -6452,7 +6452,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "闰年",
         "switch",
@@ -6469,7 +6469,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "三数排序",
         "交换"
@@ -6485,7 +6485,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "分段函数",
         "else if链"
@@ -6501,7 +6501,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "switch",
         "计算器",
@@ -6518,7 +6518,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符分类",
         "ASCII"
@@ -6534,7 +6534,7 @@
       "section": "4.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "分段计费",
         "多分支"
@@ -8123,6 +8123,821 @@
       "verified": true,
       "tags": [],
       "title": "【题 5.96】下面程序的功能是打印100以内个位数为6且能被3整除的所有数",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-025",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-026",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-027",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-028",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-029",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-030",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-031",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-032",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-033",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-034",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-035",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-036",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-037",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-038",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-039",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-040",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-041",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-042",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-043",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cr-044",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-023",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "for循环",
+        "累加求和"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-024",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-025",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-026",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "while循环",
+        "辗转相除"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-027",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "for循环",
+        "素数判定"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-028",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "break",
+        "哨兵循环"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-029",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "continue",
+        "累加求和"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-030",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "嵌套循环",
+        "乘法口诀表"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-031",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "for循环",
+        "符号交替"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-cc-032",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "while循环",
+        "哨兵循环"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-dbg-007",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "off-by-one",
+        "累加求和"
+      ],
+      "title": "下列程序的功能是计算 1..n",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-dbg-008",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "while循环"
+      ],
+      "title": "下列程序用辗转相除法求两个正整数的最大公约数",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-dbg-009",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "平方和",
+        "累加求和"
+      ],
+      "title": "下列程序的功能是计算 1..n",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-005",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "title": "编写函数 long long fact",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-006",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "素数判定",
+        "试除法"
+      ],
+      "title": "编写函数 int isPrime",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-007",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "辗转相除",
+        "最大公约数"
+      ],
+      "title": "编写函数 int gcd",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-008",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "迭代递推",
+        "斐波那契"
+      ],
+      "title": "编写函数 void fib",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-009",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "title": "编写函数 int digitSum",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-pg-010",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "穷举法",
+        "素数判定"
+      ],
+      "title": "编写函数 int isPrime",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-047",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "循环三要素",
+        "执行次数"
+      ],
+      "title": "一个 for 循环 for ",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-048",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "while与do-while区别"
+      ],
+      "title": "关于 while 和 do…while 循环",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-049",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "break与continue区别"
+      ],
+      "title": "在循环体中",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-050",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "for的省略形式",
+        "无限循环"
+      ],
+      "title": "语句 for ",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-051",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环嵌套",
+        "执行次数"
+      ],
+      "title": "设 n 为正整数",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-sc-052",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "逗号表达式",
+        "双变量控制"
+      ],
+      "title": "循环 for ",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-fb-009",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环体执行次数",
+        "步长"
+      ],
+      "title": "循环 for ",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-fb-010",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "off-by-one",
+        "循环边界"
+      ],
+      "title": "要计算 1 到 n",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-fb-011",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "累加求和",
+        "初值"
+      ],
+      "title": "用 sum 累加求和",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-tf-001",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "continue",
+        "break区别"
+      ],
+      "title": "continue 语句的作用是终止整个循环",
+      "file": "c-ch05.json"
+    },
+    {
+      "id": "c-ch05-tf-002",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "for的省略形式"
+      ],
+      "title": "for 循环的初始化表达式、条件表达式和步进表达式三者都可以省略",
       "file": "c-ch05.json"
     },
     {

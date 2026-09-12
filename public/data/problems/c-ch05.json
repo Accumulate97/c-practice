@@ -2827,6 +2827,1646 @@
       ],
       "id": "c-ch05-cc-022",
       "verified": true
+    },
+    {
+      "id": "c-ch05-cr-025",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 1; i < 10; i = i + 2)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "11 25 5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 1; i < 10; i = i + 2)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 11 25 5。循环变量 i 依次取 1、3、5、7、9 共 5 个奇数，累加得 25；当 i 自增到 11 时条件 11 < 10 为假，循环结束，此时 i 的值是 11 而不是 9。关键推理：for 循环退出后循环变量停留在\"第一个使条件不成立的值\"上，这个值常常被用来做后续判断。步长为 2 时执行次数是 ceil((10-1)/2)=5。易错点：误以为循环结束时 i 等于上界 10，或漏算最后一次自增。",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-10"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-026",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 10; i > 0; i = i - 3)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "-2 22 4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 10; i > 0; i = i - 3)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 -2 22 4。i 依次取 10、7、4、1，累加得 22；再自减 3 得 -2，条件 -2 > 0 为假退出。关键推理：循环变量完全可以递减，条件是 i > 0 而非 i >= 0，所以 i=1 是最后一次有效取值，1 之后 i 变 -2。执行次数为 floor(10/3)+1 = 4。易错点：递减循环里把条件写成 i > 0 与 i >= 0 会得到不同次数；步长与初值不整除时，退出值会跨过 0 变成负数。",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-08"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-027",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 0; i <= 20; i = i + 5)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "25 50 5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0, n = 0;\n\n    for (i = 0; i <= 20; i = i + 5)\n    {\n        s = s + i;\n        n = n + 1;\n    }\n    printf(\"%d %d %d\\n\", i, s, n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 25 50 5。i 取 0、5、10、15、20 共 5 次，累加 50；再自增到 25 时 25 <= 20 为假退出。关键推理：条件用 <= 使 i=20 这个边界值也参与循环体，这是\"含端点\"与\"不含端点\"的差别，也是 off-by-one 错误的根源。0+5+10+15+20 = 50，可用等差数列求和 5*(0+20)/2 验证。易错点：把 <= 误写成 < 会少执行一次，结果变成 30 与 4 次。",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-20"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-028",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n = 10, k, s1 = 0, s2 = 0;\n\n    k = n;\n    while (k < 5)\n    {\n        s1 = s1 + k;\n        k++;\n    }\n    k = n;\n    do\n    {\n        s2 = s2 + k;\n        k++;\n    } while (k < 5);\n    printf(\"%d %d %d\\n\", k, s1, s2);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "11 0 10",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n = 10, k, s1 = 0, s2 = 0;\n\n    k = n;\n    while (k < 5)\n    {\n        s1 = s1 + k;\n        k++;\n    }\n    k = n;\n    do\n    {\n        s2 = s2 + k;\n        k++;\n    } while (k < 5);\n    printf(\"%d %d %d\\n\", k, s1, s2);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 11 0 10。第一个 while 的条件 10 < 5 一开始就不成立，循环体一次都不执行，s1=0 且 k 保持 10；第二个 do...while 先执行循环体再判条件，所以 s2=10、k=11，然后 11 < 5 为假退出。关键推理：这正是 while 与 do...while 最本质的区别——前者可能执行 0 次，后者至少执行 1 次。易错点：认为两者在初值不满足条件时表现相同；本题输出里 k=11 而非 10 也说明 do...while 的自增已发生。",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-04"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-029",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n = 3, k, s1 = 0, s2 = 0;\n\n    k = n;\n    while (k < 3)\n    {\n        s1 = s1 + k;\n        k++;\n    }\n    k = n;\n    do\n    {\n        s2 = s2 + k;\n        k++;\n    } while (k < 3);\n    printf(\"%d %d %d\\n\", k, s1, s2);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "4 0 3",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n = 3, k, s1 = 0, s2 = 0;\n\n    k = n;\n    while (k < 3)\n    {\n        s1 = s1 + k;\n        k++;\n    }\n    k = n;\n    do\n    {\n        s2 = s2 + k;\n        k++;\n    } while (k < 3);\n    printf(\"%d %d %d\\n\", k, s1, s2);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 4 0 3。while 的条件 3 < 3 为假，一次都不执行，s1=0；do...while 至少执行一次，把 k=3 累加进 s2 得 3，k 自增为 4 后条件 4 < 3 为假退出。关键推理：当初始值恰好等于边界时，两种循环的差异暴露得最明显——差值正是那\"多出来的一次\"。易错点：把 do...while 末尾的分号漏掉，或误以为 while(k<T) 在 k==T 时还会执行一次。",
+      "tags": [
+        "for",
+        "while",
+        "循环次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-04"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-030",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 20; i++)\n    {\n        if (i % 3 == 0)\n            continue;\n        if (s > 50)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "14 61",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 20; i++)\n    {\n        if (i % 3 == 0)\n            continue;\n        if (s > 50)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 14 61。continue 跳过所有 3 的倍数（3、6、9、12），其余 i 依次累加：1、2、4、5、7、8、10、11、13 得 s=61；到 i=14 时判断 s > 50 成立，break 提前终止，i 停在 14。关键推理：两个 if 的顺序很重要——先 continue 再判 break，因此 3 的倍数那一轮根本不会触发 break 检查。i=13 时 s 还是 48 未超限，加完才变 61，超限判断滞后一轮。易错点：以为 break 后 i 会再自增；实际 break 立即跳出，i 保持 14。",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-15"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-031",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 10; i++)\n    {\n        if (i % 2 == 0)\n            continue;\n        if (s > 100)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "11 25",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 10; i++)\n    {\n        if (i % 2 == 0)\n            continue;\n        if (s > 100)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 11 25。continue 跳过全部偶数，只累加奇数 1+3+5+7+9=25；s 始终不超过 100，break 从未触发，循环因 i=11 使条件 11<=10 为假而自然结束。关键推理：break 与循环正常结束的区别体现在退出后的 i 值上——正常结束时 i 会比上界大 1。continue 只结束本次迭代，控制权回到 for 的表达式 3 做自增后继续判条件。易错点：把 continue 当成 break，误以为遇到第一个偶数就整体退出。",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-15"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-032",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 15; i++)\n    {\n        if (i % 5 == 0)\n            continue;\n        if (s > 20)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8 23",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 15; i++)\n    {\n        if (i % 5 == 0)\n            continue;\n        if (s > 20)\n            break;\n        s = s + i;\n    }\n    printf(\"%d %d\\n\", i, s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 8 23。跳过 5 的倍数后累加 1、2、3、4、6、7，到 i=7 结束时 s=23；i=8 时先判 8%5!=0 不 continue，再判 s>20 成立立即 break，所以 i=8、s=23。关键推理：break 的判断发生在累加之前，因此最后一次累加（i=7）已把 s 推过阈值，而 i=8 本身没有被加进去。易错点：以为输出的 s 一定不超过 LIM，其实阈值检查是\"上一轮结果的滞后判断\"，s 可能已经越界。",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-16"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-033",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n = 0;\n\n    for (i = 1; i <= 4; i++)\n    {\n        for (j = 1; j <= 4; j++)\n        {\n            if (i * j > 6)\n                break;\n            n = n + 1;\n        }\n        if (n > 100)\n            break;\n    }\n    printf(\"%d %d %d\\n\", i, j, n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "5 2 10",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n = 0;\n\n    for (i = 1; i <= 4; i++)\n    {\n        for (j = 1; j <= 4; j++)\n        {\n            if (i * j > 6)\n                break;\n            n = n + 1;\n        }\n        if (n > 100)\n            break;\n    }\n    printf(\"%d %d %d\\n\", i, j, n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 5 2 10。内层 break 只结束内层循环，外层继续：i=1 时 j=1..4 全部计入 n=4；i=2 时 j=3 使 2*3=6 不超过 6 计入，j=4 时 8>6 内层 break；i=3 时 j=1、2 计入（3*2=6），j=3 时 9>6 break；i=4 时只有 j=1 计入（4*1=4），j=2 时 8>6 break。合计 n=4+3+2+1=10。外层 i 走到 5 结束。关键推理：break 无法跳出多层循环，要跳出外层必须用标志变量或 goto。易错点：把边界条件 i*j>6 当成 >=6，会少算 3 次。",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-17"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-034",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n = 0;\n\n    for (i = 1; i <= 3; i++)\n    {\n        for (j = 1; j <= 5; j++)\n        {\n            if (i * j > 4)\n                break;\n            n = n + 1;\n        }\n        if (n > 6)\n            break;\n    }\n    printf(\"%d %d %d\\n\", i, j, n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 2 7",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n = 0;\n\n    for (i = 1; i <= 3; i++)\n    {\n        for (j = 1; j <= 5; j++)\n        {\n            if (i * j > 4)\n                break;\n            n = n + 1;\n        }\n        if (n > 6)\n            break;\n    }\n    printf(\"%d %d %d\\n\", i, j, n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3 2 7。i=1 时 j=1..4 计入（1*4=4 不超过 4），j=5 时 5>4 break，n=4；i=2 时 j=1、2 计入（2*2=4），j=3 时 6>4 break，n=6，此时 6 > 6 为假，外层不退出；i=3 时 j=1 计入，n=7，j=2 时 6>4 内层 break，随后 7 > 6 成立，外层 break，i 停在 3。关键推理：外层 break 的判断条件是 n > BIG 而不是 n >= BIG，差一个等号结果完全不同。易错点：外层的 break 检查在内层循环结束之后才做，所以内层仍会把当轮的计数加满。",
+      "tags": [
+        "break",
+        "continue",
+        "嵌套循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-17"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-035",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 10, sign = 1;\n    double s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        s = s + sign * 1.0 / i;\n        sign = -sign;\n    }\n    printf(\"%.4f\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0.6456",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 10, sign = 1;\n    double s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        s = s + sign * 1.0 / i;\n        sign = -sign;\n    }\n    printf(\"%.4f\\n\", s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0.6456。这是交错调和级数 1 - 1/2 + 1/3 - 1/4 + ... - 1/10 的前 10 项部分和，精确值 0.6456349...，按 %.4f 四舍五入得 0.6456。关键推理：符号交替靠 sign = -sign 在每轮末尾翻转实现，比写 pow(-1, i) 高效且不需要数学库；每一项都必须写成 sign * 1.0 / i，若写成 sign * 1 / i 则是整数除法，结果恒为 0。该级数收敛到 ln2 ≈ 0.6931。易错点：把 1.0 写成 1，或忘记翻转 sign 导致全为正项。",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-036",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 6, sign = 1;\n    double s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        s = s + sign * 1.0 / i;\n        sign = -sign;\n    }\n    printf(\"%.4f\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0.6167",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 6, sign = 1;\n    double s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        s = s + sign * 1.0 / i;\n        sign = -sign;\n    }\n    printf(\"%.4f\\n\", s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0.6167。前 6 项为 1 - 1/2 + 1/3 - 1/4 + 1/5 - 1/6，逐项累加得 0.6166666...，%.4f 输出 0.6167。关键推理：交错级数的部分和会在极限值上下摆动，项数为偶数时略低于极限 ln2≈0.6931，项数为奇数时略高于它；6 项与 10 项都是偶数项，所以都小于 0.6931。易错点：最后一项的符号由 sign 的翻转次数决定，n=6 时第 6 项是负号，容易数错。",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-037",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 5;\n    long long f = 1, s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        f = f * i;\n        s = s + f;\n    }\n    printf(\"%lld %lld\\n\", f, s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "120 153",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 5;\n    long long f = 1, s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        f = f * i;\n        s = s + f;\n    }\n    printf(\"%lld %lld\\n\", f, s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 120 153。f 逐项累乘得 5! = 120，s 累加 1!+2!+3!+4!+5! = 1+2+6+24+120 = 153。关键推理：用一个变量 f 滚动保存阶乘，每轮只需一次乘法 f = f * i，避免重复计算，这是\"递推\"思想的典型体现；若每轮都从 1 重新乘到 i，乘法次数会从 n 次涨到 n(n+1)/2 次。易错点：f 必须声明为 long long，5! 用 int 尚可，但 13! 就会溢出 32 位 int。",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "knowledgeIds": [
+        "c-ch05-24"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-038",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 10;\n    long long f = 1, s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        f = f * i;\n        s = s + f;\n    }\n    printf(\"%lld %lld\\n\", f, s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3628800 4037913",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, n = 10;\n    long long f = 1, s = 0;\n\n    for (i = 1; i <= n; i++)\n    {\n        f = f * i;\n        s = s + f;\n    }\n    printf(\"%lld %lld\\n\", f, s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3628800 4037913。10! = 3628800，1! 到 10! 的和为 4037913（可逐项累加验证：3→9→33→153→873→5913→46233→409113→4037913）。关键推理：10! 已超出 16 位 int 的范围但仍远小于 long long 的上限约 9.2e18；到 21! 时连 long long 也会溢出，此时必须改用高精度数组。易错点：用 int 存阶乘时 13! = 6227020800 已经溢出，程序不会报错只会给出错误的负数或截断值。",
+      "tags": [
+        "累加",
+        "累乘",
+        "递推"
+      ],
+      "knowledgeIds": [
+        "c-ch05-24"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-039",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d%d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d %d\\n\", a, b);\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}\n```\n运行时输入：\n```\n48 18\n```",
+      "answer": "48 18\n6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d%d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d %d\\n\", a, b);\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "stdin": "48 18\n",
+      "explanation": "结论：先回显 48 18，再输出 6。辗转相除过程：48 % 18 = 12，a=18、b=12；18 % 12 = 6，a=12、b=6；12 % 6 = 0，a=6、b=0，循环因 b==0 结束，此时 a 即最大公约数 6。关键推理：gcd(a,b) = gcd(b, a%b)，每轮都把问题规模缩小，余数最终必然变成 0；循环结束时 b 是 0 而结果保存在 a 中，所以打印的是 a 不是 b。易错点：把循环条件写成 a != 0，或最后打印 b 得到 0。",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "knowledgeIds": [
+        "c-ch05-28"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-040",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d%d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d %d\\n\", a, b);\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}\n```\n运行时输入：\n```\n17 5\n```",
+      "answer": "17 5\n1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d%d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d %d\\n\", a, b);\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "stdin": "17 5\n",
+      "explanation": "结论：先回显 17 5，再输出 1。过程：17 % 5 = 2，a=5、b=2；5 % 2 = 1，a=2、b=1；2 % 1 = 0，a=1、b=0 结束。结果为 1 说明 17 与 5 互素。关键推理：当两数互素时辗转相除最终一定会走到余数 1 再到 0，不会出现中途终止的情况；该算法的迭代次数与斐波那契数列相关，最坏情况出现在相邻斐波那契数上。易错点：以为互素就没有公约数，其实最大公约数是 1；另外若输入含 0，需要单独处理。",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "knowledgeIds": [
+        "c-ch05-28"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-041",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, flag;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    flag = 1;\n    if (n < 2)\n        flag = 0;\n    for (i = 2; i * i <= n && flag; i++)\n        if (n % i == 0)\n            flag = 0;\n    printf(\"%d %s\\n\", n, flag ? \"prime\" : \"not\");\n    printf(\"%d\\n\", i);\n    return 0;\n}\n```\n运行时输入：\n```\n97\n```",
+      "answer": "97 prime\n10",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, flag;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    flag = 1;\n    if (n < 2)\n        flag = 0;\n    for (i = 2; i * i <= n && flag; i++)\n        if (n % i == 0)\n            flag = 0;\n    printf(\"%d %s\\n\", n, flag ? \"prime\" : \"not\");\n    printf(\"%d\\n\", i);\n    return 0;\n}",
+      "stdin": "97\n",
+      "explanation": "结论：输出 97 prime 与 10。试除法只需检验到 sqrt(n)：循环条件 i * i <= n，即 i 最大取到 9（81<=97），i=10 时 100>97 条件不成立退出，所以第二行打印的 i 是 10。97 不能被 2~9 中任何数整除，flag 保持 1，判为素数。关键推理：若 n 有大于 sqrt(n) 的因子，必然有一个小于 sqrt(n) 的配对因子，因此只需试除到平方根；用 i*i<=n 代替 i<=sqrt(n) 可避免调用数学库。易错点：把条件写成 i<n 会让循环多跑很多轮，虽然结果相同但效率低。",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "knowledgeIds": [
+        "c-ch05-29"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-042",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, flag;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    flag = 1;\n    if (n < 2)\n        flag = 0;\n    for (i = 2; i * i <= n && flag; i++)\n        if (n % i == 0)\n            flag = 0;\n    printf(\"%d %s\\n\", n, flag ? \"prime\" : \"not\");\n    printf(\"%d\\n\", i);\n    return 0;\n}\n```\n运行时输入：\n```\n91\n```",
+      "answer": "91 not\n8",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, flag;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    flag = 1;\n    if (n < 2)\n        flag = 0;\n    for (i = 2; i * i <= n && flag; i++)\n        if (n % i == 0)\n            flag = 0;\n    printf(\"%d %s\\n\", n, flag ? \"prime\" : \"not\");\n    printf(\"%d\\n\", i);\n    return 0;\n}",
+      "stdin": "91\n",
+      "explanation": "结论：输出 91 not 与 8。91 = 7 × 13，i 递增到 7 时 49<=91 成立且 91 % 7 == 0，flag 置 0；i 自增为 8 后循环条件 i*i<=n && flag 因 flag 为 0 而整体为假，立即退出，故第二行输出 8。关键推理：把 flag 写进循环条件是\"提前退出\"的常见手法，等价于在循环体里写 break，但能让退出原因一目了然。91 看似素数（不能被 2、3、5 整除），实为合数，是试除法的经典反例。易错点：以为退出时 i 停在 7；条件判断在自增之后，所以是 8。",
+      "tags": [
+        "辗转相除",
+        "素数",
+        "循环退出值"
+      ],
+      "knowledgeIds": [
+        "c-ch05-29"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-043",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; j <= n - i; j++)\n            printf(\" \");\n        for (j = 1; j <= 2 * i - 1; j++)\n            printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n3\n```",
+      "answer": "  *\n ***\n*****",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; j <= n - i; j++)\n            printf(\" \");\n        for (j = 1; j <= 2 * i - 1; j++)\n            printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "3\n",
+      "explanation": "结论：输出一个高 3 行的居中星号三角形，三行的星号数依次是 1、3、5，前置空格数依次是 2、1、0。关键推理：第 i 行需要 n-i 个空格与 2i-1 个星号，两个内层循环分别负责空格与星号，外层循环每轮结束后单独 printf(\"\\n\") 换行。行号从 1 开始计数使公式最简洁。易错点：把空格循环写成 j <= i 会输出倒三角；漏掉外层末尾的换行会把所有星号挤在一行；printf(\" \") 的空格数量必须精确，多一个就整体错位。",
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "knowledgeIds": [
+        "c-ch05-12"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cr-044",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; j <= n - i; j++)\n            printf(\" \");\n        for (j = 1; j <= 2 * i - 1; j++)\n            printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n1\n```",
+      "answer": "*",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i, j, n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; j <= n - i; j++)\n            printf(\" \");\n        for (j = 1; j <= 2 * i - 1; j++)\n            printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "1\n",
+      "explanation": "结论：只输出一行一个星号。n=1 时外层循环只执行 i=1 这一轮，空格循环的上界 n-i = 0，条件 1 <= 0 为假一次都不执行，星号循环上界 2*1-1 = 1 输出一个星号，随后换行。关键推理：这是嵌套循环的边界情形，内层循环\"执行 0 次\"是完全正常的，for 循环在初始条件不满足时直接跳过循环体。易错点：以为 n=1 时会输出空格，或以为程序需要为 n=1 写特殊分支——好的循环设计应当天然覆盖边界值。",
+      "tags": [
+        "嵌套循环",
+        "图形打印"
+      ],
+      "knowledgeIds": [
+        "c-ch05-12"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-023",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "sum = sum + i",
+          "accepted": [
+            "sum += i"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "100\n",
+          "expected": "5050"
+        }
+      ],
+      "explanation": "结论：空白处填 sum = sum + i（或 sum += i）。推理：for 让 i 从 1 递增到 n，每轮把当前 i 累加进 sum，循环结束后 sum 即 1..n 之和；n=0 时循环体一次都不执行，sum 保持初值 0，是天然边界。易错点：写成 sum = i 会覆盖而非累加，最终得到 n 而非总和；累加器初值必须为 0。",
+      "tags": [
+        "for循环",
+        "累加求和"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-024",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 0)\n        n = -n;\n    while (n > 0)\n    {\n        s = s + n % 10;\n        /*__BLANK_1__*/;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n = n / 10",
+          "accepted": [
+            "n /= 10"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 0)\n        n = -n;\n    while (n > 0)\n    {\n        s = s + n % 10;\n        /*__BLANK_1__*/;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 0)\n        n = -n;\n    while (n > 0)\n    {\n        s = s + n % 10;\n        n = n / 10;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "12345\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "999\n",
+          "expected": "27"
+        }
+      ],
+      "explanation": "结论：填 n = n / 10。推理：每轮先用 n%10 取出个位累加，再整除 10 砍掉个位，直到 n 变为 0；n=0 时不进循环，和为 0。易错点：漏掉这一步 n 永远大于 0 会死循环；取位用 % 去位用 /，两者不能混；负数已先取绝对值处理。",
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "knowledgeIds": [
+        "c-ch05-02"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-025",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i;\n    long long f = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%lld\\n\", f);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "f = f * i",
+          "accepted": [
+            "f *= i"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i;\n    long long f = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%lld\\n\", f);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i;\n    long long f = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        f = f * i;\n    printf(\"%lld\\n\", f);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "120"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "20\n",
+          "expected": "2432902008176640000"
+        }
+      ],
+      "explanation": "结论：填 f = f * i（或 f *= i）。推理：f 初值 1，i 从 1 到 n 逐个相乘得 n!；0! = 1 由初值天然保证；用 long long 才能容纳 20! 约 2.43e18。易错点：初值写成 0 会让乘积恒为 0；n 超过 20 会溢出 long long，本题限定 20 以内。",
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "knowledgeIds": [
+        "c-ch05-24"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-026",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        /*__BLANK_1__*/;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "r = a % b"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        /*__BLANK_1__*/;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "12 18\n",
+          "expected": "6"
+        },
+        {
+          "stdin": "100 75\n",
+          "expected": "25"
+        },
+        {
+          "stdin": "7 13\n",
+          "expected": "1"
+        }
+      ],
+      "explanation": "结论：填 r = a % b。推理：辗转相除法每轮求余数 r，再令 a=b、b=r，直到 b=0，此时 a 即最大公约数；互质的 7 与 13 结果为 1。易错点：三条语句顺序不能乱，若先改 b 再算 r 会用错除数；a、b 应为正整数。",
+      "tags": [
+        "while循环",
+        "辗转相除"
+      ],
+      "knowledgeIds": [
+        "c-ch05-28"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-027",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, isPrime = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 2)\n        isPrime = 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", isPrime);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "isPrime = 0"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, isPrime = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 2)\n        isPrime = 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", isPrime);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, isPrime = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    if (n < 2)\n        isPrime = 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            isPrime = 0;\n    printf(\"%d\\n\", isPrime);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "97\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "1"
+        }
+      ],
+      "explanation": "结论：填 isPrime = 0。推理：试除法让 i 从 2 试到 √n（即 i*i<=n），一旦发现整除就把标志置 0；n<2 已预先判为非素数，故输入 1 输出 0、输入 2 输出 1。易错点：上界写成 i<=n 会把 n 自身当因子且效率低；标志初值应为 1。",
+      "tags": [
+        "for循环",
+        "素数判定"
+      ],
+      "knowledgeIds": [
+        "c-ch05-29"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-028",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, sum = 0;\n\n    while (1)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            break;\n        if (x < 0)\n            /*__BLANK_1__*/;\n        sum = sum + x;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "break"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, sum = 0;\n\n    while (1)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            break;\n        if (x < 0)\n            /*__BLANK_1__*/;\n        sum = sum + x;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int x, sum = 0;\n\n    while (1)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            break;\n        if (x < 0)\n            break;\n        sum = sum + x;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 -1 4\n",
+          "expected": "6"
+        },
+        {
+          "stdin": "-3\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "10 20\n",
+          "expected": "30"
+        }
+      ],
+      "explanation": "结论：填 break。推理：读到负数即 break 跳出 while(1)，此前非负数已累加进 sum；输入以 -3 开头则立即 break，和为 0；输入耗尽时 scanf 返回非 1 也 break。易错点：用 continue 只跳过本次仍会继续读，无法终止；break 只能跳出一层循环。",
+      "tags": [
+        "break",
+        "哨兵循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-30"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-029",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        if (i % 2 == 0)\n            /*__BLANK_1__*/;\n        sum = sum + i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "continue"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        if (i % 2 == 0)\n            /*__BLANK_1__*/;\n        sum = sum + i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        if (i % 2 == 0)\n            continue;\n        sum = sum + i;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "10\n",
+          "expected": "25"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：填 continue。推理：i 为偶数时 continue 跳过本轮累加直接进入下一轮，故只累加 1..n 中的奇数；n=0 时循环不执行，和为 0。易错点：continue 与 break 混淆——break 会终止整个循环只加到第一个偶数；判断条件写反会变成只加偶数。",
+      "tags": [
+        "continue",
+        "累加求和"
+      ],
+      "knowledgeIds": [
+        "c-ch05-15"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-030",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; /*__BLANK_1__*/; j++)\n            printf(\"%d*%d=%d \", j, i, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j <= i"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; /*__BLANK_1__*/; j++)\n            printf(\"%d*%d=%d \", j, i, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        for (j = 1; j <= i; j++)\n            printf(\"%d*%d=%d \", j, i, i * j);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n",
+          "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1*1=1"
+        },
+        {
+          "stdin": "6\n",
+          "expected": "1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n1*4=4 2*4=8 3*4=12 4*4=16\n1*5=5 2*5=10 3*5=15 4*5=20 5*5=25\n1*6=6 2*6=12 3*6=18 4*6=24 5*6=30 6*6=36"
+        }
+      ],
+      "explanation": "结论：填 j <= i。推理：内层 j 从 1 到 i，使第 i 行恰好输出 i 个算式，整体形成下三角乘法口诀表；n=1 时只输出一行一个算式。易错点：内层上界写成 j<=n 会输出矩形表；内外层循环变量 i、j 用混会导致算式错位。",
+      "tags": [
+        "嵌套循环",
+        "乘法口诀表"
+      ],
+      "knowledgeIds": [
+        "c-ch05-13"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-031",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sign = 1, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        sum = sum + sign * i;\n        /*__BLANK_1__*/;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "sign = -sign",
+          "accepted": [
+            "sign = -1 * sign"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sign = 1, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        sum = sum + sign * i;\n        /*__BLANK_1__*/;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sign = 1, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n    {\n        sum = sum + sign * i;\n        sign = -sign;\n    }\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n",
+          "expected": "-2"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        }
+      ],
+      "explanation": "结论：填 sign = -sign。推理：sign 初值 1，每轮累加 sign*i 后把 sign 取反，使加项符号 +、- 交替，得到 1-2+3-4+…；n=1 时结果为 1。易错点：忘记翻转 sign 会退化成普通求和；sign 初值的正负决定首项符号，写反则整体符号相反。",
+      "tags": [
+        "for循环",
+        "符号交替"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-cc-032",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, max;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    max = x;\n    while (x != 0)\n    {\n        if (x > max)\n            /*__BLANK_1__*/;\n        if (scanf(\"%d\", &x) != 1)\n            break;\n    }\n    printf(\"%d\\n\", max);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "max = x"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, max;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    max = x;\n    while (x != 0)\n    {\n        if (x > max)\n            /*__BLANK_1__*/;\n        if (scanf(\"%d\", &x) != 1)\n            break;\n    }\n    printf(\"%d\\n\", max);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int x, max;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    max = x;\n    while (x != 0)\n    {\n        if (x > max)\n            max = x;\n        if (scanf(\"%d\", &x) != 1)\n            break;\n    }\n    printf(\"%d\\n\", max);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 7 2 0\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "-1 -5 0\n",
+          "expected": "-1"
+        }
+      ],
+      "explanation": "结论：填 max = x。推理：max 初始化为第一个数，其后每读到一个更大的 x 就更新 max，遇 0 停止；当输入全为负数时保留其中最大的负数。易错点：max 初值若设为 0，全负输入会错误输出 0；必须在读入首个数后用其赋初值。",
+      "tags": [
+        "while循环",
+        "哨兵循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-27"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-dbg-007",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序的功能是计算 1..n（含 n）的整数和，但其中有 2 处错误，运行结果不正确。请找出并改正。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i < n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i < n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "10\n",
+          "expected": "55"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "100\n",
+          "expected": "5050"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "bugs": [
+        "循环上界错误：求 1..n 的和需让 i 取到 n，条件 i<n 会漏加最后一项 n，应改为 i<=n",
+        "累加器初值错误：累加 sum=sum+i 要求初值为 0，初值为 1 会使结果整体多 1"
+      ],
+      "explanation": "结论：两处错误——把 i<n 改为 i<=n，把 sum=1 改为 sum=0。推理：求 1..n 之和既要让 i 取到 n，累加器初值又须为 0；原代码漏加 n 又多算 1，如 n=10 得 46 而非正确的 55。易错点：off-by-one 与初值错误常同时出现，改完一处务必复核另一处。",
+      "tags": [
+        "off-by-one",
+        "累加求和"
+      ],
+      "knowledgeIds": [
+        "c-ch05-20"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-dbg-008",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用辗转相除法求两个正整数的最大公约数，但其中有 2 处错误。请找出并改正。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        r = a / b;\n        a = r;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        r = a / b;\n        a = r;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "48 18\n",
+          "expected": "6"
+        },
+        {
+          "stdin": "100 75\n",
+          "expected": "25"
+        },
+        {
+          "stdin": "17 5\n",
+          "expected": "1"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, r;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    printf(\"%d\\n\", a);\n    return 0;\n}",
+      "bugs": [
+        "取余错误：辗转相除每轮应求余数 r=a%b，写成整除 a/b 得到的是商，算法错误",
+        "迭代赋值错误：应先令 a=b 再令 b=r，写成 a=r 会丢失除数 b 的值"
+      ],
+      "explanation": "结论：两处错误——r=a/b 改为 r=a%b，a=r 改为 a=b。推理：辗转相除靠余数迭代，用整除商则算法错误；且必须先 a=b 再 b=r，否则丢失除数；改正后 48 与 18 得 6。易错点：% 与 / 混淆，以及两条赋值语句的先后顺序。",
+      "tags": [
+        "辗转相除",
+        "while循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-28"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-dbg-009",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序的功能是计算 1..n（含 n）的平方和，但其中有 2 处错误。请找出并改正。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 1;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        sum = sum + i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "14"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "385"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    for (i = 1; i <= n; i++)\n        sum = sum + i * i;\n    printf(\"%d\\n\", sum);\n    return 0;\n}",
+      "bugs": [
+        "累加项错误：题目要求平方和应累加 i*i，写成累加 i 得到的是普通求和",
+        "累加器初值错误：求和初值应为 0，初值为 1 会使结果多 1"
+      ],
+      "explanation": "结论：两处错误——sum=sum+i 改为 sum=sum+i*i，sum=1 改为 sum=0。推理：平方和要累加每个 i 的平方且初值为 0；原式既加错项又多算 1，如 n=3 得 7 而非正确的 14。易错点：C 语言中 ^ 是异或运算符，平方必须写成 i*i；审题要同时核对累加项与初值。",
+      "tags": [
+        "平方和",
+        "累加求和"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-005",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 long long fact(int n)，返回 n 的阶乘 n!，并在 main 中读入 n 后输出。\n\n输入格式：一个整数 n（0 <= n <= 20）。\n\n输出格式：一个整数，表示 n!。",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "120"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "20\n",
+          "expected": "2432902008176640000"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nlong long fact(int n)\n{\n    long long f = 1;\n    int i;\n\n    for (i = 1; i <= n; i++)\n        f = f * i;\n    return f;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "input_format": "一个整数 n（0 <= n <= 20）。",
+      "output_format": "一个整数，表示 n!。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "explanation": "结论：用 long long 累乘，fact 返回 n!。推理：f 初值 1，i 从 1 到 n 逐个相乘；0! 由初值天然为 1；20! 约 2.43e18 仍在 long long 范围内。易错点：用 int 会在 13! 起溢出；n 超过 20 超出 long long，本题限定 0..20。",
+      "tags": [
+        "for循环",
+        "阶乘"
+      ],
+      "knowledgeIds": [
+        "c-ch05-24"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-006",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int isPrime(int n)，判断 n 是否为素数（是返回 1，否返回 0），并在 main 中读入 n 后输出结果。\n\n输入格式：一个整数 n。\n\n输出格式：1 表示素数，0 表示非素数。",
+      "testCases": [
+        {
+          "stdin": "97\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (n < 2)\n        return 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            return 0;\n    return 1;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", isPrime(n));\n    return 0;\n}",
+      "input_format": "一个整数 n。",
+      "output_format": "1 表示素数，0 表示非素数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", isPrime(n));\n    return 0;\n}",
+      "explanation": "结论：试除法，i 从 2 到 √n 无因子则为素数。推理：若 n 有大于 √n 的因子，必有一个小于 √n 的对应因子，故只需试到 i*i<=n；n<2 直接判为非素数。易错点：试到 n-1 效率低；1 不是素数，2 是最小的素数。",
+      "tags": [
+        "素数判定",
+        "试除法"
+      ],
+      "knowledgeIds": [
+        "c-ch05-29"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-007",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 int gcd(int a, int b)，用辗转相除法返回最大公约数，并在 main 中读入 a、b 后输出。\n\n输入格式：两个正整数 a、b，以空格分隔。\n\n输出格式：一个整数，表示 a 与 b 的最大公约数。",
+      "testCases": [
+        {
+          "stdin": "12 18\n",
+          "expected": "6"
+        },
+        {
+          "stdin": "100 75\n",
+          "expected": "25"
+        },
+        {
+          "stdin": "7 13\n",
+          "expected": "1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    int r;\n\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    return a;\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}",
+      "input_format": "两个正整数 a、b，以空格分隔。",
+      "output_format": "一个整数，表示 a 与 b 的最大公约数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}",
+      "explanation": "结论：辗转相除，b 为 0 时 a 即最大公约数。推理：gcd(a,b)=gcd(b,a%b)，反复迭代直到余数为 0；互质时结果为 1。易错点：迭代必须先 a=b 再 b=r，顺序错会丢失除数；输入应为正整数。",
+      "tags": [
+        "辗转相除",
+        "最大公约数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-28"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-008",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 void fib(int n)，输出斐波那契数列前 n 项（从 0 开始），各项以空格分隔；main 读入 n 后调用并在末尾换行。\n\n输入格式：一个正整数 n（1 <= n <= 50）。\n\n输出格式：n 个整数，空格分隔。",
+      "testCases": [
+        {
+          "stdin": "6\n",
+          "expected": "0 1 1 2 3 5"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "0 1 1 2 3 5 8 13 21 34"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid fib(int n)\n{\n    long long a = 0, b = 1, t;\n    int i;\n\n    for (i = 1; i <= n; i++)\n    {\n        printf(\"%lld \", a);\n        t = a + b;\n        a = b;\n        b = t;\n    }\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    fib(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "一个正整数 n（1 <= n <= 50）。",
+      "output_format": "n 个整数，空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    fib(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：用两个变量滚动递推前 n 项。推理：a、b 初始为 0、1，每轮先输出 a，再令 t=a+b、a=b、b=t，即得 0,1,1,2,3,5…；n=1 只输出 0。易错点：直接递归会大量重复计算；滚动变量更新必须借助临时变量 t，否则 a 被覆盖后 b 算错。",
+      "tags": [
+        "迭代递推",
+        "斐波那契"
+      ],
+      "knowledgeIds": [
+        "c-ch05-27"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-009",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int digitSum(int n)，返回整数 n 的各位数字之和（负数按绝对值处理），main 读入 n 后输出。\n\n输入格式：一个整数 n。\n\n输出格式：一个整数，表示各位数字之和。",
+      "testCases": [
+        {
+          "stdin": "12345\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "999\n",
+          "expected": "27"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint digitSum(int n)\n{\n    int s = 0;\n\n    if (n < 0)\n        n = -n;\n    while (n > 0)\n    {\n        s = s + n % 10;\n        n = n / 10;\n    }\n    return s;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", digitSum(n));\n    return 0;\n}",
+      "input_format": "一个整数 n。",
+      "output_format": "一个整数，表示各位数字之和。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", digitSum(n));\n    return 0;\n}",
+      "explanation": "结论：while 循环逐位取余累加。推理：n%10 取出个位加入 s，n/10 去掉个位，直到 n 为 0；负数先取绝对值；n=0 时和为 0。易错点：漏写 n=n/10 会死循环；取位用 % 去位用 /，不能混用。",
+      "tags": [
+        "while循环",
+        "数字处理"
+      ],
+      "knowledgeIds": [
+        "c-ch05-02"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-pg-010",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第5章 循环结构",
+      "section": "5.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 int isPrime(int n) 与 void printPrimes(int n)，输出 2..n 之间所有素数（空格分隔）；main 读入 n 后调用并在末尾换行。\n\n输入格式：一个正整数 n。\n\n输出格式：若干素数，空格分隔；n<2 时输出空行。",
+      "testCases": [
+        {
+          "stdin": "20\n",
+          "expected": "2 3 5 7 11 13 17 19"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "1\n",
+          "expected": ""
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (n < 2)\n        return 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            return 0;\n    return 1;\n}\n\nvoid printPrimes(int n)\n{\n    int i;\n\n    for (i = 2; i <= n; i++)\n        if (isPrime(i))\n            printf(\"%d \", i);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printPrimes(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "一个正整数 n。",
+      "output_format": "若干素数，空格分隔；n<2 时输出空行。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printPrimes(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：穷举 2..n 逐个用 isPrime 判断并输出。推理：外层枚举每个候选数，isPrime 用试除法判定，是素数则打印；n<2 时循环不执行，只输出空行。易错点：从 2 开始而非 1（1 不是素数）；输出以空格分隔，末尾统一换行；n=1 应输出空行而非报错。",
+      "tags": [
+        "穷举法",
+        "素数判定"
+      ],
+      "knowledgeIds": [
+        "c-ch05-26"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-047",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "一个 for 循环 for (i = 0; i < 5; i++) 的循环体共执行多少次？",
+      "options": [
+        "0 次",
+        "4 次",
+        "5 次",
+        "6 次"
+      ],
+      "answer": 2,
+      "explanation": "结论：5 次。推理：i 从 0 开始每轮加 1，当 i<5 时执行循环体，i 依次取 0、1、2、3、4 共 5 个值各执行一次，i=5 时条件为假退出。易错点：误以为从 0 开始就少一次，其实 0 到 4 正好 5 个；执行次数等于上界减下界（起点为 0 时即上界值）。",
+      "tags": [
+        "循环三要素",
+        "执行次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-01"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-048",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "关于 while 和 do…while 循环，下列说法正确的是？",
+      "options": [
+        "两者在任何情况下都等价",
+        "do…while 循环体至少执行一次，while 可能一次都不执行",
+        "while 循环体至少执行一次，do…while 可能一次都不执行",
+        "do…while 不能用 break 跳出"
+      ],
+      "answer": 1,
+      "explanation": "结论：B。推理：do…while 先执行循环体再判断条件，故至少执行一次；while 先判断条件，初始不满足时一次都不执行。易错点：二者在条件首次为假时行为不同，不能视为等价；do…while 同样可以用 break 跳出。",
+      "tags": [
+        "while与do-while区别"
+      ],
+      "knowledgeIds": [
+        "c-ch05-04"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-049",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "在循环体中，关于 break 和 continue 的作用，正确的是？",
+      "options": [
+        "break 结束本次循环，continue 终止整个循环",
+        "break 终止整个循环，continue 结束本次循环并进入下一轮",
+        "两者都终止整个循环",
+        "两者都只结束本次循环"
+      ],
+      "answer": 1,
+      "explanation": "结论：B。推理：break 立即跳出整个循环，不再执行后续轮次；continue 只跳过本轮剩余语句，直接进入下一轮条件判断。易错点：二者作用常被记反；在嵌套循环中 break 只跳出最内层循环。",
+      "tags": [
+        "break与continue区别"
+      ],
+      "knowledgeIds": [
+        "c-ch05-16"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-050",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "语句 for (;;) 的含义是？",
+      "options": [
+        "语法错误，不能编译",
+        "循环体执行 0 次",
+        "构成无限循环，三个表达式全部省略",
+        "循环体只执行一次"
+      ],
+      "answer": 2,
+      "explanation": "结论：C。推理：for 的初始化、条件、步进三个表达式都可省略，但两个分号必须保留；省略条件时其值默认为真，故 for(;;) 是无限循环，需靠 break 跳出。易错点：误以为省略条件会语法错误或循环 0 次；它常被用作事件循环骨架。",
+      "tags": [
+        "for的省略形式",
+        "无限循环"
+      ],
+      "knowledgeIds": [
+        "c-ch05-06"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-051",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "设 n 为正整数，程序段 for (i=1;i<=n;i++) for (j=1;j<=n;j++) x++; 中 x++ 共执行多少次？",
+      "options": [
+        "n",
+        "2n",
+        "n*n",
+        "n*(n+1)/2"
+      ],
+      "answer": 2,
+      "explanation": "结论：C，即 n² 次。推理：外层 i 取 1..n 共 n 轮，每轮内层 j 取 1..n 执行 n 次，总计 n×n=n² 次。易错点：误选 n(n+1)/2，那是内层 j<=i 的下三角情形；矩形嵌套是 n²，三角形嵌套才是 n(n+1)/2。",
+      "tags": [
+        "循环嵌套",
+        "执行次数"
+      ],
+      "knowledgeIds": [
+        "c-ch05-11"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-sc-052",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "循环 for (i = 0, j = 10; i < j; i++, j--) 的循环体共执行多少次？",
+      "options": [
+        "4 次",
+        "5 次",
+        "10 次",
+        "无限次"
+      ],
+      "answer": 1,
+      "explanation": "结论：B，5 次。推理：i 从 0 递增、j 从 10 递减，条件为 i<j；i 取 0、1、2、3、4 时对应 j 为 10、9、8、7、6 均满足，执行 5 次；i=5、j=5 时 i<j 为假退出。易错点：忘记 j 也在同步变化；i 与 j 相遇即停，次数为 (10-0)/2=5。",
+      "tags": [
+        "逗号表达式",
+        "双变量控制"
+      ],
+      "knowledgeIds": [
+        "c-ch05-07"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-fb-009",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "循环 for (i = 1; i <= 10; i = i + 3) 的循环体共执行 ____ 次。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "4",
+          "accepted": [
+            "四"
+          ]
+        }
+      ],
+      "explanation": "结论：4 次。推理：i 依次取 1、4、7、10，四个值都满足 i<=10 各执行一次；i=13 时超过 10 退出。易错点：步长为 3 时不能简单用 10/3 估算，要逐个列出满足条件的 i 值再计数。",
+      "tags": [
+        "循环体执行次数",
+        "步长"
+      ],
+      "knowledgeIds": [
+        "c-ch05-10"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-fb-010",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "要计算 1 到 n（含 n）的整数和，for 循环的条件应写成 i ____ n（填比较运算符）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "<="
+        }
+      ],
+      "explanation": "结论：<=。推理：求和需让 i 取到 n，故条件为 i<=n；若写成 i<n，当 i 等于 n 时就退出，会漏加 n。易错点：这是 off-by-one 高频错点，端点是否包含取决于题意中\"含 n\"的表述。",
+      "tags": [
+        "off-by-one",
+        "循环边界"
+      ],
+      "knowledgeIds": [
+        "c-ch05-20"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-fb-011",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "用 sum 累加求和（sum = sum + i）时，进入循环前 sum 的初值应设为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "0"
+        }
+      ],
+      "explanation": "结论：0。推理：累加 sum=sum+i 要求初值为 0，这样第一次加 i 后 sum 恰为 i，逐轮累积得总和；初值非 0 会把多余的值算进结果。易错点：累乘求阶乘时初值应为 1 而非 0，累加与累乘的初值不可混淆。",
+      "tags": [
+        "累加求和",
+        "初值"
+      ],
+      "knowledgeIds": [
+        "c-ch05-23"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "continue 语句的作用是终止整个循环，不再执行后续任何轮次。",
+      "answer": false,
+      "explanation": "结论：错误。推理：continue 只结束本次循环、跳过本轮剩余语句，仍会进入下一轮条件判断；真正终止整个循环的是 break。易错点：把 continue 与 break 的作用记反是常见错误。",
+      "tags": [
+        "continue",
+        "break区别"
+      ],
+      "knowledgeIds": [
+        "c-ch05-15"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch05-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第5章 循环结构",
+      "section": "5.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "for 循环的初始化表达式、条件表达式和步进表达式三者都可以省略，其中省略条件表达式时循环将无限执行。",
+      "answer": true,
+      "explanation": "结论：正确。推理：for 的三个表达式均可省略，但两个分号必须保留；省略条件表达式时其值默认为真，循环无限执行，通常需配合 break 跳出。易错点：省略表达式不等于省略分号，for(;;) 才是合法的无限循环写法。",
+      "tags": [
+        "for的省略形式"
+      ],
+      "knowledgeIds": [
+        "c-ch05-06"
+      ],
+      "source": "变式（源自 c-ch05 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }
