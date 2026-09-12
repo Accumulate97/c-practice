@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "81f9096f7a5d7aa6",
+  "content_sha": "b5747acd6f48d7cd",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1724,
+  "count": 1774,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -8367,6 +8367,657 @@
       "chapter": "第6章 数组",
       "section": "6.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-035",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "一维数组",
+        "求和"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-036",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "一维数组",
+        "求最值"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-037",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "一维数组",
+        "逆序输出"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-038",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "一维数组",
+        "计数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-039",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "一维数组",
+        "整数除法"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-040",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组",
+        "遍历求和"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-041",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组",
+        "按行加工"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-042",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组",
+        "对角线"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-043",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组",
+        "矩阵转置"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-044",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组",
+        "sizeof"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-045",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "字符串",
+        "strlen与sizeof"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-046",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "字符串",
+        "计数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-047",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "字符串",
+        "逆置"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-048",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "字符串",
+        "strcmp"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-049",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "字符串",
+        "手写strlen"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-050",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "冒泡排序",
+        "一趟"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-051",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "折半查找",
+        "下标"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-052",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "计数数组",
+        "频数统计"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-053",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "数组",
+        "斐波那契"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cr-054",
+      "file": "c-ch06.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "数组",
+        "插入移动"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-033",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "求和"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-034",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "求最大值"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-035",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "逆置"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-036",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "二维数组",
+        "遍历求和"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-037",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "冒泡排序",
+        "交换"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-038",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "字符串",
+        "手写strlen"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-039",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "折半查找",
+        "区间收缩"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-040",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "计数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-041",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "平均值",
+        "类型转换"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-cc-042",
+      "file": "c-ch06.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "一维数组",
+        "循环右移"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-010",
+      "file": "c-ch06.json",
+      "title": "下列程序的功能是求数组前 n 个元素之和",
+      "tags": [
+        "下标越界",
+        "off-by-one"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-011",
+      "file": "c-ch06.json",
+      "title": "下列程序用冒泡排序对数组升序排列",
+      "tags": [
+        "冒泡排序",
+        "交换",
+        "越界"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-dbg-012",
+      "file": "c-ch06.json",
+      "title": "下列程序统计字符串中元音字母",
+      "tags": [
+        "字符串",
+        "计数",
+        "循环边界"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-011",
+      "file": "c-ch06.json",
+      "title": "编写函数 int arraySum",
+      "tags": [
+        "一维数组作参数",
+        "求和"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-012",
+      "file": "c-ch06.json",
+      "title": "编写函数 int findMax",
+      "tags": [
+        "最值",
+        "数组遍历"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-013",
+      "file": "c-ch06.json",
+      "title": "编写函数 void reverse",
+      "tags": [
+        "数组逆置",
+        "双指针"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-014",
+      "file": "c-ch06.json",
+      "title": "编写函数 void bubbleSort",
+      "tags": [
+        "冒泡排序",
+        "升序"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-015",
+      "file": "c-ch06.json",
+      "title": "编写函数 int binSearch",
+      "tags": [
+        "折半查找",
+        "有序数组"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-pg-016",
+      "file": "c-ch06.json",
+      "title": "编写函数 int countChar",
+      "tags": [
+        "字符数组",
+        "字符计数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-050",
+      "file": "c-ch06.json",
+      "title": "在 C 语言中",
+      "tags": [
+        "数组下标",
+        "起始下标"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-051",
+      "file": "c-ch06.json",
+      "title": "设有定义 int a[10]",
+      "tags": [
+        "sizeof",
+        "元素个数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-052",
+      "file": "c-ch06.json",
+      "title": "设有定义 int a[2][3]",
+      "tags": [
+        "二维数组",
+        "行主序"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-053",
+      "file": "c-ch06.json",
+      "title": "设有定义 int a[5]",
+      "tags": [
+        "下标越界",
+        "合法下标范围"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-054",
+      "file": "c-ch06.json",
+      "title": "设有定义 char s[20] = \"abc\"",
+      "tags": [
+        "strlen与sizeof",
+        "字符数组"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-sc-055",
+      "file": "c-ch06.json",
+      "title": "对含 n 个元素的序列进行冒泡排序",
+      "tags": [
+        "冒泡排序",
+        "趟数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-010",
+      "file": "c-ch06.json",
+      "title": "设有定义 int a[8]",
+      "tags": [
+        "sizeof",
+        "数组长度"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-011",
+      "file": "c-ch06.json",
+      "title": "设有定义 int a[3][4]",
+      "tags": [
+        "二维数组",
+        "元素个数"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-fb-012",
+      "file": "c-ch06.json",
+      "title": "strlen",
+      "tags": [
+        "strlen",
+        "字符串长度"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-tf-001",
+      "file": "c-ch06.json",
+      "title": "定义 int a[5]",
+      "tags": [
+        "下标越界"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch06-tf-002",
+      "file": "c-ch06.json",
+      "title": "C 语言中的字符串以字符 '\\0' 作为结束标志",
+      "tags": [
+        "字符串结束标志"
+      ],
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {

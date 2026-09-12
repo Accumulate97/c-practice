@@ -2720,12 +2720,12 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.65（PDF p98 / 书页 p87）",
       "difficulty": 4,
       "stem": "【题 6.65】下面程序的功能是生成并打印某数列的前 20 项，该数列第 1、2 项分别为 0 和 1，以后每个奇数编号的项是前两项之和，偶数编号的项是前两项差的绝对值。生成的 20 个数存放在一维数组 x 中，并按每行 4 项的形式输出。请填空。",
-      "explanation": "奇数编号项为前两项之和、偶数编号项为前两项差的绝对值；一轮填两项后 i 加 2。差要取绝对值需 fabs 并强制为 double。原书第 1 空所在行漏印下标 [i]，本库补正。",
+      "explanation": "奇数编号项为前两项之和、偶数编号项为前两项差的绝对值；一轮填两项后 i 加 2。差要取绝对值需 fabs 并强制为 double。原书第 1 空所在行漏印下标 [i]，本库补正。 本库裁决：原 expected 与题面数列规则不符（打印出的 0 1 1 1 / 2 1 3 1… 既不满足“奇数项为前两项之和”也不满足“偶数项为前两项差绝对值”），且程序使用 fabs 却未包含 math.h，隐式声明会把返回值截为 int。现已补入 math.h，并按实机运行结果回填 expected：0 1 1 0 / 1 1 2 1 / 3 2 5 3 / 8 5 13 8 / 21 13 34 21，即奇数项为斐波那契、偶数项为其前两项差绝对值。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_completion",
       "bloom": "apply",
-      "code": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]=/*__BLANK_1__*/;\n        x[i+1]=/*__BLANK_2__*/;\n        i=/*__BLANK_3__*/;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
+      "code": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]=/*__BLANK_1__*/;\n        x[i+1]=/*__BLANK_2__*/;\n        i=/*__BLANK_3__*/;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
       "blanks": [
         {
           "index": 1,
@@ -2749,11 +2749,11 @@
           ]
         }
       ],
-      "solution": "#include <stdio.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]= x[i-1]+x[i-2] ;\n        x[i+1]= fabs((double)(x[i-1]-x[i])) ;\n        i= i+2 ;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <math.h>\nint main( )\n{   int x[21],i=3,j;\n    x[1]=0; x[2]=1;\n    do\n    {   x[i]= x[i-1]+x[i-2] ;\n        x[i+1]= fabs((double)(x[i-1]-x[i])) ;\n        i= i+2 ;\n    } while (i<=20);\n    for (i=1;i<=20;i++)\n    {   printf(\"%5d\",x[i]);\n        if(i%4==0)    printf(\"\\n\");\n    }\n    return 0;\n}",
       "testCases": [
         {
           "stdin": "",
-          "expected": "    0    1    1    1\n    2    1    3    1\n    4    1    5    1\n    6    1    7    1\n    8    1    9    1",
+          "expected": "    0    1    1    0\n    1    1    2    1\n    3    2    5    3\n    8    5   13    8\n   21   13   34   21",
           "note": "无输入，实机输出以 Godbolt 为准"
         }
       ],
@@ -3854,6 +3854,1659 @@
         }
       ],
       "id": "c-ch06-cc-032",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-035",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {2, 4, 6, 8, 10};\n    int i, s = 0;\n\n    for (i = 0; i < 5; i++)\n        s = s + a[i];\n    printf(\"%d %d\\n\", s, a[2]);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "30 6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {2, 4, 6, 8, 10};\n    int i, s = 0;\n\n    for (i = 0; i < 5; i++)\n        s = s + a[i];\n    printf(\"%d %d\\n\", s, a[2]);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 30 6。推理：数组 5 个元素 2、4、6、8、10 累加得 30，a[2] 是下标为 2 的元素即第 3 个值 6。易错点：下标从 0 开始，a[2] 不是 2 也不是第 2 个元素；累加器初值须为 0。",
+      "tags": [
+        "一维数组",
+        "求和"
+      ],
+      "knowledgeIds": [
+        "c-ch06-05"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-036",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {3, 9, 2, 9, 1, 5};\n    int i, m = 0;\n\n    for (i = 1; i < 6; i++)\n        if (a[i] > a[m])\n            m = i;\n    printf(\"%d %d\\n\", a[m], m);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "9 1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {3, 9, 2, 9, 1, 5};\n    int i, m = 0;\n\n    for (i = 1; i < 6; i++)\n        if (a[i] > a[m])\n            m = i;\n    printf(\"%d %d\\n\", a[m], m);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 9 1。推理：m 记录最大值下标，用严格大于 a[i]>a[m] 比较，遇相等不更新，故两个 9 中保留先出现的下标 1。易错点：若用 >= 会保留后一个 9（下标 3）；m 初值为 0，循环从第二个元素 i=1 开始比较。",
+      "tags": [
+        "一维数组",
+        "求最值"
+      ],
+      "knowledgeIds": [
+        "c-ch06-14"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-037",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5};\n    int i;\n\n    for (i = 4; i >= 0; i--)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "5 4 3 2 1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5};\n    int i;\n\n    for (i = 4; i >= 0; i--)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 5 4 3 2 1。推理：下标 i 从 4 递减到 0，依次打印 a[4] 到 a[0]，即逆序输出整个数组。易错点：i 初值应为 n-1=4 而非 5（会越界）；循环条件 i>=0 不能写成 i>0，否则漏掉 a[0]。",
+      "tags": [
+        "一维数组",
+        "逆序输出"
+      ],
+      "knowledgeIds": [
+        "c-ch06-07"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-038",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {5, 12, 3, 18, 7, 20, 1, 9};\n    int i, c = 0;\n\n    for (i = 0; i < 8; i++)\n        if (a[i] > 10)\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {5, 12, 3, 18, 7, 20, 1, 9};\n    int i, c = 0;\n\n    for (i = 0; i < 8; i++)\n        if (a[i] > 10)\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3。推理：遍历 8 个元素统计大于 10 的个数，其中 12、18、20 满足条件，共 3 个。易错点：条件 >10 不包含等于 10 的元素；计数器初值为 0；遍历上界是元素个数 8。",
+      "tags": [
+        "一维数组",
+        "计数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-03"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-039",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {7, 8, 9, 10};\n    int i, s = 0;\n\n    for (i = 0; i < 4; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s / 4);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {7, 8, 9, 10};\n    int i, s = 0;\n\n    for (i = 0; i < 4; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s / 4);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 8。推理：四个数之和为 34，整数除法 34/4 截断小数部分得 8。易错点：两个 int 相除结果仍是 int，舍弃余数而非四舍五入；若要精确平均值应把和或除数转成 double。",
+      "tags": [
+        "一维数组",
+        "整数除法"
+      ],
+      "knowledgeIds": [
+        "c-ch06-05"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-040",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int i, j, s = 0;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            s = s + a[i][j];\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "21",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int i, j, s = 0;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            s = s + a[i][j];\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 21。推理：双重循环遍历 2 行 3 列共 6 个元素，1+2+3+4+5+6=21。易错点：外层控制行内层控制列，上界分别是 2 和 3 不能写反；二维数组在内存中按行主序连续存放。",
+      "tags": [
+        "二维数组",
+        "遍历求和"
+      ],
+      "knowledgeIds": [
+        "c-ch06-11"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-041",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n    int i, j, s;\n\n    for (i = 0; i < 3; i++)\n    {\n        s = 0;\n        for (j = 0; j < 3; j++)\n            s = s + a[i][j];\n        printf(\"%d \", s);\n    }\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "6 15 24",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n    int i, j, s;\n\n    for (i = 0; i < 3; i++)\n    {\n        s = 0;\n        for (j = 0; j < 3; j++)\n            s = s + a[i][j];\n        printf(\"%d \", s);\n    }\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 6 15 24。推理：逐行求和，第一行 1+2+3=6，第二行 4+5+6=15，第三行 7+8+9=24。易错点：行和变量 s 必须在每行开始处清零，否则会把上一行的和累加进来；内层循环遍历列下标 j。",
+      "tags": [
+        "二维数组",
+        "按行加工"
+      ],
+      "knowledgeIds": [
+        "c-ch06-11"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-042",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[3][3] = {{2, 0, 1}, {3, 4, 0}, {1, 5, 6}};\n    int i, s1 = 0, s2 = 0;\n\n    for (i = 0; i < 3; i++)\n    {\n        s1 = s1 + a[i][i];\n        s2 = s2 + a[i][2 - i];\n    }\n    printf(\"%d %d\\n\", s1, s2);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "12 6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[3][3] = {{2, 0, 1}, {3, 4, 0}, {1, 5, 6}};\n    int i, s1 = 0, s2 = 0;\n\n    for (i = 0; i < 3; i++)\n    {\n        s1 = s1 + a[i][i];\n        s2 = s2 + a[i][2 - i];\n    }\n    printf(\"%d %d\\n\", s1, s2);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 12 6。推理：主对角线元素满足 i==j，为 2、4、6 和 12；副对角线满足 i+j==n-1 即 a[i][2-i]，为 1、4、1 和 6。易错点：副对角线列下标是 2-i 不是 i；中心元素 a[1][1] 同属两条对角线，会被各计一次。",
+      "tags": [
+        "二维数组",
+        "对角线"
+      ],
+      "knowledgeIds": [
+        "c-ch06-13"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-043",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int b[3][2];\n    int i, j;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[j][i] = a[i][j];\n    for (i = 0; i < 3; i++)\n    {\n        for (j = 0; j < 2; j++)\n            printf(\"%d \", b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 4\n2 5\n3 6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int b[3][2];\n    int i, j;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[j][i] = a[i][j];\n    for (i = 0; i < 3; i++)\n    {\n        for (j = 0; j < 2; j++)\n            printf(\"%d \", b[i][j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：转置后输出三行，分别是 1 4、2 5、3 6。推理：转置把 a[i][j] 存到 b[j][i]，2×3 矩阵变成 3×2，原矩阵的第 1 行 1,2,3 变成结果的第 1 列。易错点：b 的维度是 [3][2] 与 a 相反；赋值下标必须是 b[j][i]，写成 b[i][j] 会越界或错乱。",
+      "tags": [
+        "二维数组",
+        "矩阵转置"
+      ],
+      "knowledgeIds": [
+        "c-ch06-12"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-044",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[3][4];\n\n    printf(\"%d %d %d\\n\", (int)sizeof(a), (int)sizeof(a[0]), (int)sizeof(a[0][0]));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "48 16 4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[3][4];\n\n    printf(\"%d %d %d\\n\", (int)sizeof(a), (int)sizeof(a[0]), (int)sizeof(a[0][0]));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 48 16 4。推理：int 占 4 字节，整个数组 3×4=12 个元素共 48 字节，一行 a[0] 含 4 个元素 16 字节，单个元素 4 字节。易错点：sizeof(数组名) 得到的是总字节数而非元素个数；求元素个数应用 sizeof(a)/sizeof(a[0][0])。",
+      "tags": [
+        "二维数组",
+        "sizeof"
+      ],
+      "knowledgeIds": [
+        "c-ch06-04"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-045",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char s[] = \"hello\";\n\n    printf(\"%d %d\\n\", (int)strlen(s), (int)sizeof(s));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "5 6",
+      "code": "#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char s[] = \"hello\";\n\n    printf(\"%d %d\\n\", (int)strlen(s), (int)sizeof(s));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 5 6。推理：strlen 返回字符串实际长度不含结束符，为 5；sizeof 返回数组占用字节数，\"hello\" 存了 5 个字符加 1 个 \\0 共 6 字节。易错点：二者极易混淆，strlen 是库函数算字符数，sizeof 是运算符算字节数；若定义 char s[10]=\"hello\" 则 sizeof 为 10。",
+      "tags": [
+        "字符串",
+        "strlen与sizeof"
+      ],
+      "knowledgeIds": [
+        "c-ch06-17"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-046",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"programming\";\n    int i, c = 0;\n\n    for (i = 0; s[i] != '\\0'; i++)\n        if (s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"programming\";\n    int i, c = 0;\n\n    for (i = 0; s[i] != '\\0'; i++)\n        if (s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3。推理：从头遍历字符串直到遇 \\0，统计元音字母，programming 中含 o、a、i 三个元音。易错点：循环条件 s[i]!=\\0 不能漏写否则越界访问；本题只统计小写元音，字符串恰好全为小写。",
+      "tags": [
+        "字符串",
+        "计数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-16"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-047",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char s[] = \"abcd\";\n    int i, j;\n    char t;\n\n    i = 0;\n    j = strlen(s) - 1;\n    while (i < j)\n    {\n        t = s[i]; s[i] = s[j]; s[j] = t;\n        i++; j--;\n    }\n    printf(\"%s\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "dcba",
+      "code": "#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char s[] = \"abcd\";\n    int i, j;\n    char t;\n\n    i = 0;\n    j = strlen(s) - 1;\n    while (i < j)\n    {\n        t = s[i]; s[i] = s[j]; s[j] = t;\n        i++; j--;\n    }\n    printf(\"%s\\n\", s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 dcba。推理：双指针 i 从头、j 从尾向中间靠拢，交换对应字符实现原地逆置，strlen(s)-1 是最后一个字符的下标（不含 \\0）。易错点：j 初值为 strlen-1 不能把结束符算进去；条件 i<j 相遇即停，奇数长度时中间字符不必交换。",
+      "tags": [
+        "字符串",
+        "逆置"
+      ],
+      "knowledgeIds": [
+        "c-ch06-21"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-048",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char a[] = \"apple\";\n    char b[] = \"banana\";\n\n    printf(\"%d %d %d\\n\", strcmp(a,b)>0, strcmp(a,b)==0, strcmp(a,b)<0);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 0 1",
+      "code": "#include <stdio.h>\n\n#include <string.h>\n\nint main(void)\n{\n    char a[] = \"apple\";\n    char b[] = \"banana\";\n\n    printf(\"%d %d %d\\n\", strcmp(a,b)>0, strcmp(a,b)==0, strcmp(a,b)<0);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 0 1。推理：strcmp 按字典序逐字符比较，\"apple\" 首字母 a 小于 \"banana\" 的 b，返回值小于 0，故三个关系表达式依次为假、假、真，即 0、0、1。易错点：strcmp 返回的是差值的符号而非具体差值；判断字符串相等必须用 strcmp==0，不能用 ==。",
+      "tags": [
+        "字符串",
+        "strcmp"
+      ],
+      "knowledgeIds": [
+        "c-ch06-20"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-049",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"hello world\";\n    int n = 0;\n\n    while (s[n] != '\\0')\n        n++;\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "11",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"hello world\";\n    int n = 0;\n\n    while (s[n] != '\\0')\n        n++;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 11。推理：while 从头扫描直到遇 \\0，n 累加即得字符串长度，\"hello world\" 含 10 个字母加 1 个空格共 11 个字符。易错点：空格也是一个字符要计入长度；结束符 \\0 不计入；这正是标准库 strlen 的实现原理。",
+      "tags": [
+        "字符串",
+        "手写strlen"
+      ],
+      "knowledgeIds": [
+        "c-ch06-21"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-050",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {5, 3, 8, 1, 2};\n    int i, t;\n\n    for (i = 0; i < 4; i++)\n        if (a[i] > a[i+1])\n        {\n            t = a[i]; a[i] = a[i+1]; a[i+1] = t;\n        }\n    for (i = 0; i < 5; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 5 1 2 8",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5] = {5, 3, 8, 1, 2};\n    int i, t;\n\n    for (i = 0; i < 4; i++)\n        if (a[i] > a[i+1])\n        {\n            t = a[i]; a[i] = a[i+1]; a[i+1] = t;\n        }\n    for (i = 0; i < 5; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3 5 1 2 8。推理：这是冒泡排序的一趟，相邻元素逆序则交换，最大值 8 像气泡一样沉到末尾，其余元素仅部分有序。易错点：一趟只保证最大元素到位，整体未必有序；内层上界为 4 即 n-1，避免访问 a[i+1] 越界。",
+      "tags": [
+        "冒泡排序",
+        "一趟"
+      ],
+      "knowledgeIds": [
+        "c-ch06-27"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-051",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[7] = {2, 5, 7, 9, 11, 15, 20};\n    int x = 11, lo = 0, hi = 6, mid, pos = -1;\n\n    while (lo <= hi)\n    {\n        mid = (lo + hi) / 2;\n        if (a[mid] == x) { pos = mid; break; }\n        else if (a[mid] < x) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    printf(\"%d\\n\", pos);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[7] = {2, 5, 7, 9, 11, 15, 20};\n    int x = 11, lo = 0, hi = 6, mid, pos = -1;\n\n    while (lo <= hi)\n    {\n        mid = (lo + hi) / 2;\n        if (a[mid] == x) { pos = mid; break; }\n        else if (a[mid] < x) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    printf(\"%d\\n\", pos);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 4。推理：折半查找在有序数组中定位 11，依次取中点 9（偏小则右移）、15（偏大则左移）、11 命中，返回下标 4。易错点：数组必须有序才能折半；mid=(lo+hi)/2 向下取整；找到即 break，未找到时 pos 保持初值 -1。",
+      "tags": [
+        "折半查找",
+        "下标"
+      ],
+      "knowledgeIds": [
+        "c-ch06-31"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-052",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[10] = {0};\n    int i;\n    char s[] = \"13733\";\n\n    for (i = 0; s[i] != '\\0'; i++)\n        a[s[i] - '0']++;\n    for (i = 0; i < 10; i++)\n        if (a[i] > 0)\n            printf(\"%d:%d \", i, a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1:1 3:3 7:1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[10] = {0};\n    int i;\n    char s[] = \"13733\";\n\n    for (i = 0; s[i] != '\\0'; i++)\n        a[s[i] - '0']++;\n    for (i = 0; i < 10; i++)\n        if (a[i] > 0)\n            printf(\"%d:%d \", i, a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 1:1 3:3 7:1。推理：用长度 10 的计数数组统计每个数字出现的次数，s[i]-'0' 把字符转成对应数字作下标，结果 1 出现 1 次、3 出现 3 次、7 出现 1 次，只打印非零项。易错点：字符 3 必须减字符 0 才得整数 3 作下标；计数数组使用前要先清零。",
+      "tags": [
+        "计数数组",
+        "频数统计"
+      ],
+      "knowledgeIds": [
+        "c-ch06-32"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-053",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int f[8];\n    int i;\n\n    f[0] = 0; f[1] = 1;\n    for (i = 2; i < 8; i++)\n        f[i] = f[i-1] + f[i-2];\n    for (i = 0; i < 8; i++)\n        printf(\"%d \", f[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 1 1 2 3 5 8 13",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int f[8];\n    int i;\n\n    f[0] = 0; f[1] = 1;\n    for (i = 2; i < 8; i++)\n        f[i] = f[i-1] + f[i-2];\n    for (i = 0; i < 8; i++)\n        printf(\"%d \", f[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 1 1 2 3 5 8 13。推理：用数组递推斐波那契数列，前两项定为 0、1，其后每项等于前两项之和，存入数组后再统一输出。易错点：f[0]=0、f[1]=1 两个初值都不能漏；递推循环从下标 2 开始，依赖前两项已就绪。",
+      "tags": [
+        "数组",
+        "斐波那契"
+      ],
+      "knowledgeIds": [
+        "c-ch06-34"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cr-054",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {1, 2, 3, 4, 5, 0};\n    int i, x = 9, pos = 2;\n\n    for (i = 5; i > pos; i--)\n        a[i] = a[i-1];\n    a[pos] = x;\n    for (i = 0; i < 6; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 2 9 3 4 5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {1, 2, 3, 4, 5, 0};\n    int i, x = 9, pos = 2;\n\n    for (i = 5; i > pos; i--)\n        a[i] = a[i-1];\n    a[pos] = x;\n    for (i = 0; i < 6; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 1 2 9 3 4 5。推理：在下标 2 处插入 9，需先把下标 2 及其后的元素整体后移一位，后移必须从后往前（i 从 5 到 pos+1）以免覆盖，再把 x 放入 a[pos]。易错点：从前往后移动会逐个覆盖丢失数据；数组要预留一个空位（末位的 0 即占位）。",
+      "tags": [
+        "数组",
+        "插入移动"
+      ],
+      "knowledgeIds": [
+        "c-ch06-06"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-033",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "s = s + a[i]",
+          "accepted": [
+            "s += a[i]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "3\n10 20 30\n",
+          "expected": "60"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        }
+      ],
+      "explanation": "结论：填 s = s + a[i]（或 s += a[i]）。推理：第二个 for 遍历下标 0..n-1，把每个元素累加进 s，循环结束 s 即数组之和。易错点：累加器初值须为 0；遍历上界是 n 而非 n-1，否则漏掉最后一个元素。",
+      "tags": [
+        "一维数组",
+        "求和"
+      ],
+      "knowledgeIds": [
+        "c-ch06-05"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-034",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, m;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    m = a[0];\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_1__*/)\n            m = a[i];\n    printf(\"%d\\n\", m);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i] > m"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, m;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    m = a[0];\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_1__*/)\n            m = a[i];\n    printf(\"%d\\n\", m);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, m;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    m = a[0];\n    for (i = 1; i < n; i++)\n        if (a[i] > m)\n            m = a[i];\n    printf(\"%d\\n\", m);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n3 9 2 7 1\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "1\n4\n",
+          "expected": "4"
+        },
+        {
+          "stdin": "4\n-1 -5 -2 -9\n",
+          "expected": "-1"
+        }
+      ],
+      "explanation": "结论：填 a[i] > m。推理：m 初始为首元素，从第二个起逐个比较，发现更大的就更新 m，循环结束 m 即最大值；全为负数时也能正确保留最大的负数。易错点：m 初值不能设 0，否则全负数组会错输出 0；比较用 > 保留首次出现的最大值。",
+      "tags": [
+        "一维数组",
+        "求最大值"
+      ],
+      "knowledgeIds": [
+        "c-ch06-14"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-035",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n / 2; i++)\n    {\n        t = a[i];\n        /*__BLANK_1__*/;\n        a[n - 1 - i] = t;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i] = a[n - 1 - i]"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n / 2; i++)\n    {\n        t = a[i];\n        /*__BLANK_1__*/;\n        a[n - 1 - i] = t;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n / 2; i++)\n    {\n        t = a[i];\n        a[i] = a[n - 1 - i];\n        a[n - 1 - i] = t;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "5 4 3 2 1"
+        },
+        {
+          "stdin": "4\n1 2 3 4\n",
+          "expected": "4 3 2 1"
+        },
+        {
+          "stdin": "1\n9\n",
+          "expected": "9"
+        }
+      ],
+      "explanation": "结论：填 a[i] = a[n-1-i]。推理：逆置用首尾双指针交换，i 只走到 n/2，每轮把 a[i] 与对称位置 a[n-1-i] 互换，借助临时变量 t 三步完成交换。易错点：循环上界必须是 n/2，走到 n 会把已换好的再换回去；对称下标是 n-1-i。",
+      "tags": [
+        "一维数组",
+        "逆置"
+      ],
+      "knowledgeIds": [
+        "c-ch06-07"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-036",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[10][10], n, i, j, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 10)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            scanf(\"%d\", &a[i][j]);\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "s = s + a[i][j]",
+          "accepted": [
+            "s += a[i][j]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[10][10], n, i, j, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 10)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            scanf(\"%d\", &a[i][j]);\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a[10][10], n, i, j, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 10)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            scanf(\"%d\", &a[i][j]);\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            s = s + a[i][j];\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2\n1 2 3 4\n",
+          "expected": "10"
+        },
+        {
+          "stdin": "3\n1 2 3 4 5 6 7 8 9\n",
+          "expected": "45"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        }
+      ],
+      "explanation": "结论：填 s = s + a[i][j]。推理：双重循环遍历 n 阶方阵的每个元素并累加，外层控行 i、内层控列 j，结束得所有元素之和。易错点：累加器初值为 0；两层循环上界都是 n；二维下标顺序是 [行][列] 不能写反。",
+      "tags": [
+        "二维数组",
+        "遍历求和"
+      ],
+      "knowledgeIds": [
+        "c-ch06-11"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-037",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                /*__BLANK_1__*/;\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[j] = a[j+1]"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                /*__BLANK_1__*/;\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                a[j] = a[j+1];\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n5 3 8 1 2\n",
+          "expected": "1 2 3 5 8"
+        },
+        {
+          "stdin": "3\n3 2 1\n",
+          "expected": "1 2 3"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        }
+      ],
+      "explanation": "结论：填 a[j] = a[j+1]。推理：冒泡排序在相邻逆序时交换，三步交换为 t=a[j]、a[j]=a[j+1]、a[j+1]=t，空白处正是中间一步。易错点：内层上界 n-1-i 保证每趟末尾有序区不再参与，且避免 a[j+1] 越界；缺了中间一步交换无效。",
+      "tags": [
+        "冒泡排序",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch06-27"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-038",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int n = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    while (s[n] != '\\0')\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n++",
+          "accepted": [
+            "n = n + 1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int n = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    while (s[n] != '\\0')\n        /*__BLANK_1__*/;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int n = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    while (s[n] != '\\0')\n        n++;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "a\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "china\n",
+          "expected": "5"
+        }
+      ],
+      "explanation": "结论：填 n++。推理：从下标 0 起扫描，只要当前字符不是结束符 \\0 就让 n 自增，循环结束时 n 即字符串长度，这正是 strlen 的原理。易错点：循环条件是 s[n]!=\\0，n 既作下标又作计数器；结束符不计入长度。",
+      "tags": [
+        "字符串",
+        "手写strlen"
+      ],
+      "knowledgeIds": [
+        "c-ch06-21"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-039",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[100], n, i, x, lo, hi, mid, pos = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    lo = 0; hi = n - 1;\n    while (lo <= hi)\n    {\n        mid = (lo + hi) / 2;\n        if (a[mid] == x) { pos = mid; break; }\n        else if (a[mid] < x) /*__BLANK_1__*/;\n        else hi = mid - 1;\n    }\n    printf(\"%d\\n\", pos);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "lo = mid + 1"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[100], n, i, x, lo, hi, mid, pos = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    lo = 0; hi = n - 1;\n    while (lo <= hi)\n    {\n        mid = (lo + hi) / 2;\n        if (a[mid] == x) { pos = mid; break; }\n        else if (a[mid] < x) /*__BLANK_1__*/;\n        else hi = mid - 1;\n    }\n    printf(\"%d\\n\", pos);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a[100], n, i, x, lo, hi, mid, pos = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    lo = 0; hi = n - 1;\n    while (lo <= hi)\n    {\n        mid = (lo + hi) / 2;\n        if (a[mid] == x) { pos = mid; break; }\n        else if (a[mid] < x) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    printf(\"%d\\n\", pos);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7\n2 5 7 9 11 15 20\n11\n",
+          "expected": "4"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n10\n",
+          "expected": "-1"
+        }
+      ],
+      "explanation": "结论：填 lo = mid + 1。推理：折半查找中若中点值小于目标，说明目标在右半区，应把下界收到 mid+1；反之收到 hi=mid-1，命中则记下标并 break。易错点：必须 +1/-1 跳过已比较的中点，否则死循环；数组须有序，未找到返回 -1。",
+      "tags": [
+        "折半查找",
+        "区间收缩"
+      ],
+      "knowledgeIds": [
+        "c-ch06-31"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-040",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, x, c = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    for (i = 0; i < n; i++)\n        if (a[i] == x)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", c);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "c++",
+          "accepted": [
+            "c = c + 1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, x, c = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    for (i = 0; i < n; i++)\n        if (a[i] == x)\n            /*__BLANK_1__*/;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, x, c = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    scanf(\"%d\", &x);\n    for (i = 0; i < n; i++)\n        if (a[i] == x)\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n1 2 2 3 2 4\n2\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "3\n5 5 5\n5\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "4\n1 2 3 4\n9\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：填 c++。推理：遍历数组，每遇到等于 x 的元素计数器加 1，循环结束 c 即 x 出现的次数；x 不存在时 c 保持 0。易错点：计数器初值为 0；判断用相等 == 而非赋值 =；遍历上界为 n。",
+      "tags": [
+        "一维数组",
+        "计数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-32"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-041",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    printf(\"%.2f\\n\", /*__BLANK_1__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(double)s / n"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    printf(\"%.2f\\n\", /*__BLANK_1__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    printf(\"%.2f\\n\", (double)s / n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n7 8 9 10\n",
+          "expected": "8.50"
+        },
+        {
+          "stdin": "3\n1 2 3\n",
+          "expected": "2.00"
+        },
+        {
+          "stdin": "2\n5 6\n",
+          "expected": "5.50"
+        }
+      ],
+      "explanation": "结论：填 (double)s / n。推理：s 与 n 都是 int，直接相除会截断小数，必须先把 s 强制转成 double 再做除法，才能得到带小数的平均值并按 %.2f 输出。易错点：写成 s/n 会得整数平均；只转 n 也可，但关键是参与除法的至少一方为浮点。",
+      "tags": [
+        "一维数组",
+        "平均值",
+        "类型转换"
+      ],
+      "knowledgeIds": [
+        "c-ch06-05"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-cc-042",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, last;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    last = a[n - 1];\n    for (i = n - 1; i > 0; i--)\n        /*__BLANK_1__*/;\n    a[0] = last;\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i] = a[i-1]"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, last;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    last = a[n - 1];\n    for (i = n - 1; i > 0; i--)\n        /*__BLANK_1__*/;\n    a[0] = last;\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, last;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    last = a[n - 1];\n    for (i = n - 1; i > 0; i--)\n        a[i] = a[i-1];\n    a[0] = last;\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "5 1 2 3 4"
+        },
+        {
+          "stdin": "3\n1 2 3\n",
+          "expected": "3 1 2"
+        },
+        {
+          "stdin": "1\n9\n",
+          "expected": "9"
+        }
+      ],
+      "explanation": "结论：填 a[i] = a[i-1]。推理：循环右移一位需先把末尾元素暂存到 last，再从后往前把每个元素后移一位，最后把 last 放到 a[0]。易错点：后移必须从后往前（i 从 n-1 递减到 1），从前往后会逐个覆盖丢失数据。",
+      "tags": [
+        "一维数组",
+        "循环右移"
+      ],
+      "knowledgeIds": [
+        "c-ch06-06"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-dbg-010",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序的功能是求数组前 n 个元素之和，但其中有 2 处错误。请找出并改正。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 1;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i <= n; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 1;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i <= n; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "3\n10 20 30\n",
+          "expected": "60"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "bugs": [
+        "循环越界：遍历 n 个元素下标应为 0..n-1，条件 i<=n 会多访问 a[n] 造成越界，应改为 i<n",
+        "累加器初值错误：求和初值应为 0，初值为 1 会使结果整体多 1"
+      ],
+      "explanation": "结论：两处错误——i<=n 改为 i<n，s=1 改为 s=0。推理：求和遍历的下标范围是 0 到 n-1，i<=n 会越界读取 a[n]；累加器初值须为 0，否则结果多 1；改正后 5 个数 1..5 得 15。易错点：越界与初值错误常并存，改完一处要复核另一处。",
+      "tags": [
+        "下标越界",
+        "off-by-one"
+      ],
+      "knowledgeIds": [
+        "c-ch06-03"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-dbg-011",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用冒泡排序对数组升序排列，但其中有 2 处错误。请找出并改正。\n```\n#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                a[j] = t;\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                a[j] = t;\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n5 3 8 1 2\n",
+          "expected": "1 2 3 5 8"
+        },
+        {
+          "stdin": "3\n3 2 1\n",
+          "expected": "1 2 3"
+        },
+        {
+          "stdin": "4\n4 1 3 2\n",
+          "expected": "1 2 3 4"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\n#define MAXN 100\n\nint main(void)\n{\n    int a[MAXN], n, i, j, t;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < n; i++)\n        scanf(\"%d\", &a[i]);\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j+1])\n            {\n                t = a[j];\n                a[j] = a[j+1];\n                a[j+1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "bugs": [
+        "内层上界错误：每趟末尾已有序，j 应到 n-1-i，写成 j<n 会访问 a[j+1]=a[n] 越界",
+        "交换错误：三步交换的中间一步应把 a[j+1] 赋给 a[j]，写成 a[j]=t 等于没有交换"
+      ],
+      "explanation": "结论：两处错误——j<n 改为 j<n-1-i，a[j]=t 改为 a[j]=a[j+1]。推理：内层上界要随趟数收缩到 n-1-i 以避免越界并跳过有序区；交换的中间一步必须把后一个元素赋给前一个，否则三步交换失效；改正后 5 3 8 1 2 排成 1 2 3 5 8。易错点：j+1 访问要求 j 上界含 -1，交换三步顺序不能乱。",
+      "tags": [
+        "冒泡排序",
+        "交换",
+        "越界"
+      ],
+      "knowledgeIds": [
+        "c-ch06-27"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-dbg-012",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序统计字符串中元音字母（a e i o u）的个数，但其中有 2 处错误。请找出并改正。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int i, c = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    for (i = 0; i < 100; i++)\n        if (s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')\n            c = 1;\n    printf(\"%d\\n\", c);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int i, c = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    for (i = 0; i < 100; i++)\n        if (s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')\n            c = 1;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "programming\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "xyz\n",
+          "expected": "0"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[100];\n    int i, c = 0;\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    for (i = 0; s[i] != '\\0'; i++)\n        if (s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u')\n            c++;\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "bugs": [
+        "循环条件错误：应以字符串结束符为界，写成 i<100 会越界扫描未初始化的内存",
+        "计数错误：统计个数应每遇一个元音累加 1（c++），写成 c=1 会把计数恒置为 1"
+      ],
+      "explanation": "结论：两处错误——i<100 改为 s[i]!=\\0，c=1 改为 c++。推理：遍历字符串应以结束符 \\0 为界，用固定 100 会读到未初始化内存；计数应累加而非恒置 1，否则无论多少元音结果都是 1；改正后 hello 得 2、programming 得 3。易错点：字符串遍历靠 \\0 收尾；计数器用自增。",
+      "tags": [
+        "字符串",
+        "计数",
+        "循环边界"
+      ],
+      "knowledgeIds": [
+        "c-ch06-16"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-011",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int arraySum(int a[], int n)，返回数组 a 中前 n 个元素之和；在 main 中读入 n 与 n 个整数，输出该和。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一个整数，表示 n 个元素之和。",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "3\n10 20 30\n",
+          "expected": "60"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint arraySum(int a[], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    return s;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", arraySum(a, n));\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一个整数，表示 n 个元素之和。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", arraySum(a, n));\n    return 0;\n}",
+      "explanation": "结论：形参写成 int a[] 等价于 int *a，函数内用 a[i] 累加即可。推理：s 初值 0，循环 n 次依次加 a[0]..a[n-1]，返回 s。易错点：数组作参数时不传递长度，必须另用 n 告知元素个数；若在函数内用 sizeof(a)/sizeof(a[0]) 求长度，得到的是指针大小而非数组长度，结果错误。",
+      "tags": [
+        "一维数组作参数",
+        "求和"
+      ],
+      "knowledgeIds": [
+        "c-ch06-25"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-012",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int findMax(int a[], int n)，返回数组 a 中前 n 个元素的最大值；在 main 中读入 n 与 n 个整数后输出该最大值。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数（可能为负数），用空格分隔。\n\n输出格式：一个整数，表示最大值。",
+      "testCases": [
+        {
+          "stdin": "5\n3 9 2 7 1\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "1\n4\n",
+          "expected": "4"
+        },
+        {
+          "stdin": "4\n-1 -5 -2 -9\n",
+          "expected": "-1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint findMax(int a[], int n)\n{\n    int i, m;\n\n    m = a[0];\n    for (i = 1; i < n; i++)\n        if (a[i] > m)\n            m = a[i];\n    return m;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", findMax(a, n));\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数（可能为负数），用空格分隔。",
+      "output_format": "一个整数，表示最大值。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", findMax(a, n));\n    return 0;\n}",
+      "explanation": "结论：把最大值初值设为 a[0]，再从下标 1 起逐个比较更新。推理：初值取数组元素本身可保证全负数时也正确；n=1 时循环一次不执行，直接返回 a[0]。易错点：初值写成 0 时全负数组会错误返回 0；循环从 i=0 起也可，但要多比较一次，属冗余不属错误。",
+      "tags": [
+        "最值",
+        "数组遍历"
+      ],
+      "knowledgeIds": [
+        "c-ch06-14"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-013",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 void reverse(int a[], int n)，把数组 a 中前 n 个元素就地逆置；在 main 中读入 n 与 n 个整数，逆置后按顺序输出（元素间用一个空格分隔，行末换行）。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：逆置后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "5 4 3 2 1"
+        },
+        {
+          "stdin": "4\n1 2 3 4\n",
+          "expected": "4 3 2 1"
+        },
+        {
+          "stdin": "1\n9\n",
+          "expected": "9"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid reverse(int a[], int n)\n{\n    int i, j, t;\n\n    for (i = 0, j = n - 1; i < j; i++, j--)\n    {\n        t = a[i];\n        a[i] = a[j];\n        a[j] = t;\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    reverse(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "逆置后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    reverse(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：用首尾双指针 i、j 相向而行，交换到 i<j 不成立为止，共交换 n/2 次。推理：偶数个元素时 i、j 交错停止；奇数个元素时中间元素 i==j 自然不动；n=1 时循环不执行。易错点：条件写成 i<=j 会多做一次自交换（结果仍正确但多余），写成 i<n/2 与 i<j 等价但边界易算错；必须借助临时变量 t 完成交换，直接 a[i]=a[j] 会丢数据。",
+      "tags": [
+        "数组逆置",
+        "双指针"
+      ],
+      "knowledgeIds": [
+        "c-ch06-07"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-014",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 void bubbleSort(int a[], int n)，用冒泡排序把数组 a 中前 n 个元素按升序排列；在 main 中读入 n 与 n 个整数，排序后按顺序输出（元素间用一个空格分隔，行末换行）。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：升序排列后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "testCases": [
+        {
+          "stdin": "5\n5 3 8 1 2\n",
+          "expected": "1 2 3 5 8"
+        },
+        {
+          "stdin": "3\n3 2 1\n",
+          "expected": "1 2 3"
+        },
+        {
+          "stdin": "6\n6 1 5 2 4 3\n",
+          "expected": "1 2 3 4 5 6"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid bubbleSort(int a[], int n)\n{\n    int i, j, t, flag;\n\n    for (i = 0; i < n - 1; i++)\n    {\n        flag = 0;\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1])\n            {\n                t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n                flag = 1;\n            }\n        if (flag == 0)\n            break;\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    bubbleSort(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "升序排列后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    bubbleSort(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：外层最多 n-1 趟，第 i 趟内层比较到 n-1-i，把当趟最大值“冒”到末尾；flag 记录本趟是否发生过交换，无交换即已有序可提前结束。推理：每趟后末尾 i 个元素已就位，故内层上界递减；n=1 时外层不执行。易错点：内层写成 j<n-1 会访问 a[n] 造成越界；比较条件写成 >= 会破坏稳定性（本题结果相同）；忘加 flag 只是少一次优化，不影响正确性。",
+      "tags": [
+        "冒泡排序",
+        "升序"
+      ],
+      "knowledgeIds": [
+        "c-ch06-27"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-015",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 int binSearch(int a[], int n, int x)，在升序数组 a 的前 n 个元素中用折半查找搜索 x，找到返回其下标，找不到返回 -1；在 main 中读入 n、n 个升序整数与 x，输出查找结果。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个升序整数；第三行一个整数 x。\n\n输出格式：一个整数：x 在数组中的下标，若不存在则输出 -1。",
+      "testCases": [
+        {
+          "stdin": "7\n2 5 7 9 11 15 20\n11\n",
+          "expected": "4"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n10\n",
+          "expected": "-1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint binSearch(int a[], int n, int x)\n{\n    int low = 0, high = n - 1, mid;\n\n    while (low <= high)\n    {\n        mid = (low + high) / 2;\n        if (a[mid] == x)\n            return mid;\n        if (a[mid] < x)\n            low = mid + 1;\n        else\n            high = mid - 1;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int a[100], n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    printf(\"%d\\n\", binSearch(a, n, x));\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个升序整数；第三行一个整数 x。",
+      "output_format": "一个整数：x 在数组中的下标，若不存在则输出 -1。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    printf(\"%d\\n\", binSearch(a, n, x));\n    return 0;\n}",
+      "explanation": "结论：low/high 夹逼，每次取中点比较，x 大则收缩左边界，x 小则收缩右边界，low>high 时说明区间为空返回 -1。推理：每轮区间长度减半，最多 log2(n)+1 次比较；命中即返回下标。易错点：循环条件必须是 low<=high，写成 low<high 会漏判最后一个元素；更新必须写 mid+1 / mid-1，否则可能死循环；折半查找要求序列有序，且只适用于顺序存储。",
+      "tags": [
+        "折半查找",
+        "有序数组"
+      ],
+      "knowledgeIds": [
+        "c-ch06-31"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-pg-016",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第6章 数组",
+      "section": "6.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int countChar(char s[], char ch)，统计字符串 s 中字符 ch 出现的次数；在 main 中先读入一个不含空格的字符串，再读入一个字符，输出该字符的出现次数。\n\n输入格式：一行：一个不含空格的字符串（长度不超过 99）与一个字符，二者用一个空格分隔。\n\n输出格式：一个整数，表示该字符在字符串中出现的次数（可能为 0）。",
+      "testCases": [
+        {
+          "stdin": "hello l\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "programming m\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "abc z\n",
+          "expected": "0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint countChar(char s[], char ch)\n{\n    int i = 0, c = 0;\n\n    while (s[i] != '\\0')\n    {\n        if (s[i] == ch)\n            c++;\n        i++;\n    }\n    return c;\n}\n\nint main(void)\n{\n    char s[100], ch;\n\n    if (scanf(\"%99s %c\", s, &ch) != 2)\n        return 1;\n    printf(\"%d\\n\", countChar(s, ch));\n    return 0;\n}",
+      "input_format": "一行：一个不含空格的字符串（长度不超过 99）与一个字符，二者用一个空格分隔。",
+      "output_format": "一个整数，表示该字符在字符串中出现的次数（可能为 0）。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    char s[100], ch;\n\n    if (scanf(\"%99s %c\", s, &ch) != 2)\n        return 1;\n    printf(\"%d\\n\", countChar(s, ch));\n    return 0;\n}",
+      "explanation": "结论：从头扫描到结束标志 ‘\u0000’ 为止，逐字符与 ch 比较并计数。推理：字符串长度即 ‘\u0000’ 前的字符个数，故循环边界由内容而非数组大小决定；未出现时计数为 0。易错点：用 sizeof(s) 作上界会把数组未使用部分也算进去；scanf 中 %s 后必须留空格再写 %c，否则 %c 读到的是分隔空格；%99s 限宽可防止缓冲区溢出。",
+      "tags": [
+        "字符数组",
+        "字符计数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-21"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-050",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "在 C 语言中，一维数组 a 的元素下标从哪个值开始？",
+      "options": [
+        "0",
+        "1",
+        "由定义时的初值决定",
+        "由编译系统随机决定"
+      ],
+      "answer": 0,
+      "explanation": "结论：数组下标从 0 开始。推理：C 语言规定数组名代表首元素地址，a[i] 等价于 *(a+i)，i=0 时即首元素，故合法下标为 0 到 n-1。易错点：定义了 int a[5] 后其元素是 a[0]..a[4]，不存在 a[5]；把“元素个数”当成“最大下标”是最常见的越界根源。",
+      "tags": [
+        "数组下标",
+        "起始下标"
+      ],
+      "knowledgeIds": [
+        "c-ch06-01"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-051",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设有定义 int a[10];，则表达式 sizeof(a) / sizeof(a[0]) 的值是什么含义？",
+      "options": [
+        "数组 a 所占的字节数",
+        "数组 a 的元素个数",
+        "数组 a 首元素的地址",
+        "元素 a[0] 所占的字节数"
+      ],
+      "answer": 1,
+      "explanation": "结论：得到数组元素个数 10。推理：sizeof(a) 是整个数组的字节数（10×4=40），sizeof(a[0]) 是一个 int 的字节数（4），相除即元素个数。易错点：该式只在数组名仍是“真数组”的作用域内成立；一旦数组作函数形参退化为指针，sizeof(a) 变成指针大小，此式结果错误，必须另行传入长度。",
+      "tags": [
+        "sizeof",
+        "元素个数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-04"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-052",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设有定义 int a[2][3];，按行优先存储，元素 a[1][0] 是该数组中的第几个元素（从 1 开始计数）？",
+      "options": [
+        "第 2 个",
+        "第 3 个",
+        "第 4 个",
+        "第 5 个"
+      ],
+      "answer": 2,
+      "explanation": "结论：第 4 个。推理：C 语言二维数组按行主序连续存放，顺序为 a[0][0]、a[0][1]、a[0][2]、a[1][0]、a[1][1]、a[1][2]，a[1][0] 排在第 4 位；其偏移量 = (1×3 + 0) × sizeof(int)。易错点：把行下标与列下标弄反会得到 a[0][1]（第 2 个）；二维数组第二维大小不可省略。",
+      "tags": [
+        "二维数组",
+        "行主序"
+      ],
+      "knowledgeIds": [
+        "c-ch06-11"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-053",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "设有定义 int a[5];，下列哪个下标引用是合法的？",
+      "options": [
+        "a[5]",
+        "a[-1]",
+        "a[4]",
+        "a[6]"
+      ],
+      "answer": 2,
+      "explanation": "结论：只有 a[4] 合法。推理：数组 a 有 5 个元素，合法下标范围是 0..4，a[4] 是最后一个元素。易错点：a[5] 越界但编译器通常不报错，属于未定义行为，可能读到垃圾值或破坏相邻变量；下标为负同样越界。定义 int a[5] 与访问 a[5] 是初学者最易混淆的一对。",
+      "tags": [
+        "下标越界",
+        "合法下标范围"
+      ],
+      "knowledgeIds": [
+        "c-ch06-03"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-054",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设有定义 char s[20] = \"abc\";，则 strlen(s) 与 sizeof(s) 的值分别是多少？",
+      "options": [
+        "3 和 3",
+        "3 和 20",
+        "4 和 20",
+        "20 和 20"
+      ],
+      "answer": 1,
+      "explanation": "结论：strlen(s)=3，sizeof(s)=20。推理：strlen 统计到结束标志 ‘\u0000’ 之前的字符个数，\"abc\" 有 3 个字符；sizeof 是编译期求出的数组总字节数，char 占 1 字节，20 个元素即 20。易错点：字符串常量 \"abc\" 实际占 4 字节（含 ‘\u0000’），但 strlen 不计入 ‘\u0000’；若写成 char s[20] = {‘a’,‘b’,‘c’} 后没有 ‘\u0000’，strlen 结果不可预测。",
+      "tags": [
+        "strlen与sizeof",
+        "字符数组"
+      ],
+      "knowledgeIds": [
+        "c-ch06-17"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-sc-055",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "对含 n 个元素的序列进行冒泡排序（升序），最多需要进行的趟数是多少？",
+      "options": [
+        "n",
+        "n - 1",
+        "n + 1",
+        "n / 2"
+      ],
+      "answer": 1,
+      "explanation": "结论：最多 n-1 趟。推理：每趟把当前未排序区的最大元素移到末尾，做完 n-1 趟后前 n-1 个元素就位，最后一个元素自然有序，故无需第 n 趟。易错点：若某趟未发生交换说明已有序，可提前结束，所以“最多 n-1 趟”而不是“恰好 n-1 趟”；每趟比较次数依次为 n-1、n-2、…、1，总比较次数最多 n(n-1)/2。",
+      "tags": [
+        "冒泡排序",
+        "趟数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-27"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-fb-010",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设有定义 int a[8];，且 int 占 4 字节，则 sizeof(a) 的值为 ____，sizeof(a) / sizeof(int) 的值为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "32",
+          "accepted": [
+            "[32]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "8",
+          "accepted": [
+            "[8]"
+          ]
+        }
+      ],
+      "explanation": "结论：32 与 8。推理：数组 a 有 8 个 int 元素，每个 4 字节，整体占 8×4=32 字节；sizeof(a)/sizeof(int)=32/4=8 即元素个数。易错点：sizeof 对数组名求的是整个数组大小，而对指针求的是指针本身大小（本题环境下 8 字节），二者不可混用；数组作形参后退化为指针，该式失效。",
+      "tags": [
+        "sizeof",
+        "数组长度"
+      ],
+      "knowledgeIds": [
+        "c-ch06-04"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-fb-011",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "设有定义 int a[3][4];，该数组共有 ____ 个元素，其中最后一行的第一个元素写作 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "12",
+          "accepted": [
+            "[12]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[2][0]",
+          "accepted": [
+            "[a[2][0]]"
+          ]
+        }
+      ],
+      "explanation": "结论：12 个元素，最后一行首元素是 a[2][0]。推理：3 行 4 列共 3×4=12 个元素；行下标取值 0..2，列下标取值 0..3，故第 3 行（下标 2）的第 1 列（下标 0）即 a[2][0]。易错点：把行数列数写成 a[4][3]；误认为存在 a[3][...] 或 a[...][4]，这些下标都已越界。",
+      "tags": [
+        "二维数组",
+        "元素个数"
+      ],
+      "knowledgeIds": [
+        "c-ch06-11"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-fb-012",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "strlen(\"hello\") 的值为 ____；若定义 char s[] = \"hello\";，则 sizeof(s) 的值为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "5",
+          "accepted": [
+            "[5]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "6",
+          "accepted": [
+            "[6]"
+          ]
+        }
+      ],
+      "explanation": "结论：5 与 6。推理：字符串 \"hello\" 有 5 个可见字符，strlen 不计结束标志；用字符串常量初始化且未指定长度时，数组长度由常量决定并自动补 ‘\u0000’，故 s 实际有 6 个字节。易错点：sizeof(s)/sizeof(char) 与 strlen(s) 相差 1 是字符数组最常见的坑；写成 char s[5] = \"hello\" 会因放不下 ‘\u0000’ 而编译报错。",
+      "tags": [
+        "strlen",
+        "字符串长度"
+      ],
+      "knowledgeIds": [
+        "c-ch06-17"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "定义 int a[5]; 后，a[5] 是数组 a 的最后一个合法元素。",
+      "answer": false,
+      "explanation": "结论：错误。推理：int a[5] 的合法下标是 0、1、2、3、4，最后一个元素是 a[4]，a[5] 已越界，属未定义行为。易错点：C 语言不检查数组下标越界，编译与运行往往都不报错，但可能读到垃圾值或改写相邻内存，排查困难，因此必须自行保证 0 <= i <= n-1。",
+      "tags": [
+        "下标越界"
+      ],
+      "knowledgeIds": [
+        "c-ch06-03"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch06-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第6章 数组",
+      "section": "6.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言中的字符串以字符 '\\0' 作为结束标志，因此存放字符串的字符数组长度必须比字符串实际字符数至少多 1。",
+      "answer": true,
+      "explanation": "结论：正确。推理：C 语言没有字符串类型，用字符数组存放并在末尾自动补 ‘\u0000’，字符串处理函数（strlen、strcpy、strcat 等）都靠 ‘\u0000’ 判断结束；n 个字符的字符串需要 n+1 个字节。易错点：‘\u0000’ 是值为 0 的字符，不同于字符 ‘0’（ASCII 48）和空指针常量 NULL；若手工逐字符赋值却忘了补 ‘\u0000’，后续字符串函数会一路越界扫描。",
+      "tags": [
+        "字符串结束标志"
+      ],
+      "knowledgeIds": [
+        "c-ch06-16"
+      ],
+      "source": "变式（源自 c-ch06 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
       "verified": true
     }
   ]
