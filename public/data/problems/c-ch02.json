@@ -1620,6 +1620,1967 @@
       ],
       "id": "c-ch02-fb-033",
       "verified": true
+    },
+    {
+      "id": "c-ch02-cr-001",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int v[10] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(int), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "4 40 10",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int v[10] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(int), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "sizeof 是运算符而不是函数，它给出类型或对象在内存中所占的字节数，编译期即可确定。在 64 位 gcc 下 int 占 4 字节，数组 v 共 10 个元素，因此 sizeof(v) = 元素个数 × 单个元素字节数，而 sizeof(v)/sizeof(v[0]) 正好还原出元素个数 10，这是 C 里\"不写死长度\"的通用求元素个数手法。易错点：sizeof 的结果是 size_t（无符号），用 %d 打印必须先强制转换；数组作函数参数时会退化为指针，此时 sizeof 只有 8，不能再用这个公式。",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "knowledgeIds": [
+        "c-ch02-24"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-002",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    double v[5] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(double), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8 40 5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    double v[5] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(double), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "sizeof 是运算符而不是函数，它给出类型或对象在内存中所占的字节数，编译期即可确定。在 64 位 gcc 下 double 占 8 字节，数组 v 共 5 个元素，因此 sizeof(v) = 元素个数 × 单个元素字节数，而 sizeof(v)/sizeof(v[0]) 正好还原出元素个数 5，这是 C 里\"不写死长度\"的通用求元素个数手法。易错点：sizeof 的结果是 size_t（无符号），用 %d 打印必须先强制转换；数组作函数参数时会退化为指针，此时 sizeof 只有 8，不能再用这个公式。",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "knowledgeIds": [
+        "c-ch02-24"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-003",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char v[16] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(char), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 16 16",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char v[16] = {0};\n\n    printf(\"%d %d %d\\n\", (int)sizeof(char), (int)sizeof(v),\n           (int)(sizeof(v) / sizeof(v[0])));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "sizeof 是运算符而不是函数，它给出类型或对象在内存中所占的字节数，编译期即可确定。在 64 位 gcc 下 char 占 1 字节，数组 v 共 16 个元素，因此 sizeof(v) = 元素个数 × 单个元素字节数，而 sizeof(v)/sizeof(v[0]) 正好还原出元素个数 16，这是 C 里\"不写死长度\"的通用求元素个数手法。易错点：sizeof 的结果是 size_t（无符号），用 %d 打印必须先强制转换；数组作函数参数时会退化为指针，此时 sizeof 只有 8，不能再用这个公式。",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "knowledgeIds": [
+        "c-ch02-24"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-004",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 17, b = 5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "17 / 5 = 3\n17 % 5 = 2\n17",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 17, b = 5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "两个整数相除，C99 规定商向零取整（直接舍去小数部分），余数满足恒等式 a == (a/b)*b + a%b，所以第三行一定输出 17。本题 a=17、b=5，商为 3，余数为 2：余数的符号总是与被除数 a 相同，与 b 的符号无关。易错点：一是把 17/5 写成 3.4（整数除法丢小数），二是以为 -17%5 得 3（数学上的正余数），C 语言给出的是 -2； printf 中要输出百分号必须写两个 %%。",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-005",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = -17, b = 5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "-17 / 5 = -3\n-17 % 5 = -2\n-17",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = -17, b = 5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "两个整数相除，C99 规定商向零取整（直接舍去小数部分），余数满足恒等式 a == (a/b)*b + a%b，所以第三行一定输出 -17。本题 a=-17、b=5，商为 -3，余数为 -2：余数的符号总是与被除数 a 相同，与 b 的符号无关。易错点：一是把 17/5 写成 3.4（整数除法丢小数），二是以为 -17%5 得 3（数学上的正余数），C 语言给出的是 -2； printf 中要输出百分号必须写两个 %%。",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-006",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 17, b = -5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "17 / -5 = -3\n17 % -5 = 2\n17",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 17, b = -5;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "两个整数相除，C99 规定商向零取整（直接舍去小数部分），余数满足恒等式 a == (a/b)*b + a%b，所以第三行一定输出 17。本题 a=17、b=-5，商为 -3，余数为 2：余数的符号总是与被除数 a 相同，与 b 的符号无关。易错点：一是把 17/5 写成 3.4（整数除法丢小数），二是以为 -17%5 得 3（数学上的正余数），C 语言给出的是 -2； printf 中要输出百分号必须写两个 %%。",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-007",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 20, b = 4;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "20 / 4 = 5\n20 % 4 = 0\n20",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 20, b = 4;\n\n    printf(\"%d / %d = %d\\n\", a, b, a / b);\n    printf(\"%d %% %d = %d\\n\", a, b, a % b);\n    printf(\"%d\\n\", (a / b) * b + a % b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "两个整数相除，C99 规定商向零取整（直接舍去小数部分），余数满足恒等式 a == (a/b)*b + a%b，所以第三行一定输出 20。本题 a=20、b=4，商为 5，余数为 0：余数的符号总是与被除数 a 相同，与 b 的符号无关。易错点：一是把 17/5 写成 3.4（整数除法丢小数），二是以为 -17%5 得 3（数学上的正余数），C 语言给出的是 -2； printf 中要输出百分号必须写两个 %%。",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-008",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 5, j = 3, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "5 6\n4 4\n4 6\n12",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 5, j = 3, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "后置 i++ 的值是自增前的旧值，前置 ++j 的值是自增后的新值，这是本题前两行的关键：i 初值 5，s=i++ 得 5 而 i 变 6；j 初值 3，s=++j 得 4 而 j 也是 4。逗号表达式\"e1,e2,e3\"先左后右依次求值（逗号是顺序点，不存在未定义行为），整个表达式的值是最右边 e3 的值，中间三句正好完成一次交换。最后一行 i++、j++ 的值被丢弃，取 i+j。易错点：同一变量在两个顺序点之间被修改两次（如 i+++i）才是未定义行为，本题每句都有顺序点，结果唯一。",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch02-17"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-009",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 10, j = 10, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "10 11\n11 11\n11 11\n24",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 10, j = 10, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "后置 i++ 的值是自增前的旧值，前置 ++j 的值是自增后的新值，这是本题前两行的关键：i 初值 10，s=i++ 得 10 而 i 变 11；j 初值 10，s=++j 得 11 而 j 也是 11。逗号表达式\"e1,e2,e3\"先左后右依次求值（逗号是顺序点，不存在未定义行为），整个表达式的值是最右边 e3 的值，中间三句正好完成一次交换。最后一行 i++、j++ 的值被丢弃，取 i+j。易错点：同一变量在两个顺序点之间被修改两次（如 i+++i）才是未定义行为，本题每句都有顺序点，结果唯一。",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch02-17"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-010",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = -2, j = 7, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "-2 -1\n8 8\n8 -1\n9",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = -2, j = 7, s;\n\n    s = i++;                       /* 后置：先取值，后自增 */\n    printf(\"%d %d\\n\", s, i);\n    s = ++j;                       /* 前置：先自增，后取值 */\n    printf(\"%d %d\\n\", s, j);\n    i += j, j = i - j, i = i - j;  /* 逗号表达式：不用第三变量交换 */\n    printf(\"%d %d\\n\", i, j);\n    printf(\"%d\\n\", (i++, j++, i + j));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "后置 i++ 的值是自增前的旧值，前置 ++j 的值是自增后的新值，这是本题前两行的关键：i 初值 -2，s=i++ 得 -2 而 i 变 -1；j 初值 7，s=++j 得 8 而 j 也是 8。逗号表达式\"e1,e2,e3\"先左后右依次求值（逗号是顺序点，不存在未定义行为），整个表达式的值是最右边 e3 的值，中间三句正好完成一次交换。最后一行 i++、j++ 的值被丢弃，取 i+j。易错点：同一变量在两个顺序点之间被修改两次（如 i+++i）才是未定义行为，本题每句都有顺序点，结果唯一。",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch02-17"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-011",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 3;\n    double d = 7.5;\n    char c = 'A';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "2.50\n7\n1.50\n1\nB 66",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 3;\n    double d = 7.5;\n    char c = 'A';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "C 的算术转换规则是\"向精度高的类型看齐\"：d/i 中 i 先转成 double，结果是实数商；(double)i/2 中 2 也被提升为 2.0，所以能得到小数；而 i/2 两边都是 int，做的是整数除法，商为 1。强制转换 (int)d 只截断不四舍五入，7.5 转成 7（负数是向零截断，不是向下取整）。字符变量 c 参与运算时按整型提升规则先转成 int（其 ASCII 码 65），加 1 后再用 %c 输出得到后继字符、用 %d 输出得到码值。易错点：%f 打印 int 或 %d 打印 double 都会得到垃圾值。",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch02-27"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-012",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 4;\n    double d = 10.0;\n    char c = 'x';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "2.50\n10\n2.00\n2\ny 121",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 4;\n    double d = 10.0;\n    char c = 'x';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "C 的算术转换规则是\"向精度高的类型看齐\"：d/i 中 i 先转成 double，结果是实数商；(double)i/2 中 2 也被提升为 2.0，所以能得到小数；而 i/2 两边都是 int，做的是整数除法，商为 2。强制转换 (int)d 只截断不四舍五入，10.0 转成 10（负数是向零截断，不是向下取整）。字符变量 c 参与运算时按整型提升规则先转成 int（其 ASCII 码 120），加 1 后再用 %c 输出得到后继字符、用 %d 输出得到码值。易错点：%f 打印 int 或 %d 打印 double 都会得到垃圾值。",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch02-27"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-013",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 7;\n    double d = -2.8;\n    char c = '0';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "-0.40\n-2\n3.50\n3\n1 49",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 7;\n    double d = -2.8;\n    char c = '0';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "C 的算术转换规则是\"向精度高的类型看齐\"：d/i 中 i 先转成 double，结果是实数商；(double)i/2 中 2 也被提升为 2.0，所以能得到小数；而 i/2 两边都是 int，做的是整数除法，商为 3。强制转换 (int)d 只截断不四舍五入，-2.8 转成 -2（负数是向零截断，不是向下取整）。字符变量 c 参与运算时按整型提升规则先转成 int（其 ASCII 码 48），加 1 后再用 %c 输出得到后继字符、用 %d 输出得到码值。易错点：%f 打印 int 或 %d 打印 double 都会得到垃圾值。",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch02-27"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-014",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int i = 5;\n    double d = 100.5;\n    char c = 'M';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "20.10\n100\n2.50\n2\nN 78",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int i = 5;\n    double d = 100.5;\n    char c = 'M';\n\n    printf(\"%.2f\\n\", d / i);          /* 混合运算：int 自动提升为 double */\n    printf(\"%d\\n\", (int)d);           /* 强制转换：直接截去小数部分 */\n    printf(\"%.2f\\n\", (double)i / 2);  /* 先转换再相除，得到小数商 */\n    printf(\"%d\\n\", i / 2);            /* 两个 int 相除：整数除法 */\n    printf(\"%c %d\\n\", c + 1, c + 1);  /* char 参与运算时先提升为 int */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "C 的算术转换规则是\"向精度高的类型看齐\"：d/i 中 i 先转成 double，结果是实数商；(double)i/2 中 2 也被提升为 2.0，所以能得到小数；而 i/2 两边都是 int，做的是整数除法，商为 2。强制转换 (int)d 只截断不四舍五入，100.5 转成 100（负数是向零截断，不是向下取整）。字符变量 c 参与运算时按整型提升规则先转成 int（其 ASCII 码 77），加 1 后再用 %c 输出得到后继字符、用 %d 输出得到码值。易错点：%f 打印 int 或 %d 打印 double 都会得到垃圾值。",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch02-27"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-015",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 3, b = 5, c = 7;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 0 1\n0\n0\n0\n1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 3, b = 5, c = 7;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "关系与逻辑运算的结果只有 1（真）和 0（假）两值。本题 a=3、b=5、c=7，逐行判断即可：&& 要求两侧都真，|| 只要一侧真，!a 在 a 为 0 时才为 1。最后一行是经典陷阱：a<b<c 先算 a<b 得到 0 或 1，再拿这个 0/1 去和 c 比较，与数学上的\"a<b 且 b<c\"完全不同，正确写法必须用 && 连接。易错点：&& 与 || 有短路特性，左侧已能决定结果时右侧不再求值，所以带副作用的表达式（如 x++）放在右侧可能不执行；而 == 的优先级高于 &&，写 a==b&&c==d 不需要额外括号。",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-18"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-016",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 9, b = 2, c = 4;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 0 0\n0\n1\n0\n1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 9, b = 2, c = 4;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "关系与逻辑运算的结果只有 1（真）和 0（假）两值。本题 a=9、b=2、c=4，逐行判断即可：&& 要求两侧都真，|| 只要一侧真，!a 在 a 为 0 时才为 1。最后一行是经典陷阱：a<b<c 先算 a<b 得到 0 或 1，再拿这个 0/1 去和 c 比较，与数学上的\"a<b 且 b<c\"完全不同，正确写法必须用 && 连接。易错点：&& 与 || 有短路特性，左侧已能决定结果时右侧不再求值，所以带副作用的表达式（如 x++）放在右侧可能不执行；而 == 的优先级高于 &&，写 a==b&&c==d 不需要额外括号。",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-18"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-017",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 0, b = 0, c = 1;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 1 1\n0\n0\n0\n1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 0, b = 0, c = 1;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "关系与逻辑运算的结果只有 1（真）和 0（假）两值。本题 a=0、b=0、c=1，逐行判断即可：&& 要求两侧都真，|| 只要一侧真，!a 在 a 为 0 时才为 1。最后一行是经典陷阱：a<b<c 先算 a<b 得到 0 或 1，再拿这个 0/1 去和 c 比较，与数学上的\"a<b 且 b<c\"完全不同，正确写法必须用 && 连接。易错点：&& 与 || 有短路特性，左侧已能决定结果时右侧不再求值，所以带副作用的表达式（如 x++）放在右侧可能不执行；而 == 的优先级高于 &&，写 a==b&&c==d 不需要额外括号。",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-18"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cr-018",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = -6, b = 3, c = 0;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 0 1\n0\n1\n0\n0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = -6, b = 3, c = 0;\n\n    printf(\"%d %d %d\\n\", a > b, a == b, a <= b);\n    printf(\"%d\\n\", a > b && b > c);\n    printf(\"%d\\n\", a > b || b > c);\n    printf(\"%d\\n\", !a && b);\n    printf(\"%d\\n\", a < b < c);   /* 陷阱：连写比较 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "关系与逻辑运算的结果只有 1（真）和 0（假）两值。本题 a=-6、b=3、c=0，逐行判断即可：&& 要求两侧都真，|| 只要一侧真，!a 在 a 为 0 时才为 1。最后一行是经典陷阱：a<b<c 先算 a<b 得到 0 或 1，再拿这个 0/1 去和 c 比较，与数学上的\"a<b 且 b<c\"完全不同，正确写法必须用 && 连接。易错点：&& 与 || 有短路特性，左侧已能决定结果时右侧不再求值，所以带副作用的表达式（如 x++）放在右侧可能不执行；而 == 的优先级高于 &&，写 a==b&&c==d 不需要额外括号。",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-18"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-001",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, max, sum;\n\n    scanf(\"%d %d\", &a, &b);\n    max = /*__BLANK_1__*/;                        /* 条件运算符求较大者 */\n    sum = /*__BLANK_2__*/;                        /* 逗号表达式：值为 a+b */\n    printf(\"%d %d\\n\", max, sum);\n    printf(\"%s\\n\", /*__BLANK_3__*/ ? \"even\" : \"odd\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a > b ? a : b",
+          "accepted": [
+            "a>b?a:b",
+            "(a > b) ? a : b",
+            "b < a ? a : b",
+            "a >= b ? a : b"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "(a * b, a + b)",
+          "accepted": [
+            "(a*b, a+b)",
+            "(a * b, a + b) ",
+            "a * b, a + b"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a % 2 == 0",
+          "accepted": [
+            "a%2==0",
+            "a % 2 != 1",
+            "!(a % 2)",
+            "a % 2 == 0 ",
+            "b % 2 == 0"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, max, sum;\n\n    scanf(\"%d %d\", &a, &b);\n    max = /*__BLANK_1__*/;                        /* 条件运算符求较大者 */\n    sum = /*__BLANK_2__*/;                        /* 逗号表达式：值为 a+b */\n    printf(\"%d %d\\n\", max, sum);\n    printf(\"%s\\n\", /*__BLANK_3__*/ ? \"even\" : \"odd\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, max, sum;\n\n    scanf(\"%d %d\", &a, &b);\n    max = a > b ? a : b;                        /* 条件运算符求较大者 */\n    sum = (a * b, a + b);                        /* 逗号表达式：值为 a+b */\n    printf(\"%d %d\\n\", max, sum);\n    printf(\"%s\\n\", a % 2 == 0 ? \"even\" : \"odd\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8 5",
+          "expected": "8 13\neven",
+          "note": "常规：a>b"
+        },
+        {
+          "stdin": "3 9",
+          "expected": "9 12\nodd",
+          "note": "边界：a<b"
+        },
+        {
+          "stdin": "6 6",
+          "expected": "6 12\neven",
+          "note": "边界：相等"
+        }
+      ],
+      "explanation": "条件运算符 ?: 是 C 中唯一的三目运算符，\"表达式1?表达式2:表达式3\"先算表达式1，为真取表达式2、为假取表达式3，用它求两数较大者比 if 更紧凑。逗号表达式 (e1,e2) 的值是 e2，所以 (a*b, a+b) 虽然算过乘积却只把和赋给 sum，这类写法常用于 for 的初始化或条件部分。奇偶判断用 a%2==0，因为 == 的优先级高于 ?: 的条件位置所需的分隔，写成 a%2 会把\"余数非 0\"当真，正好反了。易错点：?: 的优先级仅高于赋值和逗号，混在算术表达式里必须加括号。",
+      "tags": [
+        "条件运算符",
+        "逗号表达式",
+        "奇偶判断"
+      ],
+      "knowledgeIds": [
+        "c-ch02-23"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-002",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x = 6, y = 4, t;\n\n    t = /*__BLANK_1__*/;                 /* 一条语句里用逗号表达式完成：先算 x*y，再把 y 赋给 t */\n    x /*__BLANK_2__*/ 3;                 /* 复合赋值：x 变为 x*(2+3) 的结果 */\n    y /*__BLANK_3__*/ 2;                 /* 复合赋值：y 变为 y+2*3 的结果 */\n    printf(\"%d %d %d\\n\", t, x, y);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(x * y, y)",
+          "accepted": [
+            "(x*y, y)",
+            "(x * y, y)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "*=",
+          "accepted": [
+            "* ="
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "+=",
+          "accepted": [
+            "+= 2",
+            "+ ="
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 6, y = 4, t;\n\n    t = /*__BLANK_1__*/;                 /* 一条语句里用逗号表达式完成：先算 x*y，再把 y 赋给 t */\n    x /*__BLANK_2__*/ 3;                 /* 复合赋值：x 变为 x*(2+3) 的结果 */\n    y /*__BLANK_3__*/ 2;                 /* 复合赋值：y 变为 y+2*3 的结果 */\n    printf(\"%d %d %d\\n\", t, x, y);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 6, y = 4, t;\n\n    t = (x * y, y);                 /* 一条语句里用逗号表达式完成：先算 x*y，再把 y 赋给 t */\n    x *= 3;                 /* 复合赋值：x 变为 x*(2+3) 的结果 */\n    y += 2;                 /* 复合赋值：y 变为 y+2*3 的结果 */\n    printf(\"%d %d %d\\n\", t, x, y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "4 18 6",
+          "note": "无输入，固定初值"
+        }
+      ],
+      "explanation": "逗号表达式 (x*y, y) 依次求值，整个表达式的值取最右边的 y，因此 t 得到的是 y 的原值 4，而不是乘积 24——这是逗号表达式最常考的地方。复合赋值运算符 a op= b 严格等价于 a = a op (b)，右侧作为一个整体先算：x *= 3 让 x 变成 6*3=18；y += 2 让 y 变成 4+2=6。若把 x *= 2 + 3 误展开成 x*x*2+3 就错了，正确展开是 x = x*(2+3)。易错点：复合赋值的优先级只高于逗号，低于算术运算，所以 -=、*= 右边可以安全地写加减表达式而不必加括号。",
+      "tags": [
+        "逗号表达式",
+        "复合赋值",
+        "最大值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-22"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-003",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, n;\n    double r;\n\n    scanf(\"%d %d\", &a, &b);\n    n = /*__BLANK_1__*/;                       /* 求 a*b 与 a+b 中的较大者（用条件运算符） */\n    r = /*__BLANK_2__*/;                       /* 强制转换后求商，保留小数 */\n    printf(\"%d %.3f\\n\", n, r);\n    n = /*__BLANK_3__*/;                       /* 先取 a 的相反数，再与 b 相加 */\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a * b > a + b ? a * b : a + b",
+          "accepted": [
+            "(a*b > a+b) ? a*b : a+b",
+            "a*b>a+b?a*b:a+b"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "(double)a / b",
+          "accepted": [
+            "(double)a / b ",
+            "a / (double)b",
+            "(double)a/b",
+            "1.0 * a / b"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "-a + b",
+          "accepted": [
+            "(-a) + b",
+            "b - a"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, n;\n    double r;\n\n    scanf(\"%d %d\", &a, &b);\n    n = /*__BLANK_1__*/;                       /* 求 a*b 与 a+b 中的较大者（用条件运算符） */\n    r = /*__BLANK_2__*/;                       /* 强制转换后求商，保留小数 */\n    printf(\"%d %.3f\\n\", n, r);\n    n = /*__BLANK_3__*/;                       /* 先取 a 的相反数，再与 b 相加 */\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, n;\n    double r;\n\n    scanf(\"%d %d\", &a, &b);\n    n = a * b > a + b ? a * b : a + b;                       /* 求 a*b 与 a+b 中的较大者（用条件运算符） */\n    r = (double)a / b;                       /* 强制转换后求商，保留小数 */\n    printf(\"%d %.3f\\n\", n, r);\n    n = -a + b;                       /* 先取 a 的相反数，再与 b 相加 */\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7 3",
+          "expected": "21 2.333\n-4",
+          "note": "乘积大于和"
+        },
+        {
+          "stdin": "2 5",
+          "expected": "10 0.400\n3",
+          "note": "和大于乘积"
+        },
+        {
+          "stdin": "9 9",
+          "expected": "81 1.000\n0",
+          "note": "边界：相等"
+        }
+      ],
+      "explanation": "本题综合考运算符优先级：* 与 / 高于 + 与 -，+ 与 - 高于关系运算符 >，> 又高于 ?: 的分界，所以 a*b > a+b ? a*b : a+b 不加括号也按预期结合，但阅读性差，规范写法要给条件加括号。求小数商必须至少把一侧强制转换成 double，(double)a/b 中 b 会被自动提升，结果才是实数商；直接写 a/b 得到整数商再赋给 r，小数部分已经丢失，转换补救不回来。单目负号 - 的优先级高于 +，-a+b 就是 (-a)+b。易错点：强制转换只作用于紧跟其后的那个运算对象，(double)a/b 与 (double)(a/b) 结果完全不同。",
+      "tags": [
+        "优先级",
+        "结合性",
+        "强制转换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-26"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-004",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, g, s, b;\n\n    scanf(\"%d\", &n);\n    g = /*__BLANK_1__*/;              /* 个位 */\n    s = /*__BLANK_2__*/;              /* 十位 */\n    b = /*__BLANK_3__*/;              /* 百位 */\n    printf(\"%d %d %d\\n\", g, s, b);\n    printf(\"%d\\n\", /*__BLANK_4__*/);  /* 反序组成的新三位数 */\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n % 10",
+          "accepted": [
+            "n%10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n / 10 % 10",
+          "accepted": [
+            "(n / 10) % 10",
+            "n/10%10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "n / 100",
+          "accepted": [
+            "n / 100 % 10",
+            "n/100"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "g * 100 + s * 10 + b",
+          "accepted": [
+            "b + s * 10 + g * 100",
+            "g*100+s*10+b"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, g, s, b;\n\n    scanf(\"%d\", &n);\n    g = /*__BLANK_1__*/;              /* 个位 */\n    s = /*__BLANK_2__*/;              /* 十位 */\n    b = /*__BLANK_3__*/;              /* 百位 */\n    printf(\"%d %d %d\\n\", g, s, b);\n    printf(\"%d\\n\", /*__BLANK_4__*/);  /* 反序组成的新三位数 */\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, g, s, b;\n\n    scanf(\"%d\", &n);\n    g = n % 10;              /* 个位 */\n    s = n / 10 % 10;              /* 十位 */\n    b = n / 100;              /* 百位 */\n    printf(\"%d %d %d\\n\", g, s, b);\n    printf(\"%d\\n\", g * 100 + s * 10 + b);  /* 反序组成的新三位数 */\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "358",
+          "expected": "8 5 3\n853",
+          "note": "常规三位数"
+        },
+        {
+          "stdin": "100",
+          "expected": "0 0 1\n1",
+          "note": "边界：含 0"
+        },
+        {
+          "stdin": "907",
+          "expected": "7 0 9\n709",
+          "note": "边界：中间为 0"
+        }
+      ],
+      "explanation": "数位分解的通用手法是\"取余得最低位、除法砍最低位\"：n%10 取个位，n/10 去掉个位后再 %10 就是十位，n/100 对三位数而言直接得到百位。反序重组就是按新权值相加：个位变百位乘 100、十位不变乘 10、百位变个位。以 358 为例，g=8、s=5、b=3，反序数为 853；以 100 为例，g=0、s=0、b=1，反序数为 001，按整数输出就是 1，前导零自动消失。易错点：n/100%10 与 n/100 对三位数等价，但若 n 是四位数则必须保留 %10；重组时权值写错（如 g*10）是最常见的失分点。",
+      "tags": [
+        "数位分解",
+        "取余",
+        "整数除法"
+      ],
+      "knowledgeIds": [
+        "c-ch02-33"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-005",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, m, sum = 0, cnt = 0;\n\n    scanf(\"%d\", &n);\n    m = n;\n    while (/*__BLANK_1__*/)              /* 只要还有数位就继续 */\n    {\n        sum += /*__BLANK_2__*/;          /* 累加当前最低位 */\n        m /*__BLANK_3__*/;               /* 砍掉最低位 */\n        cnt++;\n    }\n    printf(\"%d %d\\n\", sum, cnt);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "m != 0",
+          "accepted": [
+            "m > 0",
+            "m",
+            "m != 0 "
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "m % 10",
+          "accepted": [
+            "m%10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "/= 10",
+          "accepted": [
+            "= m / 10",
+            "/=10"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, m, sum = 0, cnt = 0;\n\n    scanf(\"%d\", &n);\n    m = n;\n    while (/*__BLANK_1__*/)              /* 只要还有数位就继续 */\n    {\n        sum += /*__BLANK_2__*/;          /* 累加当前最低位 */\n        m /*__BLANK_3__*/;               /* 砍掉最低位 */\n        cnt++;\n    }\n    printf(\"%d %d\\n\", sum, cnt);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, m, sum = 0, cnt = 0;\n\n    scanf(\"%d\", &n);\n    m = n;\n    while (m != 0)              /* 只要还有数位就继续 */\n    {\n        sum += m % 10;          /* 累加当前最低位 */\n        m /= 10;               /* 砍掉最低位 */\n        cnt++;\n    }\n    printf(\"%d %d\\n\", sum, cnt);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1234",
+          "expected": "10 4",
+          "note": "四位数"
+        },
+        {
+          "stdin": "7",
+          "expected": "7 1",
+          "note": "边界：一位数"
+        },
+        {
+          "stdin": "9090",
+          "expected": "18 4",
+          "note": "边界：含 0"
+        }
+      ],
+      "explanation": "用 while 循环逐位累加：循环条件写 m != 0（也可简写 m，因为非 0 即真），每轮用 m%10 取出当前最低位加到 sum，再 m /= 10 砍掉这一位，cnt 统计位数。以 1234 为例，依次取 4、3、2、1，sum=10、cnt=4；对一位数 7，循环只执行一次，结果 7 和 1，这正是\"边界也要能跑\"的检验点。若循环条件误写成 m > 0，负数输入会一次都不执行，sum 输出 0。易错点：m /= 10 与 m = m / 10 等价，但写成 m = m % 10 会陷入死循环；sum 必须先初始化为 0。",
+      "tags": [
+        "数位之和",
+        "循环",
+        "取余"
+      ],
+      "knowledgeIds": [
+        "c-ch02-33"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-006",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, q, b, s, g, ok;\n\n    scanf(\"%d\", &n);\n    q = /*__BLANK_1__*/;                 /* 千位 */\n    b = n / 100 % 10;          /* 百位 */\n    s = /*__BLANK_2__*/;                 /* 十位 */\n    g = n % 10;                /* 个位 */\n    ok = /*__BLANK_3__*/;                /* 首尾相同且中间两位相同则为 1 */\n    printf(\"%d %d %d %d\\n\", q, b, s, g);\n    printf(\"%d\\n\", ok);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n / 1000",
+          "accepted": [
+            "n/1000",
+            "n / 1000 % 10"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n / 10 % 10",
+          "accepted": [
+            "(n / 10) % 10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "q == g && b == s",
+          "accepted": [
+            "(q == g) && (b == s)",
+            "g == q && s == b"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, q, b, s, g, ok;\n\n    scanf(\"%d\", &n);\n    q = /*__BLANK_1__*/;                 /* 千位 */\n    b = n / 100 % 10;          /* 百位 */\n    s = /*__BLANK_2__*/;                 /* 十位 */\n    g = n % 10;                /* 个位 */\n    ok = /*__BLANK_3__*/;                /* 首尾相同且中间两位相同则为 1 */\n    printf(\"%d %d %d %d\\n\", q, b, s, g);\n    printf(\"%d\\n\", ok);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, q, b, s, g, ok;\n\n    scanf(\"%d\", &n);\n    q = n / 1000;                 /* 千位 */\n    b = n / 100 % 10;          /* 百位 */\n    s = n / 10 % 10;                 /* 十位 */\n    g = n % 10;                /* 个位 */\n    ok = q == g && b == s;                /* 首尾相同且中间两位相同则为 1 */\n    printf(\"%d %d %d %d\\n\", q, b, s, g);\n    printf(\"%d\\n\", ok);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1221",
+          "expected": "1 2 2 1\n1",
+          "note": "回文四位数"
+        },
+        {
+          "stdin": "1234",
+          "expected": "1 2 3 4\n0",
+          "note": "非回文"
+        },
+        {
+          "stdin": "9009",
+          "expected": "9 0 0 9\n1",
+          "note": "边界：中间为 0"
+        }
+      ],
+      "explanation": "四位数分解与三位数同理，只是权值再乘 10：千位 n/1000，百位 n/100%10，十位 n/10%10，个位 n%10。回文判断要求\"首位=末位且第二位=倒数第二位\"，用逻辑与连接：q == g && b == s，其中 == 优先级高于 &&，因此不必加括号但加上更清晰。1221 与 9009 都满足条件输出 1，1234 输出 0。易错点：把条件写成 q == g || b == s（或）会把 1231 也判成回文；关系运算不能连写成 q == g == b == s，那会被解释成 ((q==g)==b)==s，结果几乎总是错的。",
+      "tags": [
+        "四位数分解",
+        "回文判断",
+        "关系运算"
+      ],
+      "knowledgeIds": [
+        "c-ch02-33"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-007",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    double x, p;\n\n    scanf(\"%lf\", &x);\n    /* 求 2x^2 + 3x + 4 的值，用秦九韶算法改写为 ((2x + 3)x + 4) */\n    p = /*__BLANK_1__*/;\n    p = /*__BLANK_2__*/;\n    p = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", p);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "2",
+          "accepted": [
+            "2.0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "p * x + 3",
+          "accepted": [
+            "p*x+3",
+            "3 + p * x"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "p * x + 4",
+          "accepted": [
+            "p*x+4",
+            "4 + p * x"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    double x, p;\n\n    scanf(\"%lf\", &x);\n    /* 求 2x^2 + 3x + 4 的值，用秦九韶算法改写为 ((2x + 3)x + 4) */\n    p = /*__BLANK_1__*/;\n    p = /*__BLANK_2__*/;\n    p = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", p);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    double x, p;\n\n    scanf(\"%lf\", &x);\n    /* 求 2x^2 + 3x + 4 的值，用秦九韶算法改写为 ((2x + 3)x + 4) */\n    p = 2;\n    p = p * x + 3;\n    p = p * x + 4;\n    printf(\"%.2f\\n\", p);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1",
+          "expected": "9.00",
+          "note": "x=1"
+        },
+        {
+          "stdin": "2.5",
+          "expected": "24.00",
+          "note": "x=2.5"
+        },
+        {
+          "stdin": "0",
+          "expected": "4.00",
+          "note": "边界：x=0"
+        }
+      ],
+      "explanation": "秦九韶（霍纳）算法把 n 次多项式的求值从 O(n^2) 次乘法降到 n 次：把 2x^2+3x+4 改写成 ((2x+3)x+4)，先令 p 为最高次系数 2，再反复执行 p = p*x + 下一个系数。x=1 时结果为 9，x=2.5 时为 23.00，x=0 时直接得常数项 4，边界自然正确。用 %lf 读入 double、%.2f 控制两位小数输出。易错点：如果写成 p = 2*x*x + 3*x + 4 虽然结果对但乘法次数多；更常见的错误是把顺序弄反成 p = p + 系数 * x，那样算的是另一个多项式。",
+      "tags": [
+        "多项式",
+        "秦九韶",
+        "double"
+      ],
+      "knowledgeIds": [
+        "c-ch02-34"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-008",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    double x, a[4] = {1, -2, 3, 5}, p;\n    int i;\n\n    scanf(\"%lf\", &x);\n    /* 求 x^3 - 2x^2 + 3x + 5，系数从高次到低次存放在 a 中 */\n    p = /*__BLANK_1__*/;\n    for (i = 1; i <= /*__BLANK_2__*/; i++)\n        p = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", p);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]",
+          "accepted": [
+            "a[0] ",
+            "1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "3",
+          "accepted": [
+            "4 - 1",
+            "sizeof(a) / sizeof(a[0]) - 1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "p * x + a[i]",
+          "accepted": [
+            "p*x+a[i]",
+            "a[i] + p * x"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    double x, a[4] = {1, -2, 3, 5}, p;\n    int i;\n\n    scanf(\"%lf\", &x);\n    /* 求 x^3 - 2x^2 + 3x + 5，系数从高次到低次存放在 a 中 */\n    p = /*__BLANK_1__*/;\n    for (i = 1; i <= /*__BLANK_2__*/; i++)\n        p = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", p);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    double x, a[4] = {1, -2, 3, 5}, p;\n    int i;\n\n    scanf(\"%lf\", &x);\n    /* 求 x^3 - 2x^2 + 3x + 5，系数从高次到低次存放在 a 中 */\n    p = a[0];\n    for (i = 1; i <= 3; i++)\n        p = p * x + a[i];\n    printf(\"%.2f\\n\", p);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2",
+          "expected": "11.00",
+          "note": "x=2"
+        },
+        {
+          "stdin": "-1",
+          "expected": "-1.00",
+          "note": "x=-1"
+        },
+        {
+          "stdin": "0",
+          "expected": "5.00",
+          "note": "边界：x=0"
+        }
+      ],
+      "explanation": "系数按从高次到低次存入数组后，秦九韶算法可以写成循环：p 初值为最高次系数 a[0]，然后对 i 从 1 到 n-1（这里 n=4，故上界是 3）反复做 p = p*x + a[i]。x=2 时 8-8+6+5=11，x=-1 时 -1-2-3+5=-1，x=0 时只剩常数项 5。循环上界也可以用 sizeof(a)/sizeof(a[0])-1 通用求出。易错点：循环从 i=0 开始会把最高次系数重复累加一次；数组顺序若按低次到高次存放，则循环要倒着走 i 从 n-1 到 0。",
+      "tags": [
+        "多项式",
+        "秦九韶",
+        "循环"
+      ],
+      "knowledgeIds": [
+        "c-ch02-34"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-cc-009",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    scanf(\"%d %d\", &a, &b);\n    c = /*__BLANK_1__*/;                       /* 用逗号表达式：先把 a 加到 b，再取 b 的值给 c */\n    printf(\"%d %d %d\\n\", a, b, c);\n    c = /*__BLANK_2__*/;                       /* 强制转换后求整数商，再加余数 */\n    printf(\"%d\\n\", c);\n    c = /*__BLANK_3__*/;                       /* 求 |a-b|，只能用条件运算符 */\n    printf(\"%d\\n\", c);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(a += b, b)",
+          "accepted": [
+            "(a+=b, b)",
+            "(a = a + b, b)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "(int)((double)a / b) + a % b",
+          "accepted": [
+            "a / b + a % b",
+            "(int)(a / b) + a % b"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "a > b ? a - b : b - a",
+          "accepted": [
+            "a >= b ? a - b : b - a",
+            "a < b ? b - a : a - b"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    scanf(\"%d %d\", &a, &b);\n    c = /*__BLANK_1__*/;                       /* 用逗号表达式：先把 a 加到 b，再取 b 的值给 c */\n    printf(\"%d %d %d\\n\", a, b, c);\n    c = /*__BLANK_2__*/;                       /* 强制转换后求整数商，再加余数 */\n    printf(\"%d\\n\", c);\n    c = /*__BLANK_3__*/;                       /* 求 |a-b|，只能用条件运算符 */\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    scanf(\"%d %d\", &a, &b);\n    c = (a += b, b);                       /* 用逗号表达式：先把 a 加到 b，再取 b 的值给 c */\n    printf(\"%d %d %d\\n\", a, b, c);\n    c = (int)((double)a / b) + a % b;                       /* 强制转换后求整数商，再加余数 */\n    printf(\"%d\\n\", c);\n    c = a > b ? a - b : b - a;                       /* 求 |a-b|，只能用条件运算符 */\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9 4",
+          "expected": "13 4 4\n4\n9",
+          "note": "a>b"
+        },
+        {
+          "stdin": "3 8",
+          "expected": "11 8 8\n4\n3",
+          "note": "a<b"
+        },
+        {
+          "stdin": "5 5",
+          "expected": "10 5 5\n2\n5",
+          "note": "边界：相等"
+        }
+      ],
+      "explanation": "第一空 (a += b, b)：逗号表达式左侧带副作用地完成 a=a+b，右侧 b 的新值就是整个表达式的值，因此 c 与 b 相同；逗号是顺序点，保证左侧先算完，不存在未定义行为。第二空因为 a、b 都是 int，a/b 本就是整数商，写成 (int)((double)a/b) 会得到向零截断的同一结果，再加 a%b 即可。第三空求绝对值只能用条件运算符 a>b?a-b:b-a，等号写在哪一侧都可以，因为相等时两分支都是 0。易错点：把 a>b?a-b:b-a 写成 a>b?a-b:a-b 会在 a<b 时得到负数；条件运算符不能替代数学上的 |x| 函数直接嵌套多层而不加括号。",
+      "tags": [
+        "求值顺序",
+        "顺序点",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch02-35"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-001",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 7, b = 2;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 7, b = 2;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7 2",
+          "expected": "3.50"
+        },
+        {
+          "stdin": "9 4",
+          "expected": "3.50"
+        },
+        {
+          "stdin": "5 5",
+          "expected": "3.50"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 7, b = 2;\n    double r;\n\n    r = (double)a / b;\n    printf(\"%.2f\\n\", r);\n    return 0;\n}",
+      "bugs": [
+        "整数除法先按 int 计算并把小数部分截掉，再赋给 double 已无法恢复；必须先把一侧强制转换为 double，让另一侧自动提升，才能得到实数商。",
+        "printf 的格式字符必须与实参类型匹配：r 是 double，用 %d 会按整型解释传入的位模式，输出毫无意义的值（在不同平台上还可能崩溃），应改为 %.2f 保留两位小数。"
+      ],
+      "explanation": "本题两处错误都源于\"类型不匹配\"。第一处：a、b 都是 int，a/b 执行整数除法，7/2 得 3，赋给 double 后是 3.00，与期望的 3.50 不符；改成 (double)a/b，b 会被自动提升为 double，得到真正的实数商。第二处：%d 对应 int，%.2f 对应 double，格式字符用错时 printf 只是按错误的宽度去解释栈上的参数，不会报错。易错点：写成 (double)(a/b) 括号位置不对，仍然是整数除法；double 类型的变量即使值是整数，也必须用 %f 输出。",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "knowledgeIds": [
+        "c-ch02-28"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-002",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 10, b = 4;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 10, b = 4;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "10 4",
+          "expected": "2.50"
+        },
+        {
+          "stdin": "1 3",
+          "expected": "2.50"
+        },
+        {
+          "stdin": "8 8",
+          "expected": "2.50"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 10, b = 4;\n    double r;\n\n    r = (double)a / b;\n    printf(\"%.2f\\n\", r);\n    return 0;\n}",
+      "bugs": [
+        "整数除法先按 int 计算并把小数部分截掉，再赋给 double 已无法恢复；必须先把一侧强制转换为 double，让另一侧自动提升，才能得到实数商。",
+        "printf 的格式字符必须与实参类型匹配：r 是 double，用 %d 会按整型解释传入的位模式，输出毫无意义的值（在不同平台上还可能崩溃），应改为 %.2f 保留两位小数。"
+      ],
+      "explanation": "本题两处错误都源于\"类型不匹配\"。第一处：a、b 都是 int，a/b 执行整数除法，10/4 得 2，赋给 double 后是 2.00，与期望的 2.50 不符；改成 (double)a/b，b 会被自动提升为 double，得到真正的实数商。第二处：%d 对应 int，%.2f 对应 double，格式字符用错时 printf 只是按错误的宽度去解释栈上的参数，不会报错。易错点：写成 (double)(a/b) 括号位置不对，仍然是整数除法；double 类型的变量即使值是整数，也必须用 %f 输出。",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "knowledgeIds": [
+        "c-ch02-28"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-003",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 22, b = 7;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 22, b = 7;\n    double r;\n\n    r = a / b;\n    printf(\"%d\\n\", r);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "22 7",
+          "expected": "3.14"
+        },
+        {
+          "stdin": "100 3",
+          "expected": "3.14"
+        },
+        {
+          "stdin": "6 6",
+          "expected": "3.14"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 22, b = 7;\n    double r;\n\n    r = (double)a / b;\n    printf(\"%.2f\\n\", r);\n    return 0;\n}",
+      "bugs": [
+        "整数除法先按 int 计算并把小数部分截掉，再赋给 double 已无法恢复；必须先把一侧强制转换为 double，让另一侧自动提升，才能得到实数商。",
+        "printf 的格式字符必须与实参类型匹配：r 是 double，用 %d 会按整型解释传入的位模式，输出毫无意义的值（在不同平台上还可能崩溃），应改为 %.2f 保留两位小数。"
+      ],
+      "explanation": "本题两处错误都源于\"类型不匹配\"。第一处：a、b 都是 int，a/b 执行整数除法，22/7 得 3，赋给 double 后是 3.00，与期望的 3.14 不符；改成 (double)a/b，b 会被自动提升为 double，得到真正的实数商。第二处：%d 对应 int，%.2f 对应 double，格式字符用错时 printf 只是按错误的宽度去解释栈上的参数，不会报错。易错点：写成 (double)(a/b) 括号位置不对，仍然是整数除法；double 类型的变量即使值是整数，也必须用 %f 输出。",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "knowledgeIds": [
+        "c-ch02-28"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-004",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8 5",
+          "expected": "5 8\n6.50"
+        },
+        {
+          "stdin": "3 7",
+          "expected": "7 3\n5.00"
+        },
+        {
+          "stdin": "6 6",
+          "expected": "6 6\n6.00"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b; b = t;\n    avg = (a + b) / 2.0;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%.2f\\n\", avg);\n    return 0;\n}",
+      "bugs": [
+        "交换两个变量必须借助第三个变量保存其中一个旧值，缺少 b = t 这一步会让 b 保持原值不变，a 被覆盖后原值彻底丢失，交换失败。",
+        "/ 的优先级高于 +，原式实际算的是 a + (b/2)，而不是平均值；而且 b/2 是整数除法会丢小数。应给 a+b 加括号，并用 2.0 让除法按 double 进行。",
+        "avg 是 double 类型，必须用 %f 系列格式字符输出，用 %d 会按整型解释参数导致输出错误值。"
+      ],
+      "explanation": "三处错误分别是\"漏步骤、优先级、格式字符\"。交换 a、b 需要 t=a; a=b; b=t; 三步，少了最后一步等于没交换。求平均值要写成 (a+b)/2.0：一是括号改变了 + 与 / 的默认优先级（/ 高于 +，不加括号会先算 b/2），二是用 2.0 而不是 2 才能触发实数除法，否则整数除法先把小数截掉。以 a=8、b=5 为例，错误写法得到 10，正确结果是 6.50。最后 printf 输出 double 必须用 %.2f，格式字符与实参类型不匹配是 C 里最隐蔽的错误之一，编译器只能给出警告。",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-26"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-005",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "12 3",
+          "expected": "3 12\n7.50"
+        },
+        {
+          "stdin": "1 1",
+          "expected": "1 1\n1.00"
+        },
+        {
+          "stdin": "9 10",
+          "expected": "10 9\n9.50"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b; b = t;\n    avg = (a + b) / 2.0;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%.2f\\n\", avg);\n    return 0;\n}",
+      "bugs": [
+        "交换两个变量必须借助第三个变量保存其中一个旧值，缺少 b = t 这一步会让 b 保持原值不变，a 被覆盖后原值彻底丢失，交换失败。",
+        "/ 的优先级高于 +，原式实际算的是 a + (b/2)，而不是平均值；而且 b/2 是整数除法会丢小数。应给 a+b 加括号，并用 2.0 让除法按 double 进行。",
+        "avg 是 double 类型，必须用 %f 系列格式字符输出，用 %d 会按整型解释参数导致输出错误值。"
+      ],
+      "explanation": "三处错误分别是\"漏步骤、优先级、格式字符\"。交换 a、b 需要 t=a; a=b; b=t; 三步，少了最后一步等于没交换。求平均值要写成 (a+b)/2.0：一是括号改变了 + 与 / 的默认优先级（/ 高于 +，不加括号会先算 b/2），二是用 2.0 而不是 2 才能触发实数除法，否则整数除法先把小数截掉。以 a=12、b=3 为例，错误写法得到 13，正确结果是 7.50。最后 printf 输出 double 必须用 %.2f，格式字符与实参类型不匹配是 C 里最隐蔽的错误之一，编译器只能给出警告。",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-26"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-dbg-006",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b;\n    avg = a + b / 2;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%d\\n\", avg);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "20 8",
+          "expected": "8 20\n14.00"
+        },
+        {
+          "stdin": "7 7",
+          "expected": "7 7\n7.00"
+        },
+        {
+          "stdin": "100 30",
+          "expected": "30 100\n65.00"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, t;\n    double avg;\n\n    scanf(\"%d %d\", &a, &b);\n    t = a; a = b; b = t;\n    avg = (a + b) / 2.0;\n    printf(\"%d %d\\n\", a, b);\n    printf(\"%.2f\\n\", avg);\n    return 0;\n}",
+      "bugs": [
+        "交换两个变量必须借助第三个变量保存其中一个旧值，缺少 b = t 这一步会让 b 保持原值不变，a 被覆盖后原值彻底丢失，交换失败。",
+        "/ 的优先级高于 +，原式实际算的是 a + (b/2)，而不是平均值；而且 b/2 是整数除法会丢小数。应给 a+b 加括号，并用 2.0 让除法按 double 进行。",
+        "avg 是 double 类型，必须用 %f 系列格式字符输出，用 %d 会按整型解释参数导致输出错误值。"
+      ],
+      "explanation": "三处错误分别是\"漏步骤、优先级、格式字符\"。交换 a、b 需要 t=a; a=b; b=t; 三步，少了最后一步等于没交换。求平均值要写成 (a+b)/2.0：一是括号改变了 + 与 / 的默认优先级（/ 高于 +，不加括号会先算 b/2），二是用 2.0 而不是 2 才能触发实数除法，否则整数除法先把小数截掉。以 a=20、b=8 为例，错误写法得到 24，正确结果是 14.00。最后 printf 输出 double 必须用 %.2f，格式字符与实参类型不匹配是 C 里最隐蔽的错误之一，编译器只能给出警告。",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-26"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-001",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入一个表示总秒数的非负整数，把它换算成\"时:分:秒\"的形式输出，分与秒各占两位（不足两位左补 0）。\n\n输入格式：一行一个非负整数 total（0 ≤ total ≤ 1000000），表示总秒数。\n\n输出格式：一行，形如 H:MM:SS，其中分、秒各占两位。",
+      "testCases": [
+        {
+          "stdin": "3661",
+          "expected": "1:01:01",
+          "note": "常规"
+        },
+        {
+          "stdin": "0",
+          "expected": "0:00:00",
+          "note": "边界：0 秒"
+        },
+        {
+          "stdin": "59",
+          "expected": "0:00:59",
+          "note": "边界：不足 1 分"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int total, h, m, s;\n\n    if (scanf(\"%d\", &total) != 1 || total < 0)\n        return 1;\n    h = total / 3600;\n    m = total % 3600 / 60;\n    s = total % 60;\n    printf(\"%d:%02d:%02d\\n\", h, m, s);\n    return 0;\n}",
+      "input_format": "一行一个非负整数 total（0 ≤ total ≤ 1000000），表示总秒数。",
+      "output_format": "一行，形如 H:MM:SS，其中分、秒各占两位。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int total, h, m, s;\n\n    if (scanf(\"%d\", &total) != 1 || total < 0)\n        return 1;\n    h = total / 3600;\n    m = total % 3600 / 60;\n    s = total % 60;\n    printf(\"%d:%02d:%02d\\n\", h, m, s);\n    return 0;\n}",
+      "explanation": "换算的本质是\"用除法取高位、用取余留低位\"：1 小时 3600 秒、1 分钟 60 秒，所以 h = total/3600，去掉小时后剩下的 total%3600 再除以 60 得 m，最后 total%60 就是余下的秒。输出格式用 %02d 实现\"不足两位左补 0\"，这是 printf 的 0 标志加宽度 2。边界 0 秒应输出 0:00:00，59 秒应输出 0:00:59。易错点：先算 s 再算 m 容易把 total%3600 写成 total%60，导致分钟数错误；对 total<0 的非法输入应直接返回非 0 状态。",
+      "tags": [
+        "整数除法",
+        "取余",
+        "顺序结构"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-002",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入一个不超过 10000 的非负整数金额（元），用 20 元、10 元、5 元、1 元四种面额的纸币凑出，要求总张数最少，输出各面额的张数（按 20、10、5、1 的顺序）。\n\n输入格式：一行一个非负整数 money（0 ≤ money ≤ 10000）。\n\n输出格式：一行四个整数，依次为 20 元、10 元、5 元、1 元的张数，用单个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "57",
+          "expected": "2 1 1 2",
+          "note": "常规"
+        },
+        {
+          "stdin": "0",
+          "expected": "0 0 0 0",
+          "note": "边界：0 元"
+        },
+        {
+          "stdin": "20",
+          "expected": "1 0 0 0",
+          "note": "边界：正好一张"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int money, n20, n10, n5, n1;\n\n    if (scanf(\"%d\", &money) != 1 || money < 0 || money > 10000)\n        return 1;\n    n20 = money / 20;\n    n10 = money % 20 / 10;\n    n5 = money % 10 / 5;\n    n1 = money % 5;\n    printf(\"%d %d %d %d\\n\", n20, n10, n5, n1);\n    return 0;\n}",
+      "input_format": "一行一个非负整数 money（0 ≤ money ≤ 10000）。",
+      "output_format": "一行四个整数，依次为 20 元、10 元、5 元、1 元的张数，用单个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int money, n20, n10, n5, n1;\n\n    if (scanf(\"%d\", &money) != 1 || money < 0 || money > 10000)\n        return 1;\n    n20 = money / 20;\n    n10 = money % 20 / 10;\n    n5 = money % 10 / 5;\n    n1 = money % 5;\n    printf(\"%d %d %d %d\\n\", n20, n10, n5, n1);\n    return 0;\n}",
+      "explanation": "面额是倍数关系（20、10、5、1）时，\"先用大面额\"的贪心策略即为最优：n20 = money/20 取整商，剩下的 money%20 再除以 10 得 n10，依此类推，最后 money%5 就是 1 元的张数。57 元 → 2 张 20、1 张 10、1 张 5、2 张 1，共 6 张，已是最少。0 元时四个数都是 0，也要正常输出。易错点：每一步都必须对\"上一步的余数\"继续分解，若每次都从 money 出发（如 n10 = money/10）会得到重复计数；张数总和乘以面额应能还原 money，可用它自查。",
+      "tags": [
+        "商与余数",
+        "找零",
+        "贪心"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-003",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入一个华氏温度（实数），按公式 C = 5/9 × (F − 32) 换算为摄氏温度并输出，保留 1 位小数。\n\n输入格式：一行一个实数 F（-100 ≤ F ≤ 300）。\n\n输出格式：一行一个实数，摄氏温度，保留 1 位小数。",
+      "testCases": [
+        {
+          "stdin": "100",
+          "expected": "37.8",
+          "note": "水的沸点"
+        },
+        {
+          "stdin": "32",
+          "expected": "0.0",
+          "note": "边界：冰点，结果为 0"
+        },
+        {
+          "stdin": "-40",
+          "expected": "-40.0",
+          "note": "边界：华氏摄氏相同点"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    double f, c;\n\n    if (scanf(\"%lf\", &f) != 1)\n        return 1;\n    c = 5.0 / 9.0 * (f - 32.0);\n    printf(\"%.1f\\n\", c);\n    return 0;\n}",
+      "input_format": "一行一个实数 F（-100 ≤ F ≤ 300）。",
+      "output_format": "一行一个实数，摄氏温度，保留 1 位小数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    double f, c;\n\n    if (scanf(\"%lf\", &f) != 1)\n        return 1;\n    c = 5.0 / 9.0 * (f - 32.0);\n    printf(\"%.1f\\n\", c);\n    return 0;\n}",
+      "explanation": "公式里的 5/9 若照抄进 C 语言就变成整数除法，结果为 0，整个换算恒等于 0，这是本题最大的陷阱；必须写成 5.0/9.0（或 5.0/9、(double)5/9）让运算按 double 进行。括号不能省，因为 * 与 / 同级、从左到右结合，5.0/9.0*F-32 会先乘再减，结果错误。%.1f 会自动做四舍五入（准确说是按当前舍入模式取最近值），-40 华氏度恰好等于 -40 摄氏度，是检验公式正确性的好边界。易错点：用 %f 读入却给 float 变量、或 scanf 里漏写 & 都会导致读入失败。",
+      "tags": [
+        "类型转换",
+        "温度换算",
+        "四舍五入"
+      ],
+      "knowledgeIds": [
+        "c-ch02-31"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-004",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "输入三个整数，求它们的算术平均值并输出，结果保留 2 位小数。\n\n输入格式：一行三个整数，用空格分隔。\n\n输出格式：一行一个实数，保留 2 位小数。",
+      "testCases": [
+        {
+          "stdin": "78 85 92",
+          "expected": "85.00",
+          "note": "常规"
+        },
+        {
+          "stdin": "1 1 2",
+          "expected": "1.33",
+          "note": "结果为无限小数，需舍入"
+        },
+        {
+          "stdin": "0 0 0",
+          "expected": "0.00",
+          "note": "边界：全 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n    double avg;\n\n    if (scanf(\"%d %d %d\", &a, &b, &c) != 3)\n        return 1;\n    avg = (a + b + c) / 3.0;\n    printf(\"%.2f\\n\", avg);\n    return 0;\n}",
+      "input_format": "一行三个整数，用空格分隔。",
+      "output_format": "一行一个实数，保留 2 位小数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b, c;\n    double avg;\n\n    if (scanf(\"%d %d %d\", &a, &b, &c) != 3)\n        return 1;\n    avg = (a + b + c) / 3.0;\n    printf(\"%.2f\\n\", avg);\n    return 0;\n}",
+      "explanation": "关键是让除法按实数进行：写成 (a+b+c)/3.0，3.0 是 double，整型和会被自动提升，商保留小数；若写成 /3 则是整数除法，1 1 2 的平均值会被截成 1 而不是 1.33。%.2f 会按四舍五入保留两位。三个数都是 0 时结果 0.00，也要正常输出两位小数。易错点：不要先算 (a+b+c)/3 再赋给 double，那样小数已在整数除法中丢失；scanf 的每个变量前都要加取地址符 &，返回值 3 表示三个都读成功。",
+      "tags": [
+        "算术表达式",
+        "平均值",
+        "printf 精度"
+      ],
+      "knowledgeIds": [
+        "c-ch02-31"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-005",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "第一行输入正整数 n（1 ≤ n ≤ 100），第二行输入 n 个整数，输出它们的总和与平均值（平均值保留 3 位小数），两个结果在同一行、用空格分隔。\n\n输入格式：第一行一个正整数 n；第二行 n 个整数，用空格分隔。\n\n输出格式：一行两个值：总和（整数）与平均值（保留 3 位小数），用空格分隔。",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5",
+          "expected": "15 3.000",
+          "note": "常规"
+        },
+        {
+          "stdin": "1\n-7",
+          "expected": "-7 -7.000",
+          "note": "边界：只有一个负数"
+        },
+        {
+          "stdin": "3\n1000000 1000000 1000000",
+          "expected": "3000000 1000000.000",
+          "note": "边界：和大，需较宽整型"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, x;\n    long long sum = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        sum += x;\n    }\n    printf(\"%lld %.3f\\n\", sum, (double)sum / n);\n    return 0;\n}",
+      "input_format": "第一行一个正整数 n；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行两个值：总和（整数）与平均值（保留 3 位小数），用空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, i, x;\n    long long sum = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n <= 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        sum += x;\n    }\n    printf(\"%lld %.3f\\n\", sum, (double)sum / n);\n    return 0;\n}",
+      "explanation": "先用循环累加再除以个数即可，但要注意两点：一是平均值必须写成 (double)sum/n，否则 long long 除以 int 仍是整数除法，小数被截掉；二是总和可能超出 int 范围，用 long long 更安全，输出时对应 %lld。n=1 时平均值就等于该数本身，是最简单的边界；三个 1000000 的和是 3000000，仍在 int 内，但习惯上用更宽的类型可避免数据规模变大时溢出。易错点：scanf(\"%d\") 读入 n 后要校验 1≤n≤100，否则循环次数失控；%.3f 的舍入由库完成，不需要自己加 0.5。",
+      "tags": [
+        "循环",
+        "平均值",
+        "类型转换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-24"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-pg-006",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入球的半径 r（非负实数），输出球的表面积与体积（各保留 2 位小数，用空格分隔）。表面积公式 S = πr²，体积公式 V = (4/3)πr³，π 取 3.14159265。\n\n输入格式：一行一个非负实数 r。\n\n输出格式：一行两个实数，依次为表面积与体积，各保留 2 位小数，用空格分隔。",
+      "testCases": [
+        {
+          "stdin": "1",
+          "expected": "3.14 4.19",
+          "note": "单位球"
+        },
+        {
+          "stdin": "2.5",
+          "expected": "19.63 65.45",
+          "note": "常规"
+        },
+        {
+          "stdin": "0",
+          "expected": "0.00 0.00",
+          "note": "边界：半径为 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#define PI 3.14159265\n\nint main(void)\n{\n    double r, area, vol;\n\n    if (scanf(\"%lf\", &r) != 1 || r < 0)\n        return 1;\n    area = PI * r * r;\n    vol = 4.0 / 3.0 * PI * r * r * r;\n    printf(\"%.2f %.2f\\n\", area, vol);\n    return 0;\n}",
+      "input_format": "一行一个非负实数 r。",
+      "output_format": "一行两个实数，依次为表面积与体积，各保留 2 位小数，用空格分隔。",
+      "code_starter": "#include <stdio.h>\n#define PI 3.14159265\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    double r, area, vol;\n\n    if (scanf(\"%lf\", &r) != 1 || r < 0)\n        return 1;\n    area = PI * r * r;\n    vol = 4.0 / 3.0 * PI * r * r * r;\n    printf(\"%.2f %.2f\\n\", area, vol);\n    return 0;\n}",
+      "explanation": "本题练三件事：一是符号常量 #define PI 3.14159265 避免把 π 硬写进表达式（注意不要依赖 M_PI，它在严格 C99 模式下未必可见）；二是 4.0/3.0 必须都用实数字面量，写成 4/3 会得整数 1；三是 r³ 直接写成 r*r*r 比调用 pow 更快，也避免了对 math.h 与 -lm 链接的依赖。r=0 时两个结果都是 0.00，是必须通过的边界。易错点：面积公式写成 PI*r*2 是把平方误当两倍；scanf 用 %lf 读 double，printf 用 %f 输出。",
+      "tags": [
+        "math.h",
+        "强制转换",
+        "顺序结构"
+      ],
+      "knowledgeIds": [
+        "c-ch02-30"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-039",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "在 64 位 gcc（-std=c99）环境下，下列关于基本整型取值范围的叙述正确的是：",
+      "options": [
+        "short 至少 16 位，int 至少与 short 一样长",
+        "int 一定是 16 位",
+        "long 在所有平台上都是 4 字节",
+        "unsigned int 的取值范围是 -32768～32767"
+      ],
+      "answer": 0,
+      "explanation": "C 标准只规定\"short ≤ int ≤ long\"的宽度下限：short 至少 16 位，int 至少 16 位且不短于 short，long 至少 32 位，因此 A 正确。B 错，现代平台 int 通常是 32 位；C 错，long 在 Windows 64 位上是 4 字节、在 Linux 64 位上是 8 字节，这正是跨平台代码要避免裸用 long 的原因；D 错，unsigned int 没有负数，32 位时范围是 0～4294967295。易错点：判断范围要用 <limits.h> 中的 SHRT_MIN、INT_MAX 等宏，而不是背某个具体平台的数字。",
+      "tags": [
+        "整型",
+        "取值范围"
+      ],
+      "knowledgeIds": [
+        "c-ch02-04"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-040",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 a、b 都是 int 型变量，且 a = -17、b = 5，则表达式 a / b 和 a % b 的值分别是：",
+      "options": [
+        "-3 和 -2",
+        "-4 和 3",
+        "-3 和 2",
+        "-4 和 -2"
+      ],
+      "answer": 0,
+      "explanation": "C99 明确规定整数除法向零取整：-17/5 的数学值是 -3.4，向零截断得 -3，不是向下取整的 -4。余数由恒等式 a == (a/b)*b + a%b 唯一确定：-17 - (-3)*5 = -2，所以 a%b = -2。可见 C 语言余数的符号跟随被除数 a，与数学上\"余数非负\"的约定不同。B、D 的 -4 是向下取整的结果（那是 Python 的行为），C 的 2 是把余数强行取正的误算。易错点：需要非负余数时应写成 (a % b + b) % b。",
+      "tags": [
+        "整数除法",
+        "取余"
+      ],
+      "knowledgeIds": [
+        "c-ch02-14"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-041",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "设 int i = 3; 执行语句 printf(\"%d %d\\n\", i++, i); 后，关于其输出结果，下列说法正确的是：",
+      "options": [
+        "输出一定是 3 3",
+        "输出一定是 4 3",
+        "结果取决于编译器对实参的求值顺序，不应这样写",
+        "i++ 与 i 的值总是相同"
+      ],
+      "answer": 2,
+      "explanation": "C 标准规定函数实参之间没有顺序点，编译器可以先算 i++ 也可以先算 i，两种顺序分别得到 \"3 3\" 或 \"3 4\" 等不同结果，而且 i 在同一表达式中被读取又被修改，属于典型的\"结果 unspecified / 甚至 undefined\"的写法。工程实践与考试规范都要求：一个表达式里对同一变量最多修改一次，且修改与读取之间要有顺序点。易错点：不要以为\"从左到右求值\"是语言保证的，它只是某些编译器的实现方式。",
+      "tags": [
+        "自增自减",
+        "顺序点"
+      ],
+      "knowledgeIds": [
+        "c-ch02-17"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-042",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 int a = 1, b = 2, c = 3; 表达式 a > b ? a : c > b ? c : b 的值是：",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "语法错误"
+      ],
+      "answer": 2,
+      "explanation": "条件运算符 ?: 是右结合的，所以原式等价于 a > b ? a : (c > b ? c : b)。先判断 a>b，1>2 为假，取冒号后的子表达式 c>b?c:b；再判断 3>2 为真，取 c，即 3。若误按左结合理解成 (a>b?a:c) > b ? c : b，会得到不同结果，这正是右结合性最经典的考法。易错点：嵌套条件表达式可读性差，多层嵌套时应改用 if…else；另外 ?: 的优先级很低，与算术运算混用时要给整个条件表达式加括号。",
+      "tags": [
+        "条件运算符",
+        "优先级"
+      ],
+      "knowledgeIds": [
+        "c-ch02-23"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-043",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列表达式中，值为 0.5 的是：",
+      "options": [
+        "1 / 2",
+        "1.0 / 2",
+        "(int)(1.0 / 2)",
+        "1 / 2.0 * 0 "
+      ],
+      "answer": 1,
+      "explanation": "A 中 1 和 2 都是 int，整数除法结果为 0；B 中 1.0 是 double，2 被自动提升为 2.0，商为 0.5；C 先算出 0.5 再强制转换成 int，截断小数得 0；D 中 1/2 先得 0，0*2.0 仍为 0.0。判断表达式值的关键是\"先看参与运算的类型，再决定用整数除法还是实数除法\"，转换发生在运算之前还是之后由写法决定。易错点：(int) 只作用于紧随其后的那个对象，(int)1.0/2 与 (int)(1.0/2) 完全不同，前者是 1/2=0，后者是 0。",
+      "tags": [
+        "隐式转换",
+        "整型提升"
+      ],
+      "knowledgeIds": [
+        "c-ch02-27"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-044",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "设 int x = 5, y; 执行 y = (x++, x * 2, x + 3); 后，y 与 x 的值分别是：",
+      "options": [
+        "9 和 6",
+        "10 和 6",
+        "9 和 5",
+        "12 和 6"
+      ],
+      "answer": 0,
+      "explanation": "逗号表达式 (e1,e2,e3) 从左到右依次求值，逗号本身是顺序点，整个表达式的值等于最后一个子表达式 e3 的值。本题 x 初值 5：第一个子表达式 x++ 的值是 5（副作用使 x 变成 6），第二个 x*2 = 12（算完即丢弃），第三个 x+3 用此时的 x=6 得 9，所以 y=9、x=6。易错点：逗号运算符优先级最低，y = (a, b) 与 y = a, b 含义不同，后者等价于 (y=a), b。",
+      "tags": [
+        "逗号表达式",
+        "表达式求值"
+      ],
+      "knowledgeIds": [
+        "c-ch02-22"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-sc-045",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "在 64 位 Linux + gcc 13.2 环境下，sizeof(double)、sizeof(float)、sizeof(char) 的值依次是：",
+      "options": [
+        "8、4、1",
+        "4、4、1",
+        "8、8、1",
+        "16、4、1"
+      ],
+      "answer": 0,
+      "explanation": "按 IEEE 754 与 C 标准的常见实现：char 恒为 1 字节（这是 sizeof 的定义基准），float 是单精度 4 字节，double 是双精度 8 字节。16 字节对应的是 long double（x86-64 上常为 80 位扩展精度按 16 字节对齐），不要与 double 混淆。易错点：sizeof 是编译期运算符，结果是 size_t 无符号类型；对指针取 sizeof 得到的是指针本身的大小（本平台 8 字节），而不是它所指向的数组的大小。",
+      "tags": [
+        "sizeof",
+        "字节数"
+      ],
+      "knowledgeIds": [
+        "c-ch02-24"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-fb-034",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "已知字符 'A' 的 ASCII 码是 65，则字符 'D' 的 ASCII 码是____，表达式 'a' - 'A' 的值是____（'a' 的 ASCII 码是 97）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "68"
+        },
+        {
+          "index": 2,
+          "answer": "32"
+        }
+      ],
+      "explanation": "大写字母在 ASCII 表中是连续排列的，'A' 到 'D' 相差 3，故 'D' = 65+3 = 68。同理小写字母也是连续的，'a' - 'A' = 97 - 65 = 32，这个固定的差值 32 正是大小写转换的基础：大写转小写加 32，小写转大写减 32。字符在 C 中本质上就是整数（char 型），可以参与算术与关系运算，运算时按整型提升规则先转成 int。易错点：'A' 是字符常量占 1 字节，\"A\" 是字符串常量占 2 字节（含结尾的 '\\0'），二者不能混用。",
+      "tags": [
+        "ASCII",
+        "字符运算"
+      ],
+      "knowledgeIds": [
+        "c-ch02-08"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-fb-035",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 int a = 8, b = 3; 执行 a %= b + 2; 后 a 的值是____；把复合赋值 a *= 3 + 5 展开成等价的普通赋值语句是____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "3"
+        },
+        {
+          "index": 2,
+          "answer": "a = a * (3 + 5)",
+          "accepted": [
+            "a=a*(3+5)",
+            "a = a * 8"
+          ]
+        }
+      ],
+      "explanation": "复合赋值运算符 a op= b 严格等价于 a = a op (b)，右侧表达式作为一个整体先计算。a %= b + 2 即 a = a % (b + 2) = 8 % 5 = 3，注意 % 的优先级高于 +，但复合赋值把右侧整体括起来，所以先算 b+2=5 再取余。展开 a *= 3 + 5 时，复合赋值等价于 a = a * (3 + 5)，右侧整体加括号，因为 *= 的优先级低于 +。易错点：这类多重赋值表达式在实际工程中可读性差，应当拆成多条语句。",
+      "tags": [
+        "复合赋值",
+        "表达式改写"
+      ],
+      "knowledgeIds": [
+        "c-ch02-16"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-fb-036",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "字符串常量 \"China\" 在内存中占____个字节，其中最后一个字节存放的是____字符。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "6"
+        },
+        {
+          "index": 2,
+          "answer": "\\0",
+          "accepted": [
+            "\\\\0",
+            "NUL",
+            "空"
+          ]
+        }
+      ],
+      "explanation": "C 语言用字符数组存字符串，并规定以 '\\0'（ASCII 码 0，称为空字符 NUL）作为结束标志，因此 \"China\" 虽然只有 5 个可见字符，却要占 5+1 = 6 个字节。strlen(\"China\") 返回 5（统计到 '\\0' 之前的字符个数），而 sizeof 作用于该字符串字面量时返回 6，两者的差别是考试高频点。易错点：'\\0' 与 '0' 完全不同，前者码值为 0、后者为 48；定义 char s[5] = \"China\"; 会因放不下结束标志而在后续 strlen/printf(\"%s\") 时越界。",
+      "tags": [
+        "字符串常量",
+        "结束标志"
+      ],
+      "knowledgeIds": [
+        "c-ch02-10"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "只要 && 具有短路特性，表达式 (a = 5 > 3) && (b = 7 > 9) 中的右侧 b = 7 > 9 就一定不会被计算，因此 b 的值保持不变。",
+      "answer": false,
+      "explanation": "该说法错误。短路规则的准确表述是：&& 只有在左侧为假时才跳过右侧，因为结果已经确定为假；左侧为真时右侧必须照常求值。本题 5>3 为真，所以 b = 7 > 9 会被执行，b 得到 0，整个表达式结果为 0。|| 恰好相反：左侧为真即跳过右侧。短路的实用价值在于\"用左侧做保护\"，例如 (x != 0) && (100 / x > 5)，左侧为假时右侧不再计算，从而避免除零错误。易错点：|| 的短路条件是\"左侧为真即停止\"，与 && 相反，不要把两者的跳过条件记混。",
+      "tags": [
+        "短路求值",
+        "逻辑运算"
+      ],
+      "knowledgeIds": [
+        "c-ch02-20"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch02-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "语句 (double)a / b 与 (double)(a / b) 在 a、b 均为 int 时结果总是相同的。",
+      "answer": false,
+      "explanation": "该说法错误。前者先把 a 转换成 double，b 因算术转换也提升为 double，做的是实数除法，能保留小数；后者括号内的 a/b 已经先按整数除法完成、小数部分被截断，之后再转换成 double 只是给一个整数值加上 .0，小数信息无法恢复。例如 a=7、b=2 时，(double)a/b = 3.500000，而 (double)(a/b) = 3.000000。易错点：强制类型转换运算符是单目运算符，优先级高于 * / %，所以 (double)a/b 中的转换只作用于 a 一个对象，不要误以为它作用于整个商。",
+      "tags": [
+        "强制转换",
+        "类型转换"
+      ],
+      "knowledgeIds": [
+        "c-ch02-28"
+      ],
+      "source": "变式（源自 c-ch02 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }

@@ -287,6 +287,1645 @@
       ],
       "id": "c-ch01-fb-007",
       "verified": true
+    },
+    {
+      "id": "c-ch01-cr-001",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 本程序计算并输出两个整数之和 */\nint main(void)\n{\n    int a = 12;        // 第一个加数\n    int b = 5;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "12 + 5 = 17",
+      "code": "#include <stdio.h>\n\n/* 本程序计算并输出两个整数之和 */\nint main(void)\n{\n    int a = 12;        // 第一个加数\n    int b = 5;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "本题考察 C 程序的基本组成：预处理命令 #include <stdio.h> 引入标准输入输出头文件，main 是程序执行的唯一入口，函数体由若干条以分号结束的语句组成。程序中出现了 /* */ 与 // 两种注释，它们只在编译前被预处理阶段剔除，不产生任何机器指令，也不影响运行结果，因此计算 a+b（12+5=17）的输出与注释内容无关。易错点：注释不能嵌套书写 /* /* */ */，且 // 注释必须独占到行尾。",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-002",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 本程序计算并输出两个相等整数之和 */\nint main(void)\n{\n    int a = 7;        // 第一个加数\n    int b = 7;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "7 + 7 = 14",
+      "code": "#include <stdio.h>\n\n/* 本程序计算并输出两个相等整数之和 */\nint main(void)\n{\n    int a = 7;        // 第一个加数\n    int b = 7;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "本题考察 C 程序的基本组成：预处理命令 #include <stdio.h> 引入标准输入输出头文件，main 是程序执行的唯一入口，函数体由若干条以分号结束的语句组成。程序中出现了 /* */ 与 // 两种注释，它们只在编译前被预处理阶段剔除，不产生任何机器指令，也不影响运行结果，因此计算 a+b（7+7=14）的输出与注释内容无关。易错点：注释不能嵌套书写 /* /* */ */，且 // 注释必须独占到行尾。",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-003",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 本程序计算并输出三位数与一位数之和 */\nint main(void)\n{\n    int a = 100;        // 第一个加数\n    int b = 1;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "100 + 1 = 101",
+      "code": "#include <stdio.h>\n\n/* 本程序计算并输出三位数与一位数之和 */\nint main(void)\n{\n    int a = 100;        // 第一个加数\n    int b = 1;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "本题考察 C 程序的基本组成：预处理命令 #include <stdio.h> 引入标准输入输出头文件，main 是程序执行的唯一入口，函数体由若干条以分号结束的语句组成。程序中出现了 /* */ 与 // 两种注释，它们只在编译前被预处理阶段剔除，不产生任何机器指令，也不影响运行结果，因此计算 a+b（100+1=101）的输出与注释内容无关。易错点：注释不能嵌套书写 /* /* */ */，且 // 注释必须独占到行尾。",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-004",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 本程序计算并输出含负数的两数之和 */\nint main(void)\n{\n    int a = -8;        // 第一个加数\n    int b = 3;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "-8 + 3 = -5",
+      "code": "#include <stdio.h>\n\n/* 本程序计算并输出含负数的两数之和 */\nint main(void)\n{\n    int a = -8;        // 第一个加数\n    int b = 3;        /* 第二个加数 */\n    printf(\"%d + %d = %d\\n\", a, b, a + b);   /* 一条语句可以写在同一行 */\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "本题考察 C 程序的基本组成：预处理命令 #include <stdio.h> 引入标准输入输出头文件，main 是程序执行的唯一入口，函数体由若干条以分号结束的语句组成。程序中出现了 /* */ 与 // 两种注释，它们只在编译前被预处理阶段剔除，不产生任何机器指令，也不影响运行结果，因此计算 a+b（-8+3=-5）的输出与注释内容无关。易错点：注释不能嵌套书写 /* /* */ */，且 // 注释必须独占到行尾。",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-005",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 8, b = 123;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "a=8,b=123\n|   8|123 |\n8\t123",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 8, b = 123;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "printf 的格式控制串由普通字符与格式说明符组成：%d 按十进制整数输出，%4d 表示占 4 列右对齐（不足左侧补空格），%-4d 表示占 4 列左对齐（不足右侧补空格），\\t 是水平制表符转义。本题 a=8、b=123，因此第 2 行的竖线之间会因宽度设置而出现空格填充，宽度超过 4 位时按实际位数输出、不会截断。易错点：%4d 的空格是输出的一部分，判题比对时不能漏掉；转义字符 \\t 与 \\n 都是一个字符。",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-006",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = -5, b = 42;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "a=-5,b=42\n|  -5|42  |\n-5\t42",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = -5, b = 42;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "printf 的格式控制串由普通字符与格式说明符组成：%d 按十进制整数输出，%4d 表示占 4 列右对齐（不足左侧补空格），%-4d 表示占 4 列左对齐（不足右侧补空格），\\t 是水平制表符转义。本题 a=-5、b=42，因此第 2 行的竖线之间会因宽度设置而出现空格填充，宽度超过 4 位时按实际位数输出、不会截断。易错点：%4d 的空格是输出的一部分，判题比对时不能漏掉；转义字符 \\t 与 \\n 都是一个字符。",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-007",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 9, b = 1000;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "a=9,b=1000\n|   9|1000|\n9\t1000",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 9, b = 1000;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "printf 的格式控制串由普通字符与格式说明符组成：%d 按十进制整数输出，%4d 表示占 4 列右对齐（不足左侧补空格），%-4d 表示占 4 列左对齐（不足右侧补空格），\\t 是水平制表符转义。本题 a=9、b=1000，因此第 2 行的竖线之间会因宽度设置而出现空格填充，宽度超过 4 位时按实际位数输出、不会截断。易错点：%4d 的空格是输出的一部分，判题比对时不能漏掉；转义字符 \\t 与 \\n 都是一个字符。",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cr-008",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 0, b = 7;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "a=0,b=7\n|   0|7   |\n0\t7",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 0, b = 7;\n    printf(\"a=%d,b=%d\\n\", a, b);\n    printf(\"|%4d|%-4d|\\n\", a, b);\n    printf(\"%d\\t%d\\n\", a, b);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "printf 的格式控制串由普通字符与格式说明符组成：%d 按十进制整数输出，%4d 表示占 4 列右对齐（不足左侧补空格），%-4d 表示占 4 列左对齐（不足右侧补空格），\\t 是水平制表符转义。本题 a=0、b=7，因此第 2 行的竖线之间会因宽度设置而出现空格填充，宽度超过 4 位时按实际位数输出、不会截断。易错点：%4d 的空格是输出的一部分，判题比对时不能漏掉；转义字符 \\t 与 \\n 都是一个字符。",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cc-001",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序读入一个整数并连同提示信息输出。请填入恰当内容，使程序结构完整、能正确编译运行。\n```\n/*__BLANK_1__*/\n\n/*__BLANK_2__*/\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* Welcome to C! */\n    printf(\"%s%d\\n\", \"Welcome to C!\", n);\n    /*__BLANK_3__*/\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "#include <stdio.h>",
+          "accepted": [
+            "#include<stdio.h>",
+            "#include <STDIO.H>"
+          ],
+          "hint": "引入 printf/scanf 的声明"
+        },
+        {
+          "index": 2,
+          "answer": "int main(void)",
+          "accepted": [
+            "int main()",
+            "int main(int argc, char *argv[])"
+          ],
+          "hint": "程序入口，标准写法返回 int"
+        },
+        {
+          "index": 3,
+          "answer": "return 0;",
+          "accepted": [
+            "return 0",
+            "return EXIT_SUCCESS;"
+          ],
+          "hint": "向操作系统返回\"正常结束\"状态"
+        }
+      ],
+      "code": "/*__BLANK_1__*/\n\n/*__BLANK_2__*/\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* Welcome to C! */\n    printf(\"%s%d\\n\", \"Welcome to C!\", n);\n    /*__BLANK_3__*/\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* Welcome to C! */\n    printf(\"%s%d\\n\", \"Welcome to C!\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "Welcome to C!5"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "Welcome to C!0"
+        },
+        {
+          "stdin": "-12\n",
+          "expected": "Welcome to C!-12"
+        }
+      ],
+      "explanation": "一个完整的 C 程序由三部分构成：① 预处理命令 #include <stdio.h>，把标准输入输出头文件中 printf、scanf 的函数声明插入源程序，缺失它会导致隐式声明警告甚至链接错误；② main 函数，C 标准规定其返回类型为 int，程序从 main 的第一条语句开始执行；③ 函数体内的语句以分号结束，最后用 return 0 表示正常退出（C99 中 main 省略 return 时默认返回 0，但显式书写更规范）。易错点：#include 行末尾不加分号，它不是语句而是预处理命令。",
+      "tags": [
+        "程序结构",
+        "main 函数",
+        "头文件"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cc-002",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序读入一个整数并连同提示信息输出。请填入恰当内容，使程序结构完整、能正确编译运行。\n```\n/*__BLANK_1__*/\n\n/*__BLANK_2__*/\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* I am a student. */\n    printf(\"%s%d\\n\", \"I am a student.\", n);\n    /*__BLANK_3__*/\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "#include <stdio.h>",
+          "accepted": [
+            "#include<stdio.h>",
+            "#include <STDIO.H>"
+          ],
+          "hint": "引入 printf/scanf 的声明"
+        },
+        {
+          "index": 2,
+          "answer": "int main(void)",
+          "accepted": [
+            "int main()",
+            "int main(int argc, char *argv[])"
+          ],
+          "hint": "程序入口，标准写法返回 int"
+        },
+        {
+          "index": 3,
+          "answer": "return 0;",
+          "accepted": [
+            "return 0",
+            "return EXIT_SUCCESS;"
+          ],
+          "hint": "向操作系统返回\"正常结束\"状态"
+        }
+      ],
+      "code": "/*__BLANK_1__*/\n\n/*__BLANK_2__*/\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* I am a student. */\n    printf(\"%s%d\\n\", \"I am a student.\", n);\n    /*__BLANK_3__*/\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n;\n    scanf(\"%d\", &n);\n    /* I am a student. */\n    printf(\"%s%d\\n\", \"I am a student.\", n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "I am a student.5"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "I am a student.0"
+        },
+        {
+          "stdin": "-12\n",
+          "expected": "I am a student.-12"
+        }
+      ],
+      "explanation": "一个完整的 C 程序由三部分构成：① 预处理命令 #include <stdio.h>，把标准输入输出头文件中 printf、scanf 的函数声明插入源程序，缺失它会导致隐式声明警告甚至链接错误；② main 函数，C 标准规定其返回类型为 int，程序从 main 的第一条语句开始执行；③ 函数体内的语句以分号结束，最后用 return 0 表示正常退出（C99 中 main 省略 return 时默认返回 0，但显式书写更规范）。易错点：#include 行末尾不加分号，它不是语句而是预处理命令。",
+      "tags": [
+        "程序结构",
+        "main 函数",
+        "头文件"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cc-003",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序读入两个整数，要求依次输出：第一行\"a+b=和\"，第二行和值占 6 列右对齐，第三行输出字符 A 与一个反斜杠。请填入恰当内容。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    /*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "printf(\"a+b=%d\\n\", a + b)"
+        },
+        {
+          "index": 2,
+          "answer": "printf(\"%6d\\n\", a + b)"
+        },
+        {
+          "index": 3,
+          "answer": "printf(\"%c\\\\\\n\", 'A')",
+          "accepted": [
+            "printf(\"%c\\\\\\n\", 'A');"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    /*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    printf(\"a+b=%d\\n\", a + b);\n    printf(\"%6d\\n\", a + b);\n    printf(\"%c\\\\\\n\", 'A');\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8 5\n",
+          "expected": "a+b=13\n    13\nA\\"
+        },
+        {
+          "stdin": "3 12\n",
+          "expected": "a+b=15\n    15\nA\\"
+        },
+        {
+          "stdin": "-4 -4\n",
+          "expected": "a+b=-8\n    -8\nA\\"
+        }
+      ],
+      "explanation": "printf 的输出完全由格式控制串决定：普通字符原样输出，%d 按十进制整数替换，%6d 表示宽度 6 右对齐（左侧补空格），%c 输出单个字符。要输出反斜杠本身必须写成 \\\\，因为单个 \\ 是转义引导符；要输出双引号则写 \\\"。三个空的实参顺序必须与格式说明符一一对应，a+b 出现两次就要写两次表达式。易错点：格式说明符个数多于实参会读到不确定的值，属于严重错误。",
+      "tags": [
+        "printf",
+        "格式控制"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-cc-004",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序读入两个整数，要求依次输出：第一行\"a-b=差\"，第二行差值占 5 列左对齐，第三行输出字符 B 与一个百分号。请填入恰当内容。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    /*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "printf(\"a-b=%d\\n\", a - b)"
+        },
+        {
+          "index": 2,
+          "answer": "printf(\"%-5d\\n\", a - b)"
+        },
+        {
+          "index": 3,
+          "answer": "printf(\"%c%%\\n\", 'B')",
+          "accepted": [
+            "printf(\"%c%%\\n\", 'B');"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    /*__BLANK_1__*/;\n    /*__BLANK_2__*/;\n    /*__BLANK_3__*/;\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    printf(\"a-b=%d\\n\", a - b);\n    printf(\"%-5d\\n\", a - b);\n    printf(\"%c%%\\n\", 'B');\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8 5\n",
+          "expected": "a-b=3\n3\nB%"
+        },
+        {
+          "stdin": "3 12\n",
+          "expected": "a-b=-9\n-9\nB%"
+        },
+        {
+          "stdin": "-4 -4\n",
+          "expected": "a-b=0\n0\nB%"
+        }
+      ],
+      "explanation": "printf 中 %-5d 的负号表示左对齐、宽度 5，不足右侧补空格；要输出百分号本身必须写成 %%，因为单个 % 是格式说明符的引导符；%c 的实参必须是字符（可以是字符常量 'B' 或整数 66）。三个空分别完成\"差值输出、宽度控制输出、特殊字符输出\"三个层次的训练，实参 a-b 要与格式说明符匹配。易错点：把 %% 写成 % 会导致后续字符被当成格式说明符解析，输出完全错乱。",
+      "tags": [
+        "printf",
+        "格式控制"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-pg-001",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "编写程序，输出下面的三行图案（星号数量依次为 1、2、3，每行行首无空格）。\n\n输入格式：无输入。\n\n输出格式：三行星号图案：第 1 行 1 个，第 2 行 2 个，第 3 行 3 个。",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "*\n**\n***"
+        },
+        {
+          "stdin": "",
+          "expected": "*\n**\n***"
+        },
+        {
+          "stdin": "",
+          "expected": "*\n**\n***"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    printf(\"*\\n\");\n    printf(\"**\\n\");\n    printf(\"***\\n\");\n    return 0;\n}",
+      "input_format": "无输入。",
+      "output_format": "三行星号图案：第 1 行 1 个，第 2 行 2 个，第 3 行 3 个。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    printf(\"*\\n\");\n    printf(\"**\\n\");\n    printf(\"***\\n\");\n    return 0;\n}",
+      "explanation": "本题训练最基本的顺序结构与 printf 使用：程序不需要任何输入，main 函数中依次调用三次 printf，每次输出一行星号并以 \\n 结束。星号是普通字符，原样输出，不需要格式说明符。也可以用一次 printf 配合多个 \\n 完成，但要保证行数与每行星号个数完全一致。易错点：最后一行末尾也要有换行，否则输出与判题期望的行结构不一致；星号之间不能有空格。",
+      "tags": [
+        "printf",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-pg-002",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "编写程序，读入两个整数 a 和 b，按\"a+b=和\"的格式在一行内输出它们的和。\n\n输入格式：一行两个整数 a 和 b，用空格分隔。\n\n输出格式：一行，格式为 a+b=和。",
+      "testCases": [
+        {
+          "stdin": "3 4\n",
+          "expected": "a+b=7"
+        },
+        {
+          "stdin": "0 0\n",
+          "expected": "a+b=0"
+        },
+        {
+          "stdin": "-7 2\n",
+          "expected": "a+b=-5"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    printf(\"a+b=%d\\n\", a + b);\n    return 0;\n}",
+      "input_format": "一行两个整数 a 和 b，用空格分隔。",
+      "output_format": "一行，格式为 a+b=和。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b;\n    scanf(\"%d%d\", &a, &b);\n    printf(\"a+b=%d\\n\", a + b);\n    return 0;\n}",
+      "explanation": "本题训练 C 程序最基本的输入—处理—输出流程：用 scanf(\"%d%d\", &a, &b) 读入两个整数（注意必须写 & 取地址），计算 a+b，再用 printf(\"a+b=%d\\n\", a + b) 按指定格式输出。格式串中的普通字符 a+b= 原样打印，%d 被和值替换。易错点：scanf 的格式串中不要写 \\n 或多余提示语，否则会影响读入；输出格式必须与题目要求逐字符一致。",
+      "tags": [
+        "scanf",
+        "printf",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-pg-003",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写程序，读入一个整数 n（1 ≤ n ≤ 20），输出 n 行图案：第 i 行有 i 个星号，行首无空格。\n\n输入格式：一行一个整数 n（1 ≤ n ≤ 20）。\n\n输出格式：n 行星号图案，第 i 行有 i 个星号。",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "*\n**\n***"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "*"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "*\n**\n***\n****\n*****"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= i; j++) printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "input_format": "一行一个整数 n（1 ≤ n ≤ 20）。",
+      "output_format": "n 行星号图案，第 i 行有 i 个星号。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, i, j;\n    scanf(\"%d\", &n);\n    for (i = 1; i <= n; i++) {\n        for (j = 1; j <= i; j++) printf(\"*\");\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "explanation": "本题是\"顺序 + 循环\"两种基本结构的组合：外层循环 i 从 1 到 n 控制行数，内层循环 j 从 1 到 i 控制每行星号个数，每行结束后输出一个换行符。也可用 while 实现，结构等价。易错点：内层循环的终止条件是 j <= i 而不是 j <= n，否则会输出一个 n×n 的方块；每行星号后不能再输出多余空格。",
+      "tags": [
+        "循环",
+        "printf",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-09"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-006",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言是一种（　）。",
+      "options": [
+        "纯面向对象的程序设计语言",
+        "只能在大型机上运行的语言",
+        "兼具高级语言与低级语言特点的结构化程序设计语言",
+        "由解释程序逐行解释执行的语言"
+      ],
+      "answer": 2,
+      "explanation": "C 语言既具有高级语言的可读性与可移植性（结构化、数据类型丰富、表达能力强），又保留了汇编语言对硬件的直接操作能力（位运算、指针访问内存地址），因此被称为\"中级语言\"或兼具高低级特点的语言。它是面向过程的，不是面向对象的；它通过编译器一次性翻译成目标代码再链接执行，不是解释执行。易错点：把\"可直接操作硬件\"误解为\"C 是低级语言\"。",
+      "tags": [
+        "C语言特点"
+      ],
+      "knowledgeIds": [
+        "c-ch01-01"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-007",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "一个 C 源程序至少应该包含一个（　）函数。",
+      "options": [
+        "printf",
+        "main",
+        "include",
+        "scanf"
+      ],
+      "answer": 1,
+      "explanation": "C 程序由函数构成，而 main 函数是程序执行的唯一入口：操作系统运行时总是从 main 的第一条语句开始，执行到 main 结束（或调用 exit）为止。一个 C 源程序可以只有一个 main 函数，也可以有 main 加若干自定义函数，但 main 有且仅有一个。printf、scanf 是库函数，include 是预处理命令的一部分，都不是必须的。易错点：main 的位置可以在文件开头、中间或末尾，不影响执行顺序。",
+      "tags": [
+        "main 函数",
+        "程序结构"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-008",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列关于 C 语言函数的叙述中，正确的是（　）。",
+      "options": [
+        "函数可以嵌套定义，也可以嵌套调用",
+        "函数可以嵌套调用，但不能嵌套定义",
+        "函数不能嵌套调用，但可以嵌套定义",
+        "函数既不能嵌套定义，也不能嵌套调用"
+      ],
+      "answer": 1,
+      "explanation": "C 语言规定所有函数都是相互独立、平行书写的，一个函数的定义体内部不能再定义另一个函数（不支持嵌套定义），这一点与 Pascal 不同。但函数调用是可以嵌套的：a 调用 b，b 再调用 c，形成调用链，通过栈来保存各层的返回地址与局部数据。main 函数也不例外，它同样不能定义在其他函数内部。易错点：把\"嵌套调用\"与\"嵌套定义\"混为一谈。",
+      "tags": [
+        "函数",
+        "嵌套"
+      ],
+      "knowledgeIds": [
+        "c-ch01-03"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-009",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "一个 C 源程序从书写到运行，正确的步骤顺序是（　）。",
+      "options": [
+        "编辑 → 链接 → 编译 → 运行",
+        "编辑 → 编译 → 链接 → 运行",
+        "编译 → 编辑 → 链接 → 运行",
+        "编辑 → 编译 → 运行 → 链接"
+      ],
+      "answer": 1,
+      "explanation": "完整流程：① 编辑，用文本编辑器写出 .c 源文件；② 编译，编译器把源程序翻译成机器语言的目标文件 .obj（Linux 下为 .o），此阶段检查语法错误；③ 链接，把目标文件与所需的库函数（如 printf 所在的 C 标准库）以及启动代码合并，生成可执行文件 .exe；④ 运行。易错点：编译不生成可执行文件，单独的 .obj 还不能运行，必须链接。",
+      "tags": [
+        "编译过程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-07"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-010",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言源程序经编译后生成的文件，其扩展名通常是（　）。",
+      "options": [
+        ".c",
+        ".exe",
+        ".obj",
+        ".h"
+      ],
+      "answer": 2,
+      "explanation": "四类扩展名各有含义：.c 是 C 源程序文件（编辑阶段的产物）；.h 是头文件，存放函数声明、宏定义与类型定义，由 #include 引入；.obj（Windows，Linux 下为 .o）是编译阶段生成的目标文件，内容是机器码但尚未确定库函数地址；.exe 是链接阶段生成的可执行文件。易错点：把\"编译产物\"答成 .exe——编译只到目标文件为止，链接后才成为可执行文件。",
+      "tags": [
+        "文件后缀"
+      ],
+      "knowledgeIds": [
+        "c-ch01-08"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-011",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列选项中，不能用作 C 语言用户标识符的是（　）。",
+      "options": [
+        "_total",
+        "a_2",
+        "2a",
+        "Int"
+      ],
+      "answer": 2,
+      "explanation": "C 语言标识符的构成规则：只能由字母、数字和下划线三种字符组成，且第一个字符必须是字母或下划线，不能是数字；同时不能与关键字重名。_total 以下划线开头合法，a_2 字母开头合法，Int 首字母大写、与关键字 int 不同（C 区分大小写）也合法，只有 2a 以数字开头非法。易错点：C 语言严格区分大小写，Int、INT、int 是三个不同的标识符，其中只有 int 是关键字。",
+      "tags": [
+        "标识符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-05"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-012",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列各组中，全部是 C 语言关键字的是（　）。",
+      "options": [
+        "auto、int、include",
+        "char、while、sizeof",
+        "main、if、return",
+        "define、printf、int"
+      ],
+      "answer": 1,
+      "explanation": "关键字（保留字）是 C 语言预先定义、具有特殊含义、不能用作标识符的单词，C89 共 32 个，全部小写。B 项 char（字符类型）、while（循环语句）、sizeof（求字节数运算符）都是关键字。A 项 include 只是预处理命令 #include 的一部分；C 项 main 是用户可自定义的普通标识符（只是约定作为主函数名）；D 项 define 来自 #define、printf 是库函数名，都不是关键字。易错点：main、printf 极易被误认为关键字。",
+      "tags": [
+        "关键字"
+      ],
+      "knowledgeIds": [
+        "c-ch01-05"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-013",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于 C 语言中的注释，下列说法正确的是（　）。",
+      "options": [
+        "注释会被编译成机器指令，影响程序运行速度",
+        "注释只能写在语句之前，不能写在语句之后",
+        "注释在编译前被剔除，不参与编译，只用于提高可读性",
+        "注释必须独占一行"
+      ],
+      "answer": 2,
+      "explanation": "注释是写给人看的，编译前由预处理/编译阶段直接剔除，不会生成任何目标代码，因此对程序功能和运行效率都没有影响；它的位置非常灵活，可以单独占一行，也可以写在语句之后，甚至可以插在两个语句之间（但不能把一个单词从中间劈开）。/* */ 是传统注释且不能嵌套，C99 增加了 // 单行注释。易错点：认为\"注释越多程序越慢\"是典型误解。",
+      "tags": [
+        "注释"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-014",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言中，一条语句的结束标志是（　）。",
+      "options": [
+        "逗号",
+        "分号",
+        "句号",
+        "换行"
+      ],
+      "answer": 1,
+      "explanation": "C 语言以分号作为语句的终止符，一个语句可以写在多行上，一行也可以写多个语句，只要每个语句以分号结束即可。换行本身没有语法意义，编译器靠空白与分号来切分词法单元。特别注意：以 # 开头的预处理命令（如 #include、#define）不是语句，末尾不加分号。易错点：漏写分号是最常见的语法错误，且报错行往往在下一行。",
+      "tags": [
+        "语句",
+        "分号"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-015",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "结构化程序设计的三种基本控制结构是（　）。",
+      "options": [
+        "顺序结构、选择结构、循环结构",
+        "输入、处理、输出",
+        "主函数、子函数、库函数",
+        "递归、迭代、穷举"
+      ],
+      "answer": 0,
+      "explanation": "1966 年 Böhm 与 Jacopini 证明：任何单入口单出口的算法都可以仅用顺序、选择（if/switch）、循环（while/for/do-while）三种基本结构组合表达。结构化程序设计据此主张只用这三种结构、避免使用 goto，使程序清晰、易验证、易维护。其余选项分别是程序的一般流程、C 程序的组成成分与常见算法设计方法，都不是\"基本控制结构\"。易错点：三种结构都必须单入口、单出口。",
+      "tags": [
+        "三种基本结构"
+      ],
+      "knowledgeIds": [
+        "c-ch01-09"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-016",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "算法的\"有穷性\"是指（　）。",
+      "options": [
+        "算法中的每一步都必须能在有限时间内完成",
+        "算法必须在执行有限步之后结束",
+        "算法可以有零个输入",
+        "算法必须至少有一个输出"
+      ],
+      "answer": 1,
+      "explanation": "算法的五个特性：有穷性（执行有限步后必须终止）、确定性（每一步含义唯一、无二义）、可行性（每一步都能通过基本运算有限次实现）、有零个或多个输入、有一个或多个输出。有穷性强调的是\"步数有限\"，即不能出现死循环；而\"每一步能在有限时间完成\"属于可行性的范畴。程序与算法的区别正在于：程序可以有穷也可以无穷（如操作系统），算法必须有穷。易错点：混淆有穷性与确定性。",
+      "tags": [
+        "算法特性"
+      ],
+      "knowledgeIds": [
+        "c-ch01-10"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-017",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列关于 C 语言源程序书写规则的叙述中，正确的是（　）。",
+      "options": [
+        "每条语句必须独占一行",
+        "一行只能写一条语句",
+        "一个语句可以跨多行书写，一行也可以书写多条语句",
+        "函数体内必须缩进书写，否则无法编译"
+      ],
+      "answer": 2,
+      "explanation": "C 语言是\"自由格式\"语言：空白（空格、制表、换行）只用于分隔词法单元，本身不表示语法结构，所以一个语句可以拆成多行写（长表达式常这样排版），一行也可以用分号隔开写多条语句。缩进只是为了让人读懂代码，编译器完全忽略它，不缩进照样通过编译。易错点：把 C 的自由格式与 Python 这类靠缩进划分语句块的语言混淆。",
+      "tags": [
+        "书写规则"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-018",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "\"自顶向下、逐步细化、模块化\"是（　）的基本思想。",
+      "options": [
+        "面向对象程序设计",
+        "结构化程序设计",
+        "面向过程的数据抽象",
+        "算法优化"
+      ],
+      "answer": 1,
+      "explanation": "结构化程序设计方法主张：自顶向下先考虑总体目标与主要功能，逐层把大问题分解成小问题（逐步细化），每个小问题实现为一个功能单一、接口清晰的模块（模块化，在 C 中就是一个函数），模块之间通过参数传递数据。这样得到的程序层次分明、便于分工与调试。面向对象程序设计强调的是封装、继承、多态与对象建模，不是本题的三个词。易错点：C 语言是面向过程的，不是面向对象的。",
+      "tags": [
+        "结构化程序设计"
+      ],
+      "knowledgeIds": [
+        "c-ch01-11"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-019",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言中，printf 和 scanf 这两个库函数的声明位于头文件（　）中。",
+      "options": [
+        "stdlib.h",
+        "stdio.h",
+        "string.h",
+        "math.h"
+      ],
+      "answer": 1,
+      "explanation": "stdio.h 是 standard input/output 的缩写，其中声明了标准输入输出函数（printf、scanf、putchar、getchar、fopen 等）以及 FILE 类型；使用它们之前必须写 #include <stdio.h>。stdlib.h 提供内存分配（malloc/free）、随机数、进程控制等；string.h 提供字符串处理函数（strlen、strcpy 等）；math.h 提供数学函数（sin、sqrt 等）。易错点：尖括号表示到系统目录找头文件，双引号表示先在当前目录找。",
+      "tags": [
+        "头文件",
+        "库函数"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-020",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于 C 语言程序的可移植性，下列说法正确的是（　）。",
+      "options": [
+        "C 程序可以在任何计算机上直接运行，无需修改或重新编译",
+        "符合标准的 C 程序只需在目标机器上重新编译，一般无需修改即可运行",
+        "C 程序的可移植性比汇编语言差",
+        "C 程序的可移植性来源于它直接操作硬件"
+      ],
+      "answer": 1,
+      "explanation": "C 语言的可移植性来自两点：① 语言标准统一，程序只依赖标准定义的语法与库函数；② 源程序是文本形式，换一台机器只需用该机器上的 C 编译器重新编译链接即可，一般不必修改代码。但可移植不等于\"直接运行\"——可执行文件与 CPU 架构、操作系统绑定，必须重新编译。同时，若程序使用了特定编译器的扩展（如 conio.h 的 getch），可移植性就被破坏了。易错点：可移植性恰恰是因为 C 屏蔽了硬件细节，而不是因为直接操作硬件。",
+      "tags": [
+        "可移植性"
+      ],
+      "knowledgeIds": [
+        "c-ch01-01"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-021",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "编译一个 C 源程序时，编译器能够发现并报告的错误是（　）。",
+      "options": [
+        "所有语法错误和逻辑错误",
+        "仅语法错误（如漏分号、括号不匹配、类型不兼容）",
+        "仅逻辑错误（如算法设计不当）",
+        "仅运行时错误（如数组越界、除以零）"
+      ],
+      "answer": 1,
+      "explanation": "编译阶段做的是词法、语法与语义（类型）检查，因此能发现漏写分号、括号不配对、变量未声明、类型不兼容等语法类错误；它无法知道程序的算法意图，所以逻辑错误（结果不对但语法合法）只能通过测试与人工核对发现；数组越界、除以零等运行期错误在编译时通常也不报（C 不做边界检查），要靠调试器或运行时崩溃暴露。链接阶段则能发现函数未定义等错误。易错点：编译通过 ≠ 程序正确。",
+      "tags": [
+        "编译过程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-07"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-022",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "C 语言源程序的基本组成单位是（　）。",
+      "options": [
+        "语句",
+        "函数",
+        "程序行",
+        "字符"
+      ],
+      "answer": 1,
+      "explanation": "C 程序由一个或多个函数组成，函数是 C 源程序的基本单位：每个函数完成一个相对独立的功能，有名字、参数表、返回类型和函数体，函数之间通过调用与参数传递协作。语句只是函数体内的执行单元，程序行只是书写形式（一行可以有多条语句，一条语句也可以跨行），字符是词法层面的最小单位。易错点：不要答成\"语句\"——语句属于函数内部结构。",
+      "tags": [
+        "函数",
+        "程序单位"
+      ],
+      "knowledgeIds": [
+        "c-ch01-03"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-sc-023",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列关于 main 函数的说法中，错误的是（　）。",
+      "options": [
+        "一个 C 源程序中 main 函数有且仅有一个",
+        "main 函数必须写在源程序的最前面",
+        "程序总是从 main 函数的第一条语句开始执行",
+        "main 函数可以调用其他函数，其他函数不能调用 main"
+      ],
+      "answer": 1,
+      "explanation": "main 是程序的唯一入口，有且只有一个，执行从它的第一条语句开始；它可以调用其他函数，而一般不建议其他函数调用 main（标准虽未绝对禁止，但会造成语义混乱）。但 C 语言对函数的书写顺序没有任何规定——main 可以放在文件开头、中间或末尾，编译器在编译前会扫描全部函数定义，只要调用点之前有声明（或定义）即可，因此\"必须写在最前面\"是错误的。易错点：把\"执行从 main 开始\"误解为\"书写从 main 开始\"。",
+      "tags": [
+        "main 函数",
+        "执行顺序"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-008",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 程序的基本组成单位是____，一个 C 源程序中有且仅有一个____函数。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "函数"
+        },
+        {
+          "index": 2,
+          "answer": "main",
+          "accepted": [
+            "主"
+          ]
+        }
+      ],
+      "explanation": "C 语言是函数式（模块化）的语言：整个程序由若干个函数构成，每个函数实现一个明确的功能，函数之间通过调用关系协作。其中 main 函数是特殊的、必需的、唯一的入口函数，程序运行时从 main 的第一条语句开始执行，其他函数都由 main（或被 main 调用的函数）间接调用。自定义函数可以任意多个，也可以一个都没有（只有 main）。易错点：填空写\"主函数\"或\"main\"均可，但不能写成\"main()\"这样带括号的形式作为函数名。",
+      "tags": [
+        "程序组成"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-009",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "C 语言的标识符只能由____、____和____三种字符组成，且第一个字符必须是____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "字母",
+          "accepted": [
+            "英文字母"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "数字",
+          "accepted": [
+            "阿拉伯数字"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "下划线",
+          "accepted": [
+            "_"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "字母或下划线",
+          "accepted": [
+            "字母、下划线",
+            "字母或下划线"
+          ]
+        }
+      ],
+      "explanation": "标识符是给变量、函数、数组、类型等起的名字，规则有三条：① 组成字符只能是字母（a~z、A~Z）、数字（0~9）和下划线；② 首字符不能是数字，必须是字母或下划线；③ 不能与关键字（保留字）同名。此外 C 语言区分大小写，Sum 与 sum 是两个不同标识符。易错点：第四空要写\"字母或下划线\"，只写\"字母\"不完整——_total 这样的命名是合法的。",
+      "tags": [
+        "标识符"
+      ],
+      "knowledgeIds": [
+        "c-ch01-05"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-010",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "C 语言源程序文件的扩展名是____，经编译后生成的目标文件扩展名是____（Windows 环境）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": ".c",
+          "accepted": [
+            "c"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": ".obj",
+          "accepted": [
+            ".o",
+            "obj",
+            "o"
+          ]
+        }
+      ],
+      "explanation": "C 程序开发的文件链：源程序 .c（纯文本，可用任意编辑器编写）→ 编译生成目标文件 .obj（Windows，Unix/Linux 下是 .o，内容为机器码但外部符号地址未定位）→ 链接生成可执行文件 .exe。头文件用 .h 扩展名，存放函数声明与宏定义。易错点：编译产物不是 .exe；目标文件不能直接双击运行，必须先链接。",
+      "tags": [
+        "文件后缀"
+      ],
+      "knowledgeIds": [
+        "c-ch01-08"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-011",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "结构化程序设计的三种基本结构是____结构、____结构和____结构。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "顺序"
+        },
+        {
+          "index": 2,
+          "answer": "选择",
+          "accepted": [
+            "分支",
+            "选择（分支）"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "循环",
+          "accepted": [
+            "重复"
+          ]
+        }
+      ],
+      "explanation": "顺序结构指语句按书写先后依次执行；选择结构由条件判断决定走哪一条分支，C 中用 if、if-else、switch 实现；循环结构在条件成立时反复执行某段语句，C 中用 while、do-while、for 实现。三种结构都是单入口、单出口的，组合起来可以表达任何算法，这也是不使用 goto 就能写出清晰程序的理论依据。易错点：填空顺序无关，但名称要准确，\"选择结构\"也常被称作\"分支结构\"。",
+      "tags": [
+        "三种基本结构"
+      ],
+      "knowledgeIds": [
+        "c-ch01-09"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-012",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "C 语言的传统注释以____开始、以____结束；C99 标准还支持以____开始的单行注释。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "/*"
+        },
+        {
+          "index": 2,
+          "answer": "*/"
+        },
+        {
+          "index": 3,
+          "answer": "//",
+          "accepted": [
+            "／／"
+          ]
+        }
+      ],
+      "explanation": "/* */ 是 C89 就有的注释形式，可以跨多行，但不能嵌套（内层的 */ 会提前结束注释，造成语法错误）；// 是 C99 引入的单行注释，从 // 起至行尾的内容都被忽略，写起来更方便。两者都在编译前被剔除，不生成任何机器指令。易错点：/* 与 */ 都不能写成 / * 或 * /（中间有空格就失去注释含义）；老式编译器（只支持 C89）不认 //。",
+      "tags": [
+        "注释"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-013",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "算法必须具备五个重要特性：有穷性、确定性、可行性、有零个或多个输入、有____个输出。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "一或多",
+          "accepted": [
+            "1 或多",
+            "一个或多个",
+            "≥1"
+          ]
+        }
+      ],
+      "explanation": "算法是解决特定问题的、有穷的指令序列，五个特性缺一不可：有穷性（有限步内结束）、确定性（每步含义确切无二义）、可行性（每步都能通过已实现的基本操作有限次完成）、输入（零个或多个，如打印固定图案的算法就没有输入）、输出（一个或多个，没有输出的算法毫无意义）。易错点：输出至少 1 个，而输入可以为 0 个，这是两者不对称的地方。",
+      "tags": [
+        "算法特性"
+      ],
+      "knowledgeIds": [
+        "c-ch01-10"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-014",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "C 语言运算符丰富、数据类型多样，既能实现____语言的功能，又具有____语言的可读性与可移植性，因此常被称为\"中级语言\"。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "低级",
+          "accepted": [
+            "汇编"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "高级"
+        }
+      ],
+      "explanation": "C 语言的设计目标是\"接近硬件又便于书写\"：它提供位运算、指针、地址运算等手段，可以像汇编一样直接访问内存与硬件端口（低级语言的功能）；同时它提供结构化的控制语句、丰富的数据类型（整型、浮点、字符、数组、结构体、指针等）和接近英语的语法，使程序便于阅读和在不同机器间移植（高级语言的特点）。正是这种双重性质让它被称为中级语言。易错点：中级语言不是\"介于 C 与 Java 之间\"的意思，而是指兼具高低级特点。",
+      "tags": [
+        "C语言特点"
+      ],
+      "knowledgeIds": [
+        "c-ch01-01"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-fb-015",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "remember",
+      "stem": "C89 标准规定的关键字共有____个，它们全部由____写字母组成，且不能用作用户标识符。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "32"
+        },
+        {
+          "index": 2,
+          "answer": "小",
+          "accepted": [
+            "小写"
+          ]
+        }
+      ],
+      "explanation": "C89（ANSI C）定义了 32 个关键字，如 int、char、if、else、while、for、switch、case、return、sizeof、struct、union、typedef、static、extern、const、void 等，全部小写，每个都有固定含义，编译器据此进行语法分析，因此用户不能把它们重新定义为标识符。C99 又新增了 inline、restrict、_Bool 等，总数增加，但考试通常以 32 个为准。易错点：main、printf、NULL 都不是关键字。",
+      "tags": [
+        "关键字"
+      ],
+      "knowledgeIds": [
+        "c-ch01-05"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "C 语言源程序中的 main 函数必须写在所有其他函数的前面。",
+      "answer": false,
+      "explanation": "错误。C 语言对函数的书写位置没有任何限制，main 可以放在文件的开头、中间或末尾。编译器会扫描整个源文件收集所有函数定义，只要在某函数被调用之前有它的定义或声明即可，与物理位置无关。执行顺序由调用关系决定，而不是由书写顺序决定——程序总是从 main 的第一条语句开始，遇到调用就转入被调函数，返回后继续。实践中把 main 放前面或后面都只是风格选择。",
+      "tags": [
+        "main 函数"
+      ],
+      "knowledgeIds": [
+        "c-ch01-02"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "C 语言中的注释可以出现在源程序的任何位置，包括两条语句之间甚至一条语句的内部。",
+      "answer": true,
+      "explanation": "正确。注释在编译前被剔除，替换为一个空白字符，因此它可以出现在程序中任何可以出现空白的地方：单独占一行、写在语句后面、夹在两条语句之间都可以。但要注意不能把一个完整的词法单元从中间劈开，例如把 int 写成 in/*x*/t 是非法的，因为剔除注释后变成 in t 而非 int。此外 /* */ 注释不能嵌套。所以\"任何位置\"的前提是不破坏词法单元的完整性。",
+      "tags": [
+        "注释"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-003",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "C 语言中每条语句都必须以分号结束，因此预处理命令 #include <stdio.h> 的末尾也要加分号。",
+      "answer": false,
+      "explanation": "错误。以 # 开头的行是预处理命令，不是 C 语句，它在编译之前由预处理器处理，遵循的是另一套语法规则：一行写完、末尾不加分号、可以续行（用反斜杠）。若写成 #include <stdio.h>; 预处理器会把分号当作文件名的一部分或报语法错误。C 语句（声明语句、表达式语句、控制语句、复合语句）才必须以分号结束。易错点：这是初学者最常犯的错误之一。",
+      "tags": [
+        "预处理",
+        "分号"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-004",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "在 C 语言中，标识符 Total 与 total 表示同一个对象。",
+      "answer": false,
+      "explanation": "错误。C 语言严格区分字母的大小写，Total 与 total 是两个完全不同的标识符，可以分别代表两个不同的变量；同样，关键字 int 不能写成 Int 或 INT，库函数名 printf 不能写成 Printf，否则编译时会报\"未声明的标识符\"。这也是 C 语言的约定风格：关键字与标准库函数名全部小写，用户自定义标识符常采用小写加下划线或驼峰式命名。易错点：与 VB、SQL 等不区分大小写的语言混淆。",
+      "tags": [
+        "大小写敏感"
+      ],
+      "knowledgeIds": [
+        "c-ch01-05"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-005",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "C 语言源程序经编译后即可直接运行。",
+      "answer": false,
+      "explanation": "错误。编译阶段的产物是目标文件（.obj/.o），其中虽然已是机器码，但外部符号（如 printf 的实际地址、跨文件的全局变量）还没有确定，且缺少程序启动所需的入口代码，因此不能直接运行。必须再经过链接阶段，把一个或多个目标文件与 C 标准库、启动模块合并，生成可执行文件 .exe（Linux 下无扩展名），才能被操作系统加载运行。易错点：混淆\"编译\"与\"链接\"两步的产物。",
+      "tags": [
+        "编译过程"
+      ],
+      "knowledgeIds": [
+        "c-ch01-07"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-tf-006",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "一个 C 程序可以由多个源文件组成，每个源文件分别编译后再链接成一个可执行文件。",
+      "answer": true,
+      "explanation": "正确。这正是 C 语言支持模块化与团队协作的机制：把功能相关的函数分散写在多个 .c 文件中，公共的声明放在 .h 头文件里用 #include 共享；每个 .c 文件独立编译成 .obj，最后由链接器把所有目标文件与库文件合并成可执行文件。这样修改一个源文件只需重新编译它，大大提高了大型项目的编译效率。易错点：跨文件使用全局变量或函数时，必须用 extern 声明或在头文件中给出原型，否则链接会报\"未定义符号\"。",
+      "tags": [
+        "函数",
+        "模块化"
+      ],
+      "knowledgeIds": [
+        "c-ch01-03"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-dbg-001",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在 2 处错误，无法通过编译。请找出错误并改正。\n```\n#include <stdio.h>\n\nvoid main()\n{\n    int a = 12, b = 5;\n    printf(\"a+b=%d\\n\", a + b)\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nvoid main()\n{\n    int a = 12, b = 5;\n    printf(\"a+b=%d\\n\", a + b)\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "a+b=17"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 12, b = 5;\n    printf(\"a+b=%d\\n\", a + b);\n    return 0;\n}",
+      "bugs": [
+        "C 标准规定 main 函数的返回类型是 int，写法为 int main(void)；void main 是某些教材沿用的非标准写法，在严格遵循标准的编译器下会报错或警告",
+        "表达式语句末尾必须以分号结束，漏写分号是最典型的语法错误，编译器通常在下一行报\"expected ; before ...\""
+      ],
+      "explanation": "C 语言的错误分三类：语法错误（编译期报出）、链接错误（找不到符号）与逻辑错误（能运行但结果不对）。本题两处都是语法错误：其一，main 的标准原型是 int main(void)，返回 int 给操作系统表示退出状态，void main 不符合 C89/C99 标准，可移植性差；其二，printf(...) 是一条表达式语句，必须以分号结束，漏写分号时编译器往往在下一行才报错，定位时要往上看一行。修正后程序输出 a+b=17。易错点：#include 行末不加分号，它是预处理命令而非语句。",
+      "tags": [
+        "程序错误",
+        "main 函数",
+        "分号"
+      ],
+      "knowledgeIds": [
+        "c-ch01-04"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-dbg-002",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在 2 处错误，无法通过编译。请找出错误并改正。\n```\n#includ <stdio.h>\n\nint main(void)\n{\n    int a = 3, b = 4;\n    int c = a * a + b * b;\n    printf(\"c=%d\\n\", C);\n    return 0;\n}\n```",
+      "code": "#includ <stdio.h>\n\nint main(void)\n{\n    int a = 3, b = 4;\n    int c = a * a + b * b;\n    printf(\"c=%d\\n\", C);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "c=25"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 3, b = 4;\n    int c = a * a + b * b;\n    printf(\"c=%d\\n\", c);\n    return 0;\n}",
+      "bugs": [
+        "预处理命令拼写错误：include 少写了字母 c，预处理器会报\"stdio.h: No such file or directory\"",
+        "C 语言区分大小写，定义的变量是 c，写成 C 就成了未声明的标识符，编译器报\"'C' undeclared\""
+      ],
+      "explanation": "本题两处错误分别对应 C 程序的两个不同阶段：① 预处理阶段的拼写错误——#include 是把头文件内容插入源程序的预处理命令，命令名少一个字母就会找不到文件，且这类错误报在文件开头，容易忽略；② 编译阶段的大小写错误——C 严格区分大小写，c 与 C 是两个完全不同的标识符，定义的是小写 c，使用大写 C 就属于\"未声明的标识符\"。修正后程序计算 3²+4²=25 并输出 c=25。易错点：拼写类错误编译器提示通常很直白，但初学者常误以为是自己的算法有问题。",
+      "tags": [
+        "程序错误",
+        "预处理",
+        "标识符大小写"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch01-dbg-003",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序要求读入两个整数并输出它们的和。程序中存在 2 处错误，请找出并改正。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n    scanf(\"%d%d\", x, y);\n    printf(\"x+y=%d\\n\", x * y);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n    scanf(\"%d%d\", x, y);\n    printf(\"x+y=%d\\n\", x * y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4\n",
+          "expected": "x+y=7"
+        },
+        {
+          "stdin": "0 0\n",
+          "expected": "x+y=0"
+        },
+        {
+          "stdin": "-2 5\n",
+          "expected": "x+y=3"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n    scanf(\"%d%d\", &x, &y);\n    printf(\"x+y=%d\\n\", x + y);\n    return 0;\n}",
+      "bugs": [
+        "scanf 是输入型函数，必须把变量的地址传给它，正确写法是 &x、&y；漏写 & 会把尚未赋值的 x、y 的内容当作地址使用，造成运行期非法访问",
+        "逻辑错误：题目要求输出和，程序却计算了乘积，语法上完全合法、能编译能运行，只有核对输出才能发现"
+      ],
+      "explanation": "本题刻意安排了两种性质完全不同的错误。第一处是 scanf 漏写取地址符 &：scanf 需要把读入的数据写进变量，因此必须知道变量的地址，参数应为 &x、&y；漏写 & 时传进去的是 x、y 的\"值\"（未初始化的随机数），scanf 会往这个随机地址写数据，轻则结果错乱，重则程序崩溃。第二处是逻辑错误：把 x+y 写成 x*y，编译器不会报任何错，程序也能正常运行，只能通过人工核对已知输入的输出（如输入 3 4 应得 7）来发现。易错点：printf 输出用的是变量的值，不加 &；scanf 输入用的是变量的地址，必须加 &。",
+      "tags": [
+        "程序错误",
+        "scanf",
+        "取地址",
+        "逻辑错误"
+      ],
+      "knowledgeIds": [
+        "c-ch01-12"
+      ],
+      "source": "变式（源自 c-ch01 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }

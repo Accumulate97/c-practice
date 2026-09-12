@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "07702579a1e82fff",
+  "content_sha": "e813b68b486fe732",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1473,
+  "count": 1624,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -130,6 +130,648 @@
       "chapter": "第1章 C语言概述",
       "section": "1.2 填空题",
       "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-001",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-002",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-003",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-004",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "注释",
+        "语句",
+        "printf"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-005",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-006",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-007",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cr-008",
+      "file": "c-ch01.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "格式控制",
+        "转义字符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cc-001",
+      "file": "c-ch01.json",
+      "title": "下列程序读入一个整数并连同提示信息输出",
+      "tags": [
+        "程序结构",
+        "main 函数",
+        "头文件"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cc-002",
+      "file": "c-ch01.json",
+      "title": "下列程序读入一个整数并连同提示信息输出",
+      "tags": [
+        "程序结构",
+        "main 函数",
+        "头文件"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cc-003",
+      "file": "c-ch01.json",
+      "title": "下列程序读入两个整数",
+      "tags": [
+        "printf",
+        "格式控制"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-cc-004",
+      "file": "c-ch01.json",
+      "title": "下列程序读入两个整数",
+      "tags": [
+        "printf",
+        "格式控制"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-pg-001",
+      "file": "c-ch01.json",
+      "title": "编写程序",
+      "tags": [
+        "printf",
+        "编程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-pg-002",
+      "file": "c-ch01.json",
+      "title": "编写程序",
+      "tags": [
+        "scanf",
+        "printf",
+        "编程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-pg-003",
+      "file": "c-ch01.json",
+      "title": "编写程序",
+      "tags": [
+        "循环",
+        "printf",
+        "编程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-006",
+      "file": "c-ch01.json",
+      "title": "C 语言是一种",
+      "tags": [
+        "C语言特点"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-007",
+      "file": "c-ch01.json",
+      "title": "一个 C 源程序至少应该包含一个",
+      "tags": [
+        "main 函数",
+        "程序结构"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-008",
+      "file": "c-ch01.json",
+      "title": "下列关于 C 语言函数的叙述中",
+      "tags": [
+        "函数",
+        "嵌套"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-009",
+      "file": "c-ch01.json",
+      "title": "一个 C 源程序从书写到运行",
+      "tags": [
+        "编译过程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-010",
+      "file": "c-ch01.json",
+      "title": "C 语言源程序经编译后生成的文件",
+      "tags": [
+        "文件后缀"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-011",
+      "file": "c-ch01.json",
+      "title": "下列选项中",
+      "tags": [
+        "标识符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-012",
+      "file": "c-ch01.json",
+      "title": "下列各组中",
+      "tags": [
+        "关键字"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-013",
+      "file": "c-ch01.json",
+      "title": "关于 C 语言中的注释",
+      "tags": [
+        "注释"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-014",
+      "file": "c-ch01.json",
+      "title": "C 语言中",
+      "tags": [
+        "语句",
+        "分号"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-015",
+      "file": "c-ch01.json",
+      "title": "结构化程序设计的三种基本控制结构是",
+      "tags": [
+        "三种基本结构"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-016",
+      "file": "c-ch01.json",
+      "title": "算法的\"有穷性\"是指",
+      "tags": [
+        "算法特性"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-017",
+      "file": "c-ch01.json",
+      "title": "下列关于 C 语言源程序书写规则的叙述中",
+      "tags": [
+        "书写规则"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-018",
+      "file": "c-ch01.json",
+      "title": "\"自顶向下、逐步细化、模块化\"是",
+      "tags": [
+        "结构化程序设计"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-019",
+      "file": "c-ch01.json",
+      "title": "C 语言中",
+      "tags": [
+        "头文件",
+        "库函数"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-020",
+      "file": "c-ch01.json",
+      "title": "关于 C 语言程序的可移植性",
+      "tags": [
+        "可移植性"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-021",
+      "file": "c-ch01.json",
+      "title": "编译一个 C 源程序时",
+      "tags": [
+        "编译过程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-022",
+      "file": "c-ch01.json",
+      "title": "C 语言源程序的基本组成单位是",
+      "tags": [
+        "函数",
+        "程序单位"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-sc-023",
+      "file": "c-ch01.json",
+      "title": "下列关于 main 函数的说法中",
+      "tags": [
+        "main 函数",
+        "执行顺序"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-008",
+      "file": "c-ch01.json",
+      "title": "C 程序的基本组成单位是____",
+      "tags": [
+        "程序组成"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-009",
+      "file": "c-ch01.json",
+      "title": "C 语言的标识符只能由____、____和____三种字符组成",
+      "tags": [
+        "标识符"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-010",
+      "file": "c-ch01.json",
+      "title": "C 语言源程序文件的扩展名是____",
+      "tags": [
+        "文件后缀"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-011",
+      "file": "c-ch01.json",
+      "title": "结构化程序设计的三种基本结构是____结构、____结构和____结构",
+      "tags": [
+        "三种基本结构"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-012",
+      "file": "c-ch01.json",
+      "title": "C 语言的传统注释以____开始、以____结束",
+      "tags": [
+        "注释"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-013",
+      "file": "c-ch01.json",
+      "title": "算法必须具备五个重要特性",
+      "tags": [
+        "算法特性"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-014",
+      "file": "c-ch01.json",
+      "title": "C 语言运算符丰富、数据类型多样",
+      "tags": [
+        "C语言特点"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-fb-015",
+      "file": "c-ch01.json",
+      "title": "C89 标准规定的关键字共有____个",
+      "tags": [
+        "关键字"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-001",
+      "file": "c-ch01.json",
+      "title": "C 语言源程序中的 main 函数必须写在所有其他函数的前面",
+      "tags": [
+        "main 函数"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-002",
+      "file": "c-ch01.json",
+      "title": "C 语言中的注释可以出现在源程序的任何位置",
+      "tags": [
+        "注释"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-003",
+      "file": "c-ch01.json",
+      "title": "C 语言中每条语句都必须以分号结束",
+      "tags": [
+        "预处理",
+        "分号"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-004",
+      "file": "c-ch01.json",
+      "title": "在 C 语言中",
+      "tags": [
+        "大小写敏感"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-005",
+      "file": "c-ch01.json",
+      "title": "C 语言源程序经编译后即可直接运行",
+      "tags": [
+        "编译过程"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-tf-006",
+      "file": "c-ch01.json",
+      "title": "一个 C 程序可以由多个源文件组成",
+      "tags": [
+        "函数",
+        "模块化"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-dbg-001",
+      "file": "c-ch01.json",
+      "title": "下列程序存在 2 处错误",
+      "tags": [
+        "程序错误",
+        "main 函数",
+        "分号"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-dbg-002",
+      "file": "c-ch01.json",
+      "title": "下列程序存在 2 处错误",
+      "tags": [
+        "程序错误",
+        "预处理",
+        "标识符大小写"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch01-dbg-003",
+      "file": "c-ch01.json",
+      "title": "下列程序要求读入两个整数并输出它们的和",
+      "tags": [
+        "程序错误",
+        "scanf",
+        "取地址",
+        "逻辑错误"
+      ],
+      "chapter": "第1章 C语言概述",
+      "section": "1.4 变式练习（代码类）",
+      "type": "debug",
       "category": "c"
     },
     {
@@ -843,6 +1485,708 @@
       "category": "c"
     },
     {
+      "id": "c-ch02-cr-001",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-002",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-003",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "sizeof",
+        "数组",
+        "数据类型"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-004",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-005",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-006",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-007",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "整数除法",
+        "取余",
+        "运算符"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-008",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-009",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-010",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "自增自减",
+        "逗号表达式",
+        "副作用"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-011",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-012",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-013",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-014",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "类型转换",
+        "整型提升",
+        "printf"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-015",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-016",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-017",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cr-018",
+      "file": "c-ch02.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "关系运算",
+        "逻辑运算",
+        "短路求值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-001",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "条件运算符",
+        "逗号表达式",
+        "奇偶判断"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-002",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "逗号表达式",
+        "复合赋值",
+        "最大值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-003",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "优先级",
+        "结合性",
+        "强制转换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-004",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "数位分解",
+        "取余",
+        "整数除法"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-005",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "数位之和",
+        "循环",
+        "取余"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-006",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "四位数分解",
+        "回文判断",
+        "关系运算"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-007",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "多项式",
+        "秦九韶",
+        "double"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-008",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "多项式",
+        "秦九韶",
+        "循环"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-cc-009",
+      "file": "c-ch02.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "求值顺序",
+        "顺序点",
+        "副作用"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-001",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-002",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-003",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "整数除法",
+        "强制转换",
+        "printf 格式"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-004",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-005",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-dbg-006",
+      "file": "c-ch02.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "优先级",
+        "复合赋值",
+        "交换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-001",
+      "file": "c-ch02.json",
+      "title": "输入一个表示总秒数的非负整数",
+      "tags": [
+        "整数除法",
+        "取余",
+        "顺序结构"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-002",
+      "file": "c-ch02.json",
+      "title": "输入一个不超过 10000 的非负整数金额",
+      "tags": [
+        "商与余数",
+        "找零",
+        "贪心"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-003",
+      "file": "c-ch02.json",
+      "title": "输入一个华氏温度",
+      "tags": [
+        "类型转换",
+        "温度换算",
+        "四舍五入"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-004",
+      "file": "c-ch02.json",
+      "title": "输入三个整数",
+      "tags": [
+        "算术表达式",
+        "平均值",
+        "printf 精度"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-005",
+      "file": "c-ch02.json",
+      "title": "第一行输入正整数 n",
+      "tags": [
+        "循环",
+        "平均值",
+        "类型转换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-pg-006",
+      "file": "c-ch02.json",
+      "title": "输入球的半径 r",
+      "tags": [
+        "math.h",
+        "强制转换",
+        "顺序结构"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-039",
+      "file": "c-ch02.json",
+      "title": "在 64 位 gcc",
+      "tags": [
+        "整型",
+        "取值范围"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-040",
+      "file": "c-ch02.json",
+      "title": "设 a、b 都是 int 型变量",
+      "tags": [
+        "整数除法",
+        "取余"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-041",
+      "file": "c-ch02.json",
+      "title": "设 int i = 3",
+      "tags": [
+        "自增自减",
+        "顺序点"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-042",
+      "file": "c-ch02.json",
+      "title": "设 int a = 1",
+      "tags": [
+        "条件运算符",
+        "优先级"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-043",
+      "file": "c-ch02.json",
+      "title": "下列表达式中",
+      "tags": [
+        "隐式转换",
+        "整型提升"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-044",
+      "file": "c-ch02.json",
+      "title": "设 int x = 5",
+      "tags": [
+        "逗号表达式",
+        "表达式求值"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-sc-045",
+      "file": "c-ch02.json",
+      "title": "在 64 位 Linux + gcc 13.2 环境下",
+      "tags": [
+        "sizeof",
+        "字节数"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-034",
+      "file": "c-ch02.json",
+      "title": "已知字符 'A' 的 ASCII 码是 65",
+      "tags": [
+        "ASCII",
+        "字符运算"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-035",
+      "file": "c-ch02.json",
+      "title": "设 int a = 8",
+      "tags": [
+        "复合赋值",
+        "表达式改写"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-fb-036",
+      "file": "c-ch02.json",
+      "title": "字符串常量 \"China\" 在内存中占____个字节",
+      "tags": [
+        "字符串常量",
+        "结束标志"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-tf-001",
+      "file": "c-ch02.json",
+      "title": "只要 && 具有短路特性",
+      "tags": [
+        "短路求值",
+        "逻辑运算"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch02-tf-002",
+      "file": "c-ch02.json",
+      "title": "语句 ",
+      "tags": [
+        "强制转换",
+        "类型转换"
+      ],
+      "chapter": "第2章 数据类型、运算符与表达式",
+      "section": "2.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
       "id": "c-ch03-sc-001",
       "file": "c-ch03.json",
       "title": "以下程序的运行结果是______",
@@ -1390,6 +2734,705 @@
       "chapter": "第3章 最简单的C程序设计",
       "section": "3.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-019",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "字段宽度",
+        "精度",
+        "进制输出"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-020",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "字段宽度",
+        "精度",
+        "进制输出"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-021",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "字段宽度",
+        "精度",
+        "进制输出"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-022",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "字段宽度",
+        "精度",
+        "进制输出"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-023",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "scanf",
+        "getchar",
+        "缓冲区",
+        "赋值抑制符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-024",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "scanf",
+        "getchar",
+        "缓冲区",
+        "赋值抑制符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-025",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "scanf",
+        "getchar",
+        "缓冲区",
+        "赋值抑制符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-026",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "scanf",
+        "getchar",
+        "缓冲区",
+        "赋值抑制符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-027",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "标志字符",
+        "长度修饰符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-028",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "标志字符",
+        "长度修饰符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-029",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "标志字符",
+        "长度修饰符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-030",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "printf",
+        "标志字符",
+        "长度修饰符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-031",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "getchar",
+        "putchar",
+        "字符处理"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-032",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "getchar",
+        "putchar",
+        "字符处理"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-033",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "getchar",
+        "putchar",
+        "字符处理"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-034",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "进制输出",
+        "无符号",
+        "类型截断"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-035",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "进制输出",
+        "无符号",
+        "类型截断"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-036",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "进制输出",
+        "无符号",
+        "类型截断"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cr-037",
+      "file": "c-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "进制输出",
+        "无符号",
+        "类型截断"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-002",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "printf",
+        "格式字符",
+        "标志字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-003",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "printf",
+        "格式字符",
+        "标志字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-004",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "printf",
+        "格式字符",
+        "标志字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-005",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "printf",
+        "格式字符",
+        "标志字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-006",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "scanf",
+        "地址表列",
+        "格式串"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-007",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "scanf",
+        "域宽",
+        "赋值抑制符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-008",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "scanf",
+        "返回值",
+        "输入校验"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-009",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "交换变量",
+        "顺序结构",
+        "赋值语句"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-010",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "顺序结构",
+        "表达式语句",
+        "输出格式"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-cc-011",
+      "file": "c-ch03.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "字符运算",
+        "ASCII",
+        "putchar"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-dbg-001",
+      "file": "c-ch03.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "scanf",
+        "取地址符",
+        "整数除法"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-dbg-002",
+      "file": "c-ch03.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "格式字符",
+        "类型匹配",
+        "printf"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-dbg-003",
+      "file": "c-ch03.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "缓冲区",
+        "换行符",
+        "getchar"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-004",
+      "file": "c-ch03.json",
+      "title": "输入圆的半径 r",
+      "tags": [
+        "顺序结构",
+        "scanf",
+        "printf 精度"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-005",
+      "file": "c-ch03.json",
+      "title": "输入两个整数 a 与 b",
+      "tags": [
+        "商与余数",
+        "整数除法",
+        "输出格式"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-006",
+      "file": "c-ch03.json",
+      "title": "输入一个英文字母",
+      "tags": [
+        "字符运算",
+        "大小写转换",
+        "putchar"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-007",
+      "file": "c-ch03.json",
+      "title": "输入圆柱的底面半径 r 与高 h",
+      "tags": [
+        "顺序结构",
+        "公式计算",
+        "printf 宽度"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-008",
+      "file": "c-ch03.json",
+      "title": "输入三门课程的成绩",
+      "tags": [
+        "顺序结构",
+        "平均值",
+        "输出提示"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-009",
+      "file": "c-ch03.json",
+      "title": "输入两个整数与一个实数",
+      "tags": [
+        "表达式语句",
+        "空语句",
+        "类型转换"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-pg-010",
+      "file": "c-ch03.json",
+      "title": "输入一个不含空格的学生姓名",
+      "tags": [
+        "输入提示",
+        "格式对齐",
+        "综合"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-027",
+      "file": "c-ch03.json",
+      "title": "下列关于 C 语言语句的说法",
+      "tags": [
+        "C语句分类",
+        "程序结构"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-028",
+      "file": "c-ch03.json",
+      "title": "printf 中用于输出单个字符、十进制整数、八进制整数、十六进制整数的格式字符依次是",
+      "tags": [
+        "printf",
+        "格式字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-029",
+      "file": "c-ch03.json",
+      "title": "执行 printf",
+      "tags": [
+        "printf",
+        "宽度与精度"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-030",
+      "file": "c-ch03.json",
+      "title": "设有 int a",
+      "tags": [
+        "scanf",
+        "地址表列"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-031",
+      "file": "c-ch03.json",
+      "title": "关于 getchar",
+      "tags": [
+        "getchar",
+        "EOF",
+        "字符输入"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-sc-032",
+      "file": "c-ch03.json",
+      "title": "执行 printf",
+      "tags": [
+        "printf",
+        "标志字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-006",
+      "file": "c-ch03.json",
+      "title": "printf 的格式串中",
+      "tags": [
+        "printf",
+        "转义字符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-007",
+      "file": "c-ch03.json",
+      "title": "执行 scanf",
+      "tags": [
+        "scanf",
+        "域宽",
+        "返回值"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-fb-008",
+      "file": "c-ch03.json",
+      "title": "putchar",
+      "tags": [
+        "putchar",
+        "字符输出"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-tf-001",
+      "file": "c-ch03.json",
+      "title": "语句 scanf",
+      "tags": [
+        "scanf",
+        "常见错误"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch03-tf-002",
+      "file": "c-ch03.json",
+      "title": "在 printf 中",
+      "tags": [
+        "printf",
+        "长度修饰符"
+      ],
+      "chapter": "第3章 最简单的C程序设计",
+      "section": "3.4 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {
