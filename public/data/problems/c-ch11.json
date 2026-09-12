@@ -60,15 +60,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.26（PDF p260 / 书页 p249）",
       "difficulty": 3,
       "stem": "【题 11.26】请读程序段：以上程序段的输出结果是【 】。",
-      "explanation": "输出 $ $ $。a=1（二进制 01）、b=2（10），按位与要求同一位上两个数都是 1 才得 1，逐位比较后结果为 0，if 判假走 else。关键在于 & 是位运算而不是逻辑运算：1&&2 为真，1&2 为 0。易错点：把「非零即真」套到两个非零操作数的位与结果上，误以为条件仍成立。",
+      "explanation": "输出 $ $ $。a=1（二进制 01）、b=2（10），按位与要求同一位上两个数都是 1 才得 1，逐位比较后结果为 0，if 判假走 else。关键在于 & 是位运算而不是逻辑运算：1&&2 为真，1&2 为 0。易错点：把「非零即真」套到两个非零操作数的位与结果上，误以为条件仍成立。\n\n【实机验证·Godbolt cg132 -O0】1&2=0 走 else 分支。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int a=1,b=2;\nif (a&b) printf(\"* * *\\n\");\nelse printf(\"$ $ $\\n\");",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint a=1,b=2;\nif (a&b) printf(\"* * *\\n\");\nelse printf(\"$ $ $\\n\");\n    return 0;\n}",
       "answer": "$ $ $",
       "id": "c-ch11-cr-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -144,15 +144,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.30（PDF p261 / 书页 p250）",
       "difficulty": 3,
       "stem": "【题 11.30】请读程序段：输出结果是【 】。",
-      "explanation": "输出 -1,37777777777。-1 的补码是 32 位全 1，与 0377（低 8 位全 1）做或运算后仍然全 1，%d 按有符号解释就是 -1；%o 把同一串比特按无符号八进制打印，32 个 1 等于 2^32-1，写成八进制正好是 11 位的 37777777777。易错点：格式符只改变「怎么解释这串比特」，不改变比特本身，别以为 %o 会输出符号或只输出低 8 位。",
+      "explanation": "输出 -1,37777777777。-1 的补码是 32 位全 1，与 0377（低 8 位全 1）做或运算后仍然全 1，%d 按有符号解释就是 -1；%o 把同一串比特按无符号八进制打印，32 个 1 等于 2^32-1，写成八进制正好是 11 位的 37777777777。易错点：格式符只改变「怎么解释这串比特」，不改变比特本身，别以为 %o 会输出符号或只输出低 8 位。\n\n【实机验证·Godbolt cg132 -O0】-1|0377 仍为 -1；%o 按无符号输出 37777777777。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int a=-1;\na=a|0377;\nprintf(\"%d,%o\\n\",a,a);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint a=-1;\na=a|0377;\nprintf(\"%d,%o\\n\",a,a);\n    return 0;\n}",
       "answer": "-1,37777777777",
       "id": "c-ch11-cr-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -254,15 +254,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.36（PDF p262 / 书页 p251）",
       "difficulty": 3,
       "stem": "【题 11.36】请读程序段：以上程序段的输出结果是【 】。",
-      "explanation": "输出 mmm。m=20，n=025 前导 0 表示八进制，等于 2×8+5=21；20^21=00010100^00010101=00000001=1，非 0 即真，走 if 分支打印 mmm。异或的性质是「两数相同得 0、不同得非 0」，常用来找出差异位。易错点：把 025 当十进制 25 算，虽然 20^25=13 也非 0，但推理已经错了。",
+      "explanation": "输出 mmm。m=20，n=025 前导 0 表示八进制，等于 2×8+5=21；20^21=00010100^00010101=00000001=1，非 0 即真，走 if 分支打印 mmm。异或的性质是「两数相同得 0、不同得非 0」，常用来找出差异位。易错点：把 025 当十进制 25 算，虽然 20^25=13 也非 0，但推理已经错了。\n\n【实机验证·Godbolt cg132 -O0】n=025(八进制)=21，20^21=1 非零走 if。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int m=20,n=025;\nif (m^n) printf(\"mmm\\n\");\nelse printf(\"nnn\\n\");",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint m=20,n=025;\nif (m^n) printf(\"mmm\\n\");\nelse printf(\"nnn\\n\");\n    return 0;\n}",
       "answer": "mmm",
       "id": "c-ch11-cr-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -271,15 +271,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.37（PDF p262 / 书页 p251）",
       "difficulty": 3,
       "stem": "【题 11.37】请读程序段：上面程序段的输出结果是【 】。",
-      "explanation": "输出 -2。按位取反有公式 ~x = -x-1：x=1 的补码是 …00000001，逐位翻转得 …11111110，按补码解释就是 -2。这也说明取反与求负不是一回事，-x 等于 ~x+1。易错点：以为 ~1 得 0，那是逻辑非 !1 的结果。",
+      "explanation": "输出 -2。按位取反有公式 ~x = -x-1：x=1 的补码是 …00000001，逐位翻转得 …11111110，按补码解释就是 -2。这也说明取反与求负不是一回事，-x 等于 ~x+1。易错点：以为 ~1 得 0，那是逻辑非 !1 的结果。\n\n【实机验证·Godbolt cg132 -O0】~1 = -2（补码）。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int x=1;\nprintf(\"%d\\n\", ~x );",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint x=1;\nprintf(\"%d\\n\", ~x );\n    return 0;\n}",
       "answer": "-2",
       "id": "c-ch11-cr-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -339,15 +339,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.41（PDF p262 / 书页 p251）",
       "difficulty": 3,
       "stem": "【题 11.41】请读程序段：以上程序段的输出结果是【 】。",
-      "explanation": "输出 1,4,4。gcc 对函数实参采用从右向左求值：先取第三个 a（16），再算 a=a>>2 使 a 变成 4，最后算第一个 a>>2=4>>2=1，于是打印 1,4,4。同一个表达式里既修改 a 又读取 a，C 标准不规定各实参的求值顺序，这属于未指定/未定义行为，本答案以 gcc -O0 为准。易错点：按从左到右推会得 4,4,4，不同编译器结果不同，实际编程必须避免这种写法。",
+      "explanation": "输出 1,4,4。gcc 对函数实参采用从右向左求值：先取第三个 a（16），再算 a=a>>2 使 a 变成 4，最后算第一个 a>>2=4>>2=1，于是打印 1,4,4。同一个表达式里既修改 a 又读取 a，C 标准不规定各实参的求值顺序，这属于未指定/未定义行为，本答案以 gcc -O0 为准。易错点：按从左到右推会得 4,4,4，不同编译器结果不同，实际编程必须避免这种写法。\n\n【实机验证·Godbolt cg132 -O0】printf 实参求值顺序标准未规定，且 a=a>>2 与同表达式内对 a 的读取无序列点（属未定义行为）；gcc cg132 -O0 按右到左求值得 1,4,4，与书末一致。答案以本机 gcc 实测为准，换编译器/优化级可能不同。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "unsigned a=16;\nprintf(\"%d,%d,%d\\n\",a>>2,a=a>>2,a);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nunsigned a=16;\nprintf(\"%d,%d,%d\\n\",a>>2,a=a>>2,a);\n    return 0;\n}",
       "answer": "1,4,4",
       "id": "c-ch11-cr-011",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -474,15 +474,16 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第11章 位运算 题11.50（PDF p265 / 书页 p254）",
       "difficulty": 3,
       "stem": "【题 11.50】请读以下函数：假设机器的无符号整数字长为 16 位。若调用此函数时 x=0115032，p=7，n=4，则函数返回值的八进制数是【 】。",
-      "explanation": "书末答案给 0，但按题面表达式实算得不到 0，本题存疑。x=0115032=0x9A1A，p+1-n=4：x<<4 按 16 位截断得 0xA1A0，掩码 ~((unsigned)~0>>4)=~0x0FFF=0xF000，相与得 0xA000，八进制 120000。只有把掩码里的 >>n 换成 <<n（~((unsigned)~0<<4)=0x000F）结果才恰好是 0，与答案一致，可见题面或答案有一处印刷差错。易错点：此函数与 K&R 的 getbits(x,p,n)=(x>>(p+1-n))&~(~0<<n) 形似而实非，别直接套结论。",
+      "explanation": "本题为经典 getbits 取位段函数的变体，但存在多重问题，按描述性试题处理、不进自动判分。其一，印刷代码 x=((x<<(p+1-n)) & ~((unsigned)~0>>n)) 用的是左移，与标准 getbits 的右移版 (x>>(p+1-n)) & ~(~0<<n) 不一致，疑为 OCR/排版缺陷；其二，题面假设 unsigned 字长 16 位，而判分机为 32 位，两种字长下 ~((unsigned)~0>>n) 的掩码与移位结果不同；其三，书末答案 0 与按其给定式手算的结果矛盾。故无法实机唯一复现。学习要点：getbits(x,p,n) 的目标是取 x 中从右往左第 p 位起的 n 位，标准写法为 (x>>(p+1-n)) & ~(~0<<n)，其中 ~(~0<<n) 生成低 n 位全 1 的掩码。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
       "code": "getbits(unsigned x,unsigned p,unsigned n)\n{ x=((x<<(p+1-n)) & ~((unsigned)~0>>n));\n  return(x);\n}",
-      "answer": "0",
+      "answer": "",
       "id": "c-ch11-cr-016",
-      "verified": false
+      "verified": false,
+      "answerIsDescription": true
     },
     {
       "category": "c",

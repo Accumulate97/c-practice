@@ -64,15 +64,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.62（PDF p74 / 书页 p63）",
       "difficulty": 3,
       "stem": "【题 5.62】执行下面程序段后，k的值是【 】。",
-      "explanation": "结论：k=36。关键：do-while 逐位处理 n=263：k=1×3=3、n=26；k=3×6=18、n=2；k=18×2=36、n=0，条件为假结束。易错点：do-while 先执行循环体再判条件；n%10 取个位、n/=10 砍个位，两操作顺序不能颠倒。",
+      "explanation": "结论：k=36。关键：do-while 逐位处理 n=263：k=1×3=3、n=26；k=3×6=18、n=2；k=18×2=36、n=0，条件为假结束。易错点：do-while 先执行循环体再判条件；n%10 取个位、n/=10 砍个位，两操作顺序不能颠倒。\n\n【实机验证·Godbolt cg132 -O0】题面求 k 的值，补 int k,n; 定义并在末尾打印 k。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "k=1; n=263;\ndo { k*=n%10; n/=10; } while(n);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int k, n;\nk=1; n=263;\ndo { k*=n%10; n/=10; } while(n);\n    printf(\"%d\", k);\n    return 0;\n}",
       "answer": "36",
       "id": "c-ch05-cr-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -81,15 +81,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.63（PDF p74 / 书页 p63）",
       "difficulty": 3,
       "stem": "【题 5.63】下面程序段中循环体的执行次数是【 】。",
-      "explanation": "结论：循环体执行 3 次。关键：①b=2、a=10-(2+2)=6；②b=4、a=6-(2+4)=0；③b=6、a=0-(2+6)=-8，条件 a>=0 为假结束。易错点：a-=2+b 减的是 (2+b) 整体，且用的是本轮已更新的 b；do-while 至少执行一次，第 3 次执行完才判出失败。",
+      "explanation": "结论：循环体执行 3 次。关键：①b=2、a=10-(2+2)=6；②b=4、a=6-(2+4)=0；③b=6、a=0-(2+6)=-8，条件 a>=0 为假结束。易错点：a-=2+b 减的是 (2+b) 整体，且用的是本轮已更新的 b；do-while 至少执行一次，第 3 次执行完才判出失败。\n\n【实机验证·Godbolt cg132 -O0】题面求循环体执行次数；原片段无计数变量，故加 count 在循环体首自增以观测次数（不影响循环逻辑），末尾打印 count。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "a=10; b=0;\ndo { b+=2; a-=2+b; }while (a>=0);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int a, b, count = 0;\na=10; b=0;\ndo { count++; b+=2; a-=2+b; }while (a>=0);\n    printf(\"%d\", count);\n    return 0;\n}",
       "answer": "3",
       "id": "c-ch05-cr-005",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -98,15 +98,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.64（PDF p74 / 书页 p63）",
       "difficulty": 3,
       "stem": "【题 5.64】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 **。关键：! 优先级高于 ==，!x==0 即 (!x)==0，等价于 x!=0：x=2 时打印 * 后 x=1，条件真再循环；x=1 打印 * 后 x=0，(!0)==0 为假结束。易错点：把 !x==0 误读成 !(x==0)——那将恒为真成死循环；优先级决定语义。",
+      "explanation": "结论：输出 **。关键：! 优先级高于 ==，!x==0 即 (!x)==0，等价于 x!=0：x=2 时打印 * 后 x=1，条件真再循环；x=1 打印 * 后 x=0，(!0)==0 为假结束。易错点：把 !x==0 误读成 !(x==0)——那将恒为真成死循环；优先级决定语义。\n\n【实机验证·Godbolt cg132 -O0】补 int x; 定义。注意 while(!x==0) 等价于 while((!x)==0)。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "x=2;\ndo {  printf (\"*\"); x--;   } while (!x==0);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int x;\nx=2;\ndo {  printf (\"*\"); x--;   } while (!x==0);\n    return 0;\n}",
       "answer": "**",
       "id": "c-ch05-cr-006",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -115,15 +115,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.65（PDF p74 / 书页 p63）",
       "difficulty": 3,
       "stem": "【题 5.65】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 a=-5。关键：s 每轮取反交替 ±1，i 从 1 递增到 10，a=1-2+3-4+5-6+7-8+9-10=-5。易错点：循环在 i=10 那轮执行完后 i 变 11 才退出，共 10 项全算；符号由 s 控制、项值由 i 控制，两者独立变化。",
+      "explanation": "结论：输出 a=-5。关键：s 每轮取反交替 ±1，i 从 1 递增到 10，a=1-2+3-4+5-6+7-8+9-10=-5。易错点：循环在 i=10 那轮执行完后 i 变 11 才退出，共 10 项全算；符号由 s 控制、项值由 i 控制，两者独立变化。\n\n【实机验证·Godbolt cg132 -O0】补 int i,a,s; 定义。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "i=1; a=0;s=1;\ndo { a=a+s * i; s=-s; i++; } while( i<=10 );\nprintf(\"a=%d\",a);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int i, a, s;\ni=1; a=0;s=1;\ndo { a=a+s * i; s=-s; i++; } while( i<=10 );\nprintf(\"a=%d\",a);\n    return 0;\n}",
       "answer": "a=-5",
       "id": "c-ch05-cr-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -236,15 +236,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.76（PDF p77 / 书页 p66）",
       "difficulty": 3,
       "stem": "【题 5.76】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 -1，循环体一次也不执行。关键：条件 -1<=i<1 自左向右求值：(-1<=-1) 得 1，再算 1<1 为假，直接跳过循环；循环后 printf 打印 i 的初值 -1，%2d 下恰占 2 列。易错点：C 没有连写区间比较，-1<=i<1 实为 ((-1<=i)<1)，左边结果只能是 0/1，再与 1 比较恒为假——经典陷阱写法。",
+      "explanation": "结论：输出 -1，循环体一次也不执行。关键：条件 -1<=i<1 自左向右求值：(-1<=-1) 得 1，再算 1<1 为假，直接跳过循环；循环后 printf 打印 i 的初值 -1，%2d 下恰占 2 列。易错点：C 没有连写区间比较，-1<=i<1 实为 ((-1<=i)<1)，左边结果只能是 0/1，再与 1 比较恒为假——经典陷阱写法。\n\n【实机验证·Godbolt cg132 -O0】补 int a,i; 定义。条件 -1<=i<1 即 ((-1<=i)<1)，i=-1 时 (1<1) 为假，循环 0 次。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "for(a=1,i=-1; -1<=i<1; i++)\n{   a++; printf(\"%2d\",a); }\nprintf(\"%2d\",i);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int a, i;\nfor(a=1,i=-1; -1<=i<1; i++)\n{   a++; printf(\"%2d\",a); }\nprintf(\"%2d\",i);\n    return 0;\n}",
       "answer": "-1",
       "id": "c-ch05-cr-012",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -373,15 +373,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.92（PDF p82 / 书页 p71）",
       "difficulty": 3,
       "stem": "【题 5.92】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 8。关键：s 依次为 4、7、11、17，i 依次为 2、4、5、7；s=7 那一轮命中 s%7==0 执行 continue，跳过 ++i 直接回到条件判断，最后 s=17 使 s<15 为假退出，此时 i=8。易错点：do-while 里的 continue 仍会先求 while 条件，不会因此死循环。",
+      "explanation": "结论：输出 8。关键：s 依次为 4、7、11、17，i 依次为 2、4、5、7；s=7 那一轮命中 s%7==0 执行 continue，跳过 ++i 直接回到条件判断，最后 s=17 使 s<15 为假退出，此时 i=8。易错点：do-while 里的 continue 仍会先求 while 条件，不会因此死循环。\n\n【实机验证·Godbolt cg132 -O0】补 int i,s; 定义。continue 跳过 else 分支的 ++i。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "i=1; s=3;\ndo\n{   s+=i++;\n    if(s%7==0) continue;\n    else ++i;\n} while(s<15);\nprintf(\"%d\",i);",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    int i, s;\ni=1; s=3;\ndo\n{   s+=i++;\n    if(s%7==0) continue;\n    else ++i;\n} while(s<15);\nprintf(\"%d\",i);\n    return 0;\n}",
       "answer": "8",
       "id": "c-ch05-cr-020",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

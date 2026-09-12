@@ -167,15 +167,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.41（PDF p275 / 书页 p264）",
       "difficulty": 4,
       "stem": "【题 12.41】假设磁盘上有3个文本文件，其文件名和内容分别为：f1→aaa!、f2→bbb!、f3→ccc!。此外，磁盘上还有以下程序，经编译、连接后生成为e12_41.exe的可执行文件。若在系统提示符下输入：e12_42 f1 f2 f3 ＜回车＞，则程序的运行结果是______。",
-      "explanation": "输出 bbbcccddd。命令行 e12_42 f1 f2 f3 使 argc=4、argv[1]~argv[3] 是三个文件名，while(--argc>0) 正好循环 3 次，依次打开 f1、f2、f3；sub() 用 getc 逐字符读，把每个字符的编码加 1 后 putchar，读到 '!' 就停且不输出它，于是 aaa!→bbb、bbb!→ccc、ccc!→ddd。易错点：c+1 是字符编码加一（'a'+1='b'），三行输出连成一片是因为代码里没有输出换行。",
+      "explanation": "输出 bbbcccddd。命令行 e12_42 f1 f2 f3 使 argc=4、argv[1]~argv[3] 是三个文件名，while(--argc>0) 正好循环 3 次，依次打开 f1、f2、f3；sub() 用 getc 逐字符读，把每个字符的编码加 1 后 putchar，读到 '!' 就停且不输出它，于是 aaa!→bbb、bbb!→ccc、ccc!→ddd。易错点：c+1 是字符编码加一（'a'+1='b'），三行输出连成一片是因为代码里没有输出换行。\n\n【实机验证·Godbolt cg132 -O0】原题依赖命令行参数与磁盘文件 f1/f2/f3；实机改等价自包含写法：先按题面生成三个文件，再用内置 argv 走原 while+sub 逻辑，输出同原题。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\nint main(int argc,char * argv[ ])\n{ FILE * fp;\n  void sub( );\n  int i=1;\n  while(--argc>0)\n    if ((fp=fopen(argv[i++],\"r\"))==NULL)\n      { printf(\"Cannot open file !\\n\");\n        exit(1);}\n    else\n      { sub(fp);  fclose(fp);}\n  return 0;\n}\nvoid sub( FILE * fp)\n{ char c;\n  while((c=getc(fp))!='!') putchar(c+1);\n}",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid sub(FILE *fp);\n\nint main(void)\n{\n    /* 原题前提：磁盘上 f1->aaa! f2->bbb! f3->ccc!；等价自包含预先生成 */\n    FILE *w;\n    w = fopen(\"f1\", \"w\"); if (w) { fputs(\"aaa!\", w); fclose(w); }\n    w = fopen(\"f2\", \"w\"); if (w) { fputs(\"bbb!\", w); fclose(w); }\n    w = fopen(\"f3\", \"w\"); if (w) { fputs(\"ccc!\", w); fclose(w); }\n\n    /* 原题命令行 e12_42 f1 f2 f3 → 等价自包含 argv */\n    char *argv[] = {\"e12_42\", \"f1\", \"f2\", \"f3\"};\n    int argc = 4;\n    FILE *fp;\n    int i = 1;\n    while (--argc > 0)\n        if ((fp = fopen(argv[i++], \"r\")) == NULL)\n        { printf(\"Cannot open file !\\n\"); exit(1); }\n        else\n        { sub(fp); fclose(fp); }\n    return 0;\n}\n\nvoid sub(FILE *fp)\n{\n    char c;\n    while ((c = getc(fp)) != '!') putchar(c + 1);\n}",
       "answer": "bbbcccddd",
       "id": "c-ch12-cr-001",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -184,15 +184,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第12章 文件 题12.43（PDF p276 / 书页 p265）",
       "difficulty": 4,
       "stem": "【题 12.43】假设执行以下程序之前文件e12_43.txt的内容为：sample，则程序运行后的结果是______。",
-      "explanation": "输出 position=6 与 position=18（两行）。以 \"a\" 追加方式打开时位置指针落在文件末尾，原内容 sample 共 6 个字符，所以第一次 ftell 得 6；fprintf 写入 sample data\\n 共 12 个字符，6+12=18。易错点：把 \"a\" 当成 \"w\"（会先清空文件、ftell 得 0）；另外 C 标准只保证追加模式下第一次写入发生在末尾，打开后立即 ftell 的值属实现定义，glibc 等常见实现给 6。",
+      "explanation": "输出 position=6 与 position=18（两行）。以 \"a\" 追加方式打开时位置指针落在文件末尾，原内容 sample 共 6 个字符，所以第一次 ftell 得 6；fprintf 写入 sample data\\n 共 12 个字符，6+12=18。易错点：把 \"a\" 当成 \"w\"（会先清空文件、ftell 得 0）；另外 C 标准只保证追加模式下第一次写入发生在末尾，打开后立即 ftell 的值属实现定义，glibc 等常见实现给 6。\n\n【实机验证·Godbolt cg132 -O0】原题前提为文件已有 sample（6 字节），实机先生成该文件复现前提，再 \"a\" 追加：首个 ftell=6、写入 sample data\\n（12 字节）后 ftell=18，与书末 position=6/18 一致。若不预置文件则得 0/12（非题面前提）。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\nint main ( )\n{ FILE * fp;\n  long position;\n  fp=fopen (\"e12_43.txt\",\"a\");\n  position=ftell(fp);\n  printf ( \"position=%ld\\n\" , position );\n  fprintf (fp ,\"sample data\\n\" );\n  position=ftell(fp);\n  printf ( \"position=%ld\\n\" , position );\n  fclose (fp);\n  return 0;\n}",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    /* 原题前提：执行前 e12_43.txt 已有内容 sample（6 字节）；等价自包含先写入 */\n    FILE *init = fopen(\"e12_43.txt\", \"w\");\n    if (init) { fputs(\"sample\", init); fclose(init); }\n\n    FILE *fp;\n    long position;\n    fp = fopen(\"e12_43.txt\", \"a\");\n    position = ftell(fp);\n    printf(\"position=%ld\\n\", position);\n    fprintf(fp, \"sample data\\n\");\n    position = ftell(fp);\n    printf(\"position=%ld\\n\", position);\n    fclose(fp);\n    return 0;\n}",
       "answer": "position=6\nposition=18",
       "id": "c-ch12-cr-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

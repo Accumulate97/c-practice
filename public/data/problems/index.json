@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "3987745bdac604d8",
+  "content_sha": "a6e6b8993ef459f7",
   "schema_version": 1,
   "data_version": "0.1.0",
   "count": 2074,
@@ -3259,7 +3259,7 @@
       "section": "3.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.31】已有定义 int d=-2",
       "file": "c-ch03.json"
@@ -3272,7 +3272,7 @@
       "section": "3.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.32】已有定义 int d=-2",
       "file": "c-ch03.json"
@@ -3285,7 +3285,7 @@
       "section": "3.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 3.33】已有定义 float d1=3.5",
       "file": "c-ch03.json"
@@ -3792,7 +3792,7 @@
       "section": "3.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "printf",
         "标志字符",
@@ -5135,7 +5135,7 @@
       "section": "4.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": true,
+      "verified": false,
       "tags": [],
       "title": "【题 4.57】以下程序的功能是【 】",
       "file": "c-ch04.json"
@@ -5408,7 +5408,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.89】若a、b、c均已正确定义且a=0、b=2、c=3",
       "file": "c-ch04.json"
@@ -5434,7 +5434,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.92】若有以下程序段",
       "file": "c-ch04.json"
@@ -5447,7 +5447,7 @@
       "section": "4.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 4.93】以下程序段的输出结果是【 】",
       "file": "c-ch04.json"
@@ -6766,7 +6766,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.62】执行下面程序段后",
       "file": "c-ch05.json"
@@ -6779,7 +6779,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.63】下面程序段中循环体的执行次数是【 】",
       "file": "c-ch05.json"
@@ -6792,7 +6792,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.64】下面程序段的运行结果是【 】",
       "file": "c-ch05.json"
@@ -6805,7 +6805,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.65】下面程序段的运行结果是【 】",
       "file": "c-ch05.json"
@@ -6883,7 +6883,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.76】下面程序段的运行结果是【 】",
       "file": "c-ch05.json"
@@ -6987,7 +6987,7 @@
       "section": "5.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 5.92】下面程序段的运行结果是【 】",
       "file": "c-ch05.json"
@@ -9013,7 +9013,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.57】若有以下输入",
       "file": "c-ch06.json"
@@ -9039,7 +9039,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.60】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9065,7 +9065,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.63】下面程序 wdm 的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9117,7 +9117,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.71】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9260,7 +9260,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.95】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9273,7 +9273,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.96】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9299,7 +9299,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.98】下面程序的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9377,7 +9377,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.105】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9390,7 +9390,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.107】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -9455,7 +9455,7 @@
       "section": "6.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.119】下面程序段的运行结果是【 】",
       "file": "c-ch06.json"
@@ -15687,7 +15687,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.167】若以下 main 函数",
       "file": "c-ch09.json"
@@ -15713,7 +15713,7 @@
       "section": "9.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 9.170】设有以下 main 函数",
       "file": "c-ch09.json"
@@ -20416,7 +20416,7 @@
       "section": "11.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 11.26】请读程序段",
       "file": "c-ch11.json"
@@ -20468,7 +20468,7 @@
       "section": "11.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 11.30】请读程序段",
       "file": "c-ch11.json"
@@ -20546,7 +20546,7 @@
       "section": "11.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 11.36】请读程序段",
       "file": "c-ch11.json"
@@ -20559,7 +20559,7 @@
       "section": "11.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 11.37】请读程序段",
       "file": "c-ch11.json"
@@ -20611,7 +20611,7 @@
       "section": "11.2 填空题",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 11.41】请读程序段",
       "file": "c-ch11.json"
@@ -21934,7 +21934,7 @@
       "section": "12.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.41】假设磁盘上有3个文本文件",
       "file": "c-ch12.json"
@@ -21947,7 +21947,7 @@
       "section": "12.2 填空题",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 12.43】假设执行以下程序之前文件e12_43.txt的内容为",
       "file": "c-ch12.json"
@@ -22545,7 +22545,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgetc",
         "字符统计"
@@ -22561,7 +22561,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "单词统计"
@@ -22577,7 +22577,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "行数统计"
@@ -22593,7 +22593,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "求和"
@@ -22609,7 +22609,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fseek",
         "ftell",
@@ -22626,7 +22626,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "understand",
-      "verified": false,
+      "verified": true,
       "tags": [
         "rewind",
         "fgetc"
@@ -22642,7 +22642,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件复制",
         "fputc"
@@ -22658,7 +22658,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "参数n",
@@ -22675,7 +22675,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "feof",
         "多循环一次"
@@ -22691,7 +22691,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "分类统计"
@@ -22707,7 +22707,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fprintf",
         "格式化写文件"
@@ -22723,7 +22723,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fwrite",
         "fread",
@@ -22740,7 +22740,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fwrite",
         "二进制长度"
@@ -22756,7 +22756,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fseek",
         "随机读取"
@@ -22772,7 +22772,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文本存储",
         "二进制存储"
@@ -22788,7 +22788,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件复制",
         "大小写转换"
@@ -22804,7 +22804,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "行号输出"
@@ -22820,7 +22820,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "读取中断"
@@ -22836,7 +22836,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgetc",
         "空白统计"
@@ -22852,7 +22852,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fopen",
         "失败检查"
@@ -22868,7 +22868,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgetc",
         "失败检查",
@@ -22885,7 +22885,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "逐行读取"
@@ -22901,7 +22901,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "返回值"
@@ -22917,7 +22917,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fseek",
         "ftell",
@@ -22934,7 +22934,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件复制",
         "fputc",
@@ -22951,7 +22951,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fwrite",
         "fread",
@@ -22968,7 +22968,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "feof",
         "ferror",
@@ -22985,7 +22985,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 1,
       "bloom": "remember",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fopen",
         "模式"
@@ -23001,7 +23001,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "strlen",
@@ -23018,7 +23018,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fputs",
         "fgets"
@@ -23034,7 +23034,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgetc",
         "EOF",
@@ -23051,7 +23051,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件复制",
         "fputc",
@@ -23068,7 +23068,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fseek",
         "SEEK_END",
@@ -23086,7 +23086,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件操作全流程",
         "字符/单词/行统计"
@@ -23102,7 +23102,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "文件复制",
         "大小写转换"
@@ -23118,7 +23118,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fscanf",
         "最值统计"
@@ -23134,7 +23134,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二进制文件",
         "fseek",
@@ -23151,7 +23151,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fwrite",
         "fread",
@@ -23169,7 +23169,7 @@
       "section": "12.5 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "fgets",
         "最长行"
@@ -30773,6 +30773,6 @@
     }
   ],
   "defects": {
-    "codeReadingNoAnswer": 1
+    "codeReadingNoAnswer": 6
   }
 }

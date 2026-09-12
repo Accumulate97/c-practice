@@ -134,15 +134,16 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.57（PDF p96 / 书页 p85）",
       "difficulty": 3,
       "stem": "【题 6.57】若有以下输入，则下面程序段的运行结果是【 】。\n输入：7  10  5  4  6  7  9  8  3  2  4  6  12  2  -1<回车>",
-      "explanation": "结论：输出 10 4 6 8 2 4 6 12 2，每个数占 3 位且后跟一个空格。关键：第一个 while 读到 -1 为止，把 14 个数存进 b[1..14]；第二个循环把偶数依次搬回 b 的前端，j 记偶数个数 9；写入位置 j 始终不超前读取位置 i，所以边读边覆盖不会丢数据。易错点：数组下标从 1 开始使用，b[0] 全程未用；-1 只是结束标志不入数组。",
+      "explanation": "结论：输出 10 4 6 8 2 4 6 12 2，每个数占 3 位且后跟一个空格。关键：第一个 while 读到 -1 为止，把 14 个数存进 b[1..14]；第二个循环把偶数依次搬回 b 的前端，j 记偶数个数 9；写入位置 j 始终不超前读取位置 i，所以边读边覆盖不会丢数据。易错点：数组下标从 1 开始使用，b[0] 全程未用；-1 只是结束标志不入数组。\n\n【实机验证·Godbolt cg132 -O0】题面给定输入序列，已写入 stdin 字段供实机喂入。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int b[51],x,i,j=0,n=0;\nscanf(\"%d\",&x);\nwhile(x > -1) { b[++n]=x; scanf(\"%d\", &x );}\nfor( i=1; i<=n; i++)\n    if (b[i] % 2==0) b[++j]=b[i];\nfor( i=1; i<=j; i++) printf(\"%3d \", b[i]); printf(\"\\n\");",
-      "answer": " 10   4   6   8   2   4   6  12   2 ",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint b[51],x,i,j=0,n=0;\nscanf(\"%d\",&x);\nwhile(x > -1) { b[++n]=x; scanf(\"%d\", &x );}\nfor( i=1; i<=n; i++)\n    if (b[i] % 2==0) b[++j]=b[i];\nfor( i=1; i<=j; i++) printf(\"%3d \", b[i]); printf(\"\\n\");\n    return 0;\n}",
+      "answer": " 10   4   6   8   2   4   6  12   2",
       "id": "c-ch06-cr-001",
-      "verified": false
+      "verified": true,
+      "stdin": "7 10 5 4 6 7 9 8 3 2 4 6 12 2 -1\n"
     },
     {
       "category": "c",
@@ -208,15 +209,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.60（PDF p97 / 书页 p86）",
       "difficulty": 3,
       "stem": "【题 6.60】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 3 5 8。关键：从 x[2] 起每项等于前两项之和，即 1+2=3、2+3=5、3+5=8，属斐波那契式递推；第二个循环只打印下标 2~4。易错点：x[0]、x[1] 必须先赋值，否则递推会读到未初始化的值（这是 UB，以 -O0 为准）；打印范围不含前两项。",
+      "explanation": "结论：输出 3 5 8。关键：从 x[2] 起每项等于前两项之和，即 1+2=3、2+3=5、3+5=8，属斐波那契式递推；第二个循环只打印下标 2~4。易错点：x[0]、x[1] 必须先赋值，否则递推会读到未初始化的值（这是 UB，以 -O0 为准）；打印范围不含前两项。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int x[5],i;\nx[0]=1; x[1]=2;\nfor(i=2; i<5; i++) x[i]=x[i-1]+x[i-2];\nfor(i=2; i<5; i++) printf(\"%d \",x[i]);",
-      "answer": "3 5 8 ",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint x[5],i;\nx[0]=1; x[1]=2;\nfor(i=2; i<5; i++) x[i]=x[i-1]+x[i-2];\nfor(i=2; i<5; i++) printf(\"%d \",x[i]);\n    return 0;\n}",
+      "answer": "3 5 8",
       "id": "c-ch06-cr-002",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -242,15 +243,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.63（PDF p98 / 书页 p87）",
       "difficulty": 3,
       "stem": "【题 6.63】下面程序 wdm 的运行结果是【 】。",
-      "explanation": "结论：输出 4。关键：y[x[i]]++ 是典型的计数数组用法，把 x 中每个值当下标去累加，y[3] 就是值 3 的出现次数；x 中的 3 出现在第 2、4、7、10 个位置，共 4 次。易错点：y[4]={0} 只显式给了 y[0]，其余靠自动补 0；若局部数组不写 ={0}，计数起点就是垃圾值。",
+      "explanation": "结论：输出 4。关键：y[x[i]]++ 是典型的计数数组用法，把 x 中每个值当下标去累加，y[3] 就是值 3 的出现次数；x 中的 3 出现在第 2、4、7、10 个位置，共 4 次。易错点：y[4]={0} 只显式给了 y[0]，其余靠自动补 0；若局部数组不写 ={0}，计数起点就是垃圾值。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int i,x[10]={ 2,3,0,3,0,2,3,2,1,3 },y[4]={0};\nfor( i=0;i<10;i++) y[x[i]]++;\nprintf(\"%d\\n\",y[3]);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint i,x[10]={ 2,3,0,3,0,2,3,2,1,3 },y[4]={0};\nfor( i=0;i<10;i++) y[x[i]]++;\nprintf(\"%d\\n\",y[3]);\n    return 0;\n}",
       "answer": "4",
       "id": "c-ch06-cr-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -345,15 +346,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.71（PDF p101 / 书页 p90）",
       "difficulty": 3,
       "stem": "【题 6.71】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出以空行开头，三行分别是 1 1 2 3、5 8 13 21、34 55（每行前都有换行，末尾无换行）。关键：f 是斐波那契数列前 10 项；打印时 i%4==0 先换行，10 项被切成 4+4+2 三组。易错点：i=0 时就先打了一个换行，所以整体以空行起头；最后一组只有 2 个数且没有收尾换行。",
+      "explanation": "结论：输出以空行开头，三行分别是 1 1 2 3、5 8 13 21、34 55（每行前都有换行，末尾无换行）。关键：f 是斐波那契数列前 10 项；打印时 i%4==0 先换行，10 项被切成 4+4+2 三组。易错点：i=0 时就先打了一个换行，所以整体以空行起头；最后一组只有 2 个数且没有收尾换行。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int i,f[10];\nf[0]=f[1]=1;\nfor(i=2;i<10;i++)\n    f[i]=f[i-2]+f[i-1];\nfor(i=0;i<10;i++)\n{   if(i%4==0) printf(\"\\n\");\n    printf(\"%3d\",f[i]);\n}",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint i,f[10];\nf[0]=f[1]=1;\nfor(i=2;i<10;i++)\n    f[i]=f[i-2]+f[i-1];\nfor(i=0;i<10;i++)\n{   if(i%4==0) printf(\"\\n\");\n    printf(\"%3d\",f[i]);\n}\n    return 0;\n}",
       "answer": "\n  1  1  2  3\n  5  8 13 21\n 34 55",
       "id": "c-ch06-cr-007",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -632,15 +633,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.95（PDF p110 / 书页 p99）",
       "difficulty": 3,
       "stem": "【题 6.95】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 5×5 的单位矩阵，主对角线是 1、其余是 0，每个数占 2 位。关键：a[i][j]=(i/j)*(j/i) 全走整数除法，i==j 时两个商都是 1、乘积 1；i>j 时 j/i 为 0，i<j 时 i/j 为 0，乘积必为 0。易错点：赋值与打印的下标都从 1 开始，第 0 行第 0 列既未赋值也不输出；若换成浮点除法，结果会全变成 1。",
+      "explanation": "结论：输出 5×5 的单位矩阵，主对角线是 1、其余是 0，每个数占 2 位。关键：a[i][j]=(i/j)*(j/i) 全走整数除法，i==j 时两个商都是 1、乘积 1；i>j 时 j/i 为 0，i<j 时 i/j 为 0，乘积必为 0。易错点：赋值与打印的下标都从 1 开始，第 0 行第 0 列既未赋值也不输出；若换成浮点除法，结果会全变成 1。\n\n【实机验证·Godbolt cg132 -O0】(i/j)*(j/i) 仅 i==j 时为 1，其余为 0，得单位阵。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int a[6][6],i,j;\nfor(i=1;i<6;i++)\n      for(j=1;j<6;j++)\n            a[i][j]=(i/j) * (j/i);\nfor(i=1;i<6;i++)\n{  for(j=1;j<6;j++)\n      printf(\"%2d\",a[i][j]);\n    printf(\"\\n\");\n}",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint a[6][6],i,j;\nfor(i=1;i<6;i++)\n      for(j=1;j<6;j++)\n            a[i][j]=(i/j) * (j/i);\nfor(i=1;i<6;i++)\n{  for(j=1;j<6;j++)\n      printf(\"%2d\",a[i][j]);\n    printf(\"\\n\");\n}\n    return 0;\n}",
       "answer": " 1 0 0 0 0\n 0 1 0 0 0\n 0 0 1 0 0\n 0 0 0 1 0\n 0 0 0 0 1",
       "id": "c-ch06-cr-015",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -649,15 +650,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.96（PDF p110 / 书页 p99）",
       "difficulty": 3,
       "stem": "【题 6.96】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 1 6 120。关键：第一个循环用 f 累乘阶乘并逐项存入 a，得 a[1]=1、a[2]=2、a[3]=6、a[4]=24、a[5]=120；第二个循环步长 2 只打印奇数下标 1、3、5。易错点：f 必须在循环外初始化为 1；a[0] 未赋值，所以打印刻意从下标 1 开始。",
+      "explanation": "结论：输出 1 6 120。关键：第一个循环用 f 累乘阶乘并逐项存入 a，得 a[1]=1、a[2]=2、a[3]=6、a[4]=24、a[5]=120；第二个循环步长 2 只打印奇数下标 1、3、5。易错点：f 必须在循环外初始化为 1；a[0] 未赋值，所以打印刻意从下标 1 开始。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int a[6],i,f=1;\nfor( i=1;i<=5;i++)\n{  f=f*i; a[i]=f; }\nfor( i=1;i<=5;i+=2 )\n      printf(\"%d \",a[i] );",
-      "answer": "1 6 120 ",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint a[6],i,f=1;\nfor( i=1;i<=5;i++)\n{  f=f*i; a[i]=f; }\nfor( i=1;i<=5;i+=2 )\n      printf(\"%d \",a[i] );\n    return 0;\n}",
+      "answer": "1 6 120",
       "id": "c-ch06-cr-016",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -683,15 +684,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.98（PDF p111 / 书页 p100）",
       "difficulty": 3,
       "stem": "【题 6.98】下面程序的运行结果是【 】。",
-      "explanation": "结论：输出 1 2 1 2 3 4 5 6 7 8。关键：for 从 i=9 递减到 2 执行 a[i]=a[i-2]，等于把每个元素替换成它左边第 2 个的原值，倒序遍历保证读到的都是尚未被改写的数据；a[0]、a[1] 没有对应来源，保持 1、2 不变。易错点：若改成正序 i=2..9，读到的 a[i-2] 已是新值，结果会变成 1 2 1 2 1 2…，方向决定成败。",
+      "explanation": "结论：输出 1 2 1 2 3 4 5 6 7 8。关键：for 从 i=9 递减到 2 执行 a[i]=a[i-2]，等于把每个元素替换成它左边第 2 个的原值，倒序遍历保证读到的都是尚未被改写的数据；a[0]、a[1] 没有对应来源，保持 1、2 不变。易错点：若改成正序 i=2..9，读到的 a[i-2] 已是新值，结果会变成 1 2 1 2 1 2…，方向决定成败。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int a[10]={1,2,3,4,5,6,7,8,9,10},i,k;\nfor(i=9;i>=2;i--)\n      a[i]=a[i-2];\nfor(i=0;i<10;i++)  printf(\"%d \",a[i] );",
-      "answer": "1 2 1 2 3 4 5 6 7 8 ",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint a[10]={1,2,3,4,5,6,7,8,9,10},i,k;\nfor(i=9;i>=2;i--)\n      a[i]=a[i-2];\nfor(i=0;i<10;i++)  printf(\"%d \",a[i] );\n    return 0;\n}",
+      "answer": "1 2 1 2 3 4 5 6 7 8",
       "id": "c-ch06-cr-018",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -791,15 +792,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.105（PDF p113 / 书页 p102）",
       "difficulty": 3,
       "stem": "【题 6.105】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 600。关键：循环条件是\"当前字符仍是数字\"，每轮用 s=10*s+ch[a]-减-0 把字符逐位累积成整数：6、60、600，遇到结尾空字符停止。易错点：ch[a]-减-0 是把数字字符转成数值的关键，漏掉就变成按 ASCII 码累加；这段代码只处理非负整数，不认正负号也不认小数点。",
+      "explanation": "结论：输出 600。关键：循环条件是\"当前字符仍是数字\"，每轮用 s=10*s+ch[a]-减-0 把字符逐位累积成整数：6、60、600，遇到结尾空字符停止。易错点：ch[a]-减-0 是把数字字符转成数值的关键，漏掉就变成按 ASCII 码累加；这段代码只处理非负整数，不认正负号也不认小数点。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char ch[]=\"600\"; int a,s=0;\nfor(a=0; ch[a]>='0' && ch[a]<='9'; a++)\n      s=10*s+ch[a]-'0';\nprintf(\"%d\",s);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nchar ch[]=\"600\"; int a,s=0;\nfor(a=0; ch[a]>='0' && ch[a]<='9'; a++)\n      s=10*s+ch[a]-'0';\nprintf(\"%d\",s);\n    return 0;\n}",
       "answer": "600",
       "id": "c-ch06-cr-023",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -808,15 +809,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.107（PDF p113 / 书页 p102）",
       "difficulty": 3,
       "stem": "【题 6.107】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 he。关键：while(x[++i]) 先自增再取字符，所以判断的是 x[i]，而 if 比较的是前一个字符 x[i-1]；字符串 the teacher 中前一个字符是 t 的位置有两处（下标 0 与 4），于是打印它们后面的 h 与 e。易错点：++i 在条件里使 i 从 1 起步，下标 0 的 t 只作为\"前一个字符\"参与判断，它自己永远不会被打印。",
+      "explanation": "结论：输出 he。关键：while(x[++i]) 先自增再取字符，所以判断的是 x[i]，而 if 比较的是前一个字符 x[i-1]；字符串 the teacher 中前一个字符是 t 的位置有两处（下标 0 与 4），于是打印它们后面的 h 与 e。易错点：++i 在条件里使 i 从 1 起步，下标 0 的 t 只作为\"前一个字符\"参与判断，它自己永远不会被打印。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "char x[]=\"the teacher\";\nint i=0;\nwhile(x[++i]!='\\0')\n      if(x[i-1]=='t')   printf(\"%c\",x[i]);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nchar x[]=\"the teacher\";\nint i=0;\nwhile(x[++i]!='\\0')\n      if(x[i-1]=='t')   printf(\"%c\",x[i]);\n    return 0;\n}",
       "answer": "he",
       "id": "c-ch06-cr-024",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -893,15 +894,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第6章 数组 题6.119（PDF p117 / 书页 p106）",
       "difficulty": 3,
       "stem": "【题 6.119】下面程序段的运行结果是【 】。",
-      "explanation": "结论：输出 aabcd。关键：do-while 从 i=5 开始把 c[i-1] 复制到 c[i]，倒序执行相当于整个字符串（含结束符）右移一格，c[0] 保持原来的 a，于是 abcd 变成 aabcd。易错点：必须倒序移动，正序会把所有位置都刷成 a；c[6] 恰好容得下 5 个字符加结束符，若数组只有 5 格就会越界写。",
+      "explanation": "结论：输出 aabcd。关键：do-while 从 i=5 开始把 c[i-1] 复制到 c[i]，倒序执行相当于整个字符串（含结束符）右移一格，c[0] 保持原来的 a，于是 abcd 变成 aabcd。易错点：必须倒序移动，正序会把所有位置都刷成 a；c[6] 恰好容得下 5 个字符加结束符，若数组只有 5 格就会越界写。\n\n【实机验证·Godbolt cg132 -O0】本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "int i=5; char c[6]=\"abcd\";\ndo {c[i]=c[i-1];   } while(--i>0);\nputs(c);",
+      "code": "#include <stdio.h>\nint main(void)\n{\nint i=5; char c[6]=\"abcd\";\ndo {c[i]=c[i-1];   } while(--i>0);\nputs(c);\n    return 0;\n}",
       "answer": "aabcd",
       "id": "c-ch06-cr-029",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",

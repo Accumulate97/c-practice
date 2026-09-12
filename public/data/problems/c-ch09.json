@@ -1121,15 +1121,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.167（PDF p218 / 书页 p207）",
       "difficulty": 3,
       "stem": "【题 9.167】若以下 main 函数，经过编译、连接后得到的可执行文件名为 file1.exe，在系统的命令状态下输入命令行：file1 beijing shanghai＜回车＞，则可得到的输出是【 】。",
-      "explanation": "结论：输出两行 \"beijing\" 与 \"shanghai\"。关键：命令行 file1 beijing shanghai 使 argc=3、argv[0] 是程序名；while(argc>1) 每轮先 ++argv 再输出 *argv，于是依次打印 argv[1]、argv[2]，argc 递减到 1 时结束。易错点：本题必须带参数运行，无参执行时 argc=1，没有任何输出属正常现象。",
+      "explanation": "结论：输出两行 \"beijing\" 与 \"shanghai\"。关键：命令行 file1 beijing shanghai 使 argc=3、argv[0] 是程序名；while(argc>1) 每轮先 ++argv 再输出 *argv，于是依次打印 argv[1]、argv[2]，argc 递减到 1 时结束。易错点：本题必须带参数运行，无参执行时 argc=1，没有任何输出属正常现象。\n\n【实机验证·Godbolt cg132 -O0】原题依赖命令行参数，实机无法传 argv，已改等价自包含写法（内置 argv={\"file1\",\"beijing\",\"shanghai\"}, argc=3），循环逻辑与输出同原题。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\nint main (int argc, char  * argv[ ] )\n{   while (argc > 1 )\n    {   ++argv;\n        printf(\"%s\\n\", * argv);\n        -- argc;\n    }\n    return(0);\n}",
+      "code": "#include <stdio.h>\nint main(void)\n{\n    /* 原题命令行 file1 beijing shanghai → 等价自包含 argv */\n    char *args[] = {\"file1\", \"beijing\", \"shanghai\"};\n    char **argv = args;\n    int argc = 3;\n    while (argc > 1)\n    {\n        ++argv;\n        printf(\"%s\\n\", *argv);\n        --argc;\n    }\n    return 0;\n}",
       "answer": "beijing\nshanghai",
       "id": "c-ch09-cr-051",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1166,15 +1166,15 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第9章 指针 题9.170（PDF p218 / 书页 p207）",
       "difficulty": 3,
       "stem": "【题 9.170】设有以下 main 函数，它所在的文件名为 file1。\n若输入的命令行参数为：\nfile1 1234abc＜回车＞\n则执行以上命令行后得到的输出结果是【 】。",
-      "explanation": "结论：输出一个换行后跟 \"The count is :3.\"。关键：argc<2 时直接 return 0 什么都不输出；否则 str=argv[1] 指向 \"1234abc\"，while(*str) 逐字符用 isalpha 判断，*str++ 是\"先判断再后移\"，数出 a、b、c 共 3 个字母。易错点：数字字符不计入；必须以 file1 1234abc 方式运行，无参运行时没有输出。",
+      "explanation": "结论：输出一个换行后跟 \"The count is :3.\"。关键：argc<2 时直接 return 0 什么都不输出；否则 str=argv[1] 指向 \"1234abc\"，while(*str) 逐字符用 isalpha 判断，*str++ 是\"先判断再后移\"，数出 a、b、c 共 3 个字母。易错点：数字字符不计入；必须以 file1 1234abc 方式运行，无参运行时没有输出。\n\n【实机验证·Godbolt cg132 -O0】原题依赖命令行参数 file1 1234abc，已改等价自包含写法（内置 argv, argc=2），isalpha 计数逻辑与输出同原题。本题为程序阅读题，原书只给程序段；为实机验证已等价包装为含 #include 与 main 的完整程序，逻辑与输出与原片段一致，答案取自 Godbolt cg132 实机 stdout（-O0）。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "code_reading",
       "bloom": "analyze",
-      "code": "#include <stdio.h>\n#include <ctype.h>\nint main (int argc,char  * argv[ ])\n{   char  * str;\n    int num=0;\n    if(argc<2)   return(0);\n    str=argv[1];\n    while( * str)\n        if(isalpha( * str++))   num++;\n    printf (\"\\nThe count is :%d.\\n\",num);\n    return(0);\n}",
+      "code": "#include <stdio.h>\n#include <ctype.h>\nint main(void)\n{\n    /* 原题命令行 file1 1234abc → 等价自包含 argv */\n    char *argv[] = {\"file1\", \"1234abc\"};\n    int argc = 2;\n    char *str;\n    int num = 0;\n    if (argc < 2) return 0;\n    str = argv[1];\n    while (*str)\n        if (isalpha(*str++)) num++;\n    printf(\"\\nThe count is :%d.\\n\", num);\n    return 0;\n}",
       "answer": "\nThe count is :3.",
       "id": "c-ch09-cr-052",
-      "verified": false,
+      "verified": true,
       "vizIds": [
         "memory-pointer-address"
       ]
