@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "e560c2533c99ff67",
+  "content_sha": "6b163357c5b65369",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1223,
+  "count": 1303,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -13015,6 +13015,1110 @@
       "chapter": "第4章 串、数组和广义表",
       "section": "4.6 广义表",
       "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-001",
+      "file": "ds-ch05.json",
+      "title": "关于树的基本术语",
+      "tags": [
+        "树的术语",
+        "度",
+        "层次"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-002",
+      "file": "ds-ch05.json",
+      "title": "一棵树中有 2 个度为 4 的结点、3 个度为 2 的结点、4 个度为 1 的结点",
+      "tags": [
+        "结点数",
+        "度",
+        "边数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-001",
+      "file": "ds-ch05.json",
+      "title": "某树中有 3 个度为 2 的结点、2 个度为 1 的结点",
+      "tags": [
+        "叶子结点",
+        "度",
+        "计数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-003",
+      "file": "ds-ch05.json",
+      "title": "把一棵",
+      "tags": [
+        "树转二叉树",
+        "孩子兄弟表示法"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-001",
+      "file": "ds-ch05.json",
+      "title": "二叉树是树的一种特殊形态",
+      "tags": [
+        "二叉树",
+        "定义"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-004",
+      "file": "ds-ch05.json",
+      "title": "对于一棵具有 n 个结点的树",
+      "tags": [
+        "度之和",
+        "边数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-002",
+      "file": "ds-ch05.json",
+      "title": "填术语",
+      "tags": [
+        "术语",
+        "森林",
+        "深度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-005",
+      "file": "ds-ch05.json",
+      "title": "关于二叉树的基本形态",
+      "tags": [
+        "二叉树",
+        "五种形态"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-006",
+      "file": "ds-ch05.json",
+      "title": "具有 3 个结点的二叉树",
+      "tags": [
+        "二叉树",
+        "形态计数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.1 树的定义与基本术语",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-007",
+      "file": "ds-ch05.json",
+      "title": "深度为 k",
+      "tags": [
+        "性质2",
+        "深度",
+        "满二叉树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-008",
+      "file": "ds-ch05.json",
+      "title": "在二叉树的第 i 层上",
+      "tags": [
+        "性质1",
+        "层结点数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-009",
+      "file": "ds-ch05.json",
+      "title": "某二叉树共有 100 个结点",
+      "tags": [
+        "性质3",
+        "叶子结点"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-003",
+      "file": "ds-ch05.json",
+      "title": "一棵完全二叉树有 1000 个结点",
+      "tags": [
+        "完全二叉树",
+        "深度",
+        "叶子结点"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-010",
+      "file": "ds-ch05.json",
+      "title": "对完全二叉树的 n 个结点按层序从 1 开始编号",
+      "tags": [
+        "完全二叉树",
+        "编号",
+        "双亲"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-002",
+      "file": "ds-ch05.json",
+      "title": "完全二叉树中",
+      "tags": [
+        "完全二叉树",
+        "叶子结点"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-011",
+      "file": "ds-ch05.json",
+      "title": "深度为 5 的二叉树至少含有的结点数为",
+      "tags": [
+        "深度",
+        "结点数下界"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-012",
+      "file": "ds-ch05.json",
+      "title": "具有 65 个结点的完全二叉树的深度为",
+      "tags": [
+        "完全二叉树",
+        "深度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-004",
+      "file": "ds-ch05.json",
+      "title": "一棵二叉树中度为 2 的结点有 15 个",
+      "tags": [
+        "性质3",
+        "结点计数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-013",
+      "file": "ds-ch05.json",
+      "title": "关于满二叉树与完全二叉树的关系",
+      "tags": [
+        "满二叉树",
+        "完全二叉树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cx-001",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "复杂度",
+        "对数阶"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-001",
+      "file": "ds-ch05.json",
+      "title": "下列程序统计二叉树的结点数、叶子数与深度",
+      "tags": [
+        "递归",
+        "结点数",
+        "叶子数",
+        "深度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-001",
+      "file": "ds-ch05.json",
+      "title": "下列程序统计二叉树中叶子结点",
+      "tags": [
+        "度",
+        "性质3",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-002",
+      "file": "ds-ch05.json",
+      "title": "下列程序判断二叉树是否为满二叉树",
+      "tags": [
+        "满二叉树",
+        "性质2",
+        "结点数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-001",
+      "file": "ds-ch05.json",
+      "title": "按层序读入一个完全二叉树的 n 个结点值",
+      "tags": [
+        "完全二叉树",
+        "顺序存储",
+        "深度",
+        "叶子"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.2 二叉树的定义与性质",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-014",
+      "file": "ds-ch05.json",
+      "title": "二叉树的顺序存储",
+      "tags": [
+        "顺序存储",
+        "完全二叉树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-005",
+      "file": "ds-ch05.json",
+      "title": "完全二叉树顺序存储中",
+      "tags": [
+        "下标关系",
+        "完全二叉树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-015",
+      "file": "ds-ch05.json",
+      "title": "含有 n 个结点的二叉链表",
+      "tags": [
+        "二叉链表",
+        "空链域",
+        "线索二叉树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-003",
+      "file": "ds-ch05.json",
+      "title": "用顺序存储表示深度为 k 的单支二叉树",
+      "tags": [
+        "顺序存储",
+        "空间浪费"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-016",
+      "file": "ds-ch05.json",
+      "title": "下列关于二叉树存储结构的说法中",
+      "tags": [
+        "存储结构",
+        "三叉链表"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-003",
+      "file": "ds-ch05.json",
+      "title": "下列程序按先序序列",
+      "tags": [
+        "二叉链表",
+        "建树",
+        "递归",
+        "中序"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-002",
+      "file": "ds-ch05.json",
+      "title": "下列程序用一维数组顺序存储完全二叉树",
+      "tags": [
+        "完全二叉树",
+        "顺序存储",
+        "度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-002",
+      "file": "ds-ch05.json",
+      "title": "按先序序列",
+      "tags": [
+        "二叉链表",
+        "顺序存储",
+        "编号"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.3 二叉树的存储结构",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-017",
+      "file": "ds-ch05.json",
+      "title": "下列关于二叉树遍历的说法",
+      "tags": [
+        "遍历",
+        "序列唯一确定"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-006",
+      "file": "ds-ch05.json",
+      "title": "某二叉树的先序序列为 ABDFCE、中序序列为 BFDAEC",
+      "tags": [
+        "先序",
+        "中序",
+        "后序",
+        "高度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-018",
+      "file": "ds-ch05.json",
+      "title": "某二叉树的中序序列为 BFDAEC、后序序列为 FDBECA",
+      "tags": [
+        "中序",
+        "后序",
+        "先序"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-019",
+      "file": "ds-ch05.json",
+      "title": "二叉树的层序遍历需要借助的辅助结构是",
+      "tags": [
+        "层序遍历",
+        "队列"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-004",
+      "file": "ds-ch05.json",
+      "title": "若二叉树的先序遍历序列与中序遍历序列完全相同",
+      "tags": [
+        "先序",
+        "中序",
+        "单支树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-007",
+      "file": "ds-ch05.json",
+      "title": "遍历含 n 个结点的二叉树",
+      "tags": [
+        "复杂度",
+        "工作栈"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-020",
+      "file": "ds-ch05.json",
+      "title": "若某二叉树的先序遍历序列与后序遍历序列正好相反",
+      "tags": [
+        "先序",
+        "后序",
+        "单支树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-021",
+      "file": "ds-ch05.json",
+      "title": "用递归算法遍历含 n 个结点的二叉树",
+      "tags": [
+        "递归",
+        "工作栈深度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-004",
+      "file": "ds-ch05.json",
+      "title": "下列程序给出二叉树的三种递归遍历",
+      "tags": [
+        "先序",
+        "中序",
+        "后序",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-005",
+      "file": "ds-ch05.json",
+      "title": "下列程序用栈实现二叉树的非递归中序遍历",
+      "tags": [
+        "中序遍历",
+        "非递归",
+        "栈"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-006",
+      "file": "ds-ch05.json",
+      "title": "下列程序用栈和 prev 指针实现二叉树的非递归后序遍历",
+      "tags": [
+        "后序遍历",
+        "非递归",
+        "栈"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-007",
+      "file": "ds-ch05.json",
+      "title": "下列程序用队列实现二叉树的层序遍历",
+      "tags": [
+        "层序遍历",
+        "队列"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-003",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "层序遍历",
+        "队列",
+        "数组模拟"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-003",
+      "file": "ds-ch05.json",
+      "title": "输入一棵二叉树的先序遍历序列和中序遍历序列",
+      "tags": [
+        "先序",
+        "中序",
+        "后序",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-008",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入一棵二叉树的先序序列",
+      "tags": [
+        "镜像",
+        "交换左右子树",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-004",
+      "file": "ds-ch05.json",
+      "title": "输入一棵二叉树的先序序列",
+      "tags": [
+        "深度",
+        "宽度",
+        "层序遍历",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-009",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入两棵二叉树的先序序列",
+      "tags": [
+        "相同二叉树",
+        "递归",
+        "结构比较"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-004",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "根到叶路径",
+        "栈",
+        "回溯"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-005",
+      "file": "ds-ch05.json",
+      "title": "输入一棵二叉树的先序序列",
+      "tags": [
+        "凹入表",
+        "先序遍历",
+        "层次"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-010",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入一棵二叉树的先序序列",
+      "tags": [
+        "复制二叉树",
+        "动态分配",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-005",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "度",
+        "单孩子结点",
+        "先序"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-006",
+      "file": "ds-ch05.json",
+      "title": "输入一棵二叉树的中序遍历序列和后序遍历序列",
+      "tags": [
+        "中序",
+        "后序",
+        "先序",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.4 二叉树的遍历",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-022",
+      "file": "ds-ch05.json",
+      "title": "含有 n 个结点的二叉链表中共有空指针域的个数为",
+      "tags": [
+        "线索二叉树",
+        "空指针",
+        "n+1"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-008",
+      "file": "ds-ch05.json",
+      "title": "在中序线索二叉树中",
+      "tags": [
+        "ltag",
+        "rtag",
+        "前驱",
+        "后继"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-023",
+      "file": "ds-ch05.json",
+      "title": "在中序线索二叉树中",
+      "tags": [
+        "中序后继",
+        "右子树最左下"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-005",
+      "file": "ds-ch05.json",
+      "title": "对线索二叉树进行相应次序的遍历",
+      "tags": [
+        "非递归",
+        "空间复杂度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-024",
+      "file": "ds-ch05.json",
+      "title": "为便于遍历",
+      "tags": [
+        "头结点",
+        "空树",
+        "遍历终止条件"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-011",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入一棵二叉树的先序序列",
+      "tags": [
+        "中序线索化",
+        "头结点",
+        "递归"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-006",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "中序后继",
+        "线索遍历"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-007",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "线索条数",
+        "n+1",
+        "存储"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.5 线索二叉树",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-025",
+      "file": "ds-ch05.json",
+      "title": "树的孩子兄弟表示法",
+      "tags": [
+        "孩子兄弟表示法",
+        "二叉链表",
+        "存储结构"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-006",
+      "file": "ds-ch05.json",
+      "title": "树的先根遍历序列与其对应二叉树的先序遍历序列相同",
+      "tags": [
+        "先根遍历",
+        "后根遍历",
+        "序列对应"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-009",
+      "file": "ds-ch05.json",
+      "title": "一棵具有 n 个结点的树中",
+      "tags": [
+        "度",
+        "边数",
+        "结点与度的关系"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-026",
+      "file": "ds-ch05.json",
+      "title": "将一棵树转换为二叉树后",
+      "tags": [
+        "森林",
+        "二叉树",
+        "根的右子树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-010",
+      "file": "ds-ch05.json",
+      "title": "森林 F 由三棵树组成",
+      "tags": [
+        "森林",
+        "转换",
+        "结点计数"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-012",
+      "file": "ds-ch05.json",
+      "title": "下列程序用孩子兄弟表示法",
+      "tags": [
+        "孩子兄弟表示法",
+        "树的创建",
+        "叶子数",
+        "先根遍历"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.6 树和森林",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-027",
+      "file": "ds-ch05.json",
+      "title": "设哈夫曼树有 n 个叶子结点",
+      "tags": [
+        "哈夫曼树",
+        "结点数",
+        "度"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-011",
+      "file": "ds-ch05.json",
+      "title": "已知权值集合为 {7",
+      "tags": [
+        "WPL",
+        "构造过程"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-028",
+      "file": "ds-ch05.json",
+      "title": "哈夫曼编码是一种前缀编码",
+      "tags": [
+        "前缀编码",
+        "哈夫曼编码",
+        "译码唯一"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-sc-029",
+      "file": "ds-ch05.json",
+      "title": "构造哈夫曼树时",
+      "tags": [
+        "贪心",
+        "构造策略",
+        "算法思想"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-tf-007",
+      "file": "ds-ch05.json",
+      "title": "给定一组权值",
+      "tags": [
+        "形态唯一性",
+        "WPL 唯一"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-fb-012",
+      "file": "ds-ch05.json",
+      "title": "某信源有 4 个符号",
+      "tags": [
+        "平均码长",
+        "压缩",
+        "编码效率"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-013",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入 n 与 n 个权值",
+      "tags": [
+        "哈夫曼树",
+        "构造",
+        "WPL",
+        "贪心"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-008",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "哈夫曼编码",
+        "逆向求编码",
+        "静态存储"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-007",
+      "file": "ds-ch05.json",
+      "title": "输入 n 个字符及其权值",
+      "tags": [
+        "哈夫曼编码",
+        "平均码长",
+        "编码效率"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cc-014",
+      "file": "ds-ch05.json",
+      "title": "下列程序读入 n 个字符及其权值、以及一段由这些字符组成的电文",
+      "tags": [
+        "哈夫曼译码",
+        "编码",
+        "左0右1"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-cr-009",
+      "file": "ds-ch05.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "静态存储",
+        "三叉链表",
+        "哈夫曼树"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch05-pg-008",
+      "file": "ds-ch05.json",
+      "title": "输入 n 与 n 个权值",
+      "tags": [
+        "WPL",
+        "码长",
+        "树高"
+      ],
+      "chapter": "第5章 树和二叉树",
+      "section": "5.7 哈夫曼树与哈夫曼编码",
+      "type": "programming",
       "category": "ds"
     }
   ]
