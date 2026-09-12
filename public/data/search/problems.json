@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "04d5ce12c503898e",
+  "content_sha": "7a86490e709d26ae",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1974,
+  "count": 2024,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -16494,6 +16494,659 @@
       "chapter": "第11章 位运算",
       "section": "11.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-017",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "按位与",
+        "按位或",
+        "按位异或"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-018",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "按位取反",
+        "补码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-019",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "左移",
+        "乘2的幂"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-020",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "右移",
+        "算术移位",
+        "逻辑移位"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-021",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "异或交换"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-022",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "奇偶判断",
+        "负数补码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-023",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "统计1的个数"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-024",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "置位",
+        "清位",
+        "翻转"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-025",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "测试某一位"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-026",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "掩码",
+        "提取字节"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-027",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "getbits",
+        "位段提取"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-028",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "循环移位"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-029",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "位运算",
+        "逻辑运算",
+        "区别"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-030",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "补码",
+        "十六进制输出"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-031",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "优先级",
+        "经典陷阱"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-032",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "复合赋值"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-033",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "位标志",
+        "集合"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-034",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "整型提升",
+        "char"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-035",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "位段",
+        "截断"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cr-036",
+      "file": "c-ch11.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "八进制",
+        "十六进制",
+        "字面量"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-003",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "置位",
+        "清位",
+        "翻转"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-004",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "统计1的个数",
+        "x&(x-1)"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-005",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "移位",
+        "2的幂判断"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-006",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "掩码构造",
+        "高低位"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-007",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "异或",
+        "找唯一数"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-008",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "位标志",
+        "权限判断"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-009",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "右移",
+        "逐字节求和"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-010",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "补码",
+        "绝对值位技巧"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-011",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "集合",
+        "并交",
+        "元素个数"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-cc-012",
+      "file": "c-ch11.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "字节交换",
+        "掩码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-dbg-001",
+      "file": "c-ch11.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "优先级",
+        "清位"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-dbg-002",
+      "file": "c-ch11.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "统计1的个数",
+        "死循环"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-dbg-003",
+      "file": "c-ch11.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "复合赋值",
+        "移位方向"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-001",
+      "file": "c-ch11.json",
+      "title": "读入 n 个无符号整数",
+      "tags": [
+        "统计1的个数",
+        "x&(x-1)"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-002",
+      "file": "c-ch11.json",
+      "title": "读入一个无符号整数 x",
+      "tags": [
+        "2的幂",
+        "位标志"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-003",
+      "file": "c-ch11.json",
+      "title": "实现函数 unsigned reverseBytes",
+      "tags": [
+        "字节序",
+        "掩码",
+        "十六进制输出"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-004",
+      "file": "c-ch11.json",
+      "title": "用位标志表示集合",
+      "tags": [
+        "位标志",
+        "集合"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-005",
+      "file": "c-ch11.json",
+      "title": "实现函数 unsigned getbits",
+      "tags": [
+        "位段提取",
+        "getbits"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-pg-006",
+      "file": "c-ch11.json",
+      "title": "读入一个 int 型整数 x",
+      "tags": [
+        "补码",
+        "符号位",
+        "无分支技巧"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.4 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-023",
+      "file": "c-ch11.json",
+      "title": "关于 C 语言位运算的操作对象",
+      "tags": [
+        "位运算",
+        "操作数类型"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-024",
+      "file": "c-ch11.json",
+      "title": "表达式 12 & 10 的值是",
+      "tags": [
+        "按位与",
+        "二进制"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-025",
+      "file": "c-ch11.json",
+      "title": "设 int x = 5",
+      "tags": [
+        "左移",
+        "乘幂"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-026",
+      "file": "c-ch11.json",
+      "title": "在采用算术右移",
+      "tags": [
+        "右移",
+        "补码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-027",
+      "file": "c-ch11.json",
+      "title": "下列位运算符优先级由高到低排列正确的是",
+      "tags": [
+        "运算符优先级"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-sc-028",
+      "file": "c-ch11.json",
+      "title": "设 int a = 1",
+      "tags": [
+        "按位与",
+        "逻辑与",
+        "短路"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-011",
+      "file": "c-ch11.json",
+      "title": "设 int 占 32 位",
+      "tags": [
+        "按位取反",
+        "补码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-012",
+      "file": "c-ch11.json",
+      "title": "要把 unsigned 型变量 x 的第 k 位",
+      "tags": [
+        "清位",
+        "掩码"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-fb-013",
+      "file": "c-ch11.json",
+      "title": "设 x 为非 0 的 unsigned 型变量",
+      "tags": [
+        "统计1的个数",
+        "位技巧"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-tf-001",
+      "file": "c-ch11.json",
+      "title": "对任意 int 型变量 a",
+      "tags": [
+        "按位异或"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch11-tf-002",
+      "file": "c-ch11.json",
+      "title": "char 型变量参与位运算时不会发生整型提升",
+      "tags": [
+        "整型提升",
+        "字符型位运算"
+      ],
+      "chapter": "第11章 位运算",
+      "section": "11.3 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {
