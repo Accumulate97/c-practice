@@ -1170,10 +1170,10 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int x,y,sum,product;\n    printf(\"Enter x and y:\");\n    scanf(\"%d,%d\",&x,&y);\n    sum=x+y;\n    product=x* y;\n    if(sum>product)\n      printf(\"(x+y)>(x* y)\");\n    else\n      printf(\"(x* y)>=(x+y)\");\n    return 0;\n}",
-      "answer": "",
+      "answer": "Enter x and y:(x+y)>(x* y)",
       "answerIsDescription": true,
       "id": "c-ch04-cr-004",
-      "verified": false
+      "verified": true
     },
     {
       "category": "c",
@@ -1469,7 +1469,7 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
-      "answer": "",
+      "answer": "s=1,t=2",
       "answerIsDescription": true,
       "id": "c-ch04-cr-011",
       "verified": false
@@ -1487,7 +1487,7 @@
       "type": "code_reading",
       "bloom": "analyze",
       "code": "#include <stdio.h>\nint main( )\n{ int s,t,a,b;\n    scanf(\"%d,%d\",&a,&b);\n    s=1;\n    t=1;\n    if (a>0) s=s+1;\n    if (a>b) t=s+t;\n    else if (a==b) t=5;\n    else t=2 * s;\n    printf(\"s=%d,t=%d\",s,t);\n    return 0;\n}",
-      "answer": "",
+      "answer": "s=1,t=2",
       "answerIsDescription": true,
       "id": "c-ch04-cr-012",
       "verified": false
@@ -3154,6 +3154,1782 @@
         }
       ],
       "id": "c-ch04-cc-020",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-025",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 5, b = 3, c = 0;\n    int r1, r2;\n\n    r1 = a > 0 && b++ > 2;\n    r2 = c < 1 || ++a > 10;\n    printf(\"%d %d\\n\", r1, r2);\n    printf(\"a=%d b=%d c=%d\\n\", a, b, c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 1\na=5 b=4 c=0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 5, b = 3, c = 0;\n    int r1, r2;\n\n    r1 = a > 0 && b++ > 2;\n    r2 = c < 1 || ++a > 10;\n    printf(\"%d %d\\n\", r1, r2);\n    printf(\"a=%d b=%d c=%d\\n\", a, b, c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 1 1 与 a=5 b=4 c=0。r1 中 a>0 成立，才继续算 b++>2，即 3>2 成立且 b 自增为 4；r2 中 c<1 即 0<1 已成立，|| 短路使 ++a 根本不执行，a 保持 5。关键推理：&& 只有在左操作数为假时才跳过右侧，|| 只有在左操作数为真时才跳过右侧，被跳过一侧的副作用（自增、赋值、函数调用）不会发生。易错点：把 b++ 的自增当成\"总会执行\"，或认为短路只影响结果不影响变量值。",
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-026",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = -2, b = 3, c = 5;\n    int r1, r2;\n\n    r1 = a > 0 && b++ > 2;\n    r2 = c < 1 || ++a > 3;\n    printf(\"%d %d\\n\", r1, r2);\n    printf(\"a=%d b=%d c=%d\\n\", a, b, c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 0\na=-1 b=3 c=5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = -2, b = 3, c = 5;\n    int r1, r2;\n\n    r1 = a > 0 && b++ > 2;\n    r2 = c < 1 || ++a > 3;\n    printf(\"%d %d\\n\", r1, r2);\n    printf(\"a=%d b=%d c=%d\\n\", a, b, c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 0 与 a=-1 b=3 c=5。r1 中 a>0 即 -2>0 为假，&& 短路，b++ 不执行，b 仍是 3，r1=0；r2 中 c<1 即 5<1 为假，必须算右侧 ++a>3，a 先自增为 -1，-1>3 为假，r2=0。关键推理：短路方向相反——&& 遇假即停，|| 遇真即停，所以同一程序里两个表达式的副作用情况完全不同。易错点：误以为 -1>3 成立（负数比较），或漏掉 ++a 已把 a 改成 -1 这一事实。",
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-027",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x = 0, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 3)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "10",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 0, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 3)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 10。x=0 时第一个 if 的 x != 0 为假，&& 短路使 y / x 不被求值，从而避免了除零错误；n 保持 0。第二个 if 的 x == 0 为真，|| 短路使 y % x 也不求值，n 加 10 得 10。关键推理：短路求值不只是性能优化，更是 C 语言里保护除零、空指针解引用的标准手段，x != 0 && y / x > k 是教科书写法。易错点：把两个条件写成 y / x > k && x != 0，顺序颠倒后除零照旧发生。",
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-028",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x = 4, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 2)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "11",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 4, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 2)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 11。x=4 非零，y/x=12/4=3，3>2 成立，n=1；第二个 if 中 x==0 为假，继续算 y%x=12%4=0，条件成立，n=1+10=11。关键推理：两个 if 是独立语句，第二个不会因第一个成立而跳过，n 的两次累加互不影响。整数除法与取余都是向零截断，12 能被 4 整除故余数为 0。易错点：误把两个 if 当成 if-else 结构，以为 n 只能是 1 或 10。",
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-029",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x = 5, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 2)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x = 5, y = 12;\n    int n = 0;\n\n    if (x != 0 && y / x > 2)\n        n = 1;\n    if (x == 0 || y % x == 0)\n        n = n + 10;\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0。x=5 非零，y/x=12/5=2（整数除法舍去小数），2>2 为假，n 仍为 0；第二个 if 中 x==0 为假，y%x=12%5=2 不等于 0，条件为假，n 不加 10。关键推理：整数除法 12/5 得 2 而不是 2.4，这是分支判断里最常见的失分点。易错点：以为 12/5>2 成立；另外 y%x 的结果符号跟随被除数，本题两者皆正无影响。",
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-030",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}\n```\n运行时输入：\n```\n3 5\n```",
+      "answer": "Q1\n2",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}",
+      "stdin": "3 5\n",
+      "explanation": "结论：输出 Q1 与 2。x=3>0 进入外层，y=5>0 打印 Q1；随后 x>y 为假、x==y 为假，走最后的 else 打印 y-x=2。关键推理：那个缩进在第 4 列的 else 按 C 语法与最近的、尚未配对 if 的 if(y>0) 配对，这就是\"悬挂 else\"——配对关系由语法决定，与缩进无关。本题恰好 y>0 成立，陷阱没有暴露。易错点：把 else 当成属于 if(x>0)，从而认为 x<=0 时会打印 Q4。",
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-11"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-031",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}\n```\n运行时输入：\n```\n-2 4\n```",
+      "answer": "6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}",
+      "stdin": "-2 4\n",
+      "explanation": "结论：只输出 6，第一行什么都不打印。x=-2 使 if(x>0) 为假，整个内层 if(y>0)...else 都被跳过，所以既没有 Q1 也没有 Q4；接着 x>y 为假、x==y 为假，else 打印 y-x=4-(-2)=6。关键推理：悬挂 else 与外层 if(x>0) 无关，外层条件为假时它控制的只有一条内层 if 语句。易错点：按缩进误读为\"x<=0 就打印 Q4\"，这正是本题要暴露的错误理解。",
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-11"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-032",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}\n```\n运行时输入：\n```\n5 -3\n```",
+      "answer": "Q4\n8",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x > 0)\n        if (y > 0)\n            printf(\"Q1\\n\");\n    else\n        printf(\"Q4\\n\");\n    if (x > y)\n        printf(\"%d\\n\", x - y);\n    else if (x == y)\n        printf(\"same\\n\");\n    else\n        printf(\"%d\\n\", y - x);\n    return 0;\n}",
+      "stdin": "5 -3\n",
+      "explanation": "结论：输出 Q4 与 8。x=5>0 进入外层，y=-3 不满足 y>0，于是与之配对的 else 打印 Q4；后半段 x>y 即 5>-3 成立，打印 x-y=5-(-3)=8。关键推理：else 归属最近的内层 if，因此 Q4 的含义是\"x>0 且 y<=0\"（第四象限），而不是\"x<=0\"。减负数等于加正数，5-(-3)=8。易错点：把 Q4 误解为 x 非正的情形；忽略减号后紧跟负号要先算括号内的值。",
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-11"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-033",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (x < -5)\n        y = 2 * x + 10;\n    else if (x < 0)\n        y = x * x;\n    else if (x == 0)\n        y = 100;\n    else if (x < 10)\n        y = x / 2;\n    else\n        y = -1;\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```\n运行时输入：\n```\n-8\n```",
+      "answer": "-8 -6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (x < -5)\n        y = 2 * x + 10;\n    else if (x < 0)\n        y = x * x;\n    else if (x == 0)\n        y = 100;\n    else if (x < 10)\n        y = x / 2;\n    else\n        y = -1;\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "stdin": "-8\n",
+      "explanation": "结论：输出 -8 -6。x=-8 满足第一个条件 x<-5，y=2*(-8)+10=-16+10=-6，后面的 else if 全部不再判断。关键推理：else if 链是自上而下逐个测试、一旦命中立即执行并跳出整条链的，所以分支区间的书写顺序必须从最窄或最极端的一端开始排列。易错点：先写 x<0 再写 x<-5，那么 -8 会落进 x*x=64 这个错误分支。",
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-12"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-034",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (x < -5)\n        y = 2 * x + 10;\n    else if (x < 0)\n        y = x * x;\n    else if (x == 0)\n        y = 100;\n    else if (x < 10)\n        y = x / 2;\n    else\n        y = -1;\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```\n运行时输入：\n```\n12\n```",
+      "answer": "12 -1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (x < -5)\n        y = 2 * x + 10;\n    else if (x < 0)\n        y = x * x;\n    else if (x == 0)\n        y = 100;\n    else if (x < 10)\n        y = x / 2;\n    else\n        y = -1;\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "stdin": "12\n",
+      "explanation": "结论：输出 12 -1。x=12 依次不满足 x<-5、x<0、x==0、x<10，最终落到 else，y=-1。关键推理：else 分支是整条 else if 链的兜底，只有在前面所有条件都为假时才执行；本链把实数轴切成 (-∞,-5)、[-5,0)、{0}、(0,10)、[10,+∞) 五段，12 属于最后一段。易错点：以为 else if(x<10) 之后的 else 只对应\"x 略大于 10\"，其实它覆盖所有 x>=10。",
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-12"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-035",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n95\n```",
+      "answer": "95 A\ntwo",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}",
+      "stdin": "95\n",
+      "explanation": "结论：输出 95 A 与 two。s/10=9 命中 case 9，g=A；注意 case 10 与 case 9 共用同一段语句，这是 switch 处理\"100 分\"的标准写法。第二个 switch 中 95%3=2，命中 case 2 打印 two。关键推理：switch 用整数除法把连续分数映射成有限个离散值，比一长串 else if 更清晰。易错点：漏写 case 10 会让满分 100 落到 default 得 E。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-18"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-036",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n88\n```",
+      "answer": "88 B\none\ntwo",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}",
+      "stdin": "88\n",
+      "explanation": "结论：输出 88 B、one、two 三行。s/10=8 命中 case 8，g=B；第二个 switch 中 88%3=1，case 1 后面没有 break，语句执行完直接贯穿到 case 2，于是 one 和 two 都被打印。关键推理：switch 的 case 只是入口标签，匹配后从该标签顺序往下执行，直到遇到 break 或 switch 结束，这就是\"贯穿\"。易错点：认为一次 switch 只会输出一行；本题正是用故意的贯穿来考察这一点。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-17"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-037",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n60\n```",
+      "answer": "60 D\nzero",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int s;\n    char g;\n\n    if (scanf(\"%d\", &s) != 1)\n        return 1;\n    switch (s / 10)\n    {\n    case 10:\n    case 9:\n        g = 'A';\n        break;\n    case 8:\n        g = 'B';\n        break;\n    case 7:\n        g = 'C';\n        break;\n    case 6:\n        g = 'D';\n        break;\n    default:\n        g = 'E';\n    }\n    printf(\"%d %c\\n\", s, g);\n    switch (s % 3)\n    {\n    case 0:\n        printf(\"zero\\n\");\n        break;\n    case 1:\n        printf(\"one\\n\");\n    case 2:\n        printf(\"two\\n\");\n        break;\n    default:\n        printf(\"other\\n\");\n    }\n    return 0;\n}",
+      "stdin": "60\n",
+      "explanation": "结论：输出 60 D 与 zero。s/10=6 命中 case 6，g=D；60%3=0 命中 case 0，打印 zero 后 break。关键推理：default 分支只在所有 case 都不匹配时执行，本题 60 分恰好命中 case 6，default 未被触发。易错点：把 60 分误判为不及格 E——按本题的映射规则 60 分对应 D，等级划分完全由 case 常量决定，而不是由常识决定。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-19"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-038",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n        return 1;\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n12 + 5\n```",
+      "answer": "17",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n        return 1;\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}",
+      "stdin": "12 + 5\n",
+      "explanation": "结论：输出 17。scanf(\"%d %c %d\") 依次读入 12、加号、5，格式串中的空格表示跳过任意多个空白字符；switch(op) 命中 case '+'，打印 a+b=17。关键推理：字符常量在 switch 中作为 case 标签完全合法，因为字符本质是整型码值，加号码值为 43。易错点：把格式串写成 \"%d%c%d\" 时，输入中的空格会被 %c 读走导致 op 是空格；这里靠空格分隔符规避了该问题。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-15"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-039",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n        return 1;\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n20 / 0\n```",
+      "answer": "div0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n        return 1;\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}",
+      "stdin": "20 / 0\n",
+      "explanation": "结论：输出 div0。op 为除号，命中 case '/'，内部再用 if 判断 b != 0，b 为 0 故走 else 打印 div0。关键推理：switch 的每个 case 内部可以再嵌套 if 语句，用来处理该分支下的特殊情况；整数除零在 C 中是未定义行为，通常直接崩溃，所以必须提前拦截。易错点：以为 switch 能自动处理除零，或把判零写在 switch 外面导致其他运算符也被误拦。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-19"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-040",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}\n```\n运行时输入：\n```\n3 7 5\n```",
+      "answer": "7\n7\no\n4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}",
+      "stdin": "3 7 5\n",
+      "explanation": "结论：依次输出 7、7、o、4。第一行取 a、b 中较大者 7；第二行 a>b 为假，取冒号后的 (b>c?b:c)，7>5 得 7；第三行 3%2=1 为真，输出 o 表示奇数；第四行 a>b 为假，取 b-a=4。关键推理：?: 是唯一的三目运算符，形式为 条件?表达式1:表达式2，只有被选中的那一支才会求值。易错点：把 a%2 写成 a%2==1，对负数 a 二者结果不同（-3%2 得 -1）。",
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "knowledgeIds": [
+        "c-ch04-13"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-041",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}\n```\n运行时输入：\n```\n-4 -9 0\n```",
+      "answer": "-4\n0\ne\n5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}",
+      "stdin": "-4 -9 0\n",
+      "explanation": "结论：依次输出 -4、0、e、5。a>b 即 -4>-9 为真，第一行取 a=-4；第二行走真支 (a>c?a:c)，-4>0 为假取 c=0；第三行 -4%2=0 为假，输出 e；第四行取 a-b=-4-(-9)=5。关键推理：求三个数的最大值必须嵌套两层 ?:，且条件运算符是右结合的，a?b:c?d:e 等价于 a?b:(c?d:e)，本题用括号显式分组避免歧义。易错点：负数取余的符号、以及减去负数变加法。",
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "knowledgeIds": [
+        "c-ch04-14"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-042",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}\n```\n运行时输入：\n```\n6 6 6\n```",
+      "answer": "6\n6\ne\n0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", a > b ? a : b);\n    printf(\"%d\\n\", a > b ? (a > c ? a : c) : (b > c ? b : c));\n    printf(\"%c\\n\", a % 2 ? 'o' : 'e');\n    printf(\"%d\\n\", a > b ? a - b : b - a);\n    return 0;\n}",
+      "stdin": "6 6 6\n",
+      "explanation": "结论：依次输出 6、6、e、0。三个数相等时 a>b 为假，第一行取 b=6；第二行同样走假支，b>c 为假取 c=6；第三行 6%2=0 为假输出 e；第四行 b-a=0。关键推理：> 是严格大于，相等时条件为假，所以\"取较大值\"的写法在三数相等时依然给出正确的 6，不会漏掉边界。易错点：把边界情况当成需要特判的例外；实际上 ?: 的两个分支覆盖全部取值，无需额外判断相等。",
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "knowledgeIds": [
+        "c-ch04-13"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-043",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char c;\n    int y;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower %c\\n\", c - 32);\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper %c\\n\", c + 32);\n    else if (c >= '0' && c <= '9')\n        printf(\"digit %d\\n\", c - '0');\n    else\n        printf(\"other %d\\n\", c);\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}\n```\n运行时输入：\n```\nm\n2024\n```",
+      "answer": "lower M\n2024 leap",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char c;\n    int y;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower %c\\n\", c - 32);\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper %c\\n\", c + 32);\n    else if (c >= '0' && c <= '9')\n        printf(\"digit %d\\n\", c - '0');\n    else\n        printf(\"other %d\\n\", c);\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}",
+      "stdin": "m\n2024\n",
+      "explanation": "结论：输出 lower M 与 2024 leap。字符 m 落在 a~z 区间，减 32 得大写 M（ASCII 中小写比对应大写大 32）；随后 scanf(\"%d\") 会自动跳过 m 后面的换行读入 2024，2024 能被 4 整除且不能被 100 整除，判为闰年。关键推理：字符分类靠码值区间比较，闰年条件是\"四年一闰、百年不闰、四百年再闰\"的直译。易错点：%c 不跳空白而 %d 跳空白，两者混用时缓冲区残留的换行常被误读。",
+      "tags": [
+        "字符分类",
+        "闰年",
+        "ASCII"
+      ],
+      "knowledgeIds": [
+        "c-ch04-21"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cr-044",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char c;\n    int y;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower %c\\n\", c - 32);\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper %c\\n\", c + 32);\n    else if (c >= '0' && c <= '9')\n        printf(\"digit %d\\n\", c - '0');\n    else\n        printf(\"other %d\\n\", c);\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}\n```\n运行时输入：\n```\n7\n1900\n```",
+      "answer": "digit 7\n1900 common",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char c;\n    int y;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower %c\\n\", c - 32);\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper %c\\n\", c + 32);\n    else if (c >= '0' && c <= '9')\n        printf(\"digit %d\\n\", c - '0');\n    else\n        printf(\"other %d\\n\", c);\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}",
+      "stdin": "7\n1900\n",
+      "explanation": "结论：输出 digit 7 与 1900 common。字符 7 落在 0~9 区间，c-'0' 把字符码值转成数值 7（'7' 是 55，'0' 是 48）；1900 能被 4 整除但也能被 100 整除，且不能被 400 整除，因此不是闰年。关键推理：闰年表达式的括号不能省，&& 优先级高于 ||，(A && B) || C 与 A && (B || C) 含义完全不同。易错点：只写 y%4==0 会把 1900、2100 误判为闰年。",
+      "tags": [
+        "字符分类",
+        "闰年",
+        "ASCII"
+      ],
+      "knowledgeIds": [
+        "c-ch04-23"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-021",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c, max;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    max = a;\n    if (/*__BLANK_1__*/)\n        max = b;\n    if (/*__BLANK_2__*/)\n        max = c;\n    printf(\"%d\\n\", max);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b > max"
+        },
+        {
+          "index": 2,
+          "answer": "c > max"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c, max;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    max = a;\n    if (/*__BLANK_1__*/)\n        max = b;\n    if (/*__BLANK_2__*/)\n        max = c;\n    printf(\"%d\\n\", max);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c, max;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    max = a;\n    if (b > max)\n        max = b;\n    if (c > max)\n        max = c;\n    printf(\"%d\\n\", max);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 7 5\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "-4 -9 -1\n",
+          "expected": "-1"
+        },
+        {
+          "stdin": "6 6 6\n",
+          "expected": "6"
+        }
+      ],
+      "explanation": "采用\"打擂台\"法求三个数的最大值：先把 a 放进 max 作为擂台主，再让 b、c 依次上台挑战，谁比当前 max 大谁就替换它。两个空都必须与 max 比较而不是与 a 比较——第二空若写 c > b，当 a 最大时会得出错误结果。关键推理：这种写法的比较次数固定为 2 次，且天然处理相等的情况（相等时不替换，结果仍正确）。易错点：把 max 初始化成 0，遇到全为负数的输入就会输出 0。",
+      "tags": [
+        "if",
+        "求最大值"
+      ],
+      "knowledgeIds": [
+        "c-ch04-25"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-022",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int y;\n\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && /*__BLANK_1__*/) || /*__BLANK_2__*/)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "y % 100 != 0",
+          "accepted": [
+            "y%100!=0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "y % 400 == 0",
+          "accepted": [
+            "y%400==0"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int y;\n\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && /*__BLANK_1__*/) || /*__BLANK_2__*/)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int y;\n\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n        printf(\"%d leap\\n\", y);\n    else\n        printf(\"%d common\\n\", y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2024\n",
+          "expected": "2024 leap"
+        },
+        {
+          "stdin": "1900\n",
+          "expected": "1900 common"
+        },
+        {
+          "stdin": "2000\n",
+          "expected": "2000 leap"
+        }
+      ],
+      "explanation": "闰年规则\"四年一闰、百年不闰、四百年再闰\"直译成逻辑表达式：能被 4 整除且不能被 100 整除，或者能被 400 整除。第一空填 y % 100 != 0 排除 1900 这类世纪年，第二空填 y % 400 == 0 把 2000 这类世纪闰年救回来。关键推理：外层括号不可省，因为 && 的优先级高于 ||，去掉括号后语义变成 y%4==0 && (y%100!=0 || y%400==0)，虽然本题恰好等价，但表达意图不清。易错点：只判 y%4==0 会把 1900、2100 误判为闰年。",
+      "tags": [
+        "闰年",
+        "逻辑表达式"
+      ],
+      "knowledgeIds": [
+        "c-ch04-23"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-023",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n    if (x < 0)\n        y = /*__BLANK_1__*/;\n    else if (/*__BLANK_2__*/)\n        y = 0;\n    else\n        y = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", y);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x + 1",
+          "accepted": [
+            "x+1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "x == 0",
+          "accepted": [
+            "x==0"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "x * x",
+          "accepted": [
+            "x*x"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n    if (x < 0)\n        y = /*__BLANK_1__*/;\n    else if (/*__BLANK_2__*/)\n        y = 0;\n    else\n        y = /*__BLANK_3__*/;\n    printf(\"%.2f\\n\", y);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n    if (x < 0)\n        y = x + 1;\n    else if (x == 0)\n        y = 0;\n    else\n        y = x * x;\n    printf(\"%.2f\\n\", y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "-2.5\n",
+          "expected": "-1.50"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0.00"
+        },
+        {
+          "stdin": "3\n",
+          "expected": "9.00"
+        }
+      ],
+      "explanation": "分段函数 y = x+1（x<0）、y = 0（x=0）、y = x²（x>0）用 else if 链实现。第一空是负区间的表达式 x + 1，第二空是中间那个单点条件 x == 0，第三空是正区间的 x * x。关键推理：三段条件必须互斥且穷尽，写成 else if 链后每段只需给出本段自己的判据，因为能走到后面说明前面的条件都不成立。易错点：浮点数判等 x == 0 在数学题里可接受，但工程上应写成 fabs(x) < 1e-9；另外 %lf 与 %f 在 scanf 中不可混用。",
+      "tags": [
+        "分段函数",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-26"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-024",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char c;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && /*__BLANK_1__*/)\n        c = /*__BLANK_2__*/;\n    else if (c >= 'A' && c <= 'Z')\n        c = c + 32;\n    printf(\"%c %d\\n\", /*__BLANK_3__*/, c);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "c <= 'z'",
+          "accepted": [
+            "c<='z'"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "c - 32",
+          "accepted": [
+            "c-32"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "c"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char c;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && /*__BLANK_1__*/)\n        c = /*__BLANK_2__*/;\n    else if (c >= 'A' && c <= 'Z')\n        c = c + 32;\n    printf(\"%c %d\\n\", /*__BLANK_3__*/, c);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    char c;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        c = c - 32;\n    else if (c >= 'A' && c <= 'Z')\n        c = c + 32;\n    printf(\"%c %d\\n\", c, c);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "M\n",
+          "expected": "m 109"
+        },
+        {
+          "stdin": "q\n",
+          "expected": "Q 81"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "5 53"
+        }
+      ],
+      "explanation": "程序把任意字符统一转成小写后输出。第一空补全小写字母的区间上界 c <= 'z'，与 c >= 'a' 用 && 连接构成完整判据；第二空是小写转大写，ASCII 中大写比小写小 32，故填 c - 32；第三空输出转换后的字符本身。关键推理：字符在 C 中就是小整数，加减 32 即可在大小写之间切换，但必须先用区间判断确认它是字母，否则数字或标点会被改成乱码。易错点：把 32 记成 31 或 33；忘记对非字母字符保持原样。",
+      "tags": [
+        "字符分类",
+        "大小写转换"
+      ],
+      "knowledgeIds": [
+        "c-ch04-22"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-025",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    if (/*__BLANK_1__*/ && /*__BLANK_2__*/)\n    {\n        if (a == b && b == c)\n            printf(\"equilateral\\n\");\n        else if (/*__BLANK_3__*/)\n            printf(\"isosceles\\n\");\n        else\n            printf(\"scalene\\n\");\n    }\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a + b > c"
+        },
+        {
+          "index": 2,
+          "answer": "a + c > b && b + c > a"
+        },
+        {
+          "index": 3,
+          "answer": "a == b || b == c || a == c"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    if (/*__BLANK_1__*/ && /*__BLANK_2__*/)\n    {\n        if (a == b && b == c)\n            printf(\"equilateral\\n\");\n        else if (/*__BLANK_3__*/)\n            printf(\"isosceles\\n\");\n        else\n            printf(\"scalene\\n\");\n    }\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    if (a + b > c && a + c > b && b + c > a)\n    {\n        if (a == b && b == c)\n            printf(\"equilateral\\n\");\n        else if (a == b || b == c || a == c)\n            printf(\"isosceles\\n\");\n        else\n            printf(\"scalene\\n\");\n    }\n    else\n        printf(\"invalid\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4 5\n",
+          "expected": "scalene"
+        },
+        {
+          "stdin": "5 5 8\n",
+          "expected": "isosceles"
+        },
+        {
+          "stdin": "1 2 3\n",
+          "expected": "invalid"
+        }
+      ],
+      "explanation": "构成三角形的充要条件是任意两边之和大于第三边，共三个不等式：前两空分别填 a + b > c 与 a + c > b && b + c > a，合起来覆盖全部三种组合。第三空是等腰判据，三对中只要有一对相等即可，故用 || 连接。关键推理：内层 if 用 else if 链把\"等边—等腰—不等边\"按特殊到一般的顺序排列，等边必须放在最前，否则会被等腰条件先吃掉。易错点：1 2 3 满足 1+2=3 但不大于 3，是退化三角形，应判 invalid；用 >= 会把这类输入误判为合法。",
+      "tags": [
+        "区间条件",
+        "三角形判定"
+      ],
+      "knowledgeIds": [
+        "c-ch04-04"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-026",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int y, m, d;\n\n    if (scanf(\"%d%d\", &y, &m) != 2)\n        return 1;\n    switch (/*__BLANK_1__*/)\n    {\n    case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n        d = 31;\n        /*__BLANK_2__*/;\n    case 4: case 6: case 9: case 11:\n        d = 30;\n        break;\n    case 2:\n        d = ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) ? /*__BLANK_3__*/ : 28;\n        break;\n    default:\n        d = 0;\n    }\n    printf(\"%d-%d %d\\n\", y, m, d);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "m"
+        },
+        {
+          "index": 2,
+          "answer": "break"
+        },
+        {
+          "index": 3,
+          "answer": "29"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int y, m, d;\n\n    if (scanf(\"%d%d\", &y, &m) != 2)\n        return 1;\n    switch (/*__BLANK_1__*/)\n    {\n    case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n        d = 31;\n        /*__BLANK_2__*/;\n    case 4: case 6: case 9: case 11:\n        d = 30;\n        break;\n    case 2:\n        d = ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) ? /*__BLANK_3__*/ : 28;\n        break;\n    default:\n        d = 0;\n    }\n    printf(\"%d-%d %d\\n\", y, m, d);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int y, m, d;\n\n    if (scanf(\"%d%d\", &y, &m) != 2)\n        return 1;\n    switch (m)\n    {\n    case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n        d = 31;\n        break;\n    case 4: case 6: case 9: case 11:\n        d = 30;\n        break;\n    case 2:\n        d = ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) ? 29 : 28;\n        break;\n    default:\n        d = 0;\n    }\n    printf(\"%d-%d %d\\n\", y, m, d);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2024 2\n",
+          "expected": "2024-2 29"
+        },
+        {
+          "stdin": "2023 4\n",
+          "expected": "2023-4 30"
+        },
+        {
+          "stdin": "2023 13\n",
+          "expected": "2023-13 0"
+        }
+      ],
+      "explanation": "switch 的控制表达式是月份 m；31 天的那组 case 末尾必须补 break，否则会贯穿到 30 天的分支把 d 覆盖成 30，这是本题最容易失分的地方；2 月用条件运算符区分闰年，闰年填 29。关键推理：多个 case 标签连续排列可以共用一段语句（如 case 1: case 3: ... 都执行 d = 31），这是 switch 表达\"集合成员\"的惯用法；default 兜住非法月份。易错点：忘写 break 造成贯穿；把 8 月漏掉导致大月判断错误。",
+      "tags": [
+        "switch",
+        "天数"
+      ],
+      "knowledgeIds": [
+        "c-ch04-18"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-027",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    switch (n % 4)\n    {\n    case 0:\n        s = s + /*__BLANK_1__*/;\n    case 1:\n        s = s + 20;\n        break;\n    case 2:\n        s = s + /*__BLANK_2__*/;\n        break;\n    default:\n        s = /*__BLANK_3__*/;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "10"
+        },
+        {
+          "index": 2,
+          "answer": "40"
+        },
+        {
+          "index": 3,
+          "answer": "-1"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    switch (n % 4)\n    {\n    case 0:\n        s = s + /*__BLANK_1__*/;\n    case 1:\n        s = s + 20;\n        break;\n    case 2:\n        s = s + /*__BLANK_2__*/;\n        break;\n    default:\n        s = /*__BLANK_3__*/;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int n, s = 0;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    switch (n % 4)\n    {\n    case 0:\n        s = s + 10;\n    case 1:\n        s = s + 20;\n        break;\n    case 2:\n        s = s + 40;\n        break;\n    default:\n        s = -1;\n    }\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1\n",
+          "expected": "20"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "40"
+        },
+        {
+          "stdin": "9\n",
+          "expected": "20"
+        }
+      ],
+      "explanation": "本题故意让 case 0 不写 break，使 n%4==0 时贯穿到 case 1：s 先加第一空的 10 得 10，再落到 case 1 加 20，最终输出 30。case 2 加第二空的 40，n%4==3 走 default 得第三空的 -1。关键推理：贯穿不是错误而是一种可用特性，但必须在注释或题面中说明意图，否则默认应当写 break。验证：n=1 时 1%4=1 直接命中 case 1 得 20；n=2 得 40；n=9 时 9%4=1 得 20 而不是 -1。易错点：以为 default 只在 n 超出范围时才触发，其实它对应所有未列出的余数。",
+      "tags": [
+        "switch",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-17"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-028",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    if (/*__BLANK_1__*/)\n    {\n        printf(\"out of range\\n\");\n        return 0;\n    }\n    switch (/*__BLANK_2__*/)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        break;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    /*__BLANK_3__*/:\n        level = 'E';\n    }\n    printf(\"%c\\n\", level);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "score < 0 || score > 100",
+          "accepted": [
+            "score<0||score>100"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "score / 10",
+          "accepted": [
+            "score/10"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "default"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    if (/*__BLANK_1__*/)\n    {\n        printf(\"out of range\\n\");\n        return 0;\n    }\n    switch (/*__BLANK_2__*/)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        break;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    /*__BLANK_3__*/:\n        level = 'E';\n    }\n    printf(\"%c\\n\", level);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    if (score < 0 || score > 100)\n    {\n        printf(\"out of range\\n\");\n        return 0;\n    }\n    switch (score / 10)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        break;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    default:\n        level = 'E';\n    }\n    printf(\"%c\\n\", level);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "95\n",
+          "expected": "A"
+        },
+        {
+          "stdin": "58\n",
+          "expected": "E"
+        },
+        {
+          "stdin": "105\n",
+          "expected": "out of range"
+        }
+      ],
+      "explanation": "第一空是输入合法性检查，分数必须在 0~100 之间，越界直接输出提示并返回；第二空用整数除法 score / 10 把百分制压缩成 0~10 共 11 个离散值，这样 switch 才写得出来；第三空是 default 标签，兜住 0~5 分的不及格情况。关键推理：case 10 与 case 9 共用一段语句以处理满分 100；switch 的表达式必须是整型，浮点分数必须先做整数除法。易错点：漏掉范围检查时负分或 105 会走 default 得到 E，掩盖了输入错误。",
+      "tags": [
+        "switch",
+        "整数除法映射",
+        "default"
+      ],
+      "knowledgeIds": [
+        "c-ch04-18"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-029",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    /* 用德摩根律改写 !(x > 0 && y > 0) */\n    printf(\"%d\\n\", /*__BLANK_1__*/);\n    /* 判断 x 落在 [1,10] 且 y 为偶数 */\n    printf(\"%d\\n\", /*__BLANK_2__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x <= 0 || y <= 0"
+        },
+        {
+          "index": 2,
+          "answer": "x >= 1 && x <= 10 && y % 2 == 0"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    /* 用德摩根律改写 !(x > 0 && y > 0) */\n    printf(\"%d\\n\", /*__BLANK_1__*/);\n    /* 判断 x 落在 [1,10] 且 y 为偶数 */\n    printf(\"%d\\n\", /*__BLANK_2__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    /* 用德摩根律改写 !(x > 0 && y > 0) */\n    printf(\"%d\\n\", x <= 0 || y <= 0);\n    /* 判断 x 落在 [1,10] 且 y 为偶数 */\n    printf(\"%d\\n\", x >= 1 && x <= 10 && y % 2 == 0);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4\n",
+          "expected": "0\n1"
+        },
+        {
+          "stdin": "-1 5\n",
+          "expected": "1\n0"
+        },
+        {
+          "stdin": "5 7\n",
+          "expected": "0\n0"
+        }
+      ],
+      "explanation": "德摩根律：!(A && B) 等价于 !A || !B，把 !(x>0 && y>0) 展开即 x <= 0 || y <= 0，注意取反后 > 变 <=、&& 变 ||。第二空是复合区间条件，[1,10] 必须写成 x >= 1 && x <= 10 两个比较用 && 连接，再加 y % 2 == 0 判偶数。关键推理：验证 x=3,y=4 时第一式为 0（原式 !(真&&真)=0），第二式为 1；x=-1,y=5 时第一式为 1、第二式为 0。易错点：写成 1 <= x <= 10 是严重错误，它先算 1<=x 得 0 或 1，再与 10 比较，结果恒为真。",
+      "tags": [
+        "德摩根律",
+        "逻辑表达式"
+      ],
+      "knowledgeIds": [
+        "c-ch04-02"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-cc-030",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    /* 判断 b 是否落在 [a, c] 内（含端点） */\n    if (/*__BLANK_1__*/)\n        printf(\"in\\n\");\n    else\n        printf(\"out\\n\");\n    /* 必要时交换 a、b，使 a <= b */\n    if (/*__BLANK_2__*/)\n    {\n        int t = /*__BLANK_3__*/;\n        a = b;\n        b = t;\n    }\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b >= a && b <= c"
+        },
+        {
+          "index": 2,
+          "answer": "a > b"
+        },
+        {
+          "index": 3,
+          "answer": "a"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    /* 判断 b 是否落在 [a, c] 内（含端点） */\n    if (/*__BLANK_1__*/)\n        printf(\"in\\n\");\n    else\n        printf(\"out\\n\");\n    /* 必要时交换 a、b，使 a <= b */\n    if (/*__BLANK_2__*/)\n    {\n        int t = /*__BLANK_3__*/;\n        a = b;\n        b = t;\n    }\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    /* 判断 b 是否落在 [a, c] 内（含端点） */\n    if (b >= a && b <= c)\n        printf(\"in\\n\");\n    else\n        printf(\"out\\n\");\n    /* 必要时交换 a、b，使 a <= b */\n    if (a > b)\n    {\n        int t = a;\n        a = b;\n        b = t;\n    }\n    printf(\"%d %d\\n\", a, b);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 5 10\n",
+          "expected": "in\n1 5"
+        },
+        {
+          "stdin": "3 9 4\n",
+          "expected": "out\n3 9"
+        },
+        {
+          "stdin": "8 2 6\n",
+          "expected": "out\n2 8"
+        }
+      ],
+      "explanation": "第一空是含端点的区间判断 b >= a && b <= c，不能写成 a <= b <= c；第二空是交换的触发条件 a > b，只有逆序时才需要交换；第三空用临时变量 t 先保存 a，随后 a = b、b = t 完成交换。关键推理：交换必须借助第三个变量，直接 a = b; b = a; 会让 a 的原值丢失。验证 8 2 6：b=2 不在 [8,6] 内输出 out，8>2 成立交换后输出 2 8。易错点：t 的声明位置在 C99 中允许写在块内，若按 C89 编译需提到函数开头。",
+      "tags": [
+        "区间条件",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch04-04"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-dbg-004",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x = 0)\n        printf(\"x is zero\\n\");\n    else if (x > 0)\n        printf(\"x is positive\\n\");\n    else\n        printf(\"x is negative\\n\");\n    if (x > y);\n    {\n        int t = x;\n        x = y;\n        y = t;\n    }\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x = 0)\n        printf(\"x is zero\\n\");\n    else if (x > 0)\n        printf(\"x is positive\\n\");\n    else\n        printf(\"x is negative\\n\");\n    if (x > y);\n    {\n        int t = x;\n        x = y;\n        y = t;\n    }\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "0 5\n",
+          "expected": "x is zero\n0 5"
+        },
+        {
+          "stdin": "3 8\n",
+          "expected": "x is positive\n3 8"
+        },
+        {
+          "stdin": "9 2\n",
+          "expected": "x is positive\n2 9"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d%d\", &x, &y) != 2)\n        return 1;\n    if (x == 0)\n        printf(\"x is zero\\n\");\n    else if (x > 0)\n        printf(\"x is positive\\n\");\n    else\n        printf(\"x is negative\\n\");\n    if (x > y)\n    {\n        int t = x;\n        x = y;\n        y = t;\n    }\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "bugs": [
+        "把关系运算符 == 误写成赋值运算符 =，if(x = 0) 会先把 0 赋给 x，再以 0 作为条件（假），于是\"x is zero\"永远不打印，且 x 被悄悄改成 0，后面的比较与交换全部基于错误的值。判断相等必须用 ==。",
+        "if 后面多了一个分号，这个分号本身就是一条空语句，成了 if 所控制的全部内容；后面的复合语句 { int t = x; ... } 变成无条件执行，不管 x 与 y 的大小关系都会交换。删除分号后花括号才是 if 的从属语句。"
+      ],
+      "explanation": "两处错误都属于\"能编译但行为错\"的典型。第一处 x = 0 是赋值，表达式值为 0 即假，所以任何输入都会走 else if 分支，同时 x 被破坏；改成 x == 0 才是比较。第二处 if (x > y); 的分号让 if 控制了空语句，交换块无条件执行，输入 3 8 时会被错误地换成 8 3。修正后：0 5 输出 x is zero 与 0 5；3 8 输出 x is positive 与 3 8；9 2 输出 x is positive 与 2 9。易错点：编译器对 if(x = 0) 通常只给警告不报错。",
+      "tags": [
+        "赋值误作比较",
+        "空语句"
+      ],
+      "knowledgeIds": [
+        "c-ch04-10"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-dbg-005",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    switch (score)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        level = level;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    default:\n        level = 'E';\n    }\n    printf(\"%c\\n\", score);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    switch (score)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        level = level;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    default:\n        level = 'E';\n    }\n    printf(\"%c\\n\", score);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "95\n",
+          "expected": "A"
+        },
+        {
+          "stdin": "88\n",
+          "expected": "B"
+        },
+        {
+          "stdin": "45\n",
+          "expected": "E"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int score;\n    char level;\n\n    if (scanf(\"%d\", &score) != 1)\n        return 1;\n    switch (score / 10)\n    {\n    case 10:\n    case 9:\n        level = 'A';\n        break;\n    case 8:\n        level = 'B';\n        break;\n    case 7:\n        level = 'C';\n        break;\n    case 6:\n        level = 'D';\n        break;\n    default:\n        level = 'E';\n    }\n    printf(\"%c\\n\", level);\n    return 0;\n}",
+      "bugs": [
+        "switch 的表达式写成了原始分数，而 case 标签是 6~10 这些\"十分位\"值，95 分匹配不到任何 case 只会走 default 得 E。必须先用整数除法 score / 10 把百分制映射成 0~10 的离散值。",
+        "case 9/10 分支末尾缺少 break，导致命中 A 之后继续贯穿执行 case 8 的 level = B，所有 90 分以上的成绩都会被错判成 B。补上 break 才能在赋值后立即跳出 switch。",
+        "printf 用 %c 却传入了 int 型的 score，输出的是分数对应的 ASCII 字符（如 95 打印成下划线），而不是等级字符。应传 char 变量 level。"
+      ],
+      "explanation": "三处错误层层递进。控制表达式漏掉 /10 会让 case 标签全部落空；缺 break 造成贯穿，把 A 覆盖成 B；输出时把 level 写成 score 则让 %c 打印出无意义字符。修正后 95 分 → 95/10=9 → A，88 分 → 8 → B，45 分 → 4 → default → E。关键推理：switch 只能对整型值做多路分支，连续区间必须先做整数除法离散化；每个 case 末尾原则上都要写 break，除非有意贯穿。易错点：case 10 与 case 9 共用语句是正确写法，不是漏了 break。",
+      "tags": [
+        "switch",
+        "break",
+        "整型表达式"
+      ],
+      "knowledgeIds": [
+        "c-ch04-16"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-dbg-006",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (1 <= x <= 10)\n        printf(\"in [1,10]\\n\");\n    else\n        printf(\"out\\n\");\n    printf(\"%d\\n\", x / 2);\n    if (x % 2 == 1)\n        printf(\"even\\n\");\n    else\n        printf(\"odd\\n\");\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (1 <= x <= 10)\n        printf(\"in [1,10]\\n\");\n    else\n        printf(\"out\\n\");\n    printf(\"%d\\n\", x / 2);\n    if (x % 2 == 1)\n        printf(\"even\\n\");\n    else\n        printf(\"odd\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "in [1,10]\n1\nodd"
+        },
+        {
+          "stdin": "-3\n",
+          "expected": "out\n-1\nodd"
+        },
+        {
+          "stdin": "12\n",
+          "expected": "out\n0\neven"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    if (x >= 1 && x <= 10)\n        printf(\"in [1,10]\\n\");\n    else\n        printf(\"out\\n\");\n    printf(\"%d\\n\", x % 2);\n    if (x % 2 == 0)\n        printf(\"even\\n\");\n    else\n        printf(\"odd\\n\");\n    return 0;\n}",
+      "bugs": [
+        "C 语言不支持数学上的连写不等式：1 <= x <= 10 会先算 1 <= x 得到 0 或 1，再拿这个结果与 10 比较，而 0 和 1 都小于 10，条件恒为真。必须拆成 x >= 1 && x <= 10。",
+        "题目要输出 x 除以 2 的余数，写成了商 x / 2。/ 是整除取商，% 才是取余，输入 5 时前者输出 2、后者输出 1。",
+        "判偶数的条件写反了，x % 2 == 1 成立时 x 其实是奇数，导致奇偶结论互换；而且对负奇数（如 -3）余数是 -1 而不是 1，这个写法连奇数都判不出来。应写 x % 2 == 0。"
+      ],
+      "explanation": "三处错误分别对应三个高频陷阱。连写比较 1<=x<=10 恒为真，任何输入都会打印 in [1,10]；x / 2 与 x % 2 混淆使输出的余数变成商；x % 2 == 1 判偶数在正数上结论颠倒，在负数上更失效，因为 C99 规定取余结果符号跟随被除数，-3 % 2 得 -1。修正后：5 输出 in [1,10]、1、odd；-3 输出 out、-1、odd；12 输出 in [1,10]、0、even。易错点：判奇偶最稳妥的写法是 x % 2 != 0。",
+      "tags": [
+        "连写比较",
+        "取余",
+        "奇偶判断"
+      ],
+      "knowledgeIds": [
+        "c-ch04-05"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-009",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入年份 y 与月份 m，先输出该年该月的天数（月份非法时输出 invalid month），再另起一行输出该年的总天数（闰年 366，平年 365）。\n\n输入格式：一行两个整数 y m，用空白分隔（1<=y<=9999）\n\n输出格式：第一行\"y m 天数\"或 invalid month；第二行该年总天数",
+      "testCases": [
+        {
+          "stdin": "2024 2\n",
+          "expected": "2024 2 29\n366"
+        },
+        {
+          "stdin": "1900 12\n",
+          "expected": "1900 12 31\n365"
+        },
+        {
+          "stdin": "2023 13\n",
+          "expected": "invalid month\n365"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int y, m, d, leap;\n\n    if (scanf(\"%d%d\", &y, &m) != 2)\n        return 1;\n    leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    if (m < 1 || m > 12)\n    {\n        printf(\"invalid month\\n\");\n    }\n    else\n    {\n        switch (m)\n        {\n        case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n            d = 31;\n            break;\n        case 4: case 6: case 9: case 11:\n            d = 30;\n            break;\n        default:\n            d = leap ? 29 : 28;\n        }\n        printf(\"%d %d %d\\n\", y, m, d);\n    }\n    printf(\"%d\\n\", leap ? 366 : 365);\n    return 0;\n}",
+      "input_format": "一行两个整数 y m，用空白分隔（1<=y<=9999）",
+      "output_format": "第一行\"y m 天数\"或 invalid month；第二行该年总天数",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int y, m, d, leap;\n\n    if (scanf(\"%d%d\", &y, &m) != 2)\n        return 1;\n    leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;\n    if (m < 1 || m > 12)\n    {\n        printf(\"invalid month\\n\");\n    }\n    else\n    {\n        switch (m)\n        {\n        case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n            d = 31;\n            break;\n        case 4: case 6: case 9: case 11:\n            d = 30;\n            break;\n        default:\n            d = leap ? 29 : 28;\n        }\n        printf(\"%d %d %d\\n\", y, m, d);\n    }\n    printf(\"%d\\n\", leap ? 366 : 365);\n    return 0;\n}",
+      "explanation": "先用一个 leap 变量保存闰年判断结果，避免同一表达式写两遍。月份合法性必须最先检查，非法时只输出提示但总天数仍要输出，这是本题的输出约定。switch(m) 把 12 个月按 31 天、30 天分组，2 月落到 default 用条件运算符区分 29 与 28。关键推理：闰年规则是 (y%4==0 && y%100!=0) || y%400==0，1900 能被 4 与 100 整除但不能被 400 整除，是平年。易错点：月份检查写成 else if 会导致非法月份时漏掉第二行输出。",
+      "tags": [
+        "闰年",
+        "switch",
+        "分支"
+      ],
+      "knowledgeIds": [
+        "c-ch04-23"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-010",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "输入三个整数，按从小到大的顺序输出（用两两比较交换实现，不使用数组与排序函数）。\n\n输入格式：一行三个整数 a b c，用空白分隔\n\n输出格式：一行三个整数，升序，用单个空格分隔",
+      "testCases": [
+        {
+          "stdin": "3 1 2\n",
+          "expected": "1 2 3"
+        },
+        {
+          "stdin": "-5 0 -5\n",
+          "expected": "-5 -5 0"
+        },
+        {
+          "stdin": "7 7 7\n",
+          "expected": "7 7 7"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b, c, t;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    if (a > b)\n    {\n        t = a;\n        a = b;\n        b = t;\n    }\n    if (a > c)\n    {\n        t = a;\n        a = c;\n        c = t;\n    }\n    if (b > c)\n    {\n        t = b;\n        b = c;\n        c = t;\n    }\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}",
+      "input_format": "一行三个整数 a b c，用空白分隔",
+      "output_format": "一行三个整数，升序，用单个空格分隔",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b, c, t;\n\n    if (scanf(\"%d%d%d\", &a, &b, &c) != 3)\n        return 1;\n    if (a > b)\n    {\n        t = a;\n        a = b;\n        b = t;\n    }\n    if (a > c)\n    {\n        t = a;\n        a = c;\n        c = t;\n    }\n    if (b > c)\n    {\n        t = b;\n        b = c;\n        c = t;\n    }\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}",
+      "explanation": "三次两两比较即可把最小值\"冒\"到 a：先比较 a 与 b 使 a<=b，再比较 a 与 c 使 a 成为三者最小，最后比较 b 与 c 使 b<=c，此时 a<=b<=c 必然成立。关键推理：第二、三步不能省，例如 3 1 2 中第一次交换得 1 3 2，第二次 a 与 c 比较 1<2 不交换，第三次 b 与 c 比较 3>2 交换得 1 2 3。交换必须借助临时变量 t。易错点：三个 if 不能写成 else if，因为它们可能同时成立；相等时不交换，结果仍正确。",
+      "tags": [
+        "三数排序",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch04-25"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-011",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "计算分段函数 y 的值并保留两位小数输出：x < -1 时 y = 2x + 3；-1 <= x <= 1 时 y = x*x；x > 1 时 y = 3x - 1。\n\n输入格式：一行一个实数 x\n\n输出格式：一行 y 的值，保留两位小数",
+      "testCases": [
+        {
+          "stdin": "-2.5\n",
+          "expected": "-2.00"
+        },
+        {
+          "stdin": "0.5\n",
+          "expected": "0.25"
+        },
+        {
+          "stdin": "4\n",
+          "expected": "11.00"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n    if (x < -1)\n        y = 2 * x + 3;\n    else if (x <= 1)\n        y = x * x;\n    else\n        y = 3 * x - 1;\n    printf(\"%.2f\\n\", y);\n    return 0;\n}",
+      "input_format": "一行一个实数 x",
+      "output_format": "一行 y 的值，保留两位小数",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    double x, y;\n\n    if (scanf(\"%lf\", &x) != 1)\n        return 1;\n    if (x < -1)\n        y = 2 * x + 3;\n    else if (x <= 1)\n        y = x * x;\n    else\n        y = 3 * x - 1;\n    printf(\"%.2f\\n\", y);\n    return 0;\n}",
+      "explanation": "三段区间必须按顺序判断，中间段写成 x <= 1 而不必再写 x >= -1，因为能进入该分支说明 x < -1 已不成立，这正是 else if 链\"隐含前置条件\"的好处。验证：x=-2.5 时 y=2*(-2.5)+3=-2，输出 -2.00；x=0.5 时 y=0.25；x=4 时 y=3*4-1=11，输出 11.00。关键推理：scanf 读 double 必须用 %lf，printf 用 %f 或 %lf 皆可。易错点：把中间段条件写成 x < 1 会让 x=1 落入第三段得 2.00 而不是 1.00。",
+      "tags": [
+        "分段函数",
+        "else if链"
+      ],
+      "knowledgeIds": [
+        "c-ch04-26"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-012",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "实现整数四则运算器：输入形如\"a op b\"的表达式，op 为 + - * / % 之一，输出运算结果；除数为 0 时输出 div0，运算符非法时输出 bad op 加该字符。\n\n输入格式：一行，格式为 整数 空白 运算符 空白 整数\n\n输出格式：一行运算结果，或 div0，或 bad op 加非法运算符",
+      "testCases": [
+        {
+          "stdin": "12 + 5\n",
+          "expected": "17"
+        },
+        {
+          "stdin": "20 / 0\n",
+          "expected": "div0"
+        },
+        {
+          "stdin": "7 % 3\n",
+          "expected": "1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n    {\n        printf(\"input error\\n\");\n        return 1;\n    }\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    case '%':\n        if (b != 0)\n            printf(\"%d\\n\", a % b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}",
+      "input_format": "一行，格式为 整数 空白 运算符 空白 整数",
+      "output_format": "一行运算结果，或 div0，或 bad op 加非法运算符",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b;\n    char op;\n\n    if (scanf(\"%d %c %d\", &a, &op, &b) != 3)\n    {\n        printf(\"input error\\n\");\n        return 1;\n    }\n    switch (op)\n    {\n    case '+':\n        printf(\"%d\\n\", a + b);\n        break;\n    case '-':\n        printf(\"%d\\n\", a - b);\n        break;\n    case '*':\n        printf(\"%d\\n\", a * b);\n        break;\n    case '/':\n        if (b != 0)\n            printf(\"%d\\n\", a / b);\n        else\n            printf(\"div0\\n\");\n        break;\n    case '%':\n        if (b != 0)\n            printf(\"%d\\n\", a % b);\n        else\n            printf(\"div0\\n\");\n        break;\n    default:\n        printf(\"bad op %c\\n\", op);\n    }\n    return 0;\n}",
+      "explanation": "scanf(\"%d %c %d\") 中格式串的空格表示跳过任意数量空白，因此能正确读入带空格的表达式；若写成 \"%d%c%d\"，%c 会把运算符前的空格读走。switch 对字符做分支完全合法，因为字符就是整型码值。除法与取余都必须先判 b != 0，整数除零是未定义行为，通常直接崩溃。验证：12+5=17；20/0 输出 div0；7%3=1。易错点：每个 case 末尾都要写 break，否则结果会被后续分支覆盖。",
+      "tags": [
+        "switch",
+        "计算器",
+        "除零"
+      ],
+      "knowledgeIds": [
+        "c-ch04-15"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-013",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "输入一个字符，判断它属于 lower（小写字母）、upper（大写字母）、digit（数字）、space（空格）还是 other（其他），输出类别名，并另起一行输出该字符的 ASCII 码值。\n\n输入格式：一行一个字符\n\n输出格式：第一行类别名；第二行该字符的十进制码值",
+      "testCases": [
+        {
+          "stdin": "M\n",
+          "expected": "upper\n77"
+        },
+        {
+          "stdin": " \n",
+          "expected": "space\n32"
+        },
+        {
+          "stdin": "@\n",
+          "expected": "other\n64"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    char c;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower\\n\");\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper\\n\");\n    else if (c >= '0' && c <= '9')\n        printf(\"digit\\n\");\n    else if (c == ' ')\n        printf(\"space\\n\");\n    else\n        printf(\"other\\n\");\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "input_format": "一行一个字符",
+      "output_format": "第一行类别名；第二行该字符的十进制码值",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    char c;\n\n    if (scanf(\"%c\", &c) != 1)\n        return 1;\n    if (c >= 'a' && c <= 'z')\n        printf(\"lower\\n\");\n    else if (c >= 'A' && c <= 'Z')\n        printf(\"upper\\n\");\n    else if (c >= '0' && c <= '9')\n        printf(\"digit\\n\");\n    else if (c == ' ')\n        printf(\"space\\n\");\n    else\n        printf(\"other\\n\");\n    printf(\"%d\\n\", c);\n    return 0;\n}",
+      "explanation": "字符分类的本质是码值区间比较：小写 a~z 是 97~122，大写 A~Z 是 65~90，数字 0~9 是 48~57，空格是 32。用 else if 链依次判断，最后的 else 兜住标点等其他字符。printf(\"%d\", c) 会把 char 提升为 int 输出码值，这正是 C 中\"字符即整数\"的体现。验证：M 输出 upper 与 77；空格输出 space 与 32；@ 输出 other 与 64。易错点：%c 不会跳过前导空白，输入中的空格会被当作数据读入，所以 space 分支是必要的。",
+      "tags": [
+        "字符分类",
+        "ASCII"
+      ],
+      "knowledgeIds": [
+        "c-ch04-21"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-pg-014",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "某快递按重量 w（千克）计费：w<=50 时每千克 0.5 元；50<w<=200 时前 50 千克每千克 0.5 元、超出部分每千克 0.4 元；w>200 时前 200 千克按上述标准、超出部分每千克 0.3 元。重量超过 1000 千克时总费用打 95 折。w 为负数时输出 invalid。结果保留两位小数。\n\n输入格式：一行一个实数 w\n\n输出格式：一行费用（保留两位小数），或 invalid",
+      "testCases": [
+        {
+          "stdin": "30\n",
+          "expected": "15.00"
+        },
+        {
+          "stdin": "120\n",
+          "expected": "53.00"
+        },
+        {
+          "stdin": "1500\n",
+          "expected": "451.25"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint main(void)\n{\n    double w, fee;\n\n    if (scanf(\"%lf\", &w) != 1)\n        return 1;\n    if (w < 0)\n    {\n        printf(\"invalid\\n\");\n        return 1;\n    }\n    if (w <= 50)\n        fee = w * 0.5;\n    else if (w <= 200)\n        fee = 25 + (w - 50) * 0.4;\n    else\n        fee = 85 + (w - 200) * 0.3;\n    if (w > 1000)\n        fee = fee * 0.95;\n    printf(\"%.2f\\n\", fee);\n    return 0;\n}",
+      "input_format": "一行一个实数 w",
+      "output_format": "一行费用（保留两位小数），或 invalid",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    double w, fee;\n\n    if (scanf(\"%lf\", &w) != 1)\n        return 1;\n    if (w < 0)\n    {\n        printf(\"invalid\\n\");\n        return 1;\n    }\n    if (w <= 50)\n        fee = w * 0.5;\n    else if (w <= 200)\n        fee = 25 + (w - 50) * 0.4;\n    else\n        fee = 85 + (w - 200) * 0.3;\n    if (w > 1000)\n        fee = fee * 0.95;\n    printf(\"%.2f\\n\", fee);\n    return 0;\n}",
+      "explanation": "阶梯计价的关键是把已封顶部分预先算成常数：前 50 千克共 25 元，前 200 千克共 25 + 150*0.4 = 85 元，于是各段只需加上超出部分的单价乘以超出重量。折扣判断必须放在分段计算之后、输出之前，且用独立的 if 而不是 else if，因为它与分段条件是正交的两件事。验证：w=30 得 15.00；w=120 得 25+70*0.4=53.00；w=1500 得 85+1300*0.3=475，打 95 折为 451.25。易错点：负重量要提前 return，否则会被最后一段当作超大重量计费。",
+      "tags": [
+        "分段计费",
+        "多分支"
+      ],
+      "knowledgeIds": [
+        "c-ch04-26"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-034",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "在 C 语言中，关于逻辑真假的表示，下列说法正确的是（　）。",
+      "options": [
+        "只有整数 1 表示真，其他任何值都表示假",
+        "任何非 0 值都表示真，0 表示假",
+        "只有非负数表示真，负数表示假",
+        "逻辑值只能用 true 和 false 关键字表示"
+      ],
+      "answer": 1,
+      "explanation": "C 语言没有独立的布尔类型（C99 的 _Bool 也是整型的别名），规定\"非 0 即真、0 为假\"：关系与逻辑运算的结果只会是 1 或 0，但作为条件参与判断的可以是任意算术表达式，只要值不为 0 就视为真。所以 if(-3) 与 if(100) 都会执行，if(0) 不执行。true/false 是 stdbool.h 提供的宏，本质仍是 1 和 0，并非语言关键字。易错点：把\"真\"等同于\"1\"，从而认为 if(x) 与 if(x==1) 等价，二者对 x=5 的结果完全不同。",
+      "tags": [
+        "逻辑值",
+        "非0即真"
+      ],
+      "knowledgeIds": [
+        "c-ch04-01"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-035",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "设 int a = 1, b = 2, c = 3; 表达式 !a + b < c && !c || a 的值是（　）。",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "answer": 1,
+      "explanation": "按优先级从高到低拆解：! 最高，!a 得 0、!c 得 0；接着算术 +，0 + b = 2；再关系 <，2 < 3 得 1；然后 &&，1 && 0 得 0；最后 ||，0 || a 中 a=1 非 0 故整个表达式为真，结果是 1。优先级顺序为 ! > 算术 > 关系 > && > ||，这条链必须记牢。易错点：一是把 !a + b 误算成 !(a+b)，! 是一元运算符只作用于紧随其后的 a；二是误以为 || 左侧为假时会短路掉 a 使结果为 0，其实短路只发生在左侧为真时。",
+      "tags": [
+        "运算符优先级",
+        "逻辑运算"
+      ],
+      "knowledgeIds": [
+        "c-ch04-02"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-036",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "设 int i = 1, j = 2; 执行表达式 (i++ > 1) && (++j > 2) 后，i 与 j 的值分别是（　）。",
+      "options": [
+        "1 和 2",
+        "2 和 2",
+        "2 和 3",
+        "1 和 3"
+      ],
+      "answer": 1,
+      "explanation": "i++ 是后缀自增，先用原值 1 参与比较再自增，1 > 1 为假，随后 i 变为 2；由于 && 左侧已为假，右侧 ++j > 2 被短路跳过，j 保持 2 不变。所以结果是 i=2、j=2。关键推理：短路求值跳过的是整个右操作数的求值过程，其中的副作用（自增、赋值、函数调用）都不会发生，这是 C 语言标准明确保证的。易错点：误认为 i++ 不改变 i（那是\"表达式值不变\"，变量本身已自增）；或误认为两个自增都会执行。",
+      "tags": [
+        "短路求值",
+        "自增副作用"
+      ],
+      "knowledgeIds": [
+        "c-ch04-03"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-037",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "设 int a = 5; 表达式 a < 3 < 5 的值是（　）。",
+      "options": [
+        "0",
+        "1",
+        "编译报错",
+        "值不确定，取决于编译器"
+      ],
+      "answer": 1,
+      "explanation": "< 是左结合的，所以 a < 3 < 5 先算 a < 3，即 5 < 3 得 0，再算 0 < 5 得 1，最终结果是 1（真）。它绝不表示数学上的\"3 < a < 5\"。要表达区间必须写成 a > 3 && a < 5。关键推理：关系运算符的结果是 int 型的 0 或 1，这个结果又能继续参与下一次比较，因此连写在语法上完全合法、只是语义与直觉相悖。易错点：这类表达式不会产生任何编译错误或警告（部分编译器在 -Wall 下会给提示），是隐蔽性极强的 bug 源。",
+      "tags": [
+        "连写比较",
+        "陷阱"
+      ],
+      "knowledgeIds": [
+        "c-ch04-05"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-038",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于 C 语言 if 语句的嵌套与 else 的配对，下列说法正确的是（　）。",
+      "options": [
+        "else 总是与缩进层级相同的那个 if 配对",
+        "else 总是与其之前最近的、尚未配对 if 的 if 配对",
+        "else 可以与任意 if 配对，由编译器自行决定",
+        "一个 if 后面可以跟随多个 else 分支"
+      ],
+      "answer": 1,
+      "explanation": "C 语法规定 else 与它前面最近的、还没有配上 else 的 if 结合，这一规则完全由词法结构决定，与缩进、换行、注释都无关，这就是著名的\"悬挂 else\"歧义的消除方式。如果希望 else 属于外层 if，必须用花括号把内层 if 包起来。一个 if 最多只能有一个 else，多分支要靠 else if 链或 switch。易错点：按缩进阅读代码，把内层 else 误认为属于外层 if，从而对 x<=0 的分支行为做出错误判断。",
+      "tags": [
+        "悬挂else",
+        "if嵌套"
+      ],
+      "knowledgeIds": [
+        "c-ch04-11"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-sc-039",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列 switch 语句的控制表达式中，不符合 C 语言规定的是（　）。",
+      "options": [
+        "switch (n % 3)（n 为 int）",
+        "switch ((int)x)（x 为 double）",
+        "switch (3.5)",
+        "switch (c)（c 为 char）"
+      ],
+      "answer": 2,
+      "explanation": "switch 的控制表达式必须是整型（int、char、枚举，以及可提升为整型的类型），因为 case 标签要做整数等值比较，浮点数存在精度问题无法可靠比较。选项 A 的 n%3 是 int，B 用强制类型转换把 double 变成 int，D 的 char 会自动提升为 int，三者都合法；C 的 3.5 是 double，直接违反规定，编译器会报错。易错点：以为 case 标签写成小数只是精度问题，其实是语法层面的禁止；switch 也不能用于字符串比较。",
+      "tags": [
+        "switch",
+        "整型表达式"
+      ],
+      "knowledgeIds": [
+        "c-ch04-16"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-fb-022",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "switch 语句中，若某个 case 分支末尾缺少____语句，程序会继续顺序执行后面 case 的语句，这种现象称为____；switch 的控制表达式必须是____类型。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "break"
+        },
+        {
+          "index": 2,
+          "answer": "贯穿",
+          "accepted": [
+            "穿透",
+            "fall-through",
+            "直通",
+            "下落"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "整型",
+          "accepted": [
+            "整数",
+            "整型或字符型"
+          ]
+        }
+      ],
+      "explanation": "switch 的 case 标签只是跳转入口，匹配成功后从该处开始顺序执行，直到遇到 break 才跳出整个 switch，或执行到 switch 末尾。缺少 break 导致继续执行下一分支的现象称为\"贯穿\"（fall-through）。控制表达式必须是整型，char 会先提升为 int。贯穿有时是有意为之，例如 case 9 与 case 10 共用一段语句，但默认应当在每个分支末尾写 break。易错点：default 分支通常放在最后，此时即使不写 break 也不会贯穿到任何地方，但为保持一致性仍建议写上。",
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "knowledgeIds": [
+        "c-ch04-17"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-fb-023",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "条件运算符 ?: 是 C 语言中唯一的____目运算符，其结合性为____；因此 a>b ? a : c>d ? c : d 等价于 a>b ? a : ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "三",
+          "accepted": [
+            "3",
+            "三元"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "右结合",
+          "accepted": [
+            "从右到左",
+            "自右向左"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "(c>d ? c:d)",
+          "accepted": [
+            "c>d ? c:d",
+            "c>d?c:d"
+          ]
+        }
+      ],
+      "explanation": "?: 需要三个操作数——条件、真支、假支，是 C 中唯一的三目运算符，且为右结合，即嵌套时从右往左分组。所以 a>b ? a : c>d ? c : d 解析成 a>b ? a : (c>d ? c : d)，含义是\"若 a>b 取 a，否则取 c 与 d 的较大者\"，这正是求三个数最大值的紧凑写法。虽然加括号不改变语义，但显式括号能大幅提高可读性。易错点：把 ?: 当成左结合，写成 (a>b ? a : c>d) ? c : d，语义完全走样。",
+      "tags": [
+        "条件运算符",
+        "结合性"
+      ],
+      "knowledgeIds": [
+        "c-ch04-14"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-fb-024",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "公历闰年的判定规则是：年份能被____整除且不能被____整除，或者能被____整除。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "4"
+        },
+        {
+          "index": 2,
+          "answer": "100"
+        },
+        {
+          "index": 3,
+          "answer": "400"
+        }
+      ],
+      "explanation": "这条规则的完整逻辑表达式是 (y%4==0 && y%100!=0) || y%400==0。天文上一回归年约 365.2422 天，每四年补一天（+0.25）会略微多补，于是规定整百年份必须能被 400 整除才算闰年再校正回来。所以 2024 是闰年、1900 不是、2000 是。括号不可省略：&& 优先级高于 ||，不加括号时 y%4==0 && y%100!=0 || y%400==0 恰好也等价，但加上括号意图更清楚。易错点：只判 y%4==0 会把 1900、2100 误判为闰年。",
+      "tags": [
+        "闰年",
+        "取余"
+      ],
+      "knowledgeIds": [
+        "c-ch04-23"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "语句 if (x = 0) printf(\"zero\n\"); 存在语法错误，无法通过编译。",
+      "answer": false,
+      "explanation": "该说法错误。x = 0 是一个合法的赋值表达式，其值为 0，作为 if 的条件完全符合语法，编译器不会报错，最多在开启 -Wall 时给出\"suggest parentheses around assignment used as truth value\"之类的警告。运行时赋值把 x 改成 0，条件值为 0 即假，printf 永远不执行，这是最隐蔽的一类 bug。要避免它，可以养成把常量写在左边的习惯：if (0 == x)，一旦误写成 = 就会因\"不能给常量赋值\"而编译失败。易错点：判断相等必须用 ==。",
+      "tags": [
+        "赋值误作比较",
+        "编译警告"
+      ],
+      "knowledgeIds": [
+        "c-ch04-10"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch04-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在 switch 语句中，default 分支必须写在所有 case 分支之后，否则编译器会报错。",
+      "answer": false,
+      "explanation": "该说法错误。default 只是一个\"所有 case 都不匹配时\"的入口标签，它在 switch 体内的位置完全自由，可以写在最前、中间或最后，语法上都合法。但位置会影响贯穿行为：若 default 不在末尾且其分支没有 break，执行完会继续贯穿到紧随其后的 case，这是极易出错的写法，因此惯例上把 default 放在最后。易错点：把\"default 必须在最后\"当成语法规则，其实它只是编码规范；另外 default 分支本身也可以省略。",
+      "tags": [
+        "switch",
+        "default位置"
+      ],
+      "knowledgeIds": [
+        "c-ch04-19"
+      ],
+      "source": "变式（源自 c-ch04 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
       "verified": true
     }
   ]

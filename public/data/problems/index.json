@@ -1,9 +1,9 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "8bcc034b5708cde8",
+  "content_sha": "d80423c5c86c306c",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1624,
+  "count": 1674,
   "shard_count": 20,
   "shards": [
     {
@@ -31,7 +31,7 @@
       "file": "c-ch04.json",
       "category": "c",
       "chapter": "第4章 逻辑运算和分支结构",
-      "count": 111,
+      "count": 161,
       "url": "data/problems/c-ch04.json"
     },
     {
@@ -5894,6 +5894,829 @@
       "verified": true,
       "tags": [],
       "title": "【题 4.100】以下程序的功能是",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-025",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-026",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-027",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-028",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-029",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "短路求值",
+        "逻辑运算符",
+        "副作用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-030",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-031",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-032",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-033",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-034",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "if嵌套",
+        "悬挂else",
+        "else if链"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-035",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-036",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-037",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-038",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-039",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-040",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-041",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-042",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "条件运算符",
+        "三目运算"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-043",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "字符分类",
+        "闰年",
+        "ASCII"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cr-044",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "字符分类",
+        "闰年",
+        "ASCII"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-021",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "if",
+        "求最大值"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-022",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "闰年",
+        "逻辑表达式"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-023",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "分段函数",
+        "else if链"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-024",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "字符分类",
+        "大小写转换"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-025",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "区间条件",
+        "三角形判定"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-026",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "switch",
+        "天数"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-027",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "贯穿"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-028",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "switch",
+        "整数除法映射",
+        "default"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-029",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "德摩根律",
+        "逻辑表达式"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-cc-030",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "区间条件",
+        "交换"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-dbg-004",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "赋值误作比较",
+        "空语句"
+      ],
+      "title": "下列程序存在错误",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-dbg-005",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "switch",
+        "break",
+        "整型表达式"
+      ],
+      "title": "下列程序存在错误",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-dbg-006",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "连写比较",
+        "取余",
+        "奇偶判断"
+      ],
+      "title": "下列程序存在错误",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-009",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "闰年",
+        "switch",
+        "分支"
+      ],
+      "title": "输入年份 y 与月份 m",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-010",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "三数排序",
+        "交换"
+      ],
+      "title": "输入三个整数",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-011",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "分段函数",
+        "else if链"
+      ],
+      "title": "计算分段函数 y 的值并保留两位小数输出",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-012",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "switch",
+        "计算器",
+        "除零"
+      ],
+      "title": "实现整数四则运算器",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-013",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "字符分类",
+        "ASCII"
+      ],
+      "title": "输入一个字符",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-pg-014",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "分段计费",
+        "多分支"
+      ],
+      "title": "某快递按重量 w",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-034",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "逻辑值",
+        "非0即真"
+      ],
+      "title": "在 C 语言中",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-035",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "运算符优先级",
+        "逻辑运算"
+      ],
+      "title": "设 int a = 1",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-036",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "短路求值",
+        "自增副作用"
+      ],
+      "title": "设 int i = 1",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-037",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "连写比较",
+        "陷阱"
+      ],
+      "title": "设 int a = 5",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-038",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "悬挂else",
+        "if嵌套"
+      ],
+      "title": "关于 C 语言 if 语句的嵌套与 else 的配对",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-sc-039",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "switch",
+        "整型表达式"
+      ],
+      "title": "下列 switch 语句的控制表达式中",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-fb-022",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "switch",
+        "break",
+        "贯穿"
+      ],
+      "title": "switch 语句中",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-fb-023",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "条件运算符",
+        "结合性"
+      ],
+      "title": "条件运算符 ?",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-fb-024",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "闰年",
+        "取余"
+      ],
+      "title": "公历闰年的判定规则是",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-tf-001",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "赋值误作比较",
+        "编译警告"
+      ],
+      "title": "语句 if ",
+      "file": "c-ch04.json"
+    },
+    {
+      "id": "c-ch04-tf-002",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第4章 逻辑运算和分支结构",
+      "section": "4.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "switch",
+        "default位置"
+      ],
+      "title": "在 switch 语句中",
       "file": "c-ch04.json"
     },
     {
@@ -23436,6 +24259,6 @@
     }
   ],
   "defects": {
-    "codeReadingNoAnswer": 4
+    "codeReadingNoAnswer": 1
   }
 }
