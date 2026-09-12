@@ -50,6 +50,17 @@ export function HomePage() {
         ))}
       </section>
 
+      <section className="rounded-xl border p-5 text-sm" style={{ borderColor: 'var(--border)' }} data-role="quick-start">
+        <h2 className="font-semibold">快速开始</h2>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <Link to="/problems?pick=daily" data-role="home-pick-daily" className="rounded-lg border px-3 py-1.5" style={{ borderColor: 'var(--border)', color: 'var(--fg)', textDecoration: 'none' }}>📅 每日一题</Link>
+          <Link to="/problems?pick=random" data-role="home-pick-random" className="rounded-lg border px-3 py-1.5" style={{ borderColor: 'var(--border)', color: 'var(--fg)', textDecoration: 'none' }}>🎲 随机练习</Link>
+        </div>
+        <p className="mt-2 text-xs" style={{ color: 'var(--fg-muted)' }}>
+          每日一题按本地日期固定，同一天刷新不变；随机练习每点一次换一道新题。
+        </p>
+      </section>
+
       <section className="grid gap-6 md:grid-cols-2">
         <div>
           <h2 className="mb-2 text-lg font-semibold">项目硬约束</h2>
@@ -78,7 +89,7 @@ export function HomePage() {
           原硬性约束指定的 Piston 公共 API 自 2026-02-15 起改为白名单制（匿名调用返回 401）。
           依据 <code>docs/adr/0001-judge-backend.md</code>，本站改用 Godbolt Compiler Explorer 公共接口，
           浏览器直连、无需 key；实测其策略为服务端排队而非限流，故并发上限压到 {judge.maxConcurrency}。
-          编译层保留 PistonAdapter / Judge0Adapter，将来可切换。后端不可用时自动进入降级模式：
+          编译层保留 JudgeBackend 契约与后端注册表（BACKENDS），新增后端按契约补一个适配器即可；原 PistonAdapter / Judge0Adapter 休眠代码已依 ADR-0001 裁决移除（Piston 公共 API 401 白名单化、Judge0 需 key，均无法在纯静态站使用）。后端不可用时自动进入降级模式：
           读取构建期预存的真实输出供自评，站点不瘫。
         </p>
       </section>

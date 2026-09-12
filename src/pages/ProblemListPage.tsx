@@ -16,7 +16,8 @@
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { pickDaily, pickRandom } from '../modules/problems/random'
 import { loadIndex } from '../modules/problems/data/loader'
 import type { ProblemIndex, ProblemIndexEntry } from '../modules/problems/data/loader'
 import { statusOf, useProgress } from '../modules/problems/progress/store'
@@ -146,7 +147,28 @@ function ListSkeleton() {
 
 function Ready({ index }: { index: ProblemIndex }) {
   const [params, setParams] = useSearchParams()
+  const navigate = useNavigate()
   const records = useProgress((s) => s.records)
+
+  /**
+   * ?pick=daily|random：每日一题 / 随机练习入口（首页链接与本页按钮共用）。
+   * 先把 pick 参数 replace 掉再跳转详情页 —— 从详情页「后退」回来时落在不带 pick
+   * 的列表页上，不会再次抽题（否则后退会变成死循环）。
+   */
+  useEffect(() => {
+    const pick = params.get('pick')
+    if (pick !== 'daily' && pick !== 'random') return
+    const entry = pick === 'daily' ? pickDaily(index) : pickRandom(index)
+    const next = new URLSearchParams(params)
+    next.delete('pick')
+    setParams(next, { replace: true })
+    if (entry) navigate(`/problems/p/${entry.id}`)
+  }, [params, index, navigate, setParams])
+
+  const doRandom = useCallback(() => {
+    const entry = pickRandom(index)
+    if (entry) navigate(`/problems/p/${entry.id}`)
+  }, [index, navigate])
 
   const chapter = params.get('chapter') ?? ''
   const type = params.get('type') ?? ''
@@ -253,6 +275,12 @@ function Ready({ index }: { index: ProblemIndex }) {
   return (
     <>
       <section className="space-y-3 rounded-xl border p-4" style={panel}>
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <span style={muted}>快速开始：</span>
+          <Link to="/problems?pick=daily" data-role="pick-daily" className="rounded-lg border px-3 py-1.5" style={{ ...control, textDecoration: 'none' }}>📅 每日一题</Link>
+          <button type="button" data-role="pick-random" onClick={doRandom} className="rounded-lg border px-3 py-1.5" style={control}>🎲 随机练习</button>
+          <span style={muted}>每日一题当天固定；随机练习每点一次换一道</span>
+        </div>
         <div className="flex flex-wrap items-end gap-3">
           <label className="min-w-[13rem] flex-1 text-xs" style={muted}>
             <span className="mb-1 block">搜索</span>

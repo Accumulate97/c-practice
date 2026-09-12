@@ -18,6 +18,7 @@ import type { ProblemIndex } from '../modules/problems/data/loader'
 import { formatDateTime } from '../modules/problems/progress/ProgressPanel'
 import { PROGRESS_KEY } from '../app/config'
 import { accuracyText, computeStats, percentOf } from '../modules/problems/progress/stats'
+import { MasteryHeatmap } from '../modules/problems/progress/MasteryHeatmap'
 import type { BucketStat } from '../modules/problems/progress/stats'
 import { dismissProgressIssues, listBackups, progressIssues } from '../modules/problems/progress/storage'
 import type { ProgressIssue } from '../modules/problems/progress/storage'
@@ -148,6 +149,8 @@ function Ready({ index }: { index: ProblemIndex }) {
 
       <BucketTable title="按章节" role="chapter-stats" keyAttr="chapter" buckets={stats.byChapter} />
       <BucketTable title="按题型" role="type-stats" keyAttr="type" buckets={stats.byType} />
+
+      <MasteryHeatmap index={index} records={records} />
 
       <section className="rounded-xl border p-4" style={panel} data-role="wrongbook" data-count={String(wrongBook.length)}>
         <h2 className="text-sm font-semibold">📕 错题本（{wrongBook.length} 道在册）</h2>
