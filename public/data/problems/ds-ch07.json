@@ -1,0 +1,1841 @@
+{
+  "category": "ds",
+  "chapter": "第7章 查找",
+  "problems": [
+    {
+      "id": "ds-ch07-sc-001",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "衡量一个查找算法效率的主要指标是平均查找长度 ASL，它的准确含义是（　）。",
+      "options": [
+        "查找过程中关键字与给定值进行比较次数的数学期望",
+        "查找过程中数据元素被移动的次数",
+        "查找表中数据元素的总个数 n",
+        "查找算法执行时所占用的存储空间大小"
+      ],
+      "answer": 0,
+      "explanation": "ASL（Average Search Length）定义为查找过程中进行关键字比较次数的平均值，即 ASL = Σ(Pi × Ci)，其中 Pi 是查找第 i 个元素的概率，Ci 是找到它所需的比较次数。它衡量的是\"比了几次\"，与元素移动次数、表长本身、存储空间都不同。易错点：ASL 是期望值而不是某一次查找的实际比较次数，且成功与失败两种情形的 ASL 通常不相等，要分别计算。",
+      "tags": [
+        "ASL",
+        "查找效率"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-002",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在含 n 个元素的顺序表中作顺序查找，设查找每个元素的概率相等且都能查找成功，则平均查找长度为（　）。",
+      "options": [
+        "n",
+        "(n + 1) / 2",
+        "n / 2",
+        "(n - 1) / 2"
+      ],
+      "answer": 1,
+      "explanation": "从表尾向表头（或反之）逐个比较，第 i 个元素需要比较 i 次；等概率下 ASL = (1/n)Σi = (1/n)·n(n+1)/2 = (n+1)/2。若采用\"哨兵\"写法从后往前找，结论不变。易错点：(n-1)/2 是把首元素的 0 次比较算错所致；顺序查找失败时还需多比较一次哨兵，ASL(失败) = n+1，比成功的 (n+1)/2 大得多。",
+      "tags": [
+        "顺序查找",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-003",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于静态查找与动态查找，下列叙述正确的是（　）。",
+      "options": [
+        "静态查找只做查询，动态查找在查询的同时还可能插入或删除元素",
+        "静态查找只能采用顺序存储，动态查找只能采用链式存储",
+        "折半查找属于动态查找",
+        "二叉排序树的查找属于静态查找"
+      ],
+      "answer": 0,
+      "explanation": "静态查找表在查找过程中不发生变化，只有查询操作，典型方法是顺序查找、折半查找、散列查找；动态查找表在查找过程中可能同时插入或删除元素，典型结构是二叉排序树、平衡二叉树、B 树与散列表。存储方式与静态/动态并无必然对应关系（散列表可动态插入却是静态查找方法之一）。易错点：二叉排序树查找属于动态查找，折半查找属于静态查找，两者不可互换。",
+      "tags": [
+        "静态查找",
+        "动态查找"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-004",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "数据结构中所谓的\"查找表\"，是指由（　）构成的集合。",
+      "options": [
+        "同一类型的数据元素（或记录）",
+        "按关键字有序排列的整数",
+        "关键字互不相同的记录",
+        "只能存放在顺序表中的数据元素"
+      ],
+      "answer": 0,
+      "explanation": "查找表（Search Table）是同一类型数据元素（记录）构成的集合，\"同一类型\"保证元素具有可比较的关键字。查找表不要求有序——折半查找才额外要求有序；也不要求关键字唯一，可能存在多个匹配元素；更不限于顺序存储，链表同样可以建查找表。易错点：把\"查找表\"与\"有序表\"混为一谈，从而误选 B。",
+      "tags": [
+        "查找表",
+        "关键字"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-001",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "查找就是根据给定的某个值，在查找表中确定一个其___(1)___等于给定值的___(2)___的过程；若这样的元素存在，则返回它的位置信息。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "关键字",
+          "accepted": [
+            "关键字",
+            "key",
+            "码"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "数据元素",
+          "accepted": [
+            "数据元素",
+            "记录",
+            "元素",
+            "结点"
+          ]
+        }
+      ],
+      "explanation": "查找的定义中，用来识别一个数据元素（记录）的标志数据称为关键字；给定值就是要匹配的关键字。因此第 1 空填\"关键字\"，第 2 空填\"数据元素\"（也可说\"记录\"）。查找的结果是：找到则返回元素的位置或元素本身，否则返回空。易错点：关键字是数据元素中某个数据项的值，不能填成\"下标\"或\"序号\"，下标只是位置信息的表现形式。",
+      "tags": [
+        "查找",
+        "关键字"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-005",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "折半查找（二分查找）要求查找表必须满足的条件是（　）。",
+      "options": [
+        "顺序存储且元素按关键字有序",
+        "链式存储且元素按关键字有序",
+        "顺序存储即可，元素可以无序",
+        "链式存储即可，元素可以无序"
+      ],
+      "answer": 0,
+      "explanation": "折半查找每步都要通过下标直接定位中间元素 a[(low+high)/2]，这要求随机访问，只有顺序存储支持；同时必须依据 a[mid] 与 key 的大小关系舍弃一半区间，这要求关键字有序。链表虽可有序，但取中间元素需 O(n) 遍历，失去折半意义。易错点：只记住\"有序\"而漏掉\"顺序存储\"，误选 B；两个条件缺一不可。",
+      "tags": [
+        "折半查找",
+        "前提条件"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-006",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "对长度为 11 的有序表进行折半查找，查找成功时关键字的比较次数最多为（　）。",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "11"
+      ],
+      "answer": 1,
+      "explanation": "折半查找过程可用判定树描述，最大比较次数等于判定树的深度（根在第 1 层）。n 个结点的判定树深度为 ⌊log₂n⌋ + 1；n = 11 时 log₂11 ≈ 3.46，⌊3.46⌋ + 1 = 4。也可逐层数：第 1 层 1 个、第 2 层 2 个、第 3 层 4 个、第 4 层 4 个，共 11 个，故最深 4 层。易错点：把深度写成 ⌈log₂(n+1)⌉ 时数值相同，但若误用 log₂n 直接取整会得 3，少算根所在的一层。",
+      "tags": [
+        "折半查找",
+        "判定树"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-007",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "已知有序表长度为 10，其折半查找判定树的深度为（　）（根结点所在层次记为 1）。",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "10"
+      ],
+      "answer": 1,
+      "explanation": "深度公式为 ⌊log₂n⌋ + 1。n = 10 时 log₂10 ≈ 3.32，向下取整得 3，加 1 得 4。用逐层结点数验证：1 + 2 + 4 = 7 < 10 ≤ 1 + 2 + 4 + 8 = 15，所以第 4 层还有结点，深度为 4。易错点：误以为 n = 10 恰好落在 2³ 与 2⁴ 之间就取 3；判定树深度取的是\"能装下 n 个结点的最小满层数\"，即 ⌈log₂(n+1)⌉ = ⌈3.46⌉ = 4，两种算法结果一致。",
+      "tags": [
+        "折半查找",
+        "判定树"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-008",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "对有序表 {7, 10, 13, 16, 19, 29, 32, 33, 37, 41, 43} 作折半查找（等概率、查找成功），其平均查找长度为（　）。",
+      "options": [
+        "3",
+        "33/12",
+        "4",
+        "2.5"
+      ],
+      "answer": 0,
+      "explanation": "画判定树：根为下标 5 的 29（第 1 层，1 个）；第 2 层 13、37（2 个）；第 3 层 7、16、32、41（4 个）；第 4 层 10、19、33、43（4 个）。比较次数之和 = 1×1 + 2×2 + 3×4 + 4×4 = 1 + 4 + 12 + 16 = 33，ASL = 33/11 = 3。易错点：分母是表长 11 而不是结点数之和 33，也不是层数 4；另外 n = 2^h − 1 时 ASL 可用近似式 (n+1)/n·log₂(n+1) − 1 校验，此处 12/11×log₂12 − 1 ≈ 2.94，接近 3。",
+      "tags": [
+        "折半查找",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-009",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "分块查找（索引顺序查找）对查找表的要求是（　）。",
+      "options": [
+        "块间有序（后一块中所有元素的关键字大于前一块的最大关键字），块内可以无序",
+        "块内有序，块间可以无序",
+        "块间与块内都必须有序",
+        "块间与块内都可以无序，只要求建立索引表"
+      ],
+      "answer": 0,
+      "explanation": "分块查找把表分成若干块，为每块建立一个索引项（块内最大关键字 + 块首地址）。查找分两步：先在索引表中确定 key 所在块（可用顺序或折半查找），再在块内顺序查找。索引表按\"块内最大关键字\"递增排列，故块间必须有序；块内元素任意排列即可，这正是它比折半查找灵活之处。易错点：把要求说反成\"块内有序、块间无序\"。",
+      "tags": [
+        "分块查找",
+        "索引顺序查找"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-010",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列关于查找算法时间复杂度的叙述中，错误的是（　）。",
+      "options": [
+        "顺序查找的平均时间复杂度为 O(n)",
+        "折半查找的平均时间复杂度为 O(log₂n)",
+        "散列查找的平均时间复杂度一定是 O(1)，与装填因子无关",
+        "二叉排序树查找的最坏时间复杂度为 O(n)"
+      ],
+      "answer": 2,
+      "explanation": "散列查找在\"理想散列、无冲突\"时接近 O(1)，但平均查找长度直接取决于装填因子 α = 表中记录数 / 散列表长。线性探测法成功时 ASL ≈ (1 + 1/(1−α))/2，链地址法成功时 ASL ≈ 1 + α/2，α 越接近 1 效率越差，因此 C 项\"与装填因子无关\"是错的。其余三项均正确：顺序查找 O(n)、折半查找 O(log₂n)、二叉排序树退化成单支树时 O(n)。",
+      "tags": [
+        "时间复杂度",
+        "查找"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-002",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "在折半查找的非递归算法中，设当前查找区间为 [low, high]，则中间元素下标 mid = ___(1)___；当 a[mid] > key 时应执行 ___(2)___ 以收缩区间。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(low + high) / 2",
+          "accepted": [
+            "(low+high)/2",
+            "low + (high - low) / 2",
+            "(low+high)/2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "high = mid - 1",
+          "accepted": [
+            "high=mid-1",
+            "high = mid -1"
+          ]
+        }
+      ],
+      "explanation": "折半查找每轮取区间中点 mid = (low + high) / 2（等价写法 low + (high - low) / 2 可避免溢出）。若 a[mid] > key，说明目标只可能落在左半区间，且 mid 位置已排除，故令 high = mid − 1；反之 a[mid] < key 时令 low = mid + 1。易错点：写成 high = mid 会使区间无法收缩，在 low == high 时形成死循环。",
+      "tags": [
+        "折半查找",
+        "区间收缩"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-003",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "对长度为 12 的有序表作折半查找（等概率、查找成功），平均查找长度 ASL = ___（用最简分数表示）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "37/12",
+          "accepted": [
+            "37/12",
+            "37／12"
+          ]
+        }
+      ],
+      "explanation": "画判定树并逐层数结点：mid = (low+high)/2 的规则下，第 1 层 1 个、第 2 层 2 个、第 3 层 4 个、第 4 层 5 个（1+2+4+5 = 12）。比较次数总和 = 1×1 + 2×2 + 3×4 + 4×5 = 1 + 4 + 12 + 20 = 37，ASL = 37/12 ≈ 3.08。易错点：第 4 层是 5 个而非 8 个，因为结点总数只有 12；若误按满二叉树算会得到 (1+4+12+32)/12 = 49/12 的错误结果。",
+      "tags": [
+        "折半查找",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-tf-001",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "折半查找既可用于顺序存储的有序表，也可用于链式存储的有序表。",
+      "answer": false,
+      "explanation": "错误。折半查找需要在 O(1) 时间内定位中间元素 a[(low+high)/2]，这只有顺序存储的随机访问特性才能提供。单链表虽然可以有序，但取中间结点必须从头遍历，每轮 O(n)，整体退化为 O(n)，完全失去折半的意义。因此折半查找的适用条件是\"顺序存储 + 关键字有序\"，二者缺一不可。链式有序表通常改用二叉排序树等动态查找结构。",
+      "tags": [
+        "折半查找",
+        "存储结构"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-tf-002",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "按 mid = (low + high) / 2 构造的折半查找判定树，任一结点的左子树与右子树的结点数之差最多为 1，因此它是一棵平衡二叉树。",
+      "answer": true,
+      "explanation": "正确。设当前区间长度为 m，mid 把区间分成左半 ⌊(m−1)/2⌋ 个结点和右半 ⌈(m−1)/2⌉ 个结点，两者之差至多为 1；这一性质对每个子区间递归成立，所以判定树上每个结点的左右子树结点数差不超过 1，树高差也不超过 1，满足平衡二叉树定义。易错点：这一结论依赖 mid 取中点的规则；若改用其他分割方式（如插值查找），判定树就不再平衡。",
+      "tags": [
+        "折半查找",
+        "判定树",
+        "平衡"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-001",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n/* 在 a[1..n] 中顺序查找 key，a[0] 作哨兵 */\nint SeqSearch(int a[], int n, int key)\n{\n    int i;\n    a[0] = key;\n    for (i = n; a[i] != key; i--)\n        ;\n    return i;\n}\n\nint main(void)\n{\n    int a[10] = {0, 23, 45, 12, 67, 34, 89, 11, 56, 78};\n    int i, r;\n\n    r = SeqSearch(a, 9, 34);\n    printf(\"%d\\n\", r);\n    r = SeqSearch(a, 9, 100);\n    printf(\"%d\\n\", r);\n    for (i = 0; i <= 9; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "5\n0\n100 23 45 12 67 34 89 11 56 78",
+      "code": "#include <stdio.h>\n\n/* 在 a[1..n] 中顺序查找 key，a[0] 作哨兵 */\nint SeqSearch(int a[], int n, int key)\n{\n    int i;\n    a[0] = key;\n    for (i = n; a[i] != key; i--)\n        ;\n    return i;\n}\n\nint main(void)\n{\n    int a[10] = {0, 23, 45, 12, 67, 34, 89, 11, 56, 78};\n    int i, r;\n\n    r = SeqSearch(a, 9, 34);\n    printf(\"%d\\n\", r);\n    r = SeqSearch(a, 9, 100);\n    printf(\"%d\\n\", r);\n    for (i = 0; i <= 9; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "第一次查找 key = 34：先把 a[0] 置为 34 作哨兵，然后从 i = 9 向前比较，78、56、11、89 都不等，到 i = 5 时 a[5] = 34 匹配，循环结束返回 5。第二次 key = 100：a[0] 被改写为 100，一路比较到下标 0 时命中哨兵，返回 0 表示查找失败。最后打印整个数组，a[0] 已被最后一次调用改成 100，其余元素不变。易错点：哨兵法省去了每轮的 i ≥ 1 边界判断，但会破坏 a[0] 的原值；返回值 0 代表失败而非\"找到第 0 个元素\"。",
+      "tags": [
+        "顺序查找",
+        "哨兵"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-002",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[11] = {7, 10, 13, 16, 19, 29, 32, 33, 37, 41, 43};\n    int low = 0, high = 10, mid = 0, key = 33;\n\n    while (low <= high)\n    {\n        mid = (low + high) / 2;\n        printf(\"%d \", a[mid]);\n        if (a[mid] == key)\n            break;\n        else if (a[mid] > key)\n            high = mid - 1;\n        else\n            low = mid + 1;\n    }\n    printf(\"\\n%d\\n\", mid);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "29 37 32 33\n7",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[11] = {7, 10, 13, 16, 19, 29, 32, 33, 37, 41, 43};\n    int low = 0, high = 10, mid = 0, key = 33;\n\n    while (low <= high)\n    {\n        mid = (low + high) / 2;\n        printf(\"%d \", a[mid]);\n        if (a[mid] == key)\n            break;\n        else if (a[mid] > key)\n            high = mid - 1;\n        else\n            low = mid + 1;\n    }\n    printf(\"\\n%d\\n\", mid);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "逐轮跟踪区间变化：① low = 0, high = 10, mid = 5, a[5] = 29 < 33 → low = 6；② low = 6, high = 10, mid = 8, a[8] = 37 > 33 → high = 7；③ low = 6, high = 7, mid = 6, a[6] = 32 < 33 → low = 7；④ low = high = 7, mid = 7, a[7] = 33 命中，break。所以第一行输出被比较过的元素 29 37 32 33，第二行输出命中下标 7。易错点：mid = (6+7)/2 = 6 而非 7，整数除法向下取整；break 时 mid 仍是 7，不要与上一轮混淆。",
+      "tags": [
+        "折半查找",
+        "比较序列"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-003",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint cnt = 0;\n\nint BinSearch(int a[], int low, int high, int key)\n{\n    int mid;\n    cnt++;\n    if (low > high)\n        return -1;\n    mid = (low + high) / 2;\n    if (a[mid] == key)\n        return mid;\n    else if (a[mid] > key)\n        return BinSearch(a, low, mid - 1, key);\n    else\n        return BinSearch(a, mid + 1, high, key);\n}\n\nint main(void)\n{\n    int a[10] = {5, 13, 19, 21, 37, 56, 64, 75, 80, 92};\n    int r;\n\n    r = BinSearch(a, 0, 9, 21);\n    printf(\"%d %d\\n\", r, cnt);\n    cnt = 0;\n    r = BinSearch(a, 0, 9, 92);\n    printf(\"%d %d\\n\", r, cnt);\n    cnt = 0;\n    r = BinSearch(a, 0, 9, 50);\n    printf(\"%d %d\\n\", r, cnt);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 4\n9 4\n-1 4",
+      "code": "#include <stdio.h>\n\nint cnt = 0;\n\nint BinSearch(int a[], int low, int high, int key)\n{\n    int mid;\n    cnt++;\n    if (low > high)\n        return -1;\n    mid = (low + high) / 2;\n    if (a[mid] == key)\n        return mid;\n    else if (a[mid] > key)\n        return BinSearch(a, low, mid - 1, key);\n    else\n        return BinSearch(a, mid + 1, high, key);\n}\n\nint main(void)\n{\n    int a[10] = {5, 13, 19, 21, 37, 56, 64, 75, 80, 92};\n    int r;\n\n    r = BinSearch(a, 0, 9, 21);\n    printf(\"%d %d\\n\", r, cnt);\n    cnt = 0;\n    r = BinSearch(a, 0, 9, 92);\n    printf(\"%d %d\\n\", r, cnt);\n    cnt = 0;\n    r = BinSearch(a, 0, 9, 50);\n    printf(\"%d %d\\n\", r, cnt);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "cnt 统计函数调用次数，即关键字比较次数。查 21：mid 依次为 4(37>21)、1(13<21)、2(19<21)、3(21 命中)，共 4 次，返回 3。查 92：mid 依次为 4(37<92)、7(75<92)、8(80<92)、9(92 命中)，共 4 次，返回 9。查 50：mid 依次为 4(37<50)、7(75>50)、5(56>50)，此时 low = 5 > high = 4，第 4 次调用直接返回 −1，共 4 次。故输出三行 \"3 4\"、\"9 4\"、\"−1 4\"。易错点：查找失败时也要多递归一层才会遇到 low > high，比较次数同样计入。",
+      "tags": [
+        "折半查找",
+        "递归"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-001",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序实现有序表的折半查找，其中有 3 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在升序表 a[0..n-1] 中折半查找 key，找到返回下标，否则返回 -1 */\nint BinSearch(int a[], int n, int key)\n{\n    int low = 0, high = n - 1, mid;\n\n    while (/*__BLANK_1__*/)\n    {\n        mid = /*__BLANK_2__*/;\n        if (a[mid] == key)\n            return mid;\n        else if (a[mid] > key)\n            /*__BLANK_3__*/;\n        else\n            low = mid + 1;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", BinSearch(a, n, key));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "low <= high",
+          "accepted": [
+            "low<=high"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "(low + high) / 2",
+          "accepted": [
+            "(low+high)/2",
+            "low + (high - low) / 2",
+            "(low+high)/2"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "high = mid - 1",
+          "accepted": [
+            "high=mid-1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在升序表 a[0..n-1] 中折半查找 key，找到返回下标，否则返回 -1 */\nint BinSearch(int a[], int n, int key)\n{\n    int low = 0, high = n - 1, mid;\n\n    while (/*__BLANK_1__*/)\n    {\n        mid = /*__BLANK_2__*/;\n        if (a[mid] == key)\n            return mid;\n        else if (a[mid] > key)\n            /*__BLANK_3__*/;\n        else\n            low = mid + 1;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", BinSearch(a, n, key));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在升序表 a[0..n-1] 中折半查找 key，找到返回下标，否则返回 -1 */\nint BinSearch(int a[], int n, int key)\n{\n    int low = 0, high = n - 1, mid;\n\n    while (low <= high)\n    {\n        mid = (low + high) / 2;\n        if (a[mid] == key)\n            return mid;\n        else if (a[mid] > key)\n            high = mid - 1;\n        else\n            low = mid + 1;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", BinSearch(a, n, key));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 3 5 7 9\n7\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n4\n",
+          "expected": "-1"
+        },
+        {
+          "stdin": "0\n\n5\n",
+          "expected": "-1"
+        },
+        {
+          "stdin": "1\n8\n8\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "折半查找的循环条件是查找区间非空，即 low <= high（写成 low < high 会漏掉最后一个元素）。中点 mid = (low + high) / 2。当 a[mid] > key 时目标在左半区间且 mid 已排除，故 high = mid - 1；写成 high = mid 会在 low == high 时区间不再收缩导致死循环。n = 0 时 low = 0 > high = -1，循环不执行直接返回 -1，程序对空表天然安全。",
+      "tags": [
+        "折半查找",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-002",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序实现带哨兵的顺序查找，其中有 2 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在 a[1..n] 中顺序查找 key，a[0] 作哨兵；找到返回下标，未找到返回 0 */\nint SeqSearch(int a[], int n, int key)\n{\n    int i;\n\n    /*__BLANK_1__*/;\n    for (i = n; /*__BLANK_2__*/; i--)\n        ;\n    return i;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n >= MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", SeqSearch(a, n, key));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0] = key",
+          "accepted": [
+            "a[0]=key",
+            "a[0] = key;"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "a[i] != key",
+          "accepted": [
+            "a[i]!=key",
+            "key != a[i]",
+            "a[i] != key"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在 a[1..n] 中顺序查找 key，a[0] 作哨兵；找到返回下标，未找到返回 0 */\nint SeqSearch(int a[], int n, int key)\n{\n    int i;\n\n    /*__BLANK_1__*/;\n    for (i = n; /*__BLANK_2__*/; i--)\n        ;\n    return i;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n >= MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", SeqSearch(a, n, key));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 在 a[1..n] 中顺序查找 key，a[0] 作哨兵；找到返回下标，未找到返回 0 */\nint SeqSearch(int a[], int n, int key)\n{\n    int i;\n\n    a[0] = key;\n    for (i = n; a[i] != key; i--)\n        ;\n    return i;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n >= MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    printf(\"%d\\n\", SeqSearch(a, n, key));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n23 45 12 67 34\n12\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "5\n23 45 12 67 34\n100\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "1\n7\n7\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "3\n4 4 4\n4\n",
+          "expected": "3"
+        }
+      ],
+      "explanation": "哨兵法的两处关键：进入循环前把待查值放入 a[0]，即 a[0] = key；循环条件只写 a[i] != key，不再判断 i >= 1，因为查到下标 0 时必然命中哨兵而退出。这样每轮少一次边界比较，是顺序查找的经典优化。易错点：数组必须从下标 1 开始存数据、下标 0 留空，否则会覆盖真实元素；表中若有重复 key，本写法从后向前扫描，返回的是最后一个（下标最大的）位置。",
+      "tags": [
+        "顺序查找",
+        "哨兵",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-pg-001",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序实现\"带插入位置的折半查找\"：给定一个升序整数表和待查关键字 key，若 key 存在则输出其下标；若不存在，则输出 key 为保持表的升序应插入的下标位置。要求查找过程必须使用折半查找（时间复杂度 O(log₂n)），不得逐个扫描。\n\n输入格式：第一行一个整数 n（0 ≤ n ≤ 100）表示表中元素个数；第二行 n 个升序整数（n 为 0 时该行可为空行）；第三行一个整数 key。\n\n输出格式：若找到，输出一行 \"FOUND pos\"，pos 为 key 在表中的下标（从 0 开始）；若未找到，输出一行 \"NOTFOUND pos\"，pos 为插入后仍保持升序的下标。",
+      "testCases": [
+        {
+          "stdin": "5\n1 3 5 7 9\n5\n",
+          "expected": "FOUND 2"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n6\n",
+          "expected": "NOTFOUND 3"
+        },
+        {
+          "stdin": "0\n\n10\n",
+          "expected": "NOTFOUND 0"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n10\n",
+          "expected": "NOTFOUND 5"
+        },
+        {
+          "stdin": "5\n1 3 5 7 9\n0\n",
+          "expected": "NOTFOUND 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXSIZE 100\n\n/* 折半查找 key：找到返回 1 且 *pos 为下标；未找到返回 0 且 *pos 为应插入位置 */\nint BinSearchInsert(int a[], int n, int key, int *pos)\n{\n    int low = 0, high = n - 1, mid;\n\n    while (low <= high)\n    {\n        mid = (low + high) / 2;\n        if (a[mid] == key)\n        {\n            *pos = mid;\n            return 1;\n        }\n        else if (a[mid] > key)\n            high = mid - 1;\n        else\n            low = mid + 1;\n    }\n    *pos = low;\n    return 0;\n}\n\nint main(void)\n{\n    int a[MAXSIZE], n, i, key, pos, ok;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    ok = BinSearchInsert(a, n, key, &pos);\n    if (ok)\n        printf(\"FOUND %d\\n\", pos);\n    else\n        printf(\"NOTFOUND %d\\n\", pos);\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（0 ≤ n ≤ 100）表示表中元素个数；第二行 n 个升序整数（n 为 0 时该行可为空行）；第三行一个整数 key。",
+      "output_format": "若找到，输出一行 \"FOUND pos\"，pos 为 key 在表中的下标（从 0 开始）；若未找到，输出一行 \"NOTFOUND pos\"，pos 为插入后仍保持升序的下标。",
+      "code_starter": "#include <stdio.h>\n#define MAXSIZE 100\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[MAXSIZE], n, i, key, pos, ok;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    ok = BinSearchInsert(a, n, key, &pos);\n    if (ok)\n        printf(\"FOUND %d\\n\", pos);\n    else\n        printf(\"NOTFOUND %d\\n\", pos);\n    return 0;\n}",
+      "explanation": "折半查找失败退出循环时必有 low = high + 1，此时 low 就是第一个大于 key 的元素下标，也正好是保持升序的插入位置——这是二分查找的\"下界（lower_bound）\"性质，无需再扫描一遍。n = 0 时 low = 0 > high = -1，直接得到插入位置 0；key 大于所有元素时 low = n，插在末尾。易错点：返回 high 会差 1，因为 high 停在了最后一个小于 key 的位置上。",
+      "tags": [
+        "折半查找",
+        "插入位置",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-011",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "对一棵二叉排序树作（　）遍历，可得到一个按关键字递增排列的有序序列。",
+      "options": [
+        "先序",
+        "中序",
+        "后序",
+        "按层"
+      ],
+      "answer": 1,
+      "explanation": "二叉排序树的定义是\"左子树上所有结点关键字 < 根 < 右子树上所有结点关键字\"，且左右子树同样满足该性质。中序遍历的访问次序恰好是\"左子树—根—右子树\"，对该定义作结构归纳即可证明输出严格递增。这也给出了检验一棵二叉树是否为 BST 的实用方法：中序遍历看是否递增。易错点：先序、后序、层次遍历都只反映结构而不反映大小关系，无法得到有序序列。",
+      "tags": [
+        "二叉排序树",
+        "中序遍历"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-012",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "将关键字序列 {50, 30, 70, 20, 40, 60, 80} 依次插入生成二叉排序树，则该树的深度为（　）（根结点所在层为第 1 层）。",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "answer": 0,
+      "explanation": "逐个插入：50 为根；30 落 50 的左子树；70 落右子树；20 落 30 的左；40 落 30 的右；60 落 70 的左；80 落 70 的右。得到的正是含 7 个结点的满二叉树，深度 = ⌊log₂7⌋ + 1 = 3。此时折半式的平衡形态使查找 ASL 达到最优。易错点：若插入次序改为递增的 {20,30,40,50,60,70,80}，会退化成右单支树，深度变成 7，ASL 退化为 (n+1)/2 —— BST 的性能完全由插入次序决定。",
+      "tags": [
+        "二叉排序树",
+        "构造",
+        "深度"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-004",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "二叉排序树或者是一棵空树，或者是具有下列性质的二叉树：若左子树非空，则左子树上___(1)___结点的关键字均小于根结点的关键字；若右子树非空，则右子树上___(2)___结点的关键字均大于根结点的关键字；并且它的左、右子树也分别都是___(3)___。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "所有",
+          "accepted": [
+            "所有",
+            "全部",
+            "每一个",
+            "所有（而不只是左孩子）"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "所有",
+          "accepted": [
+            "所有",
+            "全部",
+            "每一个"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "二叉排序树",
+          "accepted": [
+            "二叉排序树",
+            "二叉查找树",
+            "二叉搜索树",
+            "BST"
+          ]
+        }
+      ],
+      "explanation": "定义中必须强调\"所有\"而不是\"左孩子/右孩子\"：只比较直接孩子不足以保证 BST 性质，例如根为 10、左孩子为 8、8 的右孩子为 12 时，12 出现在左子树中却大于根，违反定义。第三条是递归定义——左右子树自身也必须是 BST，这正是中序遍历整体递增的原因。易错点：把\"左子树所有结点\"简化为\"左孩子\"，是初学者判断 BST 时最常见的错误。",
+      "tags": [
+        "二叉排序树",
+        "定义"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-013",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "在二叉排序树中删除一个度为 2（既有左子树又有右子树）的结点 p 时，通常采用的做法是（　）。",
+      "options": [
+        "直接摘除 p，把 p 的左右子树作为兄弟挂到 p 的双亲上",
+        "用 p 的中序直接前驱（或直接后继）的关键字替换 p，再删除那个前驱（后继）结点",
+        "用 p 的左孩子的关键字替换 p，然后删除左孩子",
+        "把 p 的左子树整体接到右子树的最左结点上，再删除 p"
+      ],
+      "answer": 1,
+      "explanation": "删除度为 2 的结点不能简单摘除，否则会破坏树的结构。标准做法是用 p 的中序直接前驱 s（p 左子树中最右下的结点，s 必无右子树）或中序直接后继替代 p 的关键字，再删除 s——因为 s 的度为 0 或 1，删除它是容易的情形。这样既保持了 BST 的有序性，也保持了原有树形。易错点：选项 D 描述的是\"度为 1 时的一种拼接方式\"，并不适用于度为 2 的情形，且会显著增大树高。",
+      "tags": [
+        "二叉排序树",
+        "删除"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-tf-003",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "二叉排序树的形态只取决于查找表中关键字的集合，而与关键字的插入次序无关。",
+      "answer": false,
+      "explanation": "错误。同一个关键字集合，插入次序不同会得到形态迥异的二叉排序树。以 {1,2,3} 为例：按 1→2→3 插入得到一条右单支树，深度 3，ASL = (1+2+3)/3 = 2；按 2→1→3 插入得到深度 2 的平衡树，ASL = (1+2+2)/3 = 5/3。只有引入平衡机制（AVL、红黑树）才能在与插入次序无关的意义下保证树高 O(log n)。易错点：把\"中序遍历结果唯一\"（正确，恒为有序序列）误当成\"树形唯一\"。",
+      "tags": [
+        "二叉排序树",
+        "插入次序"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cx-001",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "设二叉排序树含 n 个结点。写出下列递归查找算法在**最坏情况**下的时间复杂度（用大 O 表示）。\n```\nBSTree BSTSearch(BSTree T, int key)\n{\n    if (T == NULL || T->key == key)\n        return T;\n    if (key < T->key)\n        return BSTSearch(T->lchild, key);\n    else\n        return BSTSearch(T->rchild, key);\n}\n```",
+      "answer": "O(n)",
+      "code": "BSTree BSTSearch(BSTree T, int key)\n{\n    if (T == NULL || T->key == key)\n        return T;\n    if (key < T->key)\n        return BSTSearch(T->lchild, key);\n    else\n        return BSTSearch(T->rchild, key);\n}",
+      "accepted": [
+        "O(n)",
+        "o(n)",
+        "n",
+        "O（n）"
+      ],
+      "explanation": "每层递归只沿一条分支下降一次，比较次数等于从根到目标（或到空指针）的路径长度，因此时间复杂度等于树的高度。平衡时高度为 O(log₂n)；但当关键字按有序次序插入时，BST 退化为单支树，高度为 n，最坏情况就是 O(n)。平均情况下随机插入的 BST 期望高度约为 4.31 log₂n，仍是 O(log n) 量级。易错点：题目问\"最坏情况\"，答 O(log₂n) 是错的——必须考虑退化形态。",
+      "tags": [
+        "二叉排序树",
+        "时间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-004",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode\n{\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n\nint InsertBST(BSTree *T, int key)\n{\n    if (*T == NULL)\n    {\n        *T = (BSTree)malloc(sizeof(BSTNode));\n        (*T)->key = key;\n        (*T)->lchild = (*T)->rchild = NULL;\n        return 1;\n    }\n    if (key == (*T)->key)\n        return 0;\n    if (key < (*T)->key)\n        return InsertBST(&(*T)->lchild, key);\n    return InsertBST(&(*T)->rchild, key);\n}\n\nvoid PreOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        printf(\"%d \", T->key);\n        PreOrder(T->lchild);\n        PreOrder(T->rchild);\n    }\n}\n\nvoid InOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        InOrder(T->lchild);\n        printf(\"%d \", T->key);\n        InOrder(T->rchild);\n    }\n}\n\nint Depth(BSTree T)\n{\n    int dl, dr;\n\n    if (T == NULL)\n        return 0;\n    dl = Depth(T->lchild);\n    dr = Depth(T->rchild);\n    return (dl > dr ? dl : dr) + 1;\n}\n\nint main(void)\n{\n    BSTree T = NULL;\n    int a[8] = {45, 24, 53, 12, 37, 93, 12, 53};\n    int i;\n\n    for (i = 0; i < 8; i++)\n        InsertBST(&T, a[i]);\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", Depth(T));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "45 24 12 37 53 93\n12 24 37 45 53 93\n3",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode\n{\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n\nint InsertBST(BSTree *T, int key)\n{\n    if (*T == NULL)\n    {\n        *T = (BSTree)malloc(sizeof(BSTNode));\n        (*T)->key = key;\n        (*T)->lchild = (*T)->rchild = NULL;\n        return 1;\n    }\n    if (key == (*T)->key)\n        return 0;\n    if (key < (*T)->key)\n        return InsertBST(&(*T)->lchild, key);\n    return InsertBST(&(*T)->rchild, key);\n}\n\nvoid PreOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        printf(\"%d \", T->key);\n        PreOrder(T->lchild);\n        PreOrder(T->rchild);\n    }\n}\n\nvoid InOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        InOrder(T->lchild);\n        printf(\"%d \", T->key);\n        InOrder(T->rchild);\n    }\n}\n\nint Depth(BSTree T)\n{\n    int dl, dr;\n\n    if (T == NULL)\n        return 0;\n    dl = Depth(T->lchild);\n    dr = Depth(T->rchild);\n    return (dl > dr ? dl : dr) + 1;\n}\n\nint main(void)\n{\n    BSTree T = NULL;\n    int a[8] = {45, 24, 53, 12, 37, 93, 12, 53};\n    int i;\n\n    for (i = 0; i < 8; i++)\n        InsertBST(&T, a[i]);\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", Depth(T));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "数组含 8 个值但 12 与 53 各重复一次，InsertBST 遇到相等关键字返回 0 而不插入，故实际只有 6 个结点。建树过程：45 为根 → 24 左 → 53 右 → 12 挂在 24 的左 → 37 挂在 24 的右 → 93 挂在 53 的右。先序输出\"根-左-右\"得 45 24 12 37 53 93；中序输出\"左-根-右\"得 12 24 37 45 53 93（递增，验证 BST 性质）；深度为 3。易错点：忘记重复关键字不会插入，会多算两个结点、误得深度 4。",
+      "tags": [
+        "二叉排序树",
+        "插入",
+        "遍历"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "vizIds": [
+        "tree-bst-insert"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-003",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序读入若干整数建立二叉排序树并输出其先序与中序序列，其中有 2 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode\n{\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n\n/* 插入成功返回 1，关键字已存在返回 0 */\nint InsertBST(BSTree *T, int key)\n{\n    if (/*__BLANK_1__*/)\n    {\n        *T = (BSTree)malloc(sizeof(BSTNode));\n        (*T)->key = key;\n        (*T)->lchild = (*T)->rchild = NULL;\n        return 1;\n    }\n    if (key == (*T)->key)\n        return 0;\n    if (key < (*T)->key)\n        return /*__BLANK_2__*/;\n    return InsertBST(&(*T)->rchild, key);\n}\n\nvoid PreOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        printf(\"%d \", T->key);\n        PreOrder(T->lchild);\n        PreOrder(T->rchild);\n    }\n}\n\nvoid InOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        InOrder(T->lchild);\n        printf(\"%d \", T->key);\n        InOrder(T->rchild);\n    }\n}\n\nint main(void)\n{\n    BSTree T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        InsertBST(&T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*T == NULL",
+          "accepted": [
+            "*T==NULL",
+            "(*T) == NULL",
+            "(*T)==NULL",
+            "NULL == *T"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "InsertBST(&(*T)->lchild, key)",
+          "accepted": [
+            "InsertBST(&((*T)->lchild), key)",
+            "InsertBST(&(*T)->lchild,key)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode\n{\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n\n/* 插入成功返回 1，关键字已存在返回 0 */\nint InsertBST(BSTree *T, int key)\n{\n    if (/*__BLANK_1__*/)\n    {\n        *T = (BSTree)malloc(sizeof(BSTNode));\n        (*T)->key = key;\n        (*T)->lchild = (*T)->rchild = NULL;\n        return 1;\n    }\n    if (key == (*T)->key)\n        return 0;\n    if (key < (*T)->key)\n        return /*__BLANK_2__*/;\n    return InsertBST(&(*T)->rchild, key);\n}\n\nvoid PreOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        printf(\"%d \", T->key);\n        PreOrder(T->lchild);\n        PreOrder(T->rchild);\n    }\n}\n\nvoid InOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        InOrder(T->lchild);\n        printf(\"%d \", T->key);\n        InOrder(T->rchild);\n    }\n}\n\nint main(void)\n{\n    BSTree T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        InsertBST(&T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BSTNode\n{\n    int key;\n    struct BSTNode *lchild, *rchild;\n} BSTNode, *BSTree;\n\n\n/* 插入成功返回 1，关键字已存在返回 0 */\nint InsertBST(BSTree *T, int key)\n{\n    if (*T == NULL)\n    {\n        *T = (BSTree)malloc(sizeof(BSTNode));\n        (*T)->key = key;\n        (*T)->lchild = (*T)->rchild = NULL;\n        return 1;\n    }\n    if (key == (*T)->key)\n        return 0;\n    if (key < (*T)->key)\n        return InsertBST(&(*T)->lchild, key);\n    return InsertBST(&(*T)->rchild, key);\n}\n\nvoid PreOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        printf(\"%d \", T->key);\n        PreOrder(T->lchild);\n        PreOrder(T->rchild);\n    }\n}\n\nvoid InOrder(BSTree T)\n{\n    if (T != NULL)\n    {\n        InOrder(T->lchild);\n        printf(\"%d \", T->key);\n        InOrder(T->rchild);\n    }\n}\n\nint main(void)\n{\n    BSTree T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        InsertBST(&T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n45 24 53 12 37 93\n",
+          "expected": "45 24 12 37 53 93\n12 24 37 45 53 93"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5\n1 2 3 4 5"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7\n7"
+        },
+        {
+          "stdin": "4\n5 5 3 3\n",
+          "expected": "5 3\n3 5"
+        }
+      ],
+      "explanation": "第 1 空是递归出口：走到空指针位置说明关键字不存在，在此处创建新叶子结点，条件是 *T == NULL。第 2 空按 BST 定义分派——key 小于当前结点关键字时必须递归进入左子树，因参数是二级指针 BSTree *，所以传 &(*T)->lchild。测试用例覆盖了四种典型形态：普通树、递增序列退化成右单支树、单结点、含重复关键字（重复项被丢弃，第 4 组只留下 5 和 3 两个结点）。",
+      "tags": [
+        "二叉排序树",
+        "插入",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "vizIds": [
+        "tree-bst-insert"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-pg-002",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编写程序判定一棵二叉树是否为二叉排序树。输入采用\"扩展先序序列\"：按先序次序给出每个结点的值，用 -1 表示空子树。程序应输出该树是否为二叉排序树以及它的结点个数。判定要求严格递增（关键字不允许相等），且必须在一次遍历中完成，不能先存数组再两两比较。\n\n输入格式：一行若干个整数，是二叉树的扩展先序序列，-1 表示空指针；结点值均为 [-10000, 10000] 内且不等于 -1 的整数，序列以空白分隔。\n\n输出格式：若该树是二叉排序树，输出一行 \"YES n\"；否则输出一行 \"NO n\"。其中 n 为树的结点个数（空树 n = 0，视为二叉排序树）。",
+      "testCases": [
+        {
+          "stdin": "2 1 -1 -1 3 -1 -1\n",
+          "expected": "YES 3"
+        },
+        {
+          "stdin": "2 3 -1 -1 1 -1 -1\n",
+          "expected": "NO 3"
+        },
+        {
+          "stdin": "-1\n",
+          "expected": "YES 0"
+        },
+        {
+          "stdin": "5 -1 -1\n",
+          "expected": "YES 1"
+        },
+        {
+          "stdin": "3 1 -1 2 -1 -1 5 -1 -1\n",
+          "expected": "YES 4"
+        },
+        {
+          "stdin": "2 2 -1 -1 3 -1 -1\n",
+          "expected": "NO 3"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BiTNode\n{\n    int data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n\n/* 按扩展先序序列递归建树 */\nBiTree Create(void)\n{\n    int x;\n    BiTree t;\n\n    if (scanf(\"%d\", &x) != 1)\n        return NULL;\n    if (x == -1)\n        return NULL;\n    t = (BiTree)malloc(sizeof(BiTNode));\n    t->data = x;\n    t->lchild = Create();\n    t->rchild = Create();\n    return t;\n}\n\n/* 中序遍历过程中用 *prev 记录前驱值，一次遍历完成判定 */\nint IsBST(BiTree T, int *prev)\n{\n    if (T == NULL)\n        return 1;\n    if (!IsBST(T->lchild, prev))\n        return 0;\n    if (T->data <= *prev)\n        return 0;\n    *prev = T->data;\n    return IsBST(T->rchild, prev);\n}\n\nint Count(BiTree T)\n{\n    if (T == NULL)\n        return 0;\n    return Count(T->lchild) + Count(T->rchild) + 1;\n}\n\nint main(void)\n{\n    BiTree T;\n    int prev = -100000, n;\n\n    T = Create();\n    n = Count(T);\n    if (IsBST(T, &prev))\n        printf(\"YES %d\\n\", n);\n    else\n        printf(\"NO %d\\n\", n);\n    return 0;\n}",
+      "input_format": "一行若干个整数，是二叉树的扩展先序序列，-1 表示空指针；结点值均为 [-10000, 10000] 内且不等于 -1 的整数，序列以空白分隔。",
+      "output_format": "若该树是二叉排序树，输出一行 \"YES n\"；否则输出一行 \"NO n\"。其中 n 为树的结点个数（空树 n = 0，视为二叉排序树）。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    BiTree T;\n    int prev = -100000, n;\n\n    T = Create();\n    n = Count(T);\n    if (IsBST(T, &prev))\n        printf(\"YES %d\\n\", n);\n    else\n        printf(\"NO %d\\n\", n);\n    return 0;\n}",
+      "explanation": "BST 的充要条件是中序序列严格递增，因此边中序遍历边比较即可：用指针参数 prev 在中序访问顺序上传递\"上一个被访问的值\"，一旦发现当前值 ≤ prev 就返回 0。这利用了递归调用共享 prev 的特性，时间 O(n)、空间 O(树高)。测试用例覆盖：正常 BST、左子树大于根的非 BST、空树、单结点、结点嵌在左孩子的右子树上的 BST、以及含相等关键字（第 6 组，必须判 NO）。易错点：只比较父子两代（如仅检查 T->data 与其孩子）无法发现跨层的违规；prev 初值必须小于所有可能的结点值。",
+      "tags": [
+        "二叉排序树",
+        "中序遍历",
+        "判定",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-014",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "平衡二叉树（AVL 树）中，任一结点的平衡因子的取值只能是（　）。",
+      "options": [
+        "-1、0、1",
+        "0 和 1",
+        "-1 和 1",
+        "任意整数，只要左右子树高度差有限"
+      ],
+      "answer": 0,
+      "explanation": "平衡因子 BF = 该结点左子树高度 − 右子树高度。AVL 树的定义要求树上每个结点的 |BF| ≤ 1，所以 BF 只能取 -1、0、1 三个值。正是这一约束把树高控制在 O(log₂n)，从而保证查找、插入、删除都是 O(log₂n)。易错点：插入新结点后，从插入位置到根的路径上可能出现 BF = ±2，这时必须通过旋转把 BF 调整回 {-1,0,1}；BF = ±2 只是调整过程中的临时状态，不允许出现在最终的 AVL 树中。",
+      "tags": [
+        "平衡二叉树",
+        "平衡因子"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-015",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "在平衡二叉树中插入一个新结点后，若最小失衡子树的根结点 p 的平衡因子变为 +2，且新结点落在 p 的左孩子的右子树上，则需要作（　）调整。",
+      "options": [
+        "LL 型：对 p 作一次右单旋",
+        "RR 型：对 p 作一次左单旋",
+        "LR 型：先对 p 的左孩子作左单旋，再对 p 作右单旋",
+        "RL 型：先对 p 的右孩子作右单旋，再对 p 作左单旋"
+      ],
+      "answer": 2,
+      "explanation": "失衡类型由\"新结点相对失衡点 p 的位置\"决定：LL（左孩子的左子树）→ 右单旋；RR（右孩子的右子树）→ 左单旋；LR（左孩子的右子树）→ 先左后右双旋；RL（右孩子的左子树）→ 先右后左双旋。本题 BF = +2 说明左子树偏高，新结点又在左孩子的右子树上，属 LR 型，需先对 p->left 作左单旋把形态转成 LL，再对 p 作右单旋。易错点：双旋的两次旋转对象不同，第一次转的是孩子而不是 p，顺序颠倒得不到平衡结果。",
+      "tags": [
+        "平衡二叉树",
+        "旋转"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "vizIds": [
+        "tree-avl-rotate"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-005",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "设 N(h) 表示深度为 h 的平衡二叉树所含的最少结点数，则递推关系为 N(h) = ___(1)___ + ___(2)___ + 1（N(0) = 0，N(1) = 1）；由此可得 N(5) = ___(3)___。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "N(h-1)",
+          "accepted": [
+            "N(h-1)",
+            "N(h−1)",
+            "N(h - 1)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "N(h-2)",
+          "accepted": [
+            "N(h-2)",
+            "N(h−2)",
+            "N(h - 2)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "12",
+          "accepted": [
+            "12"
+          ]
+        }
+      ],
+      "explanation": "要让深度为 h 的 AVL 树结点最少，根的一棵子树深度必须是 h−1，另一棵在满足 |BF| ≤ 1 的前提下尽量浅，即深度 h−2，再加上根自身，故 N(h) = N(h−1) + N(h−2) + 1。依次计算：N(0)=0、N(1)=1、N(2)=1+0+1=2、N(3)=2+1+1=4、N(4)=4+2+1=7、N(5)=7+4+1=12。这个递推与斐波那契数列同构，可反推出 n 个结点的 AVL 树深度不超过 ⌈log₂(n+1)⌉ 的常数倍，即 O(log₂n)。易错点：把递推写成 N(h-1)+N(h-1)+1，那样得到的是满二叉树的结点数 2^h−1，不是\"最少\"。",
+      "tags": [
+        "平衡二叉树",
+        "最少结点数"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-005",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct AVLNode\n{\n    int key;\n    int height;\n    struct AVLNode *left, *right;\n} AVLNode;\n\nint H(AVLNode *p)\n{\n    return p == NULL ? 0 : p->height;\n}\n\nint Max(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nAVLNode *RotateR(AVLNode *y)\n{\n    AVLNode *x = y->left;\n    AVLNode *t = x->right;\n\n    x->right = y;\n    y->left = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *RotateL(AVLNode *y)\n{\n    AVLNode *x = y->right;\n    AVLNode *t = x->left;\n\n    x->left = y;\n    y->right = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *Insert(AVLNode *p, int key)\n{\n    int bf;\n\n    if (p == NULL)\n    {\n        p = (AVLNode *)malloc(sizeof(AVLNode));\n        p->key = key;\n        p->height = 1;\n        p->left = p->right = NULL;\n        return p;\n    }\n    if (key < p->key)\n        p->left = Insert(p->left, key);\n    else if (key > p->key)\n        p->right = Insert(p->right, key);\n    else\n        return p;\n    p->height = Max(H(p->left), H(p->right)) + 1;\n    bf = H(p->left) - H(p->right);\n    if (bf > 1 && key < p->left->key)\n        return RotateR(p);\n    if (bf < -1 && key > p->right->key)\n        return RotateL(p);\n    if (bf > 1 && key > p->left->key)\n    {\n        p->left = RotateL(p->left);\n        return RotateR(p);\n    }\n    if (bf < -1 && key < p->right->key)\n    {\n        p->right = RotateR(p->right);\n        return RotateL(p);\n    }\n    return p;\n}\n\nvoid PreOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        printf(\"%d \", p->key);\n        PreOrder(p->left);\n        PreOrder(p->right);\n    }\n}\n\nvoid InOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        InOrder(p->left);\n        printf(\"%d \", p->key);\n        InOrder(p->right);\n    }\n}\n\nint main(void)\n{\n    AVLNode *T = NULL;\n    int a[9] = {3, 2, 1, 4, 5, 6, 7, 16, 15};\n    int i;\n\n    for (i = 0; i < 9; i++)\n        T = Insert(T, a[i]);\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", H(T));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "4 2 1 3 6 5 15 7 16\n1 2 3 4 5 6 7 15 16\n4",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct AVLNode\n{\n    int key;\n    int height;\n    struct AVLNode *left, *right;\n} AVLNode;\n\nint H(AVLNode *p)\n{\n    return p == NULL ? 0 : p->height;\n}\n\nint Max(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nAVLNode *RotateR(AVLNode *y)\n{\n    AVLNode *x = y->left;\n    AVLNode *t = x->right;\n\n    x->right = y;\n    y->left = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *RotateL(AVLNode *y)\n{\n    AVLNode *x = y->right;\n    AVLNode *t = x->left;\n\n    x->left = y;\n    y->right = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *Insert(AVLNode *p, int key)\n{\n    int bf;\n\n    if (p == NULL)\n    {\n        p = (AVLNode *)malloc(sizeof(AVLNode));\n        p->key = key;\n        p->height = 1;\n        p->left = p->right = NULL;\n        return p;\n    }\n    if (key < p->key)\n        p->left = Insert(p->left, key);\n    else if (key > p->key)\n        p->right = Insert(p->right, key);\n    else\n        return p;\n    p->height = Max(H(p->left), H(p->right)) + 1;\n    bf = H(p->left) - H(p->right);\n    if (bf > 1 && key < p->left->key)\n        return RotateR(p);\n    if (bf < -1 && key > p->right->key)\n        return RotateL(p);\n    if (bf > 1 && key > p->left->key)\n    {\n        p->left = RotateL(p->left);\n        return RotateR(p);\n    }\n    if (bf < -1 && key < p->right->key)\n    {\n        p->right = RotateR(p->right);\n        return RotateL(p);\n    }\n    return p;\n}\n\nvoid PreOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        printf(\"%d \", p->key);\n        PreOrder(p->left);\n        PreOrder(p->right);\n    }\n}\n\nvoid InOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        InOrder(p->left);\n        printf(\"%d \", p->key);\n        InOrder(p->right);\n    }\n}\n\nint main(void)\n{\n    AVLNode *T = NULL;\n    int a[9] = {3, 2, 1, 4, 5, 6, 7, 16, 15};\n    int i;\n\n    for (i = 0; i < 9; i++)\n        T = Insert(T, a[i]);\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", H(T));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "依次插入并随时旋转：插 1 后 3 出现 BF=+2（LL）→ 右单旋，2 成根；插 5 后先在 3 处 RR 左旋，再使 2 失衡 RR 左旋，4 成根；插 7 后 5 处 RR 左旋，6 上位；插 15 后 7 处出现 RL 型失衡 → 先对 16 右旋再对 7 左旋，15 上位。最终树为：4 是根，左子树 2(1,3)，右子树 6(5, 15(7,16))。先序得 4 2 1 3 6 5 15 7 16，中序得 1 2 3 4 5 6 7 15 16（递增），高度 4。易错点：中序序列与插入次序无关，恒为关键字升序；能变的只有树形与高度，9 个结点的 AVL 高度介于 4（⌊log₂9⌋+1）与 N(h) 递推给出的上界之间。",
+      "tags": [
+        "平衡二叉树",
+        "插入",
+        "旋转"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "vizIds": [
+        "tree-avl-rotate"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-004",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序读入若干互不相同的整数建立平衡二叉树（AVL），输出先序序列、中序序列与树高。其中有 3 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct AVLNode\n{\n    int key;\n    int height;\n    struct AVLNode *left, *right;\n} AVLNode;\n\nint H(AVLNode *p)\n{\n    return p == NULL ? 0 : p->height;\n}\n\nint Max(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nAVLNode *RotateR(AVLNode *y)\n{\n    AVLNode *x = y->left;\n    AVLNode *t = x->right;\n\n    x->right = y;\n    y->left = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *RotateL(AVLNode *y)\n{\n    AVLNode *x = y->right;\n    AVLNode *t = x->left;\n\n    x->left = y;\n    y->right = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *Insert(AVLNode *p, int key)\n{\n    int bf;\n\n    if (p == NULL)\n    {\n        p = (AVLNode *)malloc(sizeof(AVLNode));\n        p->key = key;\n        p->height = 1;\n        p->left = p->right = NULL;\n        return p;\n    }\n    if (key < p->key)\n        p->left = Insert(p->left, key);\n    else if (key > p->key)\n        p->right = Insert(p->right, key);\n    else\n        return p;\n    p->height = /*__BLANK_1__*/;\n    bf = H(p->left) - H(p->right);\n    if (bf > 1 && key < p->left->key)\n        return /*__BLANK_2__*/;\n    if (bf < -1 && key > p->right->key)\n        return RotateL(p);\n    if (/*__BLANK_3__*/ && key > p->left->key)\n    {\n        p->left = RotateL(p->left);\n        return RotateR(p);\n    }\n    if (bf < -1 && key < p->right->key)\n    {\n        p->right = RotateR(p->right);\n        return RotateL(p);\n    }\n    return p;\n}\n\nvoid PreOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        printf(\"%d \", p->key);\n        PreOrder(p->left);\n        PreOrder(p->right);\n    }\n}\n\nvoid InOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        InOrder(p->left);\n        printf(\"%d \", p->key);\n        InOrder(p->right);\n    }\n}\n\nint main(void)\n{\n    AVLNode *T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        T = Insert(T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", H(T));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "Max(H(p->left), H(p->right)) + 1",
+          "accepted": [
+            "Max(H(p->left),H(p->right))+1",
+            "(H(p->left) > H(p->right) ? H(p->left) : H(p->right)) + 1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "RotateR(p)",
+          "accepted": [
+            "RotateR(p)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "bf > 1",
+          "accepted": [
+            "bf>1",
+            "bf >= 2"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct AVLNode\n{\n    int key;\n    int height;\n    struct AVLNode *left, *right;\n} AVLNode;\n\nint H(AVLNode *p)\n{\n    return p == NULL ? 0 : p->height;\n}\n\nint Max(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nAVLNode *RotateR(AVLNode *y)\n{\n    AVLNode *x = y->left;\n    AVLNode *t = x->right;\n\n    x->right = y;\n    y->left = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *RotateL(AVLNode *y)\n{\n    AVLNode *x = y->right;\n    AVLNode *t = x->left;\n\n    x->left = y;\n    y->right = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *Insert(AVLNode *p, int key)\n{\n    int bf;\n\n    if (p == NULL)\n    {\n        p = (AVLNode *)malloc(sizeof(AVLNode));\n        p->key = key;\n        p->height = 1;\n        p->left = p->right = NULL;\n        return p;\n    }\n    if (key < p->key)\n        p->left = Insert(p->left, key);\n    else if (key > p->key)\n        p->right = Insert(p->right, key);\n    else\n        return p;\n    p->height = /*__BLANK_1__*/;\n    bf = H(p->left) - H(p->right);\n    if (bf > 1 && key < p->left->key)\n        return /*__BLANK_2__*/;\n    if (bf < -1 && key > p->right->key)\n        return RotateL(p);\n    if (/*__BLANK_3__*/ && key > p->left->key)\n    {\n        p->left = RotateL(p->left);\n        return RotateR(p);\n    }\n    if (bf < -1 && key < p->right->key)\n    {\n        p->right = RotateR(p->right);\n        return RotateL(p);\n    }\n    return p;\n}\n\nvoid PreOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        printf(\"%d \", p->key);\n        PreOrder(p->left);\n        PreOrder(p->right);\n    }\n}\n\nvoid InOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        InOrder(p->left);\n        printf(\"%d \", p->key);\n        InOrder(p->right);\n    }\n}\n\nint main(void)\n{\n    AVLNode *T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        T = Insert(T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", H(T));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct AVLNode\n{\n    int key;\n    int height;\n    struct AVLNode *left, *right;\n} AVLNode;\n\nint H(AVLNode *p)\n{\n    return p == NULL ? 0 : p->height;\n}\n\nint Max(int a, int b)\n{\n    return a > b ? a : b;\n}\n\nAVLNode *RotateR(AVLNode *y)\n{\n    AVLNode *x = y->left;\n    AVLNode *t = x->right;\n\n    x->right = y;\n    y->left = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *RotateL(AVLNode *y)\n{\n    AVLNode *x = y->right;\n    AVLNode *t = x->left;\n\n    x->left = y;\n    y->right = t;\n    y->height = Max(H(y->left), H(y->right)) + 1;\n    x->height = Max(H(x->left), H(x->right)) + 1;\n    return x;\n}\n\nAVLNode *Insert(AVLNode *p, int key)\n{\n    int bf;\n\n    if (p == NULL)\n    {\n        p = (AVLNode *)malloc(sizeof(AVLNode));\n        p->key = key;\n        p->height = 1;\n        p->left = p->right = NULL;\n        return p;\n    }\n    if (key < p->key)\n        p->left = Insert(p->left, key);\n    else if (key > p->key)\n        p->right = Insert(p->right, key);\n    else\n        return p;\n    p->height = Max(H(p->left), H(p->right)) + 1;\n    bf = H(p->left) - H(p->right);\n    if (bf > 1 && key < p->left->key)\n        return RotateR(p);\n    if (bf < -1 && key > p->right->key)\n        return RotateL(p);\n    if (bf > 1 && key > p->left->key)\n    {\n        p->left = RotateL(p->left);\n        return RotateR(p);\n    }\n    if (bf < -1 && key < p->right->key)\n    {\n        p->right = RotateR(p->right);\n        return RotateL(p);\n    }\n    return p;\n}\n\nvoid PreOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        printf(\"%d \", p->key);\n        PreOrder(p->left);\n        PreOrder(p->right);\n    }\n}\n\nvoid InOrder(AVLNode *p)\n{\n    if (p != NULL)\n    {\n        InOrder(p->left);\n        printf(\"%d \", p->key);\n        InOrder(p->right);\n    }\n}\n\nint main(void)\n{\n    AVLNode *T = NULL;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        T = Insert(T, x);\n    }\n    PreOrder(T);\n    printf(\"\\n\");\n    InOrder(T);\n    printf(\"\\n\");\n    printf(\"%d\\n\", H(T));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9\n3 2 1 4 5 6 7 16 15\n",
+          "expected": "4 2 1 3 6 5 15 7 16\n1 2 3 4 5 6 7 15 16\n4"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "2 1 4 3 5\n1 2 3 4 5\n3"
+        },
+        {
+          "stdin": "4\n4 3 2 1\n",
+          "expected": "3 2 1 4\n1 2 3 4\n3"
+        },
+        {
+          "stdin": "1\n9\n",
+          "expected": "9\n9\n1"
+        }
+      ],
+      "explanation": "第 1 空：插入后必须自底向上更新高度，结点高度 = 左右子树高度较大者 + 1。第 2 空：bf > 1 表示左子树偏高，若新结点落在左孩子的左子树（key < p->left->key）就是 LL 型，对 p 作一次右单旋 RotateR(p)。第 3 空：LR 型的判别条件同样是 bf > 1，区别只在 key > p->left->key，需先左旋 p->left 再右旋 p。四组测试分别触发 LR/RR/LL 等不同旋转组合：递增序列 1..5 得高 3，递减序列 4..1 也得高 3，说明 AVL 把有序插入的退化彻底消除。",
+      "tags": [
+        "平衡二叉树",
+        "插入",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "vizIds": [
+        "tree-avl-rotate"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-pg-003",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编写程序判定一棵二叉树是否为平衡二叉树（AVL 树）：即树中任一结点的左子树与右子树的高度差的绝对值都不超过 1。输入采用\"扩展先序序列\"（-1 表示空子树）。要求判定算法的时间复杂度为 O(n)，即每个结点只被访问常数次，不得对每个结点重复求高度而退化为 O(n²)。\n\n输入格式：一行若干个整数，是二叉树的扩展先序序列，-1 表示空指针，其余为结点值，序列以空白分隔。\n\n输出格式：若该树是平衡二叉树，输出一行 \"BAL h\"；否则输出一行 \"UNBAL h\"。h 为树的实际高度（空树高度为 0）。",
+      "testCases": [
+        {
+          "stdin": "2 1 -1 -1 3 -1 -1\n",
+          "expected": "BAL 2"
+        },
+        {
+          "stdin": "1 2 3 -1 -1 -1 -1\n",
+          "expected": "UNBAL 3"
+        },
+        {
+          "stdin": "-1\n",
+          "expected": "BAL 0"
+        },
+        {
+          "stdin": "5 -1 -1\n",
+          "expected": "BAL 1"
+        },
+        {
+          "stdin": "4 2 1 -1 -1 3 -1 -1 6 5 -1 -1 -1\n",
+          "expected": "BAL 3"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct BiTNode\n{\n    int data;\n    struct BiTNode *lchild, *rchild;\n} BiTNode, *BiTree;\n\n/* 按扩展先序序列递归建树 */\nBiTree Create(void)\n{\n    int x;\n    BiTree t;\n\n    if (scanf(\"%d\", &x) != 1)\n        return NULL;\n    if (x == -1)\n        return NULL;\n    t = (BiTree)malloc(sizeof(BiTNode));\n    t->data = x;\n    t->lchild = Create();\n    t->rchild = Create();\n    return t;\n}\n\n/* 后序遍历求高度：一旦发现子树不平衡立即用 -1 作为\"不平衡\"标记上传 */\nint BalHeight(BiTree T)\n{\n    int hl, hr;\n\n    if (T == NULL)\n        return 0;\n    hl = BalHeight(T->lchild);\n    if (hl == -1)\n        return -1;\n    hr = BalHeight(T->rchild);\n    if (hr == -1)\n        return -1;\n    if (hl - hr > 1 || hr - hl > 1)\n        return -1;\n    return (hl > hr ? hl : hr) + 1;\n}\n\nint Height(BiTree T)\n{\n    int hl, hr;\n\n    if (T == NULL)\n        return 0;\n    hl = Height(T->lchild);\n    hr = Height(T->rchild);\n    return (hl > hr ? hl : hr) + 1;\n}\n\nint main(void)\n{\n    BiTree T;\n    int h;\n\n    T = Create();\n    h = BalHeight(T);\n    if (h == -1)\n        printf(\"UNBAL %d\\n\", Height(T));\n    else\n        printf(\"BAL %d\\n\", h);\n    return 0;\n}",
+      "input_format": "一行若干个整数，是二叉树的扩展先序序列，-1 表示空指针，其余为结点值，序列以空白分隔。",
+      "output_format": "若该树是平衡二叉树，输出一行 \"BAL h\"；否则输出一行 \"UNBAL h\"。h 为树的实际高度（空树高度为 0）。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    BiTree T;\n    int h;\n\n    T = Create();\n    h = BalHeight(T);\n    if (h == -1)\n        printf(\"UNBAL %d\\n\", Height(T));\n    else\n        printf(\"BAL %d\\n\", h);\n    return 0;\n}",
+      "explanation": "O(n) 判定的关键是\"后序遍历自底向上一次算完\"：递归先取回左右子树高度，比较差值不超过 1 就把当前高度上传，否则上传 -1 作为不平衡标记并沿途短路返回，每个结点只访问一次。若改成\"对每个结点各调用一次 Height\"，总代价是 O(n²)（单支树最明显）。第 2 组是根—左—左的单支树，根的 BF = 2，故 UNBAL 且实际高度 3；空树高度 0 并视为平衡。易错点：不平衡时 BalHeight 返回的 -1 不是高度，必须另调 Height 求真实树高。",
+      "tags": [
+        "平衡二叉树",
+        "判定",
+        "递归",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-016",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "散列查找（哈希查找）与其他查找方法的本质区别在于（　）。",
+      "options": [
+        "通过关键字与存储地址之间的映射函数直接计算元素的存储位置",
+        "必须先把元素按关键字排好序",
+        "只能在链式存储结构上进行",
+        "只能用于静态查找表"
+      ],
+      "answer": 0,
+      "explanation": "散列查找的核心是建立关键字到地址的映射 H(key)，查找时把给定值代入散列函数直接算出地址，再在该地址处比较，理想情况下一次比较即可命中，故 ASL 接近 O(1)。折半查找才要求有序，顺序查找对存储无要求，散列表还可动态插入删除，因此 B、C、D 都不是散列查找的特征。易错点：散列查找并非完全不需要比较——发生冲突时仍需在探测序列或同义词链上比较。",
+      "tags": [
+        "散列表",
+        "基本思想"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-017",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设散列表的表长为 m，表中已存入 n 个记录，则装填因子 α 的定义是（　），它反映的是（　）。",
+      "options": [
+        "α = n / m，散列表的装满程度",
+        "α = m / n，散列表的装满程度",
+        "α = n / m，散列函数的个数",
+        "α = n × m，散列表中冲突的总次数"
+      ],
+      "answer": 0,
+      "explanation": "装填因子 α = 表中记录数 n ÷ 散列表长 m，取值一般在 0 到 1 之间。α 越大表示表越满，冲突概率越高，平均查找长度越长；α 越小则空间浪费越多。设计散列表时正是通过选定合适的 α 来反推表长 m = ⌈n/α⌉。易错点：α 不是 m/n（那是\"每个记录平均占用的槽位\"），也不是与散列函数个数相关的量；散列函数个数固定为 1 个，冲突处理才可能多次探测。",
+      "tags": [
+        "装填因子",
+        "冲突"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-tf-004",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "散列表的平均查找长度主要取决于装填因子 α，而与散列表的表长没有直接关系。",
+      "answer": true,
+      "explanation": "正确。以线性探测法为例，查找成功时 ASL ≈ (1 + 1/(1−α))/2，查找失败时 ASL ≈ (1 + 1/(1−α)²)/2，公式中只出现 α；链地址法成功时 ASL ≈ 1 + α/2，同样只依赖 α。这意味着一张 m = 100、n = 80 的表（α = 0.8）与一张 m = 1000、n = 800 的表（α 也是 0.8）具有几乎相同的查找效率。易错点：不要以为\"表开得越大越快\"——决定效率的是装满程度 α，表长只在 α 固定时才随 n 同比放大。",
+      "tags": [
+        "装填因子",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-018",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "采用除留余数法 H(key) = key mod p 构造散列表时，为减少冲突，p 通常应取（　）。",
+      "options": [
+        "不大于散列表长的最大质数，或不包含 20 以下质因子的合数",
+        "散列表长本身",
+        "关键字的最大值",
+        "任意一个偶数"
+      ],
+      "answer": 0,
+      "explanation": "除留余数法的关键是模数 p 的选取。经验规则是：p 取不大于表长 m 的最大质数；若不用质数，则 p 应不含 20 以下的质因子（即不能被 2、3、5、7、11、13、17、19 整除）。原因是关键字的分布往往带有周期性，取质数可让余数分布更均匀，减少同义词聚集。易错点：直接取 p = m，而 m 常常是 2 的幂（如 128），此时余数只由 key 的低位决定，冲突会非常严重。",
+      "tags": [
+        "除留余数法",
+        "散列函数"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-019",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "用线性探测法（开放定址法的一种）处理冲突时，容易发生\"堆积\"（聚集）现象，其含义是（　）。",
+      "options": [
+        "散列地址不同的关键字争夺同一后继地址，导致非同义词也被连在一起、查找长度变长",
+        "散列表被填满后再也无法插入任何元素",
+        "同一个关键字被重复插入到多个地址上",
+        "探测序列会超出散列表的下标范围"
+      ],
+      "answer": 0,
+      "explanation": "线性探测遇到冲突就顺序查看 H+1、H+2 ……，于是原本散列地址不同的关键字也可能被塞进同一段连续区域，形成\"堆积\"（primary clustering）。堆积的后果是：不属于这些关键字同义词的记录也被牵连进更长的探测序列，ASL 明显上升。缓解办法有平方探测（二次探测）、双散列函数法，或改用链地址法彻底避免堆积。易错点：堆积不等于\"表满\"，α 较小时也会发生；同一关键字只存一份，探测也始终在 [0, m−1] 内循环。",
+      "tags": [
+        "线性探测",
+        "堆积"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-020",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "设散列函数 H(key) = key mod 11，地址空间为 0～10，用线性探测法处理冲突。将关键字序列 {22, 41, 53, 46, 30, 13, 12} 依次插入后，关键字 12 所在的地址是（　）。",
+      "options": [
+        "1",
+        "2",
+        "10",
+        "12"
+      ],
+      "answer": 0,
+      "explanation": "逐个计算散列地址并处理冲突：22 mod 11 = 0 → 存 0；41 mod 11 = 8 → 存 8；53 mod 11 = 9 → 存 9；46 mod 11 = 2 → 存 2；30 mod 11 = 8，8 被占 → 探 9 被占 → 探 10 空，存 10；13 mod 11 = 2，被占 → 探 3 空，存 3；12 mod 11 = 1，该地址为空，直接存 1。故选 A。易错点：线性探测必须\"逐个\"试探而不是跳过被占地址直接找下一个散列地址；另外 12 mod 11 = 1 而不是 12，散列地址永远不会超过 m−1。",
+      "tags": [
+        "线性探测",
+        "地址计算"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-sc-021",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "承上题：散列函数 H(key) = key mod 11，线性探测法处理冲突，关键字序列 {22, 41, 53, 46, 30, 13, 12} 依次插入。则查找成功时的平均查找长度为（　）。",
+      "options": [
+        "10/7",
+        "10/11",
+        "7/10",
+        "1"
+      ],
+      "answer": 0,
+      "explanation": "按插入顺序统计每个关键字查找成功所需的比较次数（从 H(key) 起逐个比较直到命中）：22 → 地址 0 直接命中，1 次；41 → 地址 8，1 次；53 → 地址 9，1 次；46 → 地址 2，1 次；30 → 地址 8 不符、9 不符、10 命中，3 次；13 → 地址 2 不符、3 命中，2 次；12 → 地址 1，1 次。总计 1+1+1+1+3+2+1 = 10 次，7 个关键字等概率，ASL = 10/7 ≈ 1.43。易错点：分母是关键字个数 7 而不是表长 11；比较次数按\"探测了几格\"算，命中那一格也要计 1 次。",
+      "tags": [
+        "线性探测",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-fb-006",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "设散列表长为 m，表中已有 n 个记录，则装填因子 α = ___(1)___；采用链地址法（拉链法）处理冲突时，查找成功的平均查找长度约为 ___(2)___（用含 α 的式子表示）。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n / m",
+          "accepted": [
+            "n/m",
+            "n÷m",
+            "表中记录数/散列表长"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "1 + α/2",
+          "accepted": [
+            "1+α/2",
+            "1 + α / 2",
+            "1+a/2",
+            "1+α/2"
+          ]
+        }
+      ],
+      "explanation": "装填因子 α = n/m。链地址法把同义词组织成单链表：查找时先由 H(key) 定位到链首（1 次），再在平均长度为 α 的链表中平均比较约 α/2 次，故成功 ASL ≈ 1 + α/2；查找不成功时平均需比较约 α/2 次（走完该链）。因为 α 通常取 0.7～0.8，此时成功 ASL 约 1.35～1.4，效率很高。易错点：不要把链地址法的 ASL 与线性探测的 (1+1/(1−α))/2 混用，后者在 α 接近 1 时会急剧增大，而链地址法只是线性增长。",
+      "tags": [
+        "装填因子",
+        "链地址法",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-006",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#define M 13\n\nint main(void)\n{\n    int ht[M], a[7] = {19, 14, 23, 1, 68, 20, 84};\n    int i, key, addr, cnt, sum = 0;\n\n    for (i = 0; i < M; i++)\n        ht[i] = -1;\n    for (i = 0; i < 7; i++)\n    {\n        key = a[i];\n        addr = key % M;\n        while (ht[addr] != -1)\n            addr = (addr + 1) % M;\n        ht[addr] = key;\n    }\n    for (i = 0; i < M; i++)\n        printf(\"%3d\", ht[i]);\n    printf(\"\\n\");\n    for (i = 0; i < 7; i++)\n    {\n        key = a[i];\n        addr = key % M;\n        cnt = 1;\n        while (ht[addr] != key)\n        {\n            addr = (addr + 1) % M;\n            cnt++;\n        }\n        printf(\"%d:%d \", key, cnt);\n        sum += cnt;\n    }\n    printf(\"\\n%d/%d\\n\", sum, 7);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": " -1 14  1 68 -1 -1 19 20 84 -1 23 -1 -1\n19:1 14:1 23:1 1:2 68:1 20:1 84:3\n10/7",
+      "code": "#include <stdio.h>\n\n#define M 13\n\nint main(void)\n{\n    int ht[M], a[7] = {19, 14, 23, 1, 68, 20, 84};\n    int i, key, addr, cnt, sum = 0;\n\n    for (i = 0; i < M; i++)\n        ht[i] = -1;\n    for (i = 0; i < 7; i++)\n    {\n        key = a[i];\n        addr = key % M;\n        while (ht[addr] != -1)\n            addr = (addr + 1) % M;\n        ht[addr] = key;\n    }\n    for (i = 0; i < M; i++)\n        printf(\"%3d\", ht[i]);\n    printf(\"\\n\");\n    for (i = 0; i < 7; i++)\n    {\n        key = a[i];\n        addr = key % M;\n        cnt = 1;\n        while (ht[addr] != key)\n        {\n            addr = (addr + 1) % M;\n            cnt++;\n        }\n        printf(\"%d:%d \", key, cnt);\n        sum += cnt;\n    }\n    printf(\"\\n%d/%d\\n\", sum, 7);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "散列函数 H(key) = key mod 13，线性探测法。建表过程：19→6；14→1；23→10；1 mod 13 = 1 被占，探到 2；68 mod 13 = 3；20→7；84 mod 13 = 6 被占，探 7 被占，探 8。表内容为 -1 14 1 68 -1 -1 19 20 84 -1 23 -1 -1（下标 0～12）。再统计成功查找的比较次数：19、14、23、68、20 各 1 次，1 需 2 次（1→2），84 需 3 次（6→7→8），合计 10 次，故 ASL = 10/7。易错点：地址 0、4、5、9、11、12 是空的（用 -1 标记），输出时不能漏掉；比较次数含命中那一次。",
+      "tags": [
+        "散列表",
+        "线性探测",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cr-007",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\n#define M 11\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *ht[M], *p;\n    int a[9] = {16, 74, 65, 23, 41, 30, 52, 87, 6};\n    int i, j, c, sum = 0;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULL;\n    for (i = 0; i < 9; i++)\n    {\n        p = (Node *)malloc(sizeof(Node));\n        p->key = a[i];\n        j = a[i] % M;\n        p->next = ht[j];\n        ht[j] = p;\n    }\n    for (i = 0; i < M; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = ht[i]; p != NULL; p = p->next)\n            printf(\"%d \", p->key);\n        printf(\"\\n\");\n    }\n    for (i = 0; i < 9; i++)\n    {\n        c = 0;\n        for (p = ht[a[i] % M]; p != NULL; p = p->next)\n        {\n            c++;\n            if (p->key == a[i])\n                break;\n        }\n        sum += c;\n    }\n    printf(\"%d/%d\\n\", sum, 9);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0:\n1:23\n2:\n3:\n4:\n5:16\n6:6\n7:\n8:52 30 41 74\n9:\n10:87 65\n16/9",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define M 11\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *ht[M], *p;\n    int a[9] = {16, 74, 65, 23, 41, 30, 52, 87, 6};\n    int i, j, c, sum = 0;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULL;\n    for (i = 0; i < 9; i++)\n    {\n        p = (Node *)malloc(sizeof(Node));\n        p->key = a[i];\n        j = a[i] % M;\n        p->next = ht[j];\n        ht[j] = p;\n    }\n    for (i = 0; i < M; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = ht[i]; p != NULL; p = p->next)\n            printf(\"%d \", p->key);\n        printf(\"\\n\");\n    }\n    for (i = 0; i < 9; i++)\n    {\n        c = 0;\n        for (p = ht[a[i] % M]; p != NULL; p = p->next)\n        {\n            c++;\n            if (p->key == a[i])\n                break;\n        }\n        sum += c;\n    }\n    printf(\"%d/%d\\n\", sum, 9);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "链地址法（头插法建链），H(key) = key mod 11。散列地址：16→5；74→8；65→10；23→1；41→8；30→8；52→8；87→10；6→6。头插使后插入的排在链首，故 1 号桶为 \"23\"，5 号桶为 \"16\"，6 号桶为 \"6\"，8 号桶为 \"52 30 41 74\"（插入次序的逆序），10 号桶为 \"87 65\"，其余桶为空。统计成功查找比较次数：16、23、6、52、87 各 1 次，30 需 2 次，41 需 3 次，74 需 4 次，65 需 2 次，合计 16 次，ASL = 16/9 ≈ 1.78。易错点：链中次序是\"后进在前\"，比较次数取决于关键字在链中的位置而不是它的散列地址。",
+      "tags": [
+        "散列表",
+        "链地址法",
+        "ASL"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-005",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用除留余数法与线性探测法构造散列表并支持查找，其中有 3 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\n#define M 13\n#define NULLKEY -1\n\nint Hash(int key)\n{\n    return /*__BLANK_1__*/;\n}\n\n/* 线性探测法插入 key（假定表未满且无重复关键字） */\nvoid Insert(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (/*__BLANK_2__*/)\n        addr = (addr + 1) % M;\n    ht[addr] = key;\n}\n\n/* 查找成功返回所在下标，失败返回 -1 */\nint Search(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (ht[addr] != NULLKEY)\n    {\n        if (ht[addr] == key)\n            return addr;\n        /*__BLANK_3__*/;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int ht[M], n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULLKEY;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > M)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "key % M",
+          "accepted": [
+            "key%M",
+            "key % 13"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "ht[addr] != NULLKEY",
+          "accepted": [
+            "ht[addr]!=NULLKEY",
+            "ht[addr] != -1",
+            "NULLKEY != ht[addr]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "addr = (addr + 1) % M",
+          "accepted": [
+            "addr=(addr+1)%M",
+            "addr = (addr + 1) % 13"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define M 13\n#define NULLKEY -1\n\nint Hash(int key)\n{\n    return /*__BLANK_1__*/;\n}\n\n/* 线性探测法插入 key（假定表未满且无重复关键字） */\nvoid Insert(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (/*__BLANK_2__*/)\n        addr = (addr + 1) % M;\n    ht[addr] = key;\n}\n\n/* 查找成功返回所在下标，失败返回 -1 */\nint Search(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (ht[addr] != NULLKEY)\n    {\n        if (ht[addr] == key)\n            return addr;\n        /*__BLANK_3__*/;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int ht[M], n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULLKEY;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > M)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define M 13\n#define NULLKEY -1\n\nint Hash(int key)\n{\n    return key % M;\n}\n\n/* 线性探测法插入 key（假定表未满且无重复关键字） */\nvoid Insert(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (ht[addr] != NULLKEY)\n        addr = (addr + 1) % M;\n    ht[addr] = key;\n}\n\n/* 查找成功返回所在下标，失败返回 -1 */\nint Search(int ht[], int key)\n{\n    int addr = Hash(key);\n\n    while (ht[addr] != NULLKEY)\n    {\n        if (ht[addr] == key)\n            return addr;\n        addr = (addr + 1) % M;\n    }\n    return -1;\n}\n\nint main(void)\n{\n    int ht[M], n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULLKEY;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > M)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7\n19 14 23 1 68 20 84\n3\n1 84 99\n",
+          "expected": "2\n8\n-1"
+        },
+        {
+          "stdin": "3\n13 26 39\n3\n13 26 39\n",
+          "expected": "0\n1\n2"
+        },
+        {
+          "stdin": "1\n5\n1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "2\n0 13\n2\n13 0\n",
+          "expected": "1\n0"
+        }
+      ],
+      "explanation": "第 1 空：除留余数法 H(key) = key mod M，这里 M = 13 是质数，符合\"取不大于表长的最大质数\"的选模原则。第 2 空：插入时只要该地址已被占用（不等于 NULLKEY）就向后探测一格，取模保证下标循环回 0。第 3 空：查找时同样线性后移，但必须保留 while (ht[addr] != NULLKEY) 作为终止条件——遇到空位即可断定查找失败，否则会陷入无限循环。第 2、4 组测试构造了\"全部同余\"的极端冲突（13、26、39 mod 13 都是 0），用来检验探测序列正确。",
+      "tags": [
+        "散列表",
+        "线性探测",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-cc-006",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用链地址法（拉链法）构造散列表并支持查找，其中有 3 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\n#define M 11\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint Hash(int key)\n{\n    return /*__BLANK_1__*/;\n}\n\n/* 头插法把 key 加入同义词链 */\nvoid Insert(Node *ht[], int key)\n{\n    Node *p = (Node *)malloc(sizeof(Node));\n\n    p->key = key;\n    /*__BLANK_2__*/;\n    ht[Hash(key)] = p;\n}\n\n/* 查找成功返回该关键字在链中的序号（从 1 开始计数），失败返回 0 */\nint Search(Node *ht[], int key)\n{\n    Node *p;\n    int c = 0;\n\n    for (p = ht[Hash(key)]; p != NULL; p = p->next)\n    {\n        /*__BLANK_3__*/;\n        if (p->key == key)\n            return c;\n    }\n    return 0;\n}\n\nint main(void)\n{\n    Node *ht[M];\n    int n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULL;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "key % M",
+          "accepted": [
+            "key%M",
+            "key % 11"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "p->next = ht[Hash(key)]",
+          "accepted": [
+            "p->next=ht[Hash(key)]",
+            "p->next = ht[key % M]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "c++",
+          "accepted": [
+            "c++",
+            "c += 1",
+            "++c",
+            "c=c+1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define M 11\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint Hash(int key)\n{\n    return /*__BLANK_1__*/;\n}\n\n/* 头插法把 key 加入同义词链 */\nvoid Insert(Node *ht[], int key)\n{\n    Node *p = (Node *)malloc(sizeof(Node));\n\n    p->key = key;\n    /*__BLANK_2__*/;\n    ht[Hash(key)] = p;\n}\n\n/* 查找成功返回该关键字在链中的序号（从 1 开始计数），失败返回 0 */\nint Search(Node *ht[], int key)\n{\n    Node *p;\n    int c = 0;\n\n    for (p = ht[Hash(key)]; p != NULL; p = p->next)\n    {\n        /*__BLANK_3__*/;\n        if (p->key == key)\n            return c;\n    }\n    return 0;\n}\n\nint main(void)\n{\n    Node *ht[M];\n    int n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULL;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\n#define M 11\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint Hash(int key)\n{\n    return key % M;\n}\n\n/* 头插法把 key 加入同义词链 */\nvoid Insert(Node *ht[], int key)\n{\n    Node *p = (Node *)malloc(sizeof(Node));\n\n    p->key = key;\n    p->next = ht[Hash(key)];\n    ht[Hash(key)] = p;\n}\n\n/* 查找成功返回该关键字在链中的序号（从 1 开始计数），失败返回 0 */\nint Search(Node *ht[], int key)\n{\n    Node *p;\n    int c = 0;\n\n    for (p = ht[Hash(key)]; p != NULL; p = p->next)\n    {\n        c++;\n        if (p->key == key)\n            return c;\n    }\n    return 0;\n}\n\nint main(void)\n{\n    Node *ht[M];\n    int n, q, i, x;\n\n    for (i = 0; i < M; i++)\n        ht[i] = NULL;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        Insert(ht, x);\n    }\n    if (scanf(\"%d\", &q) != 1 || q < 0 || q > 20)\n        return 1;\n    for (i = 0; i < q; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        printf(\"%d\\n\", Search(ht, x));\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9\n16 74 65 23 41 30 52 87 6\n3\n74 52 100\n",
+          "expected": "4\n1\n0"
+        },
+        {
+          "stdin": "1\n5\n2\n5 16\n",
+          "expected": "1\n0"
+        },
+        {
+          "stdin": "2\n11 22\n2\n11 22\n",
+          "expected": "2\n1"
+        },
+        {
+          "stdin": "3\n16 74 65\n3\n65 74 16\n",
+          "expected": "1\n1\n1"
+        }
+      ],
+      "explanation": "链地址法把散列地址相同的记录链成一条单链表，因此不存在\"堆积\"，删除也方便。第 1 空仍是除留余数法 key % M。第 2 空是头插法的关键一步：新结点的 next 必须先指向原来的链首 ht[Hash(key)]，随后才把表头改指新结点，顺序颠倒会丢失整条链。第 3 空用 c++ 统计比较次数，返回值即该关键字在链中的位置，也就是查找它所需的比较次数（可直接用于计算 ASL）。第 3 组测试中 11 与 22 同余 0，头插使 22 在前，故查 11 需 2 次、查 22 只需 1 次。",
+      "tags": [
+        "散列表",
+        "链地址法",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-pg-004",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编写程序，用除留余数法 H(key) = key mod m 与线性探测法构造散列表，并统计查找成功时每个关键字所需的比较次数。表长 m 与关键字序列由输入给出，空地址用 -1 表示。为避免浮点误差，平均查找长度以\"总比较次数 与 关键字个数\"两个整数输出。\n\n输入格式：第一行一个整数 m（1 ≤ m ≤ 100）表示散列表长；第二行一个整数 n（0 ≤ n ≤ m）表示关键字个数；第三行 n 个互不相同的非负整数，表示依次插入的关键字（n 为 0 时该行可为空行）。\n\n输出格式：第一行 m 个整数，第 i 个为地址 i 上存放的关键字，空地址输出 -1；第二行 n 个整数，第 i 个为查找第 i 个插入的关键字所需的比较次数（含命中那次）；第三行两个整数，依次为总比较次数与关键字个数。整数之间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "13\n7\n19 14 23 1 68 20 84\n",
+          "expected": "-1 14 1 68 -1 -1 19 20 84 -1 23 -1 -1\n1 1 1 2 1 1 3\n10 7"
+        },
+        {
+          "stdin": "11\n4\n1 12 23 34\n",
+          "expected": "-1 1 12 23 34 -1 -1 -1 -1 -1 -1\n1 2 3 4\n10 4"
+        },
+        {
+          "stdin": "5\n1\n7\n",
+          "expected": "-1 -1 7 -1 -1\n1\n1 1"
+        },
+        {
+          "stdin": "4\n4\n0 4 8 12\n",
+          "expected": "0 4 8 12\n1 2 3 4\n10 4"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXM 100\n#define MAXN 100\n\nint main(void)\n{\n    int ht[MAXM], a[MAXN], cmp[MAXN];\n    int m, n, i, key, addr, sum = 0;\n\n    if (scanf(\"%d\", &m) != 1 || m < 1 || m > MAXM)\n        return 1;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN || n > m)\n        return 1;\n    for (i = 0; i < m; i++)\n        ht[i] = -1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n        key = a[i];\n        addr = key % m;\n        while (ht[addr] != -1)\n            addr = (addr + 1) % m;\n        ht[addr] = key;\n    }\n    for (i = 0; i < n; i++)\n    {\n        key = a[i];\n        addr = key % m;\n        cmp[i] = 1;\n        while (ht[addr] != key)\n        {\n            addr = (addr + 1) % m;\n            cmp[i]++;\n        }\n        sum += cmp[i];\n    }\n    for (i = 0; i < m; i++)\n        printf(\"%d \", ht[i]);\n    printf(\"\\n\");\n    for (i = 0; i < n; i++)\n        printf(\"%d \", cmp[i]);\n    printf(\"\\n\");\n    printf(\"%d %d\\n\", sum, n);\n    return 0;\n}",
+      "input_format": "第一行一个整数 m（1 ≤ m ≤ 100）表示散列表长；第二行一个整数 n（0 ≤ n ≤ m）表示关键字个数；第三行 n 个互不相同的非负整数，表示依次插入的关键字（n 为 0 时该行可为空行）。",
+      "output_format": "第一行 m 个整数，第 i 个为地址 i 上存放的关键字，空地址输出 -1；第二行 n 个整数，第 i 个为查找第 i 个插入的关键字所需的比较次数（含命中那次）；第三行两个整数，依次为总比较次数与关键字个数。整数之间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n#define MAXM 100\n#define MAXN 100\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int ht[MAXM], a[MAXN], cmp[MAXN];\n    int m, n, i, key, addr, sum = 0;\n\n    if (scanf(\"%d\", &m) != 1 || m < 1 || m > MAXM)\n        return 1;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN || n > m)\n        return 1;\n    for (i = 0; i < m; i++)\n        ht[i] = -1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n        key = a[i];\n        addr = key % m;\n        while (ht[addr] != -1)\n            addr = (addr + 1) % m;\n        ht[addr] = key;\n    }\n    for (i = 0; i < n; i++)\n    {\n        key = a[i];\n        addr = key % m;\n        cmp[i] = 1;\n        while (ht[addr] != key)\n        {\n            addr = (addr + 1) % m;\n            cmp[i]++;\n        }\n        sum += cmp[i];\n    }\n    for (i = 0; i < m; i++)\n        printf(\"%d \", ht[i]);\n    printf(\"\\n\");\n    for (i = 0; i < n; i++)\n        printf(\"%d \", cmp[i]);\n    printf(\"\\n\");\n    printf(\"%d %d\\n\", sum, n);\n    return 0;\n}",
+      "explanation": "插入与查找共用同一条探测序列：从 H(key) 开始，遇占用就 (addr+1) mod m 循环后移，插入时停在第一个空位，查找时停在第一个等于 key 的位置；统计比较次数时从 1 开始计数，包含命中那次。第 2、4 组是\"全部同余\"的极端冲突（1、12、23、34 mod 11 均为 1；0、4、8、12 mod 4 均为 0），比较次数呈 1、2、3、4 的等差增长，总比较 10 次，直观展示了线性探测的堆积代价。第 3 组是 n = 1 的最小边界，表中只有一个非空地址。易错点：ASL 的分母是关键字个数 n 而非表长 m；探测必须取模，否则 addr 会越界。",
+      "tags": [
+        "散列表",
+        "线性探测",
+        "ASL",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch07-pg-005",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编写程序，用除留余数法 H(key) = key mod m 与链地址法（拉链法，头插建链）构造散列表：按地址从小到大输出每个桶的链表内容，并统计查找成功时每个关键字所需的比较次数之和。为避免浮点误差，平均查找长度以\"总比较次数 与 关键字个数\"两个整数输出。\n\n输入格式：第一行一个整数 m（1 ≤ m ≤ 50）表示桶的个数；第二行一个整数 n（0 ≤ n ≤ 200）表示关键字个数；第三行 n 个互不相同的非负整数（n 为 0 时该行可为空行）。\n\n输出格式：前 m 行依次输出各桶，第 i 行格式为 \"i: k1 k2 ...\"，k 按链表从头到尾的次序排列，空桶只输出 \"i:\"；最后一行输出两个整数，依次为查找成功的总比较次数与关键字个数 n。",
+      "testCases": [
+        {
+          "stdin": "11\n9\n16 74 65 23 41 30 52 87 6\n",
+          "expected": "0:\n1: 23\n2:\n3:\n4:\n5: 16\n6: 6\n7:\n8: 52 30 41 74\n9:\n10: 87 65\n16 9"
+        },
+        {
+          "stdin": "3\n4\n1 2 3 4\n",
+          "expected": "0: 3\n1: 4 1\n2: 2\n5 4"
+        },
+        {
+          "stdin": "1\n2\n5 7\n",
+          "expected": "0: 7 5\n3 2"
+        },
+        {
+          "stdin": "7\n0\n\n",
+          "expected": "0:\n1:\n2:\n3:\n4:\n5:\n6:\n0 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXM 50\n#define MAXN 200\n\ntypedef struct Node\n{\n    int key;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *ht[MAXM], *p;\n    int a[MAXN];\n    int m, n, i, j, c, sum = 0;\n\n    if (scanf(\"%d\", &m) != 1 || m < 1 || m > MAXM)\n        return 1;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < m; i++)\n        ht[i] = NULL;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n        p = (Node *)malloc(sizeof(Node));\n        p->key = a[i];\n        j = a[i] % m;\n        p->next = ht[j];\n        ht[j] = p;\n    }\n    for (i = 0; i < m; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = ht[i]; p != NULL; p = p->next)\n            printf(\" %d\", p->key);\n        printf(\"\\n\");\n    }\n    for (i = 0; i < n; i++)\n    {\n        c = 0;\n        for (p = ht[a[i] % m]; p != NULL; p = p->next)\n        {\n            c++;\n            if (p->key == a[i])\n                break;\n        }\n        sum += c;\n    }\n    printf(\"%d %d\\n\", sum, n);\n    return 0;\n}",
+      "input_format": "第一行一个整数 m（1 ≤ m ≤ 50）表示桶的个数；第二行一个整数 n（0 ≤ n ≤ 200）表示关键字个数；第三行 n 个互不相同的非负整数（n 为 0 时该行可为空行）。",
+      "output_format": "前 m 行依次输出各桶，第 i 行格式为 \"i: k1 k2 ...\"，k 按链表从头到尾的次序排列，空桶只输出 \"i:\"；最后一行输出两个整数，依次为查找成功的总比较次数与关键字个数 n。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n#define MAXM 50\n#define MAXN 200\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    Node *ht[MAXM], *p;\n    int a[MAXN];\n    int m, n, i, j, c, sum = 0;\n\n    if (scanf(\"%d\", &m) != 1 || m < 1 || m > MAXM)\n        return 1;\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXN)\n        return 1;\n    for (i = 0; i < m; i++)\n        ht[i] = NULL;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n        p = (Node *)malloc(sizeof(Node));\n        p->key = a[i];\n        j = a[i] % m;\n        p->next = ht[j];\n        ht[j] = p;\n    }\n    for (i = 0; i < m; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = ht[i]; p != NULL; p = p->next)\n            printf(\" %d\", p->key);\n        printf(\"\\n\");\n    }\n    for (i = 0; i < n; i++)\n    {\n        c = 0;\n        for (p = ht[a[i] % m]; p != NULL; p = p->next)\n        {\n            c++;\n            if (p->key == a[i])\n                break;\n        }\n        sum += c;\n    }\n    printf(\"%d %d\\n\", sum, n);\n    return 0;\n}",
+      "explanation": "链地址法为每个地址维护一条同义词单链表，插入用头插法，故链中次序与插入次序相反；查找时从链首逐个比较直到命中，比较次数等于该关键字在链中的位置。第 1 组中 74、41、30、52 同余 8，链长为 4，查 74 要比较 4 次，总比较 16 次、9 个关键字，ASL = 16/9 ≈ 1.78。第 3 组 m = 1 是最坏边界：所有关键字挤在一条链上，退化成顺序查找。第 4 组 n = 0 时仍要输出 m 行空桶与 \"0 0\"。易错点：桶号后即使链表为空也要输出冒号；总比较次数的统计必须按输入次序而非桶次序。",
+      "tags": [
+        "散列表",
+        "链地址法",
+        "ASL",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch07-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第7章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    }
+  ]
+}

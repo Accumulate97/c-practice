@@ -1,10 +1,10 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "9df9902bc602c552",
+  "content_sha": "7ec4b0b95ce32993",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1363,
-  "shard_count": 18,
+  "count": 1413,
+  "shard_count": 19,
   "shards": [
     {
       "file": "c-ch01.json",
@@ -131,6 +131,13 @@
       "chapter": "第6章 图",
       "count": 60,
       "url": "data/problems/ds-ch06.json"
+    },
+    {
+      "file": "ds-ch07.json",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "count": 50,
+      "url": "data/problems/ds-ch07.json"
     }
   ],
   "problems": [
@@ -18341,7 +18348,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接矩阵",
         "度"
@@ -18357,7 +18364,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接表",
         "链长",
@@ -18374,7 +18381,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接表",
         "头插法",
@@ -18391,7 +18398,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接矩阵",
         "出度",
@@ -18408,7 +18415,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接表",
         "度",
@@ -18425,7 +18432,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接表",
         "去重",
@@ -18442,7 +18449,7 @@
       "section": "6.2 图的存储结构",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "邻接矩阵",
         "出度",
@@ -18608,7 +18615,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "DFS",
         "递归",
@@ -18625,7 +18632,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "BFS",
         "队列",
@@ -18642,7 +18649,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "连通分量",
         "DFS 调用次数"
@@ -18658,7 +18665,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "DFS",
         "邻接矩阵",
@@ -18675,7 +18682,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "BFS",
         "队列",
@@ -18692,7 +18699,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "DFS",
         "BFS",
@@ -18709,7 +18716,7 @@
       "section": "6.3 图的遍历",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "连通性",
         "连通分量",
@@ -18841,7 +18848,7 @@
       "section": "6.4 最小生成树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Prim",
         "lowcost",
@@ -18858,7 +18865,7 @@
       "section": "6.4 最小生成树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Kruskal",
         "并查集",
@@ -18875,7 +18882,7 @@
       "section": "6.4 最小生成树",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Prim",
         "lowcost",
@@ -18892,7 +18899,7 @@
       "section": "6.4 最小生成树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Prim",
         "最小生成树",
@@ -18909,7 +18916,7 @@
       "section": "6.4 最小生成树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Kruskal",
         "并查集",
@@ -19011,7 +19018,7 @@
       "section": "6.5 最短路径",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Dijkstra",
         "dist",
@@ -19028,7 +19035,7 @@
       "section": "6.5 最短路径",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Floyd",
         "动态规划",
@@ -19045,7 +19052,7 @@
       "section": "6.5 最短路径",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "Dijkstra",
         "最短路径",
@@ -19128,7 +19135,7 @@
       "section": "6.6 拓扑排序与关键路径",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "拓扑排序",
         "入度",
@@ -19145,7 +19152,7 @@
       "section": "6.6 拓扑排序与关键路径",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "拓扑排序",
         "队列",
@@ -19153,6 +19160,827 @@
       ],
       "title": "编程",
       "file": "ds-ch06.json"
+    },
+    {
+      "id": "ds-ch07-sc-001",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "ASL",
+        "查找效率"
+      ],
+      "title": "衡量一个查找算法效率的主要指标是平均查找长度 ASL",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-002",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "顺序查找",
+        "ASL"
+      ],
+      "title": "在含 n 个元素的顺序表中作顺序查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-003",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "静态查找",
+        "动态查找"
+      ],
+      "title": "关于静态查找与动态查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-004",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "查找表",
+        "关键字"
+      ],
+      "title": "数据结构中所谓的\"查找表\"",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-001",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.1 查找的基本概念",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "查找",
+        "关键字"
+      ],
+      "title": "查找就是根据给定的某个值",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-005",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "前提条件"
+      ],
+      "title": "折半查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-006",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "判定树"
+      ],
+      "title": "对长度为 11 的有序表进行折半查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-007",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "判定树"
+      ],
+      "title": "已知有序表长度为 10",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-008",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "ASL"
+      ],
+      "title": "对有序表 {7",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-009",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "分块查找",
+        "索引顺序查找"
+      ],
+      "title": "分块查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-010",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "时间复杂度",
+        "查找"
+      ],
+      "title": "下列关于查找算法时间复杂度的叙述中",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-002",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "区间收缩"
+      ],
+      "title": "在折半查找的非递归算法中",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-003",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "ASL"
+      ],
+      "title": "对长度为 12 的有序表作折半查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-tf-001",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "存储结构"
+      ],
+      "title": "折半查找既可用于顺序存储的有序表",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-tf-002",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "判定树",
+        "平衡"
+      ],
+      "title": "按 mid = ",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-001",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "顺序查找",
+        "哨兵"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-002",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "比较序列"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-003",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "递归"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-001",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "代码填空"
+      ],
+      "title": "下列程序实现有序表的折半查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-002",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "顺序查找",
+        "哨兵",
+        "代码填空"
+      ],
+      "title": "下列程序实现带哨兵的顺序查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-pg-001",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.2 线性表的查找（顺序查找与折半查找）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半查找",
+        "插入位置",
+        "编程题"
+      ],
+      "title": "编写程序实现\"带插入位置的折半查找\"",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-011",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "中序遍历"
+      ],
+      "title": "对一棵二叉排序树作",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-012",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "构造",
+        "深度"
+      ],
+      "title": "将关键字序列 {50",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-004",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "定义"
+      ],
+      "title": "二叉排序树或者是一棵空树",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-013",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "删除"
+      ],
+      "title": "在二叉排序树中删除一个度为 2",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-tf-003",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "插入次序"
+      ],
+      "title": "二叉排序树的形态只取决于查找表中关键字的集合",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cx-001",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "二叉排序树",
+        "时间复杂度"
+      ],
+      "title": "设二叉排序树含 n 个结点",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-004",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "二叉排序树",
+        "插入",
+        "遍历"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-003",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "二叉排序树",
+        "插入",
+        "代码填空"
+      ],
+      "title": "下列程序读入若干整数建立二叉排序树并输出其先序与中序序列",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-pg-002",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.3 二叉排序树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "二叉排序树",
+        "中序遍历",
+        "判定",
+        "编程题"
+      ],
+      "title": "编写程序判定一棵二叉树是否为二叉排序树",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-014",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "平衡二叉树",
+        "平衡因子"
+      ],
+      "title": "平衡二叉树",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-015",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "平衡二叉树",
+        "旋转"
+      ],
+      "title": "在平衡二叉树中插入一个新结点后",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-005",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "平衡二叉树",
+        "最少结点数"
+      ],
+      "title": "设 N",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-005",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "平衡二叉树",
+        "插入",
+        "旋转"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-004",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "平衡二叉树",
+        "插入",
+        "代码填空"
+      ],
+      "title": "下列程序读入若干互不相同的整数建立平衡二叉树",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-pg-003",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.4 平衡二叉树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "平衡二叉树",
+        "判定",
+        "递归",
+        "编程题"
+      ],
+      "title": "编写程序判定一棵二叉树是否为平衡二叉树",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-016",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "散列表",
+        "基本思想"
+      ],
+      "title": "散列查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-017",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "装填因子",
+        "冲突"
+      ],
+      "title": "设散列表的表长为 m",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-tf-004",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "装填因子",
+        "ASL"
+      ],
+      "title": "散列表的平均查找长度主要取决于装填因子 α",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-018",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "除留余数法",
+        "散列函数"
+      ],
+      "title": "采用除留余数法 H",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-019",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "线性探测",
+        "堆积"
+      ],
+      "title": "用线性探测法",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-020",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "线性探测",
+        "地址计算"
+      ],
+      "title": "设散列函数 H",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-sc-021",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "线性探测",
+        "ASL"
+      ],
+      "title": "承上题",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-fb-006",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "装填因子",
+        "链地址法",
+        "ASL"
+      ],
+      "title": "设散列表长为 m",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-006",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "线性探测",
+        "ASL"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cr-007",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "链地址法",
+        "ASL"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-005",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "线性探测",
+        "代码填空"
+      ],
+      "title": "下列程序用除留余数法与线性探测法构造散列表并支持查找",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-cc-006",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "链地址法",
+        "代码填空"
+      ],
+      "title": "下列程序用链地址法",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-pg-004",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "线性探测",
+        "ASL",
+        "编程题"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch07-pg-005",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第7章 查找",
+      "section": "7.5 散列表",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "散列表",
+        "链地址法",
+        "ASL",
+        "编程题"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch07.json"
     }
   ],
   "defects": {
