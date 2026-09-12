@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "b5747acd6f48d7cd",
+  "content_sha": "423d30dd66474527",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1774,
+  "count": 1824,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -9843,6 +9843,671 @@
       "chapter": "第7章 函数",
       "section": "7.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-019",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "值传递",
+        "形参实参"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-020",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-021",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "斐波那契",
+        "调用次数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-022",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "static局部变量",
+        "存储类别"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-023",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "作用域",
+        "同名遮蔽",
+        "全局变量"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-024",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-025",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "指针退化"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-026",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "栈帧",
+        "输出顺序"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-027",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "辗转相除"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-028",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "嵌套调用",
+        "函数分层"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-029",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "void函数",
+        "返回值"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-030",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "进制转换"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-031",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "静态全局变量",
+        "文件作用域"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-032",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-033",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "实参表达式",
+        "形参对应"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-034",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "二维数组作参数",
+        "对角线"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-035",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "汉诺塔",
+        "移动次数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-036",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归与迭代",
+        "递归深度"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-037",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "return",
+        "副作用",
+        "调用顺序"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cr-038",
+      "file": "c-ch07.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "幂运算",
+        "分治"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-024",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-025",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "数组作参数",
+        "最值"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-026",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "static局部变量",
+        "跨调用保留"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-027",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "递归",
+        "斐波那契"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-028",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "函数声明",
+        "嵌套调用"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-029",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-030",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "递归",
+        "数位逆序输出"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-031",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "全局变量",
+        "函数间数据共享"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-032",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "递归",
+        "最大公约数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-cc-033",
+      "file": "c-ch07.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-013",
+      "file": "c-ch07.json",
+      "title": "下列程序的功能是计算并输出 n!",
+      "tags": [
+        "递归",
+        "返回类型",
+        "递归体"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-014",
+      "file": "c-ch07.json",
+      "title": "下列程序用于求 n 个整数的平均值并保留两位小数",
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "整数除法"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-dbg-015",
+      "file": "c-ch07.json",
+      "title": "下列程序用于输出斐波那契数列前 n 项",
+      "tags": [
+        "递归",
+        "出口条件",
+        "递归体"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-001",
+      "file": "c-ch07.json",
+      "title": "编写函数 int max3",
+      "tags": [
+        "函数定义",
+        "return",
+        "多分支"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-002",
+      "file": "c-ch07.json",
+      "title": "编写函数 int isPrime",
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-003",
+      "file": "c-ch07.json",
+      "title": "编写函数 void sortAsc",
+      "tags": [
+        "数组作参数",
+        "选择排序"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-004",
+      "file": "c-ch07.json",
+      "title": "编写函数 int myStrlen",
+      "tags": [
+        "字符数组",
+        "函数实现strlen"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-005",
+      "file": "c-ch07.json",
+      "title": "编写函数 long long rfact",
+      "tags": [
+        "递归",
+        "阶乘",
+        "long long"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-pg-006",
+      "file": "c-ch07.json",
+      "title": "编写函数 int gcd",
+      "tags": [
+        "迭代",
+        "最大公约数",
+        "最小公倍数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-013",
+      "file": "c-ch07.json",
+      "title": "函数调用时若形参是普通变量",
+      "tags": [
+        "值传递",
+        "单向性"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-014",
+      "file": "c-ch07.json",
+      "title": "若函数的定义出现在调用点之后",
+      "tags": [
+        "函数声明",
+        "原型"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-015",
+      "file": "c-ch07.json",
+      "title": "关于用 static 修饰的局部变量",
+      "tags": [
+        "static局部变量",
+        "生存期与作用域"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-016",
+      "file": "c-ch07.json",
+      "title": "一个正确的递归函数必须具备哪两个条件？",
+      "tags": [
+        "递归",
+        "必备条件"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-017",
+      "file": "c-ch07.json",
+      "title": "把一维数组 a 作为实参传给函数时",
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-sc-018",
+      "file": "c-ch07.json",
+      "title": "关于函数中的 return 语句",
+      "tags": [
+        "return语句",
+        "返回值"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-013",
+      "file": "c-ch07.json",
+      "title": "函数调用时",
+      "tags": [
+        "形参实参",
+        "存储单元"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-014",
+      "file": "c-ch07.json",
+      "title": "设递归函数 fact 定义为",
+      "tags": [
+        "递归",
+        "阶乘",
+        "调用次数"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-fb-015",
+      "file": "c-ch07.json",
+      "title": "函数内定义的局部变量若未加存储类别说明",
+      "tags": [
+        "存储类别",
+        "auto",
+        "extern"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-tf-001",
+      "file": "c-ch07.json",
+      "title": "void 型函数没有返回值",
+      "tags": [
+        "void函数",
+        "return"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch07-tf-002",
+      "file": "c-ch07.json",
+      "title": "同一个问题用递归求解一定比用迭代求解效率更高",
+      "tags": [
+        "递归与迭代",
+        "效率"
+      ],
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {

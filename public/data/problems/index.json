@@ -1,9 +1,9 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "58211f637ee39cc0",
+  "content_sha": "40c53ebfd801ea43",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1774,
+  "count": 1824,
   "shard_count": 20,
   "shards": [
     {
@@ -52,7 +52,7 @@
       "file": "c-ch07.json",
       "category": "c",
       "chapter": "第7章 函数",
-      "count": 81,
+      "count": 131,
       "url": "data/problems/c-ch07.json"
     },
     {
@@ -10420,7 +10420,7 @@
       "section": "6.2 填空题",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [],
       "title": "【题 6.65】下面程序的功能是生成并打印某数列的前 20 项",
       "file": "c-ch06.json"
@@ -10745,7 +10745,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "求和"
@@ -10761,7 +10761,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "求最值"
@@ -10777,7 +10777,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "逆序输出"
@@ -10793,7 +10793,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "计数"
@@ -10809,7 +10809,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "整数除法"
@@ -10825,7 +10825,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "遍历求和"
@@ -10841,7 +10841,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "按行加工"
@@ -10857,7 +10857,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "对角线"
@@ -10873,7 +10873,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "矩阵转置"
@@ -10889,7 +10889,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "sizeof"
@@ -10905,7 +10905,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "strlen与sizeof"
@@ -10921,7 +10921,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "计数"
@@ -10937,7 +10937,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "逆置"
@@ -10953,7 +10953,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "strcmp"
@@ -10969,7 +10969,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "手写strlen"
@@ -10985,7 +10985,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "冒泡排序",
         "一趟"
@@ -11001,7 +11001,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "折半查找",
         "下标"
@@ -11017,7 +11017,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "计数数组",
         "频数统计"
@@ -11033,7 +11033,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "数组",
         "斐波那契"
@@ -11049,7 +11049,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "数组",
         "插入移动"
@@ -11065,7 +11065,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "求和"
@@ -11081,7 +11081,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "求最大值"
@@ -11097,7 +11097,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "逆置"
@@ -11113,7 +11113,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二维数组",
         "遍历求和"
@@ -11129,7 +11129,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "冒泡排序",
         "交换"
@@ -11145,7 +11145,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "手写strlen"
@@ -11161,7 +11161,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "折半查找",
         "区间收缩"
@@ -11177,7 +11177,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "计数"
@@ -11193,7 +11193,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "平均值",
@@ -11210,7 +11210,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组",
         "循环右移"
@@ -11226,7 +11226,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "下标越界",
         "off-by-one"
@@ -11242,7 +11242,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "冒泡排序",
         "交换",
@@ -11259,7 +11259,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符串",
         "计数",
@@ -11276,7 +11276,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "一维数组作参数",
         "求和"
@@ -11292,7 +11292,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "最值",
         "数组遍历"
@@ -11308,7 +11308,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "数组逆置",
         "双指针"
@@ -11324,7 +11324,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "冒泡排序",
         "升序"
@@ -11340,7 +11340,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "折半查找",
         "有序数组"
@@ -11356,7 +11356,7 @@
       "section": "6.6 变式练习（代码类）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "字符数组",
         "字符计数"
@@ -12604,6 +12604,821 @@
       "verified": true,
       "tags": [],
       "title": "【题 7.65】以下函数 fun 的功能是",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-019",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "值传递",
+        "形参实参"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-020",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-021",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归",
+        "斐波那契",
+        "调用次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-022",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "static局部变量",
+        "存储类别"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-023",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "作用域",
+        "同名遮蔽",
+        "全局变量"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-024",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-025",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "指针退化"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-026",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归",
+        "栈帧",
+        "输出顺序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-027",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "辗转相除"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-028",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "嵌套调用",
+        "函数分层"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-029",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "void函数",
+        "返回值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-030",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "进制转换"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-031",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "静态全局变量",
+        "文件作用域"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-032",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-033",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "实参表达式",
+        "形参对应"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-034",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "二维数组作参数",
+        "对角线"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-035",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归",
+        "汉诺塔",
+        "移动次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-036",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "递归与迭代",
+        "递归深度"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-037",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "return",
+        "副作用",
+        "调用顺序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cr-038",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "幂运算",
+        "分治"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-024",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-025",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "最值"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-026",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "static局部变量",
+        "跨调用保留"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-027",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "斐波那契"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-028",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "函数声明",
+        "嵌套调用"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-029",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-030",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "数位逆序输出"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-031",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "全局变量",
+        "函数间数据共享"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-032",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "最大公约数"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-cc-033",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-dbg-013",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归",
+        "返回类型",
+        "递归体"
+      ],
+      "title": "下列程序的功能是计算并输出 n!",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-dbg-014",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "整数除法"
+      ],
+      "title": "下列程序用于求 n 个整数的平均值并保留两位小数",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-dbg-015",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归",
+        "出口条件",
+        "递归体"
+      ],
+      "title": "下列程序用于输出斐波那契数列前 n 项",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-001",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数定义",
+        "return",
+        "多分支"
+      ],
+      "title": "编写函数 int max3",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-002",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "title": "编写函数 int isPrime",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-003",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "选择排序"
+      ],
+      "title": "编写函数 void sortAsc",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-004",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "字符数组",
+        "函数实现strlen"
+      ],
+      "title": "编写函数 int myStrlen",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-005",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "阶乘",
+        "long long"
+      ],
+      "title": "编写函数 long long rfact",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-pg-006",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "迭代",
+        "最大公约数",
+        "最小公倍数"
+      ],
+      "title": "编写函数 int gcd",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-013",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "值传递",
+        "单向性"
+      ],
+      "title": "函数调用时若形参是普通变量",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-014",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "函数声明",
+        "原型"
+      ],
+      "title": "若函数的定义出现在调用点之后",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-015",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "static局部变量",
+        "生存期与作用域"
+      ],
+      "title": "关于用 static 修饰的局部变量",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-016",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "递归",
+        "必备条件"
+      ],
+      "title": "一个正确的递归函数必须具备哪两个条件？",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-017",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "title": "把一维数组 a 作为实参传给函数时",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-sc-018",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "return语句",
+        "返回值"
+      ],
+      "title": "关于函数中的 return 语句",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-fb-013",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "形参实参",
+        "存储单元"
+      ],
+      "title": "函数调用时",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-fb-014",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "递归",
+        "阶乘",
+        "调用次数"
+      ],
+      "title": "设递归函数 fact 定义为",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-fb-015",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "存储类别",
+        "auto",
+        "extern"
+      ],
+      "title": "函数内定义的局部变量若未加存储类别说明",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-tf-001",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "void函数",
+        "return"
+      ],
+      "title": "void 型函数没有返回值",
+      "file": "c-ch07.json"
+    },
+    {
+      "id": "c-ch07-tf-002",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "递归与迭代",
+        "效率"
+      ],
+      "title": "同一个问题用递归求解一定比用迭代求解效率更高",
       "file": "c-ch07.json"
     },
     {

@@ -2561,6 +2561,1837 @@
       ],
       "id": "c-ch07-cc-023",
       "verified": true
+    },
+    {
+      "id": "c-ch07-cr-019",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid swap(int a, int b)\n{\n    int t = a;\n\n    a = b;\n    b = t;\n}\n\nint main(void)\n{\n    int x = 3, y = 8;\n\n    swap(x, y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 8",
+      "code": "#include <stdio.h>\n\nvoid swap(int a, int b)\n{\n    int t = a;\n\n    a = b;\n    b = t;\n}\n\nint main(void)\n{\n    int x = 3, y = 8;\n\n    swap(x, y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3 8，主函数中的 x、y 未被交换。推理：C 语言函数参数是值传递，调用时把 x、y 的值复制给形参 a、b，swap 内交换的只是两份副本，函数返回后副本销毁，实参不受影响。易错点：值传递是单向的（实参→形参），想真正交换必须传地址或改用数组；把形参当成实参的别名是最常见的错误认识。",
+      "tags": [
+        "值传递",
+        "形参实参"
+      ],
+      "knowledgeIds": [
+        "c-ch07-07"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-020",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return n * fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}\n```\n运行时输入：\n```\n6\n```",
+      "answer": "720",
+      "code": "#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return n * fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "stdin": "6\n",
+      "explanation": "结论：输出 720。推理：fact(6)=6×fact(5)，逐层展开到 fact(1)=1（递归出口），回代得 6×5×4×3×2×1=720。易错点：返回类型必须是 long long，13! 起就超出 int 范围；出口写成 n<=1 可同时覆盖 fact(0)=1；若漏写出口会无限递归导致栈溢出。",
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "knowledgeIds": [
+        "c-ch07-11"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-021",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint cnt = 0;\n\nint fib(int n)\n{\n    cnt++;\n    if (n == 1 || n == 2)\n        return 1;\n    return fib(n - 1) + fib(n - 2);\n}\n\nint main(void)\n{\n    printf(\"%d %d\\n\", fib(6), cnt);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8 0",
+      "code": "#include <stdio.h>\n\nint cnt = 0;\n\nint fib(int n)\n{\n    cnt++;\n    if (n == 1 || n == 2)\n        return 1;\n    return fib(n - 1) + fib(n - 2);\n}\n\nint main(void)\n{\n    printf(\"%d %d\\n\", fib(6), cnt);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 8 15。推理：fib(6)=8 由斐波那契定义直接得出；调用次数满足 T(1)=T(2)=1、T(n)=1+T(n-1)+T(n-2)，算得 T(3)=3、T(4)=5、T(5)=9、T(6)=15，即 2×fib(6)-1。易错点：递归斐波那契存在大量重复计算，调用次数呈指数增长，这正是它效率低于迭代版本的原因；cnt 是全局变量才能在多次调用间累计。",
+      "tags": [
+        "递归",
+        "斐波那契",
+        "调用次数"
+      ],
+      "knowledgeIds": [
+        "c-ch07-12"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-022",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid f(void)\n{\n    static int s = 0;\n    int a = 0;\n\n    s++;\n    a++;\n    printf(\"%d %d\\n\", s, a);\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 0; i < 3; i++)\n        f();\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 1\n2 1\n3 1",
+      "code": "#include <stdio.h>\n\nvoid f(void)\n{\n    static int s = 0;\n    int a = 0;\n\n    s++;\n    a++;\n    printf(\"%d %d\\n\", s, a);\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 0; i < 3; i++)\n        f();\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：依次输出 1 1、2 1、3 1。推理：static 局部变量存放在静态存储区，只在程序启动时初始化一次，函数返回后仍保留其值，故 s 逐次累加；a 是 auto 变量，每次进入函数都重新创建并初始化为 0，故恒为 1。易错点：static 局部变量的作用域仍限于函数内部，只是生存期变为整个程序运行期；“作用域”和“生存期”是两个不同维度。",
+      "tags": [
+        "static局部变量",
+        "存储类别"
+      ],
+      "knowledgeIds": [
+        "c-ch07-20"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-023",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint n = 10;\n\nvoid f(void)\n{\n    int n = 3;\n\n    printf(\"%d \", n);\n}\n\nint main(void)\n{\n    f();\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 10",
+      "code": "#include <stdio.h>\n\nint n = 10;\n\nvoid f(void)\n{\n    int n = 3;\n\n    printf(\"%d \", n);\n}\n\nint main(void)\n{\n    f();\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3 10。推理：f 内定义了与全局变量同名的局部变量 n，在该函数作用域内局部变量遮蔽全局变量，故打印 3；main 中没有同名局部变量，访问的是全局 n，仍为 10，且 f 中的赋值不影响它。易错点：局部变量遮蔽全局变量只在该作用域内生效；若要在函数内使用被遮蔽的全局变量，需要改名或调整作用域，C 语言没有 C++ 那样的作用域解析运算符。",
+      "tags": [
+        "作用域",
+        "同名遮蔽",
+        "全局变量"
+      ],
+      "knowledgeIds": [
+        "c-ch07-18"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-024",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid change(int a[], int n)\n{\n    int i;\n\n    for (i = 0; i < n; i++)\n        a[i] = a[i] * 2;\n}\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5}, i;\n\n    change(a, 5);\n    for (i = 0; i < 5; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "2 4 6 8 10",
+      "code": "#include <stdio.h>\n\nvoid change(int a[], int n)\n{\n    int i;\n\n    for (i = 0; i < n; i++)\n        a[i] = a[i] * 2;\n}\n\nint main(void)\n{\n    int a[5] = {1, 2, 3, 4, 5}, i;\n\n    change(a, 5);\n    for (i = 0; i < 5; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 2 4 6 8 10。推理：数组名作实参时传递的是首元素地址，形参与实参指向同一段内存，函数内对 a[i] 的修改直接作用于主函数的数组。易错点：这与普通变量的值传递不同——数组作参数是“地址值”的传递，数据本身是共享的；正因如此，若不想让函数修改原数组，需要另行拷贝或在函数内用 const 修饰形参。",
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-025",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint len(int a[])\n{\n    return (int)(sizeof(a) / sizeof(a[0]));\n}\n\nint main(void)\n{\n    int a[10];\n\n    printf(\"%d %d\\n\", (int)(sizeof(a) / sizeof(a[0])), len(a));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "10 2",
+      "code": "#include <stdio.h>\n\nint len(int a[])\n{\n    return (int)(sizeof(a) / sizeof(a[0]));\n}\n\nint main(void)\n{\n    int a[10];\n\n    printf(\"%d %d\\n\", (int)(sizeof(a) / sizeof(a[0])), len(a));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：在 64 位环境下输出 10 2。推理：main 中 a 是真数组，sizeof(a)=40 字节，除以 4 得 10；传入 len 后形参 a 退化为 int* 指针，sizeof(a)=8（指针本身大小），8/4=2。易错点：函数内无法用 sizeof 得知实参数组长度，这是“数组长度必须由参数额外传入”的根本原因；结果随编译环境的指针宽度而变，本题固定按 x86-64 判定。",
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "指针退化"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-026",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid f(int n)\n{\n    if (n > 0)\n    {\n        printf(\"%d \", n);\n        f(n - 1);\n        printf(\"%d \", n);\n    }\n}\n\nint main(void)\n{\n    f(3);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "3 2 1 1 2 3",
+      "code": "#include <stdio.h>\n\nvoid f(int n)\n{\n    if (n > 0)\n    {\n        printf(\"%d \", n);\n        f(n - 1);\n        printf(\"%d \", n);\n    }\n}\n\nint main(void)\n{\n    f(3);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 3 2 1 1 2 3。推理：递归调用前的 printf 在“递推”阶段执行，调用后的 printf 在“回归”阶段执行；f(3) 先打印 3 再调 f(2)，f(2) 打印 2 再调 f(1)，f(1) 打印 1 后调 f(0) 直接返回，随后逐层回归依次打印 1、2、3。易错点：把两句 printf 都放在递归调用之前会得到 3 2 1，都放在之后会得到 1 2 3；理解栈帧的压入与弹出顺序是解此类题的关键。",
+      "tags": [
+        "递归",
+        "栈帧",
+        "输出顺序"
+      ],
+      "knowledgeIds": [
+        "c-ch07-13"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-027",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    if (b == 0)\n        return a;\n    return gcd(b, a % b);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < 0)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}\n```\n运行时输入：\n```\n48 18\n```",
+      "answer": "6",
+      "code": "#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    if (b == 0)\n        return a;\n    return gcd(b, a % b);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < 0)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}",
+      "stdin": "48 18\n",
+      "explanation": "结论：输出 6。推理：辗转相除法 gcd(48,18)→gcd(18,12)→gcd(12,6)→gcd(6,0)，b 为 0 时返回 a=6。易错点：递归出口是 b==0 而不是 a==0；参数顺序必须交换为 (b, a%b)，写成 (a%b, b) 会死循环；求最小公倍数时用 a/gcd*b 可避免中间结果溢出。",
+      "tags": [
+        "递归",
+        "辗转相除"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-028",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint sq(int x)\n{\n    return x * x;\n}\n\nint sum2(int a, int b)\n{\n    return sq(a) + sq(b);\n}\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 4; i++)\n        s = s + sum2(i, i + 1);\n    printf(\"%d\\n\", s);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "84",
+      "code": "#include <stdio.h>\n\nint sq(int x)\n{\n    return x * x;\n}\n\nint sum2(int a, int b)\n{\n    return sq(a) + sq(b);\n}\n\nint main(void)\n{\n    int i, s = 0;\n\n    for (i = 1; i <= 4; i++)\n        s = s + sum2(i, i + 1);\n    printf(\"%d\\n\", s);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 84。推理：sum2(i,i+1)=i²+(i+1)²，i 取 1..4 得 1+4=5、4+9=13、9+16=25、16+25=41，累加为 84。易错点：这是典型的函数嵌套调用，sum2 内部又调用 sq，调用层次由栈管理；累加时不要漏掉 i=4 的一项，也不要误认为 sum2 只求一次平方。",
+      "tags": [
+        "嵌套调用",
+        "函数分层"
+      ],
+      "knowledgeIds": [
+        "c-ch07-09"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-029",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid f(int n)\n{\n    if (n % 2 == 0)\n        printf(\"even \");\n    else\n        printf(\"odd \");\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 4; i++)\n        f(i);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "odd even odd even",
+      "code": "#include <stdio.h>\n\nvoid f(int n)\n{\n    if (n % 2 == 0)\n        printf(\"even \");\n    else\n        printf(\"odd \");\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 4; i++)\n        f(i);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 odd even odd even。推理：f 是 void 型函数，没有返回值，其功能完全通过副作用（printf）实现；n 为 1、2、3、4 时依次判为奇、偶、奇、偶。易错点：void 函数中仍可写 return; 用于提前结束，但不能写 return 表达式；调用 void 函数时不能把它当值使用，如 printf(\"%d\", f(3)) 是非法的。",
+      "tags": [
+        "void函数",
+        "返回值"
+      ],
+      "knowledgeIds": [
+        "c-ch07-06"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-030",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid toBin(int n)\n{\n    if (n > 1)\n        toBin(n / 2);\n    printf(\"%d\", n % 2);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0)\n        return 1;\n    toBin(n);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n13\n```",
+      "answer": "1101",
+      "code": "#include <stdio.h>\n\nvoid toBin(int n)\n{\n    if (n > 1)\n        toBin(n / 2);\n    printf(\"%d\", n % 2);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0)\n        return 1;\n    toBin(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "13\n",
+      "explanation": "结论：输出 1101。推理：递归先处理高位——toBin(13) 调 toBin(6)，再调 toBin(3)、toBin(1)，到 n=1 时不再递归，直接打印 1，随后各层回归时依次打印 13%2=1、6%2=0、3%2=1，拼成 1101。易错点：printf 放在递归调用之后才能实现“先高位后低位”的输出，放在之前会得到逆序；n=0 时按本题写法会打印 0，符合预期。",
+      "tags": [
+        "递归",
+        "进制转换"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-031",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstatic int total = 0;\n\nvoid add(int x)\n{\n    total = total + x;\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 5; i++)\n        add(i);\n    printf(\"%d\\n\", total);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "15",
+      "code": "#include <stdio.h>\n\nstatic int total = 0;\n\nvoid add(int x)\n{\n    total = total + x;\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 5; i++)\n        add(i);\n    printf(\"%d\\n\", total);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 15。推理：total 是文件作用域的 static 变量，只能在本文件内访问，但生存期为整个程序；add 每次把 x 累加进去，1+2+3+4+5=15。易错点：static 修饰全局变量是限制其“链接属性”（不被其他文件 extern 引用），与修饰局部变量延长生存期的作用不同；本文件内的函数都能直接读写它，无需通过参数传递。",
+      "tags": [
+        "静态全局变量",
+        "文件作用域"
+      ],
+      "knowledgeIds": [
+        "c-ch07-21"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-032",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint sum(int a[], int n)\n{\n    if (n <= 0)\n        return 0;\n    return a[n - 1] + sum(a, n - 1);\n}\n\nint main(void)\n{\n    int a[6], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 6)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", sum(a, n));\n    return 0;\n}\n```\n运行时输入：\n```\n5\n1 2 3 4 5\n```",
+      "answer": "15",
+      "code": "#include <stdio.h>\n\nint sum(int a[], int n)\n{\n    if (n <= 0)\n        return 0;\n    return a[n - 1] + sum(a, n - 1);\n}\n\nint main(void)\n{\n    int a[6], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 6)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", sum(a, n));\n    return 0;\n}",
+      "stdin": "5\n1 2 3 4 5\n",
+      "explanation": "结论：输出 15。推理：sum(a,5)=a[4]+sum(a,4)，逐层递减到 sum(a,0)=0，回代得 5+4+3+2+1=15。易错点：递归出口 n<=0 必须写，否则 n 变为负数后仍访问 a[n-1] 造成越界；数组作参数传的是地址，递归各层共享同一数组，只靠 n 划定当前处理范围。",
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-033",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint f(int a, int b)\n{\n    return a * 10 + b;\n}\n\nint main(void)\n{\n    int x = 2;\n\n    printf(\"%d %d\\n\", f(x + 1, x * 3), f(x, x));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "36 22",
+      "code": "#include <stdio.h>\n\nint f(int a, int b)\n{\n    return a * 10 + b;\n}\n\nint main(void)\n{\n    int x = 2;\n\n    printf(\"%d %d\\n\", f(x + 1, x * 3), f(x, x));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 36 22。推理：实参可以是表达式，调用前先求值再按位置一一传给形参，f(3,6)=3×10+6=36，f(2,2)=2×10+2=22。易错点：形参与实参的对应关系只看位置不看名字，f(x+1,x*3) 中 x+1 给 a、x*3 给 b；实参表达式的求值顺序在 C 语言中未作规定，所以不要在同一实参列表中写有副作用的表达式。",
+      "tags": [
+        "实参表达式",
+        "形参对应"
+      ],
+      "knowledgeIds": [
+        "c-ch07-08"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-034",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint trace(int a[][3], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s = s + a[i][i];\n    return s;\n}\n\nint main(void)\n{\n    int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n\n    printf(\"%d\\n\", trace(a, 3));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "15",
+      "code": "#include <stdio.h>\n\nint trace(int a[][3], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s = s + a[i][i];\n    return s;\n}\n\nint main(void)\n{\n    int a[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\n\n    printf(\"%d\\n\", trace(a, 3));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 15。推理：主对角线元素是行下标与列下标相等的 a[0][0]=1、a[1][1]=5、a[2][2]=9，和为 15。易错点：二维数组作形参时第一维大小可以省略，但第二维（列数）必须写明，否则编译器无法计算 a[i][j] 的地址偏移；写成 int a[][] 是非法的。",
+      "tags": [
+        "二维数组作参数",
+        "对角线"
+      ],
+      "knowledgeIds": [
+        "c-ch07-16"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-035",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint cnt = 0;\n\nvoid hanoi(int n, char a, char b, char c)\n{\n    if (n == 1)\n    {\n        cnt++;\n        return;\n    }\n    hanoi(n - 1, a, c, b);\n    cnt++;\n    hanoi(n - 1, b, a, c);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    hanoi(n, 'A', 'B', 'C');\n    printf(\"%d\\n\", cnt);\n    return 0;\n}\n```\n运行时输入：\n```\n4\n```",
+      "answer": "15",
+      "code": "#include <stdio.h>\n\nint cnt = 0;\n\nvoid hanoi(int n, char a, char b, char c)\n{\n    if (n == 1)\n    {\n        cnt++;\n        return;\n    }\n    hanoi(n - 1, a, c, b);\n    cnt++;\n    hanoi(n - 1, b, a, c);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    hanoi(n, 'A', 'B', 'C');\n    printf(\"%d\\n\", cnt);\n    return 0;\n}",
+      "stdin": "4\n",
+      "explanation": "结论：输出 15。推理：设移动次数为 T(n)，则 T(1)=1、T(n)=2T(n-1)+1，解得 T(n)=2ⁿ-1，n=4 时为 15。易错点：两次递归调用之间的 cnt++ 代表把最大盘从起始柱移到目标柱，漏掉它会把结果算成 2ⁿ⁻¹；本题只统计次数不打印路径，若要打印需在 cnt++ 处输出 a→c。",
+      "tags": [
+        "递归",
+        "汉诺塔",
+        "移动次数"
+      ],
+      "knowledgeIds": [
+        "c-ch07-25"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-036",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint depth(int n)\n{\n    if (n == 0)\n        return 0;\n    return 1 + depth(n / 2);\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 8; i = i * 2)\n        printf(\"%d \", depth(i));\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 2 3 4",
+      "code": "#include <stdio.h>\n\nint depth(int n)\n{\n    if (n == 0)\n        return 0;\n    return 1 + depth(n / 2);\n}\n\nint main(void)\n{\n    int i;\n\n    for (i = 1; i <= 8; i = i * 2)\n        printf(\"%d \", depth(i));\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 1 2 3 4。推理：depth(n) 返回把 n 不断整除 2 直到 0 所需的步数，即 floor(log2 n)+1；depth(1)=1、depth(2)=2、depth(4)=3、depth(8)=4。易错点：循环变量用 i=i*2 倍增，只取 1、2、4、8 四个值；depth(0)=0 是递归出口，若写成 n==1 返回 1 结果相同但会漏掉 n=0 的情形导致无限递归。",
+      "tags": [
+        "递归与迭代",
+        "递归深度"
+      ],
+      "knowledgeIds": [
+        "c-ch07-14"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-037",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint cnt = 0;\n\nint next(void)\n{\n    cnt++;\n    return cnt * cnt;\n}\n\nint main(void)\n{\n    int a = next();\n    int b = next();\n    int c = next();\n\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1 4 9",
+      "code": "#include <stdio.h>\n\nint cnt = 0;\n\nint next(void)\n{\n    cnt++;\n    return cnt * cnt;\n}\n\nint main(void)\n{\n    int a = next();\n    int b = next();\n    int c = next();\n\n    printf(\"%d %d %d\\n\", a, b, c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 1 4 9。推理：next 每调用一次就让全局 cnt 加 1 并返回其平方，三次调用依次返回 1²、2²、3²。易错点：把三次调用写进同一个 printf 的实参列表（printf(\"%d %d %d\", next(), next(), next())）时，各实参的求值顺序 C 语言不作规定，输出可能是 9 4 1，属未指定行为；先用三条独立语句赋值可保证顺序确定。",
+      "tags": [
+        "return",
+        "副作用",
+        "调用顺序"
+      ],
+      "knowledgeIds": [
+        "c-ch07-05"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cr-038",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nlong long power(int x, int n)\n{\n    long long h;\n\n    if (n == 0)\n        return 1;\n    if (n % 2 == 0)\n    {\n        h = power(x, n / 2);\n        return h * h;\n    }\n    return x * power(x, n - 1);\n}\n\nint main(void)\n{\n    int x, n;\n\n    if (scanf(\"%d %d\", &x, &n) != 2 || n < 0)\n        return 1;\n    printf(\"%lld\\n\", power(x, n));\n    return 0;\n}\n```\n运行时输入：\n```\n3 5\n```",
+      "answer": "243",
+      "code": "#include <stdio.h>\n\nlong long power(int x, int n)\n{\n    long long h;\n\n    if (n == 0)\n        return 1;\n    if (n % 2 == 0)\n    {\n        h = power(x, n / 2);\n        return h * h;\n    }\n    return x * power(x, n - 1);\n}\n\nint main(void)\n{\n    int x, n;\n\n    if (scanf(\"%d %d\", &x, &n) != 2 || n < 0)\n        return 1;\n    printf(\"%lld\\n\", power(x, n));\n    return 0;\n}",
+      "stdin": "3 5\n",
+      "explanation": "结论：输出 243。推理：n=5 为奇数，走 x×power(x,4)；power(3,4) 为偶数分支，h=power(3,2)，而 power(3,2) 的 h=power(3,1)=3，故 power(3,2)=9、power(3,4)=81，最终 3×81=243。易错点：偶数分支必须先把 power(x,n/2) 存入变量再自乘，写成 return power(x,n/2)*power(x,n/2) 会把递归调用次数翻倍；n=0 时返回 1 是必须的出口。",
+      "tags": [
+        "递归",
+        "幂运算",
+        "分治"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-024",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (/*__BLANK_1__*/)\n        return 1;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n <= 1",
+          "accepted": [
+            "n<=1",
+            "n == 1",
+            "n==1",
+            "n < 2",
+            "n<2"
+          ],
+          "hint": "递归出口：n 为 0 或 1 时阶乘为 1"
+        },
+        {
+          "index": 2,
+          "answer": "n * fact(n - 1)",
+          "accepted": [
+            "n*fact(n-1)",
+            "n * fact(n-1)"
+          ],
+          "hint": "递归体：n 乘以 (n-1) 的阶乘"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (/*__BLANK_1__*/)\n        return 1;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return n * fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "120"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "3628800"
+        }
+      ],
+      "explanation": "结论：出口填 n <= 1，递归体填 n * fact(n - 1)。推理：n! = n × (n-1)!，0! 与 1! 都定义为 1，故出口覆盖这两种情况；实机输出 120 / 1 / 3628800。易错点：返回类型用 long long 才能容纳 20!（约 2.43×10^18），用 int 在 13! 就溢出；出口若只写 n == 0，输入负数会无限递归。",
+      "tags": [
+        "递归",
+        "阶乘"
+      ],
+      "knowledgeIds": [
+        "c-ch07-11"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-025",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint findMax(int a[], int n)\n{\n    int i, m = /*__BLANK_1__*/;\n\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_2__*/)\n            m = a[i];\n    return m;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", findMax(a, n));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]",
+          "accepted": [
+            "a[0]"
+          ],
+          "hint": "最大值初值应取数组首元素"
+        },
+        {
+          "index": 2,
+          "answer": "a[i] > m",
+          "accepted": [
+            "a[i]>m",
+            "m < a[i]",
+            "a[i] >= m"
+          ],
+          "hint": "当前元素比已记录的最大值更大时更新"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint findMax(int a[], int n)\n{\n    int i, m = /*__BLANK_1__*/;\n\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_2__*/)\n            m = a[i];\n    return m;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", findMax(a, n));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint findMax(int a[], int n)\n{\n    int i, m = a[0];\n\n    for (i = 1; i < n; i++)\n        if (a[i] > m)\n            m = a[i];\n    return m;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", findMax(a, n));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n3 9 2 7 1\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "1\n4\n",
+          "expected": "4"
+        },
+        {
+          "stdin": "4\n-1 -5 -2 -9\n",
+          "expected": "-1"
+        }
+      ],
+      "explanation": "结论：初值填 a[0]，比较条件填 a[i] > m。推理：从下标 1 开始逐个与当前最大值比较并更新，遍历结束即得最大值；实机输出 9 / 4 / -1。易错点：初值写成 0 时全为负数的数组会错误返回 0；数组作参数无法在函数内求得长度，必须由 n 提供元素个数。",
+      "tags": [
+        "数组作参数",
+        "最值"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-026",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nvoid count(void)\n{\n    /*__BLANK_1__*/ int c = 0;\n\n    /*__BLANK_2__*/;\n    printf(\"%d\\n\", c);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        count();\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "static",
+          "accepted": [
+            "static"
+          ],
+          "hint": "需要跨调用保留值，必须用 static 修饰"
+        },
+        {
+          "index": 2,
+          "answer": "c++",
+          "accepted": [
+            "++c",
+            "c = c + 1",
+            "c+=1",
+            "c = c + 1"
+          ],
+          "hint": "计数加 1"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid count(void)\n{\n    /*__BLANK_1__*/ int c = 0;\n\n    /*__BLANK_2__*/;\n    printf(\"%d\\n\", c);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        count();\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid count(void)\n{\n    static int c = 0;\n\n    c++;\n    printf(\"%d\\n\", c);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        count();\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "1\n2\n3"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "1\n2\n3\n4\n5"
+        }
+      ],
+      "explanation": "结论：第一空填 static，第二空填 c++。推理：static 局部变量只在程序启动时初始化一次，函数返回后值仍保留，故每次调用都累加；实机输出 1 2 3 / 1 / 1 2 3 4 5。易错点：若填 auto 或省略修饰，每次调用都会重新执行 c = 0，输出恒为 1；static 局部变量的作用域仍只在 count 函数内。",
+      "tags": [
+        "static局部变量",
+        "跨调用保留"
+      ],
+      "knowledgeIds": [
+        "c-ch07-20"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-027",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint fib(int n)\n{\n    if (/*__BLANK_1__*/)\n        return 1;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n == 1 || n == 2",
+          "accepted": [
+            "n==1||n==2",
+            "n <= 2",
+            "n<=2",
+            "n == 2 || n == 1"
+          ],
+          "hint": "前两项都是 1，是递归出口"
+        },
+        {
+          "index": 2,
+          "answer": "fib(n - 1) + fib(n - 2)",
+          "accepted": [
+            "fib(n-1)+fib(n-2)",
+            "fib(n-2)+fib(n-1)"
+          ],
+          "hint": "每项等于前两项之和"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint fib(int n)\n{\n    if (/*__BLANK_1__*/)\n        return 1;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint fib(int n)\n{\n    if (n == 1 || n == 2)\n        return 1;\n    return fib(n - 1) + fib(n - 2);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n",
+          "expected": "1 1 2 3 5 8"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "1 1"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "1 1 2 3 5 8 13 21 34 55"
+        }
+      ],
+      "explanation": "结论：出口填 n == 1 || n == 2，递归体填 fib(n-1) + fib(n-2)。推理：斐波那契数列定义为 F(1)=F(2)=1、F(n)=F(n-1)+F(n-2)；实机输出 1 1 2 3 5 8 / 1 1 / 1 1 2 3 5 8 13 21 34 55。易错点：出口必须同时覆盖 n=1 与 n=2，只写 n==1 会使 fib(2) 再调 fib(1)+fib(0)，fib(0) 又调 fib(-1)……造成无限递归；递归版本存在大量重复计算，n 较大时应改用迭代。",
+      "tags": [
+        "递归",
+        "斐波那契"
+      ],
+      "knowledgeIds": [
+        "c-ch07-12"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-028",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint square(int x);\nint sumSquare(int a, int b);\n\nint square(int x)\n{\n    return /*__BLANK_1__*/;\n}\n\nint sumSquare(int a, int b)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d\\n\", sumSquare(a, b));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "x * x",
+          "accepted": [
+            "x*x",
+            "x * x"
+          ],
+          "hint": "平方即自乘"
+        },
+        {
+          "index": 2,
+          "answer": "square(a) + square(b)",
+          "accepted": [
+            "square(a)+square(b)"
+          ],
+          "hint": "嵌套调用 square 求两数平方和"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint square(int x);\nint sumSquare(int a, int b);\n\nint square(int x)\n{\n    return /*__BLANK_1__*/;\n}\n\nint sumSquare(int a, int b)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d\\n\", sumSquare(a, b));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint square(int x);\nint sumSquare(int a, int b);\n\nint square(int x)\n{\n    return x * x;\n}\n\nint sumSquare(int a, int b)\n{\n    return square(a) + square(b);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    printf(\"%d\\n\", sumSquare(a, b));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4\n",
+          "expected": "25"
+        },
+        {
+          "stdin": "1 1\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "6 8\n",
+          "expected": "100"
+        }
+      ],
+      "explanation": "结论：square 返回 x * x，sumSquare 返回 square(a) + square(b)。推理：函数声明（原型）写在文件开头，使 sumSquare 与 main 在定义出现前就能调用；实机输出 25 / 2 / 100。易错点：声明必须以分号结尾且形参名可省略；嵌套调用时被调函数的返回值作为实参参与运算，求值发生在调用点。",
+      "tags": [
+        "函数声明",
+        "嵌套调用"
+      ],
+      "knowledgeIds": [
+        "c-ch07-09"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-029",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint rsum(int a[], int n)\n{\n    if (/*__BLANK_1__*/)\n        return 0;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", rsum(a, n));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n <= 0",
+          "accepted": [
+            "n<=0",
+            "n == 0",
+            "n==0",
+            "n < 1"
+          ],
+          "hint": "空数组的和为 0，是递归出口"
+        },
+        {
+          "index": 2,
+          "answer": "a[n - 1] + rsum(a, n - 1)",
+          "accepted": [
+            "a[n-1]+rsum(a,n-1)",
+            "rsum(a, n - 1) + a[n - 1]"
+          ],
+          "hint": "末元素加上前 n-1 个元素之和"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint rsum(int a[], int n)\n{\n    if (/*__BLANK_1__*/)\n        return 0;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", rsum(a, n));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint rsum(int a[], int n)\n{\n    if (n <= 0)\n        return 0;\n    return a[n - 1] + rsum(a, n - 1);\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", rsum(a, n));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：出口填 n <= 0，递归体填 a[n-1] + rsum(a, n-1)。推理：把规模 n 的问题化为规模 n-1 的子问题，直到 n=0 返回 0；实机输出 15 / 7 / 0（第三组是空数组的边界情形）。易错点：数组作形参传的是地址，各层递归共享同一数组，仅靠 n 划分处理范围；出口若漏写，n 变负后访问 a[n-1] 会越界。",
+      "tags": [
+        "递归",
+        "数组求和"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-030",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nvoid revPrint(int n)\n{\n    if (/*__BLANK_1__*/)\n        return;\n    printf(\"%d\", /*__BLANK_2__*/);\n    /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1)\n        return 1;\n    revPrint(n);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n == 0",
+          "accepted": [
+            "n==0",
+            "n <= 0",
+            "n<1"
+          ],
+          "hint": "没有数位可处理时直接返回"
+        },
+        {
+          "index": 2,
+          "answer": "n % 10",
+          "accepted": [
+            "n%10"
+          ],
+          "hint": "当前最低位"
+        },
+        {
+          "index": 3,
+          "answer": "revPrint(n / 10)",
+          "accepted": [
+            "revPrint(n/10)"
+          ],
+          "hint": "递归处理去掉最低位后的部分"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid revPrint(int n)\n{\n    if (/*__BLANK_1__*/)\n        return;\n    printf(\"%d\", /*__BLANK_2__*/);\n    /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1)\n        return 1;\n    revPrint(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid revPrint(int n)\n{\n    if (n == 0)\n        return;\n    printf(\"%d\", n % 10);\n    revPrint(n / 10);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1)\n        return 1;\n    revPrint(n);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1234\n",
+          "expected": "4321"
+        },
+        {
+          "stdin": "7\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "1000\n",
+          "expected": "0001"
+        }
+      ],
+      "explanation": "结论：出口填 n == 0，先打印 n % 10 再递归调用 revPrint(n / 10)。推理：先输出最低位再处理高位，自然得到逆序；实机输出 4321 / 7 / 0001。易错点：若把 printf 放在递归调用之后，输出会变成原顺序；整数除法 n/10 自动舍去小数部分，n 变为 0 时递归终止。",
+      "tags": [
+        "递归",
+        "数位逆序输出"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-031",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint total = 0;\n\nvoid add(int x)\n{\n    /*__BLANK_1__*/;\n}\n\nint getSum(void)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        add(x);\n    }\n    printf(\"%d\\n\", getSum());\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "total = total + x",
+          "accepted": [
+            "total+=x",
+            "total = total + x",
+            "total=total+x"
+          ],
+          "hint": "把 x 累加到全局变量"
+        },
+        {
+          "index": 2,
+          "answer": "total",
+          "accepted": [
+            "total"
+          ],
+          "hint": "返回累计结果"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint total = 0;\n\nvoid add(int x)\n{\n    /*__BLANK_1__*/;\n}\n\nint getSum(void)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        add(x);\n    }\n    printf(\"%d\\n\", getSum());\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint total = 0;\n\nvoid add(int x)\n{\n    total = total + x;\n}\n\nint getSum(void)\n{\n    return total;\n}\n\nint main(void)\n{\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        add(x);\n    }\n    printf(\"%d\\n\", getSum());\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "1\n9\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：add 中填 total = total + x，getSum 返回 total。推理：total 是文件作用域的全局变量，两个函数都能直接读写，因此可作为函数间的通信媒介；实机输出 15 / 9 / 0（第三组一个数都不读）。易错点：全局变量虽方便但破坏了函数的独立性与可重用性，工程中更推荐通过参数与返回值传递数据；add 是 void 函数，不写 return 表达式。",
+      "tags": [
+        "全局变量",
+        "函数间数据共享"
+      ],
+      "knowledgeIds": [
+        "c-ch07-17"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-032",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    if (/*__BLANK_1__*/)\n        return /*__BLANK_2__*/;\n    return gcd(b, /*__BLANK_3__*/);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < 0)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "b == 0",
+          "accepted": [
+            "b==0",
+            "0 == b"
+          ],
+          "hint": "辗转相除的终止条件是余数为 0"
+        },
+        {
+          "index": 2,
+          "answer": "a",
+          "accepted": [
+            "a"
+          ],
+          "hint": "此时 a 即最大公约数"
+        },
+        {
+          "index": 3,
+          "answer": "a % b",
+          "accepted": [
+            "a%b"
+          ],
+          "hint": "用余数继续递归"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    if (/*__BLANK_1__*/)\n        return /*__BLANK_2__*/;\n    return gcd(b, /*__BLANK_3__*/);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < 0)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    if (b == 0)\n        return a;\n    return gcd(b, a % b);\n}\n\nint main(void)\n{\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < 0)\n        return 1;\n    printf(\"%d\\n\", gcd(a, b));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "48 18\n",
+          "expected": "6"
+        },
+        {
+          "stdin": "7 13\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "25 0\n",
+          "expected": "25"
+        }
+      ],
+      "explanation": "结论：出口填 b == 0 并返回 a，递归调用填 gcd(b, a % b)。推理：辗转相除法不断用 (b, a mod b) 替换 (a, b)，余数为 0 时除数即最大公约数；实机输出 6 / 1 / 25。易错点：gcd(25,0) 直接命中出口返回 25，符合数学定义；参数顺序写反或写成 gcd(a % b, b) 都可能死循环。",
+      "tags": [
+        "递归",
+        "最大公约数"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-cc-033",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (/*__BLANK_1__*/)\n        return 0;\n    for (i = 2; /*__BLANK_2__*/; i++)\n        if (/*__BLANK_3__*/)\n            return 0;\n    return 1;\n}\n\nint main(void)\n{\n    int a, b, i, cnt = 0;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < a)\n        return 1;\n    for (i = a; i <= b; i++)\n        cnt = cnt + isPrime(i);\n    printf(\"%d\\n\", cnt);\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n < 2",
+          "accepted": [
+            "n<2",
+            "n <= 1",
+            "n<1||n==1"
+          ],
+          "hint": "小于 2 的数都不是素数"
+        },
+        {
+          "index": 2,
+          "answer": "i * i <= n",
+          "accepted": [
+            "i*i<=n",
+            "i <= n / 2",
+            "i<n",
+            "i <= n - 1"
+          ],
+          "hint": "只需试除到平方根处，用 i*i<=n 避免调用开方函数"
+        },
+        {
+          "index": 3,
+          "answer": "n % i == 0",
+          "accepted": [
+            "n%i==0"
+          ],
+          "hint": "能被整除说明不是素数"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (/*__BLANK_1__*/)\n        return 0;\n    for (i = 2; /*__BLANK_2__*/; i++)\n        if (/*__BLANK_3__*/)\n            return 0;\n    return 1;\n}\n\nint main(void)\n{\n    int a, b, i, cnt = 0;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < a)\n        return 1;\n    for (i = a; i <= b; i++)\n        cnt = cnt + isPrime(i);\n    printf(\"%d\\n\", cnt);\n}",
+      "solution": "#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (n < 2)\n        return 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            return 0;\n    return 1;\n}\n\nint main(void)\n{\n    int a, b, i, cnt = 0;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 0 || b < a)\n        return 1;\n    for (i = a; i <= b; i++)\n        cnt = cnt + isPrime(i);\n    printf(\"%d\\n\", cnt);\n}",
+      "testCases": [
+        {
+          "stdin": "1 20\n",
+          "expected": "8"
+        },
+        {
+          "stdin": "2 2\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "90 100\n",
+          "expected": "1"
+        }
+      ],
+      "explanation": "结论：依次填 n < 2、i * i <= n、n % i == 0。推理：素数是大于 1 且只有 1 与自身两个因子的数，试除到 √n 即可判定，用 i*i<=n 可避免引入 math.h；实机输出 8 / 1 / 1（1..20 内有 8 个素数，90..100 内只有 97 一个素数）。易错点：漏判 n<2 会把 1 误判为素数；用 i<n 虽然正确但效率低；找到一个因子即可 return 0，无需继续试除。",
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "knowledgeIds": [
+        "c-ch07-25"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-dbg-013",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序的功能是计算并输出 n!，但运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "120"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "20\n",
+          "expected": "2432902008176640000"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nlong long fact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return n * fact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", fact(n));\n    return 0;\n}",
+      "bugs": [
+        "返回类型写成 int，13! 起就会溢出，且与 main 中的 %lld 不匹配，应改为 long long",
+        "递归体漏乘 n，返回值恒为 1（等于 (n-1)! 中缺了所有因子），应为 n * fact(n - 1)"
+      ],
+      "explanation": "结论：两处错误分别是返回类型 int 应改为 long long、递归体 fact(n-1) 应改为 n * fact(n-1)。推理：改正后 fact(n)=n×(n-1)×…×1，实机输出 120 / 1 / 2432902008176640000。易错点：int 只有 32 位，20! 约 2.43×10^18 远超其范围；只改类型不改递归体会得到全 1 的结果，两处错误必须同时修正。",
+      "tags": [
+        "递归",
+        "返回类型",
+        "递归体"
+      ],
+      "knowledgeIds": [
+        "c-ch07-11"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-dbg-014",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序用于求 n 个整数的平均值并保留两位小数，但运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\ndouble avg(int a[], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < sizeof(a) / sizeof(a[0]); i++)\n        s = s + a[i];\n    return s / n;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%.2f\\n\", avg(a, n));\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\ndouble avg(int a[], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < sizeof(a) / sizeof(a[0]); i++)\n        s = s + a[i];\n    return s / n;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%.2f\\n\", avg(a, n));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n1 2 3 4\n",
+          "expected": "2.50"
+        },
+        {
+          "stdin": "3\n10 20 31\n",
+          "expected": "20.33"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7.00"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\ndouble avg(int a[], int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s = s + a[i];\n    return (double)s / n;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%.2f\\n\", avg(a, n));\n    return 0;\n}",
+      "bugs": [
+        "数组作形参时已退化为指针，sizeof(a)/sizeof(a[0]) 算出的是指针大小与元素大小之比（本机为 2）而不是元素个数，必须使用参数 n",
+        "s 与 n 都是 int，s/n 先做整数除法丢失小数部分，再赋给 double 也无济于事，应先把 s 转换为 double"
+      ],
+      "explanation": "结论：循环条件应改为 i < n，返回语句应改为 (double)s / n。推理：改正后依次输出 2.50 / 20.33 / 7.00。易错点：数组长度信息在传参时丢失，这是 C 语言的固有限制；整数除法先截断后转换，写成 (double)(s / n) 仍是错的，必须先转换再相除。",
+      "tags": [
+        "数组作参数",
+        "sizeof",
+        "整数除法"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-dbg-015",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序用于输出斐波那契数列前 n 项，但运行时无法正常结束。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint fib(int n)\n{\n    if (n == 0)\n        return 1;\n    return fib(n - 1);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint fib(int n)\n{\n    if (n == 0)\n        return 1;\n    return fib(n - 1);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n",
+          "expected": "1 1 2 3 5 8"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "1 1"
+        },
+        {
+          "stdin": "10\n",
+          "expected": "1 1 2 3 5 8 13 21 34 55"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint fib(int n)\n{\n    if (n == 1 || n == 2)\n        return 1;\n    return fib(n - 1) + fib(n - 2);\n}\n\nint main(void)\n{\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 30)\n        return 1;\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", fib(i));\n    printf(\"\\n\");\n    return 0;\n}",
+      "bugs": [
+        "出口条件写错：fib(1) 不满足 n==0 会继续递归到 fib(0)、fib(-1)……永不终止，应在 n 为 1 或 2 时返回 1",
+        "递归体漏掉 fib(n-2) 一项，退化成线性递归，结果不是斐波那契数列"
+      ],
+      "explanation": "结论：出口应改为 n == 1 || n == 2，递归体应改为 fib(n-1) + fib(n-2)。推理：改正后依次输出 1 1 2 3 5 8 / 1 1 / 1 1 2 3 5 8 13 21 34 55。易错点：只改出口不改递归体，数列会恒为 1；只改递归体不改出口，程序会因无限递归而崩溃——递归的两个必备条件（出口与规模递减）缺一不可。",
+      "tags": [
+        "递归",
+        "出口条件",
+        "递归体"
+      ],
+      "knowledgeIds": [
+        "c-ch07-12"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-001",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int max3(int a, int b, int c)，返回三个整数中的最大值；在 main 中读入三个整数并输出该最大值。\n\n输入格式：一行三个整数 a、b、c，用空格分隔。\n\n输出格式：一个整数，表示三者中的最大值。",
+      "testCases": [
+        {
+          "stdin": "3 9 5\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "-1 -7 -3\n",
+          "expected": "-1"
+        },
+        {
+          "stdin": "4 4 4\n",
+          "expected": "4"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint max3(int a, int b, int c)\n{\n    int m = a;\n\n    if (b > m)\n        m = b;\n    if (c > m)\n        m = c;\n    return m;\n}\n\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d %d %d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", max3(a, b, c));\n    return 0;\n}",
+      "input_format": "一行三个整数 a、b、c，用空格分隔。",
+      "output_format": "一个整数，表示三者中的最大值。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b, c;\n\n    if (scanf(\"%d %d %d\", &a, &b, &c) != 3)\n        return 1;\n    printf(\"%d\\n\", max3(a, b, c));\n    return 0;\n}",
+      "explanation": "结论：先把 a 当作最大值，再依次与 b、c 比较更新，最后 return。推理：两次比较即可覆盖三种情况，相等时不更新也不影响结果；实机输出 9 / -1 / 4。易错点：函数必须有 return 语句把结果带回调用处，只 printf 不 return 会得到无意义的返回值；m 初值必须取三个数之一，不能取 0，否则全负数时会错。",
+      "tags": [
+        "函数定义",
+        "return",
+        "多分支"
+      ],
+      "knowledgeIds": [
+        "c-ch07-05"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-002",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int isPrime(int n)，判断 n 是否为素数（是返回 1，不是返回 0）；在 main 中读入 n 并输出判断结果。\n\n输入格式：一个整数 n（n >= 1）。\n\n输出格式：1 表示素数，0 表示非素数。",
+      "testCases": [
+        {
+          "stdin": "17\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "2\n",
+          "expected": "1"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint isPrime(int n)\n{\n    int i;\n\n    if (n < 2)\n        return 0;\n    for (i = 2; i * i <= n; i++)\n        if (n % i == 0)\n            return 0;\n    return 1;\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", isPrime(n));\n    return 0;\n}",
+      "input_format": "一个整数 n（n >= 1）。",
+      "output_format": "1 表示素数，0 表示非素数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d\\n\", isPrime(n));\n    return 0;\n}",
+      "explanation": "结论：小于 2 直接判非素数，否则从 2 试除到 √n，能整除即返回 0，全部不能整除才返回 1。推理：若 n 有大于 √n 的因子，必有与之配对的小于 √n 的因子，故试除到 √n 足够；用 i*i<=n 可避免调用 math.h 的开方函数；实机输出 1 / 0 / 1。易错点：1 不是素数；2 是唯一的偶素数，循环从 i=2 开始时 i*i<=2 为假，直接返回 1，正确。",
+      "tags": [
+        "函数设计",
+        "素数判定"
+      ],
+      "knowledgeIds": [
+        "c-ch07-25"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-003",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 void sortAsc(int a[], int n)，用选择排序把数组 a 的前 n 个元素按升序排列；在 main 中读入 n 与 n 个整数，排序后输出（元素间用一个空格分隔，行末换行）。\n\n输入格式：第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：升序排列后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "testCases": [
+        {
+          "stdin": "5\n5 3 8 1 2\n",
+          "expected": "1 2 3 5 8"
+        },
+        {
+          "stdin": "3\n3 2 1\n",
+          "expected": "1 2 3"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid sortAsc(int a[], int n)\n{\n    int i, j, k, t;\n\n    for (i = 0; i < n - 1; i++)\n    {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k])\n                k = j;\n        if (k != i)\n        {\n            t = a[i];\n            a[i] = a[k];\n            a[k] = t;\n        }\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    sortAsc(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 <= n <= 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "升序排列后的 n 个整数，元素间用一个空格分隔，末尾换行。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    sortAsc(a, n);\n    for (i = 0; i < n; i++)\n        printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：每趟在未排序区选出最小元素的下标 k，与区首 a[i] 交换，共 n-1 趟。推理：排序函数通过地址直接改动主函数的数组，故返回类型为 void；n=1 时外层循环不执行；实机输出 1 2 3 5 8 / 1 2 3 / 7。易错点：应先记录下标再交换，而不是每比较一次就交换（那样退化为效率更低的写法）；k != i 的判断可省去一次无意义的自交换。",
+      "tags": [
+        "数组作参数",
+        "选择排序"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-004",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 int myStrlen(char s[])，不使用字符串库函数，返回字符串 s 的长度；在 main 中读入一个不含空格的字符串并输出其长度。\n\n输入格式：一行一个不含空格的字符串（长度不超过 99）。\n\n输出格式：一个整数，表示该字符串的长度。",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "a\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "structure\n",
+          "expected": "9"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint myStrlen(char s[])\n{\n    int i = 0;\n\n    while (s[i] != 0)\n        i++;\n    return i;\n}\n\nint main(void)\n{\n    char s[100];\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    printf(\"%d\\n\", myStrlen(s));\n    return 0;\n}",
+      "input_format": "一行一个不含空格的字符串（长度不超过 99）。",
+      "output_format": "一个整数，表示该字符串的长度。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    char s[100];\n\n    if (scanf(\"%99s\", s) != 1)\n        return 1;\n    printf(\"%d\\n\", myStrlen(s));\n    return 0;\n}",
+      "explanation": "结论：从下标 0 开始逐个检查，遇到结束标志（值为 0 的字符）停止，计数器 i 即字符串长度。推理：字符串长度定义为结束标志之前的字符个数，故不计入结束标志本身；实机输出 5 / 1 / 9。易错点：判断条件写成 s[i] != 0 与 s[i] 本身等价，但循环上界必须靠结束标志确定，不能用 sizeof(s)；%99s 限宽防止输入过长造成缓冲区溢出。",
+      "tags": [
+        "字符数组",
+        "函数实现strlen"
+      ],
+      "knowledgeIds": [
+        "c-ch07-24"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-005",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 long long rfact(int n)，用递归方法返回 n 的阶乘；在 main 中读入 n（0 <= n <= 20）并输出结果。\n\n输入格式：一个整数 n（0 <= n <= 20）。\n\n输出格式：一个整数，表示 n!。",
+      "testCases": [
+        {
+          "stdin": "5\n",
+          "expected": "120"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "20\n",
+          "expected": "2432902008176640000"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nlong long rfact(int n)\n{\n    if (n <= 1)\n        return 1;\n    return n * rfact(n - 1);\n}\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", rfact(n));\n    return 0;\n}",
+      "input_format": "一个整数 n（0 <= n <= 20）。",
+      "output_format": "一个整数，表示 n!。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    printf(\"%lld\\n\", rfact(n));\n    return 0;\n}",
+      "explanation": "结论：出口 n<=1 返回 1，否则返回 n * rfact(n-1)。推理：递归把 n! 化为 n×(n-1)!，直到 0! 或 1!；0! 按定义等于 1，由出口直接给出；实机输出 120 / 1 / 2432902008176640000。易错点：返回类型必须是 long long，13! 起超出 int 范围；递归深度为 n，n 很大时可能栈溢出，工程上常改用迭代。",
+      "tags": [
+        "递归",
+        "阶乘",
+        "long long"
+      ],
+      "knowledgeIds": [
+        "c-ch07-11"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-pg-006",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第7章 函数",
+      "section": "7.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 int gcd(int a, int b)，用迭代（辗转相除）法返回 a 与 b 的最大公约数；在 main 中读入 a、b（均为正整数），第一行输出最大公约数，第二行输出最小公倍数。\n\n输入格式：一行两个正整数 a、b，用空格分隔。\n\n输出格式：第一行一个整数为最大公约数；第二行一个整数为最小公倍数。",
+      "testCases": [
+        {
+          "stdin": "48 18\n",
+          "expected": "6\n144"
+        },
+        {
+          "stdin": "7 13\n",
+          "expected": "1\n91"
+        },
+        {
+          "stdin": "12 18\n",
+          "expected": "6\n36"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint gcd(int a, int b)\n{\n    int r;\n\n    while (b != 0)\n    {\n        r = a % b;\n        a = b;\n        b = r;\n    }\n    return a;\n}\n\nint main(void)\n{\n    int a, b, g;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 1 || b < 1)\n        return 1;\n    g = gcd(a, b);\n    printf(\"%d\\n%d\\n\", g, a / g * b);\n    return 0;\n}",
+      "input_format": "一行两个正整数 a、b，用空格分隔。",
+      "output_format": "第一行一个整数为最大公约数；第二行一个整数为最小公倍数。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b, g;\n\n    if (scanf(\"%d %d\", &a, &b) != 2 || a < 1 || b < 1)\n        return 1;\n    g = gcd(a, b);\n    printf(\"%d\\n%d\\n\", g, a / g * b);\n    return 0;\n}",
+      "explanation": "结论：循环做 (a,b) ← (b, a%b)，直到 b 为 0，此时 a 即最大公约数；最小公倍数按 a/g*b 计算。推理：这是递归版本的迭代改写，二者等价，迭代不占调用栈；先除后乘可避免 a*b 中间结果溢出；实机输出 6 与 144 / 1 与 91 / 6 与 36。易错点：a*b/g 在数值较大时会溢出 int，写成 a/g*b 更安全；gcd 函数内修改的只是形参副本，不影响 main 中的 a、b。",
+      "tags": [
+        "迭代",
+        "最大公约数",
+        "最小公倍数"
+      ],
+      "knowledgeIds": [
+        "c-ch07-14"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-013",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "函数调用时若形参是普通变量，在函数体内修改形参的值，则对应实参的值会怎样？",
+      "options": [
+        "随之改变",
+        "保持不变",
+        "变为不确定值",
+        "导致编译错误"
+      ],
+      "answer": 1,
+      "explanation": "结论：实参保持不变。推理：C 语言函数参数采用值传递，调用时把实参的值复制一份给形参，二者占用不同的存储单元，函数内对形参的任何修改都只作用于副本，返回后副本销毁。易错点：数组名或指针作实参时传递的是地址值，函数通过地址修改的是同一份数据，这与普通变量的值传递必须区分开。",
+      "tags": [
+        "值传递",
+        "单向性"
+      ],
+      "knowledgeIds": [
+        "c-ch07-07"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-014",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "若函数的定义出现在调用点之后，则在调用之前必须做什么？",
+      "options": [
+        "什么都不用做",
+        "给出该函数的声明（函数原型）",
+        "把 main 函数移到最后",
+        "给函数加上 static 修饰"
+      ],
+      "answer": 1,
+      "explanation": "结论：必须先给出函数声明。推理：编译器按自上而下的顺序处理源文件，遇到调用时需要已知函数的返回类型与参数类型才能正确生成代码并做类型检查，因此要用原型（如 int f(int);）提前声明。易错点：声明以分号结尾，形参名可以省略；若未声明，C99 起编译器会报错（早期标准会按隐式声明处理并假定为返回 int，这是危险的历史遗留行为）。",
+      "tags": [
+        "函数声明",
+        "原型"
+      ],
+      "knowledgeIds": [
+        "c-ch07-04"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-015",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于用 static 修饰的局部变量，下列说法正确的是？",
+      "options": [
+        "作用域扩大到整个文件",
+        "生存期延长到整个程序运行期，但作用域仍限于定义它的函数内",
+        "每次函数调用都会重新初始化",
+        "它等价于全局变量"
+      ],
+      "answer": 1,
+      "explanation": "结论：B 正确。推理：static 局部变量存放在静态存储区，只在程序启动时初始化一次，函数返回后其值保留，下次调用继续使用；但它仍是在函数体内定义的，作用域没有超出该函数。易错点：不要混淆“生存期”（存在多久）与“作用域”（哪里可见）；static 修饰全局变量则是限制链接属性，只允许本文件访问，两者含义不同。",
+      "tags": [
+        "static局部变量",
+        "生存期与作用域"
+      ],
+      "knowledgeIds": [
+        "c-ch07-20"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-016",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "一个正确的递归函数必须具备哪两个条件？",
+      "options": [
+        "递归出口与递归关系（每次调用规模向出口逼近）",
+        "两个以上的参数与返回值",
+        "全局变量与静态变量",
+        "循环语句与判断语句"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：递归出口决定何时不再调用自身而直接返回结果，递归关系把规模为 n 的问题化为规模更小的同类问题，二者缺一就会无限递归直至栈溢出。易错点：只写出口而递归调用时规模没有减小（例如 f(n) 调 f(n+1)）同样会失控；递归层数过深时应考虑改写为迭代。",
+      "tags": [
+        "递归",
+        "必备条件"
+      ],
+      "knowledgeIds": [
+        "c-ch07-10"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-017",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "把一维数组 a 作为实参传给函数时，对应形参实际得到的是什么？",
+      "options": [
+        "数组全部元素的副本",
+        "数组首元素的地址",
+        "数组的元素个数",
+        "数组第一个元素的值"
+      ],
+      "answer": 1,
+      "explanation": "结论：得到数组首元素的地址。推理：数组名在表达式中通常退化为首元素地址，因此形参与实参数组指向同一段内存，函数内修改形参数组的元素会直接影响原数组。易错点：正因传递的是地址而非副本，函数内无法用 sizeof 求出数组长度，必须另外传入元素个数；这与普通变量的值传递在“是否影响实参”上表现相反。",
+      "tags": [
+        "数组作参数",
+        "地址传递"
+      ],
+      "knowledgeIds": [
+        "c-ch07-15"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-sc-018",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于函数中的 return 语句，下列说法正确的是？",
+      "options": [
+        "一个函数中只能写一个 return 语句",
+        "一个函数中可以有多个 return 语句，但一次调用最多返回一个值",
+        "return 语句可以同时返回两个值",
+        "void 型函数中不允许出现 return 语句"
+      ],
+      "answer": 1,
+      "explanation": "结论：B 正确。推理：函数体内不同分支可以各写一个 return，执行到哪个就返回哪个值并立即结束本次调用；C 语言一个函数只能通过 return 带回一个值。易错点：void 函数中可以写不带表达式的 return; 用于提前结束；若函数所有分支都没有执行 return，返回值是未定义的，调用方不应使用。",
+      "tags": [
+        "return语句",
+        "返回值"
+      ],
+      "knowledgeIds": [
+        "c-ch07-05"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-fb-013",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "函数调用时，实参与形参之间按 ____ 方式传递数据；实参与形参分别占用 ____ 的存储单元，因此普通变量作参数时函数内修改形参不会影响实参。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "值传递",
+          "accepted": [
+            "值传送",
+            "传值",
+            "值"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "不同",
+          "accepted": [
+            "各自不同",
+            "不同 "
+          ]
+        }
+      ],
+      "explanation": "结论：值传递；不同。推理：调用时把实参的值复制给形参，形参是函数私有的临时变量，与实参各占独立单元，数据只能单向地从实参流向形参。易错点：值传递并不等于“不能修改原数据”——把地址（数组名、指针）作为值传进去时，函数仍可通过地址修改目标数据。",
+      "tags": [
+        "形参实参",
+        "存储单元"
+      ],
+      "knowledgeIds": [
+        "c-ch07-08"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-fb-014",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "设递归函数 fact 定义为：n<=1 时返回 1，否则返回 n*fact(n-1)。计算 fact(5) 时，fact 自身被递归调用 ____ 次（不含首次调用），其中最先返回结果的调用是 fact(____)。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "4",
+          "accepted": [
+            "4"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "1",
+          "accepted": [
+            "1"
+          ]
+        }
+      ],
+      "explanation": "结论：递归调用 4 次，最先返回的是 fact(1)。推理：fact(5)→fact(4)→fact(3)→fact(2)→fact(1)，共 4 次递归调用，fact(1) 命中出口直接返回 1，然后逐层回代得 120。易错点：把“调用次数”与“递归深度”混淆；回代阶段是从最深层向外层进行，最外层 fact(5) 最后返回。",
+      "tags": [
+        "递归",
+        "阶乘",
+        "调用次数"
+      ],
+      "knowledgeIds": [
+        "c-ch07-11"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-fb-015",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "函数内定义的局部变量若未加存储类别说明，默认的存储类别是 ____；在函数外定义的全局变量默认的存储类别是 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "auto",
+          "accepted": [
+            "auto "
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "extern",
+          "accepted": [
+            "extern "
+          ]
+        }
+      ],
+      "explanation": "结论：默认分别为 auto 与 extern。推理：auto 变量存放在栈上，进入作用域时创建、离开时销毁；全局变量存放在静态存储区，默认具有外部链接，可被其他文件用 extern 声明后引用。易错点：auto 关键字在现代 C 程序中几乎不写，但语义仍是默认的；static 修饰局部变量延长生存期，修饰全局变量则收窄链接范围。",
+      "tags": [
+        "存储类别",
+        "auto",
+        "extern"
+      ],
+      "knowledgeIds": [
+        "c-ch07-22"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "void 型函数没有返回值，因此其函数体内不允许出现 return 语句。",
+      "answer": false,
+      "explanation": "结论：错误。推理：void 函数只是不能带回值，但可以写不带表达式的 return; 用来提前结束函数执行，这在错误处理与提前退出的分支中很常见。易错点：不允许的是 return 表达式;（如 return 0;），那会与 void 返回类型冲突并报错；调用 void 函数时也不能把它当作值使用。",
+      "tags": [
+        "void函数",
+        "return"
+      ],
+      "knowledgeIds": [
+        "c-ch07-06"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch07-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第7章 函数",
+      "section": "7.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "同一个问题用递归求解一定比用迭代求解效率更高。",
+      "answer": false,
+      "explanation": "结论：错误。推理：递归每次调用都要压栈保存现场、返回时出栈恢复，时间与空间开销都高于等价的迭代；像递归斐波那契那样存在重复计算时，时间复杂度还会退化为指数级。易错点：递归的价值在于让代码贴近数学定义、便于表达分治与回溯（如汉诺塔、树的遍历），而不是更快；能简单迭代解决的问题通常优先用迭代。",
+      "tags": [
+        "递归与迭代",
+        "效率"
+      ],
+      "knowledgeIds": [
+        "c-ch07-14"
+      ],
+      "source": "变式（源自 c-ch07 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }
