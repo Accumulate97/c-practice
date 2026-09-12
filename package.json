@@ -28,6 +28,7 @@
     "judge:verify": "node scripts/judge-verify.ts",
     "lint:code": "node scripts/lint-code.ts",
     "report:ratio": "node scripts/report-type-ratio.mjs",
+    "scan:doubt": "node scripts/scan-doubt-markers.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
     "verify:data": "node scripts/verify-data.ts",

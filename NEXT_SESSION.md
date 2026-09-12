@@ -1,63 +1,89 @@
-# NEXT_SESSION.md —— 断点续接说明（阶段B ch06 起）
+# NEXT_SESSION —— 交接说明（更新于 2026-09-13 收尾轮）
 
-> 最后更新：2026-09-12。若本文件与仓库实际状态冲突，以仓库为准（先看 git log 与题量统计）。
+> **状态：总任务的 4 个阶段（A/B/C/D1/D2）+ 收尾轮全部完成，无未竟工作。**
+> 本文件不再是「断点续接」说明，而是「下一轮内容规划」的起点。
 
-## 1. 当前状态（精确）
-- 全库 **1724 道**，工作区干净，最新 commit `5fe812f`（阶段B ch05）。
-- ✅ 阶段 A（数据结构 450 道）已完成：ds-ch01..08 = 30/70/60/40/80/60/50/60。
-- ✅ 阶段 B 已完成 ch01–ch05 = **251 道变式题**（50/51/50/50/50），代码题 Godbolt 实机验证全 PASS。
-- 🟡 **ch06 进行中**：`tmp/gen/v06a.mjs`（20 道 cr）+ `tmp/gen/v06b.mjs`（10 cc + 3 dbg）已写好且 `node --check` 通过，**尚未 emit**。`v06c.mjs`（6 pg + 11 概念）与 `v06.mjs`（主 emit）待写。
-- ⬜ 未开始：ch07–ch12 变式（各 50 道，共 300）、阶段 C（存疑裁决 ~37 道）、阶段 D（全站终验）。
+---
 
-## 2. 续接第一步
-1. `node -e "…统计题量…"` 核对当前分片题量（见下命令）。
-2. 写 `tmp/gen/v06c.mjs` + `tmp/gen/v06.mjs`，然后：
-   `node tmp/gen/v06.mjs` → `node tmp/preflight.mjs --only=c-ch06-` → `npm run build:index` → `npm run verify:data`（须 error 0）
-   → 后台 `Start-Process cmd.exe "/c npx tsx scripts/judge-verify.ts --only=c-ch06- > tmp\jv06.log 2>&1"`（约 5 分钟，期间写 ch07 的 gen 文件）
-   → 完成后再 `build:index` + `verify:data` → `git add -A` + 中文 commit。
-3. 同节奏做 ch07–ch12：每章先查该分片既有 max ID、chapter 名、知识卡标题（`public/data/knowledge/c-chNN-*.json` 或索引）。
+## 一、已完成（含提交号）
 
-题量统计命令：
+| 阶段 | 内容 | 提交 |
+|---|---|---|
+| 基线 | 1024 题（C 语言 1023 + DS 种子 1） | `c7fec12~1` |
+| A | 数据结构 8 专题 **+449 题**（连同种子共 450） | 阶段 A 系列提交（见 `git log`，至 `b61b32b` 之前） |
+| B | C 语言 12 章变式 **+601 题**（ch02=51，其余各 50） | 至 `b61b32b` |
+| C | `_staging` 存疑 **38 道清零**（32 道实机取证自包含化 + 6 道改 Path B 描述题） | `cc40021` |
+| D | 全量 `judge:verify`：**1078 道代码题全 PASS**，0 FAIL / 0 inconclusive | `35c7dcb` |
+| D2 | 掌握度热力图、每日一题/随机练习入口、`report:ratio` 配比报告、ADR-0001 死代码清理 | `35b9026` |
+| D1 | 全站终验全绿（9 套验收 9/9、20 题浏览器实判 21/21、a11y 34 次体检 0 问题、`docs/全站终验报告.md`） | `2d59bc0` |
+| 收尾 | 存疑标记复审 + OCR 残留清理（详见下） | 本次提交 |
+
+### 收尾轮做了什么
+1. **6 道 `[?]` OCR 残缺补正 + Godbolt cg132 实机复核 12/12 PASS**：
+   `c-ch04-sc-033`、`c-ch05-sc-009`、`c-ch09-fb-013`、`c-ch10-sc-018`、`c-ch10-sc-031`、`c-ch12-sc-019`；
+   另补验 `c-ch10-sc-023`（`n+ +`→`n++`）。7 题 explanation 均加「实机复核」留痕。
+2. **21 处全角/误识 OCR 残留清理**（仅题面与选项）：`一>`→`->`（16 题 49 处）、`″`→`"`、`＋`→`+`、
+   `＊`→`*`、`p+ +`→`p++`、`q>link`→`q->link`、`＝＝`→`==`，集中在 c-ch09/10/12。
+3. **新增闸门** `scripts/scan-doubt-markers.mjs`（`npm run scan:doubt`）：表面文本（stem/options/blanks/
+   answer/solution/codeTemplate/testCases）命中 `[?]`/存疑/待裁决/待确认/TODO/`一>`/`″` 等即 exit 1；
+   explanation 里的知情注记只计数。当前 **表面 0 残留 / 元信息注记 44 处 40 题（设计内保留）**。
+4. 闸门复跑全绿：`verify:data` error 0 / warn 6、`typecheck`、`build`、`verify:pages`、`build:index`、acceptance 9 套件。
+
+---
+
+## 二、最终题量（权威数字，勿再重算）
+
+- **全库 2074 道 = C 语言 1624 + 数据结构 450**
+- C 分片：ch01=62 ch02=122 ch03=105 ch04=161 ch05=157 ch06=187 ch07=131 ch08=106 ch09=246 ch10=143 ch11=101 ch12=103
+- DS 分片：ch01=30 ch02=70 ch03=60 ch04=40 ch05=80 ch06=60 ch07=50 ch08=60
+- 题型配比：主力 1084 = **52.3%**（code_completion 354 / debug 54 / code_reading 514 / programming 162），辅助 990 = 47.7%
+- `verified: true` 2068 道；未置位 6 道 = Path B 描述题（`c-ch03-cr-017/018`、`c-ch04-cr-004/011/012`、`c-ch11-cr-016`），
+  即 `verify:data` 长期 warn 6 的唯一来源，**设计内永久保留，不要去「修」**
+
+---
+
+## 三、下一轮若要继续，建议按此优先级
+
+1. **主力题型占比 52.3% → 80%**：缺口约 570 道。优先补 `debug`（改错）与 `code_completion`（填空），
+   这两类改造成本低（可由现有 code_reading 题反向构造：把正确程序挖空/植入典型错误）。
+2. **DS 无 `debug` 题**（54 道全在 C 语言）：为 DS 8 章各补 5~8 道改错题（链表越界、递归缺终止、
+   循环队列判空判满混淆、排序边界 off-by-one 等经典错误）。
+3. **`complexity` 题型仅 9 道**（全在 DS 绪论）：把散落在 single_choice 里的复杂度推导题迁归该题型，便于统计。
+4. 每次扩库后固定跑：`build:index → verify:data → judge:verify → scan:doubt → acceptance:all`。
+
+---
+
+## 四、续接第一步（新会话第一条命令）
+
 ```powershell
-node -e "const fs=require('fs');let t=0;for(const f of fs.readdirSync('public/data/problems')){if(!/^(c|ds)-ch/.test(f))continue;const j=JSON.parse(fs.readFileSync('public/data/problems/'+f,'utf8'));t+=j.problems.length;console.log(f,j.problems.length)}console.log('TOTAL',t)"
+cd D:\C-practice
+git log --oneline -3
+npm run verify:data      # 期望：题目总数 2074 · error 0 · warn 6
+npm run scan:doubt       # 期望：表面文本 0 残留，exit 0
 ```
+三条都符合预期即说明仓库处于健康交付态，可直接开始下一轮内容规划。
 
-## 3. DSL 与流水线（固定套路，勿重新设计）
-- `tmp/gl2.mjs` 导出：`emit/sc/fb/tf/cr/ccf/pgf/dbgf/cx/sa/mt` + 骨架 `PRE_SQ/PRE_LL/PRE_DL/MAIN_SQ/MAIN_LL/MAIN_LLN/PRINT_*`。
-- `emit({shard,category:'c',chapter:'第N章 xxx',specs:[...]})`：自动续号（读分片 max）、自动填 id/source/verified（代码类 verified=false，只由 `judge:verify` 置位）。
-- `cr({sec,d,bl,kid,tags,code,stdin,e})`：answer 自动 `@@AUTO@@`，由 `tmp/preflight.mjs` 用本地 gcc（`D:/mingw/mingw64/bin/gcc.exe`）回填真实输出。
-- `ccf({sec,d,bl,full,ask,b,cases,e,tags,kid})`：`full` 里用 `@@1@@` 标空位；`b=[[答案,[接受项],[hint]]]`，**空数 ≤ 4**（schema maxItems）。
-- `dbgf({...,full,ask,site,cases})`：`site=[[错写,对写,说明]]`；**bugs ≥ 2 项**（schema 强制，ch05 曾因单 bug 返工 18 个 error）。
-- `pgf({...,ref,ask,inF,outF,cases})`：**解题逻辑必须写在 `int main(void)` 之前的具名函数里**，否则 code_starter 泄露完整 main。
-- `tmp/gen/_h.mjs`：`mk(ch,S1)` → `{KD,SC,FB,TF}`；SC 答案传 `'A'..'D'`，TF 传 `'true'/'false'`；`fill(t,o)` 替换 `{{KEY}}`。
-- 概念题配比：每章 50 道 = 39 代码（20 cr + 10 cc + 3 dbg + 6 pg）+ 11 概念（6 SC + 3 FB + 2 TF）。
-- 硬坑：R`` 模板内禁止 `\'`（直接写 `'` 与 `'\0'`）；避免 `%e/%E`、裸 `long`（Win64 为 4 字节）、`M_PI`、`pow`；用 `long long`+`%lld`；数组题统一 I/O：首行 n、次行 n 个整数；写文件用 PowerShell `@'...'@` here-string + `[IO.File]::WriteAllText($p,$c,[Text.UTF8Encoding]::new($false))`。
-- 某章要重来：`git checkout public/data/problems/c-chNN.json` 再修 gen 重跑（emit 是**追加**，直接重跑会重复入库）。
-- preflight 报「编译失败 N」若全是既有 `cr-00x` 片段题 = 正常（属阶段 C 内容）。
+---
 
-## 4. ch06 事实
-- 分片 `public/data/problems/c-ch06.json`，chapter=`第6章 数组`，既有 137 道；ID 上限 sc=49/fb=9/cc=32/cr=34/pg=10/dbg=9（emit 自动续）。
-- 节名：代码类 `S2='6.6 变式练习（代码类）'`，概念类 `S1='6.5 变式练习（概念类）'`。
-- 知识卡 `c-ch06-01..35`：01定义/03下标越界/04内存与sizeof/05输入输出/06插入删除/07逆置去重/11二维遍历/12转置/13对角线/14最值/16字符数组/17strlen与sizeof/21手写strlen/25一维数组作参数/27冒泡/31折半/32计数数组/34斐波那契应用。
+## 五、踩坑记录（务必读，能省数小时）
 
-## 5. 阶段 C 存疑清单（约 37 道，多为 snippet 型 code_reading）
-`c-ch03-cr-004/005/006/017/018`；`c-ch04-cr-019/021/022`；`c-ch05-cr-004/005/006/007/012/020`；`c-ch06-cr-001/002/004/007/015/016/018/023/024/029`；`c-ch09-cr-051/052`；`c-ch11-cr-001/002/006/007/011/016`；`c-ch12-cr-001/002`；另有 1 道 code_reading 缺 answer。
-裁决口径：①实机可验证→以实机为准；②书末答案冲突→以实机为准并在 explanation 注明原书答案；③题面与代码不符→以代码为准留痕；④印刷/OCR 缺陷→修正留痕；⑤确实无法唯一确定→`answerIsDescription:true` 或改 `short_answer`。做法：补全成完整程序后用本地 gcc/Godbolt 实机验证 → 回填 answer；目标清零。
-注意：`npm run verify:data` 当前 warn 37 全部来自这批题，处理完应降到 0（或仅剩标记争议）。
-
-## 6. 阶段 D 全站终验
-总题量核对（1024 + 450 + 600 ≈ 2074）→ `npm run verify:data`（error 0）→ `npm run judge:verify` 全量 → `npm run typecheck` / `npm run build` / `npm run verify:pages` → acceptance 全套件（site-ui / list-ui / progress-ui / viz-ui / dbg-ui / subpath / stage10，脚本见 `scripts/` 与 package.json scripts）→ 随机抽 20 题浏览器实测提交（含 5 代码题 + 5 指针题）→ 控制台无 error/warn → 输出 `docs/全站终验报告.md`。
-D2 有余力：备用判分后端（Piston/Wandbox 死代码，接通或明确移除）/ 掌握度热力图 / 每日一题 / 题型配比报告。
-
-## 7. 硬约束（不可违反）
-Godbolt cg132 + `executorRequest:true` + `filters.execute:true`；`executeParameters` 在 options 层级；响应扁平、禁止 execResult 兜底；断言 `didExecute===true && truncated===false`；-O0、软超时 25s、严格串行禁并发；stdout 规范化 `(j.stdout||[]).map(o=>o.text).join('\n')`；verified 只许 judge:verify 置位；**不改 schema / AGENTS.md**；代码必须标准 C（禁 gets/conio.h/getch/system("pause")/C++ 语法）。
-
-## 8. 工作方式
-无人值守、自主决策（授权清单见原始任务书：缺答案自己推导、实机优先、题面与代码不符以代码为准、OCR 错误修正留痕、歧义收敛为唯一答案或标记不判分、验证失败改等价写法重验、题型按最合适归类、新工具脚本放 tmp/）。写盘即忘、不回读已写文件、报告极简（数量+存疑数+token 估算）。每章：写盘→build:index→verify:data→judge:verify→中文 commit。
-
-## 9. 踩坑记录
-- schema 对 `debug.bugs` 要求 ≥2 项；`code_completion.blanks` ≤4 项。
-- pgf 的 ref 若把逻辑写在 main 内，code_starter 会泄露答案。
-- judge:verify 后端 5xx 属「未判定」，不改 verified；内容错误（编译失败/输出不符）不重试，必须自己修题。
-- Windows 下 `long` 为 4 字节，涉及大数一律 `long long` + `%lld`。
-- 直接重跑 gen 文件会重复入库（emit 追加），重来前先 `git checkout` 分片。
+1. **Godbolt 是排队不是限流**：并发越高吞吐越低（串行 ≈1.36 QPS，并发 20 跌到 0.52 QPS）。
+   多组测试用例**一律严格串行**，间隔 ≥120 ms。
+2. **取运行时 stdout 必须同时给 `executorRequest: true` 与 `filters.execute: true`**，
+   且 `executeParameters` 必须放在 `options` 层级下；响应是扁平的，**没有 `execResult` 包裹层**，禁止兜底猜测。
+   断言 `didExecute===true && truncated===false`，stdout 用 `(j.stdout||[]).map(o=>o.text).join('\n')` 归一。
+3. **软超时必须 25 s**：Godbolt 自身执行时限 ~20 s，两个 20 s 相撞会把「运行超时」误判成「后端不可用」。
+4. **顶层 `code = -1` 有双重含义**（编译失败 / 运行时被信号杀死），必须靠 `buildResult.code` 区分。
+5. **后端 5xx / 网络失败 = 「未判定」不是「失败」**：`verified` 一个字节都不改，
+   成功证据走 `last_known_good` 只增不减（曾有一次真实 502 把已验证题悄悄翻回 false）。
+6. **验收脚本别写死常量**：`acceptance-list-ui.mjs` 原先写死 TOTAL=517、章节数、难度边界、空组合，
+   扩库后全部变假 FAIL；已改为从 `index.json` 现算。新增验收脚本请沿用这一做法。
+7. **批跑脚本必须加看门狗**：`setTimeout(()=>process.exit(process.exitCode??0),3000).unref()`。
+   否则 main() 抛异常时 Playwright browser 未 close，残留 chrome 占住 stdio 句柄，node 永不退出（曾卡死 15 分钟）。
+   `scripts/acceptance-all.mjs` 用 `cmd /d /s /c` spawn + 监听 **exit** 事件 + 12 min 硬超时 `taskkill /T /F`。
+8. **`verified` 只许 `judge:verify` 置位**，手工置 true 会被 `verify-data.ts` 的 `VERIFIED-NO-PROOF` 反查抓出。
+9. **改题目 JSON 用「parse → 改 → JSON.stringify(obj,null,2)+'\n'」**：全部分片都是这个格式，
+   round-trip 逐字节相同，diff 最小；不要用正则直接改文件文本。
+10. **一次性补丁脚本放 `tmp/`（gitignore）**，可复用的固化为 `scripts/*.mjs` + package.json 别名。
+11. 教材原文不可直接抄：严蔚敏是类 C 伪码；大话数据结构 PDF 的 OCR 代码有错（如 `typedef stru'ot`）。
+    书末答案与实机冲突时**以实机为准**，并在 explanation 注明原书答案。

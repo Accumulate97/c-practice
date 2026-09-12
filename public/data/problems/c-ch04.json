@@ -715,7 +715,7 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第4章 逻辑运算和分支结构 题4.34（PDF p37 / 书页 p26）",
       "difficulty": 2,
       "stem": "【题 4.34】若u、w、x、y均是正整型变量，则以下正确的switch语句是______。",
-      "explanation": "答案 A。A 的 switch(x+y) 是整型表达式，case 10、case 11 是互不相同的整型常量，default 可以省略，语法完全正确。B 的 switch x 缺少圆括号；C 出现两个 case 3，标签重复；D 的 pow(x,2)+pow(y,2) 是 double，不是整型表达式，且函数调用也不能作 case 常量。易错点：case 后必须是编译期可求值的整型常量表达式，变量与浮点数都不行。",
+      "explanation": "答案 A。A 的 switch(x+y) 是整型表达式，case 10、case 11 是互不相同的整型常量，default 可以省略，语法完全正确。B 的 switch x 缺少圆括号；C 出现两个 case 3，标签重复；D 的 pow(x,2)+pow(y,2) 是 double，不是整型表达式，且函数调用也不能作 case 常量。易错点：case 后必须是编译期可求值的整型常量表达式，变量与浮点数都不行。（留痕：D 选项注释中原书印有的 [?] 为排版/OCR 残留，已清除，不影响题意与答案。） 实机复核（Godbolt cg132, -O0）：A 编译并运行通过，B（switch 缺圆括号）、C（case 3 重复）、D（switch 表达式为 double 且 case 用函数调用）三者均编译失败，故正确答案唯一为 A。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "single_choice",
@@ -724,7 +724,7 @@
         "A) switch(x+y)\n    { case 10 : u=x+y; break;\n      case 11 : w=x-y; break;\n    }",
         "B) switch x\n    { default: u=x+y;\n      case 10 : w=x-y; break;\n      case 11 : u=x* y; break;\n    }",
         "C) switch (x* x+y* y)\n    { case 3:\n      case 3 : w=x+y; break;\n      case 0: w=y-x; break;\n    }",
-        "D) switch (pow(x,2)+pow(y,2))    （注：pow 是调用求幂[?]的数学函数）\n    { case 1: case 3: w=x+y; break;\n      case 0 :case 5: w=x-y;\n    }"
+        "D) switch (pow(x,2)+pow(y,2))    （注：pow 是调用求幂的数学函数）\n    { case 1: case 3: w=x+y; break;\n      case 0 :case 5: w=x-y;\n    }"
       ],
       "answer": 0,
       "id": "c-ch04-sc-033",

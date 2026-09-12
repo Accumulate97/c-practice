@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "a6e6b8993ef459f7",
+  "content_sha": "3e564738960085bb",
   "schema_version": 1,
   "data_version": "0.1.0",
   "count": 2074,
@@ -22105,7 +22105,7 @@
       "bloom": "understand",
       "verified": true,
       "tags": [],
-      "title": "【题 12.5】若以″a＋″方式打开一个已存在的文件",
+      "title": "【题 12.5】若以\"a＋\"方式打开一个已存在的文件",
       "file": "c-ch12.json"
     },
     {

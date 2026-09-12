@@ -938,14 +938,14 @@
       "source": "教材原题转录：《C程序设计试题汇编》（谭浩强系列，12 章体例） 第5章 循环结构 题5.11（PDF p60 / 书页 p49）",
       "difficulty": 3,
       "stem": "【题 5.11】下面程序的功能是在输入的一系列正整数中求出最大者，输入0结束循环，请选择填空。\n\n```c\n#include <stdio.h>\nint main( )\n{   int a,max=0;\n    scanf(\"%d\",&a);\n    while(【 】)\n    {   if(max<a) max=a;\n        scanf(\"%d\",&a);\n    }\n    printf(\"%d\",max);\n    return 0;\n}\n```",
-      "explanation": "答案B。输入 0 表示结束，故循环继续的条件是 `a!=0`。A 的 `a==0` 与 D 的 `!a` 都只在 a 为 0 时为真，语义相反。",
+      "explanation": "答案B。输入 0 表示结束，故循环继续的条件是 `a!=0`。A 的 `a==0` 与 D 的 `!a` 都只在 a 为 0 时为真，语义相反。（留痕：B 选项原书印作 a[?]，为 OCR 残缺，按题意「输入 0 结束」与书末答案 B 补正为 a!=0。） 实机复核：以 while(a!=0) 填充后，输入「3 7 2 0」输出 7、输入「0」输出 0、输入「42 0」输出 42，与「输入 0 结束、求最大者」题意一致，确认 B 为 a!=0。",
       "ai_generated": false,
       "generated_at": "2026-09-08",
       "type": "single_choice",
       "bloom": "understand",
       "options": [
         "A) a==0",
-        "B) a[?]",
+        "B) a!=0",
         "C) !a==1",
         "D) !a"
       ],
