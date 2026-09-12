@@ -5631,6 +5631,1830 @@
       ],
       "id": "c-ch09-cc-033",
       "verified": true
+    },
+    {
+      "id": "c-ch09-cr-059",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    int *p = &a, *q = &b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    *p = *p + *q;\n    printf(\"%d %d\\n\", a, *q);\n    return 0;\n}\n```\n运行时输入：\n```\n3 4\n```",
+      "answer": "7 4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a, b;\n    int *p = &a, *q = &b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    *p = *p + *q;\n    printf(\"%d %d\\n\", a, *q);\n    return 0;\n}",
+      "stdin": "3 4\n",
+      "explanation": "结论：输出 7 4。推理：p 指向 a、q 指向 b，*p = *p + *q 等价于 a = a + b，故 a 变为 7，而 b 没有被修改，*q 仍是 4。易错点：*p 与 a 是同一个存储单元的两种写法，通过指针修改会立刻反映到变量上；p 与 q 只是保存地址，交换 p、q 并不会交换 a、b 的值。",
+      "tags": [
+        "指针",
+        "解引用",
+        "&运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch09-01"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-060",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    double d;\n    double *pd = &d;\n    int n;\n\n    if (scanf(\"%lf %d\", &d, &n) != 2)\n        return 1;\n    *pd = *pd * n;\n    printf(\"%.1f\\n\", d);\n    return 0;\n}\n```\n运行时输入：\n```\n2.5 4\n```",
+      "answer": "10.0",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    double d;\n    double *pd = &d;\n    int n;\n\n    if (scanf(\"%lf %d\", &d, &n) != 2)\n        return 1;\n    *pd = *pd * n;\n    printf(\"%.1f\\n\", d);\n    return 0;\n}",
+      "stdin": "2.5 4\n",
+      "explanation": "结论：输出 10.0。推理：pd 是 double 型指针，*pd 就是一个 double 左值，*pd = *pd * n 把 2.5 乘以 4 后写回 d，%.1f 输出 10.0。易错点：指针的类型决定解引用后按几个字节、按什么类型解释内存，double 变量必须用 double 指针；scanf 读 double 要用 %lf，printf 输出 double 用 %f 即可。",
+      "tags": [
+        "指针类型",
+        "double"
+      ],
+      "knowledgeIds": [
+        "c-ch09-02"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-061",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[5], i, *p = a;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d %d %d %d\\n\", a[2], *(a + 2), *(p + 2), p[2]);\n    return 0;\n}\n```\n运行时输入：\n```\n10 20 30 40 50\n```",
+      "answer": "30 30 30 30",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5], i, *p = a;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d %d %d %d\\n\", a[2], *(a + 2), *(p + 2), p[2]);\n    return 0;\n}",
+      "stdin": "10 20 30 40 50\n",
+      "explanation": "结论：输出 30 30 30 30。推理：a[i]、*(a+i)、*(p+i)、p[i] 四种写法完全等价，下标运算符本质上就是“基地址加偏移再解引用”。易错点：a 是地址常量不能被赋值，p 是变量可以 p++；p[i] 合法是因为下标运算对指针与数组名一视同仁，这也是数组名作函数参数会退化成指针的原因。",
+      "tags": [
+        "一维数组",
+        "四种等价写法"
+      ],
+      "knowledgeIds": [
+        "c-ch09-05"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-062",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6], i;\n    int *p = a, *q = a + 5;\n\n    for (i = 0; i < 6; i++)\n        a[i] = i * i;\n    p = p + 2;\n    printf(\"%d %d %d\\n\", *p, *q, (int)(q - p));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "4 25 3",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6], i;\n    int *p = a, *q = a + 5;\n\n    for (i = 0; i < 6; i++)\n        a[i] = i * i;\n    p = p + 2;\n    printf(\"%d %d %d\\n\", *p, *q, (int)(q - p));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 4 25 3。推理：p+2 指向 a[2]，其值为 2×2=4；q 指向 a[5]，值为 25；q-p 的结果是两者相隔的元素个数 3，而不是字节差。易错点：指针加减整数会自动乘以所指类型的大小（步长），而两个指针相减得到的是元素个数，类型为 ptrdiff_t，打印时要先转成 int；指针只能与同一数组内的地址做比较或相减。",
+      "tags": [
+        "指针算术",
+        "步长",
+        "指针相减"
+      ],
+      "knowledgeIds": [
+        "c-ch09-06"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-063",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[5], i, s1 = 0, s2 = 0, s3 = 0;\n    int *p;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    for (i = 0; i < 5; i++)\n        s1 += a[i];\n    for (p = a; p < a + 5; p++)\n        s2 += *p;\n    for (p = a, i = 0; i < 5; i++)\n        s3 += *(p + i);\n    printf(\"%d %d %d\\n\", s1, s2, s3);\n    return 0;\n}\n```\n运行时输入：\n```\n1 2 3 4 5\n```",
+      "answer": "15 15 15",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[5], i, s1 = 0, s2 = 0, s3 = 0;\n    int *p;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    for (i = 0; i < 5; i++)\n        s1 += a[i];\n    for (p = a; p < a + 5; p++)\n        s2 += *p;\n    for (p = a, i = 0; i < 5; i++)\n        s3 += *(p + i);\n    printf(\"%d %d %d\\n\", s1, s2, s3);\n    return 0;\n}",
+      "stdin": "1 2 3 4 5\n",
+      "explanation": "结论：输出 15 15 15。推理：三种写法分别是下标法、移动指针法、固定指针加偏移法，访问的元素集合完全相同，求和结果自然一致。易错点：第二种写法执行后 p 已经指向 a+5（尾后位置），若接着再用 p 遍历必须先 p = a 复位；对尾后指针只能取地址与比较，不能解引用。",
+      "tags": [
+        "指针遍历",
+        "三种循环写法"
+      ],
+      "knowledgeIds": [
+        "c-ch09-07"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-064",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {7, 8, 9, 10};\n\n    printf(\"%d %d %d\\n\", *a, *(a + 3), a == &a[0]);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "7 10 1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[4] = {7, 8, 9, 10};\n\n    printf(\"%d %d %d\\n\", *a, *(a + 3), a == &a[0]);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 7 10 1。推理：数组名 a 在表达式中代表首元素地址，*a 就是 a[0] = 7，*(a+3) 就是 a[3] = 10；a 与 &a[0] 的值相同，关系运算结果为真，打印 1。易错点：a 与 &a 数值相同但类型不同，前者是 int*、后者是 int(*)[4]，因此 a+1 前进 4 字节而 &a+1 前进 16 字节；数组名不是变量，不能写 a = p。",
+      "tags": [
+        "数组名",
+        "首地址"
+      ],
+      "knowledgeIds": [
+        "c-ch09-04"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-065",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int b[2][3], i, j, k = 1;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[i][j] = k++;\n    printf(\"%d %d %d\\n\", b[1][2], *(*(b + 1) + 2), *(*b + 4));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "6 6 5",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int b[2][3], i, j, k = 1;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < 3; j++)\n            b[i][j] = k++;\n    printf(\"%d %d %d\\n\", b[1][2], *(*(b + 1) + 2), *(*b + 4));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 6 6 5。推理：二维数组按行连续存放为 1 2 3 4 5 6，b[1][2] 与 *(*(b+1)+2) 都表示第 2 行第 3 列，值为 6；*(*b+4) 相当于 *(&b[0][0]+4)，即一维化后的第 5 个元素 5。易错点：b+1 移动一整行（12 字节），而 *b+1 只移动一个元素（4 字节），这是二维数组地址运算最容易混的地方。",
+      "tags": [
+        "二维数组",
+        "行地址",
+        "元素地址"
+      ],
+      "knowledgeIds": [
+        "c-ch09-09"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-066",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint rowSum(int (*p)[4], int row)\n{\n    int j, s = 0;\n\n    for (j = 0; j < 4; j++)\n        s += p[row][j];\n    return s;\n}\n\nint main(void)\n{\n    int b[3][4], i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < 4; j++)\n            b[i][j] = i + j;\n    printf(\"%d %d\\n\", rowSum(b, 1), *(*(b + 2) + 3));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "10 5",
+      "code": "#include <stdio.h>\n\nint rowSum(int (*p)[4], int row)\n{\n    int j, s = 0;\n\n    for (j = 0; j < 4; j++)\n        s += p[row][j];\n    return s;\n}\n\nint main(void)\n{\n    int b[3][4], i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < 4; j++)\n            b[i][j] = i + j;\n    printf(\"%d %d\\n\", rowSum(b, 1), *(*(b + 2) + 3));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 10 5。推理：第 1 行元素为 1 2 3 4，和为 10；b[2][3] = 2+3 = 5。形参 int (*p)[4] 是“指向含 4 个 int 的数组”的行指针，正好匹配二维数组退化后的类型，因此 p[row][j] 可以直接用。易错点：不能写成 int *p[4]（那是指针数组），也不能省略列数 4，否则编译器无法计算行偏移；括号不能少，int *p[4] 与 int (*p)[4] 含义完全不同。",
+      "tags": [
+        "行指针",
+        "二维数组作参数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-10"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-067",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int b[2][4], i;\n    int *q = &b[0][0], s = 0;\n\n    for (i = 0; i < 8; i++)\n        q[i] = i * 2;\n    for (i = 0; i < 8; i++)\n        s += *(q + i);\n    printf(\"%d %d\\n\", s, b[1][3]);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "56 14",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int b[2][4], i;\n    int *q = &b[0][0], s = 0;\n\n    for (i = 0; i < 8; i++)\n        q[i] = i * 2;\n    for (i = 0; i < 8; i++)\n        s += *(q + i);\n    printf(\"%d %d\\n\", s, b[1][3]);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 56 14。推理：二维数组在内存中按行连续存放，可以用一个 int 指针把它当成含 8 个元素的一维数组处理；q[i] 依次写入 0 2 4 … 14，求和为 2×(0+1+…+7) = 56，b[1][3] 对应一维下标 7，值为 14。易错点：一维化只在同一数组内合法，跨越分配边界继续访问就是越界；行下标与列下标换算公式是 i*列数+j。",
+      "tags": [
+        "二维数组",
+        "一维化",
+        "遍历"
+      ],
+      "knowledgeIds": [
+        "c-ch09-11"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-068",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"hello\";\n    char *t = \"world\";\n\n    printf(\"%s %c %c %d\\n\", s, s[1], *(t + 2), (int)sizeof(s));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "hello e r 6",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"hello\";\n    char *t = \"world\";\n\n    printf(\"%s %c %c %d\\n\", s, s[1], *(t + 2), (int)sizeof(s));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 hello e r 6。推理：字符数组 s 存放 hello 加结尾的 \\0 共 6 个字符，sizeof(s) 为 6；t 指向字符串常量，*(t+2) 即 t[2] = r。易错点：sizeof 求出的是数组占用字节数（含 \\0），而 strlen 求的是有效字符个数 5；字符数组内容可修改，字符串常量位于只读区，通过 t 修改字符是未定义行为。",
+      "tags": [
+        "字符数组",
+        "字符指针",
+        "sizeof"
+      ],
+      "knowledgeIds": [
+        "c-ch09-12"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-069",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char s[80];\n    char *p = s;\n    int n = 0;\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    while (*p != '\\0')\n    {\n        if (*p >= 'a' && *p <= 'z')\n            n++;\n        p++;\n    }\n    printf(\"%d\\n\", n);\n    return 0;\n}\n```\n运行时输入：\n```\nAbc12xy\n```",
+      "answer": "4",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[80];\n    char *p = s;\n    int n = 0;\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    while (*p != '\\0')\n    {\n        if (*p >= 'a' && *p <= 'z')\n            n++;\n        p++;\n    }\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "stdin": "Abc12xy\n",
+      "explanation": "结论：输出 4。推理：p 从首字符开始逐个后移，直到遇见 \\0 结束；输入 Abc12xy 中小写字母为 b、c、x、y 共 4 个。易错点：字符串必须以 \\0 结尾，while (*p) 与 while (*p != 0) 等价；scanf 的 %s 遇空白符停止且不会自动限制长度，必须用 %79s 防止缓冲区溢出，这是本章最常见的安全隐患。",
+      "tags": [
+        "指针遍历字符串",
+        "结束标志"
+      ],
+      "knowledgeIds": [
+        "c-ch09-14"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-070",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid minmax(int a[], int n, int *pmin, int *pmax)\n{\n    int i;\n\n    *pmin = a[0];\n    *pmax = a[0];\n    for (i = 1; i < n; i++)\n    {\n        if (a[i] < *pmin)\n            *pmin = a[i];\n        if (a[i] > *pmax)\n            *pmax = a[i];\n    }\n}\n\nint main(void)\n{\n    int a[5], i, lo, hi;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    minmax(a, 5, &lo, &hi);\n    printf(\"%d %d\\n\", lo, hi);\n    return 0;\n}\n```\n运行时输入：\n```\n4 -2 9 0 7\n```",
+      "answer": "-2 9",
+      "code": "#include <stdio.h>\n\nvoid minmax(int a[], int n, int *pmin, int *pmax)\n{\n    int i;\n\n    *pmin = a[0];\n    *pmax = a[0];\n    for (i = 1; i < n; i++)\n    {\n        if (a[i] < *pmin)\n            *pmin = a[i];\n        if (a[i] > *pmax)\n            *pmax = a[i];\n    }\n}\n\nint main(void)\n{\n    int a[5], i, lo, hi;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    minmax(a, 5, &lo, &hi);\n    printf(\"%d %d\\n\", lo, hi);\n    return 0;\n}",
+      "stdin": "4 -2 9 0 7\n",
+      "explanation": "结论：输出 -2 9。推理：C 函数只能 return 一个值，要同时带回最小值与最大值，就把两个变量的地址传进去，在函数内通过 *pmin、*pmax 直接修改调用者的变量。易错点：实参 int a[] 退化为指针，函数内 sizeof(a) 不再是数组长度，所以必须另外传 n；调用时要写 &lo、&hi，漏掉取地址符会编译报错或造成野指针写入。",
+      "tags": [
+        "指针参数",
+        "多值返回",
+        "数组作参数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-17"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-071",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint *find(int a[], int n, int key)\n{\n    int i;\n\n    for (i = 0; i < n; i++)\n        if (a[i] == key)\n            return &a[i];\n    return NULL;\n}\n\nint main(void)\n{\n    int a[6] = {3, 7, 1, 9, 5, 2};\n    int *p = find(a, 6, 9);\n    int *q = find(a, 6, 8);\n\n    if (p != NULL)\n        printf(\"%d %d\\n\", *p, (int)(p - a));\n    printf(\"%d\\n\", q == NULL);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "9 3\n1",
+      "code": "#include <stdio.h>\n\nint *find(int a[], int n, int key)\n{\n    int i;\n\n    for (i = 0; i < n; i++)\n        if (a[i] == key)\n            return &a[i];\n    return NULL;\n}\n\nint main(void)\n{\n    int a[6] = {3, 7, 1, 9, 5, 2};\n    int *p = find(a, 6, 9);\n    int *q = find(a, 6, 8);\n\n    if (p != NULL)\n        printf(\"%d %d\\n\", *p, (int)(p - a));\n    printf(\"%d\\n\", q == NULL);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出两行 9 3 与 1。推理：9 位于下标 3，返回其地址后 *p 得到值、p-a 得到下标；8 不在数组中，返回 NULL 使 q == NULL 成立。易错点：返回局部变量的地址是悬空指针，函数返回后该内存已失效；但返回数组元素的地址是安全的，因为数组本身在调用者的栈帧中仍然有效。",
+      "tags": [
+        "指针型函数",
+        "NULL",
+        "地址差"
+      ],
+      "knowledgeIds": [
+        "c-ch09-18"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-072",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint mul(int a, int b) { return a * b; }\n\nint main(void)\n{\n    int x, y;\n    int (*fp)(int, int) = add;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    printf(\"%d\\n\", fp(x, y));\n    fp = mul;\n    printf(\"%d\\n\", (*fp)(x, y));\n    return 0;\n}\n```\n运行时输入：\n```\n3 4\n```",
+      "answer": "7\n12",
+      "code": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint mul(int a, int b) { return a * b; }\n\nint main(void)\n{\n    int x, y;\n    int (*fp)(int, int) = add;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    printf(\"%d\\n\", fp(x, y));\n    fp = mul;\n    printf(\"%d\\n\", (*fp)(x, y));\n    return 0;\n}",
+      "stdin": "3 4\n",
+      "explanation": "结论：输出 7 与 12。推理：fp 先指向 add，调用得 3+4=7；改指向 mul 后得 3×4=12；fp(x,y) 与 (*fp)(x,y) 是等价的两种调用写法。易错点：int (*fp)(int,int) 的括号必不可少，写成 int *fp(int,int) 就变成返回 int* 的函数声明；函数名本身代表入口地址，赋值时写 add 或 &add 都可以。",
+      "tags": [
+        "函数指针",
+        "定义与调用"
+      ],
+      "knowledgeIds": [
+        "c-ch09-20"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-073",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint apply(int v, int (*f)(int))\n{\n    return f(v);\n}\n\nint square(int v) { return v * v; }\nint twice(int v) { return v + v; }\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d %d\\n\", apply(n, square), apply(n, twice));\n    return 0;\n}\n```\n运行时输入：\n```\n6\n```",
+      "answer": "36 12",
+      "code": "#include <stdio.h>\n\nint apply(int v, int (*f)(int))\n{\n    return f(v);\n}\n\nint square(int v) { return v * v; }\nint twice(int v) { return v + v; }\n\nint main(void)\n{\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    printf(\"%d %d\\n\", apply(n, square), apply(n, twice));\n    return 0;\n}",
+      "stdin": "6\n",
+      "explanation": "结论：输出 36 12。推理：apply 不关心具体运算，只负责调用传进来的函数，这就是回调；square(6)=36，twice(6)=12。易错点：形参 int (*f)(int) 必须带括号，否则语义变成返回 int* 的函数；同一处调用中两个 apply 的求值顺序在 C 语言里未指定，因此不要在其中修改 n，否则输出不可预测。",
+      "tags": [
+        "回调函数",
+        "函数指针作参数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-21"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-074",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint op0(int a, int b) { return a + b; }\nint op1(int a, int b) { return a - b; }\nint op2(int a, int b) { return a * b; }\n\nint main(void)\n{\n    int (*tab[3])(int, int) = {op0, op1, op2};\n    int a, b, k;\n\n    if (scanf(\"%d %d %d\", &a, &b, &k) != 3 || k < 0 || k > 2)\n        return 1;\n    printf(\"%d\\n\", tab[k](a, b));\n    return 0;\n}\n```\n运行时输入：\n```\n8 3 2\n```",
+      "answer": "24",
+      "code": "#include <stdio.h>\n\nint op0(int a, int b) { return a + b; }\nint op1(int a, int b) { return a - b; }\nint op2(int a, int b) { return a * b; }\n\nint main(void)\n{\n    int (*tab[3])(int, int) = {op0, op1, op2};\n    int a, b, k;\n\n    if (scanf(\"%d %d %d\", &a, &b, &k) != 3 || k < 0 || k > 2)\n        return 1;\n    printf(\"%d\\n\", tab[k](a, b));\n    return 0;\n}",
+      "stdin": "8 3 2\n",
+      "explanation": "结论：输出 24。推理：tab 是含 3 个函数指针的数组，tab[2] 即 op2，调用后得到 8×3=24；用跳转表可以把多重 if-else 或 switch 换成一次下标访问。易错点：声明中 (*tab[3]) 的括号决定了它是“指针数组”而不是“数组指针”；下标 k 必须先做范围检查，否则会取到数组外的非法地址并调用，属于严重错误。",
+      "tags": [
+        "函数指针数组",
+        "跳转表"
+      ],
+      "knowledgeIds": [
+        "c-ch09-22"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-075",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char *names[3] = {\"Mon\", \"Tue\", \"Wed\"};\n    int b[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int (*p)[3] = b;\n\n    printf(\"%s %d\\n\", names[2], p[1][2]);\n    printf(\"%d\\n\", (int)(sizeof(names) / sizeof(names[0])));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "Wed 6\n3",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char *names[3] = {\"Mon\", \"Tue\", \"Wed\"};\n    int b[2][3] = {{1, 2, 3}, {4, 5, 6}};\n    int (*p)[3] = b;\n\n    printf(\"%s %d\\n\", names[2], p[1][2]);\n    printf(\"%d\\n\", (int)(sizeof(names) / sizeof(names[0])));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 Wed 6 与 3。推理：names 是“指针数组”，3 个元素各存放一个字符串首地址，names[2] 指向 Wed；p 是“数组指针”，指向含 3 个 int 的一行，p[1][2] 等价于 b[1][2] = 6。易错点：char *names[3] 与 char (*names)[3] 只差一对括号，前者是 3 个指针、后者是 3 行字符数组；sizeof(names)/sizeof(names[0]) 求元素个数只在数组定义处有效。",
+      "tags": [
+        "指针数组",
+        "数组指针",
+        "区别"
+      ],
+      "knowledgeIds": [
+        "c-ch09-24"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-076",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a = 5;\n    int *p = &a;\n    int **pp = &p;\n\n    **pp = **pp + 3;\n    printf(\"%d %d %d\\n\", a, *p, **pp);\n    printf(\"%d\\n\", *pp == p);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8 8 8\n1",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a = 5;\n    int *p = &a;\n    int **pp = &p;\n\n    **pp = **pp + 3;\n    printf(\"%d %d %d\\n\", a, *p, **pp);\n    printf(\"%d\\n\", *pp == p);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 8 8 8 与 1。推理：pp 指向 p，*pp 就是 p，**pp 就是 a，因此 **pp = **pp + 3 把 a 从 5 改成 8，三种写法访问的是同一个单元。易错点：每加一层星号就多一次解引用，声明时 int **pp 表示 pp 指向“int 指针”；二级指针常用于在函数内修改指针本身的指向，例如给形参分配内存后带回主调函数。",
+      "tags": [
+        "二级指针",
+        "多级指针"
+      ],
+      "knowledgeIds": [
+        "c-ch09-27"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-077",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        p[i] = i + 1;\n    for (i = 0; i < n; i++)\n        s += *(p + i);\n    printf(\"%d\\n\", s);\n    free(p);\n    p = NULL;\n    return 0;\n}\n```\n运行时输入：\n```\n10\n```",
+      "answer": "55",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        p[i] = i + 1;\n    for (i = 0; i < n; i++)\n        s += *(p + i);\n    printf(\"%d\\n\", s);\n    free(p);\n    p = NULL;\n    return 0;\n}",
+      "stdin": "10\n",
+      "explanation": "结论：输出 55。推理：malloc 申请 10 个 int 的连续空间，写入 1 到 10 后求和为 55，用完必须 free 释放。易错点：malloc 返回 void*，必须判空后再使用，否则分配失败时会解引用空指针；释放后应把指针置 NULL，避免悬空指针重复释放或误用；申请大小要写 sizeof(int)*n 而不是 n。",
+      "tags": [
+        "malloc",
+        "free",
+        "动态数组"
+      ],
+      "knowledgeIds": [
+        "c-ch09-28"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cr-078",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint mycmp(const char *s, const char *t)\n{\n    while (*s != '\\0' && *s == *t)\n    {\n        s++;\n        t++;\n    }\n    return *s - *t;\n}\n\nint main(void)\n{\n    char a[40], b[40];\n\n    if (scanf(\"%39s %39s\", a, b) != 2)\n        return 1;\n    printf(\"%d\\n\", mycmp(a, b) == 0);\n    printf(\"%d\\n\", mycmp(a, b) > 0);\n    return 0;\n}\n```\n运行时输入：\n```\nbanana apple\n```",
+      "answer": "0\n1",
+      "code": "#include <stdio.h>\n\nint mycmp(const char *s, const char *t)\n{\n    while (*s != '\\0' && *s == *t)\n    {\n        s++;\n        t++;\n    }\n    return *s - *t;\n}\n\nint main(void)\n{\n    char a[40], b[40];\n\n    if (scanf(\"%39s %39s\", a, b) != 2)\n        return 1;\n    printf(\"%d\\n\", mycmp(a, b) == 0);\n    printf(\"%d\\n\", mycmp(a, b) > 0);\n    return 0;\n}",
+      "stdin": "banana apple\n",
+      "explanation": "结论：输出 0 与 1。推理：两个指针同步后移比较字符，banana 与 apple 首字符 b 与 a 就不同，返回 b-a > 0，故“相等”为假打印 0、“大于”为真打印 1。易错点：循环条件必须同时判断 *s 是否为 \\0，否则一个串是另一个的前缀时会越界读取；形参加 const 表示函数不会修改字符串，返回值只保证符号有意义，不要依赖具体的差值大小。",
+      "tags": [
+        "字符串比较",
+        "指针实现"
+      ],
+      "knowledgeIds": [
+        "c-ch09-39"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-034",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int t = /*__BLANK_1__*/;\n\n    /*__BLANK_2__*/ = *q;\n    /*__BLANK_3__*/ = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(/*__BLANK_4__*/);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*p"
+        },
+        {
+          "index": 2,
+          "answer": "*p"
+        },
+        {
+          "index": 3,
+          "answer": "*q"
+        },
+        {
+          "index": 4,
+          "answer": "&x, &y",
+          "accepted": [
+            "&x,&y"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int t = /*__BLANK_1__*/;\n\n    /*__BLANK_2__*/ = *q;\n    /*__BLANK_3__*/ = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(/*__BLANK_4__*/);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int t = *p;\n\n    *p = *q;\n    *q = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 9\n",
+          "expected": "9 1"
+        },
+        {
+          "stdin": "9 1\n",
+          "expected": "1 9"
+        },
+        {
+          "stdin": "5 5\n",
+          "expected": "5 5"
+        }
+      ],
+      "explanation": "结论：依次填 *p、*p、*q、&x, &y，实机输出 9 1 / 1 9 / 5 5。推理：形参 p、q 保存的是实参变量的地址，必须通过解引用 *p、*q 才能修改调用者的 x、y，只交换 p、q 本身毫无作用。易错点：调用时漏写 & 会把变量的值当地址传进去，导致向非法内存写入；临时变量 t 用于暂存，三步赋值缺一不可。",
+      "tags": [
+        "传址调用",
+        "解引用",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch09-03"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-035",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint sum(int *a, int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s += /*__BLANK_1__*/;\n    return s;\n}\n\nint main(void)\n{\n    int a[5], i;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", /*__BLANK_2__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*(a + i)",
+          "accepted": [
+            "a[i]",
+            "*(a+i)",
+            "*(i + a)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sum(a, 5)",
+          "accepted": [
+            "sum(a,5)",
+            "sum(&a[0], 5)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint sum(int *a, int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s += /*__BLANK_1__*/;\n    return s;\n}\n\nint main(void)\n{\n    int a[5], i;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", /*__BLANK_2__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint sum(int *a, int n)\n{\n    int i, s = 0;\n\n    for (i = 0; i < n; i++)\n        s += *(a + i);\n    return s;\n}\n\nint main(void)\n{\n    int a[5], i;\n\n    for (i = 0; i < 5; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    printf(\"%d\\n\", sum(a, 5));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5\n",
+          "expected": "15"
+        },
+        {
+          "stdin": "0 0 0 0 0\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "-1 2 -3 4 -5\n",
+          "expected": "-3"
+        }
+      ],
+      "explanation": "结论：填 *(a + i) 与 sum(a, 5)，实机输出 15 / 0 / -3。推理：数组名作实参时退化为指向首元素的指针，函数内 *(a+i) 与 a[i] 完全等价；元素个数必须另外用 n 传入。易错点：函数内 sizeof(a) 得到的是指针大小而不是数组长度，这是最常见的错误来源；形参写成 int a[] 与 int *a 是同一回事。",
+      "tags": [
+        "数组作参数",
+        "指针访问",
+        "求和"
+      ],
+      "knowledgeIds": [
+        "c-ch09-05"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-036",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\n#define COL 4\n\nint rowSum(int (*p)[COL], int row)\n{\n    int j, s = 0;\n\n    for (j = 0; j < /*__BLANK_1__*/; j++)\n        s += /*__BLANK_2__*/;\n    return s;\n}\n\nint main(void)\n{\n    int b[3][COL], i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < COL; j++)\n            b[i][j] = i * COL + j;\n    printf(\"%d %d\\n\", rowSum(b, 1), rowSum(/*__BLANK_3__*/, 2));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "COL"
+        },
+        {
+          "index": 2,
+          "answer": "p[row][j]",
+          "accepted": [
+            "*(*(p + row) + j)",
+            "*(p[row] + j)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "b"
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define COL 4\n\nint rowSum(int (*p)[COL], int row)\n{\n    int j, s = 0;\n\n    for (j = 0; j < /*__BLANK_1__*/; j++)\n        s += /*__BLANK_2__*/;\n    return s;\n}\n\nint main(void)\n{\n    int b[3][COL], i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < COL; j++)\n            b[i][j] = i * COL + j;\n    printf(\"%d %d\\n\", rowSum(b, 1), rowSum(/*__BLANK_3__*/, 2));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define COL 4\n\nint rowSum(int (*p)[COL], int row)\n{\n    int j, s = 0;\n\n    for (j = 0; j < COL; j++)\n        s += p[row][j];\n    return s;\n}\n\nint main(void)\n{\n    int b[3][COL], i, j;\n\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < COL; j++)\n            b[i][j] = i * COL + j;\n    printf(\"%d %d\\n\", rowSum(b, 1), rowSum(b, 2));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "22 38"
+        },
+        {
+          "stdin": "",
+          "expected": "22 38"
+        },
+        {
+          "stdin": "",
+          "expected": "22 38"
+        }
+      ],
+      "explanation": "结论：依次填 COL、p[row][j]、b，实机输出 22 38。推理：二维数组 b 的元素是 0 到 11，第 1 行 4+5+6+7=22，第 2 行 8+9+10+11=38；形参 int (*p)[COL] 是行指针，与二维数组退化后的类型一致。易错点：括号决定含义，int *p[COL] 是指针数组；行指针加 1 前进一整行，所以必须知道列数 COL 才能定位元素。",
+      "tags": [
+        "行指针",
+        "二维数组",
+        "宏常量"
+      ],
+      "knowledgeIds": [
+        "c-ch09-10"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-037",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint mylen(const char *s)\n{\n    int n = 0;\n\n    while (/*__BLANK_1__*/)\n    {\n        n++;\n        /*__BLANK_2__*/;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    printf(\"%d %c\\n\", mylen(s), /*__BLANK_3__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*s != '\\0'",
+          "accepted": [
+            "*s",
+            "*s != 0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "s++",
+          "accepted": [
+            "s = s + 1",
+            "s += 1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "s[mylen(s) - 1]",
+          "accepted": [
+            "*(s + mylen(s) - 1)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint mylen(const char *s)\n{\n    int n = 0;\n\n    while (/*__BLANK_1__*/)\n    {\n        n++;\n        /*__BLANK_2__*/;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    printf(\"%d %c\\n\", mylen(s), /*__BLANK_3__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint mylen(const char *s)\n{\n    int n = 0;\n\n    while (*s != '\\0')\n    {\n        n++;\n        s++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n\n    if (scanf(\"%79s\", s) != 1)\n        return 1;\n    printf(\"%d %c\\n\", mylen(s), s[mylen(s) - 1]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "5 o"
+        },
+        {
+          "stdin": "a\n",
+          "expected": "1 a"
+        },
+        {
+          "stdin": "China2026\n",
+          "expected": "9 6"
+        }
+      ],
+      "explanation": "结论：依次填循环条件、s++ 与末字符表达式，实机输出 5 o / 1 a / 9 6。推理：指针每后移一位计数加一，直到遇见字符串结束标志；末字符下标是长度减一。易错点：形参加 const 表明函数不修改字符串，但 s++ 改变的是指针副本，合法；若写成 s[i++] 则需要额外下标变量，效率与可读性都差一些。",
+      "tags": [
+        "字符串遍历",
+        "指针后移",
+        "取末字符"
+      ],
+      "knowledgeIds": [
+        "c-ch09-14"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-038",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint count(const char *s, char c)\n{\n    int n = 0;\n\n    while (*s != '\\0')\n    {\n        if (/*__BLANK_1__*/ == c)\n            n++;\n        /*__BLANK_2__*/;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n    char ch;\n\n    if (scanf(\"%79s %c\", s, &ch) != 2)\n        return 1;\n    printf(\"%d\\n\", count(/*__BLANK_3__*/, /*__BLANK_4__*/));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*s"
+        },
+        {
+          "index": 2,
+          "answer": "s++",
+          "accepted": [
+            "s = s + 1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "s"
+        },
+        {
+          "index": 4,
+          "answer": "ch"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint count(const char *s, char c)\n{\n    int n = 0;\n\n    while (*s != '\\0')\n    {\n        if (/*__BLANK_1__*/ == c)\n            n++;\n        /*__BLANK_2__*/;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n    char ch;\n\n    if (scanf(\"%79s %c\", s, &ch) != 2)\n        return 1;\n    printf(\"%d\\n\", count(/*__BLANK_3__*/, /*__BLANK_4__*/));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint count(const char *s, char c)\n{\n    int n = 0;\n\n    while (*s != '\\0')\n    {\n        if (*s == c)\n            n++;\n        s++;\n    }\n    return n;\n}\n\nint main(void)\n{\n    char s[80];\n    char ch;\n\n    if (scanf(\"%79s %c\", s, &ch) != 2)\n        return 1;\n    printf(\"%d\\n\", count(s, ch));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "banana a\n",
+          "expected": "3"
+        },
+        {
+          "stdin": "hello l\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "abc z\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：依次填 *s、s++、s、ch，实机输出 3 / 2 / 0。推理：const char *s 表示所指内容只读，但指针本身可以后移，因此用 s++ 遍历是允许的。易错点：若声明成 char * const s，则指针不能移动，只能改用下标访问；调用时传字符数组名 s 会自动退化为首地址，传字符 ch 而不是 &ch。",
+      "tags": [
+        "const指针",
+        "字符统计"
+      ],
+      "knowledgeIds": [
+        "c-ch09-15"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-039",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\n\nint calc(int x, int y, /*__BLANK_1__*/)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    printf(\"%d %d\\n\", calc(x, y, add), calc(x, y, /*__BLANK_3__*/));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "int (*f)(int, int)",
+          "accepted": [
+            "int (*f)(int,int)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "f(x, y)",
+          "accepted": [
+            "(*f)(x, y)",
+            "f(x,y)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "sub"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\n\nint calc(int x, int y, /*__BLANK_1__*/)\n{\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    printf(\"%d %d\\n\", calc(x, y, add), calc(x, y, /*__BLANK_3__*/));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\n\nint calc(int x, int y, int (*f)(int, int))\n{\n    return f(x, y);\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    printf(\"%d %d\\n\", calc(x, y, add), calc(x, y, sub));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8 3\n",
+          "expected": "11 5"
+        },
+        {
+          "stdin": "1 1\n",
+          "expected": "2 0"
+        },
+        {
+          "stdin": "5 9\n",
+          "expected": "14 -4"
+        }
+      ],
+      "explanation": "结论：依次填形参 int (*f)(int, int)、调用 f(x, y) 与实参 sub，实机输出 11 5 / 2 0 / 14 -4。推理：把函数入口地址当参数传递，calc 内部只负责调用，具体运算由调用者决定，这就是回调机制。易错点：形参括号不能省，int *f(int,int) 表示返回 int* 的函数；f(x,y) 与 (*f)(x,y) 等价，传函数名时不必写 &。",
+      "tags": [
+        "函数指针",
+        "回调"
+      ],
+      "knowledgeIds": [
+        "c-ch09-21"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-040",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(/*__BLANK_1__*/ * n);\n    if (/*__BLANK_2__*/)\n        return 1;\n    for (i = 0; i < n; i++)\n        /*__BLANK_3__*/ = 2 * i + 1;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    /*__BLANK_4__*/;\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "sizeof(int)"
+        },
+        {
+          "index": 2,
+          "answer": "p == NULL",
+          "accepted": [
+            "p == 0",
+            "!p"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "*(p + i)",
+          "accepted": [
+            "p[i]"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "free(p)"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(/*__BLANK_1__*/ * n);\n    if (/*__BLANK_2__*/)\n        return 1;\n    for (i = 0; i < n; i++)\n        /*__BLANK_3__*/ = 2 * i + 1;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    /*__BLANK_4__*/;\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        *(p + i) = 2 * i + 1;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    free(p);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "25"
+        }
+      ],
+      "explanation": "结论：依次填 sizeof(int)、p == NULL、*(p + i)、free(p)，实机输出 9 / 1 / 25（前 n 个奇数之和等于 n²）。推理：malloc 的参数是字节数，必须用 sizeof 乘以元素个数；返回的 void* 要判空后再使用；用完必须 free。易错点：忘记判空会在分配失败时解引用空指针；free 之后指针成为悬空指针，应立刻置 NULL；重复 free 同一地址是严重错误。",
+      "tags": [
+        "malloc",
+        "判空",
+        "free"
+      ],
+      "knowledgeIds": [
+        "c-ch09-28"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-041",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nvoid setMax(int **pp, int *a, int *b)\n{\n    if (*a >= *b)\n        /*__BLANK_1__*/ = a;\n    else\n        /*__BLANK_2__*/ = b;\n}\n\nint main(void)\n{\n    int x, y;\n    int *pm = NULL;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    setMax(/*__BLANK_3__*/, &x, &y);\n    printf(\"%d\\n\", /*__BLANK_4__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*pp"
+        },
+        {
+          "index": 2,
+          "answer": "*pp"
+        },
+        {
+          "index": 3,
+          "answer": "&pm"
+        },
+        {
+          "index": 4,
+          "answer": "*pm"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid setMax(int **pp, int *a, int *b)\n{\n    if (*a >= *b)\n        /*__BLANK_1__*/ = a;\n    else\n        /*__BLANK_2__*/ = b;\n}\n\nint main(void)\n{\n    int x, y;\n    int *pm = NULL;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    setMax(/*__BLANK_3__*/, &x, &y);\n    printf(\"%d\\n\", /*__BLANK_4__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid setMax(int **pp, int *a, int *b)\n{\n    if (*a >= *b)\n        *pp = a;\n    else\n        *pp = b;\n}\n\nint main(void)\n{\n    int x, y;\n    int *pm = NULL;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    setMax(&pm, &x, &y);\n    printf(\"%d\\n\", *pm);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 9\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "9 3\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "5 5\n",
+          "expected": "5"
+        }
+      ],
+      "explanation": "结论：依次填 *pp、*pp、&pm、*pm，实机输出 9 / 9 / 5。推理：函数要改变调用者指针 pm 的指向，就必须传入 pm 的地址，即二级指针；函数内 *pp 才代表 pm 本身。易错点：若形参写成 int *pp 并令 pp = a，改变的只是形参副本，pm 在 main 中仍是 NULL，随后解引用会崩溃；二级指针声明的两个星号都不能省。",
+      "tags": [
+        "二级指针",
+        "修改指针指向"
+      ],
+      "knowledgeIds": [
+        "c-ch09-23"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-042",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nvoid mycpy(char *d, const char *s)\n{\n    while (*s != '\\0')\n    {\n        /*__BLANK_1__*/ = /*__BLANK_2__*/;\n        d++;\n        s++;\n    }\n    *d = /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    char src[80], dst[80];\n\n    if (scanf(\"%79s\", src) != 1)\n        return 1;\n    mycpy(dst, src);\n    printf(\"%s\\n\", dst);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "*d"
+        },
+        {
+          "index": 2,
+          "answer": "*s"
+        },
+        {
+          "index": 3,
+          "answer": "'\\0'"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid mycpy(char *d, const char *s)\n{\n    while (*s != '\\0')\n    {\n        /*__BLANK_1__*/ = /*__BLANK_2__*/;\n        d++;\n        s++;\n    }\n    *d = /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    char src[80], dst[80];\n\n    if (scanf(\"%79s\", src) != 1)\n        return 1;\n    mycpy(dst, src);\n    printf(\"%s\\n\", dst);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid mycpy(char *d, const char *s)\n{\n    while (*s != '\\0')\n    {\n        *d = *s;\n        d++;\n        s++;\n    }\n    *d = '\\0';\n}\n\nint main(void)\n{\n    char src[80], dst[80];\n\n    if (scanf(\"%79s\", src) != 1)\n        return 1;\n    mycpy(dst, src);\n    printf(\"%s\\n\", dst);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "hello\n",
+          "expected": "hello"
+        },
+        {
+          "stdin": "a\n",
+          "expected": "a"
+        },
+        {
+          "stdin": "C2026\n",
+          "expected": "C2026"
+        }
+      ],
+      "explanation": "结论：依次填 *d、*s 与字符串结束标志，实机输出 hello / a / C2026。推理：逐个把源串字符写入目标串并同步后移两个指针，最后必须补上结束标志，否则 printf 的 %s 会一直读到随机内存。易错点：目标缓冲区要足够大，否则越界写入；这里没有处理源与目标重叠的情况，标准库 strcpy 同样不保证重叠时的行为，重叠时应用 memmove。",
+      "tags": [
+        "strcpy",
+        "指针实现",
+        "结束标志"
+      ],
+      "knowledgeIds": [
+        "c-ch09-39"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-cc-043",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6], i, m;\n    int *p, *end;\n\n    for (i = 0; i < 6; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    p = a;\n    end = /*__BLANK_1__*/;\n    m = /*__BLANK_2__*/;\n    for (; /*__BLANK_3__*/; p++)\n        if (*p > m)\n            m = *p;\n    printf(\"%d %d\\n\", m, (int)(end - a));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a + 6",
+          "accepted": [
+            "&a[6]",
+            "a+6"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "*a",
+          "accepted": [
+            "a[0]",
+            "*p"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "p < end"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6], i, m;\n    int *p, *end;\n\n    for (i = 0; i < 6; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    p = a;\n    end = /*__BLANK_1__*/;\n    m = /*__BLANK_2__*/;\n    for (; /*__BLANK_3__*/; p++)\n        if (*p > m)\n            m = *p;\n    printf(\"%d %d\\n\", m, (int)(end - a));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6], i, m;\n    int *p, *end;\n\n    for (i = 0; i < 6; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    p = a;\n    end = a + 6;\n    m = *a;\n    for (; p < end; p++)\n        if (*p > m)\n            m = *p;\n    printf(\"%d %d\\n\", m, (int)(end - a));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 9 1 7 5 2\n",
+          "expected": "9 6"
+        },
+        {
+          "stdin": "-1 -7 -3 -2 -9 -5\n",
+          "expected": "-1 6"
+        },
+        {
+          "stdin": "4 4 4 4 4 4\n",
+          "expected": "4 6"
+        }
+      ],
+      "explanation": "结论：依次填 a + 6、*a、p < end，实机输出 9 6 / -1 6 / 4 6。推理：end 是尾后指针，指向最后一个元素的下一位置，用它作循环终止条件可以避免额外计数；m 初值必须取数组中的某个元素。易错点：尾后指针只能取地址与比较，不能解引用；m 初值取 0 会在全为负数时出错；end - a 得到元素个数，类型是 ptrdiff_t，打印前要转成 int。",
+      "tags": [
+        "尾后指针",
+        "指针比较",
+        "最大值"
+      ],
+      "knowledgeIds": [
+        "c-ch09-34"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-dbg-016",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序的功能是交换 x 与 y 的值，但运行后 x、y 并没有变化。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int *t = p;\n    p = q;\n    q = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int *t = p;\n    p = q;\n    q = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 9\n",
+          "expected": "9 1"
+        },
+        {
+          "stdin": "9 1\n",
+          "expected": "1 9"
+        },
+        {
+          "stdin": "5 5\n",
+          "expected": "5 5"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int t = *p;\n    *p = *q;\n    *q = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "bugs": [
+        "临时变量保存的应是 *p 的值而不是指针 p 本身；声明成 int *t 只是复制了地址，后面交换的是两个局部指针，与调用者的变量无关",
+        "缺少解引用运算符，p = q 只改变形参指针的指向，函数返回后即失效，必须通过 *p 写入 x 所在的内存单元",
+        "同样缺少解引用，应把暂存的原 x 值写回 q 所指单元，才能完成两个变量值的真正交换"
+      ],
+      "explanation": "结论：三处都错在没有解引用，应改为 int t = *p; *p = *q; *q = t;。推理：C 是值传递，形参指针是实参地址的副本，只有通过 *p、*q 才能改动调用者的变量；改正后实机输出 9 1 / 1 9 / 5 5。易错点：错误版本能正常编译运行且不报错，只是没有效果，这类“静默失效”最需要警惕；判断方法是问自己“我改的是指针还是指针指向的内容”。",
+      "tags": [
+        "传址调用",
+        "解引用",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch09-03"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-dbg-017",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序想用动态内存存放 n 个整数的平方并求和，但运行结果不正确且存在内存泄漏。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        p[i] = i * i;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    p = NULL;\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        p[i] = i * i;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    p = NULL;\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "5\n",
+          "expected": "30"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void)\n{\n    int n, i, s = 0;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        p[i] = i * i;\n    for (i = 0; i < n; i++)\n        s += p[i];\n    printf(\"%d\\n\", s);\n    free(p);\n    return 0;\n}",
+      "bugs": [
+        "malloc 的参数是字节数，只写 n 时申请的空间远小于 n 个 int（例如 n=5 只有 5 字节），随后按 int 数组写入会越界破坏堆，必须写 sizeof(int) * n",
+        "只把指针置空而没有释放，这块内存再也无法被回收，形成内存泄漏；应先调用 free(p) 归还空间，之后再置 NULL 才安全"
+      ],
+      "explanation": "结论：两处错误分别是 malloc 参数字节数不足、以及只置空指针而没有 free。推理：改正后申请 n 个 int，写入 0²、1²…(n-1)² 并求和，实机输出 5 / 0 / 30。易错点：malloc 只接受字节数，习惯上写 sizeof(类型)*个数；free 之后指针变成悬空指针，正确顺序是先 free 再置 NULL，反过来写就永远丢失了地址。",
+      "tags": [
+        "malloc",
+        "内存泄漏",
+        "字节数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-30"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-dbg-018",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序想把字符串中的大写字母全部改成小写，但运行时可能崩溃，且结果不完整。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    char *s = \"Hello World\";\n    int i;\n\n    for (i = 0; i < 5; i++)\n        if (s[i] >= 'A' && s[i] <= 'Z')\n            s[i] = s[i] + 32;\n    printf(\"%s\\n\", s);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    char *s = \"Hello World\";\n    int i;\n\n    for (i = 0; i < 5; i++)\n        if (s[i] >= 'A' && s[i] <= 'Z')\n            s[i] = s[i] + 32;\n    printf(\"%s\\n\", s);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "",
+          "expected": "hello world"
+        },
+        {
+          "stdin": "",
+          "expected": "hello world"
+        },
+        {
+          "stdin": "",
+          "expected": "hello world"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nint main(void)\n{\n    char s[] = \"Hello World\";\n    int i;\n\n    for (i = 0; s[i] != '\\0'; i++)\n        if (s[i] >= 'A' && s[i] <= 'Z')\n            s[i] = s[i] + 32;\n    printf(\"%s\\n\", s);\n    return 0;\n}",
+      "bugs": [
+        "字符串常量存放在只读存储区，用字符指针指向它之后再写入属于未定义行为，多数环境会段错误；应改用字符数组，把常量复制到可写的栈空间中",
+        "循环条件写死了 5，只处理前 5 个字符，World 中的 W 仍是大小写混合的结果；应遍历到字符串结束标志为止"
+      ],
+      "explanation": "结论：两处错误分别是用字符指针指向字符串常量后修改、以及循环条件写死长度。推理：改成 char s[] = \"Hello World\" 并以结束标志为终止条件后，实机输出 hello world。易错点：char s[] 与 char *s 的区别是本章高频考点，前者可写、后者指向只读区；写死长度的循环遇到更长的字符串会漏处理，遇到更短的会越界访问。",
+      "tags": [
+        "字符数组",
+        "字符串常量",
+        "遍历条件"
+      ],
+      "knowledgeIds": [
+        "c-ch09-12"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-006",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "编写函数 void swap(int *p, int *q)，通过指针交换两个整数的值；在 main 中读入两个整数 x、y，调用 swap 后按 x、y 的顺序输出。\n\n输入格式：一行两个整数 x、y，用空格分隔。\n\n输出格式：一行两个整数，表示交换后的 x 与 y。",
+      "testCases": [
+        {
+          "stdin": "1 9\n",
+          "expected": "9 1"
+        },
+        {
+          "stdin": "9 1\n",
+          "expected": "1 9"
+        },
+        {
+          "stdin": "5 5\n",
+          "expected": "5 5"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid swap(int *p, int *q)\n{\n    int t = *p;\n\n    *p = *q;\n    *q = t;\n}\n\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "input_format": "一行两个整数 x、y，用空格分隔。",
+      "output_format": "一行两个整数，表示交换后的 x 与 y。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int x, y;\n\n    if (scanf(\"%d %d\", &x, &y) != 2)\n        return 1;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "explanation": "结论：实机输出 9 1 / 1 9 / 5 5。推理：swap 收到的是 x、y 的地址，函数内通过 *p、*q 直接读写这两个单元，配合临时变量 t 完成三步交换。易错点：形参若写成 int p, int q 则只是值的副本，交换对调用者无效；调用时必须写 &x、&y，漏掉取地址符会编译报错。",
+      "tags": [
+        "传址调用",
+        "交换",
+        "指针参数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-03"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-007",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写函数 int findMax(int *a, int n, int *pk)，只用指针遍历（不使用下标运算符）求出数组中的最大值并通过 pk 带回其下标，函数返回最大值；在 main 中先读入 n，再读入 n 个整数，输出“最大值 下标”。若有多个最大值，输出最靠前的那个。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一行两个整数：最大值与其下标，中间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "5\n3 9 1 7 2\n",
+          "expected": "9 1"
+        },
+        {
+          "stdin": "1\n-4\n",
+          "expected": "-4 0"
+        },
+        {
+          "stdin": "4\n2 2 5 5\n",
+          "expected": "5 2"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint findMax(int *a, int n, int *pk)\n{\n    int *p;\n    int m = *a;\n\n    *pk = 0;\n    for (p = a + 1; p < a + n; p++)\n        if (*p > m)\n        {\n            m = *p;\n            *pk = (int)(p - a);\n        }\n    return m;\n}\n\nint main(void)\n{\n    int a[100], n, i, k, m;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    m = findMax(a, n, &k);\n    printf(\"%d %d\\n\", m, k);\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行两个整数：最大值与其下标，中间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i, k, m;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    m = findMax(a, n, &k);\n    printf(\"%d %d\\n\", m, k);\n    return 0;\n}",
+      "explanation": "结论：实机输出 9 1 / -4 0 / 5 2。推理：p 从第二个元素向尾后指针 a+n 逼近，用严格大于比较保证相同最大值时保留靠前下标，p - a 即下标；必须先把返回值存入 m 再与 k 一起打印，因为 printf 的实参求值顺序未规定，若写成 printf(\"%d %d\", findMax(a,n,&k), k) 则 k 可能在函数调用前被读取，输出未初始化的垃圾值。易错点：m 初值取 *a 而非 0，否则全为负数时结果错误；循环条件 p < a + n，解引用尾后指针属越界。留痕：原参考代码在 printf 实参中同时调用 findMax 并读取 k，实参求值顺序未规定导致实机输出垃圾下标 2432，已改为先存入 m 再打印，实机复核通过。",
+      "tags": [
+        "指针遍历",
+        "最大值",
+        "下标"
+      ],
+      "knowledgeIds": [
+        "c-ch09-07"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-008",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "不使用字符串库函数，自己实现 int mycmp(const char *s, const char *t)：两串相等返回 0，s 大于 t 返回 1，s 小于 t 返回 -1（按字符的编码值逐位比较）；在 main 中读入两个不含空格的字符串并输出比较结果。\n\n输入格式：一行两个字符串，用空格分隔，均不含空格且长度不超过 79。\n\n输出格式：一个整数：0、1 或 -1。",
+      "testCases": [
+        {
+          "stdin": "apple banana\n",
+          "expected": "-1"
+        },
+        {
+          "stdin": "banana apple\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "same same\n",
+          "expected": "0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint mycmp(const char *s, const char *t)\n{\n    while (*s != '\\0' && *s == *t)\n    {\n        s++;\n        t++;\n    }\n    if (*s > *t)\n        return 1;\n    if (*s < *t)\n        return -1;\n    return 0;\n}\n\nint main(void)\n{\n    char a[80], b[80];\n\n    if (scanf(\"%79s %79s\", a, b) != 2)\n        return 1;\n    printf(\"%d\\n\", mycmp(a, b));\n    return 0;\n}",
+      "input_format": "一行两个字符串，用空格分隔，均不含空格且长度不超过 79。",
+      "output_format": "一个整数：0、1 或 -1。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    char a[80], b[80];\n\n    if (scanf(\"%79s %79s\", a, b) != 2)\n        return 1;\n    printf(\"%d\\n\", mycmp(a, b));\n    return 0;\n}",
+      "explanation": "结论：实机输出 -1 / 1 / 0。推理：两个指针同步后移，遇到第一对不同字符即决定大小；若一路相同直到某串结束，则由结束标志（编码为 0）与另一串字符比较得出结果。易错点：循环条件必须先判断 *s 是否为结束标志，否则短串是长串前缀时会越界读取；返回值只应保证符号有意义，不要返回具体差值当作排序依据。",
+      "tags": [
+        "strcmp",
+        "指针实现",
+        "字符串比较"
+      ],
+      "knowledgeIds": [
+        "c-ch09-39"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-009",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "用 malloc 动态申请 n 个 int 的空间，读入 n 个整数后逆序输出（元素间用一个空格分隔，行末换行），最后释放内存。要求把逆序输出封装成函数 void printRev(int *p, int n)。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一行 n 个整数，按输入的相反顺序排列，元素间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "5 4 3 2 1"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "3\n10 20 30\n",
+          "expected": "30 20 10"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid printRev(int *p, int n)\n{\n    int i;\n\n    for (i = n - 1; i >= 0; i--)\n        printf(\"%d%c\", p[i], i > 0 ? ' ' : '\\n');\n}\n\nint main(void)\n{\n    int n, i;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &p[i]) != 1)\n        {\n            free(p);\n            return 1;\n        }\n    printRev(p, n);\n    free(p);\n    p = NULL;\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行 n 个整数，按输入的相反顺序排列，元素间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, i;\n    int *p;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    p = (int *)malloc(sizeof(int) * n);\n    if (p == NULL)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &p[i]) != 1)\n        {\n            free(p);\n            return 1;\n        }\n    printRev(p, n);\n    free(p);\n    p = NULL;\n    return 0;\n}",
+      "explanation": "结论：实机输出 5 4 3 2 1 / 7 / 30 20 10。推理：动态数组与静态数组的访问方式完全相同，逆序只需把下标从 n-1 递减到 0。易错点：malloc 参数必须是 sizeof(int)*n 个字节并判空；提前 return 前也要先 free，否则泄漏；释放后把 p 置 NULL，防止悬空指针被再次使用。",
+      "tags": [
+        "malloc",
+        "free",
+        "逆序输出"
+      ],
+      "knowledgeIds": [
+        "c-ch09-28"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-010",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "定义 #define COL 3，编写函数 void rowSums(int (*p)[COL], int row, int *out)，用行指针求出 row 行每行元素之和存入 out；在 main 中按行优先读入 2 行 3 列共 6 个整数，输出两行的和。\n\n输入格式：一行 6 个整数，按行优先顺序排列，用空格分隔。\n\n输出格式：一行两个整数，分别是第 1 行与第 2 行的元素和，中间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4 5 6\n",
+          "expected": "6 15"
+        },
+        {
+          "stdin": "0 0 0 0 0 0\n",
+          "expected": "0 0"
+        },
+        {
+          "stdin": "-1 2 -3 4 -5 6\n",
+          "expected": "-2 5"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define COL 3\n\nvoid rowSums(int (*p)[COL], int row, int *out)\n{\n    int i, j;\n\n    for (i = 0; i < row; i++)\n    {\n        out[i] = 0;\n        for (j = 0; j < COL; j++)\n            out[i] += p[i][j];\n    }\n}\n\nint main(void)\n{\n    int b[2][COL], out[2], i, j;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < COL; j++)\n            if (scanf(\"%d\", &b[i][j]) != 1)\n                return 1;\n    rowSums(b, 2, out);\n    printf(\"%d %d\\n\", out[0], out[1]);\n    return 0;\n}",
+      "input_format": "一行 6 个整数，按行优先顺序排列，用空格分隔。",
+      "output_format": "一行两个整数，分别是第 1 行与第 2 行的元素和，中间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n#define COL 3\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int b[2][COL], out[2], i, j;\n\n    for (i = 0; i < 2; i++)\n        for (j = 0; j < COL; j++)\n            if (scanf(\"%d\", &b[i][j]) != 1)\n                return 1;\n    rowSums(b, 2, out);\n    printf(\"%d %d\\n\", out[0], out[1]);\n    return 0;\n}",
+      "explanation": "结论：实机输出 6 15 / 0 0 / -2 5。推理：二维数组作实参时退化为指向“含 COL 个 int 的一行”的行指针，形参必须写成 int (*p)[COL]，编译器才知道一行有多少元素、如何计算行偏移。易错点：写成 int *p[COL] 是指针数组，类型不匹配；写成 int p[][COL] 也可以，但列数 COL 绝不能省略。",
+      "tags": [
+        "行指针",
+        "二维数组",
+        "每行求和"
+      ],
+      "knowledgeIds": [
+        "c-ch09-10"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-pg-011",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "定义四个函数 opAdd、opSub、opMul、opMod 分别完成加、减、乘、取余（opMod 在除数为 0 时返回 0），并用函数指针数组 tab[4] 构成跳转表；在 main 中读入 a、b、k（0 ≤ k ≤ 3），输出 tab[k](a, b) 的结果。\n\n输入格式：一行三个整数 a、b、k，用空格分隔，k 取 0 到 3。\n\n输出格式：一个整数，表示对应运算的结果。",
+      "testCases": [
+        {
+          "stdin": "8 3 0\n",
+          "expected": "11"
+        },
+        {
+          "stdin": "8 3 3\n",
+          "expected": "2"
+        },
+        {
+          "stdin": "8 0 3\n",
+          "expected": "0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint opAdd(int a, int b) { return a + b; }\nint opSub(int a, int b) { return a - b; }\nint opMul(int a, int b) { return a * b; }\nint opMod(int a, int b) { return b == 0 ? 0 : a % b; }\n\nint (*tab[4])(int, int) = {opAdd, opSub, opMul, opMod};\n\nint main(void)\n{\n    int a, b, k;\n\n    if (scanf(\"%d %d %d\", &a, &b, &k) != 3 || k < 0 || k > 3)\n        return 1;\n    printf(\"%d\\n\", tab[k](a, b));\n    return 0;\n}",
+      "input_format": "一行三个整数 a、b、k，用空格分隔，k 取 0 到 3。",
+      "output_format": "一个整数，表示对应运算的结果。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a, b, k;\n\n    if (scanf(\"%d %d %d\", &a, &b, &k) != 3 || k < 0 || k > 3)\n        return 1;\n    printf(\"%d\\n\", tab[k](a, b));\n    return 0;\n}",
+      "explanation": "结论：实机输出 11 / 2 / 0。推理：函数指针数组把“选择哪种运算”变成一次下标访问，替代冗长的 if-else 或 switch，新增运算只需在表里加一项。易错点：声明 int (*tab[4])(int, int) 的括号不可省，否则变成返回指针的数组元素；下标 k 必须做范围检查，越界会取到非法地址并调用；取余前必须判断除数是否为 0。",
+      "tags": [
+        "函数指针数组",
+        "跳转表"
+      ],
+      "knowledgeIds": [
+        "c-ch09-22"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-064",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "关于指针变量，下列说法正确的是（　　）。",
+      "options": [
+        "指针变量存放的是另一个变量的地址，其类型决定解引用时如何解释该地址处的数据",
+        "指针变量存放的是另一个变量的值，因此可以直接参与算术运算",
+        "指针变量占用的字节数随所指对象的类型而改变",
+        "指针变量一旦初始化就不能再改变指向"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：指针变量保存的是地址，声明中的类型（如 int*、double*）告诉编译器从这个地址开始按几个字节、按什么类型取数据，因此 *p 才有确定的含义。易错点：指针自身的大小只与平台有关，64 位系统上任何类型的指针都是 8 字节；指针可以随时改指向，例如 p = &b，这与数组名不可赋值完全不同。",
+      "tags": [
+        "指针变量",
+        "地址",
+        "类型"
+      ],
+      "knowledgeIds": [
+        "c-ch09-01"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-065",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 int *p 指向 int 数组的某个元素，则表达式 p + 1 使地址值增加（　　）。",
+      "options": [
+        "1 个字节",
+        "sizeof(int) 个字节，在常见平台上是 4 个字节",
+        "sizeof(int *) 个字节，即 8 个字节",
+        "一个数组的长度那么多字节"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：指针加减整数时，编译器会自动把整数乘以所指类型的大小，这就是步长；int 通常占 4 字节，所以 p+1 使地址增加 4，正好指向下一个元素。易错点：不要与指针自身的大小混淆，64 位下 int* 占 8 字节但步长仍是 4；两个指针相减得到的是元素个数而不是字节差。",
+      "tags": [
+        "指针算术",
+        "步长"
+      ],
+      "knowledgeIds": [
+        "c-ch09-06"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-066",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "把数组名作为实参传给函数时，形参实际接收到的是（　　）。",
+      "options": [
+        "数组全部元素的副本",
+        "数组首元素的地址，数组退化为指针",
+        "数组元素的个数",
+        "数组所占的总字节数"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：C 语言的数组参数传递是“传首地址”，形参 int a[] 与 int *a 等价，函数通过地址直接访问原数组，因此修改形参元素会影响实参。易错点：函数内 sizeof(a) 得到的是指针大小（8 或 4），不再是数组长度，所以必须另外传元素个数 n；这也是数组作参数时“效率高但无边界检查”的原因。",
+      "tags": [
+        "数组退化",
+        "函数参数"
+      ],
+      "knowledgeIds": [
+        "c-ch09-13"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-067",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "声明 const int *p; 的含义是（　　）。",
+      "options": [
+        "不能通过 p 修改所指对象的值，但 p 可以改指向别的变量",
+        "p 的指向不能改变，但可以通过 p 修改所指对象的值",
+        "p 的指向与所指对象的值都不能改变",
+        "p 是一个整型常量，不是指针"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：const 位于星号左边修饰的是“所指内容”，因此 *p = 5 非法而 p = &b 合法；若写成 int * const p，const 修饰指针本身，则 p 的指向不可改。易错点：三种组合要分清 const int *p、int * const p、const int * const p；把只读数据传给函数时用 const 修饰形参，可防止函数意外修改字符串常量。",
+      "tags": [
+        "const与指针",
+        "三种组合"
+      ],
+      "knowledgeIds": [
+        "c-ch09-15"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-068",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "关于 char *p[3]; 与 char (*q)[3]; 两个声明，下列说法正确的是（　　）。",
+      "options": [
+        "p 是含 3 个字符指针的数组，q 是指向含 3 个字符的数组的指针",
+        "p 是指向含 3 个字符的数组的指针，q 是含 3 个字符指针的数组",
+        "两者完全等价，只是写法不同",
+        "两者都非法，因为缺少初始化"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：按右左法则，p[3] 先结合说明 p 是数组，元素类型为 char*；而 (*q)[3] 中括号使 q 先成为指针，指向 char[3]。易错点：一对括号之差含义完全不同，这是本章最经典的辨析题；字符串表用 char *p[3]，而二维字符数组作函数参数时用 char (*q)[3]，两者不能互换。",
+      "tags": [
+        "指针数组",
+        "数组指针"
+      ],
+      "knowledgeIds": [
+        "c-ch09-24"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-sc-069",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列做法中会产生悬空指针的是（　　）。",
+      "options": [
+        "函数返回其内部定义的局部数组的地址",
+        "函数返回由实参数组传来的某个元素的地址",
+        "函数返回指向静态存储区变量的地址",
+        "调用 malloc 后立即检查返回值是否为 NULL"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：局部数组位于函数的栈帧中，函数返回后该栈帧即被回收，返回它的地址得到的是悬空指针，继续使用是未定义行为。易错点：返回实参数组元素的地址是安全的，因为数组属于调用者；返回静态变量或 malloc 所得地址也安全，但后者必须由调用者负责 free；悬空指针不会立刻崩溃，往往在很久之后才暴露问题。",
+      "tags": [
+        "悬空指针",
+        "局部变量",
+        "返回地址"
+      ],
+      "knowledgeIds": [
+        "c-ch09-33"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-fb-031",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "取地址运算符是________，取内容（解引用）运算符是________；若有 int a = 3, *p = &a;，则 *p 的值为________。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "&"
+        },
+        {
+          "index": 2,
+          "answer": "*"
+        },
+        {
+          "index": 3,
+          "answer": "3"
+        }
+      ],
+      "explanation": "结论：依次填 &、*、3。推理：& 取得变量的地址，* 取出指针所指地址处的值，二者互为逆运算；p 保存 a 的地址，*p 就是 a 本身，值为 3。易错点：声明语句 int *p 中的星号只表示 p 是指针类型，不是解引用运算；*p = 5 会真正修改 a，而 p = 5 则是把整数当地址赋给指针，属于危险操作。",
+      "tags": [
+        "取地址",
+        "解引用"
+      ],
+      "knowledgeIds": [
+        "c-ch09-01"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-fb-032",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 a 是数组名、p 是指向该数组首元素的指针，则 a[i] 的三种等价写法为 *(________)、*(________) 和 ________[i]。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a + i",
+          "accepted": [
+            "a+i"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "p + i",
+          "accepted": [
+            "p+i",
+            "i + p"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "p"
+        }
+      ],
+      "explanation": "结论：依次填 a + i、p + i、p。推理：下标运算符的定义就是 *(基地址 + 偏移)，所以 a[i]、*(a+i)、*(p+i)、p[i] 四者完全等价，编译器生成的代码也相同。易错点：a 是地址常量不能自增，p 是变量可以 p++；由于加法可交换，i[p] 在语法上也合法，但绝不能这样写。",
+      "tags": [
+        "一维数组",
+        "等价写法"
+      ],
+      "knowledgeIds": [
+        "c-ch09-05"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-fb-033",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "使用 malloc 分配内存时必须检查返回值是否为________；不再使用的动态内存应调用________释放；释放后通常把指针置为________以避免误用。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "NULL",
+          "accepted": [
+            "0"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "free",
+          "accepted": [
+            "free()"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "NULL",
+          "accepted": [
+            "0",
+            "空"
+          ]
+        }
+      ],
+      "explanation": "结论：依次填 NULL、free、NULL。推理：malloc 在内存不足时返回 NULL，未判空就解引用会立刻崩溃；free 把这块内存归还给堆管理器，否则程序每次分配都泄漏。易错点：free 只能用于 malloc、calloc、realloc 得到的指针，不能释放数组或变量的地址；同一地址不能 free 两次；释放后指针值不变但已无效，置 NULL 后再次解引用会立刻暴露错误。",
+      "tags": [
+        "malloc",
+        "free",
+        "内存管理"
+      ],
+      "knowledgeIds": [
+        "c-ch09-30"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "数组名本质上是指针变量，因此可以对它进行自增运算，例如 a++。",
+      "answer": false,
+      "explanation": "结论：错误。推理：数组名在表达式中代表首元素地址，但它是地址常量而不是变量，没有可供修改的存储单元，a++ 无法通过编译。易错点：想让指针移动必须先定义一个指针变量并令 p = a，再对 p 自增；数组名作函数参数时形参退化为指针，那个形参是可以自增的，这也是两者最容易被混淆之处。",
+      "tags": [
+        "数组名",
+        "指针常量"
+      ],
+      "knowledgeIds": [
+        "c-ch09-04"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch09-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "void * 类型的指针可以指向任何类型的对象，但不能直接用 * 解引用，必须先强制转换成具体类型的指针。",
+      "answer": true,
+      "explanation": "结论：正确。推理：void 表示“无类型”，编译器不知道一个 void 对象占多少字节，因此无法确定解引用该取几个字节，必须先转换成 int*、char* 等具体类型。易错点：任何对象指针都能隐式转换为 void*，反过来在 C 语言中也可以隐式转回，但显式写出转换更清晰；void* 也不能做算术运算（GCC 扩展把它当 char* 处理，但不是标准行为）。",
+      "tags": [
+        "void指针",
+        "通用指针",
+        "强制类型转换"
+      ],
+      "knowledgeIds": [
+        "c-ch09-38"
+      ],
+      "source": "变式（源自 c-ch09 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }

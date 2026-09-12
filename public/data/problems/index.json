@@ -1,9 +1,9 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "44e6a4d035677f40",
+  "content_sha": "0f0acd7b21e694e3",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1874,
+  "count": 1924,
   "shard_count": 20,
   "shards": [
     {
@@ -66,7 +66,7 @@
       "file": "c-ch09.json",
       "category": "c",
       "chapter": "第9章 指针",
-      "count": 196,
+      "count": 246,
       "url": "data/problems/c-ch09.json"
     },
     {
@@ -17525,6 +17525,834 @@
       "verified": true,
       "tags": [],
       "title": "【题 9.185】已有定义double x",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-059",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "指针",
+        "解引用",
+        "&运算符"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-060",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "指针类型",
+        "double"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-061",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "一维数组",
+        "四种等价写法"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-062",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "指针算术",
+        "步长",
+        "指针相减"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-063",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "指针遍历",
+        "三种循环写法"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-064",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "数组名",
+        "首地址"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-065",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "二维数组",
+        "行地址",
+        "元素地址"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-066",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "行指针",
+        "二维数组作参数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-067",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "二维数组",
+        "一维化",
+        "遍历"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-068",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "字符数组",
+        "字符指针",
+        "sizeof"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-069",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "指针遍历字符串",
+        "结束标志"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-070",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "指针参数",
+        "多值返回",
+        "数组作参数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-071",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "指针型函数",
+        "NULL",
+        "地址差"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-072",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数指针",
+        "定义与调用"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-073",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "回调函数",
+        "函数指针作参数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-074",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数指针数组",
+        "跳转表"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-075",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "指针数组",
+        "数组指针",
+        "区别"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-076",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "二级指针",
+        "多级指针"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-077",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "malloc",
+        "free",
+        "动态数组"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cr-078",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "字符串比较",
+        "指针实现"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-034",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "传址调用",
+        "解引用",
+        "交换"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-035",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "数组作参数",
+        "指针访问",
+        "求和"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-036",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "行指针",
+        "二维数组",
+        "宏常量"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-037",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "字符串遍历",
+        "指针后移",
+        "取末字符"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-038",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "const指针",
+        "字符统计"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-039",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数指针",
+        "回调"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-040",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "malloc",
+        "判空",
+        "free"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-041",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "二级指针",
+        "修改指针指向"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-042",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "strcpy",
+        "指针实现",
+        "结束标志"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-cc-043",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "尾后指针",
+        "指针比较",
+        "最大值"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-dbg-016",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "传址调用",
+        "解引用",
+        "交换"
+      ],
+      "title": "下列程序的功能是交换 x 与 y 的值",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-dbg-017",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "malloc",
+        "内存泄漏",
+        "字节数"
+      ],
+      "title": "下列程序想用动态内存存放 n 个整数的平方并求和",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-dbg-018",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "字符数组",
+        "字符串常量",
+        "遍历条件"
+      ],
+      "title": "下列程序想把字符串中的大写字母全部改成小写",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-006",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "传址调用",
+        "交换",
+        "指针参数"
+      ],
+      "title": "编写函数 void swap",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-007",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "指针遍历",
+        "最大值",
+        "下标"
+      ],
+      "title": "编写函数 int findMax",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-008",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "strcmp",
+        "指针实现",
+        "字符串比较"
+      ],
+      "title": "不使用字符串库函数",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-009",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "malloc",
+        "free",
+        "逆序输出"
+      ],
+      "title": "用 malloc 动态申请 n 个 int 的空间",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-010",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "行指针",
+        "二维数组",
+        "每行求和"
+      ],
+      "title": "定义 #define COL 3",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-pg-011",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.6 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "函数指针数组",
+        "跳转表"
+      ],
+      "title": "定义四个函数 opAdd、opSub、opMul、opMod 分别完成加、减、乘、取余",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-064",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "指针变量",
+        "地址",
+        "类型"
+      ],
+      "title": "关于指针变量",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-065",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "指针算术",
+        "步长"
+      ],
+      "title": "设 int *p 指向 int 数组的某个元素",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-066",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "数组退化",
+        "函数参数"
+      ],
+      "title": "把数组名作为实参传给函数时",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-067",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "const与指针",
+        "三种组合"
+      ],
+      "title": "声明 const int *p",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-068",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "指针数组",
+        "数组指针"
+      ],
+      "title": "关于 char *p[3]",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-sc-069",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "悬空指针",
+        "局部变量",
+        "返回地址"
+      ],
+      "title": "下列做法中会产生悬空指针的是",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-fb-031",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "取地址",
+        "解引用"
+      ],
+      "title": "取地址运算符是________",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-fb-032",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "一维数组",
+        "等价写法"
+      ],
+      "title": "设 a 是数组名、p 是指向该数组首元素的指针",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-fb-033",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "malloc",
+        "free",
+        "内存管理"
+      ],
+      "title": "使用 malloc 分配内存时必须检查返回值是否为________",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-tf-001",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "数组名",
+        "指针常量"
+      ],
+      "title": "数组名本质上是指针变量",
+      "file": "c-ch09.json"
+    },
+    {
+      "id": "c-ch09-tf-002",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第9章 指针",
+      "section": "9.5 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "void指针",
+        "通用指针",
+        "强制类型转换"
+      ],
+      "title": "void * 类型的指针可以指向任何类型的对象",
       "file": "c-ch09.json"
     },
     {
