@@ -3013,6 +3013,1752 @@
       ],
       "id": "c-ch10-cc-028",
       "verified": true
+    },
+    {
+      "id": "c-ch10-cr-013",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int age;\n};\n\nint main(void)\n{\n    struct Student s;\n\n    if (scanf(\"%d %d\", &s.num, &s.age) != 2)\n        return 1;\n    s.age = s.age + 1;\n    printf(\"%d %d\\n\", s.num, s.age);\n    return 0;\n}\n```\n运行时输入：\n```\n1001 19\n```",
+      "answer": "1001 20",
+      "code": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int age;\n};\n\nint main(void)\n{\n    struct Student s;\n\n    if (scanf(\"%d %d\", &s.num, &s.age) != 2)\n        return 1;\n    s.age = s.age + 1;\n    printf(\"%d %d\\n\", s.num, s.age);\n    return 0;\n}",
+      "stdin": "1001 19\n",
+      "explanation": "结论：输出 1001 20。推理：结构体变量用点运算符访问成员，s.age = s.age + 1 把 19 改成 20，s.num 不受影响。易错点：scanf 读成员必须写 &s.age，成员名不能单独当作变量使用；结构体类型名 struct Student 中的 struct 关键字在 C 语言里不能省略，这点与 typedef 之后不同。",
+      "tags": [
+        "结构体",
+        "成员访问"
+      ],
+      "knowledgeIds": [
+        "c-ch10-01"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-014",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct A\n{\n    char c;\n    int i;\n    char d;\n};\n\nstruct B\n{\n    char c;\n    char d;\n    int i;\n};\n\nint main(void)\n{\n    printf(\"%d %d\\n\", (int)sizeof(struct A), (int)sizeof(struct B));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "12 8",
+      "code": "#include <stdio.h>\n\nstruct A\n{\n    char c;\n    int i;\n    char d;\n};\n\nstruct B\n{\n    char c;\n    char d;\n    int i;\n};\n\nint main(void)\n{\n    printf(\"%d %d\\n\", (int)sizeof(struct A), (int)sizeof(struct B));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 12 8。推理：编译器按成员中对齐要求最严格的类型（这里是 4 字节的 int）对齐，struct A 中 char 后要补 3 字节，末尾 char 后再补 3 字节，共 1+3+4+1+3=12；struct B 把两个 char 放在一起只需补 2 字节，共 1+1+2+4=8。易错点：结构体大小不是各成员之和，调整成员顺序可以显著节省内存，这是本题的考点。",
+      "tags": [
+        "sizeof",
+        "内存对齐"
+      ],
+      "knowledgeIds": [
+        "c-ch10-03"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-015",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\nstruct Person\n{\n    char name[20];\n    struct Date birth;\n};\n\nint main(void)\n{\n    struct Person p = {\"Tom\", {2000, 5, 20}};\n    int y;\n\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    printf(\"%s %d-%d-%d %d\\n\", p.name, p.birth.y, p.birth.m, p.birth.d, y - p.birth.y);\n    return 0;\n}\n```\n运行时输入：\n```\n2026\n```",
+      "answer": "Tom 2000-5-20 26",
+      "code": "#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\nstruct Person\n{\n    char name[20];\n    struct Date birth;\n};\n\nint main(void)\n{\n    struct Person p = {\"Tom\", {2000, 5, 20}};\n    int y;\n\n    if (scanf(\"%d\", &y) != 1)\n        return 1;\n    printf(\"%s %d-%d-%d %d\\n\", p.name, p.birth.y, p.birth.m, p.birth.d, y - p.birth.y);\n    return 0;\n}",
+      "stdin": "2026\n",
+      "explanation": "结论：输出 Tom 2000-5-20 26。推理：嵌套结构体要逐级用点运算符访问，p.birth.y 表示 p 的成员 birth 中的 y；花括号按成员声明顺序依次初始化。易错点：不能写成 p.y，因为 y 不是 p 的直接成员；结构体整体赋值 p = q 是允许的（同类型），但数组成员不能单独用赋值号写入，只能 strcpy 或初始化时给出。",
+      "tags": [
+        "嵌套结构体",
+        "初始化"
+      ],
+      "knowledgeIds": [
+        "c-ch10-02"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-016",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Item\n{\n    int price;\n    int count;\n};\n\nint main(void)\n{\n    struct Item a[3];\n    int i, total = 0;\n\n    for (i = 0; i < 3; i++)\n        if (scanf(\"%d %d\", &a[i].price, &a[i].count) != 2)\n            return 1;\n    for (i = 0; i < 3; i++)\n        total += a[i].price * a[i].count;\n    printf(\"%d\\n\", total);\n    return 0;\n}\n```\n运行时输入：\n```\n3 2 5 1 10 4\n```",
+      "answer": "51",
+      "code": "#include <stdio.h>\n\nstruct Item\n{\n    int price;\n    int count;\n};\n\nint main(void)\n{\n    struct Item a[3];\n    int i, total = 0;\n\n    for (i = 0; i < 3; i++)\n        if (scanf(\"%d %d\", &a[i].price, &a[i].count) != 2)\n            return 1;\n    for (i = 0; i < 3; i++)\n        total += a[i].price * a[i].count;\n    printf(\"%d\\n\", total);\n    return 0;\n}",
+      "stdin": "3 2 5 1 10 4\n",
+      "explanation": "结论：输出 51。推理：结构体数组的每个元素都是一个完整的结构体，a[i].price 与 a[i].count 分别读入，三项金额 6+5+40 = 51。易错点：scanf 一次读两个值时格式串中的空格可以匹配任意数量空白，因此输入既可以分行也可以同一行；结构体数组的初始化要用双层花括号 {{3,2},{5,1},{10,4}}。",
+      "tags": [
+        "结构体数组",
+        "遍历求和"
+      ],
+      "knowledgeIds": [
+        "c-ch10-04"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-017",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Stu\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Stu a[4] = {{1, 78}, {2, 92}, {3, 65}, {4, 88}};\n    int key, i, found = -1;\n\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    for (i = 0; i < 4; i++)\n        if (a[i].num == key)\n            found = i;\n    if (found >= 0)\n        printf(\"%d %d\\n\", a[found].num, a[found].score);\n    else\n        printf(\"not found\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n3\n```",
+      "answer": "3 65",
+      "code": "#include <stdio.h>\n\nstruct Stu\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Stu a[4] = {{1, 78}, {2, 92}, {3, 65}, {4, 88}};\n    int key, i, found = -1;\n\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    for (i = 0; i < 4; i++)\n        if (a[i].num == key)\n            found = i;\n    if (found >= 0)\n        printf(\"%d %d\\n\", a[found].num, a[found].score);\n    else\n        printf(\"not found\\n\");\n    return 0;\n}",
+      "stdin": "3\n",
+      "explanation": "结论：输出 3 65。推理：顺序查找逐个比较关键字成员 num，命中后记下下标，最后统一输出；用 -1 表示未找到。易错点：这里没有在命中后 break，若有重复关键字会取最后一个；结构体不能直接用 == 整体比较，必须逐成员比较，字符串成员还要用 strcmp。",
+      "tags": [
+        "结构体数组",
+        "查找"
+      ],
+      "knowledgeIds": [
+        "c-ch10-05"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-018",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Point\n{\n    int x, y;\n};\n\nint main(void)\n{\n    struct Point p;\n    struct Point *pp = &p;\n\n    if (scanf(\"%d %d\", &p.x, &p.y) != 2)\n        return 1;\n    pp->x = pp->x + 10;\n    (*pp).y = (*pp).y * 2;\n    printf(\"%d %d\\n\", p.x, pp->y);\n    return 0;\n}\n```\n运行时输入：\n```\n1 3\n```",
+      "answer": "11 6",
+      "code": "#include <stdio.h>\n\nstruct Point\n{\n    int x, y;\n};\n\nint main(void)\n{\n    struct Point p;\n    struct Point *pp = &p;\n\n    if (scanf(\"%d %d\", &p.x, &p.y) != 2)\n        return 1;\n    pp->x = pp->x + 10;\n    (*pp).y = (*pp).y * 2;\n    printf(\"%d %d\\n\", p.x, pp->y);\n    return 0;\n}",
+      "stdin": "1 3\n",
+      "explanation": "结论：输出 11 6。推理：pp->x 与 (*pp).x 完全等价，都表示 pp 所指结构体的成员 x；由于 pp 指向 p，改动立刻反映在 p 上。易错点：(*pp).y 的括号不能省，因为 . 的优先级高于 *，写成 *pp.y 会被解析成 *(pp.y) 而报错；-> 只能用于指针，结构体变量必须用点运算符。",
+      "tags": [
+        "结构体指针",
+        "->运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch10-06"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-019",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Rec\n{\n    int v;\n};\n\nint main(void)\n{\n    struct Rec a[5];\n    struct Rec *p;\n    int i, s = 0;\n\n    for (i = 0; i < 5; i++)\n        a[i].v = i * i;\n    for (p = a; p < a + 5; p++)\n        s += p->v;\n    printf(\"%d %d\\n\", s, (int)(p - a));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "30 5",
+      "code": "#include <stdio.h>\n\nstruct Rec\n{\n    int v;\n};\n\nint main(void)\n{\n    struct Rec a[5];\n    struct Rec *p;\n    int i, s = 0;\n\n    for (i = 0; i < 5; i++)\n        a[i].v = i * i;\n    for (p = a; p < a + 5; p++)\n        s += p->v;\n    printf(\"%d %d\\n\", s, (int)(p - a));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 30 5。推理：数组元素为 0 1 4 9 16，累加得 30；p 每轮加 1 会前进 sizeof(struct Rec) 字节，循环结束时指向尾后位置，p - a 正好是元素个数 5。易错点：结构体指针自增的步长是整个结构体的大小，不是某个成员的大小；p->v 与 (*p).v、p[0].v 三种写法等价。",
+      "tags": [
+        "指针遍历结构体数组",
+        "指针相减"
+      ],
+      "knowledgeIds": [
+        "c-ch10-07"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-020",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Box\n{\n    int w, h;\n};\n\nint area(struct Box b)\n{\n    b.w = b.w + 1;\n    return b.w * b.h;\n}\n\nint main(void)\n{\n    struct Box b;\n\n    if (scanf(\"%d %d\", &b.w, &b.h) != 2)\n        return 1;\n    printf(\"%d %d %d\\n\", area(b), b.w, b.h);\n    return 0;\n}\n```\n运行时输入：\n```\n3 4\n```",
+      "answer": "16 3 4",
+      "code": "#include <stdio.h>\n\nstruct Box\n{\n    int w, h;\n};\n\nint area(struct Box b)\n{\n    b.w = b.w + 1;\n    return b.w * b.h;\n}\n\nint main(void)\n{\n    struct Box b;\n\n    if (scanf(\"%d %d\", &b.w, &b.h) != 2)\n        return 1;\n    printf(\"%d %d %d\\n\", area(b), b.w, b.h);\n    return 0;\n}",
+      "stdin": "3 4\n",
+      "explanation": "结论：输出 16 3 4。推理：结构体作函数参数是整体值传递，形参 b 是实参的一份副本，函数内把副本的 w 改成 4，返回 4×4=16，而 main 中的 b.w 仍是 3。易错点：值传递要复制整个结构体，成员多时开销大，工程上更常传结构体指针；若要函数修改实参，必须传 &b 并用 -> 访问。",
+      "tags": [
+        "结构体作参数",
+        "值传递"
+      ],
+      "knowledgeIds": [
+        "c-ch10-08"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-021",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Box\n{\n    int w, h;\n};\n\nvoid grow(struct Box *p, int k)\n{\n    p->w = p->w * k;\n    (*p).h = (*p).h * k;\n}\n\nint main(void)\n{\n    struct Box b;\n\n    if (scanf(\"%d %d\", &b.w, &b.h) != 2)\n        return 1;\n    grow(&b, 3);\n    printf(\"%d %d\\n\", b.w, b.h);\n    return 0;\n}\n```\n运行时输入：\n```\n2 5\n```",
+      "answer": "6 15",
+      "code": "#include <stdio.h>\n\nstruct Box\n{\n    int w, h;\n};\n\nvoid grow(struct Box *p, int k)\n{\n    p->w = p->w * k;\n    (*p).h = (*p).h * k;\n}\n\nint main(void)\n{\n    struct Box b;\n\n    if (scanf(\"%d %d\", &b.w, &b.h) != 2)\n        return 1;\n    grow(&b, 3);\n    printf(\"%d %d\\n\", b.w, b.h);\n    return 0;\n}",
+      "stdin": "2 5\n",
+      "explanation": "结论：输出 6 15。推理：传地址后函数通过 p->w、(*p).h 直接修改调用者的结构体，两个成员都乘以 3。易错点：调用时写 &b 而不是 b；如果只想读不想改，形参应声明为 const struct Box *p，这样编译器会阻止函数内的写操作，也能避免整体复制的开销。",
+      "tags": [
+        "指针传递",
+        "结构体整体修改"
+      ],
+      "knowledgeIds": [
+        "c-ch10-09"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-022",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\ntypedef struct Node\n{\n    int data;\n} NODE;\n#define PN struct Node *\n\nint main(void)\n{\n    NODE a;\n    PN p = &a;\n\n    if (scanf(\"%d\", &a.data) != 1)\n        return 1;\n    p->data = p->data * 2;\n    printf(\"%d %d %d\\n\", a.data, (int)sizeof(NODE), (int)sizeof(PN));\n    return 0;\n}\n```\n运行时输入：\n```\n7\n```",
+      "answer": "14 4 8",
+      "code": "#include <stdio.h>\n\ntypedef struct Node\n{\n    int data;\n} NODE;\n#define PN struct Node *\n\nint main(void)\n{\n    NODE a;\n    PN p = &a;\n\n    if (scanf(\"%d\", &a.data) != 1)\n        return 1;\n    p->data = p->data * 2;\n    printf(\"%d %d %d\\n\", a.data, (int)sizeof(NODE), (int)sizeof(PN));\n    return 0;\n}",
+      "stdin": "7\n",
+      "explanation": "结论：输出 14 4 8。推理：typedef 给 struct Node 起了别名 NODE，#define 把 PN 替换成 struct Node *，两者在这里都能用；a.data 被改成 14，结构体只有一个 int 故大小为 4，指针在 64 位平台上为 8 字节。易错点：typedef 在编译期建立真正的类型，能处理指针等复杂类型；#define 只是文本替换，例如 PN a, b 只有 a 是指针而 b 是结构体变量，typedef 则两者都是指针。",
+      "tags": [
+        "typedef",
+        "#define",
+        "sizeof"
+      ],
+      "knowledgeIds": [
+        "c-ch10-11"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-023",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nunion U\n{\n    char c;\n    int i;\n    double d;\n};\n\nstruct S\n{\n    char c;\n    int i;\n};\n\nint main(void)\n{\n    union U u;\n\n    u.i = 65;\n    printf(\"%d %d\\n\", (int)sizeof(union U), (int)sizeof(struct S));\n    printf(\"%d %c\\n\", u.i, u.c);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "8 8\n65 A",
+      "code": "#include <stdio.h>\n\nunion U\n{\n    char c;\n    int i;\n    double d;\n};\n\nstruct S\n{\n    char c;\n    int i;\n};\n\nint main(void)\n{\n    union U u;\n\n    u.i = 65;\n    printf(\"%d %d\\n\", (int)sizeof(union U), (int)sizeof(struct S));\n    printf(\"%d %c\\n\", u.i, u.c);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 8 8 与 65 A。推理：共用体所有成员共享同一段内存，大小取最大成员并按其对齐，double 为 8 字节；结构体则是 char 加 3 字节填充再加 int，也是 8 字节；u.i = 65 后最低字节为 65，按 char 读出就是字符 A。易错点：共用体同一时刻只有一个成员的值有效，后写入的会覆盖前面的；不能同时使用多个成员，也不能对共用体整体赋值不同成员。",
+      "tags": [
+        "共用体",
+        "sizeof",
+        "成员共享"
+      ],
+      "knowledgeIds": [
+        "c-ch10-13"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-024",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nunion Mix\n{\n    int i;\n    unsigned char b[4];\n};\n\nint main(void)\n{\n    union Mix m;\n\n    if (scanf(\"%d\", &m.i) != 1)\n        return 1;\n    printf(\"%d %d %d %d\\n\", m.b[0], m.b[1], m.b[2], m.b[3]);\n    return 0;\n}\n```\n运行时输入：\n```\n1\n```",
+      "answer": "1 0 0 0",
+      "code": "#include <stdio.h>\n\nunion Mix\n{\n    int i;\n    unsigned char b[4];\n};\n\nint main(void)\n{\n    union Mix m;\n\n    if (scanf(\"%d\", &m.i) != 1)\n        return 1;\n    printf(\"%d %d %d %d\\n\", m.b[0], m.b[1], m.b[2], m.b[3]);\n    return 0;\n}",
+      "stdin": "1\n",
+      "explanation": "结论：输出 1 0 0 0。推理：int 与字符数组共享同一段 4 字节内存，x86 系列采用小端字节序，低位字节存放在低地址，所以整数 1 的第一个字节是 1，其余为 0。易错点：若输入 258（即 0x00000102），输出会是 2 1 0 0；这种技巧常用于判断机器字节序，但结果依赖平台，写可移植代码时不要依赖它。",
+      "tags": [
+        "共用体",
+        "字节序",
+        "拆解整数"
+      ],
+      "knowledgeIds": [
+        "c-ch10-15"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-025",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = (enum Week)k;\n    printf(\"%d %d %d\\n\", MON, WED, w == SUN);\n    printf(\"%d\\n\", (int)w + 1);\n    return 0;\n}\n```\n运行时输入：\n```\n7\n```",
+      "answer": "1 3 1\n8",
+      "code": "#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = (enum Week)k;\n    printf(\"%d %d %d\\n\", MON, WED, w == SUN);\n    printf(\"%d\\n\", (int)w + 1);\n    return 0;\n}",
+      "stdin": "7\n",
+      "explanation": "结论：输出 1 3 1 与 8。推理：枚举元素默认从 0 开始逐个加 1，显式给 MON 赋 1 后，TUE=2、WED=3，依次到 SUN=7；k=7 时 w 等于 SUN 故第三个值为 1。易错点：枚举元素是常量，不能被赋值；枚举变量可以赋整数值但需要强制类型转换，直接 w = 7 在严格模式下会告警；枚举的作用是提高可读性，本质仍是整数。",
+      "tags": [
+        "枚举",
+        "取值规则"
+      ],
+      "knowledgeIds": [
+        "c-ch10-16"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-026",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p;\n    int n, i, v, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < 0 + n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    for (p = head; p != NULL; p = p->next)\n        s += p->data;\n    printf(\"%d\\n\", s);\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n4\n1 2 3 4\n```",
+      "answer": "10",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p;\n    int n, i, v, s = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 20)\n        return 1;\n    for (i = 0; i < 0 + n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    for (p = head; p != NULL; p = p->next)\n        s += p->data;\n    printf(\"%d\\n\", s);\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "stdin": "4\n1 2 3 4\n",
+      "explanation": "结论：输出 10。推理：尾插法建表时用 tail 记住最后一个结点，新结点挂到 tail->next 再更新 tail，遍历用 p = p->next 直到 NULL；释放时必须先保存后继再 free 当前结点。易错点：若先 free(head) 再取 head->next 就是使用已释放内存；n=0 时 head 保持 NULL，遍历与释放循环都不执行，这是必须处理的边界。",
+      "tags": [
+        "链表",
+        "创建与释放",
+        "malloc"
+      ],
+      "knowledgeIds": [
+        "c-ch10-18"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-027",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p;\n    int n, i, v, key, pos = -1, idx = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    for (p = head; p != NULL; p = p->next, idx++)\n        if (p->data == key && pos < 0)\n            pos = idx;\n    printf(\"%d\\n\", pos);\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n5\n3 7 1 9 5\n9\n```",
+      "answer": "3",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p;\n    int n, i, v, key, pos = -1, idx = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    if (scanf(\"%d\", &key) != 1)\n        return 1;\n    for (p = head; p != NULL; p = p->next, idx++)\n        if (p->data == key && pos < 0)\n            pos = idx;\n    printf(\"%d\\n\", pos);\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "stdin": "5\n3 7 1 9 5\n9\n",
+      "explanation": "结论：输出 3。推理：链表只能顺序访问，查找必须从头指针开始逐个比较，下标从 0 计，9 位于第 4 个位置即下标 3。易错点：链表不支持 a[i] 这样的随机访问，查找第 i 个元素的时间复杂度是 O(n)；pos < 0 的判断保证只记录第一次出现的位置；未找到时返回 -1，调用方必须检查。",
+      "tags": [
+        "链表",
+        "查找",
+        "位置"
+      ],
+      "knowledgeIds": [
+        "c-ch10-19"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-028",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p, *pre = NULL, *nxt;\n    int n, i, v;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    p = head;\n    while (p != NULL)\n    {\n        nxt = p->next;\n        p->next = pre;\n        pre = p;\n        p = nxt;\n    }\n    head = pre;\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n5\n1 2 3 4 5\n```",
+      "answer": "5 4 3 2 1",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node\n{\n    int data;\n    struct Node *next;\n};\n\nint main(void)\n{\n    struct Node *head = NULL, *tail = NULL, *p, *pre = NULL, *nxt;\n    int n, i, v;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &v) != 1)\n            return 1;\n        p = (struct Node *)malloc(sizeof(struct Node));\n        if (p == NULL)\n            return 1;\n        p->data = v;\n        p->next = NULL;\n        if (head == NULL)\n            head = p;\n        else\n            tail->next = p;\n        tail = p;\n    }\n    p = head;\n    while (p != NULL)\n    {\n        nxt = p->next;\n        p->next = pre;\n        pre = p;\n        p = nxt;\n    }\n    head = pre;\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "stdin": "5\n1 2 3 4 5\n",
+      "explanation": "结论：输出 5 4 3 2 1。推理：就地逆置需要三个指针，nxt 先保存后继防止断链，再把 p->next 指向前驱 pre，然后 pre、p 同步后移；循环结束时 pre 指向原尾结点，即新的头。易错点：若忘记保存 nxt，改完 p->next 就再也找不到后面的结点，链表当场断裂；逆置后必须 head = pre，否则 head 仍指向原来的第一个结点（现在是尾结点）。",
+      "tags": [
+        "链表",
+        "逆置",
+        "三指针"
+      ],
+      "knowledgeIds": [
+        "c-ch10-20"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-029",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Stu\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Stu a[4], t;\n    int i, j;\n\n    for (i = 0; i < 4; i++)\n        if (scanf(\"%d %d\", &a[i].num, &a[i].score) != 2)\n            return 1;\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < 3 - i; j++)\n            if (a[j].score < a[j + 1].score)\n            {\n                t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n            }\n    for (i = 0; i < 4; i++)\n        printf(\"%d:%d \", a[i].num, a[i].score);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n1 78 2 92 3 65 4 88\n```",
+      "answer": "2:92 4:88 1:78 3:65",
+      "code": "#include <stdio.h>\n\nstruct Stu\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Stu a[4], t;\n    int i, j;\n\n    for (i = 0; i < 4; i++)\n        if (scanf(\"%d %d\", &a[i].num, &a[i].score) != 2)\n            return 1;\n    for (i = 0; i < 3; i++)\n        for (j = 0; j < 3 - i; j++)\n            if (a[j].score < a[j + 1].score)\n            {\n                t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n            }\n    for (i = 0; i < 4; i++)\n        printf(\"%d:%d \", a[i].num, a[i].score);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "1 78 2 92 3 65 4 88\n",
+      "explanation": "结论：输出 2:92 4:88 1:78 3:65。推理：冒泡排序按 score 降序排列，交换时用同类型结构体变量 t 整体赋值，一次就把 num 与 score 一起搬走，学号不会错位。易错点：结构体可以直接用 = 整体赋值，这是它相对数组的一大便利；但比较必须逐成员进行，a[j] < a[j+1] 是非法的；内层循环上界 3-i 表示每轮把最小的沉到末尾。",
+      "tags": [
+        "结构体数组",
+        "排序",
+        "整体交换"
+      ],
+      "knowledgeIds": [
+        "c-ch10-05"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-030",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Pair\n{\n    int lo, hi;\n};\n\nstruct Pair makePair(int a, int b)\n{\n    struct Pair r;\n\n    if (a <= b)\n    {\n        r.lo = a;\n        r.hi = b;\n    }\n    else\n    {\n        r.lo = b;\n        r.hi = a;\n    }\n    return r;\n}\n\nint main(void)\n{\n    struct Pair p;\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    p = makePair(a, b);\n    printf(\"%d %d\\n\", p.lo, p.hi);\n    return 0;\n}\n```\n运行时输入：\n```\n9 3\n```",
+      "answer": "3 9",
+      "code": "#include <stdio.h>\n\nstruct Pair\n{\n    int lo, hi;\n};\n\nstruct Pair makePair(int a, int b)\n{\n    struct Pair r;\n\n    if (a <= b)\n    {\n        r.lo = a;\n        r.hi = b;\n    }\n    else\n    {\n        r.lo = b;\n        r.hi = a;\n    }\n    return r;\n}\n\nint main(void)\n{\n    struct Pair p;\n    int a, b;\n\n    if (scanf(\"%d %d\", &a, &b) != 2)\n        return 1;\n    p = makePair(a, b);\n    printf(\"%d %d\\n\", p.lo, p.hi);\n    return 0;\n}",
+      "stdin": "9 3\n",
+      "explanation": "结论：输出 3 9。推理：函数可以直接返回结构体，返回值是 r 的一份副本，main 用整体赋值接收，安全且直观。易错点：返回结构体要复制全部成员，结构体很大时应改为返回 malloc 得到的结构体指针，或用指针参数带回结果；绝不能返回局部结构体变量的地址，但返回结构体本身（值）是完全合法的，这两件事常被混淆。",
+      "tags": [
+        "返回结构体",
+        "值返回"
+      ],
+      "knowledgeIds": [
+        "c-ch10-10"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-031",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nstruct Rec\n{\n    int a, b;\n};\n\nint main(void)\n{\n    struct Rec r[3] = {{1, 2}, {3, 4}, {5, 6}};\n    struct Rec *p = r;\n    int i, s = 0;\n\n    for (i = 0; i < 3; i++)\n        s += (p + i)->a * (p + i)->b;\n    printf(\"%d %d\\n\", s, (int)sizeof(r) / (int)sizeof(struct Rec));\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "44 3",
+      "code": "#include <stdio.h>\n\nstruct Rec\n{\n    int a, b;\n};\n\nint main(void)\n{\n    struct Rec r[3] = {{1, 2}, {3, 4}, {5, 6}};\n    struct Rec *p = r;\n    int i, s = 0;\n\n    for (i = 0; i < 3; i++)\n        s += (p + i)->a * (p + i)->b;\n    printf(\"%d %d\\n\", s, (int)sizeof(r) / (int)sizeof(struct Rec));\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 44 3。推理：(p+i)->a 等价于 r[i].a，三项乘积 1×2 + 3×4 + 5×6 = 2+12+30 = 44；sizeof(r)/sizeof(struct Rec) 是求数组长度的标准写法，24/8 = 3。易错点：结构体含两个 int，考虑对齐后大小就是 8，没有额外填充；(p+i)->a 的括号不能省，p+i->a 会被解析成 p+(i->a)；这种求数组长度的方法在数组作函数参数后失效。",
+      "tags": [
+        "结构体数组",
+        "sizeof",
+        "指针访问"
+      ],
+      "knowledgeIds": [
+        "c-ch10-04"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cr-032",
+      "category": "c",
+      "type": "code_reading",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nunion Value\n{\n    int i;\n    double d;\n};\n\nstruct Tagged\n{\n    int type;\n    union Value v;\n};\n\nvoid show(struct Tagged t)\n{\n    if (t.type == 0)\n        printf(\"int %d\\n\", t.v.i);\n    else\n        printf(\"double %.1f\\n\", t.v.d);\n}\n\nint main(void)\n{\n    struct Tagged x, y;\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    x.type = 0;\n    x.v.i = n;\n    y.type = 1;\n    y.v.d = n / 2.0;\n    show(x);\n    show(y);\n    return 0;\n}\n```\n运行时输入：\n```\n7\n```",
+      "answer": "int 7\ndouble 3.5",
+      "code": "#include <stdio.h>\n\nunion Value\n{\n    int i;\n    double d;\n};\n\nstruct Tagged\n{\n    int type;\n    union Value v;\n};\n\nvoid show(struct Tagged t)\n{\n    if (t.type == 0)\n        printf(\"int %d\\n\", t.v.i);\n    else\n        printf(\"double %.1f\\n\", t.v.d);\n}\n\nint main(void)\n{\n    struct Tagged x, y;\n    int n;\n\n    if (scanf(\"%d\", &n) != 1)\n        return 1;\n    x.type = 0;\n    x.v.i = n;\n    y.type = 1;\n    y.v.d = n / 2.0;\n    show(x);\n    show(y);\n    return 0;\n}",
+      "stdin": "7\n",
+      "explanation": "结论：输出 int 7 与 double 3.5。推理：共用体本身不记录当前存的是哪个成员，所以要在结构体里额外放一个 type 作为标签，读取时先看标签再取对应成员，这就是标签联合。易错点：如果标签与实际写入的成员不一致，读出来的就是垃圾值；n / 2.0 中 2.0 是 double，若写成 n / 2 会先做整数除法得到 3，再赋值给 double 变成 3.0。",
+      "tags": [
+        "标签联合",
+        "共用体",
+        "类型标记"
+      ],
+      "knowledgeIds": [
+        "c-ch10-14"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-029",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[50];\n    int n, i;\n    float sum = 0.0f;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %f\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n; i++)\n        sum = /*__BLANK_1__*/;\n    printf(\"%.2f\\n\", /*__BLANK_2__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "sum + st[i].score",
+          "accepted": [
+            "sum += st[i].score"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "sum / n",
+          "accepted": [
+            "sum / (float)n"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[50];\n    int n, i;\n    float sum = 0.0f;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %f\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n; i++)\n        sum = /*__BLANK_1__*/;\n    printf(\"%.2f\\n\", /*__BLANK_2__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    float score;\n};\n\nint main(void)\n{\n    struct Student st[50];\n    int n, i;\n    float sum = 0.0f;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %f\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n; i++)\n        sum = sum + st[i].score;\n    printf(\"%.2f\\n\", sum / n);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n101 80.5\n102 90\n103 70\n",
+          "expected": "80.17"
+        },
+        {
+          "stdin": "1\n1 60\n",
+          "expected": "60.00"
+        },
+        {
+          "stdin": "4\n1 100\n2 0\n3 55.5\n4 44.5\n",
+          "expected": "50.00"
+        }
+      ],
+      "explanation": "结论：三组输入分别输出 80.17 / 60.00 / 50.00。推理：结构体数组用 st[i].num、st[i].score 访问成员，累加后除以 n 得平均分，%.2f 四舍五入到两位小数。易错点：scanf 读 float 成员要写 &st[i].score；sum 必须先置 0，否则是垃圾值；若用 int 相除会丢失小数部分，本题 sum 是 float 所以 sum / n 会自动提升。",
+      "tags": [
+        "结构体数组",
+        "求平均"
+      ],
+      "knowledgeIds": [
+        "c-ch10-04"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-030",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nstruct Student *findBest(struct Student *p, int n)\n{\n    struct Student *best = p;\n    int i;\n\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_1__*/ > best->score)\n            best = /*__BLANK_2__*/;\n    return best;\n}\n\nint main(void)\n{\n    struct Student st[50];\n    struct Student *q;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    q = findBest(st, n);\n    printf(\"%d %d\\n\", /*__BLANK_3__*/, q->score);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(p + i)->score",
+          "accepted": [
+            "p[i].score"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "p + i",
+          "accepted": [
+            "&p[i]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "q->num",
+          "accepted": [
+            "(*q).num"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nstruct Student *findBest(struct Student *p, int n)\n{\n    struct Student *best = p;\n    int i;\n\n    for (i = 1; i < n; i++)\n        if (/*__BLANK_1__*/ > best->score)\n            best = /*__BLANK_2__*/;\n    return best;\n}\n\nint main(void)\n{\n    struct Student st[50];\n    struct Student *q;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    q = findBest(st, n);\n    printf(\"%d %d\\n\", /*__BLANK_3__*/, q->score);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nstruct Student *findBest(struct Student *p, int n)\n{\n    struct Student *best = p;\n    int i;\n\n    for (i = 1; i < n; i++)\n        if ((p + i)->score > best->score)\n            best = p + i;\n    return best;\n}\n\nint main(void)\n{\n    struct Student st[50];\n    struct Student *q;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    q = findBest(st, n);\n    printf(\"%d %d\\n\", q->num, q->score);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n101 78\n102 95\n103 88\n104 60\n",
+          "expected": "102 95"
+        },
+        {
+          "stdin": "1\n7 99\n",
+          "expected": "7 99"
+        },
+        {
+          "stdin": "3\n1 50\n2 50\n3 49\n",
+          "expected": "1 50"
+        }
+      ],
+      "explanation": "结论：输出最高分学生的学号与成绩，并列时取最靠前者。推理：函数返回结构体指针而不是副本，(p + i)->score 与 p[i].score 完全等价；用严格大于比较，相等时不更新 best，因此保留靠前的记录。易错点：不能返回局部结构体变量的地址；箭头运算符 -> 只用于指针，结构体变量要用点运算符。",
+      "tags": [
+        "结构体指针",
+        "最高分"
+      ],
+      "knowledgeIds": [
+        "c-ch10-07"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-031",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Point\n{\n    int x, y;\n};\n\nvoid swap(struct Point *a, struct Point *b)\n{\n    /*__BLANK_1__*/ t = *a;\n\n    *a = *b;\n    *b = /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    struct Point p, q;\n\n    if (scanf(\"%d %d %d %d\", &p.x, &p.y, &q.x, &q.y) != 4)\n        return 1;\n    swap(/*__BLANK_3__*/);\n    printf(\"%d %d %d %d\\n\", p.x, p.y, q.x, q.y);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "struct Point",
+          "accepted": [
+            "struct Point "
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "t"
+        },
+        {
+          "index": 3,
+          "answer": "&p, &q"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Point\n{\n    int x, y;\n};\n\nvoid swap(struct Point *a, struct Point *b)\n{\n    /*__BLANK_1__*/ t = *a;\n\n    *a = *b;\n    *b = /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    struct Point p, q;\n\n    if (scanf(\"%d %d %d %d\", &p.x, &p.y, &q.x, &q.y) != 4)\n        return 1;\n    swap(/*__BLANK_3__*/);\n    printf(\"%d %d %d %d\\n\", p.x, p.y, q.x, q.y);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Point\n{\n    int x, y;\n};\n\nvoid swap(struct Point *a, struct Point *b)\n{\n    struct Point t = *a;\n\n    *a = *b;\n    *b = t;\n}\n\nint main(void)\n{\n    struct Point p, q;\n\n    if (scanf(\"%d %d %d %d\", &p.x, &p.y, &q.x, &q.y) != 4)\n        return 1;\n    swap(&p, &q);\n    printf(\"%d %d %d %d\\n\", p.x, p.y, q.x, q.y);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4\n",
+          "expected": "3 4 1 2"
+        },
+        {
+          "stdin": "0 0 9 9\n",
+          "expected": "9 9 0 0"
+        },
+        {
+          "stdin": "-1 -2 -3 -4\n",
+          "expected": "-3 -4 -1 -2"
+        }
+      ],
+      "explanation": "结论：交换后输出 3 4 1 2。推理：同类型结构体变量可以整体赋值，所以能用临时量 t 完成交换；但函数要修改 main 中的变量就必须传地址 &p、&q，形参是指针，用 *a 解引用得到整个结构体。易错点：若形参写成 struct Point a 则值传递，交换只发生在副本上，main 中不变，这是结构体传参最常见的错误。",
+      "tags": [
+        "指针传参",
+        "交换"
+      ],
+      "knowledgeIds": [
+        "c-ch10-09"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-032",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\n/* 返回 1 表示 a 早于 b，返回 0 表示 a 不早于 b */\nint earlier(struct Date a, struct Date b)\n{\n    if (a.y != b.y)\n        return /*__BLANK_1__*/;\n    if (a.m != b.m)\n        return a.m < b.m;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    struct Date a, b;\n\n    if (scanf(\"%d %d %d %d %d %d\", &a.y, &a.m, &a.d, &b.y, &b.m, &b.d) != 6)\n        return 1;\n    printf(\"%d\\n\", earlier(a, b));\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a.y < b.y"
+        },
+        {
+          "index": 2,
+          "answer": "a.d < b.d"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\n/* 返回 1 表示 a 早于 b，返回 0 表示 a 不早于 b */\nint earlier(struct Date a, struct Date b)\n{\n    if (a.y != b.y)\n        return /*__BLANK_1__*/;\n    if (a.m != b.m)\n        return a.m < b.m;\n    return /*__BLANK_2__*/;\n}\n\nint main(void)\n{\n    struct Date a, b;\n\n    if (scanf(\"%d %d %d %d %d %d\", &a.y, &a.m, &a.d, &b.y, &b.m, &b.d) != 6)\n        return 1;\n    printf(\"%d\\n\", earlier(a, b));\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\n/* 返回 1 表示 a 早于 b，返回 0 表示 a 不早于 b */\nint earlier(struct Date a, struct Date b)\n{\n    if (a.y != b.y)\n        return a.y < b.y;\n    if (a.m != b.m)\n        return a.m < b.m;\n    return a.d < b.d;\n}\n\nint main(void)\n{\n    struct Date a, b;\n\n    if (scanf(\"%d %d %d %d %d %d\", &a.y, &a.m, &a.d, &b.y, &b.m, &b.d) != 6)\n        return 1;\n    printf(\"%d\\n\", earlier(a, b));\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "2001 3 5 2001 4 1\n",
+          "expected": "1"
+        },
+        {
+          "stdin": "2002 1 1 2001 12 31\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "2000 6 6 2000 6 6\n",
+          "expected": "0"
+        }
+      ],
+      "explanation": "结论：依次输出 1 / 0 / 0。推理：日期比较要先比年，年相同再比月，月相同再比日，逐级短路返回；相等时不满足小于关系，返回 0。易错点：不能把三个字段拼成一个整数直接比大小而不考虑位数，也不能漏掉相等的情况；结构体作参数是值传递，函数内修改不影响实参。",
+      "tags": [
+        "嵌套结构体",
+        "日期比较"
+      ],
+      "knowledgeIds": [
+        "c-ch10-02"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-033",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *tail = NULL, *s, *p;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(/*__BLANK_1__*/);\n        s->data = x;\n        s->next = NULL;\n        if (head == NULL)\n            head = s;\n        else\n            /*__BLANK_2__*/;\n        tail = s;\n    }\n    for (p = head; p != NULL; p = /*__BLANK_3__*/)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "sizeof(Node)",
+          "accepted": [
+            "sizeof(Node) "
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "tail->next = s"
+        },
+        {
+          "index": 3,
+          "answer": "p->next"
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *tail = NULL, *s, *p;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(/*__BLANK_1__*/);\n        s->data = x;\n        s->next = NULL;\n        if (head == NULL)\n            head = s;\n        else\n            /*__BLANK_2__*/;\n        tail = s;\n    }\n    for (p = head; p != NULL; p = /*__BLANK_3__*/)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *tail = NULL, *s, *p;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node));\n        s->data = x;\n        s->next = NULL;\n        if (head == NULL)\n            head = s;\n        else\n            tail->next = s;\n        tail = s;\n    }\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5"
+        },
+        {
+          "stdin": "3\n7 8 9\n",
+          "expected": "7 8 9"
+        },
+        {
+          "stdin": "1\n42\n",
+          "expected": "42"
+        }
+      ],
+      "explanation": "结论：按输入顺序输出链表数据。推理：尾插法要用 tail 记住表尾，新结点先置 next 为 NULL，再让 tail->next 指向它并把 tail 后移；malloc 的字节数必须是 sizeof(Node) 而不是 sizeof(Node *)。易错点：释放链表必须先保存 head->next 再 free(head)，否则释放后无法找到后继；typedef 之后可以只写 Node，但结构体内部的 struct Node *next 仍要带 struct。",
+      "tags": [
+        "typedef",
+        "单链表",
+        "尾插"
+      ],
+      "knowledgeIds": [
+        "c-ch10-18"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-034",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nunion U\n{\n    int i;\n    char c[4];\n};\n\nint main(void)\n{\n    union U u;\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    u.i = x;\n    printf(\"%d %d\\n\", /*__BLANK_1__*/, /*__BLANK_2__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(int)sizeof(union U)",
+          "accepted": [
+            "sizeof(union U)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "u.c[0]"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nunion U\n{\n    int i;\n    char c[4];\n};\n\nint main(void)\n{\n    union U u;\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    u.i = x;\n    printf(\"%d %d\\n\", /*__BLANK_1__*/, /*__BLANK_2__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nunion U\n{\n    int i;\n    char c[4];\n};\n\nint main(void)\n{\n    union U u;\n    int x;\n\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    u.i = x;\n    printf(\"%d %d\\n\", (int)sizeof(union U), u.c[0]);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "1\n",
+          "expected": "4 1"
+        },
+        {
+          "stdin": "258\n",
+          "expected": "4 2"
+        },
+        {
+          "stdin": "16777216\n",
+          "expected": "4 0"
+        }
+      ],
+      "explanation": "结论：三组分别输出 4 1 / 4 2 / 4 0。推理：共用体所有成员共享同一块内存，大小等于最大成员并按最严格对齐取整，这里是 4 字节；x86 采用小端存储，最低有效字节放在低地址，即 c[0]，所以 1 的 c[0] 是 1，258（十六进制 102）的 c[0] 是 2，16777216（十六进制 1000000）的 c[0] 是 0。易错点：共用体不能同时保存多个成员的值，写 i 之后读 c 得到的是同一块内存的字节切分。",
+      "tags": [
+        "共用体",
+        "字节序"
+      ],
+      "knowledgeIds": [
+        "c-ch10-15"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-035",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = /*__BLANK_1__*/;\n    printf(\"%d %d\\n\", w, /*__BLANK_2__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "(enum Week)k",
+          "accepted": [
+            "k"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "SAT"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = /*__BLANK_1__*/;\n    printf(\"%d %d\\n\", w, /*__BLANK_2__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = (enum Week)k;\n    printf(\"%d %d\\n\", w, SAT);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\n",
+          "expected": "3 6"
+        },
+        {
+          "stdin": "1\n",
+          "expected": "1 6"
+        },
+        {
+          "stdin": "7\n",
+          "expected": "7 6"
+        }
+      ],
+      "explanation": "结论：输出 3 6 / 1 6 / 7 6。推理：枚举常量从显式指定值开始依次加 1，MON 是 1，则 TUE 到 SUN 依次是 2 到 7，SAT 为 6；枚举变量本质上是可以与整数互相转换的类型，把 int 赋给枚举变量需要强制类型转换。易错点：枚举不是字符串，printf 用 %d 输出的是它的整数值，输出星期英文名必须自己写 switch 或查字符串表。",
+      "tags": [
+        "枚举",
+        "取值"
+      ],
+      "knowledgeIds": [
+        "c-ch10-17"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-036",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Student st[50], t;\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < /*__BLANK_1__*/; j++)\n            if (/*__BLANK_2__*/)\n            {\n                t = st[j];\n                /*__BLANK_3__*/;\n                st[j + 1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", st[i].num, st[i].score);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n - 1 - i",
+          "accepted": [
+            "n - i - 1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "st[j].score < st[j + 1].score"
+        },
+        {
+          "index": 3,
+          "answer": "st[j] = st[j + 1]"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Student st[50], t;\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < /*__BLANK_1__*/; j++)\n            if (/*__BLANK_2__*/)\n            {\n                t = st[j];\n                /*__BLANK_3__*/;\n                st[j + 1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", st[i].num, st[i].score);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Student st[50], t;\n    int n, i, j;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 50)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 0; i < n - 1; i++)\n        for (j = 0; j < n - 1 - i; j++)\n            if (st[j].score < st[j + 1].score)\n            {\n                t = st[j];\n                st[j] = st[j + 1];\n                st[j + 1] = t;\n            }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", st[i].num, st[i].score);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n101 78\n102 95\n103 88\n104 60\n",
+          "expected": "102 95\n103 88\n101 78\n104 60"
+        },
+        {
+          "stdin": "1\n5 5\n",
+          "expected": "5 5"
+        },
+        {
+          "stdin": "3\n1 90\n2 90\n3 80\n",
+          "expected": "1 90\n2 90\n3 80"
+        }
+      ],
+      "explanation": "结论：按成绩从高到低输出学号与成绩，成绩相同的保持原有先后。推理：冒泡排序第 i 趟只需比较前 n-1-i 对相邻元素；结构体变量可以整体赋值，因此交换只需三步而不必逐成员交换；用严格小于比较才保证稳定性。易错点：写成 st[j] = st[j+1] 之前必须先把 st[j] 存入 t，否则数据被覆盖丢失。",
+      "tags": [
+        "结构体数组",
+        "排序"
+      ],
+      "knowledgeIds": [
+        "c-ch10-05"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-037",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n\nstruct Stat\n{\n    int max;\n    int min;\n    int sum;\n};\n\nstruct Stat calc(int a[], int n)\n{\n    struct Stat r;\n    int i;\n\n    r.max = a[0];\n    r.min = /*__BLANK_1__*/;\n    r.sum = 0;\n    for (i = 0; i < n; i++)\n    {\n        if (a[i] > r.max)\n            r.max = a[i];\n        if (/*__BLANK_2__*/)\n            r.min = a[i];\n        /*__BLANK_3__*/;\n    }\n    return r;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    struct Stat s;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    s = calc(a, n);\n    printf(\"%d %d %d\\n\", s.max, s.min, s.sum);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[0]"
+        },
+        {
+          "index": 2,
+          "answer": "a[i] < r.min"
+        },
+        {
+          "index": 3,
+          "answer": "r.sum = r.sum + a[i]",
+          "accepted": [
+            "r.sum += a[i]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\nstruct Stat\n{\n    int max;\n    int min;\n    int sum;\n};\n\nstruct Stat calc(int a[], int n)\n{\n    struct Stat r;\n    int i;\n\n    r.max = a[0];\n    r.min = /*__BLANK_1__*/;\n    r.sum = 0;\n    for (i = 0; i < n; i++)\n    {\n        if (a[i] > r.max)\n            r.max = a[i];\n        if (/*__BLANK_2__*/)\n            r.min = a[i];\n        /*__BLANK_3__*/;\n    }\n    return r;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    struct Stat s;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    s = calc(a, n);\n    printf(\"%d %d %d\\n\", s.max, s.min, s.sum);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nstruct Stat\n{\n    int max;\n    int min;\n    int sum;\n};\n\nstruct Stat calc(int a[], int n)\n{\n    struct Stat r;\n    int i;\n\n    r.max = a[0];\n    r.min = a[0];\n    r.sum = 0;\n    for (i = 0; i < n; i++)\n    {\n        if (a[i] > r.max)\n            r.max = a[i];\n        if (a[i] < r.min)\n            r.min = a[i];\n        r.sum = r.sum + a[i];\n    }\n    return r;\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    struct Stat s;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d\", &a[i]) != 1)\n            return 1;\n    s = calc(a, n);\n    printf(\"%d %d %d\\n\", s.max, s.min, s.sum);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5\n3 -1 7 0 2\n",
+          "expected": "7 -1 11"
+        },
+        {
+          "stdin": "1\n8\n",
+          "expected": "8 8 8"
+        },
+        {
+          "stdin": "4\n-5 -2 -9 -1\n",
+          "expected": "-1 -9 -17"
+        }
+      ],
+      "explanation": "结论：输出 7 -1 11 / 8 8 8 / -1 -9 -17。推理：函数返回结构体类型可以一次带回多个统计结果，这是结构体相较于普通返回值的重要用途；最大值与最小值的初值都取 a[0] 而不是 0，才能正确处理全为负数的情况。易错点：局部结构体 r 作为返回值是按值拷贝的，安全；但返回它的成员地址则是悬空指针。",
+      "tags": [
+        "结构体作返回值",
+        "统计"
+      ],
+      "knowledgeIds": [
+        "c-ch10-10"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-cc-038",
+      "category": "c",
+      "type": "code_completion",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序中有若干空白（/*__BLANK_n__*/），请填入恰当内容，使程序功能完整。\n```\n#include <stdio.h>\n#include <string.h>\n\nstruct Emp\n{\n    char name[16];\n    int salary;\n};\n\nint main(void)\n{\n    struct Emp e[20], *p;\n    char key[16];\n    int n, i, found = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%s %d\", e[i].name, &e[i].salary) != 2)\n            return 1;\n    if (scanf(\"%s\", key) != 1)\n        return 1;\n    for (p = /*__BLANK_1__*/; p < e + n; p++)\n        if (/*__BLANK_2__*/ == 0)\n        {\n            found = (int)(p - e);\n            break;\n        }\n    if (found < 0)\n        printf(\"NOT FOUND\\n\");\n    else\n        printf(\"%d %d\\n\", found, /*__BLANK_3__*/);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "e",
+          "accepted": [
+            "&e[0]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "strcmp(p->name, key)"
+        },
+        {
+          "index": 3,
+          "answer": "e[found].salary",
+          "accepted": [
+            "p->salary"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Emp\n{\n    char name[16];\n    int salary;\n};\n\nint main(void)\n{\n    struct Emp e[20], *p;\n    char key[16];\n    int n, i, found = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%s %d\", e[i].name, &e[i].salary) != 2)\n            return 1;\n    if (scanf(\"%s\", key) != 1)\n        return 1;\n    for (p = /*__BLANK_1__*/; p < e + n; p++)\n        if (/*__BLANK_2__*/ == 0)\n        {\n            found = (int)(p - e);\n            break;\n        }\n    if (found < 0)\n        printf(\"NOT FOUND\\n\");\n    else\n        printf(\"%d %d\\n\", found, /*__BLANK_3__*/);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <string.h>\n\nstruct Emp\n{\n    char name[16];\n    int salary;\n};\n\nint main(void)\n{\n    struct Emp e[20], *p;\n    char key[16];\n    int n, i, found = -1;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 20)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%s %d\", e[i].name, &e[i].salary) != 2)\n            return 1;\n    if (scanf(\"%s\", key) != 1)\n        return 1;\n    for (p = e; p < e + n; p++)\n        if (strcmp(p->name, key) == 0)\n        {\n            found = (int)(p - e);\n            break;\n        }\n    if (found < 0)\n        printf(\"NOT FOUND\\n\");\n    else\n        printf(\"%d %d\\n\", found, e[found].salary);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3\nTom 3000\nAmy 4500\nBob 2000\nAmy\n",
+          "expected": "1 4500"
+        },
+        {
+          "stdin": "3\nTom 3000\nAmy 4500\nBob 2000\nZoe\n",
+          "expected": "NOT FOUND"
+        },
+        {
+          "stdin": "1\nLi 100\nLi\n",
+          "expected": "0 100"
+        }
+      ],
+      "explanation": "结论：输出 1 4500 / NOT FOUND / 0 100。推理：字符数组成员比较必须用 strcmp 返回 0 判等，p - e 是指针相减得到下标；找到后 break 保证返回第一个匹配位置。易错点：字符串成员读入时写 e[i].name 而不是 &e[i].name，数组名本身就是地址；用 == 比较字符串比的是地址而非内容，这是本题最主要的陷阱。",
+      "tags": [
+        "结构体指针",
+        "字符串成员",
+        "查找"
+      ],
+      "knowledgeIds": [
+        "c-ch10-06"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-dbg-001",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 2 处）。\n```\n#include <stdio.h>\n#include <string.h>\n\nstruct Book\n{\n    char title[20];\n    int price;\n};\n\nint main(void)\n{\n    struct Book b;\n    char old[20];\n\n    if (scanf(\"%s %d\", b.title, b.price) != 2)\n        return 1;\n    if (scanf(\"%s\", old) != 1)\n        return 1;\n    strcpy(old, b.title);\n    printf(\"%s %d\\n\", b.title, b.price);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <string.h>\n\nstruct Book\n{\n    char title[20];\n    int price;\n};\n\nint main(void)\n{\n    struct Book b;\n    char old[20];\n\n    if (scanf(\"%s %d\", b.title, b.price) != 2)\n        return 1;\n    if (scanf(\"%s\", old) != 1)\n        return 1;\n    strcpy(old, b.title);\n    printf(\"%s %d\\n\", b.title, b.price);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "ABC 30\nXYZ\n",
+          "expected": "XYZ 30"
+        },
+        {
+          "stdin": "book 0\nnew\n",
+          "expected": "new 0"
+        },
+        {
+          "stdin": "a 100\nb\n",
+          "expected": "b 100"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <string.h>\n\nstruct Book\n{\n    char title[20];\n    int price;\n};\n\nint main(void)\n{\n    struct Book b;\n    char old[20];\n\n    if (scanf(\"%s %d\", b.title, &b.price) != 2)\n        return 1;\n    if (scanf(\"%s\", old) != 1)\n        return 1;\n    strcpy(b.title, old);\n    printf(\"%s %d\\n\", b.title, b.price);\n    return 0;\n}",
+      "bugs": [
+        "scanf 读取 int 成员必须传地址，写成 b.price 是把成员的值当地址用，会造成非法写入或结果错误",
+        "strcpy 的参数顺序是（目的，源），写反后修改的是 old，b.title 保持原样，输出与题意不符"
+      ],
+      "explanation": "结论：改正后输出 XYZ 30 / new 0 / b 100。推理：第一处错误是 scanf 少了取地址符，int 成员必须写 &b.price，而字符串成员 b.title 本身就是地址不能加 &；第二处错误是 strcpy 的目的与源写反。易错点：字符数组不能用 = 整体赋值，只能 strcpy；两个 scanf 之间要注意第一个 %s 只读一个单词。",
+      "tags": [
+        "结构体成员",
+        "scanf",
+        "strcpy"
+      ],
+      "knowledgeIds": [
+        "c-ch10-01"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-dbg-002",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *s, *p;\n    int n, i, x, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node *));\n        s->data = x;\n        s->next = NULL;\n        head = s;\n    }\n    for (p = head; p != NULL; p = p->next)\n        sum = sum + head->data;\n    printf(\"%d \", sum);\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *s, *p;\n    int n, i, x, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node *));\n        s->data = x;\n        s->next = NULL;\n        head = s;\n    }\n    for (p = head; p != NULL; p = p->next)\n        sum = sum + head->data;\n    printf(\"%d \", sum);\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4\n1 2 3 4\n",
+          "expected": "10 4 3 2 1"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7 7"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "0"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *s, *p;\n    int n, i, x, sum = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node));\n        s->data = x;\n        s->next = head;\n        head = s;\n    }\n    for (p = head; p != NULL; p = p->next)\n        sum = sum + p->data;\n    printf(\"%d \", sum);\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "bugs": [
+        "malloc 的字节数应是结点结构体的大小，写成指针大小只分配 8 字节，写入 data 与 next 会越界破坏内存",
+        "头插法必须让新结点的 next 指向原表头，置成 NULL 会丢失已有的整条链，最终只剩最后一个结点",
+        "遍历求和应累加当前结点的数据，写成 head->data 会把表头数据重复累加 n 次"
+      ],
+      "explanation": "结论：改正后头插法使链表逆序，输出 10 4 3 2 1 / 7 7 / 0。推理：三处错误分别是分配字节数不足、头插时断开原链、求和时累加了固定的表头数据。易错点：头插法建表的结果与输入顺序相反；释放链表要先记下 head->next 再 free，否则指针失效后无法继续。",
+      "tags": [
+        "链表",
+        "头插法",
+        "malloc",
+        "遍历"
+      ],
+      "knowledgeIds": [
+        "c-ch10-18"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-dbg-003",
+      "category": "c",
+      "type": "debug",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "下列程序存在错误，运行结果不正确。请找出错误并改正（共有 3 处）。\n```\n#include <stdio.h>\n\nstruct Score\n{\n    int a;\n    int b;\n};\n\nvoid adjust(struct Score *p, int k)\n{\n    p.a = p.a + k;\n    p->b = p->b + 2;\n}\n\nint main(void)\n{\n    struct Score s;\n    int k;\n\n    if (scanf(\"%d %d %d\", &s.a, &s.b, &k) != 3)\n        return 1;\n    adjust(s, k);\n    printf(\"%d %d\\n\", s.a, s.b);\n    return 0;\n}\n```",
+      "code": "#include <stdio.h>\n\nstruct Score\n{\n    int a;\n    int b;\n};\n\nvoid adjust(struct Score *p, int k)\n{\n    p.a = p.a + k;\n    p->b = p->b + 2;\n}\n\nint main(void)\n{\n    struct Score s;\n    int k;\n\n    if (scanf(\"%d %d %d\", &s.a, &s.b, &k) != 3)\n        return 1;\n    adjust(s, k);\n    printf(\"%d %d\\n\", s.a, s.b);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "3 4 5\n",
+          "expected": "8 8"
+        },
+        {
+          "stdin": "0 1 2\n",
+          "expected": "2 2"
+        },
+        {
+          "stdin": "-1 10 3\n",
+          "expected": "2 20"
+        }
+      ],
+      "fixed_code": "#include <stdio.h>\n\nstruct Score\n{\n    int a;\n    int b;\n};\n\nvoid adjust(struct Score *p, int k)\n{\n    p->a = p->a + k;\n    p->b = p->b * 2;\n}\n\nint main(void)\n{\n    struct Score s;\n    int k;\n\n    if (scanf(\"%d %d %d\", &s.a, &s.b, &k) != 3)\n        return 1;\n    adjust(&s, k);\n    printf(\"%d %d\\n\", s.a, s.b);\n    return 0;\n}",
+      "bugs": [
+        "p 是指针，访问成员必须用箭头运算符 ->，用点运算符会编译报错",
+        "题目要求把 b 翻倍，写成加 2 结果错误，属逻辑错误而非语法错误",
+        "要修改 main 中的结构体变量必须传地址，传值只能修改副本，函数返回后实参不变"
+      ],
+      "explanation": "结论：改正后 a 加 k、b 翻倍，输出 8 8 / 2 2 / 2 20。推理：三处错误分别是指针误用点运算符、把翻倍写成加 2、以及调用时漏掉取地址符。易错点：结构体指针访问成员写 p->a 等价于 (*p).a，注意 (*p).a 的括号不能省，因为点运算符优先级高于 *。",
+      "tags": [
+        "结构体指针",
+        "箭头运算符",
+        "传地址"
+      ],
+      "knowledgeIds": [
+        "c-ch10-09"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-008",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "定义结构体 struct Student（含学号 num 与成绩 score 两个 int 成员），读入 n 名学生的数据，输出成绩最高的学生的学号与成绩；若最高成绩并列，输出输入中最靠前的那一名。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；随后 n 行，每行两个整数：学号与成绩。\n\n输出格式：一行两个整数：学号与最高成绩，中间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "4\n101 78\n102 95\n103 88\n104 60\n",
+          "expected": "102 95"
+        },
+        {
+          "stdin": "1\n7 60\n",
+          "expected": "7 60"
+        },
+        {
+          "stdin": "3\n1 50\n2 50\n3 49\n",
+          "expected": "1 50"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nstruct Student\n{\n    int num;\n    int score;\n};\n\nint main(void)\n{\n    struct Student st[100];\n    int n, i, best = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 1; i < n; i++)\n        if (st[i].score > st[best].score)\n            best = i;\n    printf(\"%d %d\\n\", st[best].num, st[best].score);\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；随后 n 行，每行两个整数：学号与成绩。",
+      "output_format": "一行两个整数：学号与最高成绩，中间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    struct Student st[100];\n    int n, i, best = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n        if (scanf(\"%d %d\", &st[i].num, &st[i].score) != 2)\n            return 1;\n    for (i = 1; i < n; i++)\n        if (st[i].score > st[best].score)\n            best = i;\n    printf(\"%d %d\\n\", st[best].num, st[best].score);\n    return 0;\n}",
+      "explanation": "结论：输出 102 95 / 7 60 / 1 50。推理：用下标 best 记录当前最优者的位置而不是复制结构体，比较时用严格大于，保证并列时保留先出现的学生。易错点：结构体数组成员访问写 st[i].score；best 初值取 0 使 n 为 1 时也能正确输出；若改用 >= 比较，并列时会输出最后一名，与题意不符。",
+      "tags": [
+        "结构体数组",
+        "最值"
+      ],
+      "knowledgeIds": [
+        "c-ch10-04"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-009",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "用 typedef struct Node 定义单链表结点（含 int data 与 struct Node *next），按输入顺序建立不带头结点的单链表，再读入一个整数 x，把 x 插入到第一个大于 x 的结点之前；若所有结点都不大于 x，则插到表尾。最后按顺序输出链表并释放全部结点。\n\n输入格式：第一行一个整数 n（0 ≤ n ≤ 100）；第二行 n 个整数（升序，空格分隔）；第三行一个整数 x。\n\n输出格式：一行若干整数，为插入后链表的数据，相邻两个用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "5\n1 3 5 7 9\n6\n",
+          "expected": "1 3 5 6 7 9"
+        },
+        {
+          "stdin": "3\n2 4 6\n10\n",
+          "expected": "2 4 6 10"
+        },
+        {
+          "stdin": "0\n5\n",
+          "expected": "5"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct Node\n{\n    int data;\n    struct Node *next;\n} Node;\n\nint main(void)\n{\n    Node *head = NULL, *tail = NULL, *pre = NULL, *s, *p;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node));\n        s->data = x;\n        s->next = NULL;\n        if (head == NULL)\n            head = s;\n        else\n            tail->next = s;\n        tail = s;\n    }\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    s = (Node *)malloc(sizeof(Node));\n    s->data = x;\n    s->next = NULL;\n    p = head;\n    while (p != NULL && p->data <= x)\n    {\n        pre = p;\n        p = p->next;\n    }\n    if (pre == NULL)\n    {\n        s->next = head;\n        head = s;\n    }\n    else\n    {\n        s->next = p;\n        pre->next = s;\n    }\n    if (p == NULL)\n        tail = s;\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（0 ≤ n ≤ 100）；第二行 n 个整数（升序，空格分隔）；第三行一个整数 x。",
+      "output_format": "一行若干整数，为插入后链表的数据，相邻两个用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    Node *head = NULL, *tail = NULL, *pre = NULL, *s, *p;\n    int n, i, x;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > 100)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        if (scanf(\"%d\", &x) != 1)\n            return 1;\n        s = (Node *)malloc(sizeof(Node));\n        s->data = x;\n        s->next = NULL;\n        if (head == NULL)\n            head = s;\n        else\n            tail->next = s;\n        tail = s;\n    }\n    if (scanf(\"%d\", &x) != 1)\n        return 1;\n    s = (Node *)malloc(sizeof(Node));\n    s->data = x;\n    s->next = NULL;\n    p = head;\n    while (p != NULL && p->data <= x)\n    {\n        pre = p;\n        p = p->next;\n    }\n    if (pre == NULL)\n    {\n        s->next = head;\n        head = s;\n    }\n    else\n    {\n        s->next = p;\n        pre->next = s;\n    }\n    if (p == NULL)\n        tail = s;\n    for (p = head; p != NULL; p = p->next)\n        printf(\"%d \", p->data);\n    printf(\"\\n\");\n    while (head != NULL)\n    {\n        p = head;\n        head = head->next;\n        free(p);\n    }\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 1 3 5 6 7 9 / 2 4 6 10 / 5。推理：用 pre 记录 p 的前驱，循环在遇到第一个大于 x 的结点时停下；pre 为空说明插在表头，p 为空说明插在表尾，两种边界要分别处理。易错点：不带头结点的链表插入表头必须更新 head；新结点的 next 要在链接前先置好；释放时先保存后继再 free，否则链表断掉。",
+      "tags": [
+        "单链表",
+        "有序插入"
+      ],
+      "knowledgeIds": [
+        "c-ch10-19"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-010",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "定义共用体 union U（含 unsigned int u 与 unsigned char b[4] 两个成员），读入一个无符号整数，按低地址到高地址依次输出它在内存中占用的 4 个字节，每个字节用两位大写十六进制表示，字节之间用一个空格分隔。\n\n输入格式：一行一个无符号整数 x（0 ≤ x ≤ 4294967295）。\n\n输出格式：一行四个两位大写十六进制数，用空格分隔。",
+      "testCases": [
+        {
+          "stdin": "1\n",
+          "expected": "01 00 00 00"
+        },
+        {
+          "stdin": "305419896\n",
+          "expected": "78 56 34 12"
+        },
+        {
+          "stdin": "0\n",
+          "expected": "00 00 00 00"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nunion U\n{\n    unsigned int u;\n    unsigned char b[4];\n};\n\nint main(void)\n{\n    union U v;\n    unsigned int x;\n    int i;\n\n    if (scanf(\"%u\", &x) != 1)\n        return 1;\n    v.u = x;\n    for (i = 0; i < 4; i++)\n        printf(\"%02X \", v.b[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "一行一个无符号整数 x（0 ≤ x ≤ 4294967295）。",
+      "output_format": "一行四个两位大写十六进制数，用空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    union U v;\n    unsigned int x;\n    int i;\n\n    if (scanf(\"%u\", &x) != 1)\n        return 1;\n    v.u = x;\n    for (i = 0; i < 4; i++)\n        printf(\"%02X \", v.b[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "结论：输出 01 00 00 00 / 78 56 34 12 / 00 00 00 00。推理：共用体成员共享同一块内存，给 u 赋值后从 b 逐字节读出就是它的内存映像；305419896 即十六进制 12345678，输出为 78 56 34 12，说明 x86 平台采用小端存储，低位字节放在低地址。易错点：%02X 保证每字节两位且大写；用 char 而非 unsigned char 时超过 127 的字节会被当成负数，输出错误。",
+      "tags": [
+        "共用体",
+        "字节序",
+        "十六进制"
+      ],
+      "knowledgeIds": [
+        "c-ch10-15"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-011",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "定义枚举类型 enum Week，使 MON 为 1 并依次递增到 SUN 为 7。读入一个整数 k（1 到 7），用 switch 输出对应的英文星期名（Monday、Tuesday、Wednesday、Thursday、Friday、Saturday、Sunday），各占一行；k 不在范围内则不输出。\n\n输入格式：一行一个整数 k。\n\n输出格式：一行英文星期名。",
+      "testCases": [
+        {
+          "stdin": "1\n",
+          "expected": "Monday"
+        },
+        {
+          "stdin": "6\n",
+          "expected": "Saturday"
+        },
+        {
+          "stdin": "7\n",
+          "expected": "Sunday"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nenum Week { MON = 1, TUE, WED, THU, FRI, SAT, SUN };\n\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = (enum Week)k;\n    switch (w)\n    {\n        case MON: printf(\"Monday\\n\"); break;\n        case TUE: printf(\"Tuesday\\n\"); break;\n        case WED: printf(\"Wednesday\\n\"); break;\n        case THU: printf(\"Thursday\\n\"); break;\n        case FRI: printf(\"Friday\\n\"); break;\n        case SAT: printf(\"Saturday\\n\"); break;\n        case SUN: printf(\"Sunday\\n\"); break;\n    }\n    return 0;\n}",
+      "input_format": "一行一个整数 k。",
+      "output_format": "一行英文星期名。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    enum Week w;\n    int k;\n\n    if (scanf(\"%d\", &k) != 1 || k < 1 || k > 7)\n        return 1;\n    w = (enum Week)k;\n    switch (w)\n    {\n        case MON: printf(\"Monday\\n\"); break;\n        case TUE: printf(\"Tuesday\\n\"); break;\n        case WED: printf(\"Wednesday\\n\"); break;\n        case THU: printf(\"Thursday\\n\"); break;\n        case FRI: printf(\"Friday\\n\"); break;\n        case SAT: printf(\"Saturday\\n\"); break;\n        case SUN: printf(\"Sunday\\n\"); break;\n    }\n    return 0;\n}",
+      "explanation": "结论：输出 Monday / Saturday / Sunday。推理：枚举常量本质是整型常量，可以直接作为 case 标签，比用 1 到 7 这样的魔数可读性好得多；只指定 MON 为 1，其余自动依次加 1。易错点：每个 case 后必须写 break，否则会贯穿输出多个名字；枚举值不能作为 scanf 的输入对象直接读入，要先读 int 再转换。",
+      "tags": [
+        "枚举",
+        "switch"
+      ],
+      "knowledgeIds": [
+        "c-ch10-17"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-012",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "定义结构体 struct Date（含 int 成员 y、m、d），读入 n 个日期，输出其中最早的一个，格式为 年-月-日，月与日各占两位、不足补零。要求用一个独立函数比较两个日期的先后。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；随后 n 行，每行三个整数 y m d。\n\n输出格式：一行，形如 2000-12-31。",
+      "testCases": [
+        {
+          "stdin": "3\n2001 3 5\n2000 12 31\n2001 1 1\n",
+          "expected": "2000-12-31"
+        },
+        {
+          "stdin": "1\n1999 9 9\n",
+          "expected": "1999-09-09"
+        },
+        {
+          "stdin": "2\n2020 2 29\n2020 2 28\n",
+          "expected": "2020-02-28"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nstruct Date\n{\n    int y, m, d;\n};\n\nint earlier(struct Date a, struct Date b)\n{\n    if (a.y != b.y)\n        return a.y < b.y;\n    if (a.m != b.m)\n        return a.m < b.m;\n    return a.d < b.d;\n}\n\nint main(void)\n{\n    struct Date best, x;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    if (scanf(\"%d %d %d\", &best.y, &best.m, &best.d) != 3)\n        return 1;\n    for (i = 1; i < n; i++)\n    {\n        if (scanf(\"%d %d %d\", &x.y, &x.m, &x.d) != 3)\n            return 1;\n        if (earlier(x, best))\n            best = x;\n    }\n    printf(\"%d-%02d-%02d\\n\", best.y, best.m, best.d);\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；随后 n 行，每行三个整数 y m d。",
+      "output_format": "一行，形如 2000-12-31。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    struct Date best, x;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 1 || n > 100)\n        return 1;\n    if (scanf(\"%d %d %d\", &best.y, &best.m, &best.d) != 3)\n        return 1;\n    for (i = 1; i < n; i++)\n    {\n        if (scanf(\"%d %d %d\", &x.y, &x.m, &x.d) != 3)\n            return 1;\n        if (earlier(x, best))\n            best = x;\n    }\n    printf(\"%d-%02d-%02d\\n\", best.y, best.m, best.d);\n    return 0;\n}",
+      "explanation": "结论：输出 2000-12-31 / 1999-09-09 / 2020-02-28。推理：日期比较按年、月、日逐级判断，前面的字段不同就无需再看后面；结构体整体赋值使 best = x 一行就能更新最优值。易错点：%02d 才能把 9 月输出成 09；比较函数用值传递，不必担心修改实参；不能只比较日或只比较月。",
+      "tags": [
+        "嵌套结构体",
+        "日期"
+      ],
+      "knowledgeIds": [
+        "c-ch10-02"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-pg-013",
+      "category": "c",
+      "type": "programming",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "定义结构体 struct Complex（含 int 成员 re 与 im），实现两个函数：add 返回两复数之和，mul 返回两复数之积，两个函数都用结构体作参数和返回值。main 中读入两个复数的实部与虚部，第一行输出和，第二行输出积，均按“实部 虚部”格式。\n\n输入格式：一行四个整数，依次为 a 的实部、a 的虚部、b 的实部、b 的虚部。\n\n输出格式：两行，每行两个整数：实部与虚部，用空格分隔。第一行是和，第二行是积。",
+      "testCases": [
+        {
+          "stdin": "1 2 3 4\n",
+          "expected": "4 6\n-5 10"
+        },
+        {
+          "stdin": "0 0 5 -3\n",
+          "expected": "5 -3\n0 0"
+        },
+        {
+          "stdin": "-1 -1 -1 -1\n",
+          "expected": "-2 -2\n0 2"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nstruct Complex\n{\n    int re, im;\n};\n\nstruct Complex add(struct Complex a, struct Complex b)\n{\n    struct Complex r;\n\n    r.re = a.re + b.re;\n    r.im = a.im + b.im;\n    return r;\n}\n\nstruct Complex mul(struct Complex a, struct Complex b)\n{\n    struct Complex r;\n\n    r.re = a.re * b.re - a.im * b.im;\n    r.im = a.re * b.im + a.im * b.re;\n    return r;\n}\n\nint main(void)\n{\n    struct Complex a, b, s, p;\n\n    if (scanf(\"%d %d %d %d\", &a.re, &a.im, &b.re, &b.im) != 4)\n        return 1;\n    s = add(a, b);\n    p = mul(a, b);\n    printf(\"%d %d\\n\", s.re, s.im);\n    printf(\"%d %d\\n\", p.re, p.im);\n    return 0;\n}",
+      "input_format": "一行四个整数，依次为 a 的实部、a 的虚部、b 的实部、b 的虚部。",
+      "output_format": "两行，每行两个整数：实部与虚部，用空格分隔。第一行是和，第二行是积。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    struct Complex a, b, s, p;\n\n    if (scanf(\"%d %d %d %d\", &a.re, &a.im, &b.re, &b.im) != 4)\n        return 1;\n    s = add(a, b);\n    p = mul(a, b);\n    printf(\"%d %d\\n\", s.re, s.im);\n    printf(\"%d %d\\n\", p.re, p.im);\n    return 0;\n}",
+      "explanation": "结论：三组分别输出 4 6 与 -5 10 / 5 -3 与 0 0 / -2 -2 与 0 2。推理：复数乘法按 (a+bi)(c+di) = (ac-bd) + (ad+bc)i 展开；函数返回结构体是按值返回一份拷贝，可以安全地把多个结果一次带回，这正是结构体作返回类型的意义。易错点：不能返回局部结构体成员的地址；虚部相乘时符号容易写错，ac-bd 的减号是关键。",
+      "tags": [
+        "结构体作返回值",
+        "复数运算"
+      ],
+      "knowledgeIds": [
+        "c-ch10-10"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-044",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在 int 占 4 字节、按自然对齐编译的常见平台上，定义 struct S { char c; int i; }; 则 sizeof(struct S) 的值是（　　）。",
+      "options": [
+        "5",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": 2,
+      "explanation": "结论：选 C，即 8 字节。推理：编译器按成员中对齐要求最严格的类型对齐，这里是 4 字节的 int，所以 char 之后要补 3 个填充字节使 i 落在 4 的整数倍地址上，总大小 1+3+4=8。易错点：结构体大小绝不是各成员大小之和；若把成员顺序改为 char、char、int，则只需补 2 个填充字节共 8 字节；改为 char、int、char 则要补 3+3 共 12 字节，可见声明顺序直接影响填充量。",
+      "tags": [
+        "结构体",
+        "sizeof",
+        "内存对齐"
+      ],
+      "knowledgeIds": [
+        "c-ch10-03"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-045",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "定义 union U { int i; char c[9]; }; 在 int 占 4 字节的常见平台上，sizeof(union U) 的值是（　　）。",
+      "options": [
+        "9",
+        "12",
+        "13",
+        "4"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B，即 12 字节。推理：共用体大小取所有成员中最大的那个，再按最严格对齐要求向上取整；最大成员是 9 字节的字符数组，而对齐单位是 int 的 4 字节，9 向上取整到 4 的倍数就是 12。易错点：不要与结构体混淆，结构体是各成员之和加填充；共用体的所有成员首地址相同，同一时刻只有一个成员的值有意义。",
+      "tags": [
+        "共用体",
+        "sizeof"
+      ],
+      "knowledgeIds": [
+        "c-ch10-14"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-046",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "已知 struct Node { int data; struct Node *next; }; 且 struct Node *p 指向一个结点，则与 (*p).data 等价的写法是（　　）。",
+      "options": [
+        "p.data",
+        "p->data",
+        "*p.data",
+        "p>>data"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：箭头运算符 -> 专门用于通过指针访问成员，p->data 就是 (*p).data 的简写，两者的括号不可省略，因为点运算符的优先级高于单目 *。易错点：p.data 用于结构体变量而非指针，编译报错；*p.data 会先算 p.data 再解引用，语法与语义都不对；C 语言没有 >> 这样的成员访问运算符。",
+      "tags": [
+        "结构体指针",
+        "箭头运算符"
+      ],
+      "knowledgeIds": [
+        "c-ch10-06"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-047",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "把结构体变量作为实参传给函数（形参为同类型的结构体变量），在函数内修改形参的成员，则（　　）。",
+      "options": [
+        "实参对应成员也随之改变",
+        "实参不变，因为结构体传参是值传递，函数得到的是副本",
+        "编译不通过，结构体不能作函数参数",
+        "只有当成员是指针时实参才会改变"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：结构体变量作参数时按值传递，编译器把整个结构体复制一份给形参，函数内的修改只作用于副本；要修改实参必须传结构体指针，并在函数内用 -> 访问成员。易错点：值传递的开销与结构体大小成正比，成员很多时通常也改用指针传递以提高效率，这既是正确性也是性能问题。",
+      "tags": [
+        "值传递",
+        "函数参数"
+      ],
+      "knowledgeIds": [
+        "c-ch10-08"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-048",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "定义 enum E { A = 3, B, C = 6, D }; 则 B 和 D 的值分别是（　　）。",
+      "options": [
+        "4 和 7",
+        "4 和 6",
+        "3 和 6",
+        "5 和 7"
+      ],
+      "answer": 0,
+      "explanation": "结论：选 A。推理：枚举常量若未显式赋值，就取前一个常量的值加 1，所以 B 是 4；C 被显式指定为 6 后，D 又从 6 递增得到 7。易错点：枚举值不是下标也不从 0 开始，一旦显式赋值就会改变后续常量的推导结果；枚举常量的值必须在编译期确定，不能运行时修改。",
+      "tags": [
+        "枚举",
+        "取值规则"
+      ],
+      "knowledgeIds": [
+        "c-ch10-17"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-sc-049",
+      "category": "c",
+      "type": "single_choice",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于 typedef 与 #define，下列说法正确的是（　　）。",
+      "options": [
+        "两者完全等价，只是写法不同",
+        "typedef 在编译阶段处理，为已有类型起一个新名字；#define 在预处理阶段做简单的文本替换",
+        "typedef 只能用于基本类型，不能用于结构体和指针",
+        "#define 会给类型做语法检查，比 typedef 更安全"
+      ],
+      "answer": 1,
+      "explanation": "结论：选 B。推理：typedef struct Node {...} Node; 之后 Node 就是一个真正的类型名，参与语法分析；而 #define INT_PTR int* 只是把文本原样替换，写 INT_PTR a, b; 时只有 a 是指针，b 仍是 int，这是经典陷阱。易错点：typedef 不产生新类型，只是别名；它可用于结构体、指针、数组、函数指针等任何类型。",
+      "tags": [
+        "typedef",
+        "#define",
+        "区别"
+      ],
+      "knowledgeIds": [
+        "c-ch10-12"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-fb-003",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在 int 占 4 字节、按自然对齐的平台上，struct T { char c; int i; }; 的 sizeof 值为 8，则其中填充字节共有 ______ 个。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "3",
+          "accepted": [
+            "三",
+            "3 个"
+          ]
+        }
+      ],
+      "explanation": "结论：填 3。推理：c 占 1 字节后，为了让 i 的地址是 4 的倍数，编译器在 c 之后插入 3 个填充字节，再加 i 的 4 字节共 8 字节。易错点：填充字节的内容是随机的，不能用 sizeof 减去各成员大小以外的方式推断成员偏移；调整成员声明顺序可以减少填充，是嵌入式开发中常用的省内存手段。",
+      "tags": [
+        "结构体",
+        "填充字节"
+      ],
+      "knowledgeIds": [
+        "c-ch10-03"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-fb-004",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "设 L 是带头结点的单链表的头指针，则链表为空（不含任何数据结点）的判定条件是 ______。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "L->next == NULL",
+          "accepted": [
+            "L->next==NULL",
+            "L->next == 0",
+            "NULL == L->next"
+          ]
+        }
+      ],
+      "explanation": "结论：填 L->next == NULL。推理：带头结点时头结点始终存在，头指针 L 永不为 NULL，链表中是否有数据结点取决于 L->next；L->next 为空说明没有数据结点。易错点：不要与不带头结点的链表混淆，那种情况下判空条件是 L == NULL；这也是引入头结点的价值所在，插入删除表头元素时无需特殊处理。",
+      "tags": [
+        "带头结点链表",
+        "判空"
+      ],
+      "knowledgeIds": [
+        "c-ch10-18"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-fb-005",
+      "category": "c",
+      "type": "fill_blank",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "共用体（union）变量的各个成员首地址 ______（填“相同”或“不同”），因此同一时刻只有一个成员的值是有效的。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "相同",
+          "accepted": [
+            "一样",
+            "同一"
+          ]
+        }
+      ],
+      "explanation": "结论：填“相同”。推理：共用体的全部成员共用同一段内存，起始地址一致，大小等于最大成员的大小并按对齐取整；对某个成员赋值会覆盖其他成员原来的内容。易错点：不能同时读取多个成员期望它们各自保持独立的值；共用体常用于节省内存或按字节查看一个数据的内部表示，例如判断大小端。",
+      "tags": [
+        "共用体",
+        "内存共享"
+      ],
+      "knowledgeIds": [
+        "c-ch10-13"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-tf-001",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "同类型的两个结构体变量之间可以用赋值运算符整体赋值，赋值后各成员的值分别相等。",
+      "answer": true,
+      "explanation": "结论：正确。推理：C 语言允许同类型结构体变量整体赋值，编译器逐成员复制，因此 struct Point p, q; p = q; 之后 p.x==q.x、p.y==q.y。易错点：整体赋值只限同类型的结构体变量之间，不能把结构体赋给它的成员，也不能用 == 直接比较两个结构体是否相等，必须逐成员比较。",
+      "tags": [
+        "结构体",
+        "整体赋值"
+      ],
+      "knowledgeIds": [
+        "c-ch10-01"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "c-ch10-tf-002",
+      "category": "c",
+      "type": "true_false",
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "共用体变量的所有成员可以同时保存各自被赋予的值，互不影响。",
+      "answer": false,
+      "explanation": "结论：错误。推理：共用体的所有成员共享同一段内存，后赋值的成员会覆盖先前成员的内容，所以任一时刻只有最后一次赋值的成员有意义。易错点：这与结构体形成鲜明对比，结构体各成员各占独立空间；判断机器字节序、按字节拆分数据正是利用了共用体“共享内存”的特性，而不是“各自独立”。",
+      "tags": [
+        "共用体",
+        "成员共存"
+      ],
+      "knowledgeIds": [
+        "c-ch10-13"
+      ],
+      "source": "变式（源自 c-ch10 既有题目，按 06_变式出题方法论.md 改变数值/结构/情境，答案重新实机验证）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
     }
   ]
 }

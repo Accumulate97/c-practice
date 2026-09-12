@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "5a78c14973d07297",
+  "content_sha": "04d5ce12c503898e",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1924,
+  "count": 1974,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -15316,6 +15316,674 @@
       "chapter": "第10章 结构体与共用体",
       "section": "10.2 填空题",
       "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-013",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体",
+        "成员访问"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-014",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "sizeof",
+        "内存对齐"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-015",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "嵌套结构体",
+        "初始化"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-016",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体数组",
+        "遍历求和"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-017",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体数组",
+        "查找"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-018",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体指针",
+        "->运算符"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-019",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "指针遍历结构体数组",
+        "指针相减"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-020",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体作参数",
+        "值传递"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-021",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "指针传递",
+        "结构体整体修改"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-022",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "typedef",
+        "#define",
+        "sizeof"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-023",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "共用体",
+        "sizeof",
+        "成员共享"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-024",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "共用体",
+        "字节序",
+        "拆解整数"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-025",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "枚举",
+        "取值规则"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-026",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "链表",
+        "创建与释放",
+        "malloc"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-027",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "链表",
+        "查找",
+        "位置"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-028",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "链表",
+        "逆置",
+        "三指针"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-029",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体数组",
+        "排序",
+        "整体交换"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-030",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "返回结构体",
+        "值返回"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-031",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "结构体数组",
+        "sizeof",
+        "指针访问"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cr-032",
+      "file": "c-ch10.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "标签联合",
+        "共用体",
+        "类型标记"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_reading",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-029",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "结构体数组",
+        "求平均"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-030",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "结构体指针",
+        "最高分"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-031",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "指针传参",
+        "交换"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-032",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "嵌套结构体",
+        "日期比较"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-033",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "typedef",
+        "单链表",
+        "尾插"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-034",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "共用体",
+        "字节序"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-035",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "枚举",
+        "取值"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-036",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "结构体数组",
+        "排序"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-037",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "结构体作返回值",
+        "统计"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-cc-038",
+      "file": "c-ch10.json",
+      "title": "下列程序中有若干空白",
+      "tags": [
+        "结构体指针",
+        "字符串成员",
+        "查找"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "code_completion",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-dbg-001",
+      "file": "c-ch10.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "结构体成员",
+        "scanf",
+        "strcpy"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-dbg-002",
+      "file": "c-ch10.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "链表",
+        "头插法",
+        "malloc",
+        "遍历"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-dbg-003",
+      "file": "c-ch10.json",
+      "title": "下列程序存在错误",
+      "tags": [
+        "结构体指针",
+        "箭头运算符",
+        "传地址"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "debug",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-008",
+      "file": "c-ch10.json",
+      "title": "定义结构体 struct Student",
+      "tags": [
+        "结构体数组",
+        "最值"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-009",
+      "file": "c-ch10.json",
+      "title": "用 typedef struct Node 定义单链表结点",
+      "tags": [
+        "单链表",
+        "有序插入"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-010",
+      "file": "c-ch10.json",
+      "title": "定义共用体 union U",
+      "tags": [
+        "共用体",
+        "字节序",
+        "十六进制"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-011",
+      "file": "c-ch10.json",
+      "title": "定义枚举类型 enum Week",
+      "tags": [
+        "枚举",
+        "switch"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-012",
+      "file": "c-ch10.json",
+      "title": "定义结构体 struct Date",
+      "tags": [
+        "嵌套结构体",
+        "日期"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-pg-013",
+      "file": "c-ch10.json",
+      "title": "定义结构体 struct Complex",
+      "tags": [
+        "结构体作返回值",
+        "复数运算"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.5 变式练习（代码类）",
+      "type": "programming",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-044",
+      "file": "c-ch10.json",
+      "title": "在 int 占 4 字节、按自然对齐编译的常见平台上",
+      "tags": [
+        "结构体",
+        "sizeof",
+        "内存对齐"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-045",
+      "file": "c-ch10.json",
+      "title": "定义 union U { int i",
+      "tags": [
+        "共用体",
+        "sizeof"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-046",
+      "file": "c-ch10.json",
+      "title": "已知 struct Node { int data",
+      "tags": [
+        "结构体指针",
+        "箭头运算符"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-047",
+      "file": "c-ch10.json",
+      "title": "把结构体变量作为实参传给函数",
+      "tags": [
+        "值传递",
+        "函数参数"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-048",
+      "file": "c-ch10.json",
+      "title": "定义 enum E { A = 3",
+      "tags": [
+        "枚举",
+        "取值规则"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-sc-049",
+      "file": "c-ch10.json",
+      "title": "关于 typedef 与 #define",
+      "tags": [
+        "typedef",
+        "#define",
+        "区别"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "single_choice",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-fb-003",
+      "file": "c-ch10.json",
+      "title": "在 int 占 4 字节、按自然对齐的平台上",
+      "tags": [
+        "结构体",
+        "填充字节"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-fb-004",
+      "file": "c-ch10.json",
+      "title": "设 L 是带头结点的单链表的头指针",
+      "tags": [
+        "带头结点链表",
+        "判空"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-fb-005",
+      "file": "c-ch10.json",
+      "title": "共用体",
+      "tags": [
+        "共用体",
+        "内存共享"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "fill_blank",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-tf-001",
+      "file": "c-ch10.json",
+      "title": "同类型的两个结构体变量之间可以用赋值运算符整体赋值",
+      "tags": [
+        "结构体",
+        "整体赋值"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "true_false",
+      "category": "c"
+    },
+    {
+      "id": "c-ch10-tf-002",
+      "file": "c-ch10.json",
+      "title": "共用体变量的所有成员可以同时保存各自被赋予的值",
+      "tags": [
+        "共用体",
+        "成员共存"
+      ],
+      "chapter": "第10章 结构体与共用体",
+      "section": "10.4 变式练习（概念类）",
+      "type": "true_false",
       "category": "c"
     },
     {
