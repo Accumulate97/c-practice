@@ -1,0 +1,2357 @@
+{
+  "category": "ds",
+  "chapter": "第8章 排序",
+  "problems": [
+    {
+      "id": "ds-ch08-sc-001",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "排序算法的\"稳定性\"是指（　）。",
+      "options": [
+        "关键字相同的多个记录，排序后它们的相对次序保持不变",
+        "排序算法对任何输入数据都能正确结束",
+        "排序结果是唯一确定的",
+        "排序过程中记录的移动次数达到最少"
+      ],
+      "answer": 0,
+      "explanation": "稳定性的准确定义：设 ki = kj（i < j），若排序后 ri 仍在 rj 之前，则称算法稳定，否则不稳定。它只关心\"同关键字记录\"的相对次序，与能否正确结束、结果是否唯一、移动多少都无关。当记录是复合结构（如按成绩排序学生、成绩相同还要保留原学号顺序）时，稳定性有实际意义。易错点：不稳定不代表结果错误——排序后关键字序列仍然有序，只是同值记录可能换了位置。",
+      "tags": [
+        "排序",
+        "稳定性"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-002",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列各组排序算法中，全部属于稳定排序的一组是（　）。",
+      "options": [
+        "直接插入排序、冒泡排序、归并排序、基数排序",
+        "快速排序、希尔排序、堆排序、简单选择排序",
+        "直接插入排序、快速排序、归并排序、堆排序",
+        "冒泡排序、希尔排序、基数排序、简单选择排序"
+      ],
+      "answer": 0,
+      "explanation": "常用内部排序的稳定性可记成口诀\"快些选一堆\"——快速排序、希尔排序、简单选择排序、堆排序这四种不稳定，其余（直接插入、折半插入、冒泡、归并、基数、计数排序）都稳定。原因在于前四者都会做\"跨越多个位置的交换或跳跃\"：快排以枢轴划分把同值记录甩到两侧，希尔按增量分组使同值记录落入不同子序列，选择与堆排序把远距离元素直接换到前面。易错点：归并排序虽也移动元素，但合并时遇到相等关键字总是先取前一个序列的元素，故保持稳定。",
+      "tags": [
+        "稳定性",
+        "排序算法"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-tf-001",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "不稳定的排序算法一定比稳定的排序算法效率低。",
+      "answer": false,
+      "explanation": "错误。稳定性与效率没有必然联系：堆排序不稳定，时间复杂度却是 O(n log₂n)；冒泡排序稳定，时间复杂度只有 O(n²)；快速排序不稳定，但平均性能在所有内部排序中最好。实际上正是\"允许跨距离交换\"才让快排、堆排达到 O(n log n)。若确实需要稳定，可以把原始下标作为第二关键字，或改用归并排序，代价是额外的空间或时间开销，而不是说稳定算法天生更快。",
+      "tags": [
+        "稳定性",
+        "效率"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-fb-001",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "按排序过程中待排序记录是否全部存放在内存中，排序可分为___(1)___与___(2)___两大类；衡量排序算法性能的两个主要指标是___(3)___与___(4)___。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "内部排序",
+          "accepted": [
+            "内部排序"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "外部排序",
+          "accepted": [
+            "外部排序"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "时间开销",
+          "accepted": [
+            "时间开销",
+            "时间复杂度",
+            "时间代价",
+            "关键字的比较次数与记录的移动次数"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "空间开销",
+          "accepted": [
+            "空间开销",
+            "空间复杂度",
+            "空间代价",
+            "辅助空间"
+          ]
+        }
+      ],
+      "explanation": "内部排序在内存中一次完成；外部排序因记录太多无法全部装入内存，需要在内存与外存之间多次交换数据，其性能还要额外考虑外存读写次数。评价内部排序通常看三方面：时间复杂度（由关键字比较次数与记录移动次数决定）、空间复杂度（辅助存储空间）、以及算法的稳定性。易错点：不能只说\"速度\"，因为比较次数与移动次数在数量级上可能不同，且对大记录而言移动代价远高于比较代价。",
+      "tags": [
+        "内部排序",
+        "外部排序",
+        "性能指标"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-001",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\ntypedef struct\n{\n    int key;\n    int tag;\n} Rec;\n\nint main(void)\n{\n    Rec a[6] = {{3,1},{1,2},{3,3},{2,4},{1,5},{4,6}};\n    int n = 6, i, j, flag, cmp = 0, swp = 0;\n\n    for (i = 0; i < n - 1; i++)\n    {\n        flag = 0;\n        for (j = 0; j < n - 1 - i; j++)\n        {\n            cmp++;\n            if (a[j].key > a[j + 1].key)\n            {\n                Rec t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n                swp++;\n                flag = 1;\n            }\n        }\n        if (flag == 0)\n            break;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d/%d \", a[i].key, a[i].tag);\n    printf(\"\\n%d %d\\n\", cmp, swp);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "1/2 1/5 2/4 3/1 3/3 4/6\n14 6",
+      "code": "#include <stdio.h>\n\ntypedef struct\n{\n    int key;\n    int tag;\n} Rec;\n\nint main(void)\n{\n    Rec a[6] = {{3,1},{1,2},{3,3},{2,4},{1,5},{4,6}};\n    int n = 6, i, j, flag, cmp = 0, swp = 0;\n\n    for (i = 0; i < n - 1; i++)\n    {\n        flag = 0;\n        for (j = 0; j < n - 1 - i; j++)\n        {\n            cmp++;\n            if (a[j].key > a[j + 1].key)\n            {\n                Rec t = a[j];\n                a[j] = a[j + 1];\n                a[j + 1] = t;\n                swp++;\n                flag = 1;\n            }\n        }\n        if (flag == 0)\n            break;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d/%d \", a[i].key, a[i].tag);\n    printf(\"\\n%d %d\\n\", cmp, swp);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "每个记录带 key（排序关键字）与 tag（原始编号）两个字段，用 tag 可以直观检验稳定性。冒泡只在 a[j].key > a[j+1].key（严格大于）时交换，相等不交换，所以同值记录不会越过彼此：key = 3 的两个记录 tag 仍是 1 在前 3 在后，key = 1 的两个记录 tag 仍是 2 在前 5 在后，说明冒泡排序稳定。计数方面：前三趟各比较 5、4、3 次并分别交换 3、2、1 次，第四趟比较 2 次无交换触发提前结束，共比较 14 次、交换 6 次。易错点：把条件写成 >= 就会破坏稳定性；带 flag 的改进版最好情况只需 n−1 次比较。",
+      "tags": [
+        "冒泡排序",
+        "稳定性"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "vizIds": [
+        "sort-bubble"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-002",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {4, 2, 7, 2, 9, 1, 5, 3};\n    int n = 8, i, j, inv = 0;\n\n    for (i = 0; i < n - 1; i++)\n        for (j = i + 1; j < n; j++)\n            if (a[i] > a[j])\n                inv++;\n    printf(\"%d\\n\", inv);\n    for (i = 0; i < n - 1; i++)\n        if (a[i] > a[i + 1])\n            break;\n    printf(\"%s\\n\", i == n - 1 ? \"SORTED\" : \"UNSORTED\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "14\nUNSORTED",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {4, 2, 7, 2, 9, 1, 5, 3};\n    int n = 8, i, j, inv = 0;\n\n    for (i = 0; i < n - 1; i++)\n        for (j = i + 1; j < n; j++)\n            if (a[i] > a[j])\n                inv++;\n    printf(\"%d\\n\", inv);\n    for (i = 0; i < n - 1; i++)\n        if (a[i] > a[i + 1])\n            break;\n    printf(\"%s\\n\", i == n - 1 ? \"SORTED\" : \"UNSORTED\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "第一个二重循环统计\"逆序对\"个数，即满足 i < j 且 a[i] > a[j] 的下标对数量：以 4 开头的有 (4,2)(4,2)(4,1)(4,3) 共 4 个，以 2(下标1) 开头的 1 个，以 7 开头的 4 个，以 2(下标3) 开头的 1 个，以 9 开头的 3 个，以 5 开头的 1 个，合计 14 个。逆序对数正好是序列\"离有序有多远\"的度量，也是基于交换的排序算法所需交换次数的下界。第二个循环一旦发现相邻逆序就 break，此时 i = 0 ≠ n−1，故输出 UNSORTED。易错点：循环正常结束时 i 的值是 n−1 而不是 n，判断条件要写 i == n − 1。",
+      "tags": [
+        "逆序对",
+        "有序性判定"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-003",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "对 n 个记录的顺序表作直接插入排序，当初始序列已经按关键字递增有序时，关键字的比较次数与记录的移动次数分别为（　）。",
+      "options": [
+        "n − 1 次比较，0 次移动",
+        "n 次比较，n 次移动",
+        "n(n−1)/2 次比较，n(n−1)/2 次移动",
+        "(n+2)(n−1)/2 次比较，(n+4)(n−1)/2 次移动"
+      ],
+      "answer": 0,
+      "explanation": "直接插入排序每趟先用 r[i] 与 r[i−1] 比较一次，若不满足 r[i] < r[i−1] 就不进入插入分支。序列已正序时，n−1 趟每趟只比较 1 次，共 n−1 次；一次移动也不发生，这是最好情况，时间复杂度 O(n)。相对地，逆序是最坏情况：比较 (n+2)(n−1)/2 次、移动 (n+4)(n−1)/2 次，为 O(n²)。易错点：D 选项是最坏情形的公式，不是最好情形；平均情况（随机序列）比较与移动均约为 n²/4，仍是 O(n²)。",
+      "tags": [
+        "直接插入排序",
+        "最好情况"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-004",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "关于折半插入排序，下列叙述正确的是（　）。",
+      "options": [
+        "关键字的比较次数与初始序列的排列无关，约为 O(n log₂n)，但记录的移动次数仍为 O(n²)",
+        "比较次数与移动次数都降为 O(n log₂n)",
+        "它是一种不稳定的排序方法",
+        "它既可用于顺序存储，也可用于链式存储的顺序表"
+      ],
+      "answer": 0,
+      "explanation": "折半插入排序只是把\"确定插入位置\"的过程改成折半查找，比较次数固定为 Σ⌈log₂i⌉ ≈ n log₂n，与初始序列无关；但插入时仍要把插入点之后的记录逐个后移，移动次数与直接插入完全相同，最坏仍为 O(n²)，所以总体时间复杂度还是 O(n²)。它继承了直接插入的稳定性（相等时 low = mid + 1 使新记录插在同值记录之后）。折半查找要求随机访问，故只能用于顺序存储。易错点：以为\"折半\"能把整体复杂度降到 O(n log n)。",
+      "tags": [
+        "折半插入排序",
+        "比较与移动"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-005",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "对关键字序列 {49, 38, 65, 97, 76, 13, 27, 49} 作希尔排序，第一趟取增量 d₁ = 4，则一趟排序后的结果是（　）（后一个 49 表示与第一个 49 同值的不同记录）。",
+      "options": [
+        "49 13 27 49 76 38 65 97",
+        "13 27 38 49 49 65 76 97",
+        "49 38 27 49 76 13 65 97",
+        "76 13 27 49 49 38 65 97"
+      ],
+      "answer": 0,
+      "explanation": "d = 4 时按下标间隔 4 分成 4 组：{49,76}、{38,13}、{65,27}、{97,49}，各组内做直接插入排序得 {49,76}、{13,38}、{27,65}、{49,97}，按原下标回填得到 49 13 27 49 76 38 65 97。注意这只是\"部分有序\"——每组内部有序，整体并未排好，还需 d = 2、d = 1 的后续趟次。易错点：B 是最终排好的结果（d = 1 之后），C 和 D 则是把组内元素写反或错位所致；分组依据是下标对 d 同余，而不是数值大小。",
+      "tags": [
+        "希尔排序",
+        "一趟结果"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-shell"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-fb-002",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "希尔排序又称___(1)___排序。它的基本思想是：取一个增量 d₁ < n，把全部记录按下标间隔 d₁ 分成若干组，对每组内的记录进行___(2)___；然后缩小增量重复上述过程，直到增量减为___(3)___，此时对全体记录再作一次同样的排序即得到最终结果。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "缩小增量",
+          "accepted": [
+            "缩小增量",
+            "递减增量",
+            "缩减增量"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "直接插入排序",
+          "accepted": [
+            "直接插入排序",
+            "直接插入",
+            "插入排序"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "1",
+          "accepted": [
+            "1"
+          ]
+        }
+      ],
+      "explanation": "希尔排序（Shell Sort）由 D. L. Shell 于 1959 年提出，又叫缩小增量排序。它利用直接插入排序的两个特性：序列基本有序时效率极高（最好情况 O(n)）、n 较小时效率高。先用较大增量把序列分成小段做插入排序，使整体迅速趋于\"基本有序\"，最后 d = 1 的一趟几乎不发生移动。易错点：增量序列的最后一项必须是 1，否则同余类之间从未比较过，结果不一定有序；另外希尔排序是不稳定的，因为同值记录可能被分到不同的子序列中。",
+      "tags": [
+        "希尔排序",
+        "缩小增量"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-shell"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-tf-002",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "直接插入排序是一种稳定的排序方法，并且在待排序记录个数 n 较小或初始序列基本有序时效率较高。",
+      "answer": true,
+      "explanation": "正确。直接插入排序只在 r[i] < r[j] 时后移记录，相等时不移动，因此同关键字记录的相对次序不变，是稳定的。最好情况（已正序）只需 n−1 次比较、0 次移动，时间复杂度 O(n)；当序列\"基本有序\"时逆序对很少，每趟移动的距离很短，实际效率接近 O(n)。加上实现简单、无需额外空间（只需一个哨兵单元），它非常适合 n ≤ 50 的小规模数据，也常被用作快速排序在小区间上的收尾算法。易错点：n 很大时其 O(n²) 的代价无法接受，应改用快排、堆排或归并。",
+      "tags": [
+        "直接插入排序",
+        "适用场合"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-006",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "对关键字序列 {49, 38, 65, 97, 76, 13, 27} 作直接插入排序（从第 2 个记录开始，共 6 趟），则第 2 趟结束后的序列是（　）。",
+      "options": [
+        "38 49 65 97 76 13 27",
+        "38 49 65 76 97 13 27",
+        "13 27 38 49 65 76 97",
+        "49 38 65 97 76 13 27"
+      ],
+      "answer": 0,
+      "explanation": "第 1 趟处理 r[2] = 38：38 < 49，插入到 49 之前，得 38 49 65 97 76 13 27。第 2 趟处理 r[3] = 65：65 与已排好序的末元素 49 比较，65 > 49，不满足插入条件，序列保持不变，仍为 38 49 65 97 76 13 27。故选 A。易错点：B 是第 4 趟（插入 76）之后的结果，C 是全部排完的结果，D 是原序列；\"某一趟没有发生移动\"也是合法的一趟，不能因此认为趟数算错。",
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cx-001",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列直接插入排序程序段在**最坏情况**下的时间复杂度（用大 O 表示）。\n```\nfor (i = 2; i <= n; i++)\n{\n    x = a[i];\n    j = i - 1;\n    while (j > 0 && x < a[j])\n    {\n        a[j + 1] = a[j];\n        j--;\n    }\n    a[j + 1] = x;\n}\n```",
+      "answer": "O(n²)",
+      "code": "for (i = 2; i <= n; i++)\n{\n    x = a[i];\n    j = i - 1;\n    while (j > 0 && x < a[j])\n    {\n        a[j + 1] = a[j];\n        j--;\n    }\n    a[j + 1] = x;\n}",
+      "accepted": [
+        "O(n^2)",
+        "O(n*n)",
+        "O(n2)",
+        "n²",
+        "n^2",
+        "O（n²）",
+        "O(n²)"
+      ],
+      "explanation": "最坏情况是初始序列完全逆序：第 i 趟要把 a[i] 一直前移到表头，内层 while 执行 i−1 次比较与 i−1 次移动。总代价 = Σ(i−1)（i 从 2 到 n）= 1 + 2 + … + (n−1) = n(n−1)/2，比较与移动都是这个量级，故为 O(n²)。推导要点是抓住\"内层循环次数与外层下标 i 成正比\"，这类嵌套结构几乎总是平方阶。易错点：最好情况（已正序）内层循环一次都不进，只需 O(n)；题目问最坏情况，答 O(n) 或 O(n log n) 都是错的。",
+      "tags": [
+        "直接插入排序",
+        "时间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-001",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序用带哨兵的直接插入排序对 r[1..n] 升序排列，其中有 4 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXSIZE 20\n\ntypedef struct\n{\n    int r[MAXSIZE + 1];   /* r[0] 作哨兵与暂存单元 */\n    int length;\n} SqList;\n\nvoid InsertSort(SqList *L)\n{\n    int i, j;\n\n    for (i = 2; i <= L->length; i++)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            L->r[0] = L->r[i];\n            for (/*__BLANK_2__*/; /*__BLANK_3__*/; j--)\n                L->r[j + 1] = L->r[j];\n            /*__BLANK_4__*/;\n        }\n    }\n}\n\nint main(void)\n{\n    SqList L;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &L.r[i]) != 1)\n            return 1;\n    L.length = n;\n    L.r[0] = 0;\n    InsertSort(&L);\n    for (i = 1; i <= L.length; i++)\n        printf(\"%d \", L.r[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "L->r[i] < L->r[i - 1]",
+          "accepted": [
+            "L->r[i]<L->r[i-1]",
+            "L->r[i] < L->r[i-1]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j = i - 1",
+          "accepted": [
+            "j=i-1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "L->r[0] < L->r[j]",
+          "accepted": [
+            "L->r[0]<L->r[j]",
+            "L->r[j] > L->r[0]"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "L->r[j + 1] = L->r[0]",
+          "accepted": [
+            "L->r[j+1]=L->r[0]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 20\n\ntypedef struct\n{\n    int r[MAXSIZE + 1];   /* r[0] 作哨兵与暂存单元 */\n    int length;\n} SqList;\n\nvoid InsertSort(SqList *L)\n{\n    int i, j;\n\n    for (i = 2; i <= L->length; i++)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            L->r[0] = L->r[i];\n            for (/*__BLANK_2__*/; /*__BLANK_3__*/; j--)\n                L->r[j + 1] = L->r[j];\n            /*__BLANK_4__*/;\n        }\n    }\n}\n\nint main(void)\n{\n    SqList L;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &L.r[i]) != 1)\n            return 1;\n    L.length = n;\n    L.r[0] = 0;\n    InsertSort(&L);\n    for (i = 1; i <= L.length; i++)\n        printf(\"%d \", L.r[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXSIZE 20\n\ntypedef struct\n{\n    int r[MAXSIZE + 1];   /* r[0] 作哨兵与暂存单元 */\n    int length;\n} SqList;\n\nvoid InsertSort(SqList *L)\n{\n    int i, j;\n\n    for (i = 2; i <= L->length; i++)\n    {\n        if (L->r[i] < L->r[i - 1])\n        {\n            L->r[0] = L->r[i];\n            for (j = i - 1; L->r[0] < L->r[j]; j--)\n                L->r[j + 1] = L->r[j];\n            L->r[j + 1] = L->r[0];\n        }\n    }\n}\n\nint main(void)\n{\n    SqList L;\n    int n, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &L.r[i]) != 1)\n            return 1;\n    L.length = n;\n    L.r[0] = 0;\n    InsertSort(&L);\n    for (i = 1; i <= L.length; i++)\n        printf(\"%d \", L.r[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n49 38 65 97 76 13\n",
+          "expected": "13 38 49 65 76 97"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5"
+        },
+        {
+          "stdin": "5\n5 4 3 2 1\n",
+          "expected": "1 2 3 4 5"
+        },
+        {
+          "stdin": "4\n3 3 1 1\n",
+          "expected": "1 1 3 3"
+        }
+      ],
+      "explanation": "第 1 空是\"是否需要插入\"的判断：只有 r[i] < r[i−1]（比有序子序列的最后一个还小）才需要移动，否则原地不动，这一判断使最好情况的比较次数降到 n−1。第 2 空把 j 初始化为本趟有序子序列的末下标 i−1。第 3 空用哨兵 r[0] 暂存待插记录，循环条件写成 r[0] < r[j] 就够了——当 j 减到 0 时 r[0] < r[0] 必为假，自然终止，省去了 j > 0 的边界判断，这正是哨兵的作用。第 4 空把暂存值放入最终位置 r[j+1]。测试用例覆盖了乱序、单元素、已正序（最好情况）、完全逆序（最坏情况）与含重复关键字五种情形。",
+      "tags": [
+        "直接插入排序",
+        "哨兵",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-003",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#define MAXSIZE 20\n\nint main(void)\n{\n    int r[MAXSIZE + 1] = {0, 49, 38, 65, 97, 76, 13, 27, 49};\n    int n = 8, i, j;\n\n    for (i = 2; i <= n; i++)\n    {\n        if (r[i] < r[i - 1])\n        {\n            r[0] = r[i];\n            for (j = i - 1; r[0] < r[j]; j--)\n                r[j + 1] = r[j];\n            r[j + 1] = r[0];\n        }\n        for (j = 1; j <= n; j++)\n            printf(\"%d \", r[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "38 49 65 97 76 13 27 49\n38 49 65 97 76 13 27 49\n38 49 65 97 76 13 27 49\n38 49 65 76 97 13 27 49\n13 38 49 65 76 97 27 49\n13 27 38 49 65 76 97 49\n13 27 38 49 49 65 76 97",
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 20\n\nint main(void)\n{\n    int r[MAXSIZE + 1] = {0, 49, 38, 65, 97, 76, 13, 27, 49};\n    int n = 8, i, j;\n\n    for (i = 2; i <= n; i++)\n    {\n        if (r[i] < r[i - 1])\n        {\n            r[0] = r[i];\n            for (j = i - 1; r[0] < r[j]; j--)\n                r[j + 1] = r[j];\n            r[j + 1] = r[0];\n        }\n        for (j = 1; j <= n; j++)\n            printf(\"%d \", r[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "程序每趟结束后打印一次整表，共打印 n−1 = 7 行。第 1 趟把 38 插到 49 前；第 2、3 趟因 65 > 49、97 > 65 不发生移动，故这三行中第 2、3 行与第 1 行相同；第 4 趟 76 插到 97 前；第 5 趟 13 一路前移到表头；第 6 趟 27 插到 38 前；第 7 趟第二个 49 插到第一个 49 之后（因为条件是 r[0] < r[j]，遇到相等即停止），得到 13 27 38 49 49 65 76 97。易错点：①\"没有移动的趟\"也会输出一行，容易漏数；②相等关键字不再前移，这正是直接插入排序稳定性的来源。",
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-002",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序实现希尔排序：按给定增量序列对 r[1..n] 逐趟排序，并在每趟结束后输出当前序列。其中有 4 处空白（/*__BLANK_n__*/），请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\n#define MAXSIZE 20\n\n/* 对 r[1..n] 按增量 dk 作一趟缩小增量的直接插入排序，r[0] 作暂存 */\nvoid ShellInsert(int r[], int n, int dk)\n{\n    int i, j;\n\n    for (i = dk + 1; i <= n; i++)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            r[0] = r[i];\n            for (j = i - dk; /*__BLANK_2__*/; j -= dk)\n                r[j + dk] = r[j];\n            /*__BLANK_3__*/;\n        }\n    }\n}\n\nvoid ShellSort(int r[], int n, int dlta[], int t)\n{\n    int k, i;\n\n    for (k = 0; k < t; k++)\n    {\n        /*__BLANK_4__*/;\n        for (i = 1; i <= n; i++)\n            printf(\"%d \", r[i]);\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int r[MAXSIZE + 1], dlta[10];\n    int n, t, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &r[i]) != 1)\n            return 1;\n    r[0] = 0;\n    if (scanf(\"%d\", &t) != 1 || t < 1 || t > 10)\n        return 1;\n    for (i = 0; i < t; i++)\n        if (scanf(\"%d\", &dlta[i]) != 1)\n            return 1;\n    ShellSort(r, n, dlta, t);\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "r[i] < r[i - dk]",
+          "accepted": [
+            "r[i]<r[i-dk]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "j > 0 && r[0] < r[j]",
+          "accepted": [
+            "j>0 && r[0]<r[j]",
+            "r[0] < r[j] && j > 0",
+            "j >= 1 && r[0] < r[j]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "r[j + dk] = r[0]",
+          "accepted": [
+            "r[j+dk]=r[0]"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "ShellInsert(r, n, dlta[k])",
+          "accepted": [
+            "ShellInsert(r,n,dlta[k])",
+            "ShellInsert(r, n, dlta[k]);"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 20\n\n/* 对 r[1..n] 按增量 dk 作一趟缩小增量的直接插入排序，r[0] 作暂存 */\nvoid ShellInsert(int r[], int n, int dk)\n{\n    int i, j;\n\n    for (i = dk + 1; i <= n; i++)\n    {\n        if (/*__BLANK_1__*/)\n        {\n            r[0] = r[i];\n            for (j = i - dk; /*__BLANK_2__*/; j -= dk)\n                r[j + dk] = r[j];\n            /*__BLANK_3__*/;\n        }\n    }\n}\n\nvoid ShellSort(int r[], int n, int dlta[], int t)\n{\n    int k, i;\n\n    for (k = 0; k < t; k++)\n    {\n        /*__BLANK_4__*/;\n        for (i = 1; i <= n; i++)\n            printf(\"%d \", r[i]);\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int r[MAXSIZE + 1], dlta[10];\n    int n, t, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &r[i]) != 1)\n            return 1;\n    r[0] = 0;\n    if (scanf(\"%d\", &t) != 1 || t < 1 || t > 10)\n        return 1;\n    for (i = 0; i < t; i++)\n        if (scanf(\"%d\", &dlta[i]) != 1)\n            return 1;\n    ShellSort(r, n, dlta, t);\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXSIZE 20\n\n/* 对 r[1..n] 按增量 dk 作一趟缩小增量的直接插入排序，r[0] 作暂存 */\nvoid ShellInsert(int r[], int n, int dk)\n{\n    int i, j;\n\n    for (i = dk + 1; i <= n; i++)\n    {\n        if (r[i] < r[i - dk])\n        {\n            r[0] = r[i];\n            for (j = i - dk; j > 0 && r[0] < r[j]; j -= dk)\n                r[j + dk] = r[j];\n            r[j + dk] = r[0];\n        }\n    }\n}\n\nvoid ShellSort(int r[], int n, int dlta[], int t)\n{\n    int k, i;\n\n    for (k = 0; k < t; k++)\n    {\n        ShellInsert(r, n, dlta[k]);\n        for (i = 1; i <= n; i++)\n            printf(\"%d \", r[i]);\n        printf(\"\\n\");\n    }\n}\n\nint main(void)\n{\n    int r[MAXSIZE + 1], dlta[10];\n    int n, t, i;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &r[i]) != 1)\n            return 1;\n    r[0] = 0;\n    if (scanf(\"%d\", &t) != 1 || t < 1 || t > 10)\n        return 1;\n    for (i = 0; i < t; i++)\n        if (scanf(\"%d\", &dlta[i]) != 1)\n            return 1;\n    ShellSort(r, n, dlta, t);\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8\n49 38 65 97 76 13 27 49\n3\n5 3 1\n",
+          "expected": "13 27 49 97 76 49 38 65\n13 27 49 38 65 49 97 76\n13 27 38 49 49 65 76 97"
+        },
+        {
+          "stdin": "5\n5 4 3 2 1\n2\n2 1\n",
+          "expected": "1 2 3 4 5\n1 2 3 4 5"
+        },
+        {
+          "stdin": "1\n9\n1\n1\n",
+          "expected": "9"
+        },
+        {
+          "stdin": "4\n1 1 1 1\n1\n1\n",
+          "expected": "1 1 1 1"
+        }
+      ],
+      "explanation": "希尔排序的每一趟就是\"以 dk 为步长的直接插入排序\"，因此与直接插入相比只把所有 ±1 换成 ±dk：外层 i 从 dk+1 开始（前 dk 个元素各自是其所在子序列的第一个），比较对象是 r[i−dk]，内层后移用 r[j+dk] = r[j] 且步进 j −= dk。第 2 空的循环条件必须保留 j > 0——因为这里没有像 r[0] 那样天然阻挡越界的哨兵（r[0] 只是暂存单元，不参与比较），漏写会造成数组越界。第 1 组用例采用教材经典的增量序列 {5,3,1}：d=5 后得 13 27 49 97 76 49 38 65，d=3 后得 13 27 49 38 65 49 97 76，d=1 后完全有序；第 2 组展示逆序序列一趟 d=2 即被理顺。",
+      "tags": [
+        "希尔排序",
+        "代码填空"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-shell"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-004",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\n#define MAXSIZE 20\n\nint main(void)\n{\n    int r[MAXSIZE + 1] = {0, 49, 38, 65, 97, 76, 13, 27};\n    int n = 7, i, j, low, high, mid, cmp = 0;\n\n    for (i = 2; i <= n; i++)\n    {\n        r[0] = r[i];\n        low = 1;\n        high = i - 1;\n        while (low <= high)\n        {\n            mid = (low + high) / 2;\n            cmp++;\n            if (r[0] < r[mid])\n                high = mid - 1;\n            else\n                low = mid + 1;\n        }\n        for (j = i - 1; j >= high + 1; j--)\n            r[j + 1] = r[j];\n        r[high + 1] = r[0];\n    }\n    for (j = 1; j <= n; j++)\n        printf(\"%d \", r[j]);\n    printf(\"\\n%d\\n\", cmp);\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "13 27 38 49 65 76 97\n13",
+      "code": "#include <stdio.h>\n\n#define MAXSIZE 20\n\nint main(void)\n{\n    int r[MAXSIZE + 1] = {0, 49, 38, 65, 97, 76, 13, 27};\n    int n = 7, i, j, low, high, mid, cmp = 0;\n\n    for (i = 2; i <= n; i++)\n    {\n        r[0] = r[i];\n        low = 1;\n        high = i - 1;\n        while (low <= high)\n        {\n            mid = (low + high) / 2;\n            cmp++;\n            if (r[0] < r[mid])\n                high = mid - 1;\n            else\n                low = mid + 1;\n        }\n        for (j = i - 1; j >= high + 1; j--)\n            r[j + 1] = r[j];\n        r[high + 1] = r[0];\n    }\n    for (j = 1; j <= n; j++)\n        printf(\"%d \", r[j]);\n    printf(\"\\n%d\\n\", cmp);\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "这是折半插入排序：用折半查找在已排序子序列 r[1..i−1] 中定位插入点，再用后移完成插入。折半查找结束时 high + 1 就是插入位置（low = high + 1，即第一个不小于 r[0] 的下标）。逐趟的比较次数为 1、2、2、3、2、3，累计 cmp = 13；序列依次变为 38 49 …、38 49 65 …、38 49 65 97 …、38 49 65 76 97 …、13 38 49 65 76 97 27、13 27 38 49 65 76 97。故输出第一行为最终有序序列，第二行为 13。易错点：①折半查找的比较次数与初始序列无关，只与 i 有关，总计约 Σ⌈log₂i⌉；②插入点写作 high + 1 而不是 high 或 low − 1 之外，写错会整体错位一格。",
+      "tags": [
+        "折半插入排序",
+        "比较次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-pg-001",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序实现折半插入排序：对输入的 n 个整数按升序排序，并统计整个排序过程中关键字的比较次数。要求确定插入位置时必须使用折半查找（每趟比较次数为 O(log i)），不得逐个扫描已排序子序列。\n\n输入格式：第一行一个整数 n（0 ≤ n ≤ 100）；第二行 n 个整数（n 为 0 时该行可为空行），整数之间以空白分隔。\n\n输出格式：第一行 n 个升序排列的整数，整数之间用一个空格分隔（n 为 0 时输出一个空行）；第二行一个整数，表示排序全过程的比较次数。",
+      "testCases": [
+        {
+          "stdin": "7\n49 38 65 97 76 13 27\n",
+          "expected": "13 27 38 49 65 76 97\n13"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5\n0"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5\n8"
+        },
+        {
+          "stdin": "5\n5 4 3 2 1\n",
+          "expected": "1 2 3 4 5\n6"
+        },
+        {
+          "stdin": "3\n2 2 1\n",
+          "expected": "1 2 2\n2"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXSIZE 100\n\nint main(void)\n{\n    int r[MAXSIZE + 1];\n    int n, i, j, low, high, mid, cmp = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &r[i]) != 1)\n            return 1;\n    r[0] = 0;\n    for (i = 2; i <= n; i++)\n    {\n        r[0] = r[i];\n        low = 1;\n        high = i - 1;\n        while (low <= high)\n        {\n            mid = (low + high) / 2;\n            cmp++;\n            if (r[0] < r[mid])\n                high = mid - 1;\n            else\n                low = mid + 1;\n        }\n        for (j = i - 1; j >= high + 1; j--)\n            r[j + 1] = r[j];\n        r[high + 1] = r[0];\n    }\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", r[i]);\n    printf(\"\\n%d\\n\", cmp);\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（0 ≤ n ≤ 100）；第二行 n 个整数（n 为 0 时该行可为空行），整数之间以空白分隔。",
+      "output_format": "第一行 n 个升序排列的整数，整数之间用一个空格分隔（n 为 0 时输出一个空行）；第二行一个整数，表示排序全过程的比较次数。",
+      "code_starter": "#include <stdio.h>\n#define MAXSIZE 100\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int r[MAXSIZE + 1];\n    int n, i, j, low, high, mid, cmp = 0;\n\n    if (scanf(\"%d\", &n) != 1 || n < 0 || n > MAXSIZE)\n        return 1;\n    for (i = 1; i <= n; i++)\n        if (scanf(\"%d\", &r[i]) != 1)\n            return 1;\n    r[0] = 0;\n    for (i = 2; i <= n; i++)\n    {\n        r[0] = r[i];\n        low = 1;\n        high = i - 1;\n        while (low <= high)\n        {\n            mid = (low + high) / 2;\n            cmp++;\n            if (r[0] < r[mid])\n                high = mid - 1;\n            else\n                low = mid + 1;\n        }\n        for (j = i - 1; j >= high + 1; j--)\n            r[j + 1] = r[j];\n        r[high + 1] = r[0];\n    }\n    for (i = 1; i <= n; i++)\n        printf(\"%d \", r[i]);\n    printf(\"\\n%d\\n\", cmp);\n    return 0;\n}",
+      "explanation": "算法分两步：①在已排序区间 [1, i−1] 上用折半查找找插入点，循环结束时 low = high + 1，插入位置就是 high + 1；②把 high+1 到 i−1 的记录整体后移一格，再把暂存在 r[0] 的记录放入。比较次数只与每趟折半查找的路径长度有关，与初始序列的\"有序程度\"无关——这一点在测试用例中可清楚看到：已正序的 {1,2,3,4,5} 比较 8 次，完全逆序的 {5,4,3,2,1} 只比较 6 次（因为逆序时插入点总在表头，折半路径反而更短）。用 r[0] 暂存既省一个变量又保留了哨兵式写法。易错点：相等关键字走 else 分支（low = mid + 1），使新记录插在同值记录之后，保证稳定性；若改成 r[0] <= r[mid] 就会破坏稳定。",
+      "tags": [
+        "折半插入排序",
+        "编程题"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-02"
+      ],
+      "vizIds": [
+        "sort-insertion"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-007",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "对关键字序列 (49, 38, 65, 97, 76, 13, 27, 49) 以第一个元素 49 为基准进行快速排序的一趟划分（先从右向左扫描，再从左向右扫描），划分结束后序列为（　）。",
+      "options": [
+        "27, 38, 13, 49, 76, 97, 65, 49",
+        "27, 38, 13, 49, 49, 65, 76, 97",
+        "13, 27, 38, 49, 76, 97, 65, 49",
+        "27, 38, 65, 97, 76, 13, 49, 49"
+      ],
+      "answer": 0,
+      "explanation": "一趟划分的过程：基准 pivot=49 暂存，j 从右找到 27 填入左端，i 从左找到 65 填入右端，j 再找到 13 填入，i 再找到 97 填入，i 与 j 相遇于下标 3，把 pivot 放回该处。结果基准 49 就位，左半 {27,38,13} 都 ≤49，右半 {76,97,65,49} 都 ≥49，但两侧内部仍无序。易错点：一趟划分不等于排好序；另一个 49 被甩到右端，说明快速排序不稳定。",
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-008",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "对序列 (5, 2, 4, 1, 3) 进行冒泡排序（每趟从前向后两两比较，把当趟最大值交换到末尾），第 2 趟结束后的序列是（　）。",
+      "options": [
+        "2, 1, 3, 4, 5",
+        "2, 4, 1, 3, 5",
+        "1, 2, 3, 4, 5",
+        "2, 1, 4, 3, 5"
+      ],
+      "answer": 0,
+      "explanation": "第 1 趟：5 与 2、4、1、3 依次比较交换，5 沉到最后，得 (2,4,1,3,5)。第 2 趟只需比较前 4 个元素 3 次：2 与 4 不换，4 与 1 换得 (2,1,4,3,5)，4 与 3 换得 (2,1,3,4,5)。易错点：每趟的比较次数递减（第 i 趟比较 n-i-1 次），已就位的尾部不再参与；不要误以为第 2 趟就把整体排好。",
+      "tags": [
+        "冒泡排序",
+        "排序过程"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-bubble"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-009",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列关于快速排序的叙述中，正确的是（　）。",
+      "options": [
+        "快速排序在任何输入下的时间复杂度都是 O(n log n)",
+        "快速排序平均时间复杂度为 O(n log n)，但当序列已基本有序时可能退化为 O(n^2)",
+        "快速排序是稳定的排序方法",
+        "快速排序不需要额外的存储空间，空间复杂度为 O(1)"
+      ],
+      "answer": 1,
+      "explanation": "快速排序的平均性能是 O(n log n)，但每趟划分的基准取自子表第一个元素，当输入已正序或逆序时，划分极度不平衡（一侧为空），递归深度达 n，比较次数退化为 O(n^2)。它是\"不稳定\"排序，因为划分时同值元素可能被交换到基准两侧；它需要 O(log n)（最坏 O(n)）的递归栈空间。易错点：把\"平均最优\"当成\"永远最优\"。",
+      "tags": [
+        "快速排序",
+        "时间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-010",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在冒泡排序中增设一个\"本趟是否发生过交换\"的标志变量后，其最好情况下的时间复杂度为（　）。",
+      "options": [
+        "O(n)",
+        "O(n^2)",
+        "O(n log n)",
+        "O(1)"
+      ],
+      "answer": 0,
+      "explanation": "加入标志位后，若某一趟扫描没有发生任何交换，说明序列已经有序，可以立即结束排序。当输入本身正序时，只需做第 1 趟的 n-1 次比较即可判定结束，时间复杂度为 O(n)。易错点：这只是\"最好情况\"，平均与最坏情况仍是 O(n^2)；标志位只能减少正序或接近正序数据的比较，不能改变算法量级。",
+      "tags": [
+        "冒泡排序",
+        "时间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-bubble"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-fb-003",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "对 n 个记录排序：快速排序的平均时间复杂度为____，最坏时间复杂度为____，平均空间复杂度为____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "O(nlogn)",
+          "accepted": [
+            "O(n log n)",
+            "O(nlog₂n)",
+            "O(nlgn)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "O(n^2)",
+          "accepted": [
+            "O(n2)",
+            "O(n*n)"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "O(logn)",
+          "accepted": [
+            "O(log n)",
+            "O(log₂n)"
+          ]
+        }
+      ],
+      "explanation": "快速排序每趟把序列划分成两部分再递归，平均每层处理 n 个元素、共 log n 层，故平均时间 O(n log n)；最坏（已序或逆序）划分成 1 与 n-1，比较次数为 n(n-1)/2，即 O(n^2)。递归需要栈空间，平均深度 O(log n)，最坏 O(n)。易错点：常把最坏空间也答成 O(log n)。",
+      "tags": [
+        "快速排序",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-tf-003",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "stem": "冒泡排序和快速排序都属于交换类排序，且都是稳定的排序算法。",
+      "answer": false,
+      "explanation": "前半句对：两者都通过两两比较并交换逆序对来排序，同属交换类。后半句错：冒泡排序只在相邻元素\"严格大于\"时才交换，同值元素不会换位，因此稳定；而快速排序的一趟划分要把基准与两端元素做远距离交换，同关键字记录的相对次序可能被打乱（例如两个 49 在一趟划分后被分到基准两侧），所以快速排序不稳定。",
+      "tags": [
+        "稳定性",
+        "冒泡排序",
+        "快速排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cx-002",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序段的时间复杂度（用大 O 表示）。\n```\nfor (i = 0; i < n - 1; i++)\n    for (j = 0; j < n - 1 - i; j++)\n        if (a[j] > a[j + 1]) {\n            t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n        }\n```",
+      "answer": "O(n^2)",
+      "code": "for (i = 0; i < n - 1; i++)\n    for (j = 0; j < n - 1 - i; j++)\n        if (a[j] > a[j + 1]) {\n            t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n        }",
+      "accepted": [
+        "O(n2)"
+      ],
+      "explanation": "外层执行 n-1 次，内层第 i 次执行 n-1-i 次，基本操作（比较）总次数为 Σ(i=0..n-2)(n-1-i) = (n-1)+(n-2)+…+1 = n(n-1)/2，是 n 的二次多项式，故时间复杂度为 O(n^2)。易错点：虽然内层次数递减，但求和结果仍是 n^2/2 量级，常数 1/2 在大 O 中忽略，不能答成 O(n log n)。",
+      "tags": [
+        "冒泡排序",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-005",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {6, 2, 9, 4, 1, 7};\n    int n = 6, i, j, t;\n    for (i = 0; i < n - 1; i++) {\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n            }\n        printf(\"pass%d:\", i + 1);\n        for (j = 0; j < n; j++) printf(\" %d\", a[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "pass1: 2 6 4 1 7 9\npass2: 2 4 1 6 7 9\npass3: 2 1 4 6 7 9\npass4: 1 2 4 6 7 9\npass5: 1 2 4 6 7 9",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {6, 2, 9, 4, 1, 7};\n    int n = 6, i, j, t;\n    for (i = 0; i < n - 1; i++) {\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n            }\n        printf(\"pass%d:\", i + 1);\n        for (j = 0; j < n; j++) printf(\" %d\", a[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "程序是标准冒泡排序，共 n-1=5 趟，每趟把当前未排序区的最大值交换到末尾，并在趟末打印整个数组。第 1 趟后 9 已到最后，第 2 趟后 7 就位，依次类推，最后一趟只剩两个元素比较一次。易错点：pass 行打印的是\"整趟结束后\"的完整数组，不是交换瞬间；即使某趟没有发生交换也照样输出一行。",
+      "tags": [
+        "冒泡排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-bubble"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-006",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint a[8] = {49, 38, 65, 97, 76, 13, 27, 49};\n\nint Partition(int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && a[high] >= pivot) high--;\n        a[low] = a[high];\n        while (low < high && a[low] <= pivot) low++;\n        a[high] = a[low];\n    }\n    a[low] = pivot;\n    return low;\n}\n\nint main(void)\n{\n    int i, p = Partition(0, 7);\n    printf(\"pivotpos=%d\\n\", p);\n    for (i = 0; i < 8; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "pivotpos=3\n27 38 13 49 76 97 65 49",
+      "code": "#include <stdio.h>\n\nint a[8] = {49, 38, 65, 97, 76, 13, 27, 49};\n\nint Partition(int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && a[high] >= pivot) high--;\n        a[low] = a[high];\n        while (low < high && a[low] <= pivot) low++;\n        a[high] = a[low];\n    }\n    a[low] = pivot;\n    return low;\n}\n\nint main(void)\n{\n    int i, p = Partition(0, 7);\n    printf(\"pivotpos=%d\\n\", p);\n    for (i = 0; i < 8; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "Partition 以 a[0]=49 为基准，交替从两端向中间扫描并\"挖坑填数\"：27 填到下标 0，65 填到下标 6，13 填到下标 2，97 填到下标 5，最后 low=high=3，基准归位，返回 3。此时 a[0..2] 均 ≤49，a[4..7] 均 ≥49。易错点：另一个 49 被换到末尾，说明快排不稳定；返回的 pivotpos 是基准的最终位置，不再参与后续划分。",
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-003",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列冒泡排序程序加入了交换标志，可在序列已有序时提前结束。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid BubbleSort(int a[], int n)\n{\n    int i, j, t, flag;\n    for (i = 0; i < n - 1; i++) {\n        flag = 0;\n        for (j = 0; j < /*__BLANK_1__*/; j++)\n            if (a[j] > a[j + 1]) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n                /*__BLANK_2__*/;\n            }\n        if (flag == 0) /*__BLANK_3__*/;\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    BubbleSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n - 1 - i",
+          "accepted": [
+            "n-1-i",
+            "n-i-1"
+          ],
+          "hint": "每趟比较次数递减，尾部 i 个元素已就位"
+        },
+        {
+          "index": 2,
+          "answer": "flag = 1",
+          "accepted": [
+            "flag=1",
+            "flag = 1;"
+          ],
+          "hint": "发生交换就置标志"
+        },
+        {
+          "index": 3,
+          "answer": "break",
+          "accepted": [
+            "return;"
+          ],
+          "hint": "本趟无交换说明已有序，提前结束"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid BubbleSort(int a[], int n)\n{\n    int i, j, t, flag;\n    for (i = 0; i < n - 1; i++) {\n        flag = 0;\n        for (j = 0; j < /*__BLANK_1__*/; j++)\n            if (a[j] > a[j + 1]) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n                /*__BLANK_2__*/;\n            }\n        if (flag == 0) /*__BLANK_3__*/;\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    BubbleSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid BubbleSort(int a[], int n)\n{\n    int i, j, t, flag;\n    for (i = 0; i < n - 1; i++) {\n        flag = 0;\n        for (j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) {\n                t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n                flag = 1;\n            }\n        if (flag == 0) break;\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    BubbleSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n5 2 4 1 3 6\n",
+          "expected": "1 2 3 4 5 6"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "4\n4 3 2 1\n",
+          "expected": "1 2 3 4"
+        }
+      ],
+      "explanation": "第 1 空：第 i 趟末尾已有 i 个最大元素就位，内层只需比较到 n-1-i（j 的上界，因为要与 a[j+1] 比较）。第 2 空：一旦发生交换就把 flag 置 1，作为\"本趟有逆序\"的证据。第 3 空：flag 仍为 0 说明本趟无任何交换、序列已有序，用 break 跳出外层循环，使最好情况降到 O(n)。易错点：内层上界写成 n-1 会越界访问 a[n]。",
+      "tags": [
+        "冒泡排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-bubble"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-004",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用快速排序对 n 个整数升序排列。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nint Partition(int a[], int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && /*__BLANK_1__*/) high--;\n        a[low] = a[high];\n        while (low < high && /*__BLANK_2__*/) low++;\n        /*__BLANK_3__*/;\n    }\n    a[low] = pivot;\n    return low;\n}\n\nvoid QuickSort(int a[], int low, int high)\n{\n    if (low < high) {\n        int p = Partition(a, low, high);\n        QuickSort(a, low, p - 1);\n        /*__BLANK_4__*/;\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    QuickSort(a, 0, n - 1);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[high] >= pivot",
+          "accepted": [
+            "a[high]>=pivot",
+            "a[high] > pivot - 1"
+          ],
+          "hint": "从右向左找第一个小于基准的元素"
+        },
+        {
+          "index": 2,
+          "answer": "a[low] <= pivot",
+          "accepted": [
+            "a[low]<=pivot"
+          ],
+          "hint": "从左向右找第一个大于基准的元素"
+        },
+        {
+          "index": 3,
+          "answer": "a[high] = a[low]",
+          "accepted": [
+            "a[high]=a[low];"
+          ],
+          "hint": "把大于基准的元素填回右端空位"
+        },
+        {
+          "index": 4,
+          "answer": "QuickSort(a, p + 1, high)",
+          "accepted": [
+            "QuickSort(a,p+1,high);"
+          ],
+          "hint": "递归处理基准右侧子表"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nint Partition(int a[], int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && /*__BLANK_1__*/) high--;\n        a[low] = a[high];\n        while (low < high && /*__BLANK_2__*/) low++;\n        /*__BLANK_3__*/;\n    }\n    a[low] = pivot;\n    return low;\n}\n\nvoid QuickSort(int a[], int low, int high)\n{\n    if (low < high) {\n        int p = Partition(a, low, high);\n        QuickSort(a, low, p - 1);\n        /*__BLANK_4__*/;\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    QuickSort(a, 0, n - 1);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nint Partition(int a[], int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && a[high] >= pivot) high--;\n        a[low] = a[high];\n        while (low < high && a[low] <= pivot) low++;\n        a[high] = a[low];\n    }\n    a[low] = pivot;\n    return low;\n}\n\nvoid QuickSort(int a[], int low, int high)\n{\n    if (low < high) {\n        int p = Partition(a, low, high);\n        QuickSort(a, low, p - 1);\n        QuickSort(a, p + 1, high);\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    QuickSort(a, 0, n - 1);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7\n49 38 65 97 76 13 27\n",
+          "expected": "13 27 38 49 65 76 97"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "6\n9 9 9 1 1 1\n",
+          "expected": "1 1 1 9 9 9"
+        }
+      ],
+      "explanation": "划分采用\"挖坑填数\"：先存基准腾出 low 位置的坑，从右向左找到小于基准的元素填入（条件是 a[high] >= pivot 时继续左移），再从左向右找到大于基准的元素填到 high 的坑（a[low] <= pivot 时继续右移），如此交替直到 low==high，把基准放入最后的坑。递归时基准位置 p 已就位，两侧区间分别是 [low,p-1] 与 [p+1,high]。易错点：递归区间必须排除 p，否则死递归。",
+      "tags": [
+        "快速排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-pg-002",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：读入 n 个整数，用快速排序（以每段第一个元素为基准，采用挖坑填数法划分）按升序排列后输出。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "7\n49 38 65 97 76 13 27\n",
+          "expected": "13 27 38 49 65 76 97"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "8\n9 9 9 1 1 1 5 0\n",
+          "expected": "0 1 1 1 5 9 9 9"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nint Partition(int a[], int low, int high)\n{\n    int pivot = a[low];\n    while (low < high) {\n        while (low < high && a[high] >= pivot) high--;\n        a[low] = a[high];\n        while (low < high && a[low] <= pivot) low++;\n        a[high] = a[low];\n    }\n    a[low] = pivot;\n    return low;\n}\n\nvoid QuickSort(int a[], int low, int high)\n{\n    if (low < high) {\n        int p = Partition(a, low, high);\n        QuickSort(a, low, p - 1);\n        QuickSort(a, p + 1, high);\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    QuickSort(a, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    QuickSort(a, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "解题思路：Partition 先取出 a[low] 作基准形成\"坑\"，从右向左、从左向右交替扫描并把元素填入对侧的坑，low 与 high 相遇处即为基准最终位置；QuickSort 以该位置为界递归处理左右两段，递归出口是 low >= high（子表长度 ≤1）。易错点：n=1 时 QuickSort(a,0,0) 直接返回；相同元素要能正确终止（比较用 >= 与 <=，不会死循环）。",
+      "tags": [
+        "快速排序",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-quick"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-011",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "对 n 个记录的序列进行简单选择排序，其元素间的比较次数（　）。",
+      "options": [
+        "与初始序列的排列状况无关，总是 n(n-1)/2",
+        "与初始序列的排列状况有关，正序时最少",
+        "最好情况为 n-1，最坏情况为 n(n-1)/2",
+        "总是 n log n"
+      ],
+      "answer": 0,
+      "explanation": "简单选择排序第 i 趟从剩余 n-i 个元素中选出最小者，需要比较 n-i-1 次，且这个比较次数是固定的——无论序列怎样排列，都必须扫完整个未排序区。总比较次数 Σ(i=0..n-2)(n-1-i) = n(n-1)/2，与初始状态无关。易错点：与初始状态有关的是\"移动次数\"（正序时 0 次，逆序时最多 3(n-1) 次），不是比较次数；这与冒泡加标志位后的 O(n) 最好情况形成对比。",
+      "tags": [
+        "简单选择排序",
+        "比较次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-selection"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-012",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列序列中，构成大顶堆（按完全二叉树顺序存储，下标从 0 开始）的是（　）。",
+      "options": [
+        "96, 83, 72, 56, 45, 30, 21",
+        "96, 83, 72, 56, 90, 30, 21",
+        "21, 30, 45, 56, 72, 83, 96",
+        "96, 21, 83, 30, 45, 72, 56"
+      ],
+      "answer": 0,
+      "explanation": "大顶堆要求每个非终端结点的值都 ≥ 其左右孩子：下标 i 的孩子是 2i+1 与 2i+2。A 项中 96≥83,72；83≥56,45；72≥30,21，全部满足。B 项 83 的孩子含 90，违反；C 项是递增序列，21 的孩子 30、45 都比它大，它是小顶堆；D 项 21 的孩子 30、45 也违反。易错点：堆只要求父子有序，兄弟之间可以任意大小，因此\"看起来乱\"的序列也可能是堆。",
+      "tags": [
+        "堆",
+        "大顶堆"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "tree-heap-build"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-013",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "对序列 (49, 38, 65, 97, 76, 13, 27)，从最后一个非终端结点开始自下而上依次向上筛选（每处以\"向下调整\"方式筛选），建立初始大顶堆后得到的序列是（　）。",
+      "options": [
+        "97, 76, 65, 38, 49, 13, 27",
+        "97, 76, 65, 49, 38, 13, 27",
+        "97, 49, 65, 38, 76, 13, 27",
+        "49, 97, 65, 76, 38, 13, 27"
+      ],
+      "answer": 0,
+      "explanation": "n=7，最后一个非终端结点下标为 n/2-1=2。i=2：65 的孩子 13、27 均更小，不动。i=1：38 的孩子 97、76 中 97 最大，38 与 97 交换，38 落到叶子位置，得 (49,97,65,38,76,13,27)。i=0：49 的孩子 97、65 中 97 最大，交换后 49 继续与其新位置的孩子 38、76 比较，与 76 交换，得 (97,76,65,38,49,13,27)。易错点：向下调整可能连锁多步，交换一次就停止是常见错误。",
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-heapsort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-014",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列排序方法中，平均与最坏时间复杂度都是 O(n log n)、空间复杂度为 O(1) 且不稳定的是（　）。",
+      "options": [
+        "堆排序",
+        "快速排序",
+        "归并排序",
+        "直接插入排序"
+      ],
+      "answer": 0,
+      "explanation": "堆排序每趟筛选的树高为 log n，共 n 趟，故最好、最坏、平均都是 O(n log n)；它只在原数组上交换，只需一个暂存单元，空间 O(1)；筛选过程中同值元素可能被换到不同子树，因此不稳定。快速排序最坏是 O(n^2) 且需 O(log n) 递归栈；归并排序稳定且需 O(n) 辅助空间；直接插入排序平均 O(n^2) 但稳定。易错点：堆排序的性能与初始序列无关，这是它优于快排的地方。",
+      "tags": [
+        "堆排序",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-heapsort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-fb-004",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "对 n 个记录的序列进行简单选择排序：比较次数为____，最好情况下记录的移动次数为____，最坏情况下记录的移动次数为____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n(n-1)/2",
+          "accepted": [
+            "n(n-1)/2 次",
+            "n(n-1)/2次"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "0",
+          "accepted": [
+            "0 次"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "3(n-1)",
+          "accepted": [
+            "3n-3",
+            "3(n-1) 次"
+          ]
+        }
+      ],
+      "explanation": "比较次数固定：第 i 趟比较 n-i-1 次，累加得 n(n-1)/2。移动次数与初始状态有关：序列本来有序时每次选出的最小者恰在原位，一次交换都不做，为 0；序列完全逆序时每趟都要交换，一次交换含 3 次赋值，共 3(n-1) 次。由此可知简单选择排序在\"移动代价高\"的场合优于冒泡排序。易错点：把比较次数答成 n^2/2 的量级没错，但要写准确式子。",
+      "tags": [
+        "简单选择排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-selection"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-tf-004",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "堆排序是不稳定的排序方法，但很适合从大量数据中反复取出前 k 个最大（或最小）的元素。",
+      "answer": true,
+      "explanation": "堆排序在建堆与筛选时会做远距离交换，同关键字记录的相对次序可能改变，故不稳定。而堆的最大价值在于：建初始堆只需 O(n)，之后每取出一个堆顶（最大值）并重新筛选只需 O(log n)，取 k 个元素总代价 O(n + k log n)，且不需要把全部数据排好序，特别适合 Top-k 问题与海量数据场景。易错点：不稳定 ≠ 结果错误，有序序列仍正确。",
+      "tags": [
+        "堆排序",
+        "应用"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cx-003",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序段的时间复杂度（用大 O 表示）。\n```\nfor (i = n / 2 - 1; i >= 0; i--)\n    Sift(a, i, n - 1);      /* Sift：以 i 为根向下调整成大顶堆，单次最坏 O(log n) */\n```",
+      "answer": "O(n)",
+      "code": "for (i = n / 2 - 1; i >= 0; i--)\n    Sift(a, i, n - 1);      /* Sift：以 i 为根向下调整成大顶堆，单次最坏 O(log n) */",
+      "accepted": [
+        "O(n)",
+        "n"
+      ],
+      "explanation": "这是\"自下而上建堆\"的过程。虽然共有 n/2 次 Sift 调用、单次最坏 O(log n)，但靠近底部的结点树高很小：高为 h 的结点至多 n/2^(h+1) 个，总代价 Σ h·n/2^(h+1) ≤ n·Σ h/2^h = 2n，是线性级，故建初始堆的时间复杂度为 O(n) 而不是 O(n log n)。易错点：整个堆排序是 O(n log n)，因为之后还有 n 趟筛选；单看建堆这一步是 O(n)。",
+      "tags": [
+        "堆排序",
+        "建堆",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-007",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {5, 2, 9, 1, 7, 3};\n    int n = 6, i, j, k, t;\n    for (i = 0; i < n - 1; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;\n        if (k != i) { t = a[i]; a[i] = a[k]; a[k] = t; }\n        printf(\"pass%d:\", i + 1);\n        for (j = 0; j < n; j++) printf(\" %d\", a[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "pass1: 1 2 9 5 7 3\npass2: 1 2 9 5 7 3\npass3: 1 2 3 5 7 9\npass4: 1 2 3 5 7 9\npass5: 1 2 3 5 7 9",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[6] = {5, 2, 9, 1, 7, 3};\n    int n = 6, i, j, k, t;\n    for (i = 0; i < n - 1; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;\n        if (k != i) { t = a[i]; a[i] = a[k]; a[k] = t; }\n        printf(\"pass%d:\", i + 1);\n        for (j = 0; j < n; j++) printf(\" %d\", a[j]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "简单选择排序共 n-1=5 趟：第 i 趟在 a[i..n-1] 中找最小值下标 k，若 k≠i 则交换。第 1 趟最小值 1（下标 3）与 5 交换得 1,2,9,5,7,3；第 2 趟最小值 2 已在位，不交换；第 3 趟最小值 3（下标 5）与 9 交换得 1,2,3,5,7,9；第 4、5 趟最小值均已在位。易错点：没有发生交换时也要输出该趟结果，序列与上一趟完全相同。",
+      "tags": [
+        "简单选择排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-selection"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-008",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (j <= m) {\n        if (j < m && a[j] < a[j + 1]) j++;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        i = j;\n        j = 2 * i + 1;\n    }\n    a[i] = t;\n}\n\nint main(void)\n{\n    int a[7] = {49, 38, 65, 97, 76, 13, 27};\n    int n = 7, i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    printf(\"heap:\");\n    for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n    printf(\"\\n\");\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n    printf(\"sorted:\");\n    for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "heap: 97 76 65 38 49 13 27\nsorted: 13 27 38 49 65 76 97",
+      "code": "#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (j <= m) {\n        if (j < m && a[j] < a[j + 1]) j++;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        i = j;\n        j = 2 * i + 1;\n    }\n    a[i] = t;\n}\n\nint main(void)\n{\n    int a[7] = {49, 38, 65, 97, 76, 13, 27};\n    int n = 7, i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    printf(\"heap:\");\n    for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n    printf(\"\\n\");\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n    printf(\"sorted:\");\n    for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "Sift 把 a[i..m] 中以 i 为根的子树调整成大顶堆：t 暂存根，j 指向较大的孩子，若 t 已不小于该孩子则停止，否则孩子上移、继续向下。第一段循环从 i=n/2-1 到 0 建初始堆，输出 97 76 65 38 49 13 27；第二段循环把堆顶（当前最大）与末尾元素交换并对缩小的堆重新筛选，n-1 趟后整表升序。易错点：建堆方向是自下而上，排序阶段筛选区间上界逐趟减 1。",
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-heapsort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-005",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "下列程序用简单选择排序对 n 个整数升序排列。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid SelectSort(int a[], int n)\n{\n    int i, j, k, t;\n    for (i = 0; i < /*__BLANK_1__*/; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (/*__BLANK_2__*/) k = j;\n        if (k != i) {\n            t = a[i];\n            /*__BLANK_3__*/;\n            a[k] = t;\n        }\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    SelectSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n - 1",
+          "accepted": [
+            "n-1"
+          ],
+          "hint": "最后一趟只剩 1 个元素，无需再选"
+        },
+        {
+          "index": 2,
+          "answer": "a[j] < a[k]",
+          "accepted": [
+            "a[j]<a[k]"
+          ],
+          "hint": "记录当前最小值的下标"
+        },
+        {
+          "index": 3,
+          "answer": "a[i] = a[k]",
+          "accepted": [
+            "a[i]=a[k];"
+          ],
+          "hint": "把最小值放到已排序区末尾"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid SelectSort(int a[], int n)\n{\n    int i, j, k, t;\n    for (i = 0; i < /*__BLANK_1__*/; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (/*__BLANK_2__*/) k = j;\n        if (k != i) {\n            t = a[i];\n            /*__BLANK_3__*/;\n            a[k] = t;\n        }\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    SelectSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid SelectSort(int a[], int n)\n{\n    int i, j, k, t;\n    for (i = 0; i < n - 1; i++) {\n        k = i;\n        for (j = i + 1; j < n; j++)\n            if (a[j] < a[k]) k = j;\n        if (k != i) {\n            t = a[i];\n            a[i] = a[k];\n            a[k] = t;\n        }\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    SelectSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6\n5 2 9 1 7 3\n",
+          "expected": "1 2 3 5 7 9"
+        },
+        {
+          "stdin": "1\n8\n",
+          "expected": "8"
+        },
+        {
+          "stdin": "5\n1 2 3 4 5\n",
+          "expected": "1 2 3 4 5"
+        },
+        {
+          "stdin": "4\n4 3 3 1\n",
+          "expected": "1 3 3 4"
+        }
+      ],
+      "explanation": "外层共做 n-1 趟（最后一趟只剩一个元素，它自然就位），故第 1 空为 n-1。内层从 i+1 扫到 n-1，用 k 记住最小值下标，条件是 a[j] < a[k]；用 <= 也能得到正确结果，但会增加无谓的下标更新，影响稳定性。第 3 空与前后两行合成三步交换 a[i] 与 a[k]。易错点：交换前先判断 k != i，可以避免自己与自己交换带来的多余赋值。",
+      "tags": [
+        "简单选择排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-selection"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-006",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序用堆排序对 n 个整数升序排列，其中 Sift 把 a[i..m] 中以 i 为根的子树调整为大顶堆。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (/*__BLANK_1__*/) {\n        if (j < m && a[j] < a[j + 1]) /*__BLANK_2__*/;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        /*__BLANK_3__*/;\n        j = 2 * i + 1;\n    }\n    /*__BLANK_4__*/;\n}\n\nvoid HeapSort(int a[], int n)\n{\n    int i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    HeapSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j <= m",
+          "accepted": [
+            "j<=m"
+          ],
+          "hint": "j 是待比较的孩子下标，越过 m 说明已到叶子"
+        },
+        {
+          "index": 2,
+          "answer": "j++",
+          "accepted": [
+            "j = j + 1;",
+            "j+=1;"
+          ],
+          "hint": "取左右孩子中较大者"
+        },
+        {
+          "index": 3,
+          "answer": "i = j",
+          "accepted": [
+            "i=j;"
+          ],
+          "hint": "孩子上移后，t 应继续从该孩子位置向下比较"
+        },
+        {
+          "index": 4,
+          "answer": "a[i] = t",
+          "accepted": [
+            "a[i]=t;"
+          ],
+          "hint": "把原根值放入最终确定的位置"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (/*__BLANK_1__*/) {\n        if (j < m && a[j] < a[j + 1]) /*__BLANK_2__*/;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        /*__BLANK_3__*/;\n        j = 2 * i + 1;\n    }\n    /*__BLANK_4__*/;\n}\n\nvoid HeapSort(int a[], int n)\n{\n    int i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    HeapSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (j <= m) {\n        if (j < m && a[j] < a[j + 1]) j++;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        i = j;\n        j = 2 * i + 1;\n    }\n    a[i] = t;\n}\n\nvoid HeapSort(int a[], int n)\n{\n    int i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n}\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    HeapSort(a, n);\n\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "7\n49 38 65 97 76 13 27\n",
+          "expected": "13 27 38 49 65 76 97"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "6\n3 3 3 3 3 3\n",
+          "expected": "3 3 3 3 3 3"
+        },
+        {
+          "stdin": "8\n1 2 3 4 5 6 7 8\n",
+          "expected": "1 2 3 4 5 6 7 8"
+        }
+      ],
+      "explanation": "筛选算法：t 暂存待调整的根，j 指向其左孩子 2i+1；只要 j 未越界就继续——若右孩子存在且更大则 j++ 取较大孩子；若 t 已不小于该孩子说明堆性质满足，break；否则把较大孩子上移到父位置，再让 i=j 沿该分支继续下沉。循环结束后 a[i]=t 把根值放到最终落点。升序排序需建大顶堆，每趟把堆顶与末尾交换。易错点：漏掉 j<m 的边界判断会在只有左孩子时越界访问 a[j+1]。",
+      "tags": [
+        "堆排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-heapsort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-pg-003",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：读入 n 个整数，用堆排序（大顶堆）按升序排列后输出。要求空间复杂度为 O(1)（不使用与原序列等长的辅助数组）。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "7\n49 38 65 97 76 13 27\n",
+          "expected": "13 27 38 49 65 76 97"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "6\n6 5 4 3 2 1\n",
+          "expected": "1 2 3 4 5 6"
+        },
+        {
+          "stdin": "5\n2 2 1 1 3\n",
+          "expected": "1 1 2 2 3"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid Sift(int a[], int i, int m)\n{\n    int t = a[i], j = 2 * i + 1;\n    while (j <= m) {\n        if (j < m && a[j] < a[j + 1]) j++;\n        if (t >= a[j]) break;\n        a[i] = a[j];\n        i = j;\n        j = 2 * i + 1;\n    }\n    a[i] = t;\n}\n\nvoid HeapSort(int a[], int n)\n{\n    int i, t;\n    for (i = n / 2 - 1; i >= 0; i--) Sift(a, i, n - 1);\n    for (i = n - 1; i > 0; i--) {\n        t = a[0]; a[0] = a[i]; a[i] = t;\n        Sift(a, 0, i - 1);\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    HeapSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    HeapSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "解题思路：先用 Sift 从最后一个非终端结点 n/2-1 开始自下而上建大顶堆（O(n)）；然后做 n-1 趟——每趟把堆顶（当前最大值）与堆中最后一个元素交换，堆长度减 1，再对新堆顶调用 Sift 向下调整（O(log n)）。总时间 O(n log n)，全程只用常数个临时变量。易错点：筛选区间上界必须逐趟收缩为 i-1，否则已就位的最大值会被重新卷进堆里。",
+      "tags": [
+        "堆排序",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-03"
+      ],
+      "vizIds": [
+        "sort-heapsort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-015",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "对 64 个记录的序列进行二路归并排序，需要进行的归并趟数为（　）。",
+      "options": [
+        "6",
+        "7",
+        "5",
+        "32"
+      ],
+      "answer": 0,
+      "explanation": "二路归并每趟把有序子表长度翻倍：初始长度 1，第 1 趟后为 2，第 2 趟后为 4……第 k 趟后为 2^k。要使 2^k ≥ 64，需 k = ⌈log₂64⌉ = 6 趟。一般地，对 n 个记录二路归并的趟数为 ⌈log₂n⌉，每趟都要扫描全部 n 个记录，故总时间 O(n log n)。易错点：不要把趟数答成 n/2（那是一趟内的归并段数）。",
+      "tags": [
+        "归并排序",
+        "趟数"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-016",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "二路归并排序在排序过程中需要与原序列等长的辅助数组，其空间复杂度为（　）。",
+      "options": [
+        "O(n)",
+        "O(1)",
+        "O(log n)",
+        "O(n log n)"
+      ],
+      "answer": 0,
+      "explanation": "归并要把两个有序子表合并成一个新的有序表，合并过程中必须同时保留原数据，因此需要一个与原序列等长的辅助数组 r[0..n-1]，空间复杂度 O(n)（递归实现还要加上 O(log n) 的栈空间，仍以 O(n) 为主）。这是内部排序中空间代价最高的方法之一。易错点：常把它与快排的 O(log n) 递归栈混淆——快排的辅助空间远小于 n。",
+      "tags": [
+        "归并排序",
+        "空间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-017",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "对 1000 个取值范围为 0～999 的整数用 LSD 基数排序（十进制），需要进行\"分配—收集\"的趟数为（　）。",
+      "options": [
+        "3",
+        "10",
+        "1000",
+        "4"
+      ],
+      "answer": 0,
+      "explanation": "LSD 基数排序按关键字的每一位依次分配收集，趟数等于关键字的位数 d。0～999 的十进制整数最多 3 位，故 d = 3，需 3 趟：先按个位，再按十位，最后按百位。每趟处理 n 个元素与 r=10 个桶，总时间 O(d(n+r)) = O(3×1010)。易错点：趟数由位数决定，与元素个数 1000 无关；不要答成桶的个数 10。",
+      "tags": [
+        "基数排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-radix"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-018",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "下列排序方法中，稳定的排序方法是（　）。",
+      "options": [
+        "归并排序",
+        "快速排序",
+        "堆排序",
+        "希尔排序"
+      ],
+      "answer": 0,
+      "explanation": "归并时只有 a[i] <= a[j] 才先取左子表的元素，相等元素保持\"左先右后\"的原次序，因此稳定。快速排序的划分、堆排序的筛选、希尔排序的跨增量插入都会做远距离交换，同关键字记录可能被打乱，三者都不稳定。记忆口诀：不稳定的是\"快、希、选、堆\"。易错点：基数排序也是稳定的（分配进桶按原顺序、收集按桶序），常与本题混淆。",
+      "tags": [
+        "稳定性",
+        "排序方法"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-019",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "待排序的数据以单链表存储且不能改变结点存储结构（只能改指针），此时最合适的排序方法是（　）。",
+      "options": [
+        "归并排序",
+        "堆排序",
+        "快速排序",
+        "简单选择排序之外的希尔排序"
+      ],
+      "answer": 0,
+      "explanation": "归并排序只需要顺序访问并把两段合并，链表归并可以在原结点上改 next 指针完成，不需要随机访问、也不需要 O(n) 的辅助数组，空间可降到 O(1)（不计递归栈），是链表排序的首选。堆排序要求按下标 O(1) 访问任意元素，快速排序的划分需要双向扫描并交换，都不适合单链表；希尔排序依赖按增量跳跃访问，同样不适合。易错点：链表归并的空间优势是常被忽视的考点。",
+      "tags": [
+        "归并排序",
+        "链表"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-020",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于二路归并排序的比较次数，下列说法正确的是（　）。",
+      "options": [
+        "与初始序列的排列状况无关，任何情况下都是 O(n log n)",
+        "正序时最好，只需 O(n)",
+        "逆序时最好，只需 O(n log n)",
+        "与初始序列有关，最坏为 O(n^2)"
+      ],
+      "answer": 0,
+      "explanation": "归并排序的过程完全由\"子表长度翻倍\"决定：无论输入怎样，都要做 ⌈log₂n⌉ 趟，每趟对 n 个元素各处理一次，因此最好、最坏、平均时间复杂度都是 O(n log n)，性能与初始状态无关。这正是它相对快速排序（最坏 O(n^2)）的优势。易错点：Merge 内部的比较次数会随数据略有浮动，但总量级不变，仍是 Θ(n) 每趟。",
+      "tags": [
+        "归并排序",
+        "比较次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-fb-005",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "设待排序记录数为 n：二路归并排序的时间复杂度为____、空间复杂度为____；基数排序（关键字 d 位、基数为 r）的时间复杂度为____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "O(nlogn)",
+          "accepted": [
+            "O(n log n)",
+            "O(nlog₂n)"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "O(n)"
+        },
+        {
+          "index": 3,
+          "answer": "O(d(n+r))",
+          "accepted": [
+            "O(d*(n+r))",
+            "O(d(n + r))"
+          ]
+        }
+      ],
+      "explanation": "归并排序趟数 ⌈log₂n⌉、每趟 O(n)，故时间 O(n log n)；合并需等长辅助数组，空间 O(n)。基数排序不做关键字比较，每趟分配 O(n)、收集 O(r)，共 d 趟，故时间 O(d(n+r))，空间 O(r)（链式桶）或 O(n+r)（数组桶）。易错点：基数排序的复杂度里出现 r，说明它对关键字取值范围敏感，r 很大时并不划算。",
+      "tags": [
+        "归并排序",
+        "基数排序",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-tf-005",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "基数排序在排序过程中不需要进行关键字之间的比较，其时间复杂度与关键字的位数和取值范围有关。",
+      "answer": true,
+      "explanation": "基数排序属于\"分配式排序\"：它把关键字按位拆开，依次将记录分配到 r 个桶中再按桶序收集，全过程只做\"按位取数字\"和\"链接/移动\"，从不比较两个关键字的大小，因此比较次数为 0。时间 O(d(n+r)) 中，d 是关键字位数、r 是基数（桶数），确实与关键字的位数和取值范围直接相关。易错点：不要因为它快就误认为它基于比较——基于比较的排序下界是 O(n log n)，基数排序绕开了这个下界。",
+      "tags": [
+        "基数排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cx-004",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序段的时间复杂度（用大 O 表示）。\n```\nfor (i = 0; i < d; i++) {                 /* d：关键字位数 */\n    for (j = 0; j < n; j++) {             /* n：记录个数，按当前位分配到桶 */\n        k = digit(a[j], i);\n        append(bucket[k], a[j]);\n    }\n    for (k = 0; k < r; k++)               /* r：基数，即桶的个数 */\n        while (!empty(bucket[k]))\n            a[p++] = remove(bucket[k]);\n}\n```",
+      "answer": "O(d(n+r))",
+      "code": "for (i = 0; i < d; i++) {                 /* d：关键字位数 */\n    for (j = 0; j < n; j++) {             /* n：记录个数，按当前位分配到桶 */\n        k = digit(a[j], i);\n        append(bucket[k], a[j]);\n    }\n    for (k = 0; k < r; k++)               /* r：基数，即桶的个数 */\n        while (!empty(bucket[k]))\n            a[p++] = remove(bucket[k]);\n}",
+      "accepted": [
+        "O(d(n + r))",
+        "O(d*(n+r))"
+      ],
+      "explanation": "外层 d 趟；每趟内层第一个循环对 n 条记录各做一次\"取位 + 入桶\"，代价 Θ(n)；第二个循环遍历 r 个桶，把所有记录取出，桶遍历本身 O(r)、取记录 O(n)，合计 Θ(n+r)。总时间 = d×Θ(n+r) = O(d(n+r))，与关键字的大小无关、与初始序列无关。易错点：容易漏掉收集阶段对 r 个桶的遍历，只写成 O(dn)；当 r 远大于 n 时（如按 32 位整数分桶）差别显著。",
+      "tags": [
+        "基数排序",
+        "复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-021",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "若待排序列的元素个数 n 较小，且序列已基本按关键字有序，则从时间开销考虑应优先选择（　）。",
+      "options": [
+        "直接插入排序",
+        "快速排序",
+        "堆排序",
+        "归并排序"
+      ],
+      "answer": 0,
+      "explanation": "直接插入排序在序列基本有序时，每个元素只需与前少量元素比较就能找到位置，比较与移动次数接近 n，最好情况 O(n)，且实现简单、稳定、空间 O(1)，是\"n 小 + 基本有序\"的最佳选择。快速排序在基本有序时划分极不平衡，退化为 O(n^2)；堆排序与归并排序无论输入如何都是 O(n log n)，n 小时常数开销反而更大。易错点：不能只看\"平均最快\"，要看数据特征。",
+      "tags": [
+        "排序方法选择"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01",
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-sc-022",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "若 n 很大、要求排序结果稳定、且允许使用与原序列等长的辅助空间，则应优先选择（　）。",
+      "options": [
+        "归并排序",
+        "堆排序",
+        "快速排序",
+        "希尔排序"
+      ],
+      "answer": 0,
+      "explanation": "n 大时首先要 O(n log n) 的量级：堆排、快排、归并都满足；再要求\"稳定\"，则排除不稳定的堆排与快排；允许 O(n) 辅助空间，正好抵消归并排序唯一的缺点，故归并排序最合适（性能稳定不退化，最坏也是 O(n log n)）。希尔排序是 O(n^1.3) 左右且不稳定。易错点：若\"不允许额外空间\"，同样条件下就应改选堆排序——选择排序方法要综合 n 的大小、稳定性要求、空间限制与初始状态。",
+      "tags": [
+        "排序方法选择"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-01",
+        "ds-ch08-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-009",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergePass(int a[], int b[], int n, int len)\n{\n    int i = 0, j;\n    while (i + 2 * len - 1 < n) {\n        Merge(a, b, i, i + len - 1, i + 2 * len - 1);\n        i = i + 2 * len;\n    }\n    if (i + len - 1 < n - 1) Merge(a, b, i, i + len - 1, n - 1);\n    else for (j = i; j < n; j++) b[j] = a[j];\n}\n\nint main(void)\n{\n    int a[9] = {50, 10, 90, 30, 70, 40, 80, 60, 20};\n    int b[9];\n    int n = 9, len, i;\n    for (len = 1; len < n; len = len * 2) {\n        MergePass(a, b, n, len);\n        printf(\"len=%d:\", len);\n        for (i = 0; i < n; i++) printf(\" %d\", b[i]);\n        printf(\"\\n\");\n        for (i = 0; i < n; i++) a[i] = b[i];\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "len=1: 10 50 30 90 40 70 60 80 20\nlen=2: 10 30 50 90 40 60 70 80 20\nlen=4: 10 30 40 50 60 70 80 90 20\nlen=8: 10 20 30 40 50 60 70 80 90",
+      "code": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergePass(int a[], int b[], int n, int len)\n{\n    int i = 0, j;\n    while (i + 2 * len - 1 < n) {\n        Merge(a, b, i, i + len - 1, i + 2 * len - 1);\n        i = i + 2 * len;\n    }\n    if (i + len - 1 < n - 1) Merge(a, b, i, i + len - 1, n - 1);\n    else for (j = i; j < n; j++) b[j] = a[j];\n}\n\nint main(void)\n{\n    int a[9] = {50, 10, 90, 30, 70, 40, 80, 60, 20};\n    int b[9];\n    int n = 9, len, i;\n    for (len = 1; len < n; len = len * 2) {\n        MergePass(a, b, n, len);\n        printf(\"len=%d:\", len);\n        for (i = 0; i < n; i++) printf(\" %d\", b[i]);\n        printf(\"\\n\");\n        for (i = 0; i < n; i++) a[i] = b[i];\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "这是自底向上的迭代式二路归并：len 依次为 1、2、4、8，每趟把相邻的两个长度 len 的有序段合并成长度 2len 的有序段，末尾不足两段的残余部分单独处理（能与前段合并就合并，否则原样复制）。len=1 时把每两个元素排好，len=2 时四个一组……len=8 时只剩一个长度为 8 的段与最后 1 个元素合并，得到完全有序的序列。易错点：每趟结束后要把结果从 b 复制回 a，否则下一趟读到的还是旧数据。",
+      "tags": [
+        "归并排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cr-010",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序的运行结果。\n```\n#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {278, 109, 63, 930, 589, 184, 505, 269};\n    int bucket[10][8], cnt[10];\n    int n = 8, d, i, k, pos;\n    for (d = 1; d <= 100; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = a[i] / d % 10;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++) a[pos++] = bucket[k][i];\n        printf(\"d=%d:\", d);\n        for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n        printf(\"\\n\");\n    }\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "d=1: 930 63 184 505 278 109 589 269\nd=10: 505 109 930 63 269 278 184 589\nd=100: 63 109 184 269 278 505 589 930",
+      "code": "#include <stdio.h>\n\nint main(void)\n{\n    int a[8] = {278, 109, 63, 930, 589, 184, 505, 269};\n    int bucket[10][8], cnt[10];\n    int n = 8, d, i, k, pos;\n    for (d = 1; d <= 100; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = a[i] / d % 10;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++) a[pos++] = bucket[k][i];\n        printf(\"d=%d:\", d);\n        for (i = 0; i < n; i++) printf(\" %d\", a[i]);\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "LSD 基数排序用数组模拟 10 个桶，d 依次取 1、10、100 即个位、十位、百位共 3 趟。每趟先按当前位把元素依次放入对应桶（cnt 记录桶内元素个数），再从桶 0 到桶 9 按放入顺序收集回 a。因为每趟的分配与收集都是稳定的（保持原相对次序），前一位排好的次序在下一趟中被保留，3 趟后整体有序。易错点：取当前位数字用 a[i]/d%10，写成 a[i]%d/10 会得到完全错误的分桶。",
+      "tags": [
+        "基数排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-radix"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-007",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "下列程序用递归二路归并排序对 n 个整数升序排列。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (/*__BLANK_1__*/) b[k++] = a[j++];\n}\n\nvoid MergeSort(int a[], int b[], int low, int high)\n{\n    int mid, i;\n    if (low < high) {\n        mid = /*__BLANK_2__*/;\n        MergeSort(a, b, low, mid);\n        MergeSort(a, b, mid + 1, high);\n        Merge(a, b, low, mid, high);\n        for (i = low; i <= high; i++) /*__BLANK_3__*/;\n    }\n}\n\nint main(void)\n{\n    int a[100], b[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    MergeSort(a, b, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "j <= high",
+          "accepted": [
+            "j<=high"
+          ],
+          "hint": "右子表还有剩余元素时继续复制"
+        },
+        {
+          "index": 2,
+          "answer": "(low + high) / 2",
+          "accepted": [
+            "(low+high)/2",
+            "low + (high - low) / 2"
+          ],
+          "hint": "取中点把区间一分为二"
+        },
+        {
+          "index": 3,
+          "answer": "a[i] = b[i]",
+          "accepted": [
+            "a[i]=b[i];"
+          ],
+          "hint": "把合并结果从辅助数组写回原数组"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (/*__BLANK_1__*/) b[k++] = a[j++];\n}\n\nvoid MergeSort(int a[], int b[], int low, int high)\n{\n    int mid, i;\n    if (low < high) {\n        mid = /*__BLANK_2__*/;\n        MergeSort(a, b, low, mid);\n        MergeSort(a, b, mid + 1, high);\n        Merge(a, b, low, mid, high);\n        for (i = low; i <= high; i++) /*__BLANK_3__*/;\n    }\n}\n\nint main(void)\n{\n    int a[100], b[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    MergeSort(a, b, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergeSort(int a[], int b[], int low, int high)\n{\n    int mid, i;\n    if (low < high) {\n        mid = (low + high) / 2;\n        MergeSort(a, b, low, mid);\n        MergeSort(a, b, mid + 1, high);\n        Merge(a, b, low, mid, high);\n        for (i = low; i <= high; i++) a[i] = b[i];\n    }\n}\n\nint main(void)\n{\n    int a[100], b[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    MergeSort(a, b, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9\n50 10 90 30 70 40 80 60 20\n",
+          "expected": "10 20 30 40 50 60 70 80 90"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "6\n2 2 1 1 3 3\n",
+          "expected": "1 1 2 2 3 3"
+        },
+        {
+          "stdin": "5\n5 4 3 2 1\n",
+          "expected": "1 2 3 4 5"
+        }
+      ],
+      "explanation": "Merge 把 a[low..mid] 与 a[mid+1..high] 两个有序段合并到 b：主循环在两段都非空时取较小者，之后两个 while 分别复制剩余的左段与右段，故第 1 空为 j <= high。MergeSort 递归出口是 low >= high（段长 1），否则取 mid=(low+high)/2 分治，合并后必须把 b 中的结果写回 a（第 3 空），否则上层递归读到的仍是未合并的数据。易错点：比较用 a[i] <= a[j] 而不是 <，这是保证稳定性的关键。",
+      "tags": [
+        "归并排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-008",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序用自底向上的迭代式二路归并排序对 n 个整数升序排列。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergePass(int a[], int b[], int n, int len)\n{\n    int i = 0, j;\n    while (/*__BLANK_1__*/) {\n        Merge(a, b, i, i + len - 1, i + 2 * len - 1);\n        i = i + 2 * len;\n    }\n    if (i + len - 1 < n - 1)\n        Merge(/*__BLANK_2__*/);\n    else\n        for (j = i; j < n; j++) /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int a[100], b[100], n, len, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (len = 1; len < n; len = len * 2) {\n        MergePass(a, b, n, len);\n        for (i = 0; i < n; i++) a[i] = b[i];\n    }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "i + 2 * len - 1 < n",
+          "accepted": [
+            "i + 2*len - 1 < n",
+            "i + 2 * len <= n"
+          ],
+          "hint": "还有完整的两段（共 2*len 个元素）可以合并"
+        },
+        {
+          "index": 2,
+          "answer": "a, b, i, i + len - 1, n - 1",
+          "accepted": [
+            "a,b,i,i+len-1,n-1"
+          ],
+          "hint": "最后剩下一整段加一小段，合并到表尾"
+        },
+        {
+          "index": 3,
+          "answer": "b[j] = a[j]",
+          "accepted": [
+            "b[j]=a[j];"
+          ],
+          "hint": "把落单的残余段原样复制到辅助数组"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergePass(int a[], int b[], int n, int len)\n{\n    int i = 0, j;\n    while (/*__BLANK_1__*/) {\n        Merge(a, b, i, i + len - 1, i + 2 * len - 1);\n        i = i + 2 * len;\n    }\n    if (i + len - 1 < n - 1)\n        Merge(/*__BLANK_2__*/);\n    else\n        for (j = i; j < n; j++) /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int a[100], b[100], n, len, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (len = 1; len < n; len = len * 2) {\n        MergePass(a, b, n, len);\n        for (i = 0; i < n; i++) a[i] = b[i];\n    }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergePass(int a[], int b[], int n, int len)\n{\n    int i = 0, j;\n    while (i + 2 * len - 1 < n) {\n        Merge(a, b, i, i + len - 1, i + 2 * len - 1);\n        i = i + 2 * len;\n    }\n    if (i + len - 1 < n - 1)\n        Merge(a, b, i, i + len - 1, n - 1);\n    else\n        for (j = i; j < n; j++) b[j] = a[j];\n}\n\nint main(void)\n{\n    int a[100], b[100], n, len, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    for (len = 1; len < n; len = len * 2) {\n        MergePass(a, b, n, len);\n        for (i = 0; i < n; i++) a[i] = b[i];\n    }\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "9\n50 10 90 30 70 40 80 60 20\n",
+          "expected": "10 20 30 40 50 60 70 80 90"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "8\n8 7 6 5 4 3 2 1\n",
+          "expected": "1 2 3 4 5 6 7 8"
+        },
+        {
+          "stdin": "3\n1 3 2\n",
+          "expected": "1 2 3"
+        }
+      ],
+      "explanation": "一趟归并要把长度为 len 的有序段两两合并：只要还剩下完整的 2*len 个元素（i+2*len-1 < n）就正常合并；循环结束后剩余不足两段，若还剩\"一段 + 一小段\"（i+len-1 < n-1）就把它们合并到表尾 n-1，否则说明剩下的正好是单独一段，直接复制到 b。主函数中 len 从 1 开始每趟翻倍，直到 len ≥ n。易错点：残余段的处理是最常见的漏写点，忽略它会导致表尾元素丢失。",
+      "tags": [
+        "归并排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-cc-009",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "下列程序用 LSD 基数排序对 n 个 0～999 的非负整数升序排列。请填入恰当内容使程序功能完整。\n```\n#include <stdio.h>\n\nvoid RadixSort(int a[], int n)\n{\n    int bucket[10][100], cnt[10];\n    int d, i, k, pos;\n    for (d = 1; /*__BLANK_3__*/; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = /*__BLANK_1__*/;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++)\n                /*__BLANK_2__*/;\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    RadixSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "a[i] / d % 10",
+          "accepted": [
+            "a[i]/d%10"
+          ],
+          "hint": "取出当前处理位上的数字"
+        },
+        {
+          "index": 2,
+          "answer": "a[pos++] = bucket[k][i]",
+          "accepted": [
+            "a[pos++] = bucket[k][i];"
+          ],
+          "hint": "按桶序、桶内原顺序收集回原数组"
+        },
+        {
+          "index": 3,
+          "answer": "d <= 100",
+          "accepted": [
+            "d <= 100",
+            "d < 1000"
+          ],
+          "hint": "999 以内共 3 位，d 取 1、10、100"
+        }
+      ],
+      "code": "#include <stdio.h>\n\nvoid RadixSort(int a[], int n)\n{\n    int bucket[10][100], cnt[10];\n    int d, i, k, pos;\n    for (d = 1; /*__BLANK_3__*/; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = /*__BLANK_1__*/;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++)\n                /*__BLANK_2__*/;\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    RadixSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\nvoid RadixSort(int a[], int n)\n{\n    int bucket[10][100], cnt[10];\n    int d, i, k, pos;\n    for (d = 1; d <= 100; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = a[i] / d % 10;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++)\n                a[pos++] = bucket[k][i];\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    RadixSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "8\n278 109 63 930 589 184 505 269\n",
+          "expected": "63 109 184 269 278 505 589 930"
+        },
+        {
+          "stdin": "1\n7\n",
+          "expected": "7"
+        },
+        {
+          "stdin": "6\n0 0 1 999 500 500\n",
+          "expected": "0 0 1 500 500 999"
+        },
+        {
+          "stdin": "5\n100 99 98 97 96\n",
+          "expected": "96 97 98 99 100"
+        }
+      ],
+      "explanation": "循环控制：d 依次取 1、10、100 对应个位、十位、百位，故条件为 d <= 100。分配阶段：用 a[i]/d%10 取出当前位的数字作为桶号 k，把元素追加到 bucket[k] 的末尾并用 cnt[k] 计数。收集阶段：k 从 0 到 9 遍历各桶，桶内按放入顺序依次写回 a[pos++]，pos 从 0 递增。因为分配与收集都保持原相对次序，所以低位排好的顺序不会被高位破坏。易错点：cnt 必须在每趟开始时清零，否则桶会越填越满导致越界。",
+      "tags": [
+        "基数排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-radix"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-pg-004",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编写程序：读入 n 个整数，用二路归并排序按升序排列后输出。要求时间复杂度为 O(n log n)。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。\n\n输出格式：一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "9\n50 10 90 30 70 40 80 60 20\n",
+          "expected": "10 20 30 40 50 60 70 80 90"
+        },
+        {
+          "stdin": "1\n5\n",
+          "expected": "5"
+        },
+        {
+          "stdin": "6\n3 3 1 1 2 2\n",
+          "expected": "1 1 2 2 3 3"
+        },
+        {
+          "stdin": "7\n7 6 5 4 3 2 1\n",
+          "expected": "1 2 3 4 5 6 7"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid Merge(int a[], int b[], int low, int mid, int high)\n{\n    int i = low, j = mid + 1, k = low;\n    while (i <= mid && j <= high) {\n        if (a[i] <= a[j]) b[k++] = a[i++];\n        else b[k++] = a[j++];\n    }\n    while (i <= mid) b[k++] = a[i++];\n    while (j <= high) b[k++] = a[j++];\n}\n\nvoid MergeSort(int a[], int b[], int low, int high)\n{\n    int mid, i;\n    if (low < high) {\n        mid = (low + high) / 2;\n        MergeSort(a, b, low, mid);\n        MergeSort(a, b, mid + 1, high);\n        Merge(a, b, low, mid, high);\n        for (i = low; i <= high; i++) a[i] = b[i];\n    }\n}\n\nint main(void)\n{\n    int a[100], b[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    MergeSort(a, b, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个整数，用空格分隔。",
+      "output_format": "一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], b[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    MergeSort(a, b, 0, n - 1);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "解题思路：MergeSort 采用分治——把 a[low..high] 从中点分成两段，分别递归排序，再调用 Merge 合并；Merge 用三个下标 i、j、k 同步扫描两个有序段，每次取较小者放入辅助数组 b，一段扫完后把另一段剩余元素整体复制过去，最后写回 a。递归出口是 low >= high。易错点：合并时相等元素要先取左段的（a[i] <= a[j]），这样才能保证归并排序的稳定性。",
+      "tags": [
+        "归并排序",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-merge"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch08-pg-005",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编写程序：读入 n 个 0～9999 的非负整数，用 LSD 基数排序（十进制，4 趟分配收集）按升序排列后输出。不得使用任何基于比较的排序函数。\n\n输入格式：第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个 0～9999 的整数，用空格分隔。\n\n输出格式：一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "testCases": [
+        {
+          "stdin": "8\n278 109 63 930 589 184 505 269\n",
+          "expected": "63 109 184 269 278 505 589 930"
+        },
+        {
+          "stdin": "1\n0\n",
+          "expected": "0"
+        },
+        {
+          "stdin": "6\n9999 1 5000 0 1234 1234\n",
+          "expected": "0 1 1234 1234 5000 9999"
+        },
+        {
+          "stdin": "5\n100 99 98 97 96\n",
+          "expected": "96 97 98 99 100"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\nvoid RadixSort(int a[], int n)\n{\n    int bucket[10][100], cnt[10];\n    int d, i, k, pos;\n    for (d = 1; d <= 1000; d = d * 10) {\n        for (k = 0; k < 10; k++) cnt[k] = 0;\n        for (i = 0; i < n; i++) {\n            k = a[i] / d % 10;\n            bucket[k][cnt[k]++] = a[i];\n        }\n        pos = 0;\n        for (k = 0; k < 10; k++)\n            for (i = 0; i < cnt[k]; i++) a[pos++] = bucket[k][i];\n    }\n}\n\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    RadixSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；第二行 n 个 0～9999 的整数，用空格分隔。",
+      "output_format": "一行 n 个升序整数，相邻两数之间用一个空格分隔。",
+      "code_starter": "#include <stdio.h>\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int a[100], n, i;\n    if (scanf(\"%d\", &n) != 1) return 1;\n    for (i = 0; i < n; i++) scanf(\"%d\", &a[i]);\n    RadixSort(a, n);\n    for (i = 0; i < n; i++) printf(\"%d \", a[i]);\n    printf(\"\\n\");\n    return 0;\n}",
+      "explanation": "解题思路：LSD 基数排序从最低位到最高位共做 4 趟（d = 1,10,100,1000）。每趟先用 a[i]/d%10 算出当前位数字，把元素按原顺序分配到 10 个桶中（cnt[k] 记录桶内个数），再从桶 0 到桶 9 依次收集回数组。由于分配和收集都保持桶内原相对次序，低位已排好的顺序在高位处理时不被破坏，4 趟后整体有序，总时间 O(4(n+10))。易错点：每趟开始前必须把 cnt 全部清零；本题只处理非负整数，若含负数需另行处理符号位。",
+      "tags": [
+        "基数排序",
+        "编程"
+      ],
+      "knowledgeIds": [
+        "ds-ch08-04"
+      ],
+      "vizIds": [
+        "sort-radix"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第8章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "bad70f8ead4773e3",
+  "content_sha": "07702579a1e82fff",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1413,
+  "count": 1473,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -15611,6 +15611,775 @@
       ],
       "chapter": "第7章 查找",
       "section": "7.5 散列表",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-001",
+      "file": "ds-ch08.json",
+      "title": "排序算法的\"稳定性\"是指",
+      "tags": [
+        "排序",
+        "稳定性"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-002",
+      "file": "ds-ch08.json",
+      "title": "下列各组排序算法中",
+      "tags": [
+        "稳定性",
+        "排序算法"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-tf-001",
+      "file": "ds-ch08.json",
+      "title": "不稳定的排序算法一定比稳定的排序算法效率低",
+      "tags": [
+        "稳定性",
+        "效率"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-fb-001",
+      "file": "ds-ch08.json",
+      "title": "按排序过程中待排序记录是否全部存放在内存中",
+      "tags": [
+        "内部排序",
+        "外部排序",
+        "性能指标"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-001",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "冒泡排序",
+        "稳定性"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-002",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "逆序对",
+        "有序性判定"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-003",
+      "file": "ds-ch08.json",
+      "title": "对 n 个记录的顺序表作直接插入排序",
+      "tags": [
+        "直接插入排序",
+        "最好情况"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-004",
+      "file": "ds-ch08.json",
+      "title": "关于折半插入排序",
+      "tags": [
+        "折半插入排序",
+        "比较与移动"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-005",
+      "file": "ds-ch08.json",
+      "title": "对关键字序列 {49",
+      "tags": [
+        "希尔排序",
+        "一趟结果"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-fb-002",
+      "file": "ds-ch08.json",
+      "title": "希尔排序又称___",
+      "tags": [
+        "希尔排序",
+        "缩小增量"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-tf-002",
+      "file": "ds-ch08.json",
+      "title": "直接插入排序是一种稳定的排序方法",
+      "tags": [
+        "直接插入排序",
+        "适用场合"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-006",
+      "file": "ds-ch08.json",
+      "title": "对关键字序列 {49",
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cx-001",
+      "file": "ds-ch08.json",
+      "title": "写出下列直接插入排序程序段在**最坏情况**下的时间复杂度",
+      "tags": [
+        "直接插入排序",
+        "时间复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-001",
+      "file": "ds-ch08.json",
+      "title": "下列程序用带哨兵的直接插入排序对 r[1..n] 升序排列",
+      "tags": [
+        "直接插入排序",
+        "哨兵",
+        "代码填空"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-003",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-002",
+      "file": "ds-ch08.json",
+      "title": "下列程序实现希尔排序",
+      "tags": [
+        "希尔排序",
+        "代码填空"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-004",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "折半插入排序",
+        "比较次数"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-pg-001",
+      "file": "ds-ch08.json",
+      "title": "编写程序实现折半插入排序",
+      "tags": [
+        "折半插入排序",
+        "编程题"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-007",
+      "file": "ds-ch08.json",
+      "title": "对关键字序列 ",
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-008",
+      "file": "ds-ch08.json",
+      "title": "对序列 ",
+      "tags": [
+        "冒泡排序",
+        "排序过程"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-009",
+      "file": "ds-ch08.json",
+      "title": "下列关于快速排序的叙述中",
+      "tags": [
+        "快速排序",
+        "时间复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-010",
+      "file": "ds-ch08.json",
+      "title": "在冒泡排序中增设一个\"本趟是否发生过交换\"的标志变量后",
+      "tags": [
+        "冒泡排序",
+        "时间复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-fb-003",
+      "file": "ds-ch08.json",
+      "title": "对 n 个记录排序",
+      "tags": [
+        "快速排序",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-tf-003",
+      "file": "ds-ch08.json",
+      "title": "冒泡排序和快速排序都属于交换类排序",
+      "tags": [
+        "稳定性",
+        "冒泡排序",
+        "快速排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cx-002",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "冒泡排序",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-005",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "冒泡排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-006",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-003",
+      "file": "ds-ch08.json",
+      "title": "下列冒泡排序程序加入了交换标志",
+      "tags": [
+        "冒泡排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-004",
+      "file": "ds-ch08.json",
+      "title": "下列程序用快速排序对 n 个整数升序排列",
+      "tags": [
+        "快速排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-pg-002",
+      "file": "ds-ch08.json",
+      "title": "编写程序",
+      "tags": [
+        "快速排序",
+        "编程"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-011",
+      "file": "ds-ch08.json",
+      "title": "对 n 个记录的序列进行简单选择排序",
+      "tags": [
+        "简单选择排序",
+        "比较次数"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-012",
+      "file": "ds-ch08.json",
+      "title": "下列序列中",
+      "tags": [
+        "堆",
+        "大顶堆"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-013",
+      "file": "ds-ch08.json",
+      "title": "对序列 ",
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-014",
+      "file": "ds-ch08.json",
+      "title": "下列排序方法中",
+      "tags": [
+        "堆排序",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-fb-004",
+      "file": "ds-ch08.json",
+      "title": "对 n 个记录的序列进行简单选择排序",
+      "tags": [
+        "简单选择排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-tf-004",
+      "file": "ds-ch08.json",
+      "title": "堆排序是不稳定的排序方法",
+      "tags": [
+        "堆排序",
+        "应用"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cx-003",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "堆排序",
+        "建堆",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-007",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "简单选择排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-008",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-005",
+      "file": "ds-ch08.json",
+      "title": "下列程序用简单选择排序对 n 个整数升序排列",
+      "tags": [
+        "简单选择排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-006",
+      "file": "ds-ch08.json",
+      "title": "下列程序用堆排序对 n 个整数升序排列",
+      "tags": [
+        "堆排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-pg-003",
+      "file": "ds-ch08.json",
+      "title": "编写程序",
+      "tags": [
+        "堆排序",
+        "编程"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-015",
+      "file": "ds-ch08.json",
+      "title": "对 64 个记录的序列进行二路归并排序",
+      "tags": [
+        "归并排序",
+        "趟数"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-016",
+      "file": "ds-ch08.json",
+      "title": "二路归并排序在排序过程中需要与原序列等长的辅助数组",
+      "tags": [
+        "归并排序",
+        "空间复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-017",
+      "file": "ds-ch08.json",
+      "title": "对 1000 个取值范围为 0～999 的整数用 LSD 基数排序",
+      "tags": [
+        "基数排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-018",
+      "file": "ds-ch08.json",
+      "title": "下列排序方法中",
+      "tags": [
+        "稳定性",
+        "排序方法"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-019",
+      "file": "ds-ch08.json",
+      "title": "待排序的数据以单链表存储且不能改变结点存储结构",
+      "tags": [
+        "归并排序",
+        "链表"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-020",
+      "file": "ds-ch08.json",
+      "title": "关于二路归并排序的比较次数",
+      "tags": [
+        "归并排序",
+        "比较次数"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-fb-005",
+      "file": "ds-ch08.json",
+      "title": "设待排序记录数为 n",
+      "tags": [
+        "归并排序",
+        "基数排序",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-tf-005",
+      "file": "ds-ch08.json",
+      "title": "基数排序在排序过程中不需要进行关键字之间的比较",
+      "tags": [
+        "基数排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cx-004",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "基数排序",
+        "复杂度"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-021",
+      "file": "ds-ch08.json",
+      "title": "若待排序列的元素个数 n 较小",
+      "tags": [
+        "排序方法选择"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-sc-022",
+      "file": "ds-ch08.json",
+      "title": "若 n 很大、要求排序结果稳定、且允许使用与原序列等长的辅助空间",
+      "tags": [
+        "排序方法选择"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-009",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "归并排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cr-010",
+      "file": "ds-ch08.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "基数排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-007",
+      "file": "ds-ch08.json",
+      "title": "下列程序用递归二路归并排序对 n 个整数升序排列",
+      "tags": [
+        "归并排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-008",
+      "file": "ds-ch08.json",
+      "title": "下列程序用自底向上的迭代式二路归并排序对 n 个整数升序排列",
+      "tags": [
+        "归并排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-cc-009",
+      "file": "ds-ch08.json",
+      "title": "下列程序用 LSD 基数排序对 n 个 0～999 的非负整数升序排列",
+      "tags": [
+        "基数排序"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-pg-004",
+      "file": "ds-ch08.json",
+      "title": "编写程序",
+      "tags": [
+        "归并排序",
+        "编程"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch08-pg-005",
+      "file": "ds-ch08.json",
+      "title": "编写程序",
+      "tags": [
+        "基数排序",
+        "编程"
+      ],
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
       "type": "programming",
       "category": "ds"
     }

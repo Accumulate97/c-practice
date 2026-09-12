@@ -1,10 +1,10 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "7ec4b0b95ce32993",
+  "content_sha": "cb12343768a9dcae",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1413,
-  "shard_count": 19,
+  "count": 1473,
+  "shard_count": 20,
   "shards": [
     {
       "file": "c-ch01.json",
@@ -138,6 +138,13 @@
       "chapter": "第7章 查找",
       "count": 50,
       "url": "data/problems/ds-ch07.json"
+    },
+    {
+      "file": "ds-ch08.json",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "count": 60,
+      "url": "data/problems/ds-ch08.json"
     }
   ],
   "problems": [
@@ -19605,7 +19612,7 @@
       "section": "7.3 二叉排序树",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二叉排序树",
         "插入",
@@ -19622,7 +19629,7 @@
       "section": "7.3 二叉排序树",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二叉排序树",
         "插入",
@@ -19639,7 +19646,7 @@
       "section": "7.3 二叉排序树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "二叉排序树",
         "中序遍历",
@@ -19705,7 +19712,7 @@
       "section": "7.4 平衡二叉树",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "平衡二叉树",
         "插入",
@@ -19722,7 +19729,7 @@
       "section": "7.4 平衡二叉树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "平衡二叉树",
         "插入",
@@ -19739,7 +19746,7 @@
       "section": "7.4 平衡二叉树",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "平衡二叉树",
         "判定",
@@ -19886,7 +19893,7 @@
       "section": "7.5 散列表",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "线性探测",
@@ -19903,7 +19910,7 @@
       "section": "7.5 散列表",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "链地址法",
@@ -19920,7 +19927,7 @@
       "section": "7.5 散列表",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "线性探测",
@@ -19937,7 +19944,7 @@
       "section": "7.5 散列表",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "链地址法",
@@ -19954,7 +19961,7 @@
       "section": "7.5 散列表",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "线性探测",
@@ -19972,7 +19979,7 @@
       "section": "7.5 散列表",
       "difficulty": 4,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "散列表",
         "链地址法",
@@ -19981,6 +19988,955 @@
       ],
       "title": "编写程序",
       "file": "ds-ch07.json"
+    },
+    {
+      "id": "ds-ch08-sc-001",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "排序",
+        "稳定性"
+      ],
+      "title": "排序算法的\"稳定性\"是指",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-002",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "稳定性",
+        "排序算法"
+      ],
+      "title": "下列各组排序算法中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-tf-001",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "稳定性",
+        "效率"
+      ],
+      "title": "不稳定的排序算法一定比稳定的排序算法效率低",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-fb-001",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "内部排序",
+        "外部排序",
+        "性能指标"
+      ],
+      "title": "按排序过程中待排序记录是否全部存放在内存中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-001",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "冒泡排序",
+        "稳定性"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-002",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.1 排序的基本概念与稳定性",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "逆序对",
+        "有序性判定"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-003",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "最好情况"
+      ],
+      "title": "对 n 个记录的顺序表作直接插入排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-004",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半插入排序",
+        "比较与移动"
+      ],
+      "title": "关于折半插入排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-005",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "希尔排序",
+        "一趟结果"
+      ],
+      "title": "对关键字序列 {49",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-fb-002",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "希尔排序",
+        "缩小增量"
+      ],
+      "title": "希尔排序又称___",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-tf-002",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "适用场合"
+      ],
+      "title": "直接插入排序是一种稳定的排序方法",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-006",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "title": "对关键字序列 {49",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cx-001",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "时间复杂度"
+      ],
+      "title": "写出下列直接插入排序程序段在**最坏情况**下的时间复杂度",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-001",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "哨兵",
+        "代码填空"
+      ],
+      "title": "下列程序用带哨兵的直接插入排序对 r[1..n] 升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-003",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "直接插入排序",
+        "过程跟踪"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-002",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "希尔排序",
+        "代码填空"
+      ],
+      "title": "下列程序实现希尔排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-004",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "折半插入排序",
+        "比较次数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-pg-001",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.2 插入排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "折半插入排序",
+        "编程题"
+      ],
+      "title": "编写程序实现折半插入排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-007",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "title": "对关键字序列 ",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-008",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "冒泡排序",
+        "排序过程"
+      ],
+      "title": "对序列 ",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-009",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "快速排序",
+        "时间复杂度"
+      ],
+      "title": "下列关于快速排序的叙述中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-010",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "冒泡排序",
+        "时间复杂度"
+      ],
+      "title": "在冒泡排序中增设一个\"本趟是否发生过交换\"的标志变量后",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-fb-003",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "快速排序",
+        "复杂度"
+      ],
+      "title": "对 n 个记录排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-tf-003",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 1,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "稳定性",
+        "冒泡排序",
+        "快速排序"
+      ],
+      "title": "冒泡排序和快速排序都属于交换类排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cx-002",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "冒泡排序",
+        "复杂度"
+      ],
+      "title": "写出下列程序段的时间复杂度",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-005",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "冒泡排序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-006",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "快速排序",
+        "划分"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-003",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "冒泡排序"
+      ],
+      "title": "下列冒泡排序程序加入了交换标志",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-004",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "快速排序"
+      ],
+      "title": "下列程序用快速排序对 n 个整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-pg-002",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.3 交换排序（冒泡排序与快速排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "快速排序",
+        "编程"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-011",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "简单选择排序",
+        "比较次数"
+      ],
+      "title": "对 n 个记录的序列进行简单选择排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-012",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "堆",
+        "大顶堆"
+      ],
+      "title": "下列序列中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-013",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "title": "对序列 ",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-014",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "复杂度"
+      ],
+      "title": "下列排序方法中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-fb-004",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "简单选择排序"
+      ],
+      "title": "对 n 个记录的序列进行简单选择排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-tf-004",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "应用"
+      ],
+      "title": "堆排序是不稳定的排序方法",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cx-003",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "建堆",
+        "复杂度"
+      ],
+      "title": "写出下列程序段的时间复杂度",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-007",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "简单选择排序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-008",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "建堆"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-005",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "简单选择排序"
+      ],
+      "title": "下列程序用简单选择排序对 n 个整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-006",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "堆排序"
+      ],
+      "title": "下列程序用堆排序对 n 个整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-pg-003",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.4 选择排序（简单选择排序与堆排序）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "堆排序",
+        "编程"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-015",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "趟数"
+      ],
+      "title": "对 64 个记录的序列进行二路归并排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-016",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "空间复杂度"
+      ],
+      "title": "二路归并排序在排序过程中需要与原序列等长的辅助数组",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-017",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "基数排序"
+      ],
+      "title": "对 1000 个取值范围为 0～999 的整数用 LSD 基数排序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-018",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "稳定性",
+        "排序方法"
+      ],
+      "title": "下列排序方法中",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-019",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "链表"
+      ],
+      "title": "待排序的数据以单链表存储且不能改变结点存储结构",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-020",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "比较次数"
+      ],
+      "title": "关于二路归并排序的比较次数",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-fb-005",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "基数排序",
+        "复杂度"
+      ],
+      "title": "设待排序记录数为 n",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-tf-005",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "基数排序"
+      ],
+      "title": "基数排序在排序过程中不需要进行关键字之间的比较",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cx-004",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "基数排序",
+        "复杂度"
+      ],
+      "title": "写出下列程序段的时间复杂度",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-021",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "排序方法选择"
+      ],
+      "title": "若待排序列的元素个数 n 较小",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-sc-022",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.6 各种内部排序方法的比较与选择",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "排序方法选择"
+      ],
+      "title": "若 n 很大、要求排序结果稳定、且允许使用与原序列等长的辅助空间",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-009",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "归并排序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cr-010",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "基数排序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-007",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "归并排序"
+      ],
+      "title": "下列程序用递归二路归并排序对 n 个整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-008",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "归并排序"
+      ],
+      "title": "下列程序用自底向上的迭代式二路归并排序对 n 个整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-cc-009",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "基数排序"
+      ],
+      "title": "下列程序用 LSD 基数排序对 n 个 0～999 的非负整数升序排列",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-pg-004",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "归并排序",
+        "编程"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch08.json"
+    },
+    {
+      "id": "ds-ch08-pg-005",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第8章 排序",
+      "section": "8.5 归并排序与基数排序",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "基数排序",
+        "编程"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch08.json"
     }
   ],
   "defects": {
