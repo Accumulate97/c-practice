@@ -1,6 +1,6 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "8b7db93d93c5b226",
+  "content_sha": "46b63689db20b4f0",
   "fields": [
     "title",
     "tags",
@@ -10,7 +10,7 @@
   "enrichStrategies": [
     "minisearch-stemmer:en"
   ],
-  "count": 1123,
+  "count": 1183,
   "docs": [
     {
       "id": "c-ch01-sc-001",
@@ -11698,6 +11698,790 @@
       ],
       "chapter": "第2章 线性表",
       "section": "2.3 线性表的链式表示（单链表）",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-001",
+      "file": "ds-ch03.json",
+      "title": "栈的插入和删除操作都只能在表的一端进行",
+      "tags": [
+        "栈",
+        "LIFO"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-002",
+      "file": "ds-ch03.json",
+      "title": "元素 a、b、c、d 依次进栈",
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-003",
+      "file": "ds-ch03.json",
+      "title": "4 个不同元素依次进栈",
+      "tags": [
+        "栈",
+        "卡特兰数"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-001",
+      "file": "ds-ch03.json",
+      "title": "栈的两个基本操作分别是 ____ 和 ____",
+      "tags": [
+        "栈",
+        "基本操作"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-004",
+      "file": "ds-ch03.json",
+      "title": "程序执行递归调用时",
+      "tags": [
+        "栈",
+        "递归",
+        "应用"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-tf-001",
+      "file": "ds-ch03.json",
+      "title": "栈是一种运算受限的线性表",
+      "tags": [
+        "栈",
+        "定义"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-005",
+      "file": "ds-ch03.json",
+      "title": "设进栈序列为 1、2、3、4、5",
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-002",
+      "file": "ds-ch03.json",
+      "title": "设顺序栈 S 的栈顶指针 top 指向栈顶元素",
+      "tags": [
+        "顺序栈",
+        "栈顶指针"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-006",
+      "file": "ds-ch03.json",
+      "title": "顺序栈采用数组 data[MAXSIZE] 存储",
+      "tags": [
+        "顺序栈",
+        "判满"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-007",
+      "file": "ds-ch03.json",
+      "title": "为充分利用存储空间",
+      "tags": [
+        "共享栈",
+        "顺序栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-008",
+      "file": "ds-ch03.json",
+      "title": "顺序栈执行入栈操作时发现栈已满",
+      "tags": [
+        "栈",
+        "上溢"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-003",
+      "file": "ds-ch03.json",
+      "title": "设顺序栈 S",
+      "tags": [
+        "顺序栈",
+        "元素个数"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cx-001",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序段的时间复杂度",
+      "tags": [
+        "复杂度",
+        "顺序栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "complexity",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-tf-002",
+      "file": "ds-ch03.json",
+      "title": "在顺序栈中",
+      "tags": [
+        "顺序栈",
+        "复杂度"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "true_false",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-009",
+      "file": "ds-ch03.json",
+      "title": "与链栈相比",
+      "tags": [
+        "存储密度",
+        "顺序栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-010",
+      "file": "ds-ch03.json",
+      "title": "链栈通常把栈顶设在链表的头部而不是尾部",
+      "tags": [
+        "链栈",
+        "结构选择"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-011",
+      "file": "ds-ch03.json",
+      "title": "设链栈的栈顶指针为 top",
+      "tags": [
+        "链栈",
+        "判空"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-004",
+      "file": "ds-ch03.json",
+      "title": "链栈 top 不带头结点",
+      "tags": [
+        "链栈",
+        "入栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-012",
+      "file": "ds-ch03.json",
+      "title": "与顺序栈相比",
+      "tags": [
+        "链栈",
+        "优点"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-013",
+      "file": "ds-ch03.json",
+      "title": "某链栈结点含一个 int 型 data",
+      "tags": [
+        "链栈",
+        "存储密度"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-014",
+      "file": "ds-ch03.json",
+      "title": "队列的插入操作在队尾进行",
+      "tags": [
+        "队列",
+        "FIFO"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-005",
+      "file": "ds-ch03.json",
+      "title": "带头结点的链队列 Q",
+      "tags": [
+        "链队列",
+        "入队"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-015",
+      "file": "ds-ch03.json",
+      "title": "带头结点的链队列 Q",
+      "tags": [
+        "链队列",
+        "判空"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-016",
+      "file": "ds-ch03.json",
+      "title": "不带头结点的链队列 Q",
+      "tags": [
+        "链队列",
+        "出队"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-017",
+      "file": "ds-ch03.json",
+      "title": "用一维数组实现普通",
+      "tags": [
+        "队列",
+        "假溢出"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-018",
+      "file": "ds-ch03.json",
+      "title": "下列应用中",
+      "tags": [
+        "队列",
+        "应用场景"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-019",
+      "file": "ds-ch03.json",
+      "title": "循环队列用数组 data[MAXSIZE] 存储",
+      "tags": [
+        "循环队列",
+        "判满"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-006",
+      "file": "ds-ch03.json",
+      "title": "循环队列 Q",
+      "tags": [
+        "循环队列",
+        "入队"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-020",
+      "file": "ds-ch03.json",
+      "title": "设循环队列 MAXSIZE = 20",
+      "tags": [
+        "循环队列",
+        "元素个数"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-021",
+      "file": "ds-ch03.json",
+      "title": "循环队列增设标志 tag",
+      "tags": [
+        "循环队列",
+        "tag"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-007",
+      "file": "ds-ch03.json",
+      "title": "循环队列 MAXSIZE = 10",
+      "tags": [
+        "循环队列",
+        "容量计算"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-022",
+      "file": "ds-ch03.json",
+      "title": "引入循环队列的主要目的是",
+      "tags": [
+        "循环队列",
+        "目的"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-023",
+      "file": "ds-ch03.json",
+      "title": "循环队列 MAXSIZE = 6",
+      "tags": [
+        "循环队列",
+        "指针语义"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-024",
+      "file": "ds-ch03.json",
+      "title": "检查表达式中 ",
+      "tags": [
+        "栈",
+        "应用",
+        "括号匹配"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-025",
+      "file": "ds-ch03.json",
+      "title": "中缀表达式 3 + 4 * 2 / ",
+      "tags": [
+        "后缀表达式",
+        "栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-fb-008",
+      "file": "ds-ch03.json",
+      "title": "后缀表达式 6 2 3 + - 3 8 4 / * + 的值为 ____",
+      "tags": [
+        "后缀表达式",
+        "求值"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "fill_blank",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-026",
+      "file": "ds-ch03.json",
+      "title": "用\"除基取余法\"把十进制数转换为二进制数时",
+      "tags": [
+        "栈",
+        "应用",
+        "进制转换"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-sc-027",
+      "file": "ds-ch03.json",
+      "title": "打印杨辉三角",
+      "tags": [
+        "队列",
+        "应用"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "single_choice",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-001",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "顺序栈",
+        "逆序"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-002",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "循环队列",
+        "元素个数"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-003",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "栈",
+        "括号匹配"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-004",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "栈",
+        "进制转换"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-005",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "栈",
+        "后缀表达式"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-006",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "链栈",
+        "逆序"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-007",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "递归",
+        "系统栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cr-008",
+      "file": "ds-ch03.json",
+      "title": "写出下列程序的运行结果",
+      "tags": [
+        "栈",
+        "回文"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_reading",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-001",
+      "file": "ds-ch03.json",
+      "title": "下列程序实现顺序栈的初始化、入栈与出栈",
+      "tags": [
+        "顺序栈",
+        "基本操作"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-002",
+      "file": "ds-ch03.json",
+      "title": "下列程序用循环队列",
+      "tags": [
+        "循环队列",
+        "基本操作"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-003",
+      "file": "ds-ch03.json",
+      "title": "下列程序实现带头结点的链队列的初始化、入队与出队",
+      "tags": [
+        "链队列",
+        "带头结点"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-004",
+      "file": "ds-ch03.json",
+      "title": "下列循环队列增设 tag 标志",
+      "tags": [
+        "循环队列",
+        "tag"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-005",
+      "file": "ds-ch03.json",
+      "title": "下列程序用循环队列滚动生成杨辉三角的前 n 行",
+      "tags": [
+        "队列",
+        "杨辉三角"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-006",
+      "file": "ds-ch03.json",
+      "title": "下列程序判断给定的出栈序列能否由进栈序列得到",
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-cc-007",
+      "file": "ds-ch03.json",
+      "title": "下列程序把两个栈存放在同一个数组的两端、相向增长",
+      "tags": [
+        "共享栈",
+        "顺序栈"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "code_completion",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-001",
+      "file": "ds-ch03.json",
+      "title": "编写程序",
+      "tags": [
+        "顺序栈",
+        "逆序输出"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-002",
+      "file": "ds-ch03.json",
+      "title": "约瑟夫环问题",
+      "tags": [
+        "循环队列",
+        "约瑟夫环"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-003",
+      "file": "ds-ch03.json",
+      "title": "编写程序",
+      "tags": [
+        "栈",
+        "括号匹配"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-004",
+      "file": "ds-ch03.json",
+      "title": "编写程序对后缀",
+      "tags": [
+        "栈",
+        "后缀表达式"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-005",
+      "file": "ds-ch03.json",
+      "title": "请用两个顺序栈 s1、s2 模拟一个队列",
+      "tags": [
+        "栈",
+        "队列",
+        "两栈模拟队列"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-006",
+      "file": "ds-ch03.json",
+      "title": "请用循环队列实现数组的循环左移",
+      "tags": [
+        "循环队列",
+        "循环移位"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "type": "programming",
+      "category": "ds"
+    },
+    {
+      "id": "ds-ch03-pg-007",
+      "file": "ds-ch03.json",
+      "title": "编写程序",
+      "tags": [
+        "栈",
+        "进制转换"
+      ],
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
       "type": "programming",
       "category": "ds"
     }

@@ -1,10 +1,10 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "6a04c0a5aeb5b785",
+  "content_sha": "50d6ec09d7bef531",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1123,
-  "shard_count": 14,
+  "count": 1183,
+  "shard_count": 15,
   "shards": [
     {
       "file": "c-ch01.json",
@@ -103,6 +103,13 @@
       "chapter": "第2章 线性表",
       "count": 70,
       "url": "data/problems/ds-ch02.json"
+    },
+    {
+      "file": "ds-ch03.json",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "count": 60,
+      "url": "data/problems/ds-ch03.json"
     }
   ],
   "problems": [
@@ -14713,7 +14720,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "逆置",
@@ -14730,7 +14737,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "逆置",
@@ -14747,7 +14754,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "逆置",
@@ -14764,7 +14771,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "头插法",
@@ -14781,7 +14788,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 2,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "头插法",
@@ -14798,7 +14805,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "删除",
@@ -14815,7 +14822,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "删除",
@@ -14832,7 +14839,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "有序表",
         "插入",
@@ -14849,7 +14856,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "有序表",
         "插入",
@@ -14866,7 +14873,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "双指针",
@@ -14883,7 +14890,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 4,
       "bloom": "analyze",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "双指针",
@@ -14900,7 +14907,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "插入",
@@ -14917,7 +14924,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "删除",
@@ -14934,7 +14941,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 1,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "按值查找",
@@ -14951,7 +14958,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "有序表",
         "归并",
@@ -14968,7 +14975,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "按序号查找",
@@ -14985,7 +14992,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "插入",
@@ -15002,7 +15009,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "删除",
@@ -15019,7 +15026,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "就地逆置",
@@ -15036,7 +15043,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "尾插建表",
@@ -15053,7 +15060,7 @@
       "section": "2.4 循环链表与双向链表",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "双向链表",
         "插入",
@@ -15070,7 +15077,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "删除",
@@ -15087,7 +15094,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "逆置",
@@ -15104,7 +15111,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "拆分",
@@ -15121,7 +15128,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "归并",
@@ -15138,7 +15145,7 @@
       "section": "2.2 线性表的顺序表示（顺序表）",
       "difficulty": 3,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "顺序表",
         "循环移位",
@@ -15155,7 +15162,7 @@
       "section": "2.3 线性表的链式表示（单链表）",
       "difficulty": 2,
       "bloom": "apply",
-      "verified": false,
+      "verified": true,
       "tags": [
         "单链表",
         "去重",
@@ -15163,6 +15170,970 @@
       ],
       "title": "已知带头结点单链表 L 中的元素按值递增有序",
       "file": "ds-ch02.json"
+    },
+    {
+      "id": "ds-ch03-sc-001",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "栈",
+        "LIFO"
+      ],
+      "title": "栈的插入和删除操作都只能在表的一端进行",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-002",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "title": "元素 a、b、c、d 依次进栈",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-003",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "栈",
+        "卡特兰数"
+      ],
+      "title": "4 个不同元素依次进栈",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-001",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "栈",
+        "基本操作"
+      ],
+      "title": "栈的两个基本操作分别是 ____ 和 ____",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-004",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "栈",
+        "递归",
+        "应用"
+      ],
+      "title": "程序执行递归调用时",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-tf-001",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "栈",
+        "定义"
+      ],
+      "title": "栈是一种运算受限的线性表",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-005",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "title": "设进栈序列为 1、2、3、4、5",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-002",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "顺序栈",
+        "栈顶指针"
+      ],
+      "title": "设顺序栈 S 的栈顶指针 top 指向栈顶元素",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-006",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "顺序栈",
+        "判满"
+      ],
+      "title": "顺序栈采用数组 data[MAXSIZE] 存储",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-007",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "共享栈",
+        "顺序栈"
+      ],
+      "title": "为充分利用存储空间",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-008",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "栈",
+        "上溢"
+      ],
+      "title": "顺序栈执行入栈操作时发现栈已满",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-003",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "顺序栈",
+        "元素个数"
+      ],
+      "title": "设顺序栈 S",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cx-001",
+      "type": "complexity",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "复杂度",
+        "顺序栈"
+      ],
+      "title": "写出下列程序段的时间复杂度",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-tf-002",
+      "type": "true_false",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "顺序栈",
+        "复杂度"
+      ],
+      "title": "在顺序栈中",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-009",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "存储密度",
+        "顺序栈"
+      ],
+      "title": "与链栈相比",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-010",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "链栈",
+        "结构选择"
+      ],
+      "title": "链栈通常把栈顶设在链表的头部而不是尾部",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-011",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "链栈",
+        "判空"
+      ],
+      "title": "设链栈的栈顶指针为 top",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-004",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "链栈",
+        "入栈"
+      ],
+      "title": "链栈 top 不带头结点",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-012",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "链栈",
+        "优点"
+      ],
+      "title": "与顺序栈相比",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-013",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "链栈",
+        "存储密度"
+      ],
+      "title": "某链栈结点含一个 int 型 data",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-014",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "队列",
+        "FIFO"
+      ],
+      "title": "队列的插入操作在队尾进行",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-005",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "链队列",
+        "入队"
+      ],
+      "title": "带头结点的链队列 Q",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-015",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "链队列",
+        "判空"
+      ],
+      "title": "带头结点的链队列 Q",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-016",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "链队列",
+        "出队"
+      ],
+      "title": "不带头结点的链队列 Q",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-017",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "队列",
+        "假溢出"
+      ],
+      "title": "用一维数组实现普通",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-018",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "队列",
+        "应用场景"
+      ],
+      "title": "下列应用中",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-019",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "判满"
+      ],
+      "title": "循环队列用数组 data[MAXSIZE] 存储",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-006",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "入队"
+      ],
+      "title": "循环队列 Q",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-020",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "元素个数"
+      ],
+      "title": "设循环队列 MAXSIZE = 20",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-021",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "tag"
+      ],
+      "title": "循环队列增设标志 tag",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-007",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "容量计算"
+      ],
+      "title": "循环队列 MAXSIZE = 10",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-022",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "目的"
+      ],
+      "title": "引入循环队列的主要目的是",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-023",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "循环队列",
+        "指针语义"
+      ],
+      "title": "循环队列 MAXSIZE = 6",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-024",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "栈",
+        "应用",
+        "括号匹配"
+      ],
+      "title": "检查表达式中 ",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-025",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "后缀表达式",
+        "栈"
+      ],
+      "title": "中缀表达式 3 + 4 * 2 / ",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-fb-008",
+      "type": "fill_blank",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "后缀表达式",
+        "求值"
+      ],
+      "title": "后缀表达式 6 2 3 + - 3 8 4 / * + 的值为 ____",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-026",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "栈",
+        "应用",
+        "进制转换"
+      ],
+      "title": "用\"除基取余法\"把十进制数转换为二进制数时",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-sc-027",
+      "type": "single_choice",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "队列",
+        "应用"
+      ],
+      "title": "打印杨辉三角",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-001",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "顺序栈",
+        "逆序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-002",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "循环队列",
+        "元素个数"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-003",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "括号匹配"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-004",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "进制转换"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-005",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "后缀表达式"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-006",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.3 栈的链式表示与实现",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "链栈",
+        "逆序"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-007",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.1 栈的定义与后进先出特性",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "递归",
+        "系统栈"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cr-008",
+      "type": "code_reading",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "回文"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-001",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "顺序栈",
+        "基本操作"
+      ],
+      "title": "下列程序实现顺序栈的初始化、入栈与出栈",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-002",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "循环队列",
+        "基本操作"
+      ],
+      "title": "下列程序用循环队列",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-003",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.4 队列的定义与链式表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "链队列",
+        "带头结点"
+      ],
+      "title": "下列程序实现带头结点的链队列的初始化、入队与出队",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-004",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "循环队列",
+        "tag"
+      ],
+      "title": "下列循环队列增设 tag 标志",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-005",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "队列",
+        "杨辉三角"
+      ],
+      "title": "下列程序用循环队列滚动生成杨辉三角的前 n 行",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-006",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "栈",
+        "出栈序列"
+      ],
+      "title": "下列程序判断给定的出栈序列能否由进栈序列得到",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-cc-007",
+      "type": "code_completion",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "共享栈",
+        "顺序栈"
+      ],
+      "title": "下列程序把两个栈存放在同一个数组的两端、相向增长",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-001",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.2 栈的顺序表示与实现",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "顺序栈",
+        "逆序输出"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-002",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "循环队列",
+        "约瑟夫环"
+      ],
+      "title": "约瑟夫环问题",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-003",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "括号匹配"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-004",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 4,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "后缀表达式"
+      ],
+      "title": "编写程序对后缀",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-005",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "verified": false,
+      "tags": [
+        "栈",
+        "队列",
+        "两栈模拟队列"
+      ],
+      "title": "请用两个顺序栈 s1、s2 模拟一个队列",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-006",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.5 循环队列的顺序表示",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "循环队列",
+        "循环移位"
+      ],
+      "title": "请用循环队列实现数组的循环左移",
+      "file": "ds-ch03.json"
+    },
+    {
+      "id": "ds-ch03-pg-007",
+      "type": "programming",
+      "category": "ds",
+      "chapter": "第3章 栈和队列",
+      "section": "3.6 栈与队列的应用",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": false,
+      "tags": [
+        "栈",
+        "进制转换"
+      ],
+      "title": "编写程序",
+      "file": "ds-ch03.json"
     }
   ],
   "defects": {
