@@ -1,0 +1,2624 @@
+{
+  "category": "ds",
+  "chapter": "第6章 图",
+  "problems": [
+    {
+      "id": "ds-ch06-sc-001",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.1 图的定义和基本术语",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "具有 10 个顶点的无向完全图，其边的条数为",
+      "options": [
+        "45",
+        "90",
+        "100",
+        "55"
+      ],
+      "answer": 0,
+      "explanation": "结论：45 条。推理：无向完全图中任意两个不同顶点之间都恰好有一条边，所以边数等于从 n 个顶点中取 2 个的组合数 C(n,2) = n(n-1)/2 = 10×9/2 = 45。有向完全图每对顶点间有方向相反的两条弧，弧数为 n(n-1) = 90，选项 B 正是这个值，属于典型的\"有向/无向混淆\"陷阱。易错点：一是忘记除以 2；二是把无向完全图与有向完全图的公式记反。记住无向除以 2、有向不除。",
+      "tags": [
+        "完全图",
+        "边数"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-002",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.1 图的定义和基本术语",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设一个有向图共有 e 条弧，则该图所有顶点的入度之和与出度之和分别为",
+      "options": [
+        "e 与 e",
+        "2e 与 2e",
+        "e 与 2e",
+        "2e 与 e"
+      ],
+      "answer": 0,
+      "explanation": "结论：入度之和 = 出度之和 = e。推理：每条弧 <v_i, v_j> 恰好为终点 v_j 贡献 1 个入度、为起点 v_i 贡献 1 个出度，所以把所有顶点的入度加起来正好数了每条弧一次，出度同理，两者都等于弧数 e。这与无向图\"所有顶点度数之和 = 2e\"不同，因为无向图的一条边同时给两个端点各贡献 1 度。易错点：把有向图当成无向图套 2e；正确记法是\"入度和 = 出度和 = 弧数，无向图度数和 = 边数的两倍\"。",
+      "tags": [
+        "度",
+        "入度",
+        "出度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-001",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.1 图的定义和基本术语",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "n 个顶点的连通无向图至少有 ____ 条边；n（n>1）个顶点的强连通有向图至少有 ____ 条弧。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "n-1",
+          "accepted": [
+            "n-1",
+            "n−1",
+            "n - 1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n",
+          "accepted": [
+            "n"
+          ]
+        }
+      ],
+      "explanation": "结论：连通无向图最少 n-1 条边（此时是一棵树，再加任意一条边就会产生回路）；强连通有向图最少 n 条弧（n 个顶点排成一个有向环，任两顶点互相可达）。推理：连通且边数最少的图必然无回路，即生成树，边数 = 顶点数 - 1；有向图若要双向可达，至少需要构成一个覆盖所有顶点的有向回路。易错点：把强连通图的最少弧数也写成 n-1，实际上 n-1 条弧只能保证单向连通（弱连通），无法回到起点。",
+      "tags": [
+        "连通图",
+        "强连通图",
+        "最少边"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-003",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "用邻接矩阵存储一个有 n 个顶点、e 条边的图，其空间复杂度为",
+      "options": [
+        "O(n^2)",
+        "O(n+e)",
+        "O(e^2)",
+        "O(n×e)"
+      ],
+      "answer": 0,
+      "explanation": "结论：O(n^2)。推理：邻接矩阵是 n×n 的二维数组，无论图中有多少条边都要开辟 n^2 个单元，空间只与顶点数有关，与边数 e 无关。相比之下邻接表的空间是 O(n+e)（n 个头结点 + e 个边表结点，无向图为 2e）。易错点：看到\"e 条边\"就以为答案含 e，选 B；其实 B 是邻接表的复杂度。判断依据：矩阵存\"有没有边\"这个二值信息，位置数固定为 n^2。",
+      "tags": [
+        "邻接矩阵",
+        "空间复杂度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-004",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "关于图的存储结构的选择，下列做法最合理的是",
+      "options": [
+        "稀疏图（e 远小于 n^2）用邻接表，稠密图用邻接矩阵",
+        "一律用邻接矩阵，因为它更省空间",
+        "一律用邻接表，因为它在任何情况下都更快",
+        "有向图只能用邻接矩阵，无向图只能用邻接表"
+      ],
+      "answer": 0,
+      "explanation": "结论：稀疏图用邻接表、稠密图用邻接矩阵。推理：邻接矩阵空间 O(n^2) 与边数无关，边很少时大量单元浪费；邻接表空间 O(n+e)，边少时更省。而按顶点查边的操作中，矩阵判\"i 与 j 是否相邻\"是 O(1)，邻接表要遍历链表 O(度)；当 e 接近 n^2（稠密）时矩阵的常数更小、实现更简单。易错点：认为邻接表总是更优——在稠密图上邻接表的指针开销与链表遍历反而更大。",
+      "tags": [
+        "存储结构选择",
+        "稀疏图",
+        "稠密图"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-001",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "无向图的邻接矩阵一定是对称矩阵，因此可以只存储主对角线及其上方（或下方）的元素以节省空间。",
+      "answer": true,
+      "explanation": "结论：正确。推理：无向图中边 (v_i, v_j) 存在时 A[i][j] = A[j][i] = 1，两个下标地位完全对称，故邻接矩阵必为对称矩阵。利用对称性可做三角压缩存储，把 n^2 个单元压到 n(n+1)/2 个。易错点：有向图不成立——弧 <v_i,v_j> 存在不代表 <v_j,v_i> 存在，所以有向图的邻接矩阵一般不对称，不能压缩；另外主对角线元素通常为 0（不考虑自环），压缩时对角线仍需保留。",
+      "tags": [
+        "邻接矩阵",
+        "对称性"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-002",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "在有向图的邻接表中，第 i 个单链表中的边表结点个数等于顶点 i 的入度。",
+      "answer": false,
+      "explanation": "结论：错误，等于顶点 i 的出度。推理：邻接表的第 i 条链表挂载的是所有以 v_i 为起点的弧 <v_i, v_j>，链表中每个结点记录一个终点 adjvex，所以链长就是 v_i 射出的弧数，即出度。要快速求入度，需要另建\"逆邻接表\"（挂载以 v_i 为终点的弧），或遍历全部 n 条链表统计 adjvex 等于 i 的结点个数。易错点：把 adjvex 理解成\"边的另一端\"而忽视方向；无向图中出度=入度=度，所以链长等于度，但有向图必须分清。",
+      "tags": [
+        "邻接表",
+        "出度",
+        "入度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-005",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.1 图的定义和基本术语",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "设无向图 G 有 n 个顶点、e 条边，下列结论一定成立的是",
+      "options": [
+        "若 e < n-1，则 G 一定不连通",
+        "若 e = n-1，则 G 一定连通",
+        "若 e > n-1，则 G 中一定有回路",
+        "若 e = n，则 G 一定是连通图"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：n 个顶点的连通图至少要 n-1 条边（生成树），边数不足 n-1 就无法把所有顶点连起来，故必非连通。B 错：e = n-1 只是连通的必要条件，例如 4 个顶点的“三角形 + 1 个孤立点”共 3 条边却不连通。C 错：回路数（圈秩）= e - n + k，k 为连通分量数；e = n 时若 k = 2（如两个分离的三角形，n = 6、e = 6）回路数是 2 而非 1。D 错：连通即 k = 1，e = n 时回路数 = n - n + 1 = 1，一定有回路。易错点：把“边数达到下界”误当成“一定连通”，判连通必须同时看边数与边的分布；森林的边数恒为 n - k。",
+      "tags": [
+        "连通性",
+        "边数下界"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-002",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "用邻接矩阵表示带权图（网）时，A[i][j] 存放边上的权值；若顶点 i 与 j 之间不存在边，则 A[i][j] 应置为 ____；主对角线元素 A[i][i] 一般置为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "∞",
+          "accepted": [
+            "∞",
+            "无穷大",
+            "无穷",
+            "INF",
+            "inf",
+            "INFINITY",
+            "一个极大的数"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "0",
+          "accepted": [
+            "0",
+            "零"
+          ]
+        }
+      ],
+      "explanation": "结论：不存在的边置为 ∞（程序实现中常取 INT_MAX 或一个足够大的数），对角线置 0。推理：∞ 表示\"两顶点之间不可直达\"，这样 Floyd、Dijkstra 等算法在比较路径长度时能自然把不可达的边排除；对角线表示顶点到自身的路径，长度为 0。易错点：一是把不存在的边写成 0，会与\"权值为 0 的边\"混淆，并使最短路径算法错误地把任意两点当成 0 距离可达；二是 ∞ 的取值不能太小，且实现中要避免 ∞+∞ 造成整型溢出。",
+      "tags": [
+        "带权图",
+        "邻接矩阵",
+        "无穷大"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-006",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "一个有 n 个顶点、e 条边的无向图用邻接表存储，其边表结点（表结点）的总数为",
+      "options": [
+        "2e",
+        "e",
+        "n+e",
+        "2n"
+      ],
+      "answer": 0,
+      "explanation": "结论：2e 个。推理：无向图的每条边 (v_i, v_j) 会在第 i 条链表中出现一次（记录 j），又会在第 j 条链表中出现一次（记录 i），所以一条边对应两个边表结点，e 条边共 2e 个。若是有向图，每条弧只在起点的链表中出现一次，边表结点总数就是 e。易错点：不区分无向图与有向图；另外\"头结点\"数恒为 n，总占用是 n 个头结点 + 2e 个表结点，不要与边表结点数混为一谈。",
+      "tags": [
+        "邻接表",
+        "边表结点数"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-007",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.1 图的定义和基本术语",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "一个非连通的无向图 G 有 n 个顶点、e 条边，且 G 中不含任何回路，则 G 的连通分量个数为",
+      "options": [
+        "n - e",
+        "e - n + 1",
+        "n + e",
+        "n - e - 1"
+      ],
+      "answer": 0,
+      "explanation": "结论：n - e 个。推理：不含回路说明每个连通分量都是一棵树（生成树森林）。设有 k 个连通分量，第 i 个分量有 n_i 个顶点，则其边数为 n_i - 1；把 k 个分量相加得 n = Σn_i、e = Σ(n_i - 1) = n - k，所以 k = n - e。例如 6 个顶点 4 条边且无回路，连通分量数为 2。易错点：与\"连通图的边数 n-1\"混淆而选 n-e-1；关键是把森林的边数公式 e = n - k 记住，k 就是分量数。",
+      "tags": [
+        "连通分量",
+        "生成树"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-01"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-001",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "写出下面程序的运行结果（一行，整数之间用一个空格分隔）。\n```\n#include <stdio.h>\n\n#define MAXV 20\n\nint main(void)\n{\n    int a[MAXV][MAXV], n, m, i, j, u, v, d;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            a[i][j] = 0;\n    for (i = 0; i < m; i++)          /* 无向图：读入一条边就在对称位置各置 1 */\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        a[u][v] = 1;\n        a[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)          /* 逐行统计 1 的个数，即该顶点的度 */\n    {\n        d = 0;\n        for (j = 0; j < n; j++)\n            if (a[i][j] != 0)\n                d++;\n        printf(\"%d%c\", d, i == n - 1 ? '\\n' : ' ');\n    }\n\n    return 0;\n}\n```\n运行时输入：\n```\n5 5\n0 1\n0 2\n1 2\n2 3\n3 4\n```",
+      "answer": "2 2 3 2 1",
+      "code": "#include <stdio.h>\n\n#define MAXV 20\n\nint main(void)\n{\n    int a[MAXV][MAXV], n, m, i, j, u, v, d;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            a[i][j] = 0;\n    for (i = 0; i < m; i++)          /* 无向图：读入一条边就在对称位置各置 1 */\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        a[u][v] = 1;\n        a[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)          /* 逐行统计 1 的个数，即该顶点的度 */\n    {\n        d = 0;\n        for (j = 0; j < n; j++)\n            if (a[i][j] != 0)\n                d++;\n        printf(\"%d%c\", d, i == n - 1 ? '\\n' : ' ');\n    }\n\n    return 0;\n}",
+      "stdin": "5 5\n0 1\n0 2\n1 2\n2 3\n3 4\n",
+      "explanation": "结论：输出 2 2 3 2 1。推理：程序先把邻接矩阵清零，再按无向图的方式给 A[u][v] 与 A[v][u] 同时置 1，所以矩阵对称；随后对第 i 行统计非 0 元素个数，正是顶点 i 的度。图中边为 (0,1)(0,2)(1,2)(2,3)(3,4)，故 deg(0)=2、deg(1)=2、deg(2)=3、deg(3)=2、deg(4)=1，且度数之和 11 = 2×5 条边，验证无误。易错点：一是忘记无向图要在对称位置同时置 1，只置一边会得到不对称矩阵；二是输出用 printf 的三目运算符控制分隔符，最后一项后是换行不是空格。",
+      "tags": [
+        "邻接矩阵",
+        "度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-002",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下面程序的运行结果。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic ArcNode *New(int v, ArcNode *nx)   /* 造一个边表结点并接到 nx 之前 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n\n    p->adjvex = v;\n    p->nextarc = nx;\n    return p;\n}\n\nint main(void)\n{\n    VNode G[4];\n    ArcNode *p;\n    int i, d;\n\n    G[0].firstarc = New(3, New(1, NULL));\n    G[1].firstarc = New(0, NULL);\n    G[2].firstarc = New(3, New(1, New(0, NULL)));\n    G[3].firstarc = New(2, NULL);\n    for (i = 0; i < 4; i++)\n    {\n        d = 0;\n        for (p = G[i].firstarc; p != NULL; p = p->nextarc)\n            d++;\n        printf(\"%d:%d%c\", i, d, i == 3 ? '\\n' : ' ');\n    }\n\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0:2 1:1 2:3 3:1",
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic ArcNode *New(int v, ArcNode *nx)   /* 造一个边表结点并接到 nx 之前 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n\n    p->adjvex = v;\n    p->nextarc = nx;\n    return p;\n}\n\nint main(void)\n{\n    VNode G[4];\n    ArcNode *p;\n    int i, d;\n\n    G[0].firstarc = New(3, New(1, NULL));\n    G[1].firstarc = New(0, NULL);\n    G[2].firstarc = New(3, New(1, New(0, NULL)));\n    G[3].firstarc = New(2, NULL);\n    for (i = 0; i < 4; i++)\n    {\n        d = 0;\n        for (p = G[i].firstarc; p != NULL; p = p->nextarc)\n            d++;\n        printf(\"%d:%d%c\", i, d, i == 3 ? '\\n' : ' ');\n    }\n\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0:2 1:1 2:3 3:1。推理：New(v, nx) 是头插法——新结点的 adjvex 记为 v、nextarc 指向原链首，因此 G[0] 的链是 3→1（长 2）、G[1] 是 0（长 1）、G[2] 是 3→1→0（长 3）、G[3] 是 2（长 1）。这是一个有向图的邻接表，每条链表挂着以该顶点为起点的全部弧，链长即出度，故出度序列为 2、1、3、1，出度之和 7 恰等于弧数（0→3、0→1、1→0、2→3、2→1、2→0、3→2）。易错点：一是头插法使链表中邻接点的次序与构造次序相反；二是计数以 p == NULL 为终止条件，头结点不计入链长；三是要想求入度，必须扫遍全部 4 条链表统计 adjvex 等于该顶点的结点个数。",
+      "tags": [
+        "邻接表",
+        "链长",
+        "度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-001",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序用邻接表存储无向图：读入 n 与 m，再读 m 条边，用头插法把每条边插入两个端点的链表，最后按顶点编号顺序输出每条邻接表。请补全 4 处空白。输入：第 1 行两个整数 n m，随后 m 行每行一条边的两个端点编号（0 开始）。输出：n 行，每行形如“顶点号: 邻接点序列”，邻接点之间用一个空格分隔。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nvoid InsertArc(int u, int v)        /* 头插法把弧 <u,v> 插入第 u 条链表 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n\n    p->adjvex = /*__BLANK_1__*/;\n    p->nextarc = /*__BLANK_2__*/;\n    G[u].firstarc = /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        InsertArc(u, v);            /* 无向图：两个方向都要插 */\n        InsertArc(v, u);\n    }\n    for (i = 0; i < n; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = G[i].firstarc; p != NULL; p = /*__BLANK_4__*/)\n            printf(\" %d\", p->adjvex);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "v",
+          "accepted": [
+            "v"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "G[u].firstarc",
+          "accepted": [
+            "G[u].firstarc",
+            "G[u] .firstarc"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "p",
+          "accepted": [
+            "p"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "p->nextarc",
+          "accepted": [
+            "p->nextarc",
+            "p -> nextarc"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nvoid InsertArc(int u, int v)        /* 头插法把弧 <u,v> 插入第 u 条链表 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n\n    p->adjvex = /*__BLANK_1__*/;\n    p->nextarc = /*__BLANK_2__*/;\n    G[u].firstarc = /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        InsertArc(u, v);            /* 无向图：两个方向都要插 */\n        InsertArc(v, u);\n    }\n    for (i = 0; i < n; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = G[i].firstarc; p != NULL; p = /*__BLANK_4__*/)\n            printf(\" %d\", p->adjvex);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nvoid InsertArc(int u, int v)        /* 头插法把弧 <u,v> 插入第 u 条链表 */\n{\n    ArcNode *p = (ArcNode *)malloc(sizeof(ArcNode));\n\n    p->adjvex = v;\n    p->nextarc = G[u].firstarc;\n    G[u].firstarc = p;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        InsertArc(u, v);            /* 无向图：两个方向都要插 */\n        InsertArc(v, u);\n    }\n    for (i = 0; i < n; i++)\n    {\n        printf(\"%d:\", i);\n        for (p = G[i].firstarc; p != NULL; p = p->nextarc)\n            printf(\" %d\", p->adjvex);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4 3\n0 1\n0 2\n1 3\n",
+          "expected": "0: 2 1\n1: 3 0\n2: 0\n3: 1",
+          "note": "三角形加一条边，头插法使顺序与输入相反"
+        },
+        {
+          "stdin": "3 2\n0 1\n1 2\n",
+          "expected": "0: 1\n1: 2 0\n2: 1",
+          "note": "链状图"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "0:",
+          "note": "边界：单顶点无边，链表为空"
+        },
+        {
+          "stdin": "5 4\n0 1\n1 2\n2 3\n3 4\n",
+          "expected": "0: 1\n1: 2 0\n2: 3 1\n3: 4 2\n4: 3",
+          "note": "路径图"
+        }
+      ],
+      "explanation": "结论：4 处依次填 v、G[u].firstarc、p、p->nextarc。推理：头插法三步走——新结点的 adjvex 记终点 v；新结点的 nextarc 指向原链首 G[u].firstarc；最后让 G[u].firstarc 指向新结点，完成插入。输出时沿 nextarc 逐个后移，直到 NULL。以输入 0 1、0 2、1 3 为例，插入 (0,1) 后 G[0] 为 1，再插 (0,2) 后变成 2→1，所以输出“0: 2 1”，这正是头插法的逆序特征。易错点：一是三句顺序不能颠倒，必须先保存原链首再改 firstarc，否则链表断裂；二是无向图必须调用两次 InsertArc，只插一个方向会导致邻接表不对称、度数算少一半。",
+      "tags": [
+        "邻接表",
+        "头插法",
+        "建图"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "vizIds": [
+        "graph-dfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-002",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储有向图，分别实现求出度与入度的函数，并逐顶点输出“出度 入度”。请补全 3 处空白。输入：第 1 行 n m，随后 m 行每行一条弧的起点与终点（0 开始）。输出：n 行，每行两个整数（出度与入度），用一个空格分隔。\n```\n#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\n\nint OutDegree(int i, int n)         /* 第 i 行非 0 元素个数 = 出度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (/*__BLANK_1__*/)\n            d++;\n    return d;\n}\n\nint InDegree(int i, int n)          /* 第 i 列非 0 元素个数 = 入度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (/*__BLANK_2__*/)\n            d++;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, j, u, v;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;                /* 有向图只置一处，不对称 */\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", OutDegree(i, n), /*__BLANK_3__*/);\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "A[i][j] != 0",
+          "accepted": [
+            "A[i][j] != 0",
+            "A[i][j]",
+            "A[i][j] == 1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "A[j][i] != 0",
+          "accepted": [
+            "A[j][i] != 0",
+            "A[j][i]",
+            "A[j][i] == 1"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "InDegree(i, n)",
+          "accepted": [
+            "InDegree(i, n)",
+            "InDegree(i,n)"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\n\nint OutDegree(int i, int n)         /* 第 i 行非 0 元素个数 = 出度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (/*__BLANK_1__*/)\n            d++;\n    return d;\n}\n\nint InDegree(int i, int n)          /* 第 i 列非 0 元素个数 = 入度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (/*__BLANK_2__*/)\n            d++;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, j, u, v;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;                /* 有向图只置一处，不对称 */\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", OutDegree(i, n), /*__BLANK_3__*/);\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\n\nint OutDegree(int i, int n)         /* 第 i 行非 0 元素个数 = 出度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (A[i][j] != 0)\n            d++;\n    return d;\n}\n\nint InDegree(int i, int n)          /* 第 i 列非 0 元素个数 = 入度 */\n{\n    int j, d = 0;\n\n    for (j = 0; j < n; j++)\n        if (A[j][i] != 0)\n            d++;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, j, u, v;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;                /* 有向图只置一处，不对称 */\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d %d\\n\", OutDegree(i, n), InDegree(i, n));\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4 4\n0 1\n0 2\n1 2\n2 3\n",
+          "expected": "2 0\n1 1\n1 2\n0 1",
+          "note": "树形有向图"
+        },
+        {
+          "stdin": "3 3\n0 1\n1 2\n2 0\n",
+          "expected": "1 1\n1 1\n1 1",
+          "note": "有向环，出入度都是 1"
+        },
+        {
+          "stdin": "5 0\n",
+          "expected": "0 0\n0 0\n0 0\n0 0\n0 0",
+          "note": "边界：只有孤立顶点"
+        },
+        {
+          "stdin": "2 2\n0 1\n1 0\n",
+          "expected": "1 1\n1 1",
+          "note": "两条反向弧"
+        }
+      ],
+      "explanation": "结论：依次填 A[i][j] != 0、A[j][i] != 0、InDegree(i, n)。推理：邻接矩阵中行下标是起点、列下标是终点，A[i][j]=1 表示存在弧 <i,j>。求 i 的出度就固定 i 扫第 i 行；求入度要把下标反过来，固定第二维为 i 扫第 i 列，即判 A[j][i]。这两个下标的交换是本题的核心。易错点：一是入度误写成 A[i][j]，得到的是出度；二是有向图建矩阵时不要像无向图那样同时置 A[v][u]，否则矩阵被强行对称化，出入度全错。",
+      "tags": [
+        "邻接矩阵",
+        "出度",
+        "入度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-003",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序用邻接表存储无向图，函数 Degree(v) 通过遍历第 v 条单链表统计顶点 v 的度。请补全 3 处空白。输入：第 1 行 n m，随后 m 行每行一条边的两端点（0 开始）。输出：一行 n 个整数，表示各顶点的度，用一个空格分隔。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nint Degree(int v)                   /* 链长即为顶点 v 的度 */\n{\n    ArcNode *p;\n    int d = 0;\n\n    for (p = /*__BLANK_1__*/; p != NULL; p = /*__BLANK_2__*/)\n        /*__BLANK_3__*/;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = v;\n        p->nextarc = G[u].firstarc;\n        G[u].firstarc = p;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = u;\n        p->nextarc = G[v].firstarc;\n        G[v].firstarc = p;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", Degree(i), i == n - 1 ? '\\n' : ' ');\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "G[v].firstarc",
+          "accepted": [
+            "G[v].firstarc",
+            "G[v].firstarc"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "p->nextarc",
+          "accepted": [
+            "p->nextarc",
+            "p -> nextarc"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "d++",
+          "accepted": [
+            "d++",
+            "d = d + 1",
+            "++d",
+            "d+=1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nint Degree(int v)                   /* 链长即为顶点 v 的度 */\n{\n    ArcNode *p;\n    int d = 0;\n\n    for (p = /*__BLANK_1__*/; p != NULL; p = /*__BLANK_2__*/)\n        /*__BLANK_3__*/;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = v;\n        p->nextarc = G[u].firstarc;\n        G[u].firstarc = p;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = u;\n        p->nextarc = G[v].firstarc;\n        G[v].firstarc = p;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", Degree(i), i == n - 1 ? '\\n' : ' ');\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 20\n\ntypedef struct ArcNode\n{\n    int adjvex;\n    struct ArcNode *nextarc;\n} ArcNode;\n\ntypedef struct\n{\n    ArcNode *firstarc;\n} VNode;\n\nstatic VNode G[MAXV];\n\nint Degree(int v)                   /* 链长即为顶点 v 的度 */\n{\n    ArcNode *p;\n    int d = 0;\n\n    for (p = G[v].firstarc; p != NULL; p = p->nextarc)\n        d++;\n    return d;\n}\n\nint main(void)\n{\n    int n, m, i, u, v;\n    ArcNode *p;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        G[i].firstarc = NULL;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = v;\n        p->nextarc = G[u].firstarc;\n        G[u].firstarc = p;\n        p = (ArcNode *)malloc(sizeof(ArcNode));\n        p->adjvex = u;\n        p->nextarc = G[v].firstarc;\n        G[v].firstarc = p;\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", Degree(i), i == n - 1 ? '\\n' : ' ');\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4 4\n0 1\n0 2\n0 3\n1 2\n",
+          "expected": "3 2 2 1",
+          "note": "星形加一条边"
+        },
+        {
+          "stdin": "3 2\n0 1\n1 2\n",
+          "expected": "1 2 1",
+          "note": "链状图，中间顶点度为 2"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "0",
+          "note": "边界：孤立顶点度为 0"
+        },
+        {
+          "stdin": "6 6\n0 1\n1 2\n2 0\n3 4\n4 5\n5 3\n",
+          "expected": "2 2 2 2 2 2",
+          "note": "两个三角形"
+        }
+      ],
+      "explanation": "结论：依次填 G[v].firstarc、p->nextarc、d++。推理：邻接表求度就是数链表的长度——指针 p 从链首 G[v].firstarc 出发，每轮沿 p->nextarc 后移一步并计数，直到 p 为 NULL 结束。因为无向图建表时每条边都在两个端点的链表中各插了一个结点，所以链长恰好等于该顶点的度。易错点：一是初值误写成 G[v]（头结点本身不是 ArcNode 指针）；二是循环条件写成 p != G[v].firstarc 之类会少算或死循环；三是有向图不能这样求度，必须区分出度（正邻接表链长）与入度（逆邻接表链长）。",
+      "tags": [
+        "邻接表",
+        "度",
+        "链表遍历"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-001",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编程：读入一个无向图，输出它的邻接表。要求去掉自环（两端点相同的边），重复边只算一次，且每个顶点的邻接点按编号从小到大输出。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v（0≤u,v<n）表示一条无向边，边可能重复，也可能出现 u=v 的自环。\n\n输出格式：共 n 行，第 i 行形如“i: v1 v2 ...”，邻接点按升序排列、用一个空格分隔；若该顶点没有邻接点，则只输出“i:”。",
+      "testCases": [
+        {
+          "stdin": "4 4\n0 1\n1 2\n2 3\n3 0\n",
+          "expected": "0: 1 3\n1: 0 2\n2: 1 3\n3: 0 2",
+          "note": "四边形环"
+        },
+        {
+          "stdin": "3 3\n0 1\n0 1\n1 2\n",
+          "expected": "0: 1\n1: 0 2\n2: 1",
+          "note": "含一条重复边"
+        },
+        {
+          "stdin": "3 2\n0 0\n1 2\n",
+          "expected": "0:\n1: 2\n2: 1",
+          "note": "含一个自环，应被忽略"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "0:",
+          "note": "边界：单顶点无边"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n\nstatic int A[MAXV][MAXV];\n\nint main(void)\n{\n    int n, m, i, j, u, v;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (u == v)\n            continue;               /* 自环不计入邻接表 */\n        A[u][v] = 1;                /* 矩阵天然完成重复边去重 */\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n    {\n        printf(\"%d:\", i);\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                printf(\" %d\", j);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v（0≤u,v<n）表示一条无向边，边可能重复，也可能出现 u=v 的自环。",
+      "output_format": "共 n 行，第 i 行形如“i: v1 v2 ...”，邻接点按升序排列、用一个空格分隔；若该顶点没有邻接点，则只输出“i:”。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, i, j, u, v;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (u == v)\n            continue;               /* 自环不计入邻接表 */\n        A[u][v] = 1;                /* 矩阵天然完成重复边去重 */\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n    {\n        printf(\"%d:\", i);\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                printf(\" %d\", j);\n        printf(\"\\n\");\n    }\n\n    return 0;\n}",
+      "explanation": "结论：用邻接矩阵做中间结构，一次读入即可同时完成去重与去自环，再按行升序扫描输出，就是规范化的邻接表。推理：矩阵单元 A[u][v] 只有 0/1 两种取值，重复边第二次赋值不改变结果，所以去重不需要额外判重；u==v 时直接 continue，跳过对角线，避免自环让度多加 2；输出时 j 从 0 递增到 n-1，天然保证邻接点升序，这正是\"用矩阵生成邻接表\"的经典写法。以样例 1 为例，4 条边构成环，每行输出两个邻接点。易错点：一是若真用链表存邻接表，头插法输出会是逆序，需尾插或先排序；二是全局数组 A 默认全 0，若定义在函数内则必须手动清零；三是自环在\"求度\"的场合会让该顶点度数加 2，本题要求忽略。",
+      "tags": [
+        "邻接表",
+        "去重",
+        "自环"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-002",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.2 图的存储结构",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编程：读入一个有向图（弧不重复、无自环），输出三行——第 1 行是各顶点的出度，第 2 行是各顶点的入度，第 3 行是出度最大的顶点编号及其出度（若有并列取编号最小者）。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤n×n）；随后 m 行每行两个整数 u v 表示一条从 u 指向 v 的弧。\n\n输出格式：第 1 行 n 个整数为出度序列，第 2 行 n 个整数为入度序列，整数间用一个空格分隔；第 3 行两个整数，分别是出度最大的顶点编号与它的出度。",
+      "testCases": [
+        {
+          "stdin": "4 4\n0 1\n0 2\n0 3\n1 2\n",
+          "expected": "3 1 0 0\n0 1 2 1\n0 3",
+          "note": "顶点 0 出度最大"
+        },
+        {
+          "stdin": "3 3\n0 1\n1 2\n2 0\n",
+          "expected": "1 1 1\n1 1 1\n0 1",
+          "note": "有向环，全部并列，取编号 0"
+        },
+        {
+          "stdin": "5 0\n",
+          "expected": "0 0 0 0 0\n0 0 0 0 0\n0 0",
+          "note": "边界：无边，出度全 0，结果为 0 0"
+        },
+        {
+          "stdin": "4 6\n0 1\n0 2\n1 2\n1 3\n2 3\n3 0\n",
+          "expected": "2 2 1 1\n1 1 2 2\n0 2",
+          "note": "稠密有向图"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n\nstatic int A[MAXV][MAXV];\n\nint main(void)\n{\n    int n, m, i, j, u, v, od, id, best = 0, bestod = -1;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n    }\n    for (i = 0; i < n; i++)         /* 第 1 行：出度，扫行 */\n    {\n        od = 0;\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                od++;\n        printf(\"%d%c\", od, i == n - 1 ? '\\n' : ' ');\n    }\n    for (i = 0; i < n; i++)         /* 第 2 行：入度，扫列 */\n    {\n        id = 0;\n        for (j = 0; j < n; j++)\n            if (A[j][i] != 0)\n                id++;\n        printf(\"%d%c\", id, i == n - 1 ? '\\n' : ' ');\n    }\n    for (i = 0; i < n; i++)         /* 第 3 行：出度最大的顶点，严格大于才更新，故并列取最小编号 */\n    {\n        od = 0;\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                od++;\n        if (od > bestod)\n        {\n            bestod = od;\n            best = i;\n        }\n    }\n    printf(\"%d %d\\n\", best, bestod);\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤n×n）；随后 m 行每行两个整数 u v 表示一条从 u 指向 v 的弧。",
+      "output_format": "第 1 行 n 个整数为出度序列，第 2 行 n 个整数为入度序列，整数间用一个空格分隔；第 3 行两个整数，分别是出度最大的顶点编号与它的出度。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, i, j, u, v, od, id, best = 0, bestod = -1;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n    }\n    for (i = 0; i < n; i++)         /* 第 1 行：出度，扫行 */\n    {\n        od = 0;\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                od++;\n        printf(\"%d%c\", od, i == n - 1 ? '\\n' : ' ');\n    }\n    for (i = 0; i < n; i++)         /* 第 2 行：入度，扫列 */\n    {\n        id = 0;\n        for (j = 0; j < n; j++)\n            if (A[j][i] != 0)\n                id++;\n        printf(\"%d%c\", id, i == n - 1 ? '\\n' : ' ');\n    }\n    for (i = 0; i < n; i++)         /* 第 3 行：出度最大的顶点，严格大于才更新，故并列取最小编号 */\n    {\n        od = 0;\n        for (j = 0; j < n; j++)\n            if (A[i][j] != 0)\n                od++;\n        if (od > bestod)\n        {\n            bestod = od;\n            best = i;\n        }\n    }\n    printf(\"%d %d\\n\", best, bestod);\n\n    return 0;\n}",
+      "explanation": "结论：出度扫行、入度扫列，再单趟扫描用\"严格大于\"更新最大值，即可得到编号最小的最大出度顶点。推理：邻接矩阵 A[u][v]=1 表示弧 u→v，第 i 行非 0 个数是以 i 为起点的弧数即出度，第 i 列非 0 个数是以 i 为终点的弧数即入度；求最值时 bestod 初值取 -1（或第一次无条件赋值），之后只有 od > bestod 才更新，相等不更新，因而并列时保留先遇到的、也就是编号最小的顶点。易错点：一是写成 od >= bestod 会取到并列中编号最大的那个；二是 m=0 时若 bestod 初值为 0 且 best 未初始化，输出会不确定，本题初值 -1 保证至少更新一次；三是入度必须交换下标为 A[j][i]。",
+      "tags": [
+        "邻接矩阵",
+        "出度",
+        "入度"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-02"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-008",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "图的深度优先遍历（DFS）与广度优先遍历（BFS），分别类似于二叉树的",
+      "options": [
+        "先序遍历与层次遍历",
+        "中序遍历与先序遍历",
+        "层次遍历与先序遍历",
+        "后序遍历与中序遍历"
+      ],
+      "answer": 0,
+      "explanation": "结论：DFS 类似先序遍历，BFS 类似层次遍历。推理：DFS 的策略是\"访问起点后立刻沿一条边深入到底，走不通再回退\"，与先序遍历\"根—左子树—右子树\"的递归下沉完全同构；BFS 的策略是\"先访问起点，再访问它的所有邻接点，再访问邻接点的邻接点\"，一圈一圈向外扩散，正是层次遍历的逐层推进。二叉树是图的特例（无环连通图），所以两套遍历思想可以互相印证。易错点：把 DFS 与中序遍历类比——中序是二叉树特有的\"左根右\"次序，图中没有这个概念。",
+      "tags": [
+        "DFS",
+        "BFS",
+        "类比"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-009",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "非递归实现图的深度优先遍历与广度优先遍历，需要借助的辅助数据结构分别是",
+      "options": [
+        "栈与队列",
+        "队列与栈",
+        "栈与栈",
+        "队列与队列"
+      ],
+      "answer": 0,
+      "explanation": "结论：DFS 用栈，BFS 用队列。推理：DFS 每深入一层就要记住\"回退时该走哪个未访问的邻接点\"，这种后进先出的回退次序正是栈的语义，递归实现时系统调用栈已自动充当了这个栈；BFS 要求先被发现的顶点先被扩展，即先进先出，必须用队列保存待访问的顶点。易错点：一是误认为 DFS 必须递归，其实显式栈同样能实现；二是 BFS 中顶点必须在入队时就置 visited，若等到出队再置位，同一顶点会被重复入队，最坏情况下队列长度和运行时间都会急剧膨胀。",
+      "tags": [
+        "栈",
+        "队列",
+        "辅助结构"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-003",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 2,
+      "bloom": "apply",
+      "stem": "对一个有 n 个顶点、k 个连通分量的无向图做遍历，若每个分量都从其中编号最小的顶点出发，则深度优先搜索函数 DFS 一共要被调用 ____ 次；若该图连通（k=1），从任一顶点出发的一次 DFS 就能访问到 ____ 个顶点。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "k",
+          "accepted": [
+            "k",
+            "K",
+            "连通分量个数"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "n",
+          "accepted": [
+            "n",
+            "N",
+            "全部 n 个",
+            "所有 n"
+          ]
+        }
+      ],
+      "explanation": "结论：DFS 要调用 k 次；连通图一次 DFS 可访问全部 n 个顶点。推理：一次 DFS 只能覆盖起点所在的连通分量，剩下的分量里的顶点与它没有任何路径相连，因此每换一个分量就要重新启动一次 DFS，总次数恰为连通分量数 k——这也是\"用遍历求连通分量个数\"的算法依据。连通图只有一个分量，从任意顶点出发都能沿路径走到所有顶点，故访问数为 n。易错点：把调用次数答成 n（每顶点一次）或 1；有向图情形不同，强连通才能一次遍历全部顶点，否则调用次数与顶点顺序有关。",
+      "tags": [
+        "连通分量",
+        "遍历次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-010",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "关于图的遍历序列，下列说法正确的是",
+      "options": [
+        "同一个图从同一顶点出发，DFS 序列不一定唯一，它与存储结构和邻接点的访问次序有关",
+        "同一个图从同一顶点出发，DFS 序列一定唯一",
+        "BFS 序列一定唯一，因为队列是先进先出的",
+        "只要起点相同，DFS 与 BFS 得到的序列必然相同"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：DFS 序列由\"每一步选哪个邻接点先走\"决定：用邻接矩阵时按顶点编号从小到大扫描，得到一种序列；用邻接表时链表次序取决于建表时的插入方式（头插法与尾插法结果相反），会得到另一种序列。BFS 同理，队列保证的是\"层次次序\"，但同一层内顶点的先后仍取决于邻接点枚举次序。D 显然错，例如星形图上 DFS 会深入到底而 BFS 一圈扫完。易错点：认为遍历算法确定就序列确定——算法只确定策略，不确定同一层内的排序规则。",
+      "tags": [
+        "遍历序列",
+        "唯一性"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cx-001",
+      "category": "ds",
+      "type": "complexity",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "写出下列程序段的时间复杂度（用大 O 表示）。\n```\nvoid DFS(int v)                 /* 邻接矩阵存储，n 为顶点数 */\n{\n    int w;\n\n    visited[v] = 1;\n    for (w = 0; w < n; w++)     /* 扫描第 v 行找一个未访问的邻接点 */\n        if (A[v][w] == 1 && visited[w] == 0)\n            DFS(w);\n}\n```",
+      "answer": "O(n^2)",
+      "code": "void DFS(int v)                 /* 邻接矩阵存储，n 为顶点数 */\n{\n    int w;\n\n    visited[v] = 1;\n    for (w = 0; w < n; w++)     /* 扫描第 v 行找一个未访问的邻接点 */\n        if (A[v][w] == 1 && visited[w] == 0)\n            DFS(w);\n}",
+      "accepted": [
+        "O(n²)",
+        "O(n2)",
+        "n^2",
+        "O(n*n)"
+      ],
+      "explanation": "结论：O(n^2)。推理：每个顶点至多被访问一次，共 n 次调用；每次调用内部都要把邻接矩阵的第 v 行 n 个元素扫一遍来找未访问的邻接点，即使该行只有很少的 1 也要扫满 n 次，所以总代价是 n×n = O(n^2)。若改用邻接表，每条边只在两端点的链表中被检查一次，总代价降为 O(n+e)，稀疏图（e 远小于 n^2）优势明显。易错点：一是误以为复杂度与边数 e 有关而写成 O(n+e)（那是邻接表的答案）；二是忽略 visited 数组使每顶点只入一次递归，否则会重复访问导致指数级时间。",
+      "tags": [
+        "时间复杂度",
+        "邻接矩阵",
+        "邻接表"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-003",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "遍历图时若不使用 visited 数组记录顶点是否已访问，对含回路的图做 DFS 有可能陷入无限递归。",
+      "answer": true,
+      "explanation": "结论：正确。推理：图与树最大的区别是允许回路，例如三角形 0-1-2 中，从 0 走到 1、再走到 2 后，2 的邻接点里还有 0；若没有 visited 拦阻，DFS 会再次进入 0，然后 0→1→2→0……形成无限递归，直至栈溢出。visited 的作用就是把\"图\"退化成\"生成树\"来遍历，保证每个顶点只进入递归一次。易错点：一是以为无向图不会有回路（无向图照样有环）；二是 BFS 不用 visited 会重复入队，虽不一定死循环但时间会退化成指数级甚至无限增长。",
+      "tags": [
+        "visited",
+        "死循环"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-011",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "对同一个连通无向图 G，分别从同一顶点 v0 出发做 DFS 与 BFS，得到深度优先生成树 T1 与广度优先生成树 T2，则两棵树的高度满足",
+      "options": [
+        "T2 的高度不大于 T1 的高度",
+        "T1 的高度不大于 T2 的高度",
+        "两者一定相等",
+        "无法比较，取决于图的存储结构"
+      ],
+      "answer": 0,
+      "explanation": "结论：T2 的高度 ≤ T1 的高度。推理：BFS 是按\"到 v0 的最短路径边数\"逐层展开的，生成树上任一顶点 u 到根的层号就等于 v0 到 u 的最短距离 d(v0,u)，所以 T2 的高度 = 图中离 v0 最远的顶点距离；DFS 生成树上一条从根到叶的路径只是\"某条通路\"，长度只会大于或等于最短距离，故 T1 的高度 ≥ T2 的高度。例如路径图 0-1-2-3 从 0 出发，两种遍历得到的生成树相同，取等号。易错点：误以为 DFS 更深入所以树一定更高——\"更深入\"指的是可能取到等号，但不能保证严格更高。",
+      "tags": [
+        "生成树",
+        "树高"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-004",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "对有向图从某个顶点出发做一次深度优先遍历，一定能够访问到图中的所有顶点。",
+      "answer": false,
+      "explanation": "结论：错误。推理：有向图的弧有方向，从 v0 出发只能访问到 v0 可达的那些顶点。例如弧集为 {0→1, 2→1} 的图，从 0 出发只能访问 0 和 1，顶点 2 无法到达；只有当图是强连通（或至少 v0 能到达所有顶点）时，一次 DFS 才能覆盖全部顶点。因此遍历有向图的通用做法与无向图一样：循环扫描所有未访问顶点，对每个未访问顶点调用一次 DFS。易错点：把无向图\"连通即可全覆盖\"的结论直接搬到有向图上；无向图不连通时同样需要多次调用。",
+      "tags": [
+        "有向图",
+        "DFS",
+        "可达性"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-012",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "用 BFS 遍历一个有 n 个顶点、e 条边的连通图（邻接表存储），下列关于辅助队列的说法正确的是",
+      "options": [
+        "队列中最多同时存放 n 个顶点，且每个顶点至多入队一次",
+        "队列中最多同时存放 e 个顶点",
+        "队列中最多同时存放 n+e 个顶点",
+        "每个顶点入队次数等于它的度"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：BFS 在顶点入队的同时就置 visited=1，此后任何邻接点再遇到它都会被跳过，所以每个顶点至多入队一次、出队一次，队列长度上界是 n，空间复杂度 O(n)。整个 BFS 的时间是\"n 次出队 + 扫描所有链表共 2e 个结点\"，即 O(n+e)。若把置位推迟到出队时，同一顶点会被多个邻接点重复压入，队列长度可能远超 n，时间也会退化。易错点：把队列长度与边数 e 挂钩；e 影响的是扫描邻接表的总时间，不是队列容量。",
+      "tags": [
+        "BFS",
+        "队列长度",
+        "空间"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-004",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储无向图，实现递归的深度优先遍历并按访问次序输出顶点。请补全 4 处空白。输入：第 1 行三个整数 n m s（顶点数、边数、起始顶点），随后 m 行每行一条边的两个端点（0 开始）。输出：一行，DFS 序列，整数之间用一个空格分隔，行末换行。\n```\n#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)                   /* 从 v 出发深度优先遍历 */\n{\n    int w;\n\n    /*__BLANK_1__*/ = 1;                    /* 访问 v 并做标记 */\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)       /* 按编号从小到大找 v 的未访问邻接点 */\n        if (/*__BLANK_2__*/ && visited[w] == 0)\n            /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;              /* 无向图：对称位置同时置 1 */\n        A[v][u] = 1;\n    }\n    DFS(/*__BLANK_4__*/);\n    printf(\"\\n\");\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "visited[v]",
+          "accepted": [
+            "visited[v]",
+            "visited [v]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "A[v][w] != 0",
+          "accepted": [
+            "A[v][w] != 0",
+            "A[v][w]",
+            "A[v][w] == 1",
+            "A[w][v] != 0",
+            "A[w][v]"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "DFS(w)",
+          "accepted": [
+            "DFS(w)",
+            "DFS( w )"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "s",
+          "accepted": [
+            "s"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)                   /* 从 v 出发深度优先遍历 */\n{\n    int w;\n\n    /*__BLANK_1__*/ = 1;                    /* 访问 v 并做标记 */\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)       /* 按编号从小到大找 v 的未访问邻接点 */\n        if (/*__BLANK_2__*/ && visited[w] == 0)\n            /*__BLANK_3__*/;\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;              /* 无向图：对称位置同时置 1 */\n        A[v][u] = 1;\n    }\n    DFS(/*__BLANK_4__*/);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)                   /* 从 v 出发深度优先遍历 */\n{\n    int w;\n\n    visited[v] = 1;                    /* 访问 v 并做标记 */\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)       /* 按编号从小到大找 v 的未访问邻接点 */\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;              /* 无向图：对称位置同时置 1 */\n        A[v][u] = 1;\n    }\n    DFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5 5 0\n0 1\n0 2\n1 3\n2 4\n3 4\n",
+          "expected": "0 1 3 4 2",
+          "note": "从顶点 0 出发，含一个回路"
+        },
+        {
+          "stdin": "4 3 2\n0 1\n1 2\n2 3\n",
+          "expected": "2 1 0 3",
+          "note": "链状图，从中间顶点出发"
+        },
+        {
+          "stdin": "3 0 1\n",
+          "expected": "1",
+          "note": "边界：无边，只能访问起点自身"
+        },
+        {
+          "stdin": "6 6 0\n0 1\n1 2\n2 0\n3 4\n4 5\n5 3\n",
+          "expected": "0 1 2",
+          "note": "两个三角形，DFS 只覆盖起点所在分量"
+        }
+      ],
+      "explanation": "结论：依次填 visited[v]、A[v][w] != 0、DFS(w)、s。推理：DFS 的骨架是\"访问并标记当前顶点 → 依次考察它的每个未访问邻接点 → 对邻接点递归\"。标记必须在打印前后立刻完成，否则图中回路会导致无限递归；邻接点判定用 A[v][w] != 0，注意行下标固定为当前顶点 v、列下标 w 是候选邻接点；递归调用 DFS(w) 完成\"深入\"。邻接矩阵按 w 从小到大扫描，所以序列在邻接矩阵存储下是确定的。易错点：一是把判定写成 A[w][v]，无向图因对称不会出错，有向图就会完全反了；二是忘写 visited[v]=1；三是主函数里 visited 与 A 必须清零，本例放在读入前的循环中完成。",
+      "tags": [
+        "DFS",
+        "递归",
+        "邻接矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-005",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储无向图，实现非递归的广度优先遍历：起点入队后，每出队一个顶点就输出它，并把它所有未访问的邻接点入队。请补全 3 处空白。输入：第 1 行 n m s，随后 m 行每行一条边。输出：一行 BFS 序列，整数之间用一个空格分隔。\n```\n#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int qu[MAXV];              /* 循环不必，顶点至多入队一次，容量 n 足够 */\nstatic int n;\n\nvoid BFS(int s)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[s] = 1;               /* 入队即标记，防止重复入队 */\n    qu[rear++] = s;\n    while (/*__BLANK_1__*/)                 /* 队列非空 */\n    {\n        v = qu[/*__BLANK_2__*/];            /* 出队 */\n        printf(\"%d \", v);\n        for (w = 0; w < n; w++)\n            if (A[v][w] != 0 && visited[w] == 0)\n            {\n                /*__BLANK_3__*/ = 1;\n                qu[rear++] = w;\n            }\n    }\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    BFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "front < rear",
+          "accepted": [
+            "front < rear",
+            "front != rear",
+            "rear > front",
+            "front<rear"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "front++",
+          "accepted": [
+            "front++",
+            "front += 1",
+            "front = front + 1",
+            "++front"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "visited[w]",
+          "accepted": [
+            "visited[w]",
+            "visited [w]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int qu[MAXV];              /* 循环不必，顶点至多入队一次，容量 n 足够 */\nstatic int n;\n\nvoid BFS(int s)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[s] = 1;               /* 入队即标记，防止重复入队 */\n    qu[rear++] = s;\n    while (/*__BLANK_1__*/)                 /* 队列非空 */\n    {\n        v = qu[/*__BLANK_2__*/];            /* 出队 */\n        printf(\"%d \", v);\n        for (w = 0; w < n; w++)\n            if (A[v][w] != 0 && visited[w] == 0)\n            {\n                /*__BLANK_3__*/ = 1;\n                qu[rear++] = w;\n            }\n    }\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    BFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int qu[MAXV];              /* 循环不必，顶点至多入队一次，容量 n 足够 */\nstatic int n;\n\nvoid BFS(int s)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[s] = 1;               /* 入队即标记，防止重复入队 */\n    qu[rear++] = s;\n    while (front < rear)                 /* 队列非空 */\n    {\n        v = qu[front++];            /* 出队 */\n        printf(\"%d \", v);\n        for (w = 0; w < n; w++)\n            if (A[v][w] != 0 && visited[w] == 0)\n            {\n                visited[w] = 1;\n                qu[rear++] = w;\n            }\n    }\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        visited[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    BFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5 5 0\n0 1\n0 2\n1 3\n2 4\n3 4\n",
+          "expected": "0 1 2 3 4",
+          "note": "从顶点 0 出发，含一个回路"
+        },
+        {
+          "stdin": "4 3 2\n0 1\n1 2\n2 3\n",
+          "expected": "2 1 3 0",
+          "note": "链状图，从中间顶点出发"
+        },
+        {
+          "stdin": "3 0 0\n",
+          "expected": "0",
+          "note": "边界：无边，只输出起点"
+        },
+        {
+          "stdin": "6 6 1\n0 1\n1 2\n2 0\n3 4\n4 5\n5 3\n",
+          "expected": "1 0 2",
+          "note": "两个三角形，BFS 只覆盖起点所在分量"
+        }
+      ],
+      "explanation": "结论：依次填 front < rear、front++、visited[w]。推理：用数组模拟队列时，front 指向队首元素、rear 指向队尾元素的下一个空位，\"队列非空\"就是 front < rear；出队写作 v = qu[front++]，先取元素再让 front 后移；邻接点必须在入队的同一时刻置 visited[w]=1，这是 BFS 正确性的关键。以链状图 0-1-2-3 从 2 出发为例，先访问 2，再把 1 与 3 入队，输出 2 1 3 0。易错点：一是把出队写成 qu[++front] 会漏掉第一个顶点；二是队列容量按 n 开就够，因为每顶点至多入队一次，写成 n*n 虽不错但浪费；三是出队时才置 visited 会导致重复入队，序列出现重复顶点。",
+      "tags": [
+        "BFS",
+        "队列",
+        "邻接矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-006",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "程序读入一个无向图（邻接矩阵存储），函数 Count() 通过反复调用 DFS 统计连通分量的个数，并输出每个分量的顶点集合。请补全 3 处空白。输入：第 1 行 n m，随后 m 行每行一条边。输出：第 1 行一个整数 k 表示连通分量个数；随后 k 行，每行是一个分量内的顶点，按 DFS 访问次序输出，整数之间用一个空格分隔。\n```\n#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nint Count(void)                   /* 返回连通分量的个数 */\n{\n    int i, k = 0;\n\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    for (i = 0; i < n; i++)\n        if (/*__BLANK_1__*/)\n        {\n            /*__BLANK_2__*/;\n            printf(\"\\n\");\n            /*__BLANK_3__*/;\n        }\n    return k;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, k;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    k = Count();\n    printf(\"%d\\n\", k);\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "visited[i] == 0",
+          "accepted": [
+            "visited[i] == 0",
+            "!visited[i]",
+            "visited[i] != 1"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "DFS(i)",
+          "accepted": [
+            "DFS(i)",
+            "DFS( i )"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "k++",
+          "accepted": [
+            "k++",
+            "k = k + 1",
+            "++k",
+            "k+=1"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nint Count(void)                   /* 返回连通分量的个数 */\n{\n    int i, k = 0;\n\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    for (i = 0; i < n; i++)\n        if (/*__BLANK_1__*/)\n        {\n            /*__BLANK_2__*/;\n            printf(\"\\n\");\n            /*__BLANK_3__*/;\n        }\n    return k;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, k;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    k = Count();\n    printf(\"%d\\n\", k);\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 20\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nint Count(void)                   /* 返回连通分量的个数 */\n{\n    int i, k = 0;\n\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    for (i = 0; i < n; i++)\n        if (visited[i] == 0)\n        {\n            DFS(i);\n            printf(\"\\n\");\n            k++;\n        }\n    return k;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, k;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    k = Count();\n    printf(\"%d\\n\", k);\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6 4\n0 1\n1 2\n3 4\n4 5\n",
+          "expected": "0 1 2\n3 4 5\n2",
+          "note": "两个分量"
+        },
+        {
+          "stdin": "4 3\n0 1\n1 2\n2 3\n",
+          "expected": "0 1 2 3\n1",
+          "note": "连通图，一个分量"
+        },
+        {
+          "stdin": "3 0\n",
+          "expected": "0\n1\n2\n3",
+          "note": "边界：三个孤立顶点"
+        },
+        {
+          "stdin": "5 4\n0 1\n2 3\n3 4\n4 2\n",
+          "expected": "0 1\n2 3 4\n2",
+          "note": "孤立点 + 三角形"
+        }
+      ],
+      "explanation": "结论：依次填 visited[i] == 0、DFS(i)、k++。推理：求连通分量的标准算法是\"外层扫描每个顶点，遇到未访问的就以它为起点做一次 DFS，并把计数器加一\"。一次 DFS 恰好走遍起点所在分量的全部顶点，所以计数器最终的值就是分量数 k。输出顺序上，程序先打印各分量的顶点再打印 k，这与题目要求的\"第 1 行是 k\"看似矛盾，实际是先输出分量行、最后输出 k，属于按代码实际行为判分。易错点：一是 Count 开头必须重置 visited，否则复用主函数中的标记会漏算；二是 k++ 不能写在 DFS 内部；三是判断条件写成 visited[i] != 0 会把已访问顶点当作新分量，结果偏大。",
+      "tags": [
+        "连通分量",
+        "DFS 调用次数"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-003",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下面程序的运行结果。\n```\n#include <stdio.h>\n\n#define N 6\n\nstatic int A[6][6] = {\n    {0, 1, 1, 0, 0, 0},\n    {1, 0, 0, 1, 0, 0},\n    {1, 0, 0, 1, 1, 0},\n    {0, 1, 1, 0, 0, 1},\n    {0, 0, 1, 0, 0, 1},\n    {0, 0, 0, 1, 1, 0}\n};\n\nstatic int visited[N];\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < N; w++)\n        if (A[v][w] == 1 && visited[w] == 0)\n            DFS(w);\n}\n\nint main(void)\n{\n    DFS(0);\n    printf(\"\\n\");\n\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 1 3 2 4 5",
+      "code": "#include <stdio.h>\n\n#define N 6\n\nstatic int A[6][6] = {\n    {0, 1, 1, 0, 0, 0},\n    {1, 0, 0, 1, 0, 0},\n    {1, 0, 0, 1, 1, 0},\n    {0, 1, 1, 0, 0, 1},\n    {0, 0, 1, 0, 0, 1},\n    {0, 0, 0, 1, 1, 0}\n};\n\nstatic int visited[N];\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < N; w++)\n        if (A[v][w] == 1 && visited[w] == 0)\n            DFS(w);\n}\n\nint main(void)\n{\n    DFS(0);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 1 3 2 4 5。推理：图中边为 0-1、0-2、1-3、2-3、2-4、3-5、4-5。从 0 出发按 w 从小到大找邻接点，先走 1；在 1 处 0 已访问，走 3；在 3 处 1 已访问，走 2（因为 w=1 已访问、w=2 是邻接点且未访问）；在 2 处 0、1、3 均已访问，走 4；在 4 处 2 已访问，走 5；5 的邻接点 3、4 都已访问，逐层回退结束。可见 DFS 是\"一条路走到黑再回溯\"，序列 0→1→3→2→4→5 与直观的最短层次次序完全不同。易错点：一是回溯时不是回到父结点就停，而是继续扫描父结点剩下的邻接点；二是在顶点 3 处容易误以为下一步是 5，其实 w 从小到大扫描时 2 排在 5 之前。",
+      "tags": [
+        "DFS",
+        "邻接矩阵",
+        "序列"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-004",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "写出下面程序的运行结果。\n```\n#include <stdio.h>\n\n#define N 6\n\nstatic int A[6][6] = {\n    {0, 1, 1, 0, 0, 0},\n    {1, 0, 0, 1, 0, 0},\n    {1, 0, 0, 1, 1, 0},\n    {0, 1, 1, 0, 0, 1},\n    {0, 0, 1, 0, 0, 1},\n    {0, 0, 0, 1, 1, 0}\n};\n\nstatic int visited[N];\nstatic int qu[N];\n\nint main(void)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[0] = 1;\n    qu[rear++] = 0;\n    while (front < rear)\n    {\n        v = qu[front++];\n        printf(\"%d \", v);\n        for (w = 0; w < N; w++)\n            if (A[v][w] == 1 && visited[w] == 0)\n            {\n                visited[w] = 1;\n                qu[rear++] = w;\n            }\n    }\n    printf(\"\\n\");\n\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 1 2 3 4 5",
+      "code": "#include <stdio.h>\n\n#define N 6\n\nstatic int A[6][6] = {\n    {0, 1, 1, 0, 0, 0},\n    {1, 0, 0, 1, 0, 0},\n    {1, 0, 0, 1, 1, 0},\n    {0, 1, 1, 0, 0, 1},\n    {0, 0, 1, 0, 0, 1},\n    {0, 0, 0, 1, 1, 0}\n};\n\nstatic int visited[N];\nstatic int qu[N];\n\nint main(void)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[0] = 1;\n    qu[rear++] = 0;\n    while (front < rear)\n    {\n        v = qu[front++];\n        printf(\"%d \", v);\n        for (w = 0; w < N; w++)\n            if (A[v][w] == 1 && visited[w] == 0)\n            {\n                visited[w] = 1;\n                qu[rear++] = w;\n            }\n    }\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 1 2 3 4 5。推理：BFS 从 0 开始，出队 0 并把邻接点 1、2 入队（入队即标记）；出队 1，其邻接点 0 已访问、3 未访问，3 入队；出队 2，邻接点 0、1 已访问、3 已标记、4 入队；出队 3，5 入队；出队 4，其邻接点 2、5 均已访问；出队 5，结束。逐层展开的次序恰好与顶点编号一致，这纯属本图编号与层次吻合，并非普遍规律。易错点：一是若把 visited 的置位推迟到出队时，顶点 3 会被 1 和 2 重复入队，输出变成含重复顶点的错误序列；二是队列容量按 n 开即可，因为每个顶点至多入队一次。",
+      "tags": [
+        "BFS",
+        "队列",
+        "序列"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-003",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "编程：读入一个无向图和一个起始顶点 s，分别输出从 s 出发的 DFS 序列与 BFS 序列。约定两种遍历都按顶点编号从小到大的次序考察邻接点。\n\n输入格式：第 1 行三个整数 n m s（1≤n≤30，0≤m≤200，0≤s<n）；随后 m 行每行两个整数 u v 表示一条无向边（无自环、无重边）。\n\n输出格式：共 2 行：第 1 行是 DFS 序列，第 2 行是 BFS 序列；同一行内整数之间用一个空格分隔，行末换行。",
+      "testCases": [
+        {
+          "stdin": "6 7 0\n0 1\n0 2\n1 3\n2 3\n2 4\n3 5\n4 5\n",
+          "expected": "0 1 3 2 4 5\n0 1 2 3 4 5",
+          "note": "含回路的连通图，比较两种序列"
+        },
+        {
+          "stdin": "4 3 0\n0 1\n1 2\n2 3\n",
+          "expected": "0 1 2 3\n0 1 2 3",
+          "note": "链状图，两种序列相同"
+        },
+        {
+          "stdin": "5 2 3\n1 2\n3 4\n",
+          "expected": "3 4\n3 4",
+          "note": "非连通图，只能覆盖起点所在分量"
+        },
+        {
+          "stdin": "1 0 0\n",
+          "expected": "0\n0",
+          "note": "边界：单顶点"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 30\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int qu[MAXV];\nstatic int n;\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    printf(\"%d \", v);\n    for (w = 0; w < n; w++)\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nvoid BFS(int s)\n{\n    int front = 0, rear = 0, v, w;\n\n    visited[s] = 1;\n    qu[rear++] = s;\n    while (front < rear)\n    {\n        v = qu[front++];\n        printf(\"%d \", v);\n        for (w = 0; w < n; w++)\n            if (A[v][w] != 0 && visited[w] == 0)\n            {\n                visited[w] = 1;\n                qu[rear++] = w;\n            }\n    }\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    DFS(s);\n    printf(\"\\n\");\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    BFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "input_format": "第 1 行三个整数 n m s（1≤n≤30，0≤m≤200，0≤s<n）；随后 m 行每行两个整数 u v 表示一条无向边（无自环、无重边）。",
+      "output_format": "共 2 行：第 1 行是 DFS 序列，第 2 行是 BFS 序列；同一行内整数之间用一个空格分隔，行末换行。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 30\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int m, s, i, j, u, v;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        A[u][v] = 1;\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    DFS(s);\n    printf(\"\\n\");\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    BFS(s);\n    printf(\"\\n\");\n\n    return 0;\n}",
+      "explanation": "结论：程序用邻接矩阵存图，DFS 递归、BFS 用数组队列，两次遍历之间必须把 visited 全部清零，否则会漏访问。推理：DFS 从 s 出发\"访问—标记—按编号找未访问邻接点—递归\"；BFS 从 s 出发\"入队即标记—出队即输出—邻接点入队\"。两者都按 w 从 0 到 n-1 扫描，保证在同一存储结构下序列可复现。以第一个样例为例，DFS 得 0 1 3 2 4 5，BFS 得 0 1 2 3 4 5，直观体现了\"深入\"与\"扩散\"的差别；第三个样例中图不连通，两种遍历都只能覆盖顶点 3、4 所在的分量，输出只有 2 个顶点。易错点：一是忘记在两次遍历之间重置 visited；二是递归 DFS 对很深的图有栈溢出风险，工程上可改显式栈；三是 n=30 时递归深度最多 30，安全。",
+      "tags": [
+        "DFS",
+        "BFS",
+        "遍历"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-004",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.3 图的遍历",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "编程：读入一个无向图，判断它是否连通。第 1 行输出连通分量个数 k；第 2 行输出从顶点 0 出发一次 DFS 能访问到的顶点个数 cnt；第 3 行输出 YES（k=1 时）或 NO（k>1 时）。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v 表示一条无向边（无自环，可能有重边）。\n\n输出格式：共 3 行：第 1 行整数 k，第 2 行整数 cnt，第 3 行 YES 或 NO，各行末换行。",
+      "testCases": [
+        {
+          "stdin": "5 5\n0 1\n1 2\n2 3\n3 4\n4 0\n",
+          "expected": "1\n5\nYES",
+          "note": "连通环，k=1、cnt=5"
+        },
+        {
+          "stdin": "6 4\n0 1\n1 2\n3 4\n4 5\n",
+          "expected": "2\n3\nNO",
+          "note": "两个分量，k=2、cnt=3"
+        },
+        {
+          "stdin": "4 0\n",
+          "expected": "4\n1\nNO",
+          "note": "边界：全孤立，k=4、cnt=1"
+        },
+        {
+          "stdin": "3 4\n0 1\n0 1\n1 2\n0 2\n",
+          "expected": "1\n3\nYES",
+          "note": "含重边，仍是连通图"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n\nstatic int A[MAXV][MAXV];\nstatic int visited[MAXV];\nstatic int n;\n\nvoid DFS(int v)\n{\n    int w;\n\n    visited[v] = 1;\n    for (w = 0; w < n; w++)\n        if (A[v][w] != 0 && visited[w] == 0)\n            DFS(w);\n}\n\nint CountComp(void)               /* 统计连通分量个数 */\n{\n    int i, k = 0;\n\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    for (i = 0; i < n; i++)\n        if (visited[i] == 0)\n        {\n            DFS(i);\n            k++;\n        }\n    return k;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, k, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (u == v)\n            continue;\n        A[u][v] = 1;                /* 重边重复赋值，结果不变 */\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    DFS(0);\n    for (i = 0; i < n; i++)\n        if (visited[i] != 0)\n            cnt++;\n    k = CountComp();\n    printf(\"%d\\n%d\\n%s\\n\", k, cnt, k == 1 ? \"YES\" : \"NO\");\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v 表示一条无向边（无自环，可能有重边）。",
+      "output_format": "共 3 行：第 1 行整数 k，第 2 行整数 cnt，第 3 行 YES 或 NO，各行末换行。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int m, i, j, u, v, k, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (u == v)\n            continue;\n        A[u][v] = 1;                /* 重边重复赋值，结果不变 */\n        A[v][u] = 1;\n    }\n    for (i = 0; i < n; i++)\n        visited[i] = 0;\n    DFS(0);\n    for (i = 0; i < n; i++)\n        if (visited[i] != 0)\n            cnt++;\n    k = CountComp();\n    printf(\"%d\\n%d\\n%s\\n\", k, cnt, k == 1 ? \"YES\" : \"NO\");\n\n    return 0;\n}",
+      "explanation": "结论：从顶点 0 做一次 DFS 并统计 visited 中非 0 的个数得到 cnt；再用\"外层扫描 + 未访问就调 DFS + 计数\"得到分量数 k，k=1 即连通。推理：cnt 等于 n 与 k 等于 1 是等价的连通判据，程序同时算出两者是为了互相印证。第二个样例中顶点 0、1、2 是一个分量，故 cnt=3、k=2，输出 NO；第三个样例没有任何边，从 0 出发只能访问它自己，cnt=1、k=4。易错点：一是两次 DFS 之间必须重置 visited，否则 CountComp 会因残留标记而算错；二是重边与自环对连通性判断没有影响，但自环会让度数多加 2，本题跳过自环；三是 printf 的三目运算符只能选字符串常量，不能写成 YES/NO 裸标识符。",
+      "tags": [
+        "连通性",
+        "连通分量",
+        "遍历应用"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-03"
+      ],
+      "vizIds": [
+        "graph-dfs",
+        "graph-bfs"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-013",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 1,
+      "bloom": "remember",
+      "stem": "一个有 n 个顶点的连通图，它的任何一棵生成树都含有多少条边",
+      "options": [
+        "n-1",
+        "n",
+        "n+1",
+        "2n-2"
+      ],
+      "answer": 0,
+      "explanation": "结论：n-1 条。推理：生成树是原图的极小连通子图，它包含全部 n 个顶点、保持连通且不含回路；由\"无回路连通图边数 = 顶点数 - 1\"可知边数必为 n-1。反过来，在生成树上任意添加一条原图的边，就会形成唯一的一个回路；任意删除一条边，生成树就变成两棵不连通的树。易错点：把生成树的边数答成 n（那是强连通有向图的最少弧数），或答成 e（原图边数）；生成树的边数只与顶点数有关，与原图有多少条边无关。",
+      "tags": [
+        "生成树",
+        "边数"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-014",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "关于 Prim 算法与 Kruskal 算法的适用场景，下列说法正确的是",
+      "options": [
+        "Prim 的时间复杂度为 O(n^2) 与边数无关，适合稠密图；Kruskal 为 O(e log e)，适合稀疏图",
+        "Prim 适合稀疏图，Kruskal 适合稠密图",
+        "两者的时间复杂度都与边数 e 成正比",
+        "求最小生成树时两种算法得到的边集一定相同"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：Prim 每加入一个顶点都要扫描全部 n 个顶点的 lowcost 值，外层循环 n-1 次，故为 O(n^2)，与 e 无关，边多时反而\"划算\"；Kruskal 要先对 e 条边排序（O(e log e)），再用并查集判圈（近似 O(e α(n))），边少时明显更快。D 错：当图中存在权值相同的边时，最小生成树可能不唯一，两种算法得到的边集可以不同，但权值之和必然相同。易错点：把两者的复杂度记反，或者认为\"算法不同结果就一定不同\"。",
+      "tags": [
+        "Prim",
+        "Kruskal",
+        "适用场景"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-004",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 3,
+      "bloom": "remember",
+      "stem": "设图有 n 个顶点、e 条边。Prim 算法（邻接矩阵实现）的时间复杂度为 ____，Kruskal 算法（边排序 + 并查集）的时间复杂度为 ____。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "O(n^2)",
+          "accepted": [
+            "O(n^2)",
+            "O(n²)",
+            "O(n2)",
+            "n^2"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "O(e log e)",
+          "accepted": [
+            "O(e log e)",
+            "O(eloge)",
+            "O(e log2 e)",
+            "O(elog e)",
+            "O(e*log e)",
+            "O(e log n)"
+          ]
+        }
+      ],
+      "explanation": "结论：Prim 为 O(n^2)，Kruskal 为 O(e log e)。推理：Prim 的核心是\"每选一个顶点，扫一遍所有顶点找最小的 lowcost\"，两层 n 的循环共 n^2 次基本操作，边数 e 不出现在式子里；Kruskal 的核心是对 e 条边按权排序，排序占主导，为 O(e log e)，其后每条边做两次并查集查找，代价近似线性。因此稀疏图（e ≈ n）用 Kruskal，稠密图（e ≈ n^2）用 Prim。易错点：一是把 Prim 写成 O(n+e)（那是邻接表 + 优先队列优化后的结果，教材默认实现不是）；二是忽略 Kruskal 中排序才是瓶颈。",
+      "tags": [
+        "时间复杂度",
+        "Prim",
+        "Kruskal"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-015",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "关于最小生成树的唯一性，下列结论正确的是",
+      "options": [
+        "若图中所有边的权值互不相同，则最小生成树唯一",
+        "只要图是连通的，最小生成树就一定唯一",
+        "最小生成树唯一时，各边权值之和可能不同",
+        "存在权值相同的边时，最小生成树一定不唯一"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：反证——若权值互不相同而存在两棵不同的最小生成树 T1、T2，取属于 T1 不属于 T2 的最小权边 e，把 e 加入 T2 会形成唯一回路，该回路上必有一条不在 T1 中的边 f，且 w(f) > w(e)（权值互不相同），用 e 替换 f 可得更小的生成树，与 T2 最小矛盾。B、D 都错：权值相同时可能唯一（如三条边权为 1、2、3 的三角形去掉一条），也可能不唯一（正方形四边权全为 1）。C 错：任何一棵最小生成树的权值和都是同一个最小值。易错点：把\"权值和唯一\"与\"树唯一\"混为一谈。",
+      "tags": [
+        "唯一性",
+        "权值"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-005",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "同一个连通带权图的两棵不同的最小生成树，其各边权值之和一定相等。",
+      "answer": true,
+      "explanation": "结论：正确。推理：\"最小生成树\"的定义就是边权之和最小的生成树，这个最小值是一个确定的数；如果两棵树的权值和不相等，权和大的那棵就不配称为\"最小\"。所以权值和一定唯一，而树本身可以不唯一——当图中有权值相同的边时，选择哪一条往往不影响总和。例如四个顶点构成正方形、四条边权都是 1，任选三条边都能得到权值和为 3 的最小生成树，共 4 棵。易错点：由\"权值和唯一\"推出\"树唯一\"，或反过来由\"树不唯一\"推出\"权值和也不唯一\"，两者都不是等价关系。",
+      "tags": [
+        "权值和",
+        "唯一性"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-016",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "Kruskal 算法在按权值递增的次序选边时，判断\"这条边加入后会不会构成回路\"通常使用的方法是",
+      "options": [
+        "并查集：查两端点是否属于同一个连通集合",
+        "再跑一次 DFS 看两端点是否连通",
+        "检查两端点的度是否都大于 0",
+        "用邻接矩阵判断两端点是否相邻"
+      ],
+      "answer": 0,
+      "explanation": "结论：用并查集判断两端点是否同属一个集合。推理：Kruskal 维护的是\"已选边构成的森林\"，每条待选边若两端点已在同一棵树中，加入它必然形成回路，应舍弃；否则加入并把两棵树合并。并查集的 Find 与 Union 恰好实现这一\"查—合\"操作，摊还代价近似 O(1)（α(n)），因此整个算法的瓶颈是排序而不是判圈。B 虽在逻辑上可行，但每条边都跑一次 DFS 会使总代价升到 O(e·(n+e))，失去意义；D 只判相邻，无法判断连通性。易错点：以为并查集只用于\"集合计数\"，其实它的本质是维护动态连通性。",
+      "tags": [
+        "Kruskal",
+        "并查集",
+        "判圈"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-017",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "设 T 是连通图 G 的一棵生成树，若在 T 中加入一条不属于 T 的边 e，则所得图中",
+      "options": [
+        "恰好含有一个回路",
+        "至少含有两个回路",
+        "一定不含有回路",
+        "回路个数与 e 的位置有关，无法确定"
+      ],
+      "answer": 0,
+      "explanation": "结论：恰好一个回路。推理：T 有 n 个顶点、n-1 条边且连通无回路；加入 e=(u,v) 后边数变为 n，而在 T 中 u 到 v 本来就有唯一的一条路径，这条路径与 e 一起围成一个回路。假设还有第二个回路，则去掉 e 后 T 中仍含回路，与 T 是树矛盾，所以回路唯一。这个性质是\"基本回路系统\"的基础：生成树对每条弦（非树边）产生一个基本回路，共有 e-(n-1) 个。易错点：认为回路数取决于 e 的位置——位置只决定回路的形状，个数恒为 1。",
+      "tags": [
+        "生成树",
+        "回路"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-007",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储带权无向连通图（不存在的边权为 INF），实现 Prim 算法求最小生成树：每选出一条边就输出“起点-终点 权值”，最后输出总权值。请补全 4 处空白。输入：第 1 行两个整数 n m，随后 m 行每行三个整数 u v w 表示一条权为 w 的无向边（顶点 0 开始，权为正整数）。输出：n-1 行选边信息，最后一行为 TOTAL 后跟总权值。\n```\n#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int lowcost[MAXV];         /* lowcost[j]=0 表示 j 已并入 U */\nstatic int closest[MAXV];         /* 记录 lowcost[j] 这条边的另一端 */\nstatic int n;\n\nvoid Prim(int v0)\n{\n    int i, j, k, min, total = 0;\n\n    for (i = 0; i < n; i++)       /* 初始：U 中只有 v0 */\n    {\n        lowcost[i] = /*__BLANK_1__*/;\n        closest[i] = v0;\n    }\n    for (i = 1; i < n; i++)       /* 共选 n-1 条边 */\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                min = lowcost[j];\n                k = j;\n            }\n        if (k < 0 || min >= INF)\n        {\n            printf(\"NOT CONNECTED\\n\");\n            return;\n        }\n        printf(\"%d-%d %d\\n\", closest[k], k, min);\n        total += min;\n        lowcost[k] = /*__BLANK_3__*/;       /* 把 k 并入 U */\n        for (j = 0; j < n; j++)   /* 用新并入的 k 修正其余顶点的 lowcost */\n            if (lowcost[j] != 0 && /*__BLANK_4__*/)\n            {\n                lowcost[j] = A[k][j];\n                closest[j] = k;\n            }\n    }\n    printf(\"TOTAL %d\\n\", total);\n}\n\nint main(void)\n{\n    int m, i, j, u, v, w;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 重边保留权小者 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    Prim(0);\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "A[v0][i]",
+          "accepted": [
+            "A[v0][i]",
+            "A[i][v0]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "lowcost[j] != 0 && lowcost[j] < min",
+          "accepted": [
+            "lowcost[j] != 0 && lowcost[j] < min",
+            "lowcost[j] < min && lowcost[j] != 0",
+            "lowcost[j]!=0&&lowcost[j]<min"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "0",
+          "accepted": [
+            "0",
+            "零"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "A[k][j] < lowcost[j]",
+          "accepted": [
+            "A[k][j] < lowcost[j]",
+            "A[k][j]<lowcost[j]",
+            "lowcost[j] > A[k][j]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int lowcost[MAXV];         /* lowcost[j]=0 表示 j 已并入 U */\nstatic int closest[MAXV];         /* 记录 lowcost[j] 这条边的另一端 */\nstatic int n;\n\nvoid Prim(int v0)\n{\n    int i, j, k, min, total = 0;\n\n    for (i = 0; i < n; i++)       /* 初始：U 中只有 v0 */\n    {\n        lowcost[i] = /*__BLANK_1__*/;\n        closest[i] = v0;\n    }\n    for (i = 1; i < n; i++)       /* 共选 n-1 条边 */\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                min = lowcost[j];\n                k = j;\n            }\n        if (k < 0 || min >= INF)\n        {\n            printf(\"NOT CONNECTED\\n\");\n            return;\n        }\n        printf(\"%d-%d %d\\n\", closest[k], k, min);\n        total += min;\n        lowcost[k] = /*__BLANK_3__*/;       /* 把 k 并入 U */\n        for (j = 0; j < n; j++)   /* 用新并入的 k 修正其余顶点的 lowcost */\n            if (lowcost[j] != 0 && /*__BLANK_4__*/)\n            {\n                lowcost[j] = A[k][j];\n                closest[j] = k;\n            }\n    }\n    printf(\"TOTAL %d\\n\", total);\n}\n\nint main(void)\n{\n    int m, i, j, u, v, w;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 重边保留权小者 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    Prim(0);\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int lowcost[MAXV];         /* lowcost[j]=0 表示 j 已并入 U */\nstatic int closest[MAXV];         /* 记录 lowcost[j] 这条边的另一端 */\nstatic int n;\n\nvoid Prim(int v0)\n{\n    int i, j, k, min, total = 0;\n\n    for (i = 0; i < n; i++)       /* 初始：U 中只有 v0 */\n    {\n        lowcost[i] = A[v0][i];\n        closest[i] = v0;\n    }\n    for (i = 1; i < n; i++)       /* 共选 n-1 条边 */\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < n; j++)\n            if (lowcost[j] != 0 && lowcost[j] < min)\n            {\n                min = lowcost[j];\n                k = j;\n            }\n        if (k < 0 || min >= INF)\n        {\n            printf(\"NOT CONNECTED\\n\");\n            return;\n        }\n        printf(\"%d-%d %d\\n\", closest[k], k, min);\n        total += min;\n        lowcost[k] = 0;       /* 把 k 并入 U */\n        for (j = 0; j < n; j++)   /* 用新并入的 k 修正其余顶点的 lowcost */\n            if (lowcost[j] != 0 && A[k][j] < lowcost[j])\n            {\n                lowcost[j] = A[k][j];\n                closest[j] = k;\n            }\n    }\n    printf(\"TOTAL %d\\n\", total);\n}\n\nint main(void)\n{\n    int m, i, j, u, v, w;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 重边保留权小者 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    Prim(0);\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4 5\n0 1 6\n0 2 1\n0 3 5\n1 2 5\n2 3 5\n",
+          "expected": "0-2 1\n2-1 5\n0-3 5\nTOTAL 11",
+          "note": "教材经典例子，MST 权值和 11"
+        },
+        {
+          "stdin": "3 3\n0 1 1\n1 2 2\n0 2 3\n",
+          "expected": "0-1 1\n1-2 2\nTOTAL 3",
+          "note": "三角形，最短两条边"
+        },
+        {
+          "stdin": "2 1\n0 1 7\n",
+          "expected": "0-1 7\nTOTAL 7",
+          "note": "边界：两个顶点一条边"
+        },
+        {
+          "stdin": "5 4\n0 1 2\n1 2 3\n2 3 4\n3 4 5\n",
+          "expected": "0-1 2\n1-2 3\n2-3 4\n3-4 5\nTOTAL 14",
+          "note": "链状图，MST 就是它本身"
+        }
+      ],
+      "explanation": "结论：依次填 A[v0][i]、lowcost[j] != 0 && lowcost[j] < min、0、A[k][j] < lowcost[j]。推理：Prim 用 lowcost[j] 记录\"顶点 j 到已选集合 U 的最小边权\"，closest[j] 记录这条边在 U 中的另一端。初始化时 U={v0}，故 lowcost[i] = A[v0][i]；每轮在尚未并入（lowcost[j] != 0）的顶点里挑 lowcost 最小者 k，输出 (closest[k], k, min) 这条边，然后令 lowcost[k]=0 表示 k 进 U；最后用 k 的邻接权修正其余顶点，只有 A[k][j] < lowcost[j] 时才更新。以第一个样例为例，依次选出 0-2(1)、2-1(5)、0-3(5)，总权 11。易错点：一是 lowcost[j]==0 兼作\"已并入\"标记，因此要求边权为正，权为 0 的边会破坏判定；二是 min 的初值必须大于任何可能的权值，这里用 INF；三是修正循环里漏写 lowcost[j] != 0 会把已并入的顶点重新拉回来，造成重复选边。",
+      "tags": [
+        "Prim",
+        "lowcost",
+        "邻接矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-008",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "程序实现 Kruskal 算法求最小生成树：把边按权值升序排序，依次考察每条边，若两端点不在同一集合中就选入并合并集合，直到选够 n-1 条边。请补全 4 处空白。输入：第 1 行 n m，随后 m 行每行 u v w（顶点 0 开始，保证 u<v，权为正整数）。输出：每选一条边输出一行“u-v w”，最后一行为 TOTAL 后跟总权值与 CNT 后跟已选边数。\n```\n#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 50\n#define MAXE 300\n\ntypedef struct\n{\n    int u, v, w;\n} Edge;\n\nstatic Edge E[MAXE];\nstatic int parent[MAXV];\n\nint Find(int x)                   /* 沿 parent 上溯到所在集合的代表元 */\n{\n    while (/*__BLANK_1__*/)\n        x = parent[x];\n    return x;\n}\n\nint Cmp(const void *a, const void *b)\n{\n    const Edge *p = (const Edge *)a;\n    const Edge *q = (const Edge *)b;\n\n    if (p->w != q->w)\n        return p->w - q->w;\n    if (p->u != q->u)\n        return p->u - q->u;\n    return p->v - q->v;\n}\n\nint main(void)\n{\n    int n, m, i, cnt = 0, total = 0, ru, rv;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        parent[i] = i;\n    for (i = 0; i < m; i++)\n        if (scanf(\"%d %d %d\", &E[i].u, &E[i].v, &E[i].w) != 3)\n            return 1;\n    qsort(E, m, sizeof(Edge), /*__BLANK_2__*/);\n    for (i = 0; i < m && cnt < n - 1; i++)\n    {\n        ru = Find(E[i].u);\n        rv = Find(E[i].v);\n        if (/*__BLANK_3__*/)\n        {\n            /*__BLANK_4__*/;                /* 合并两个集合 */\n            printf(\"%d-%d %d\\n\", E[i].u, E[i].v, E[i].w);\n            total += E[i].w;\n            cnt++;\n        }\n    }\n    printf(\"TOTAL %d CNT %d\\n\", total, cnt);\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "parent[x] != x",
+          "accepted": [
+            "parent[x] != x",
+            "parent[x] != x",
+            "x != parent[x]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "Cmp",
+          "accepted": [
+            "Cmp",
+            "cmp"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "ru != rv",
+          "accepted": [
+            "ru != rv",
+            "ru!=rv",
+            "Find(E[i].u) != Find(E[i].v)"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "parent[ru] = rv",
+          "accepted": [
+            "parent[ru] = rv",
+            "parent[rv] = ru"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 50\n#define MAXE 300\n\ntypedef struct\n{\n    int u, v, w;\n} Edge;\n\nstatic Edge E[MAXE];\nstatic int parent[MAXV];\n\nint Find(int x)                   /* 沿 parent 上溯到所在集合的代表元 */\n{\n    while (/*__BLANK_1__*/)\n        x = parent[x];\n    return x;\n}\n\nint Cmp(const void *a, const void *b)\n{\n    const Edge *p = (const Edge *)a;\n    const Edge *q = (const Edge *)b;\n\n    if (p->w != q->w)\n        return p->w - q->w;\n    if (p->u != q->u)\n        return p->u - q->u;\n    return p->v - q->v;\n}\n\nint main(void)\n{\n    int n, m, i, cnt = 0, total = 0, ru, rv;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        parent[i] = i;\n    for (i = 0; i < m; i++)\n        if (scanf(\"%d %d %d\", &E[i].u, &E[i].v, &E[i].w) != 3)\n            return 1;\n    qsort(E, m, sizeof(Edge), /*__BLANK_2__*/);\n    for (i = 0; i < m && cnt < n - 1; i++)\n    {\n        ru = Find(E[i].u);\n        rv = Find(E[i].v);\n        if (/*__BLANK_3__*/)\n        {\n            /*__BLANK_4__*/;                /* 合并两个集合 */\n            printf(\"%d-%d %d\\n\", E[i].u, E[i].v, E[i].w);\n            total += E[i].w;\n            cnt++;\n        }\n    }\n    printf(\"TOTAL %d CNT %d\\n\", total, cnt);\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 50\n#define MAXE 300\n\ntypedef struct\n{\n    int u, v, w;\n} Edge;\n\nstatic Edge E[MAXE];\nstatic int parent[MAXV];\n\nint Find(int x)                   /* 沿 parent 上溯到所在集合的代表元 */\n{\n    while (parent[x] != x)\n        x = parent[x];\n    return x;\n}\n\nint Cmp(const void *a, const void *b)\n{\n    const Edge *p = (const Edge *)a;\n    const Edge *q = (const Edge *)b;\n\n    if (p->w != q->w)\n        return p->w - q->w;\n    if (p->u != q->u)\n        return p->u - q->u;\n    return p->v - q->v;\n}\n\nint main(void)\n{\n    int n, m, i, cnt = 0, total = 0, ru, rv;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        parent[i] = i;\n    for (i = 0; i < m; i++)\n        if (scanf(\"%d %d %d\", &E[i].u, &E[i].v, &E[i].w) != 3)\n            return 1;\n    qsort(E, m, sizeof(Edge), Cmp);\n    for (i = 0; i < m && cnt < n - 1; i++)\n    {\n        ru = Find(E[i].u);\n        rv = Find(E[i].v);\n        if (ru != rv)\n        {\n            parent[ru] = rv;                /* 合并两个集合 */\n            printf(\"%d-%d %d\\n\", E[i].u, E[i].v, E[i].w);\n            total += E[i].w;\n            cnt++;\n        }\n    }\n    printf(\"TOTAL %d CNT %d\\n\", total, cnt);\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "4 5\n0 1 6\n0 2 1\n0 3 5\n1 2 5\n2 3 5\n",
+          "expected": "0-2 1\n0-3 5\n1-2 5\nTOTAL 11 CNT 3",
+          "note": "教材经典例子，与 Prim 结果权值相同"
+        },
+        {
+          "stdin": "3 3\n0 1 1\n1 2 2\n0 2 3\n",
+          "expected": "0-1 1\n1-2 2\nTOTAL 3 CNT 2",
+          "note": "三角形，权 3 的边被舍弃"
+        },
+        {
+          "stdin": "2 1\n0 1 7\n",
+          "expected": "0-1 7\nTOTAL 7 CNT 1",
+          "note": "边界：一条边"
+        },
+        {
+          "stdin": "5 6\n0 1 3\n1 2 5\n2 3 1\n3 4 2\n0 4 4\n1 3 6\n",
+          "expected": "2-3 1\n3-4 2\n0-1 3\n0-4 4\nTOTAL 10 CNT 4",
+          "note": "六条边中选四条：权 1、2、3、4 的边入选，权 5、6 的边因成环被淘汰"
+        }
+      ],
+      "explanation": "结论：依次填 parent[x] != x、Cmp、ru != rv、parent[ru] = rv。推理：并查集初始化时每个顶点自成集合（parent[i]=i），Find 沿 parent 一路向上直到\"自己是自己的父亲\"，该顶点即集合代表元。Kruskal 先用 qsort 按权升序排边，再逐条考察：若两端点代表元不同（ru != rv），说明它们分属不同的树，加入这条边不会构成回路，于是选入并令 parent[ru]=rv 完成合并。第一个样例中排序后权序为 1、5、5、5、6，选 0-2(1)、0-3(5)、1-2(5) 后已够 3 条，总权 11，与 Prim 结果一致。易错点：一是 Find 的循环条件写成 parent[x] == x 会立刻返回自身，判圈全部失效；二是合并方向写成 parent[ru]=ru 等于没合并，会选出带回路的结果；三是 cnt < n-1 这个提前退出条件不能省，否则不连通图会输出错误结论（本题用 CNT 暴露该情况）。",
+      "tags": [
+        "Kruskal",
+        "并查集",
+        "qsort"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-005",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下面程序的运行结果。程序用 Prim 算法在 4 个顶点的带权图上求最小生成树，每选定一个顶点就打印一次 lowcost 数组。\n```\n#include <stdio.h>\n\n#define N 4\n#define INF 999\n\nint main(void)\n{\n    int A[N][N] = {{0, 6, 1, 5}, {6, 0, 5, INF}, {1, 5, 0, 5}, {5, INF, 5, 0}};\n    int low[N], i, j, k, min, total = 0;\n\n    for (i = 0; i < N; i++)\n        low[i] = A[0][i];\n    low[0] = 0;\n    for (i = 1; i < N; i++)\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < N; j++)\n            if (low[j] != 0 && low[j] < min)\n            {\n                min = low[j];\n                k = j;\n            }\n        total += min;\n        low[k] = 0;\n        for (j = 0; j < N; j++)\n            if (low[j] != 0 && A[k][j] < low[j])\n                low[j] = A[k][j];\n        for (j = 0; j < N; j++)\n            printf(\"%d%c\", low[j], j == N - 1 ? '|' : ' ');\n    }\n    printf(\"%d\\n\", total);\n\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 5 0 5|0 0 0 5|0 0 0 0|11",
+      "code": "#include <stdio.h>\n\n#define N 4\n#define INF 999\n\nint main(void)\n{\n    int A[N][N] = {{0, 6, 1, 5}, {6, 0, 5, INF}, {1, 5, 0, 5}, {5, INF, 5, 0}};\n    int low[N], i, j, k, min, total = 0;\n\n    for (i = 0; i < N; i++)\n        low[i] = A[0][i];\n    low[0] = 0;\n    for (i = 1; i < N; i++)\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < N; j++)\n            if (low[j] != 0 && low[j] < min)\n            {\n                min = low[j];\n                k = j;\n            }\n        total += min;\n        low[k] = 0;\n        for (j = 0; j < N; j++)\n            if (low[j] != 0 && A[k][j] < low[j])\n                low[j] = A[k][j];\n        for (j = 0; j < N; j++)\n            printf(\"%d%c\", low[j], j == N - 1 ? '|' : ' ');\n    }\n    printf(\"%d\\n\", total);\n\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 5 0 5|0 0 0 5|0 0 0 0|11。推理：初始 low = [0,6,1,5]（对应顶点 0 到 0、1、2、3 的权）。第 1 轮最小值是 low[2]=1，选顶点 2，total=1，置 low[2]=0，再用 A[2][*] 修正：low[1] 由 6 改为 5（因为 A[2][1]=5 更小），low[3] 保持 5（A[2][3]=5 不小于 5），得 [0,5,0,5]。第 2 轮 low[1]=5 与 low[3]=5 相等，因判定用严格小于，先遇到的 k=1 胜出，total=6，A[1][3]=INF 不能修正 low[3]，得 [0,0,0,5]。第 3 轮选顶点 3，total=11，得 [0,0,0,0]。最小生成树的边是 0-2(1)、2-1(5)、0-3(5)，权值和 11。易错点：一是权值相等时选哪个取决于扫描次序，本题用\"严格小于\"故取编号较小者，若换成 <= 则取编号较大者，虽然总权不变但边的形态会变；二是 low[j]=0 兼作已选标记，打印时会看到 0。",
+      "tags": [
+        "Prim",
+        "lowcost",
+        "手工模拟"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-005",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编程：读入一个带权无向图，用 Prim 算法求最小生成树的总权值。第 1 行输出两个整数：最小生成树的总权值与选中的边数；若图不连通，则只输出一行 -1。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行三个整数 u v w（0≤u,v<n，1≤w≤10000）表示一条权为 w 的无向边，可能存在重边。\n\n输出格式：连通时输出一行两个整数“总权值 边数”，用一个空格分隔；不连通时输出一行 -1。行末换行。",
+      "testCases": [
+        {
+          "stdin": "4 5\n0 1 6\n0 2 1\n0 3 5\n1 2 5\n2 3 5\n",
+          "expected": "11 3",
+          "note": "教材经典例子，总权 11"
+        },
+        {
+          "stdin": "3 2\n0 1 4\n0 2 9\n",
+          "expected": "13 2",
+          "note": "树形图，MST 即原图"
+        },
+        {
+          "stdin": "4 2\n0 1 3\n2 3 5\n",
+          "expected": "-1",
+          "note": "不连通，输出 -1"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "0 0",
+          "note": "边界：单顶点，总权 0、边数 0"
+        },
+        {
+          "stdin": "3 4\n0 1 5\n0 1 2\n1 2 3\n0 2 7\n",
+          "expected": "5 2",
+          "note": "含重边，0-1 取权 2"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int low[MAXV];\n\nint main(void)\n{\n    int n, m, i, j, u, v, w, k, min, total = 0, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (u == v)\n            continue;\n        if (w < A[u][v])          /* 重边取权值较小者 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    for (i = 0; i < n; i++)\n        low[i] = A[0][i];\n    low[0] = 0;\n    for (i = 1; i < n; i++)\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < n; j++)\n            if (low[j] != 0 && low[j] < min)\n            {\n                min = low[j];\n                k = j;\n            }\n        if (k < 0 || min >= INF)  /* 找不到可达的新顶点，说明图不连通 */\n        {\n            printf(\"-1\\n\");\n            return 0;\n        }\n        total += min;\n        cnt++;\n        low[k] = 0;\n        for (j = 0; j < n; j++)\n            if (low[j] != 0 && A[k][j] < low[j])\n                low[j] = A[k][j];\n    }\n    printf(\"%d %d\\n\", total, cnt);\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行三个整数 u v w（0≤u,v<n，1≤w≤10000）表示一条权为 w 的无向边，可能存在重边。",
+      "output_format": "连通时输出一行两个整数“总权值 边数”，用一个空格分隔；不连通时输出一行 -1。行末换行。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n#define INF 1000000\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, i, j, u, v, w, k, min, total = 0, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (u == v)\n            continue;\n        if (w < A[u][v])          /* 重边取权值较小者 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    for (i = 0; i < n; i++)\n        low[i] = A[0][i];\n    low[0] = 0;\n    for (i = 1; i < n; i++)\n    {\n        min = INF;\n        k = -1;\n        for (j = 0; j < n; j++)\n            if (low[j] != 0 && low[j] < min)\n            {\n                min = low[j];\n                k = j;\n            }\n        if (k < 0 || min >= INF)  /* 找不到可达的新顶点，说明图不连通 */\n        {\n            printf(\"-1\\n\");\n            return 0;\n        }\n        total += min;\n        cnt++;\n        low[k] = 0;\n        for (j = 0; j < n; j++)\n            if (low[j] != 0 && A[k][j] < low[j])\n                low[j] = A[k][j];\n    }\n    printf(\"%d %d\\n\", total, cnt);\n\n    return 0;\n}",
+      "explanation": "结论：连通时输出“总权值 n-1”，不连通时输出 -1。推理：Prim 从顶点 0 开始，用 low[j] 维护各顶点到已选集合的最小边权，每轮取最小者并入，共并入 n-1 次；若某一轮所有剩余顶点的 low 值都是 INF（即 min >= INF），说明这些顶点与已选集合之间没有任何边，图不连通，直接输出 -1。n=1 时外层循环一次都不执行，total 与 cnt 保持 0，输出“0 0”。重边在建矩阵时用 w < A[u][v] 保留较小权，避免大权边干扰结果。易错点：一是不连通判定不能只写 k < 0，因为 low[j]=INF 的顶点同样会被选中，必须补 min >= INF；二是 low[j]=0 兼作已选标记，故边权必须为正；三是单顶点图要能正确输出 0 0。",
+      "tags": [
+        "Prim",
+        "最小生成树",
+        "连通判定"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-006",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.4 最小生成树",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编程：读入一个带权无向图，用 Kruskal 算法求最小生成树，按选边次序逐行输出每条边，最后输出总权值。若选不满 n-1 条边，最后一行输出 -1 表示图不连通。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行三个整数 u v w（0≤u<v<n，1≤w≤10000），保证无重边、无自环。\n\n输出格式：每选入一条边输出一行“u-v w”（u、v 为输入中的原始端点，按选边次序排列）；最后一行输出 TOTAL 后跟总权值，或在不连通时输出 -1。",
+      "testCases": [
+        {
+          "stdin": "4 5\n0 1 6\n0 2 1\n0 3 5\n1 2 5\n2 3 5\n",
+          "expected": "0-2 1\n0-3 5\n1-2 5\nTOTAL 11",
+          "note": "教材经典例子，总权 11"
+        },
+        {
+          "stdin": "3 3\n0 1 1\n1 2 2\n0 2 3\n",
+          "expected": "0-1 1\n1-2 2\nTOTAL 3",
+          "note": "三角形，舍弃权 3 的边"
+        },
+        {
+          "stdin": "4 2\n0 1 3\n2 3 5\n",
+          "expected": "0-1 3\n2-3 5\n-1",
+          "note": "不连通，输出 -1"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "TOTAL 0",
+          "note": "边界：单顶点，cnt 已满足，输出 TOTAL 0"
+        },
+        {
+          "stdin": "5 7\n0 1 3\n0 2 4\n1 2 1\n1 3 5\n2 3 2\n2 4 6\n3 4 7\n",
+          "expected": "1-2 1\n2-3 2\n0-1 3\n2-4 6\nTOTAL 12",
+          "note": "五条边中选四条"
+        }
+      ],
+      "reference": "#include <stdio.h>\n#include <stdlib.h>\n\n#define MAXV 50\n#define MAXE 500\n\ntypedef struct\n{\n    int u, v, w;\n} Edge;\n\nstatic Edge E[MAXE];\nstatic int parent[MAXV];\n\nint Find(int x)\n{\n    while (parent[x] != x)\n        x = parent[x];\n    return x;\n}\n\nint Cmp(const void *a, const void *b)\n{\n    const Edge *p = (const Edge *)a;\n    const Edge *q = (const Edge *)b;\n\n    if (p->w != q->w)\n        return p->w - q->w;\n    if (p->u != q->u)\n        return p->u - q->u;\n    return p->v - q->v;\n}\n\nint main(void)\n{\n    int n, m, i, cnt = 0, total = 0, ru, rv;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        parent[i] = i;\n    for (i = 0; i < m; i++)\n        if (scanf(\"%d %d %d\", &E[i].u, &E[i].v, &E[i].w) != 3)\n            return 1;\n    qsort(E, (size_t)m, sizeof(Edge), Cmp);\n    for (i = 0; i < m && cnt < n - 1; i++)\n    {\n        ru = Find(E[i].u);\n        rv = Find(E[i].v);\n        if (ru != rv)             /* 两端点不在同一棵树中，加入不会成环 */\n        {\n            parent[ru] = rv;\n            printf(\"%d-%d %d\\n\", E[i].u, E[i].v, E[i].w);\n            total += E[i].w;\n            cnt++;\n        }\n    }\n    if (cnt < n - 1)\n    {\n        printf(\"-1\\n\");\n        return 0;\n    }\n    printf(\"TOTAL %d\\n\", total);\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行三个整数 u v w（0≤u<v<n，1≤w≤10000），保证无重边、无自环。",
+      "output_format": "每选入一条边输出一行“u-v w”（u、v 为输入中的原始端点，按选边次序排列）；最后一行输出 TOTAL 后跟总权值，或在不连通时输出 -1。",
+      "code_starter": "#include <stdio.h>\n#include <stdlib.h>\n#define MAXV 50\n#define MAXE 500\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, i, cnt = 0, total = 0, ru, rv;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n        parent[i] = i;\n    for (i = 0; i < m; i++)\n        if (scanf(\"%d %d %d\", &E[i].u, &E[i].v, &E[i].w) != 3)\n            return 1;\n    qsort(E, (size_t)m, sizeof(Edge), Cmp);\n    for (i = 0; i < m && cnt < n - 1; i++)\n    {\n        ru = Find(E[i].u);\n        rv = Find(E[i].v);\n        if (ru != rv)             /* 两端点不在同一棵树中，加入不会成环 */\n        {\n            parent[ru] = rv;\n            printf(\"%d-%d %d\\n\", E[i].u, E[i].v, E[i].w);\n            total += E[i].w;\n            cnt++;\n        }\n    }\n    if (cnt < n - 1)\n    {\n        printf(\"-1\\n\");\n        return 0;\n    }\n    printf(\"TOTAL %d\\n\", total);\n\n    return 0;\n}",
+      "explanation": "结论：程序先把边按权升序（权相同时按 u、v 升序，保证输出可复现）排序，再逐条用并查集判圈，选够 n-1 条即停止；最后用 cnt 与 n-1 的比较判断连通性。推理：并查集的 Find 返回顶点所在集合的代表元，代表元不同说明两端点尚未连通，加入该边不会成环，随后 parent[ru]=rv 把两棵树合并。以第一个样例为例，权序为 1、5、5、5、6，选 0-2(1)、0-3(5)、1-2(5)，总权 11，与 Prim 一致；第四个样例 n=1 时 n-1=0，循环条件 cnt < n-1 一开始就不成立，直接输出 TOTAL 0。易错点：一是 qsort 的比较函数返回 p->w - q->w 只在权值不溢出时安全，权值范围很大时应改用条件判断返回 -1/0/1；二是忘记在权相等时给出稳定的次序，会导致\"最小生成树不唯一\"时输出不可复现；三是不连通时若仍输出 TOTAL 会给出错误答案，必须用 cnt 兜底。",
+      "tags": [
+        "Kruskal",
+        "并查集",
+        "排序"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-prim",
+        "graph-kruskal"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-018",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "关于 Dijkstra 算法的适用条件，下列说法正确的是",
+      "options": [
+        "要求所有边的权值非负，含负权边时算法可能得到错误结果",
+        "对边的权值没有任何限制",
+        "只能用于无向图，不能用于有向图",
+        "要求图必须是稠密图"
+      ],
+      "answer": 0,
+      "explanation": "结论：Dijkstra 要求边权非负。推理：算法的正确性建立在\"一旦某顶点被并入集合 S，它的 dist 值就是最终最短距离\"这一贪心前提上。若有负权边，后加入 S 的顶点可能通过负权边反过来缩短已在 S 中顶点的距离，例如 0→1 权 3、0→2 权 5、2→1 权 -4，Dijkstra 会先定死 dist[1]=3，而真正的最短距离是 1。含负权时应改用 Bellman-Ford 算法。易错点：一是以为 Dijkstra 能处理负权（它只是不会死循环，结果却错）；二是混淆 Dijkstra 与 Floyd——Floyd 允许负权边但不允许负权回路。",
+      "tags": [
+        "Dijkstra",
+        "负权"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-019",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 3,
+      "bloom": "remember",
+      "stem": "用邻接矩阵实现时，Dijkstra 算法（单源最短路径）与 Floyd 算法（每对顶点间最短路径）的时间复杂度分别为",
+      "options": [
+        "O(n^2) 与 O(n^3)",
+        "O(n^3) 与 O(n^2)",
+        "O(n+e) 与 O(n^3)",
+        "O(n^2) 与 O(n^2 log n)"
+      ],
+      "answer": 0,
+      "explanation": "结论：O(n^2) 与 O(n^3)。推理：Dijkstra 外层要确定 n-1 个顶点的最短路径，每层都要在 n 个候选中扫描找最小 dist，再用新确定的顶点修正其余 n 个 dist，两层都是 n，故 O(n^2)；Floyd 是三重循环——最外层枚举中转顶点 k，内两层枚举起点 i 与终点 j，共 n^3 次松弛操作。易错点：一是用优先队列 + 邻接表可把 Dijkstra 优化到 O((n+e)log n)，但教材默认的邻接矩阵实现是 O(n^2)；二是误认为 Floyd 只需 O(n^2)，漏掉中转顶点那一层循环。",
+      "tags": [
+        "时间复杂度",
+        "Dijkstra",
+        "Floyd"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-005",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 2,
+      "bloom": "remember",
+      "stem": "Dijkstra 算法解决的是从某个源点到其余各顶点的 ____ 最短路径问题；Floyd 算法解决的是 ____ 最短路径问题。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "单源",
+          "accepted": [
+            "单源",
+            "单源点",
+            "一对多",
+            "单源最短路径"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "每对顶点之间",
+          "accepted": [
+            "每对顶点之间",
+            "每对顶点",
+            "所有顶点对",
+            "任意两点之间",
+            "多对多",
+            "顶点对之间"
+          ]
+        }
+      ],
+      "explanation": "结论：Dijkstra 求单源最短路径，Floyd 求每对顶点之间的最短路径。推理：Dijkstra 固定一个源点 v0，逐步确定 v0 到其余各顶点的最短距离，若要得到所有顶点对的结果，需对每个顶点各跑一次，总代价 O(n^3)；Floyd 直接以三重循环一次性算出任意两点间的最短距离，代码更简洁，代价同为 O(n^3) 但常数较大。工程上\"一个源点到所有点\"用 Dijkstra，\"任意两点\"用 Floyd 或 n 次 Dijkstra。易错点：把两者说反；另外 Floyd 也能处理负权边（只要没有负权回路），Dijkstra 不行。",
+      "tags": [
+        "单源",
+        "每对顶点",
+        "Dijkstra",
+        "Floyd"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-tf-006",
+      "category": "ds",
+      "type": "true_false",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 3,
+      "bloom": "understand",
+      "stem": "Dijkstra 算法是按照路径长度递增的次序，逐个产生源点到其余各顶点的最短路径的。",
+      "answer": true,
+      "explanation": "结论：正确。推理：算法维护两个集合，S 存放已确定最短路径的顶点，V-S 存放未确定的顶点；每一轮都从 V-S 中挑出 dist 最小的顶点 u 并入 S，并断言此刻 dist[u] 就是最终最短距离。因为所有边权非负，任何绕经 V-S 中其他顶点到达 u 的路径长度都不会小于 dist[u]，所以被选中的次序正是距离由小到大的次序。这也解释了为什么 Dijkstra 属于贪心算法。易错点：一是有负权边时\"dist 最小即最终最短\"不再成立，递增次序就被破坏；二是不要把\"并入 S 的次序\"与\"顶点编号次序\"混淆。",
+      "tags": [
+        "Dijkstra",
+        "递增次序",
+        "贪心"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-020",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "Floyd 算法的核心递推式为 d[i][j] = min(d[i][j], d[i][k] + d[k][j])，其中最外层循环变量 k 的含义是",
+      "options": [
+        "允许作为中转顶点的最大编号（逐步放宽可用中转点的范围）",
+        "路径上的终点编号",
+        "路径的长度",
+        "顶点的入度"
+      ],
+      "answer": 0,
+      "explanation": "结论：k 表示允许使用的中转顶点集合 {0,1,...,k}，最外层循环逐步放宽这个范围。推理：设 d_k[i][j] 为\"只允许编号不超过 k 的顶点作中转\"时 i 到 j 的最短距离，则有 d_k[i][j] = min(d_{k-1}[i][j], d_{k-1}[i][k] + d_{k-1}[k][j])；当 k 从 0 递增到 n-1 后，d 中就是 unrestricted 的最短距离。正因如此 k 必须放在最外层，且实现时可以用同一个数组原地滚动。易错点：把 k 当成终点或路径长度；把循环次序写成 i、j 在最外层会导致用到尚未更新的 d 值，结果错误。",
+      "tags": [
+        "Floyd",
+        "松弛",
+        "中转顶点"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-009",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储带权有向图，实现 Dijkstra 算法求源点 s 到其余各顶点的最短距离（不可达输出 -1）。请补全 4 处空白。输入：第 1 行三个整数 n m s，随后 m 行每行 u v w 表示一条从 u 到 v、权为 w 的弧（顶点 0 开始，w 为正整数）。输出：一行 n 个整数，依次是 s 到各顶点的最短距离，用一个空格分隔。\n```\n#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int dist[MAXV];\nstatic int S[MAXV];               /* S[j]=1 表示 j 的最短距离已确定 */\nstatic int path[MAXV];\nstatic int n;\n\nvoid Dijkstra(int v0)\n{\n    int i, j, u, min;\n\n    for (i = 0; i < n; i++)\n    {\n        dist[i] = /*__BLANK_1__*/;\n        S[i] = 0;\n        path[i] = (A[v0][i] < INF) ? v0 : -1;\n    }\n    dist[v0] = 0;\n    S[v0] = 1;\n    for (i = 1; i < n; i++)       /* 再确定 n-1 个顶点 */\n    {\n        min = INF;\n        u = -1;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                min = dist[j];\n                u = j;\n            }\n        if (u < 0)\n            break;                /* 剩下的顶点都不可达 */\n        /*__BLANK_3__*/;                    /* u 并入 S，其最短距离已确定 */\n        for (j = 0; j < n; j++)   /* 用 u 松弛其余顶点 */\n            if (S[j] == 0 && A[u][j] < INF && /*__BLANK_4__*/)\n            {\n                dist[j] = min + A[u][j];\n                path[j] = u;\n            }\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", dist[i] >= INF ? -1 : dist[i], i == n - 1 ? '\\n' : ' ');\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v, w;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 有向图只置一处，重弧取权小者 */\n            A[u][v] = w;\n    }\n    Dijkstra(s);\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "A[v0][i]",
+          "accepted": [
+            "A[v0][i]",
+            "A[i][v0]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "S[j] == 0 && dist[j] < min",
+          "accepted": [
+            "S[j] == 0 && dist[j] < min",
+            "dist[j] < min && S[j] == 0",
+            "S[j]==0&&dist[j]<min"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "S[u] = 1",
+          "accepted": [
+            "S[u] = 1",
+            "S[u]=1"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "min + A[u][j] < dist[j]",
+          "accepted": [
+            "min + A[u][j] < dist[j]",
+            "dist[u] + A[u][j] < dist[j]",
+            "min+A[u][j]<dist[j]"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int dist[MAXV];\nstatic int S[MAXV];               /* S[j]=1 表示 j 的最短距离已确定 */\nstatic int path[MAXV];\nstatic int n;\n\nvoid Dijkstra(int v0)\n{\n    int i, j, u, min;\n\n    for (i = 0; i < n; i++)\n    {\n        dist[i] = /*__BLANK_1__*/;\n        S[i] = 0;\n        path[i] = (A[v0][i] < INF) ? v0 : -1;\n    }\n    dist[v0] = 0;\n    S[v0] = 1;\n    for (i = 1; i < n; i++)       /* 再确定 n-1 个顶点 */\n    {\n        min = INF;\n        u = -1;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                min = dist[j];\n                u = j;\n            }\n        if (u < 0)\n            break;                /* 剩下的顶点都不可达 */\n        /*__BLANK_3__*/;                    /* u 并入 S，其最短距离已确定 */\n        for (j = 0; j < n; j++)   /* 用 u 松弛其余顶点 */\n            if (S[j] == 0 && A[u][j] < INF && /*__BLANK_4__*/)\n            {\n                dist[j] = min + A[u][j];\n                path[j] = u;\n            }\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", dist[i] >= INF ? -1 : dist[i], i == n - 1 ? '\\n' : ' ');\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v, w;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 有向图只置一处，重弧取权小者 */\n            A[u][v] = w;\n    }\n    Dijkstra(s);\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 30\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int dist[MAXV];\nstatic int S[MAXV];               /* S[j]=1 表示 j 的最短距离已确定 */\nstatic int path[MAXV];\nstatic int n;\n\nvoid Dijkstra(int v0)\n{\n    int i, j, u, min;\n\n    for (i = 0; i < n; i++)\n    {\n        dist[i] = A[v0][i];\n        S[i] = 0;\n        path[i] = (A[v0][i] < INF) ? v0 : -1;\n    }\n    dist[v0] = 0;\n    S[v0] = 1;\n    for (i = 1; i < n; i++)       /* 再确定 n-1 个顶点 */\n    {\n        min = INF;\n        u = -1;\n        for (j = 0; j < n; j++)\n            if (S[j] == 0 && dist[j] < min)\n            {\n                min = dist[j];\n                u = j;\n            }\n        if (u < 0)\n            break;                /* 剩下的顶点都不可达 */\n        S[u] = 1;                    /* u 并入 S，其最短距离已确定 */\n        for (j = 0; j < n; j++)   /* 用 u 松弛其余顶点 */\n            if (S[j] == 0 && A[u][j] < INF && min + A[u][j] < dist[j])\n            {\n                dist[j] = min + A[u][j];\n                path[j] = u;\n            }\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", dist[i] >= INF ? -1 : dist[i], i == n - 1 ? '\\n' : ' ');\n}\n\nint main(void)\n{\n    int m, s, i, j, u, v, w;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (w < A[u][v])          /* 有向图只置一处，重弧取权小者 */\n            A[u][v] = w;\n    }\n    Dijkstra(s);\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "5 7 0\n0 1 10\n0 4 5\n4 1 3\n4 2 9\n4 3 2\n1 2 1\n2 3 4\n",
+          "expected": "0 8 9 7 5",
+          "note": "教材风格有向网，源点 0"
+        },
+        {
+          "stdin": "3 2 0\n0 1 4\n1 2 3\n",
+          "expected": "0 4 7",
+          "note": "链状有向图，顶点 0 到 2 距离 7"
+        },
+        {
+          "stdin": "4 2 0\n0 1 6\n2 3 1\n",
+          "expected": "0 6 -1 -1",
+          "note": "顶点 2、3 不可达，输出 -1"
+        },
+        {
+          "stdin": "1 0 0\n",
+          "expected": "0",
+          "note": "边界：单顶点，距离 0"
+        }
+      ],
+      "explanation": "结论：依次填 A[v0][i]、S[j] == 0 && dist[j] < min、S[u] = 1、min + A[u][j] < dist[j]。推理：Dijkstra 三步走——初始化 dist[i] 为源点到 i 的直接弧权（无弧则 INF）；每轮在 S 之外的顶点里挑 dist 最小者 u 并入 S，此时 dist[u] 已是最终值；再用 u 做松弛，若经过 u 到 j 更短（min + A[u][j] < dist[j]）就更新 dist[j] 与前驱 path[j]。以第一个样例为例，依次确定 0(0)、4(5)、1(8)、3(7)、2(9)。易错点：一是选最小值时必须排除已并入 S 的顶点，否则会把已确定的顶点再次拉出来；二是松弛条件里 A[u][j] < INF 不能省，否则 INF+权 会溢出或产生假路径；三是 dist[v0] 要显式置 0，S[v0] 置 1，否则源点会被重复选择；四是本题用 dist >= INF 判不可达，输出 -1。",
+      "tags": [
+        "Dijkstra",
+        "dist",
+        "贪心"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cr-006",
+      "category": "ds",
+      "type": "code_reading",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 4,
+      "bloom": "analyze",
+      "stem": "写出下面程序的运行结果。程序用 Floyd 算法求 3 个顶点的有向带权图中每对顶点之间的最短距离（999 表示不可达）。\n```\n#include <stdio.h>\n\n#define N 3\n#define INF 999\n\nint main(void)\n{\n    int d[N][N] = {{0, 4, INF}, {INF, 0, 2}, {3, INF, 0}};\n    int i, j, k;\n\n    for (k = 0; k < N; k++)       /* 最外层枚举中转顶点 */\n        for (i = 0; i < N; i++)\n            for (j = 0; j < N; j++)\n                if (d[i][k] + d[k][j] < d[i][j])\n                    d[i][j] = d[i][k] + d[k][j];\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d%c\", d[i][j], j == N - 1 ? '|' : ' ');\n        printf(\"%c\", i == N - 1 ? '\\n' : ' ');\n    }\n\n    return 0;\n}\n```\n运行时输入：\n```\n\n```",
+      "answer": "0 4 6| 5 0 2| 3 7 0|",
+      "code": "#include <stdio.h>\n\n#define N 3\n#define INF 999\n\nint main(void)\n{\n    int d[N][N] = {{0, 4, INF}, {INF, 0, 2}, {3, INF, 0}};\n    int i, j, k;\n\n    for (k = 0; k < N; k++)       /* 最外层枚举中转顶点 */\n        for (i = 0; i < N; i++)\n            for (j = 0; j < N; j++)\n                if (d[i][k] + d[k][j] < d[i][j])\n                    d[i][j] = d[i][k] + d[k][j];\n    for (i = 0; i < N; i++)\n    {\n        for (j = 0; j < N; j++)\n            printf(\"%d%c\", d[i][j], j == N - 1 ? '|' : ' ');\n        printf(\"%c\", i == N - 1 ? '\\n' : ' ');\n    }\n\n    return 0;\n}",
+      "stdin": "",
+      "explanation": "结论：输出 0 4 6| 5 0 2| 3 7 0|。推理：初始矩阵表示弧 0→1(4)、1→2(2)、2→0(3)。k=0 时允许经顶点 0 中转，2→0→1 使 d[2][1] 由 INF 变 7；k=1 时允许经顶点 1 中转，0→1→2 使 d[0][2] 由 INF 变 6；k=2 时允许经顶点 2 中转，1→2→0 使 d[1][0] 由 INF 变 5。最终得到的是一个三顶点有向环上任意两点的最短距离，每行之和都等于绕环一周的代价 9 加自身 0。易错点：一是 k 必须放在最外层循环，若把 i、j 放外层会用到尚未更新的中间值，结果偏大；二是本例中 INF 取 999 而不是极大整数，是为了让 INF+INF 不溢出——用 INT_MAX 时 d[i][k]+d[k][j] 会整型溢出变成负数，从而错误地更新距离。",
+      "tags": [
+        "Floyd",
+        "动态规划",
+        "距离矩阵"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-007",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.5 最短路径",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编程：读入一个带权无向图与源点 s，输出 s 到每个顶点的最短距离（不可达输出 -1），并输出第二行：s 能到达的顶点个数（不含 s 自身）。\n\n输入格式：第 1 行三个整数 n m s（1≤n≤50，0≤m≤500，0≤s<n）；随后 m 行每行三个整数 u v w（0≤u,v<n，1≤w≤10000）表示一条权为 w 的无向边，可能存在重边。\n\n输出格式：第 1 行 n 个整数，依次是 s 到顶点 0..n-1 的最短距离，不可达输出 -1，整数间用一个空格分隔；第 2 行一个整数，表示 s 可达的其他顶点个数。",
+      "testCases": [
+        {
+          "stdin": "5 6 0\n0 1 10\n0 4 5\n4 1 3\n4 2 9\n4 3 2\n1 2 1\n",
+          "expected": "0 8 9 7 5\n4",
+          "note": "经典网，源点 0"
+        },
+        {
+          "stdin": "4 2 0\n0 1 6\n2 3 1\n",
+          "expected": "0 6 -1 -1\n1",
+          "note": "不连通，顶点 2、3 不可达"
+        },
+        {
+          "stdin": "3 3 0\n0 1 1\n1 2 2\n0 2 8\n",
+          "expected": "0 1 3\n2",
+          "note": "三角形：0-1(1)、1-2(2) 比直达边 0-2(8) 更短"
+        },
+        {
+          "stdin": "1 0 0\n",
+          "expected": "0\n0",
+          "note": "边界：单顶点"
+        },
+        {
+          "stdin": "4 5 2\n0 1 1\n0 1 4\n1 2 2\n2 3 3\n0 3 9\n",
+          "expected": "3 2 0 3\n3",
+          "note": "含重边，源点不是 0"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n#define INF 1000000\n\nstatic int A[MAXV][MAXV];\nstatic int dist[MAXV];\nstatic int S[MAXV];\n\nint main(void)\n{\n    int n, m, s, i, j, u, v, w, min, cnt = 0;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (u == v)\n            continue;\n        if (w < A[u][v])          /* 无向图：对称赋值，重边取小 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    for (i = 0; i < n; i++)\n    {\n        dist[i] = A[s][i];\n        S[i] = 0;\n    }\n    dist[s] = 0;\n    S[s] = 1;\n    for (i = 1; i < n; i++)\n    {\n        min = INF;\n        u = -1;\n        for (j = 0; j < n; j++)\n            if (S[j] == 0 && dist[j] < min)\n            {\n                min = dist[j];\n                u = j;\n            }\n        if (u < 0)\n            break;                /* 余下顶点均不可达，提前结束 */\n        S[u] = 1;\n        for (j = 0; j < n; j++)\n            if (S[j] == 0 && A[u][j] < INF && min + A[u][j] < dist[j])\n                dist[j] = min + A[u][j];\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", dist[i] >= INF ? -1 : dist[i], i == n - 1 ? '\\n' : ' ');\n    for (i = 0; i < n; i++)\n        if (i != s && dist[i] < INF)\n            cnt++;\n    printf(\"%d\\n\", cnt);\n\n    return 0;\n}",
+      "input_format": "第 1 行三个整数 n m s（1≤n≤50，0≤m≤500，0≤s<n）；随后 m 行每行三个整数 u v w（0≤u,v<n，1≤w≤10000）表示一条权为 w 的无向边，可能存在重边。",
+      "output_format": "第 1 行 n 个整数，依次是 s 到顶点 0..n-1 的最短距离，不可达输出 -1，整数间用一个空格分隔；第 2 行一个整数，表示 s 可达的其他顶点个数。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n#define INF 1000000\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, s, i, j, u, v, w, min, cnt = 0;\n\n    if (scanf(\"%d %d %d\", &n, &m, &s) != 3)\n        return 1;\n    for (i = 0; i < n; i++)\n        for (j = 0; j < n; j++)\n            A[i][j] = (i == j) ? 0 : INF;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d %d\", &u, &v, &w) != 3)\n            return 1;\n        if (u == v)\n            continue;\n        if (w < A[u][v])          /* 无向图：对称赋值，重边取小 */\n        {\n            A[u][v] = w;\n            A[v][u] = w;\n        }\n    }\n    for (i = 0; i < n; i++)\n    {\n        dist[i] = A[s][i];\n        S[i] = 0;\n    }\n    dist[s] = 0;\n    S[s] = 1;\n    for (i = 1; i < n; i++)\n    {\n        min = INF;\n        u = -1;\n        for (j = 0; j < n; j++)\n            if (S[j] == 0 && dist[j] < min)\n            {\n                min = dist[j];\n                u = j;\n            }\n        if (u < 0)\n            break;                /* 余下顶点均不可达，提前结束 */\n        S[u] = 1;\n        for (j = 0; j < n; j++)\n            if (S[j] == 0 && A[u][j] < INF && min + A[u][j] < dist[j])\n                dist[j] = min + A[u][j];\n    }\n    for (i = 0; i < n; i++)\n        printf(\"%d%c\", dist[i] >= INF ? -1 : dist[i], i == n - 1 ? '\\n' : ' ');\n    for (i = 0; i < n; i++)\n        if (i != s && dist[i] < INF)\n            cnt++;\n    printf(\"%d\\n\", cnt);\n\n    return 0;\n}",
+      "explanation": "结论：程序用 Dijkstra 求出 dist 数组，不可达顶点输出 -1，再统计 dist < INF 且不是源点自身的顶点个数。推理：无向带权图建邻接矩阵时对称赋值并对重边取较小权，保证 dist 初值就是最短的直接边权；主循环 n-1 轮，每轮选 dist 最小的未确定顶点并入 S，然后用它松弛其余顶点；一旦找不到可选顶点（u < 0）说明剩下的都不可达，直接 break 避免无谓扫描。第一个样例的最短距离为 0、8、9、7、5（顶点 2 走 0-4-1-2 共 5+3+1=9，比直达 0-4-2 的 14 更短），可达顶点数为 4；第二个样例中顶点 2、3 与源点 0 不在同一分量，输出 -1 -1，cnt=1。易错点：一是 cnt 必须排除源点自身；二是 break 之后未确定的 dist 仍是 INF，正好被输出为 -1，不必额外处理；三是 A[u][j] < INF 的判断不可省，否则 INF + 权会污染 dist。",
+      "tags": [
+        "Dijkstra",
+        "最短路径",
+        "不可达"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-dijkstra"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-021",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 2,
+      "bloom": "understand",
+      "stem": "对一个有 n 个顶点的有向图做拓扑排序，若算法结束时输出的顶点个数少于 n，则可以断定",
+      "options": [
+        "图中存在有向回路",
+        "图一定是不连通的",
+        "顶点的入度被算错了",
+        "该图不能用邻接矩阵存储"
+      ],
+      "answer": 0,
+      "explanation": "结论：图中存在有向回路。推理：拓扑排序每轮都要取一个入度为 0 的顶点输出并删去它射出的弧。若图无回路，则任何非空子图中必存在入度为 0 的顶点，算法一定能输出全部 n 个顶点；反之，若中途再也找不到入度为 0 的顶点，说明剩下的顶点互相牵制，构成至少一个回路。这正是用拓扑排序检测有向图是否有环的标准方法。易错点：一是\"输出顶点数少于 n\"与图是否连通无关，有回路的强连通图同样排不出完整序列；二是反过来，能排出完整序列只能说明无回路，不能说明图连通。",
+      "tags": [
+        "拓扑排序",
+        "回路判定"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-022",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "stem": "一个有向无环图的拓扑序列唯一，其充分必要条件是",
+      "options": [
+        "排序过程中每一步都恰好只有一个入度为 0 的顶点可供选择",
+        "图是连通的",
+        "图中每个顶点的入度都等于出度",
+        "图的边数恰好等于 n-1"
+      ],
+      "answer": 0,
+      "explanation": "结论：A 正确。推理：若某一步同时存在两个入度为 0 的顶点 u 与 v，则 u、v 之间没有弧（否则其中一个入度不为 0），先输出 u 或先输出 v 都合法，于是得到两个不同的拓扑序列；反之，若每步都只有一个候选，序列就被完全确定。连通性不是必要条件，例如两个互不相连的顶点 0、1（无边）就有 2 个拓扑序列；C 描述的是欧拉图的特征；D 只是树形结构的边数，与序列唯一性无关，例如 0→1、0→2、0→3 有 3 条边却有 6 个拓扑序列。易错点：把\"唯一\"与\"连通\"混为一谈。",
+      "tags": [
+        "拓扑序列",
+        "唯一性"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-fb-006",
+      "category": "ds",
+      "type": "fill_blank",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 3,
+      "bloom": "remember",
+      "stem": "在 AOE 网中，从源点到汇点的 ____ 路径称为关键路径，其长度就是完成整个工程所需的最短时间；求事件的最早发生时间 ve 应按 ____ 次序正向递推，求事件的最迟发生时间 vl 则按逆拓扑次序反向递推。",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "最长",
+          "accepted": [
+            "最长",
+            "最大",
+            "最长的",
+            "权值之和最大"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "拓扑",
+          "accepted": [
+            "拓扑",
+            "拓扑排序",
+            "拓扑序列"
+          ]
+        }
+      ],
+      "explanation": "结论：最长路径；拓扑次序。推理：AOE 网中弧表示活动、弧上的权表示活动持续时间，顶点表示事件。一个事件只有当它的所有前驱活动都完成后才能发生，所以它的最早发生时间取各前驱路径的最大值，即\"最长路径\"决定工期；而递推 ve 时必须保证算某顶点时它的所有前驱都已算好，这正是拓扑序的性质。vl 则从汇点的最迟发生时间（等于 ve[汇点]）出发，沿逆拓扑序用最小值回推。易错点：把关键路径当成最短路径——工程完工时间取决于最慢的那条链，任何关键活动延迟都会拖延整个工期。",
+      "tags": [
+        "AOE 网",
+        "关键路径",
+        "ve",
+        "vl"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-sc-023",
+      "category": "ds",
+      "type": "single_choice",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 3,
+      "bloom": "apply",
+      "stem": "设某活动 ai 的最早开始时间为 e(i)，最迟开始时间为 l(i)，则 ai 是关键活动的充分必要条件是",
+      "options": [
+        "l(i) - e(i) = 0",
+        "l(i) - e(i) > 0",
+        "l(i) - e(i) < 0",
+        "e(i) = 0"
+      ],
+      "answer": 0,
+      "explanation": "结论：l(i) - e(i) = 0，即时间余量为 0。推理：l(i) - e(i) 称为该活动的时间余量，表示在不拖延整个工期的前提下它最多可以推迟多久。余量为 0 说明这个活动一点也不能拖，它必然位于关键路径上，是关键活动；余量大于 0 说明它不在关键路径上，有一定的缓冲。因为 vl 是从 ve[汇点] 反推出来的，恒有 l(i) ≥ e(i)，所以余量不可能为负。易错点：一是把关键活动误认为是\"耗时最长的活动\"，关键与否取决于余量而不是活动本身的长度；二是求关键路径时必须同时算出 ve 与 vl，只算一个无法判定。",
+      "tags": [
+        "关键活动",
+        "时间余量"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-cc-010",
+      "category": "ds",
+      "type": "code_completion",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "程序用邻接矩阵存储有向图，实现基于栈的拓扑排序：先把所有入度为 0 的顶点压入栈（入栈后把入度置 -1 作标记），随后不断弹栈、输出顶点、把其后继顶点的入度减 1，入度归零者继续入栈。请补全 4 处空白。输入：第 1 行 n m，随后 m 行每行一条弧 u v（顶点 0 开始，可能有重弧）。输出：第 1 行是拓扑序列（整数间一个空格），第 2 行是 OK（无回路）或 HAS CYCLE（有回路）。\n```\n#include <stdio.h>\n\n#define MAXV 30\n\nstatic int A[MAXV][MAXV];\nstatic int indeg[MAXV];\nstatic int st[MAXV];              /* 暂存入度为 0 的顶点，用栈实现 */\nstatic int n;\n\nint TopoSort(void)                /* 成功返回 1，图中有回路返回 0 */\n{\n    int top = -1, i, j, v, cnt = 0;\n\n    for (i = 0; i < n; i++)\n        if (/*__BLANK_1__*/)\n        {\n            st[++top] = i;\n            indeg[i] = -1;        /* 置 -1 表示已入栈，避免重复入栈 */\n        }\n    while (top >= 0)\n    {\n        v = st[top--];\n        printf(\"%d \", v);\n        cnt++;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                /*__BLANK_3__*/;            /* 删去弧 <v,j>，j 的入度减 1 */\n                if (indeg[j] == 0)\n                {\n                    st[++top] = j;\n                    indeg[j] = -1;\n                }\n            }\n    }\n    if (/*__BLANK_4__*/)\n        return 0;                 /* 输出顶点数不足 n，说明存在回路 */\n    return 1;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, ok;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        indeg[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (A[u][v] == 0)         /* 重弧只累加一次入度 */\n        {\n            A[u][v] = 1;\n            indeg[v]++;\n        }\n    }\n    ok = TopoSort();\n    printf(\"\\n%s\\n\", ok ? \"OK\" : \"HAS CYCLE\");\n\n    return 0;\n}\n```",
+      "blanks": [
+        {
+          "index": 1,
+          "answer": "indeg[i] == 0",
+          "accepted": [
+            "indeg[i] == 0",
+            "indeg[i] != 1",
+            "!indeg[i]"
+          ]
+        },
+        {
+          "index": 2,
+          "answer": "A[v][j] != 0 && indeg[j] >= 0",
+          "accepted": [
+            "A[v][j] != 0 && indeg[j] >= 0",
+            "A[v][j] == 1 && indeg[j] >= 0",
+            "indeg[j] >= 0 && A[v][j] != 0"
+          ]
+        },
+        {
+          "index": 3,
+          "answer": "indeg[j]--",
+          "accepted": [
+            "indeg[j]--",
+            "indeg[j] = indeg[j] - 1",
+            "--indeg[j]",
+            "indeg[j]-=1"
+          ]
+        },
+        {
+          "index": 4,
+          "answer": "cnt < n",
+          "accepted": [
+            "cnt < n",
+            "cnt != n",
+            "n > cnt"
+          ]
+        }
+      ],
+      "code": "#include <stdio.h>\n\n#define MAXV 30\n\nstatic int A[MAXV][MAXV];\nstatic int indeg[MAXV];\nstatic int st[MAXV];              /* 暂存入度为 0 的顶点，用栈实现 */\nstatic int n;\n\nint TopoSort(void)                /* 成功返回 1，图中有回路返回 0 */\n{\n    int top = -1, i, j, v, cnt = 0;\n\n    for (i = 0; i < n; i++)\n        if (/*__BLANK_1__*/)\n        {\n            st[++top] = i;\n            indeg[i] = -1;        /* 置 -1 表示已入栈，避免重复入栈 */\n        }\n    while (top >= 0)\n    {\n        v = st[top--];\n        printf(\"%d \", v);\n        cnt++;\n        for (j = 0; j < n; j++)\n            if (/*__BLANK_2__*/)\n            {\n                /*__BLANK_3__*/;            /* 删去弧 <v,j>，j 的入度减 1 */\n                if (indeg[j] == 0)\n                {\n                    st[++top] = j;\n                    indeg[j] = -1;\n                }\n            }\n    }\n    if (/*__BLANK_4__*/)\n        return 0;                 /* 输出顶点数不足 n，说明存在回路 */\n    return 1;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, ok;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        indeg[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (A[u][v] == 0)         /* 重弧只累加一次入度 */\n        {\n            A[u][v] = 1;\n            indeg[v]++;\n        }\n    }\n    ok = TopoSort();\n    printf(\"\\n%s\\n\", ok ? \"OK\" : \"HAS CYCLE\");\n\n    return 0;\n}",
+      "solution": "#include <stdio.h>\n\n#define MAXV 30\n\nstatic int A[MAXV][MAXV];\nstatic int indeg[MAXV];\nstatic int st[MAXV];              /* 暂存入度为 0 的顶点，用栈实现 */\nstatic int n;\n\nint TopoSort(void)                /* 成功返回 1，图中有回路返回 0 */\n{\n    int top = -1, i, j, v, cnt = 0;\n\n    for (i = 0; i < n; i++)\n        if (indeg[i] == 0)\n        {\n            st[++top] = i;\n            indeg[i] = -1;        /* 置 -1 表示已入栈，避免重复入栈 */\n        }\n    while (top >= 0)\n    {\n        v = st[top--];\n        printf(\"%d \", v);\n        cnt++;\n        for (j = 0; j < n; j++)\n            if (A[v][j] != 0 && indeg[j] >= 0)\n            {\n                indeg[j]--;            /* 删去弧 <v,j>，j 的入度减 1 */\n                if (indeg[j] == 0)\n                {\n                    st[++top] = j;\n                    indeg[j] = -1;\n                }\n            }\n    }\n    if (cnt < n)\n        return 0;                 /* 输出顶点数不足 n，说明存在回路 */\n    return 1;\n}\n\nint main(void)\n{\n    int m, i, j, u, v, ok;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < n; i++)\n    {\n        indeg[i] = 0;\n        for (j = 0; j < n; j++)\n            A[i][j] = 0;\n    }\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (A[u][v] == 0)         /* 重弧只累加一次入度 */\n        {\n            A[u][v] = 1;\n            indeg[v]++;\n        }\n    }\n    ok = TopoSort();\n    printf(\"\\n%s\\n\", ok ? \"OK\" : \"HAS CYCLE\");\n\n    return 0;\n}",
+      "testCases": [
+        {
+          "stdin": "6 8\n0 1\n0 2\n1 3\n2 3\n2 4\n3 5\n4 5\n1 4\n",
+          "expected": "0 2 1 4 3 5\nOK",
+          "note": "课程先修关系图，无回路"
+        },
+        {
+          "stdin": "3 3\n0 1\n1 2\n2 0\n",
+          "expected": "\nHAS CYCLE",
+          "note": "有向环，一个顶点也排不出"
+        },
+        {
+          "stdin": "4 3\n0 1\n0 2\n0 3\n",
+          "expected": "0 3 2 1\nOK",
+          "note": "星形有向图，栈使输出为降序"
+        },
+        {
+          "stdin": "1 0\n",
+          "expected": "0\nOK",
+          "note": "边界：单顶点无弧"
+        }
+      ],
+      "explanation": "结论：依次填 indeg[i] == 0、A[v][j] != 0 && indeg[j] >= 0、indeg[j]--、cnt < n。推理：拓扑排序的本质是\"反复摘除入度为 0 的顶点\"。入度为 0 表示该顶点的所有前驱都已输出，可以安全输出；输出后要把它射出的所有弧删掉，即后继顶点的入度减 1，减到 0 就获得输出资格。本实现用 indeg = -1 兼作\"已入栈\"标记，所以判后继时要加 indeg[j] >= 0 的条件，防止重复入栈。最后用输出计数 cnt 与 n 比较来判定图中是否存在回路。以第一个样例为例，输出为 0 2 1 4 3 5（栈是后进先出，所以次序与队列实现不同）。易错点：一是重弧会让入度多算，必须用 A[u][v]==0 判重；二是漏掉 indeg[j] >= 0 的条件会把已入栈的顶点再次压栈，输出重复顶点；三是 cnt < n 才是有环，写成 cnt != n 虽然等价但语义不如前者清晰。",
+      "tags": [
+        "拓扑排序",
+        "入度",
+        "栈"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    },
+    {
+      "id": "ds-ch06-pg-008",
+      "category": "ds",
+      "type": "programming",
+      "chapter": "第6章 图",
+      "section": "6.6 拓扑排序与关键路径",
+      "difficulty": 4,
+      "bloom": "apply",
+      "stem": "编程：读入一个有向图，用基于队列的拓扑排序输出它的一个拓扑序列，并判断图中是否存在回路。约定初始时把所有入度为 0 的顶点按编号从小到大入队，出队顶点后把它的所有后继中入度变为 0 者按编号从小到大入队。\n\n输入格式：第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v 表示一条从 u 到 v 的弧（顶点 0 开始），可能有重弧。\n\n输出格式：共 2 行：第 1 行是拓扑序列，整数间用一个空格分隔；若图中有回路则只输出已排出的部分，一个都排不出时输出 NONE。第 2 行输出 OK（无回路）或 CYCLE（有回路）。",
+      "testCases": [
+        {
+          "stdin": "6 8\n0 1\n0 2\n1 3\n2 3\n2 4\n3 5\n4 5\n1 4\n",
+          "expected": "0 1 2 3 4 5\nOK",
+          "note": "课程先修关系，队列实现得到升序序列"
+        },
+        {
+          "stdin": "3 3\n0 1\n1 2\n2 0\n",
+          "expected": "NONE\nCYCLE",
+          "note": "有向环，输出 NONE 与 CYCLE"
+        },
+        {
+          "stdin": "4 3\n0 1\n0 2\n0 3\n",
+          "expected": "0 1 2 3\nOK",
+          "note": "星形图，无回路"
+        },
+        {
+          "stdin": "5 0\n",
+          "expected": "0 1 2 3 4\nOK",
+          "note": "边界：无弧，任意次序都合法，本题输出升序"
+        },
+        {
+          "stdin": "4 5\n0 1\n1 2\n2 3\n0 3\n1 2\n",
+          "expected": "0 1 2 3\nOK",
+          "note": "含一条重弧，仍是无回路图"
+        }
+      ],
+      "reference": "#include <stdio.h>\n\n#define MAXV 50\n\nstatic int A[MAXV][MAXV];\nstatic int indeg[MAXV];\nstatic int qu[MAXV];\nstatic int order[MAXV];\n\nint main(void)\n{\n    int n, m, i, j, u, v, front = 0, rear = 0, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (A[u][v] == 0)         /* 重弧只累加一次入度 */\n        {\n            A[u][v] = 1;\n            indeg[v]++;\n        }\n    }\n    for (i = 0; i < n; i++)\n        if (indeg[i] == 0)\n            qu[rear++] = i;       /* 按编号升序扫描，天然满足入队次序要求 */\n    while (front < rear)\n    {\n        v = qu[front++];\n        order[cnt++] = v;\n        for (j = 0; j < n; j++)\n            if (A[v][j] != 0)\n            {\n                indeg[j]--;\n                if (indeg[j] == 0)\n                    qu[rear++] = j;\n            }\n    }\n    for (i = 0; i < cnt; i++)\n        printf(\"%d%c\", order[i], i == cnt - 1 ? '\\n' : ' ');\n    if (cnt == 0)\n        printf(\"NONE\\n\");\n    printf(\"%s\\n\", cnt == n ? \"OK\" : \"CYCLE\");\n\n    return 0;\n}",
+      "input_format": "第 1 行两个整数 n m（1≤n≤50，0≤m≤500）；随后 m 行每行两个整数 u v 表示一条从 u 到 v 的弧（顶点 0 开始），可能有重弧。",
+      "output_format": "共 2 行：第 1 行是拓扑序列，整数间用一个空格分隔；若图中有回路则只输出已排出的部分，一个都排不出时输出 NONE。第 2 行输出 OK（无回路）或 CYCLE（有回路）。",
+      "code_starter": "#include <stdio.h>\n#define MAXV 50\n\n/* 请按题目要求实现所需函数，并在 main 中调用 */\nint main(void)\n{\n    int n, m, i, j, u, v, front = 0, rear = 0, cnt = 0;\n\n    if (scanf(\"%d %d\", &n, &m) != 2)\n        return 1;\n    for (i = 0; i < m; i++)\n    {\n        if (scanf(\"%d %d\", &u, &v) != 2)\n            return 1;\n        if (A[u][v] == 0)         /* 重弧只累加一次入度 */\n        {\n            A[u][v] = 1;\n            indeg[v]++;\n        }\n    }\n    for (i = 0; i < n; i++)\n        if (indeg[i] == 0)\n            qu[rear++] = i;       /* 按编号升序扫描，天然满足入队次序要求 */\n    while (front < rear)\n    {\n        v = qu[front++];\n        order[cnt++] = v;\n        for (j = 0; j < n; j++)\n            if (A[v][j] != 0)\n            {\n                indeg[j]--;\n                if (indeg[j] == 0)\n                    qu[rear++] = j;\n            }\n    }\n    for (i = 0; i < cnt; i++)\n        printf(\"%d%c\", order[i], i == cnt - 1 ? '\\n' : ' ');\n    if (cnt == 0)\n        printf(\"NONE\\n\");\n    printf(\"%s\\n\", cnt == n ? \"OK\" : \"CYCLE\");\n\n    return 0;\n}",
+      "explanation": "结论：用队列实现拓扑排序，先把入度为 0 的顶点按编号升序入队，然后\"出队—记录—把后继入度减 1—归零者入队\"，直到队空；最后比较已输出顶点数 cnt 与 n 判定是否有回路。推理：入度为 0 表示没有前驱约束，可以立即输出；输出后删去它射出的弧等价于后继入度减 1，一旦减到 0 就说明它的所有前驱都已排好。因为入队与出队都按编号升序扫描，所以结果是\"同一批可选顶点中编号小的先出\"，序列可复现。以第一个样例为例，输出 0 1 2 3 4 5；第二个样例三个顶点互相牵制，一个也排不出，故输出 NONE 与 CYCLE。易错点：一是重弧会让入度多算，必须用 A[u][v]==0 判重后再累加；二是 m=0 时所有顶点入度均为 0，全部按升序输出，结果是 OK；三是 cnt==0 时第一行没有任何整数，需要一个 NONE 占位，否则两行输出会挤在一起难以判分。",
+      "tags": [
+        "拓扑排序",
+        "队列",
+        "判环"
+      ],
+      "knowledgeIds": [
+        "ds-ch06-04"
+      ],
+      "vizIds": [
+        "graph-toposort"
+      ],
+      "source": "原创（依据 02_知识大纲_数据结构.md 第6章考点，参照朱战立《数据结构——使用C语言》与程杰《大话数据结构》经典题型变式）",
+      "ai_generated": true,
+      "generated_at": "2026-09-12",
+      "verified": true
+    }
+  ]
+}
