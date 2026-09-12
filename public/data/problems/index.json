@@ -1,9 +1,9 @@
 {
   "_generated": "GENERATED — 由 npm run build:index 生成，禁止手工编辑（手改会被覆盖）",
-  "content_sha": "40c53ebfd801ea43",
+  "content_sha": "44e6a4d035677f40",
   "schema_version": 1,
   "data_version": "0.1.0",
-  "count": 1824,
+  "count": 1874,
   "shard_count": 20,
   "shards": [
     {
@@ -59,7 +59,7 @@
       "file": "c-ch08.json",
       "category": "c",
       "chapter": "第8章 编译预处理",
-      "count": 56,
+      "count": 106,
       "url": "data/problems/c-ch08.json"
     },
     {
@@ -14147,6 +14147,821 @@
       "verified": true,
       "tags": [],
       "title": "【题 8.48】设有以下程序",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-020",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "宏定义"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-021",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "宏替换",
+        "运算符优先级"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-022",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "括号"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-023",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "宏副作用",
+        "实参多次求值"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-024",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "字符串化",
+        "记号粘贴"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-025",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#ifdef"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-026",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#if",
+        "#elif"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-027",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "多语句宏",
+        "do-while(0)"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-028",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "宏嵌套",
+        "逐层展开"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-029",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "#undef",
+        "宏重定义"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-030",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "三目运算符"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-031",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "宏与函数",
+        "展开对比"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-032",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 1,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "数组与循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-033",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "除法括号"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-034",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "字符串字面量",
+        "宏拼接"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-035",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "宏",
+        "sizeof",
+        "数组长度"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-036",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "#ifndef",
+        "重复包含防护"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-037",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "括号必要性"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-038",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "控制流宏",
+        "循环"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cr-039",
+      "type": "code_reading",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带类型参数的宏",
+        "do-while(0)"
+      ],
+      "title": "写出下列程序的运行结果",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-001",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "带参宏"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-002",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#ifdef"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-003",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "sizeof",
+        "宏与数组"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-004",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "多语句宏",
+        "do-while(0)"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-005",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "括号"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-006",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "#运算符",
+        "##运算符"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-007",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "#if",
+        "#elif",
+        "#else"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-008",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "宏的嵌套展开",
+        "带参宏"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-009",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "带参宏",
+        "printf"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-cc-010",
+      "type": "code_completion",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "逻辑表达式"
+      ],
+      "title": "下列程序中有若干空白",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-dbg-001",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "括号",
+        "优先级"
+      ],
+      "title": "下列程序的功能是输出 ",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-dbg-002",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#ifdef",
+        "#if"
+      ],
+      "title": "下列程序在关闭调试",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-dbg-003",
+      "type": "debug",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "analyze",
+      "verified": true,
+      "tags": [
+        "多语句宏",
+        "带参宏",
+        "循环"
+      ],
+      "title": "下列程序用宏 REP",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-006",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "三目运算符",
+        "嵌套宏"
+      ],
+      "title": "用带参宏 #define MAX",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-007",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "多语句宏",
+        "do-while(0)",
+        "交换"
+      ],
+      "title": "用多语句宏 #define SWAP",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-008",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "逻辑值",
+        "统计"
+      ],
+      "title": "用带参宏 #define ISODD",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-009",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "带参宏",
+        "面积"
+      ],
+      "title": "定义符号常量 #define PI 3 与带参宏 #define AREA",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-010",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 2,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#if",
+        "调试输出"
+      ],
+      "title": "定义 #define DEBUG 1",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-pg-011",
+      "type": "programming",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.5 变式练习（代码类）",
+      "difficulty": 3,
+      "bloom": "apply",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "立方和",
+        "long long"
+      ],
+      "title": "用带参宏 #define CUBE",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-027",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "预处理",
+        "编译过程"
+      ],
+      "title": "C 语言的编译预处理阶段发生在",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-028",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "宏替换",
+        "纯文本替换"
+      ],
+      "title": "关于宏替换的实质",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-029",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "括号",
+        "运算符优先级"
+      ],
+      "title": "带参宏定义中",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-030",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "#include",
+        "文件包含"
+      ],
+      "title": "#include <stdio.h> 与 #include \"myhead.h\" 的区别是",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-031",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "宏与函数",
+        "区别"
+      ],
+      "title": "与函数相比",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-sc-032",
+      "type": "single_choice",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "#ifdef"
+      ],
+      "title": "#ifdef 命令的作用是",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-fb-007",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "符号常量",
+        "#define"
+      ],
+      "title": "用 #define 定义的标识符通常称为________",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-fb-008",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "文本替换"
+      ],
+      "title": "带参宏的替换属于________替换",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-fb-009",
+      "type": "fill_blank",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "条件编译",
+        "三种形式"
+      ],
+      "title": "条件编译最常用的三种命令形式是________、________和________",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-tf-001",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 1,
+      "bloom": "remember",
+      "verified": true,
+      "tags": [
+        "宏定义",
+        "分号"
+      ],
+      "title": "宏定义语句的末尾必须加上分号",
+      "file": "c-ch08.json"
+    },
+    {
+      "id": "c-ch08-tf-002",
+      "type": "true_false",
+      "category": "c",
+      "chapter": "第8章 编译预处理",
+      "section": "8.4 变式练习（概念类）",
+      "difficulty": 2,
+      "bloom": "understand",
+      "verified": true,
+      "tags": [
+        "带参宏",
+        "副作用",
+        "多次求值"
+      ],
+      "title": "把带副作用的表达式",
       "file": "c-ch08.json"
     },
     {
