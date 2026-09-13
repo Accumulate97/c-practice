@@ -1,0 +1,837 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz3d 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "mem3d-matrix-cube",
+  "title": "二维数组的内存立方体（3D）",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第6章 数组",
+  "relatedProblems": [
+    "c-ch06-pg-004",
+    "c-ch06-pg-005",
+    "c-ch06-sc-006"
+  ],
+  "code": "#include <stdio.h>\n\nint main(void) {\n    int a[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };\n    /* 行优先：a[i][j] 的地址 = 基址 + (i * 3 + j) * sizeof(int) */\n    for (int i = 0; i < 3; i++)\n        for (int j = 0; j < 3; j++)\n            printf(\"a[%d][%d]=%d addr=%p\\n\", i, j, a[i][j], (void *)&a[i][j]);\n    return 0;\n}\n",
+  "meta": {
+    "algorithm": "matrixCube",
+    "n": 9,
+    "counterKeys": [
+      "visited"
+    ],
+    "generatedBy": "gen-viz3d@0.1.0",
+    "hall": "viz3d"
+  },
+  "steps": [
+    {
+      "description": "int a[3][3] 在内存里根本不是「3×3 的方块」，而是**连续的 9 个 int**。C 语言按行优先把它们一字排开：先 a[0][0..2]，再 a[1][0..2]，最后 a[2][0..2]。3D 视图里上层是逻辑二维网格，下层是物理一维内存。",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "idle"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "idle"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "idle"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "idle"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "idle"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "idle"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "idle"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "idle"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "idle"
+              }
+            ],
+            "note": "基址 0x1000，每格 sizeof(int) = 4 字节，共 36 字节连续"
+          }
+        ],
+        "counters": {
+          "visited": 0
+        }
+      }
+    },
+    {
+      "description": "a[0][0] = 1，地址 = 0x1000。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (0×3 + 0) × 4。线性序号 0，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "active",
+                "note": "线性序号 0 = i*3+j = 0*3+0"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 1
+        }
+      }
+    },
+    {
+      "description": "a[0][1] = 2，地址 = 0x1004。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (0×3 + 1) × 4。线性序号 1，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "active",
+                "note": "线性序号 1 = i*3+j = 0*3+1"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 2
+        }
+      }
+    },
+    {
+      "description": "a[0][2] = 3，地址 = 0x1008。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (0×3 + 2) × 4。线性序号 2，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "active",
+                "note": "线性序号 2 = i*3+j = 0*3+2"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 3
+        }
+      }
+    },
+    {
+      "description": "a[1][0] = 4，地址 = 0x100c。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (1×3 + 0) × 4。线性序号 3，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "active",
+                "note": "线性序号 3 = i*3+j = 1*3+0"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 4
+        }
+      }
+    },
+    {
+      "description": "a[1][1] = 5，地址 = 0x1010。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (1×3 + 1) × 4。线性序号 4，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "active",
+                "note": "线性序号 4 = i*3+j = 1*3+1"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 5
+        }
+      }
+    },
+    {
+      "description": "a[1][2] = 6，地址 = 0x1014。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (1×3 + 2) × 4。线性序号 5，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "active",
+                "note": "线性序号 5 = i*3+j = 1*3+2"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 6
+        }
+      }
+    },
+    {
+      "description": "a[2][0] = 7，地址 = 0x1018。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (2×3 + 0) × 4。线性序号 6，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "active",
+                "note": "线性序号 6 = i*3+j = 2*3+0"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 7
+        }
+      }
+    },
+    {
+      "description": "a[2][1] = 8，地址 = 0x101c。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (2×3 + 1) × 4。线性序号 7，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "active",
+                "note": "线性序号 7 = i*3+j = 2*3+1"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "sorted"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 8
+        }
+      }
+    },
+    {
+      "description": "a[2][2] = 9，地址 = 0x1020。套公式：基址 0x1000 + (i×列数 + j) × 4 = 0x1000 + (2×3 + 2) × 4。线性序号 8，正好是上层网格与下层内存条的对应位置。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "sorted"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "sorted"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "sorted"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "sorted"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "sorted"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "sorted"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "sorted"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "sorted"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "active",
+                "note": "线性序号 8 = i*3+j = 2*3+2"
+              }
+            ],
+            "note": "行优先存储，遍历顺序 = 地址递增顺序"
+          }
+        ],
+        "counters": {
+          "visited": 9
+        }
+      }
+    },
+    {
+      "description": "结论：这个公式解释了三件事 —— ① 为什么二维数组传参可以退化成 int (*p)[3] 甚至 int *；② 为什么按列遍历（外层 j、内层 i）会跳着访问内存，缓存命中率骤降；③ 为什么 a[i][j] 与 a[j][i] 地址不同，转置必须真的搬数据。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "matrix",
+            "title": "int a[3][3] —— 逻辑二维 / 物理一维",
+            "cells": [
+              {
+                "key": "a00",
+                "address": "0x1000",
+                "value": "1",
+                "role": "idle"
+              },
+              {
+                "key": "a01",
+                "address": "0x1004",
+                "value": "2",
+                "role": "idle"
+              },
+              {
+                "key": "a02",
+                "address": "0x1008",
+                "value": "3",
+                "role": "idle"
+              },
+              {
+                "key": "a10",
+                "address": "0x100c",
+                "value": "4",
+                "role": "idle"
+              },
+              {
+                "key": "a11",
+                "address": "0x1010",
+                "value": "5",
+                "role": "idle"
+              },
+              {
+                "key": "a12",
+                "address": "0x1014",
+                "value": "6",
+                "role": "idle"
+              },
+              {
+                "key": "a20",
+                "address": "0x1018",
+                "value": "7",
+                "role": "idle"
+              },
+              {
+                "key": "a21",
+                "address": "0x101c",
+                "value": "8",
+                "role": "idle"
+              },
+              {
+                "key": "a22",
+                "address": "0x1020",
+                "value": "9",
+                "role": "idle"
+              }
+            ],
+            "note": "addr(i,j) = base + (i*cols + j)*sizeof(elem)"
+          }
+        ],
+        "counters": {
+          "visited": 9
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,723 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz3d 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "mem3d-leak",
+  "title": "内存泄漏的形成（3D 内存沙盘）",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [
+    "c-ch09-pg-009",
+    "c-ch09-fb-033",
+    "c-ch09-dbg-017"
+  ],
+  "code": "#include <stdlib.h>\n\nint main(void) {\n    for (int i = 0; i < 4; i++) {\n        int *p = malloc(sizeof(int) * 4);  /* 每轮申请 16 字节 */\n        p[0] = i;                          /* 用完之后...... */\n    }                                      /* p 出了作用域，从未 free */\n    /* 四块堆内存的入口永久丢失：内存泄漏 */\n    return 0;\n}\n",
+  "meta": {
+    "algorithm": "leak",
+    "n": 4,
+    "counterKeys": [
+      "bytesLost",
+      "leakedBlocks"
+    ],
+    "generatedBy": "gen-viz3d@0.1.0",
+    "hall": "viz3d"
+  },
+  "steps": [
+    {
+      "description": "循环还没开始，堆区是空的。注意接下来要发生的事：p 定义在循环体内部，所以**每一轮都是一个全新的 p**，上一轮的 p 连同它记着的地址一起消失。",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "p 的作用域仅限循环体"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [],
+            "note": "空闲"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 0,
+          "bytesLost": 0
+        }
+      }
+    },
+    {
+      "description": "第 1 轮：int *p = malloc(16) 得到 0x9000。此刻它是有主的 —— 唯一的入口就是栈区这个 p。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "active",
+                "note": "本轮的 p，作用域即将结束"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "（未写入）",
+                "role": "active",
+                "note": "第 1 次 malloc，16 字节"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 0,
+          "bytesLost": 0
+        }
+      }
+    },
+    {
+      "description": "p[0] = 0：正常写入。到目前为止一切合法，内存也在你手上。",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "compare",
+                "note": "仍指向 0x9000"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "compare",
+                "note": "p[0] = 0"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 0,
+          "bytesLost": 0
+        }
+      }
+    },
+    {
+      "description": "循环体结束，p 随作用域销毁。堆区那 16 字节还在占用，但**再没有任何指针指向它**，free 也无从下手 —— 这就是泄漏。已累计泄漏 1 块 / 16 字节。",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "p 已销毁，栈区空了"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              }
+            ],
+            "note": "红色 = 不可达，进程结束前一直被占着"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 1,
+          "bytesLost": 16
+        }
+      }
+    },
+    {
+      "description": "第 2 轮：int *p = malloc(16) 得到 0x9010。此刻它是有主的 —— 唯一的入口就是栈区这个 p。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9010",
+                "role": "active",
+                "note": "本轮的 p，作用域即将结束"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "（未写入）",
+                "role": "active",
+                "note": "第 2 次 malloc，16 字节"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 1,
+          "bytesLost": 16
+        }
+      }
+    },
+    {
+      "description": "p[0] = 1：正常写入。到目前为止一切合法，内存也在你手上。",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9010",
+                "role": "compare",
+                "note": "仍指向 0x9010"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "compare",
+                "note": "p[0] = 1"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 1,
+          "bytesLost": 16
+        }
+      }
+    },
+    {
+      "description": "循环体结束，p 随作用域销毁。堆区那 16 字节还在占用，但**再没有任何指针指向它**，free 也无从下手 —— 这就是泄漏。已累计泄漏 2 块 / 32 字节。",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "p 已销毁，栈区空了"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              }
+            ],
+            "note": "红色 = 不可达，进程结束前一直被占着"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 2,
+          "bytesLost": 32
+        }
+      }
+    },
+    {
+      "description": "第 3 轮：int *p = malloc(16) 得到 0x9020。此刻它是有主的 —— 唯一的入口就是栈区这个 p。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9020",
+                "role": "active",
+                "note": "本轮的 p，作用域即将结束"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "（未写入）",
+                "role": "active",
+                "note": "第 3 次 malloc，16 字节"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 2,
+          "bytesLost": 32
+        }
+      }
+    },
+    {
+      "description": "p[0] = 2：正常写入。到目前为止一切合法，内存也在你手上。",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9020",
+                "role": "compare",
+                "note": "仍指向 0x9020"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "compare",
+                "note": "p[0] = 2"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 2,
+          "bytesLost": 32
+        }
+      }
+    },
+    {
+      "description": "循环体结束，p 随作用域销毁。堆区那 16 字节还在占用，但**再没有任何指针指向它**，free 也无从下手 —— 这就是泄漏。已累计泄漏 3 块 / 48 字节。",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "p 已销毁，栈区空了"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              }
+            ],
+            "note": "红色 = 不可达，进程结束前一直被占着"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 3,
+          "bytesLost": 48
+        }
+      }
+    },
+    {
+      "description": "第 4 轮：int *p = malloc(16) 得到 0x9030。此刻它是有主的 —— 唯一的入口就是栈区这个 p。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9030",
+                "role": "active",
+                "note": "本轮的 p，作用域即将结束"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "（未写入）",
+                "role": "active",
+                "note": "第 4 次 malloc，16 字节"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 3,
+          "bytesLost": 48
+        }
+      }
+    },
+    {
+      "description": "p[0] = 3：正常写入。到目前为止一切合法，内存也在你手上。",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9030",
+                "role": "compare",
+                "note": "仍指向 0x9030"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "compare",
+                "note": "p[0] = 3"
+              }
+            ],
+            "note": "红色块已不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 3,
+          "bytesLost": 48
+        }
+      }
+    },
+    {
+      "description": "循环体结束，p 随作用域销毁。堆区那 16 字节还在占用，但**再没有任何指针指向它**，free 也无从下手 —— 这就是泄漏。已累计泄漏 4 块 / 64 字节。",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "p 已销毁，栈区空了"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              }
+            ],
+            "note": "红色 = 不可达，进程结束前一直被占着"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 4,
+          "bytesLost": 64
+        }
+      }
+    },
+    {
+      "description": "终局：64 字节堆内存被永久占用且不可回收。单次泄漏无感，但把这段放进循环一万次的服务里，就是内存曲线一路上扬直到 OOM。修法：free(p) 写在循环体内、p 出作用域之前；或者干脆别让唯一入口是局部变量。",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（循环体内的 p）",
+            "cells": [],
+            "note": "main 仍在运行，但已无任何指针指向那四块"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "b0",
+                "address": "0x9000",
+                "value": "0",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b1",
+                "address": "0x9010",
+                "value": "1",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b2",
+                "address": "0x9020",
+                "value": "2",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              },
+              {
+                "key": "b3",
+                "address": "0x9030",
+                "value": "3",
+                "role": "swap",
+                "note": "入口已丢失 → 不可达（泄漏）"
+              }
+            ],
+            "note": "4 块全部不可达"
+          }
+        ],
+        "counters": {
+          "leakedBlocks": 4,
+          "bytesLost": 64
+        }
+      }
+    }
+  ]
+}

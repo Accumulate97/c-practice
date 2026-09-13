@@ -1,0 +1,62 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz3d 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "count": 4,
+  "demos": [
+    {
+      "id": "mem3d-wild-pointer",
+      "title": "野指针的形成（3D 内存沙盘）",
+      "chapter": "第9章 指针",
+      "category": "memory",
+      "renderer": "memory",
+      "relatedProblems": [
+        "c-ch09-sc-069",
+        "c-ch09-pg-009",
+        "c-ch09-fb-033"
+      ],
+      "steps": 7,
+      "url": "data/viz3d/mem3d-wild-pointer.json"
+    },
+    {
+      "id": "mem3d-leak",
+      "title": "内存泄漏的形成（3D 内存沙盘）",
+      "chapter": "第9章 指针",
+      "category": "memory",
+      "renderer": "memory",
+      "relatedProblems": [
+        "c-ch09-pg-009",
+        "c-ch09-fb-033",
+        "c-ch09-dbg-017"
+      ],
+      "steps": 14,
+      "url": "data/viz3d/mem3d-leak.json"
+    },
+    {
+      "id": "mem3d-recursion",
+      "title": "递归调用栈的堆叠与回退（3D）",
+      "chapter": "第7章 函数",
+      "category": "memory",
+      "renderer": "memory",
+      "relatedProblems": [
+        "c-ch07-sa-009",
+        "c-ch07-cc-015",
+        "c-ch07-cc-016"
+      ],
+      "steps": 12,
+      "url": "data/viz3d/mem3d-recursion.json"
+    },
+    {
+      "id": "mem3d-matrix-cube",
+      "title": "二维数组的内存立方体（3D）",
+      "chapter": "第6章 数组",
+      "category": "memory",
+      "renderer": "memory",
+      "relatedProblems": [
+        "c-ch06-pg-004",
+        "c-ch06-pg-005",
+        "c-ch06-sc-006"
+      ],
+      "steps": 11,
+      "url": "data/viz3d/mem3d-matrix-cube.json"
+    }
+  ]
+}

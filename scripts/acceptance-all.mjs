@@ -4,11 +4,36 @@
 // 管道就永远等不到 EOF，整批卡死（2026-09-13 list-ui 卡了 15 分钟）。
 // 这里改成：监听 child 'exit'（进程本身退出即算完，不等孙进程释放句柄）+ 硬超时 taskkill /T /F。
 import { spawn, spawnSync } from 'node:child_process'
-import { openSync, closeSync, appendFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { openSync, closeSync, appendFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs'
+import { join } from 'node:path'
+
+// dist 陈旧闸门：所有 *-ui 套件都直接验收 dist 产物，忘了 rebuild 会拿旧代码打分，
+// 一整套 FAIL 全是假警报（2026-09-13 踩过）。开跑前先确认 dist 比 src 新。
+{
+  const newest = (dir) => {
+    let best = { mtimeMs: 0, path: '' }
+    if (!existsSync(dir)) return best
+    for (const e of readdirSync(dir, { recursive: true, withFileTypes: true })) {
+      if (!e.isFile() || !/\.(ts|tsx|css)$/.test(e.name)) continue
+      const p = join(e.parentPath ?? dir, e.name)
+      const m = statSync(p).mtimeMs
+      if (m > best.mtimeMs) best = { mtimeMs: m, path: p }
+    }
+    return best
+  }
+  const distIdx = 'dist/index.html'
+  if (!existsSync(distIdx)) { console.error('dist 不存在 → 先 npm run build'); process.exit(1) }
+  const src = newest('src')
+  if (src.mtimeMs > statSync(distIdx).mtimeMs) {
+    console.error('dist 比源码旧：' + src.path + ' 在上次 build 之后被改过 → 先 npm run build')
+    process.exit(1)
+  }
+}
 
 const SUITES = [
   'acceptance:site-ui', 'acceptance:list-ui', 'acceptance:progress-ui', 'acceptance:viz-ui',
   'acceptance:dbg-ui', 'acceptance:subpath', 'acceptance:stage10', 'acceptance:cc', 'acceptance:dbg',
+  'acceptance:viz3d',
 ]
 const HARD_TIMEOUT_MS = 12 * 60 * 1000
 const SUMMARY = 'tmp/acc-summary.txt'

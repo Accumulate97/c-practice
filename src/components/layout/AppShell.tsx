@@ -5,6 +5,9 @@ import { ThemeToggle } from './ThemeToggle'
 const NAV = [
   { to: '/', label: '首页' },
   ...sections.map((s) => ({ to: s.path, label: `${s.emoji} ${s.title}` })),
+  // 任务 2：3D 馆是「可视化演示」的立体延伸，不是第四个板块 ——
+  // 学 / 懂 / 练 的三分法是首页三卡与产品心智的骨架，所以不动 config.sections，只在这里加入口。
+  { to: '/viz3d', label: '🧊 3D 馆' },
   { to: '/progress', label: '📈 我的进度' },
   { to: '/judge-lab', label: '🧪 判分实测台' },
 ]

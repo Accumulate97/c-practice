@@ -102,6 +102,29 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载演示…</p>
         ),
       },
+      // 任务 2：3D 可视化馆。两条都走路由级 lazy —— three + fiber + drei 未压缩约 1.2 MB，
+      // 绝不能由首页 / 列表页付体积。列表页只 import catalog（纯数据表），
+      // 演示页才经 sceneRegistry 引到 three；这条边界由 acceptance-viz3d-ui.mjs 守着。
+      {
+        path: 'viz3d',
+        lazy: async () => {
+          const mod = await import('./pages/Viz3DListPage')
+          return { Component: mod.Viz3DListPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载 3D 馆目录…</p>
+        ),
+      },
+      {
+        path: 'viz3d/:demoId',
+        lazy: async () => {
+          const mod = await import('./pages/Viz3DDemoPage')
+          return { Component: mod.Viz3DDemoPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载 3D 演示（首次进入需下载 three.js）…</p>
+        ),
+      },
       // 阶段 10-3：原书勘误表。内容是 data/errata.md（由 build:index 从 docs/errata.md 拷来），
       // 页面本身只有一个 Markdown 渲染器，仍走路由级 lazy，首页不为它付体积。
       {

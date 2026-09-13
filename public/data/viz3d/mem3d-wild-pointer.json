@@ -1,0 +1,282 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz3d 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "mem3d-wild-pointer",
+  "title": "野指针的形成（3D 内存沙盘）",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第9章 指针",
+  "relatedProblems": [
+    "c-ch09-sc-069",
+    "c-ch09-pg-009",
+    "c-ch09-fb-033"
+  ],
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n    int *p;              /* 1. 只定义未初始化：此刻已经是野指针 */\n    p = malloc(sizeof(int));\n    *p = 42;             /* 2. 合法写入 */\n    free(p);             /* 3. 归还内存，但 p 本身没被改 */\n    *p = 99;             /* 4. 对已释放内存写 —— 未定义行为 */\n    p = NULL;            /* 5. 唯一正确的补救 */\n    return 0;\n}\n",
+  "meta": {
+    "algorithm": "wildPointer",
+    "n": 2,
+    "counterKeys": [
+      "pointerWrites"
+    ],
+    "generatedBy": "gen-viz3d@0.1.0",
+    "hall": "viz3d"
+  },
+  "steps": [
+    {
+      "description": "定义 int *p 但没赋值。此刻 p 里装的是栈上遗留的垃圾值 —— 它已经是一个野指针了。野指针不是「坏掉的指针」，而是「指向不确定内存的指针」。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "（不确定）",
+                "role": "idle",
+                "note": "未初始化：栈上遗留的垃圾值"
+              }
+            ],
+            "note": "p 是局部指针变量，随 main 的栈帧而生"
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [],
+            "note": "还没有任何堆块"
+          }
+        ]
+      }
+    },
+    {
+      "description": "malloc(sizeof(int)) 在堆区切出 4 个字节，返回首地址 0x9000 存进 p。从这一刻起 p 才真正可用：栈区的 p 与堆区的块之间出现了一条唯一的连线。",
+      "codeLine": 6,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "active",
+                "note": "存的是堆块首地址"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "（未写入）",
+                "role": "active",
+                "note": "刚分配，内容是脏的"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 1
+        }
+      }
+    },
+    {
+      "description": "*p = 42：解引用写入。顺着 p 里的地址找到堆块，把 42 放进去。这是完全合法的访问 —— 合法的判据不是「p 非空」，而是「p 指向的内存仍归你所有」。",
+      "codeLine": 7,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "active",
+                "note": "存的是堆块首地址"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "42",
+                "role": "compare",
+                "note": "由 *p 写入"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "free(p) 只把这 4 个字节归还给分配器，**它不会把 p 改成 NULL**。看 3D 沙盘：堆块变了色（不再归你），但栈区 p 里的 0x9000 一个比特都没动。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "swap",
+                "note": "free 不修改 p 本身"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "42",
+                "role": "swap",
+                "note": "已归还分配器，随时可能被下一次 malloc 分走"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "这就是悬空指针诞生的瞬间：内存所有权已经交回，p 却仍指向它。危险不在于「现在会不会崩」，而在于分配器随时可能把 0x9000 交给别人，届时你的写入会静默毁掉别人的数据。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "swap",
+                "note": "悬空：指向已释放内存"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "42",
+                "role": "swap",
+                "note": "逻辑上不可用，物理上仍可被 p 触及"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 2
+        }
+      }
+    },
+    {
+      "description": "*p = 99 —— 对已释放内存写入，标准里叫未定义行为。实测可能安然无事、可能段错误、也可能改掉随后 malloc 到的那块数据。第三种最致命：崩溃点离犯错点十万八千里。",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "→ 0x9000",
+                "role": "swap",
+                "note": "悬空：指向已释放内存"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "99 ← 越界写",
+                "role": "swap",
+                "note": "未定义行为"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 3
+        }
+      }
+    },
+    {
+      "description": "补救只有一行：free 之后立刻 p = NULL。此后若再误写 *p，程序会当场崩在错误的那一行（空指针解引用），而不是悄悄烂在别处。把「静默破坏」换成「立即定位」，这就是置空的全部价值。",
+      "codeLine": 10,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "stack",
+            "title": "栈区（自动变量）",
+            "cells": [
+              {
+                "key": "p",
+                "address": "0x7ff0",
+                "value": "NULL",
+                "role": "sorted",
+                "note": "正确姿势：free 后立即置空"
+              }
+            ]
+          },
+          {
+            "key": "heap",
+            "title": "堆区（malloc 申请）",
+            "cells": [
+              {
+                "key": "blk",
+                "address": "0x9000",
+                "value": "99",
+                "role": "idle",
+                "note": "已与 p 无关"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "pointerWrites": 4
+        }
+      }
+    }
+  ]
+}

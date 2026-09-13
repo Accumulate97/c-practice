@@ -1,0 +1,1317 @@
+{
+  "_generated": "GENERATED — 由 npm run gen:viz3d 生成，禁止手工编辑（语料必须脚本产出，手改会在下次生成时被覆盖）",
+  "id": "mem3d-recursion",
+  "title": "递归调用栈的堆叠与回退（3D）",
+  "renderer": "memory",
+  "category": "memory",
+  "chapter": "第7章 函数",
+  "relatedProblems": [
+    "c-ch07-sa-009",
+    "c-ch07-cc-015",
+    "c-ch07-cc-016"
+  ],
+  "code": "#include <stdio.h>\n\nlong fact(int n) {\n    if (n <= 1) return 1;       /* 递归出口 */\n    return n * fact(n - 1);     /* 先递归下去，回来再乘 */\n}\n\nint main(void) {\n    printf(\"%ld\\n\", fact(5));\n    return 0;\n}\n",
+  "meta": {
+    "algorithm": "recursion",
+    "n": 6,
+    "counterKeys": [
+      "stackDepth"
+    ],
+    "generatedBy": "gen-viz3d@0.1.0",
+    "hall": "viz3d"
+  },
+  "steps": [
+    {
+      "description": "main 的栈帧先落地：形参、局部变量、返回地址。此刻栈深 1，栈顶就是 main。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 1
+        }
+      }
+    },
+    {
+      "description": "main 调用 fact(5)：为 fact(5) 压入一个新栈帧，装好形参 n=5，返回地址指向 main 里 printf 那一行。注意 fact(5) 此刻**还算不出返回值** —— 它得先等 fact(4)。",
+      "codeLine": 9,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 2
+        }
+      }
+    },
+    {
+      "description": "fact(5) 执行 return 5 * fact(4)：于是 fact(4) 的栈帧被压上来，栈深变成 3。每一层都卡在「等下一层返回」，所以返回值一路都是「待定」。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 3
+        }
+      }
+    },
+    {
+      "description": "fact(4) 执行 return 4 * fact(3)：于是 fact(3) 的栈帧被压上来，栈深变成 4。每一层都卡在「等下一层返回」，所以返回值一路都是「待定」。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "待定",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 4
+        }
+      }
+    },
+    {
+      "description": "fact(3) 执行 return 3 * fact(2)：于是 fact(2) 的栈帧被压上来，栈深变成 5。每一层都卡在「等下一层返回」，所以返回值一路都是「待定」。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact2",
+            "title": "fact(2)",
+            "cells": [
+              {
+                "key": "fact(2)-n",
+                "address": "0x6ea0",
+                "value": "2",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(2)-r",
+                "address": "0x6ea8",
+                "value": "待定",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(2)-a",
+                "address": "0x6eac",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 5
+        }
+      }
+    },
+    {
+      "description": "fact(2) 又调用 fact(1)。栈深 6，这是本次递归的最深处 —— 再深就要担心栈溢出了（每层栈帧都吃真实的栈空间，这正是「递归深度不能无限制」的物理原因）。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact2",
+            "title": "fact(2)",
+            "cells": [
+              {
+                "key": "fact(2)-n",
+                "address": "0x6ea0",
+                "value": "2",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(2)-r",
+                "address": "0x6ea8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(2)-a",
+                "address": "0x6eac",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact1",
+            "title": "fact(1)",
+            "cells": [
+              {
+                "key": "fact(1)-n",
+                "address": "0x6e80",
+                "value": "1",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(1)-r",
+                "address": "0x6e88",
+                "value": "待定",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(1)-a",
+                "address": "0x6e8c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 6
+        }
+      }
+    },
+    {
+      "description": "命中递归出口：n <= 1 成立，fact(1) 直接 return 1，不再往下调用。整个递归在这里触底。",
+      "codeLine": 4,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact2",
+            "title": "fact(2)",
+            "cells": [
+              {
+                "key": "fact(2)-n",
+                "address": "0x6ea0",
+                "value": "2",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(2)-r",
+                "address": "0x6ea8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(2)-a",
+                "address": "0x6eac",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact1",
+            "title": "fact(1)",
+            "cells": [
+              {
+                "key": "fact(1)-n",
+                "address": "0x6e80",
+                "value": "1",
+                "role": "sorted",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(1)-r",
+                "address": "0x6e88",
+                "value": "1",
+                "role": "sorted",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(1)-a",
+                "address": "0x6e8c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "stackDepth": 6
+        }
+      }
+    },
+    {
+      "description": "fact(1) 返回 1，它的栈帧被弹出销毁，栈深回到 5。fact(2) 这才拿到操作数，算出 2 × 1 = 2 并随之返回。递归的「回」阶段就是这样一层层退的。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact2",
+            "title": "fact(2)",
+            "cells": [
+              {
+                "key": "fact(2)-n",
+                "address": "0x6ea0",
+                "value": "2",
+                "role": "sorted",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(2)-r",
+                "address": "0x6ea8",
+                "value": "2",
+                "role": "sorted",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(2)-a",
+                "address": "0x6eac",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "stackDepth": 5
+        }
+      }
+    },
+    {
+      "description": "fact(2) 返回 2，它的栈帧被弹出销毁，栈深回到 4。fact(3) 这才拿到操作数，算出 3 × 2 = 6 并随之返回。递归的「回」阶段就是这样一层层退的。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact3",
+            "title": "fact(3)",
+            "cells": [
+              {
+                "key": "fact(3)-n",
+                "address": "0x6ec0",
+                "value": "3",
+                "role": "sorted",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(3)-r",
+                "address": "0x6ec8",
+                "value": "6",
+                "role": "sorted",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(3)-a",
+                "address": "0x6ecc",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "stackDepth": 4
+        }
+      }
+    },
+    {
+      "description": "fact(3) 返回 6，它的栈帧被弹出销毁，栈深回到 3。fact(4) 这才拿到操作数，算出 4 × 6 = 24 并随之返回。递归的「回」阶段就是这样一层层退的。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "待定",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact4",
+            "title": "fact(4)",
+            "cells": [
+              {
+                "key": "fact(4)-n",
+                "address": "0x6ee0",
+                "value": "4",
+                "role": "sorted",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(4)-r",
+                "address": "0x6ee8",
+                "value": "24",
+                "role": "sorted",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(4)-a",
+                "address": "0x6eec",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "stackDepth": 3
+        }
+      }
+    },
+    {
+      "description": "fact(4) 返回 24，它的栈帧被弹出销毁，栈深回到 2。fact(5) 这才拿到操作数，算出 5 × 24 = 120 并随之返回。递归的「回」阶段就是这样一层层退的。",
+      "codeLine": 5,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "idle",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "—",
+                "role": "idle",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          },
+          {
+            "key": "fact5",
+            "title": "fact(5)",
+            "cells": [
+              {
+                "key": "fact(5)-n",
+                "address": "0x6f00",
+                "value": "5",
+                "role": "sorted",
+                "note": "形参 n"
+              },
+              {
+                "key": "fact(5)-r",
+                "address": "0x6f08",
+                "value": "120",
+                "role": "sorted",
+                "note": "返回值"
+              },
+              {
+                "key": "fact(5)-a",
+                "address": "0x6f0c",
+                "value": "← 上层",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ]
+          }
+        ],
+        "counters": {
+          "stackDepth": 2
+        }
+      }
+    },
+    {
+      "description": "fact(5) 返回 120，main 拿到结果打印。栈又只剩 main 一层 —— 压栈 5 次、弹栈 5 次，完全对称。这也解释了为什么递归函数的时间/空间开销要按「最大栈深」算，而不是按调用次数算。",
+      "codeLine": 8,
+      "snapshot": {
+        "kind": "memory",
+        "regions": [
+          {
+            "key": "main",
+            "title": "main",
+            "cells": [
+              {
+                "key": "main-n",
+                "address": "0x7000",
+                "value": "0",
+                "role": "active",
+                "note": "形参 n"
+              },
+              {
+                "key": "main-r",
+                "address": "0x7008",
+                "value": "120",
+                "role": "compare",
+                "note": "返回值"
+              },
+              {
+                "key": "main-a",
+                "address": "0x700c",
+                "value": "← OS",
+                "role": "idle",
+                "note": "返回地址"
+              }
+            ],
+            "note": "当前正在执行的栈帧（栈顶）"
+          }
+        ],
+        "counters": {
+          "stackDepth": 1
+        }
+      }
+    }
+  ]
+}
