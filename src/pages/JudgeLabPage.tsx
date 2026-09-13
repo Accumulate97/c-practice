@@ -263,7 +263,7 @@ export function JudgeLabPage() {
         <div className="flex flex-wrap items-center gap-3 text-sm">
           <label htmlFor="preset">样例</label>
           <select id="preset" value={presetKey} onChange={(e) => applyPreset(e.target.value)}
-            className="rounded-md border bg-transparent px-2 py-1" style={box}>
+            className="min-w-0 max-w-full rounded-md border bg-transparent px-2 py-1" style={box}>
             {PRESETS.map((p) => (
               <option key={p.key} value={p.key}>{p.label}</option>
             ))}

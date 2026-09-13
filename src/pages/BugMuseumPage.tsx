@@ -20,7 +20,7 @@
  */
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { CodeBlock } from '../components/common/CodeBlock'
 import { Markdown } from '../components/common/Markdown'
 import { getBackend } from '../judge'
@@ -67,6 +67,7 @@ export function BugMuseumPage() {
   const [cat, setCat] = useState('all')
   const [q, setQ] = useState('')
   const [open, setOpen] = useState<string | null>(null)
+  const [params] = useSearchParams()
   const [runs, setRuns] = useState<Record<string, RunState>>({})
 
   const client = useMemo(() => new JudgeClient(getBackend()), [])
@@ -117,6 +118,18 @@ export function BugMuseumPage() {
       return `${e.title} ${e.symptom} ${e.story} ${e.takeaway.join(' ')} ${e.chapter}`.toLowerCase().includes(query)
     })
   }, [phase, cat, q])
+  // 任务 4-2：全站搜索的展品深链 ?ex=<id> —— 直接展开那件展品并滚过去，
+  // 不让学生在十件折叠条目里再找一遍。语料还没加载完就先记着，ready 后自动展开；
+  // id 在语料里查无此物就什么都不做（宁可不动，也不展开一件不相干的展品）。
+  const deepEx = params.get('ex') ?? ''
+  useEffect(() => {
+    if (!deepEx || phase.kind !== 'ready') return
+    if (!phase.corpus.exhibits.some((e) => e.id === deepEx)) return
+    setOpen(deepEx)
+    const el = document.querySelector('[data-role="bugs-exhibit"][data-id="' + CSS.escape(deepEx) + '"]')
+    el?.scrollIntoView({ block: 'start' })
+  }, [deepEx, phase])
+
 
   return (
     <section className="space-y-4" data-role="bugs-page">

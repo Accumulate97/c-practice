@@ -8,9 +8,9 @@
  * 无障碍：每张表都带 <caption>（屏幕阅读器读得出这是什么表）+ <th scope="col">；
  * 表格外面套 overflow-x-auto，375px 窄屏靠表内横向滚动，绝不撑破页面。
  */
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { REF_ROW_COUNT, REF_SECTIONS, rowMatches } from '../modules/ref/data'
 import type { RefRow, RefSection, RefTable } from '../modules/ref/data'
 
@@ -23,8 +23,14 @@ interface Filtered {
 }
 
 export function CheatsheetPage() {
-  const [q, setQ] = useState('')
+  const [params] = useSearchParams()
+  const [q, setQ] = useState(() => params.get('q') ?? '')
   const query = q.trim()
+  // 任务 4-2：全站搜索的手册条目深链 ?q=<词> —— 落进来就把搜索框填好、行级过滤立即生效，
+  // 学生不必把刚在搜索页看过的词再打一遍。只认入站参数：页内打字不回写 URL（那是手册自己的过滤态）。
+  const deepQ = params.get('q') ?? ''
+  useEffect(() => { setQ(deepQ) }, [deepQ])
+
 
   const filtered: Filtered[] = useMemo(() => {
     const out: Filtered[] = []

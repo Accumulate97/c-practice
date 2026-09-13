@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { APP_NAME, sections } from '../../app/config'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -30,6 +31,48 @@ const TOOLS = [
 ]
 
 export function AppShell() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchRef = useRef<HTMLInputElement>(null)
+  const [term, setTerm] = useState('')
+
+  /** 提交 = 跳 /search?q=…；空词就只跳搜索页（那页会自己把光标放进输入框） */
+  const submitSearch = () => {
+    const q = term.trim()
+    navigate(q ? `/search?q=${encodeURIComponent(q)}` : '/search')
+  }
+
+  // 已经在 /search 时让头部搜索框跟着 URL 走：页内输入即改 URL，两处永远同一份真相
+  useEffect(() => {
+    if (location.pathname !== '/search') return
+    const next = new URLSearchParams(location.search).get('q') ?? ''
+    setTerm((cur) => (cur === next ? cur : next))
+  }, [location.pathname, location.search])
+
+  /**
+   * 全局快捷键：Ctrl/⌘+K 与单键「/」聚焦搜索框（任务 4-4 无障碍：键盘用户不必 Tab 十几下）。
+   * 正在输入控件里打字时绝不抢「/」—— 否则在游乐场写注释就被劫走了；
+   * Ctrl+K 无条件生效（浏览器地址栏那个 Ctrl+K 与本站功能不冲突，站内它没有别的用途）。
+   */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault()
+        searchRef.current?.focus()
+        searchRef.current?.select()
+        return
+      }
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return
+      const t = e.target as HTMLElement | null
+      const typing = !!t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)
+      if (typing) return
+      e.preventDefault()
+      searchRef.current?.focus()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-12">
       {/* 无障碍（阶段 10-4）：键盘用户第一个 Tab 就能跳过整条导航 */}
@@ -53,7 +96,32 @@ export function AppShell() {
           <span className="hidden text-sm sm:inline" style={{ color: 'var(--fg-muted)' }}>
             C 语言 · 数据结构在线学习平台（纯静态）
           </span>
-          <span className="ml-auto"><ThemeToggle /></span>
+          {/* 任务 4-2：全局搜索入口放头部（它是全站动作，不属于任何一个板块）。
+              375px 下整行独占（order-last + w-full + min-w-0），sm 以上挤在标题与主题开关之间。 */}
+          <form
+            role="search"
+            data-role="global-search-form"
+            onSubmit={(e) => { e.preventDefault(); submitSearch() }}
+            className="order-last w-full min-w-0 sm:order-none sm:ml-auto sm:w-auto sm:max-w-xs sm:flex-1"
+          >
+            <label htmlFor="global-search" className="sr-only">全站搜索（题目 / 卡片 / 演示 / 手册）</label>
+            <input
+              id="global-search"
+              ref={searchRef}
+              type="search"
+              value={term}
+              maxLength={80}
+              onChange={(e) => setTerm(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Escape') setTerm('') }}
+              placeholder="搜索题目 / 卡片 / 演示…（Ctrl+K）"
+              data-role="global-search-input"
+              autoComplete="off"
+              className="w-full rounded-md border px-3 py-1.5 text-sm outline-none focus:ring-2"
+              style={{ borderColor: 'var(--border)', background: 'var(--bg-elev)', color: 'var(--fg)', ['--tw-ring-color' as string]: 'var(--fg-link)' }}
+            />
+          </form>
+          <span className="ml-auto sm:ml-0"><ThemeToggle /></span>
+
         </div>
         <nav aria-label="主导航" className="mt-2 flex flex-wrap gap-1 text-sm">
           {NAV.map((n) => (

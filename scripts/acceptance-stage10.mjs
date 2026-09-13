@@ -411,7 +411,7 @@ async function main() {
 
   /* ════ D. 深浅色主题 ════ */
   if (want('theme')) {
-    const pages = ['#/knowledge', `#/knowledge/${chain?.card.id ?? K.cards[0].id}`, '#/problems', `#/problems/p/${P.problems[0].id}`, '#/viz', `#/viz/${V.demos[0].id}`, '#/progress', '#/cheatsheet', '#/bugs', '#/review', '#/']
+    const pages = ['#/knowledge', `#/knowledge/${chain?.card.id ?? K.cards[0].id}`, '#/problems', `#/problems/p/${P.problems[0].id}`, '#/viz', `#/viz/${V.demos[0].id}`, '#/progress', '#/cheatsheet', '#/bugs', '#/review', '#/search', '#/']
     const bad = []
     for (const h of pages) {
       await goto(h)
@@ -454,6 +454,7 @@ async function main() {
       '#/cheatsheet',
       '#/bugs',
       '#/review',
+      '#/search',
     ]
     const overflow = []
     for (const h of targets) {
@@ -599,7 +600,7 @@ async function main() {
       `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
       `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
       `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
-      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/review', '#/nope-404',
+      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/review', '#/search', '#/nope-404',
     ]
     const a11yBad = []
     for (const theme of ['light', 'dark']) {
@@ -727,8 +728,13 @@ async function main() {
     await pp.waitForTimeout(600)
     const homeJs = [...jsUrls]
     const homeData = [...dataUrls]
-    check('首页不预取任何详情语料（data 请求 ≤3 个且全是 index.json，语料留到进页再拉）',
-      homeData.length <= 3 && homeData.every((u) => u.endsWith('/index.json')), homeData.join(', ') || '首页 0 个 data 请求')
+    // 首页唯一允许的非 index.json 是 data/search/totals.json（几百字节的规模计数）：
+    // 首页写「2074 道题 / 345 张卡片」这些数字必须来自构建期真相，不能硬编码。
+    // 727 KB 的搜索语料 unified.json 与任何详情分片仍然一律禁止。
+    const homeOk = (u) => u.endsWith('/index.json') || u.endsWith('search/totals.json')
+    check('首页不预取任何详情语料（data 请求 ≤4 个，只许 index.json 与 search/totals.json）',
+      homeData.length <= 4 && homeData.every(homeOk) && !homeData.some((u) => u.includes('unified.json')),
+      homeData.join(', ') || '首页 0 个 data 请求')
     const leak = []
     for (const [marker, what] of [['viz-play', '演示播放器'], ['cm-blank-badge', 'CodeMirror 填空编辑器'], ['md-table', 'Markdown 表格']]) {
       if (await jsWith(homeJs, marker) !== null) leak.push(what)

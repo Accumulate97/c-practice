@@ -159,3 +159,13 @@
   color: var(--code-blank-badge-active-fg);
   font-weight: 700;
 }
+
+/* ══════════ 任务 4-2：全站搜索命中高亮 ══════════
+   浏览器默认的 <mark> 是纯黄底黑字：深色主题下刺眼、且与主题脱节。
+   统一成「主题链接色混底 + 文字仍用 --fg」，对比度不被高亮拉下来（a11y 专项按 WCAG AA 实查）。 */
+mark {
+  background: color-mix(in srgb, var(--fg-link) 26%, transparent);
+  color: var(--fg);
+  border-radius: 3px;
+  padding: 0 1px;
+}

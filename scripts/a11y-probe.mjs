@@ -38,8 +38,44 @@ const pages = [
   `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
   `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
   `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
-  '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/review', '#/nope-404',
+  '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/review', '#/search', '#/nope-404',
 ]
+
+/**
+ * 375px 窄屏体检（任务 4-3）：手机上要左右拖才能看 = 不可用。
+ * 允许「本身在横向滚动容器里」的宽内容（长表格 / 代码块），容器自己必须放得下。
+ */
+const probe375 = () => {
+  const vw = window.innerWidth
+  const inScroller = (el) => {
+    for (let p = el.parentElement; p; p = p.parentElement) {
+      const cs = getComputedStyle(p)
+      if ((cs.overflowX === 'auto' || cs.overflowX === 'scroll') && p.getBoundingClientRect().right <= vw + 1) return true
+    }
+    return false
+  }
+  const wide = []
+  for (const el of document.querySelectorAll('body *')) {
+    const r = el.getBoundingClientRect()
+    if (r.width === 0 && r.height === 0) continue
+    if (r.right <= vw + 1 && r.left >= -1) continue
+    if (inScroller(el)) continue
+    wide.push({
+      tag: el.tagName.toLowerCase(),
+      role: el.getAttribute('data-role') || '',
+      cls: (el.getAttribute('class') || '').slice(0, 48),
+      left: Math.round(r.left),
+      right: Math.round(r.right),
+    })
+  }
+  return {
+    scrollW: document.documentElement.scrollWidth,
+    vw,
+    wide: wide.slice(0, 5),
+    wideN: wide.length,
+    text: (document.querySelector('main')?.innerText || '').trim().length,
+  }
+}
 
 let bad = 0
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
@@ -61,9 +97,29 @@ try {
       for (const [k, it] of issues) console.log(`  [${k}] ${JSON.stringify(it)}`)
     }
   }
+
+  /* ── 375px 窄屏：全页面横向溢出 + 主内容非空 ── */
+  const narrow = await browser.newPage({ viewport: { width: 375, height: 812 } })
+  await narrow.goto(BASE, { waitUntil: 'networkidle' })
+  for (const h of pages) {
+    await narrow.evaluate((x) => { location.hash = x }, h)
+    await narrow.waitForTimeout(450)
+    const r = await narrow.evaluate(probe375)
+    const issues = []
+    if (r.scrollW > r.vw + 1) issues.push(`文档横向溢出 scrollWidth=${r.scrollW} > 视口 ${r.vw}`)
+    if (r.wideN > 0) issues.push(`${r.wideN} 个元素超出视口：${JSON.stringify(r.wide)}`)
+    if (r.text < 20) issues.push(`窄屏下主内容近乎空白（${r.text} 字）`)
+    if (issues.length === 0) continue
+    bad += issues.length
+    console.log(`\n### ${h} @375px —— ${issues.length} 处`)
+    for (const it of issues) console.log('  [375] ' + it)
+  }
+  await narrow.close().catch(() => {})
 } finally {
   await browser.close().catch(() => {})
   preview.kill()
 }
-console.log(bad === 0 ? `\n✅ ${pages.length} 页 × 2 主题 = ${pages.length * 2} 次体检，0 问题` : `\n❌ 合计 ${bad} 处无障碍问题`)
+console.log(bad === 0
+  ? `\n✅ ${pages.length} 页 × 2 主题（${pages.length * 2} 次体检）+ ${pages.length} 页 @375px 窄屏，0 问题`
+  : `\n❌ 合计 ${bad} 处无障碍 / 窄屏问题`)
 process.exit(bad === 0 ? 0 : 1)
