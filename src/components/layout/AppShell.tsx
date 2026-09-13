@@ -21,6 +21,8 @@ const NAV = [
 const TOOLS = [
   // 任务 3-1：游乐场是面向学习者的正式板块（原「判分实测台」退到页脚，它验的是后端链路）
   { to: '/playground', label: '🧪 游乐场' },
+  // 任务 3-3：速查手册（printf/scanf、优先级、ASCII、关键字、库函数）
+  { to: '/cheatsheet', label: '📑 速查手册' },
 ]
 
 export function AppShell() {

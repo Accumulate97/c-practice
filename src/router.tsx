@@ -161,6 +161,17 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在编排学习路径…</p>
         ),
       },
+      // 任务 3-3：速查手册。语料是 TS 常量（跟着本路由进独立 chunk），无 fetch、无数据文件。
+      {
+        path: 'cheatsheet',
+        lazy: async () => {
+          const mod = await import('./pages/CheatsheetPage')
+          return { Component: mod.CheatsheetPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载速查手册…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台。任务 3-1 后它从主导航退到页脚（面向学习者的入口是 /playground），
       // 但**路由保留**：a11y 专项与 stage10 验收都把它列进页面清单，且它是排查判分链路的开发工具。

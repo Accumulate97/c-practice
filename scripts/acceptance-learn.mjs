@@ -1,5 +1,5 @@
 /**
- * 学习板块 UI 验收（任务 3-2 起）：npm run acceptance:learn
+ * 学习板块 UI 验收（任务 3-2 学习路径 / 3-3 速查手册）：npm run acceptance:learn
  *
  * 与其它 acceptance-*-ui.mjs 同一口径：dist 产物 → vite preview → playwright-core(chrome) → 控制台必须干净。
  * 学习路径这条守住五个点：
@@ -9,6 +9,7 @@
  *   ③ locked 关卡不放行：展开只有解锁提示，一个卡片 / 题目链接都不给
  *   ④ 自由模式开关写 localStorage 且刷新后保持（如实标注，不做隐性放行）
  *   ⑤ 路由级 lazy：首页不下载 PathPage chunk；375px 窄屏无横向溢出
+ * 速查手册这条守住四个点：lazy 不进首页、全表条数与页面声明一致、搜索过滤与空态如实、窄屏宽表不撑破版面。
  */
 import { spawn } from 'node:child_process'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
@@ -238,6 +239,117 @@ try {
     if (w > 380) throw new Error('scrollWidth=' + w)
     if (e2.length) throw new Error(e2.join(';'))
     await p2.close()
+    return 'scrollWidth=' + w
+  })
+
+  // ── 任务 3-3：速查手册 /cheatsheet ──
+  await safe('首页不下载 CheatsheetPage chunk（路由级 lazy 生效）', async () => {
+    const p3 = await browser.newPage({ viewport: { width: 1280, height: 900 } })
+    const r3 = []
+    p3.on('request', (r) => r3.push(r.url()))
+    await p3.goto(BASE + '#/', { waitUntil: 'load' })
+    await p3.waitForSelector('[data-role="skip-link"]')
+    await p3.waitForTimeout(900)
+    await p3.close()
+    const hit = r3.filter((u) => /CheatsheetPage-[^/]*\.js/.test(u))
+    if (hit.length) throw new Error(hit.join(','))
+    return '0 请求'
+  })
+  await safe('主导航有「速查手册」入口', async () => {
+    const loc = page.locator('nav a[href="#/cheatsheet"]')
+    if (!(await loc.count())) throw new Error('找不到 /cheatsheet 链接')
+    return (await loc.first().innerText()).trim()
+  })
+
+  await page.goto(BASE + '#/cheatsheet', { waitUntil: 'load' })
+  await page.waitForSelector('[data-role="cheatsheet-page"]', { timeout: 20000 })
+  await page.waitForTimeout(400)
+
+  await safe('全表渲染：6 个分区 · 15 张表，页面声明条数 = 实际行数', async () => {
+    const sec = await page.locator('[data-role="cheatsheet-section"]').count()
+    const tbl = await page.locator('[data-role="cheatsheet-table"]').count()
+    const rows = await page.locator('[data-role="cheatsheet-row"]').count()
+    const hits = (await page.locator('[data-role="cheatsheet-hits"]').innerText()).replace(/\s+/g, ' ')
+    const declared = Number((hits.match(/共 (\d+) 条/) ?? [])[1] ?? 0)
+    if (sec !== 6) throw new Error('分区=' + sec)
+    if (tbl !== 15) throw new Error('表=' + tbl)
+    if (!declared || declared !== rows) throw new Error('声明 ' + declared + ' ≠ 实际 ' + rows)
+    return `${sec} 分区 · ${tbl} 表 · ${rows} 条`
+  })
+  await safe('每张表都有 caption 与 th scope="col"（屏幕阅读器可读）', async () => {
+    const r = await page.locator('[data-role="cheatsheet-table"]').evaluateAll((ts) => ts.map((t) => ({
+      cap: t.querySelectorAll('caption').length,
+      th: t.querySelectorAll('th[scope="col"]').length,
+      sr: t.querySelectorAll('caption.sr-only').length,
+    })))
+    const bad = r.filter((x) => x.cap !== 1 || x.th < 2 || x.sr !== 1)
+    if (bad.length) throw new Error(JSON.stringify(bad.slice(0, 3)))
+    return r.length + ' 张表 caption/th scope 齐全'
+  })
+  await safe('分区跳转：6 个按钮全部可用，点击后目标分区进入视口', async () => {
+    const btns = page.locator('[data-role="cheatsheet-nav-link"]')
+    if ((await btns.count()) !== 6) throw new Error('按钮=' + (await btns.count()))
+    const dis = await btns.evaluateAll((ns) => ns.filter((n) => n.getAttribute('aria-disabled') === 'true').length)
+    if (dis) throw new Error('无查询时禁用按钮=' + dis)
+    await btns.nth(5).click()
+    // 平滑滚动距离近 9000px，轮询到停稳为止（最长 6s），不做定长 sleep
+    const last = page.locator('[data-role="cheatsheet-section"]').last()
+    let y = Number.POSITIVE_INFINITY
+    for (let i = 0; i < 60; i++) {
+      await page.waitForTimeout(100)
+      const box = await last.boundingBox()
+      const prev = y
+      y = box?.y ?? Number.POSITIVE_INFINITY
+      if (y < 400 && Math.abs(prev - y) < 1) break
+    }
+    if (!(y < 400)) throw new Error('未滚动到最后一个分区 y=' + Math.round(y))
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await page.waitForTimeout(200)
+    return '6/6 可用，末分区跳到 y=' + Math.round(y)
+  })
+  await safe('搜索 strlen：命中 >0，ASCII/关键字/优先级分区被过滤掉，string.h 表仍在', async () => {
+    await page.locator('[data-role="cheatsheet-search"]').fill('strlen')
+    await page.waitForTimeout(400)
+    const hitsTxt = (await page.locator('[data-role="cheatsheet-hits"]').innerText()).replace(/\s+/g, ' ')
+    const n = Number((hitsTxt.match(/命中 (\d+) 条/) ?? [])[1] ?? 0)
+    if (!(n > 0)) throw new Error(hitsTxt)
+    const secs = await page.locator('[data-role="cheatsheet-section"]').evaluateAll((ns) => ns.map((x) => x.getAttribute('data-section')))
+    for (const gone of ['ascii', 'kw', 'prec']) if (secs.includes(gone)) throw new Error('分区未过滤: ' + gone)
+    const titles = await page.locator('[data-role="cheatsheet-table"]').evaluateAll((ts) => ts.map((t) => t.querySelector('caption')?.textContent ?? ''))
+    if (!titles.some((t) => t.includes('string.h'))) throw new Error('string.h 表不见了: ' + titles.join('|').slice(0, 120))
+    return `命中 ${n} 条，剩 ${secs.length} 分区 / ${titles.length} 表`
+  })
+  await safe('搜索乱码：显示空态提示且分区跳转按钮全部禁用', async () => {
+    await page.locator('[data-role="cheatsheet-search"]').fill('zzzqq')
+    await page.waitForTimeout(400)
+    if (!(await page.locator('[data-role="cheatsheet-empty"]').count())) throw new Error('无空态')
+    if (await page.locator('[data-role="cheatsheet-section"]').count()) throw new Error('仍有分区渲染')
+    const dis = await page.locator('[data-role="cheatsheet-nav-link"]').evaluateAll((ns) => ns.filter((n) => n.getAttribute('aria-disabled') === 'true').length)
+    if (dis !== 6) throw new Error('禁用按钮=' + dis)
+    const txt = (await page.locator('[data-role="cheatsheet-empty"]').innerText()).replace(/\s+/g, ' ')
+    return txt.slice(0, 40)
+  })
+  await safe('「✕ 清除」恢复全表', async () => {
+    await page.locator('[data-role="cheatsheet-clear"]').click()
+    await page.waitForTimeout(400)
+    const rows = await page.locator('[data-role="cheatsheet-row"]').count()
+    const hits = (await page.locator('[data-role="cheatsheet-hits"]').innerText()).replace(/\s+/g, ' ')
+    if (!/^共 \d+ 条$/.test(hits)) throw new Error(hits)
+    if (!(rows > 200)) throw new Error('rows=' + rows)
+    if (await page.locator('[data-role="cheatsheet-clear"]').count()) throw new Error('清除按钮未消失')
+    return hits + '｜' + rows + ' 行'
+  })
+  await safe('速查手册 375px 窄屏无横向溢出（宽表走 overflow-x-auto）', async () => {
+    const p4 = await browser.newPage({ viewport: { width: 375, height: 780 } })
+    const e4 = []
+    p4.on('pageerror', (e) => e4.push(e.message))
+    await p4.goto(BASE + '#/cheatsheet', { waitUntil: 'load' })
+    await p4.waitForSelector('[data-role="cheatsheet-row"]')
+    await p4.waitForTimeout(500)
+    const w = await p4.evaluate(() => document.documentElement.scrollWidth)
+    if (w > 380) throw new Error('scrollWidth=' + w)
+    if (e4.length) throw new Error(e4.join(';'))
+    await p4.close()
     return 'scrollWidth=' + w
   })
 
