@@ -149,6 +149,18 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载代码游乐场（含代码编辑器）…</p>
         ),
       },
+      // 任务 3-2：学习路径。三份索引（题目/卡片/演示）+ 进度现算 20 关，无新数据文件。
+      // 路由级 lazy：本页会拉三份索引，首页不为它付体积（口径同题目列表页）。
+      {
+        path: 'path',
+        lazy: async () => {
+          const mod = await import('./pages/PathPage')
+          return { Component: mod.PathPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在编排学习路径…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台。任务 3-1 后它从主导航退到页脚（面向学习者的入口是 /playground），
       // 但**路由保留**：a11y 专项与 stage10 验收都把它列进页面清单，且它是排查判分链路的开发工具。

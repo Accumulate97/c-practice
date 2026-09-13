@@ -4,11 +4,21 @@ import { ThemeToggle } from './ThemeToggle'
 
 const NAV = [
   { to: '/', label: '首页' },
+  // 任务 3-2：学习路径是「学 → 懂 → 练」的编排层，放在三大板块之前当主线入口
+  { to: '/path', label: '🗺️ 学习路径' },
   ...sections.map((s) => ({ to: s.path, label: `${s.emoji} ${s.title}` })),
   // 任务 2：3D 馆是「可视化演示」的立体延伸，不是第四个板块 ——
   // 学 / 懂 / 练 的三分法是首页三卡与产品心智的骨架，所以不动 config.sections，只在这里加入口。
   { to: '/viz3d', label: '🧊 3D 馆' },
   { to: '/progress', label: '📈 我的进度' },
+]
+
+/**
+ * 第二排「工具与复习」：任务 3 新增的板块都归到这里。
+ * 主导航守住「学 / 懂 / 练 + 主线 + 进度」的产品心智，工具类入口另起一排，
+ * 375px 窄屏下两排各自 flex-wrap，不会挤成一坨。
+ */
+const TOOLS = [
   // 任务 3-1：游乐场是面向学习者的正式板块（原「判分实测台」退到页脚，它验的是后端链路）
   { to: '/playground', label: '🧪 游乐场' },
 ]
@@ -46,6 +56,22 @@ export function AppShell() {
               to={n.to}
               end={n.to === '/'}
               className="rounded-md px-3 py-1.5"
+              style={({ isActive }) => ({
+                background: isActive ? 'var(--bg-elev)' : 'transparent',
+                color: isActive ? 'var(--fg)' : 'var(--fg-muted)',
+                textDecoration: 'none',
+              })}
+            >
+              {n.label}
+            </NavLink>
+          ))}
+        </nav>
+        <nav aria-label="工具与复习" data-role="nav-tools" className="mt-1 flex flex-wrap gap-1 text-xs">
+          {TOOLS.map((n) => (
+            <NavLink
+              key={n.to}
+              to={n.to}
+              className="rounded-md px-2.5 py-1.5"
               style={({ isActive }) => ({
                 background: isActive ? 'var(--bg-elev)' : 'transparent',
                 color: isActive ? 'var(--fg)' : 'var(--fg-muted)',

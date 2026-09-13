@@ -449,6 +449,7 @@ async function main() {
       `#/viz/${V.demos.find((d) => d.renderer === 'tree')?.id ?? V.demos[0].id}`,
       '#/viz/compare',
       '#/progress',
+      '#/path',
       '#/errata',
     ]
     const overflow = []
@@ -595,7 +596,7 @@ async function main() {
       `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
       `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
       `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
-      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/errata', '#/playground', '#/judge-lab', '#/nope-404',
+      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/nope-404',
     ]
     const a11yBad = []
     for (const theme of ['light', 'dark']) {
