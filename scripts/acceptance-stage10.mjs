@@ -411,7 +411,7 @@ async function main() {
 
   /* ════ D. 深浅色主题 ════ */
   if (want('theme')) {
-    const pages = ['#/knowledge', `#/knowledge/${chain?.card.id ?? K.cards[0].id}`, '#/problems', `#/problems/p/${P.problems[0].id}`, '#/viz', `#/viz/${V.demos[0].id}`, '#/progress', '#/cheatsheet', '#/bugs', '#/']
+    const pages = ['#/knowledge', `#/knowledge/${chain?.card.id ?? K.cards[0].id}`, '#/problems', `#/problems/p/${P.problems[0].id}`, '#/viz', `#/viz/${V.demos[0].id}`, '#/progress', '#/cheatsheet', '#/bugs', '#/review', '#/']
     const bad = []
     for (const h of pages) {
       await goto(h)
@@ -453,6 +453,7 @@ async function main() {
       '#/errata',
       '#/cheatsheet',
       '#/bugs',
+      '#/review',
     ]
     const overflow = []
     for (const h of targets) {
@@ -598,7 +599,7 @@ async function main() {
       `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
       `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
       `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
-      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/nope-404',
+      '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/review', '#/nope-404',
     ]
     const a11yBad = []
     for (const theme of ['light', 'dark']) {

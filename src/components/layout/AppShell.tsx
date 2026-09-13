@@ -25,6 +25,8 @@ const TOOLS = [
   { to: '/cheatsheet', label: '📑 速查手册' },
   // 任务 3-4：错误博物馆（经典 bug 可交互演示，每段代码都能真机运行看后果）
   { to: '/bugs', label: '🐛 错误博物馆' },
+  // 任务 3-5：错题重练（Leitner 间隔重复，自动收录错题本、按判分事实自动移箱）
+  { to: '/review', label: '🔁 错题重练' },
 ]
 
 export function AppShell() {

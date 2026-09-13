@@ -27,6 +27,7 @@
     "gen:bugs": "node scripts/gen-bug-data.mjs",
     "probe:bugs": "node scripts/probe-bug-exhibits.ts",
     "acceptance:bugs": "node scripts/acceptance-bugs.mjs",
+    "acceptance:review": "node scripts/acceptance-review.mjs",
     "build": "tsc -b && vite build",
     "backfill:viz": "node scripts/backfill-viz-links.ts",
     "build:index": "node scripts/build-index.ts",

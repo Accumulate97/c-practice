@@ -184,6 +184,18 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在打开错误博物馆…</p>
         ),
       },
+      // 任务 3-5：错题重练。复习计划是能从 进度+错题本 重算的派生数据，
+      // 独立存储槽 cpractice:review:v1；页面拖着引擎与进度 store，照例路由级 lazy。
+      {
+        path: 'review',
+        lazy: async () => {
+          const mod = await import('./pages/ReviewPage')
+          return { Component: mod.ReviewPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在编排复习计划…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台。任务 3-1 后它从主导航退到页脚（面向学习者的入口是 /playground），
       // 但**路由保留**：a11y 专项与 stage10 验收都把它列进页面清单，且它是排查判分链路的开发工具。
