@@ -270,16 +270,41 @@ async function main() {
     check('「🎬 有演示」筛选数 = 索引里 relatedViz 非空的卡片数',
       Number(await page.getAttribute('[data-role="summary"]', 'data-filtered')) === withViz, `${withViz} 张卡片已回填 relatedViz`)
 
-    // 搜索：用一张卡片标题里的连续片段当关键词，命中数必须 ≥1 且包含那张卡片
-    await page.locator('button[aria-pressed]', { hasText: '有演示' }).click()
+    // 搜索：用一张卡片标题里的连续片段当关键词，命中集合必须与索引现算口径逐条一致。
+    // 关「有演示」不能盲点一次 click：列表从 12 张重排成 58 张时按钮会移位，CI 上这一下
+    // 会落空，筛选残留使搜索只在 58 张有演示的卡片里进行（命中 4 张、探针卡片被漏掉）。
+    // 因此改成「读 aria-pressed 决定是否点，点完等 data-filtered 回到全量」再继续。
+    const vizBtn = page.locator('button[aria-pressed]', { hasText: '有演示' })
+    if ((await vizBtn.getAttribute('aria-pressed')) === 'true') {
+      await vizBtn.click()
+      await page.waitForFunction(
+        (n) => Number(document.querySelector('[data-role="summary"]')?.getAttribute('data-filtered')) === n,
+        K.count,
+      )
+    }
     const probe = K.cards.find((c) => c.title.length >= 4)
     const kw = probe.title.slice(0, 4)
+    const needle = kw.trim().toLowerCase()
+    // 与页面同一套匹配口径：标题 / id / 小节 / 摘要 / 要点，任一包含即命中
+    const expected = K.cards.filter((c) =>
+      [c.title, c.id, c.section, c.summary, ...(c.keyPoints ?? [])].some((t) =>
+        (t ?? '').toLowerCase().includes(needle),
+      ),
+    )
     await page.fill('[data-role="search-input"]', kw)
-    await page.waitForTimeout(250)
+    await page.waitForFunction(
+      (n) => Number(document.querySelector('[data-role="summary"]')?.getAttribute('data-filtered')) === n,
+      expected.length,
+    )
     const hitIds = await page.locator('[data-role="row"]').evaluateAll((els) => els.map((e) => e.getAttribute('data-id')))
-    check('搜索能按标题命中，且命中集合是索引口径的子集',
-      hitIds.includes(probe.id) && hitIds.every((id) => K.cards.some((c) => c.id === id)),
-      `关键词「${kw}」命中 ${hitIds.length} 张，含 ${probe.id}`)
+    const hitOk =
+      expected.length > 0 &&
+      hitIds.length === Math.min(50, expected.length) &&
+      new Set(hitIds).size === hitIds.length &&
+      hitIds.includes(probe.id) &&
+      hitIds.every((id) => expected.some((c) => c.id === id))
+    check('搜索能按标题命中，且命中集合与索引现算口径逐条一致', hitOk,
+      `关键词「${kw}」索引现算 ${expected.length} 张 / 页面渲染 ${hitIds.length} 张，探针 ${probe.id}`)
 
     // 空状态：一个不可能命中的关键词
     await page.fill('[data-role="search-input"]', 'zzz-不存在的关键词-zzz')
