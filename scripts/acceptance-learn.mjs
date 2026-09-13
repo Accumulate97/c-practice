@@ -168,8 +168,33 @@ try {
     const r = await page.evaluate(() => {
       const h1 = document.querySelectorAll('h1').length
       const bad = []
+      // 可及名称按 ARIA 计算顺序取：aria-label > aria-labelledby > 关联 <label for> > 包裹 label
+      //   > 元素文本 > title > placeholder。此前只认 aria-label/textContent，把带 sr-only
+      //   <label for> 的头部搜索框误判成「无名控件」（2026-09-13 任务4 加搜索框后暴露）。
+      const accName = (el) => {
+        const al = el.getAttribute('aria-label')
+        if (al && al.trim()) return al.trim()
+        const lby = el.getAttribute('aria-labelledby')
+        if (lby) {
+          const t = lby.split(/\s+/).map((id) => document.getElementById(id)?.textContent ?? '').join(' ').trim()
+          if (t) return t
+        }
+        if (el.id) {
+          const l = document.querySelector(`label[for="${CSS.escape(el.id)}"]`)
+          if (l && l.textContent && l.textContent.trim()) return l.textContent.trim()
+        }
+        const wrap = el.closest('label')
+        if (wrap && wrap.textContent && wrap.textContent.trim()) return wrap.textContent.trim()
+        const tx = (el.textContent || '').trim()
+        if (tx) return tx
+        const ti = el.getAttribute('title')
+        if (ti && ti.trim()) return ti.trim()
+        const ph = el.getAttribute('placeholder')
+        if (ph && ph.trim()) return ph.trim()
+        return ''
+      }
       for (const el of document.querySelectorAll('button, input, select, textarea, [role="switch"]')) {
-        const name = (el.getAttribute('aria-label') || el.textContent || '').trim()
+        const name = accName(el)
         if (!name) bad.push(el.outerHTML.slice(0, 60))
         const b = el.getBoundingClientRect()
         if (b.width && (b.width < 24 || b.height < 24)) bad.push(`小 ${Math.round(b.width)}x${Math.round(b.height)} ${name.slice(0, 20)}`)

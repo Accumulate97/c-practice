@@ -160,18 +160,43 @@ async function main() {
   const pool = localIndex.problems.filter((e) => {
     const p = recOf(e)
     if (!p || p.verified !== true) return false
-    if (e.type === 'programming') return typeof p.solution === 'string' && p.solution.trim() && p.testCases?.length > 0
+    // 编程题的参考答案字段是 reference（不是 solution）：写错字段名的后果是 162 道编程题
+    // 被静默踢出样本池，抽检池只剩 54 道 debug 题，"随机 10 题" 永远抽不到编程题（2026-09-13 发现）。
+    if (e.type === 'programming') return typeof p.reference === 'string' && p.reference.trim() && p.testCases?.length > 0
     if (e.type === 'debug') return typeof p.fixed_code === 'string' && p.fixed_code.trim() && p.testCases?.length > 0
     return false
   })
-  let seed = 20260913
-  const rnd = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff)
+  // 抽样口径（2026-09-13 修正）：原来写死 seed=20260913 + 浮点 LCG（seed*1103515245 早就超了
+  // 2^53，低位全是精度垃圾），10 道抽出来清一色 debug —— 那不叫随机抽检，叫固定看一类题。
+  // 现在：默认 Math.random（每跑一次换一批），给 SAMPLE_SEED 才用 Math.imul 版可复现 LCG；
+  // 并且按题型分层轮转取样，保证 programming 与 debug 都抽到（两类判分路径不同：
+  // 一类填 reference 跑多组用例，一类填 fixed_code，只抽一类等于漏测另一条判分路径）。
+  const seedArg = process.env.SAMPLE_SEED
+  const rnd = seedArg
+    ? (() => { let s = Number(seedArg) >>> 0 || 1; return () => { s = (Math.imul(s, 1103515245) + 12345) >>> 0; return s / 0x100000000 } })()
+    : Math.random
+  const buckets = new Map()
+  for (const e of pool) {
+    const arr = buckets.get(e.type) ?? []
+    arr.push(e)
+    buckets.set(e.type, arr)
+  }
+  for (const arr of buckets.values()) {
+    for (let i = arr.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(rnd() * (i + 1))
+      const t = arr[i]; arr[i] = arr[j]; arr[j] = t
+    }
+  }
+  const typeKeys = [...buckets.keys()].sort()
   const picked = []
-  const bag = [...pool]
-  while (picked.length < SAMPLE_N && bag.length) picked.push(bag.splice(Math.floor(rnd() * bag.length), 1)[0])
+  for (let t = 0; picked.length < SAMPLE_N && typeKeys.some((k) => buckets.get(k).length > 0); t += 1) {
+    const arr = buckets.get(typeKeys[t % typeKeys.length])
+    if (arr && arr.length) picked.push(arr.shift())
+  }
+  console.log(`抽检样本池 ${pool.length} 道（${typeKeys.map((k) => `${k} ${buckets.get(k).length + picked.filter((p) => p.type === k).length}`).join(' / ')}），本次抽 ${picked.length} 道：${picked.map((p) => p.type).join(',')}`)
   for (const e of picked) {
     const p = recOf(e)
-    const code = e.type === 'programming' ? p.solution : p.fixed_code
+    const code = e.type === 'programming' ? p.reference : p.fixed_code
     const aria = e.type === 'programming' ? 'textarea[aria-label="编程题代码编辑器"]' : 'textarea[aria-label*="程序改错"]'
     try {
       await page.goto(`${BASE}#/problems/p/${e.id}`, { waitUntil: 'domcontentloaded' })
