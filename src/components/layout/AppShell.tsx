@@ -23,6 +23,8 @@ const TOOLS = [
   { to: '/playground', label: '🧪 游乐场' },
   // 任务 3-3：速查手册（printf/scanf、优先级、ASCII、关键字、库函数）
   { to: '/cheatsheet', label: '📑 速查手册' },
+  // 任务 3-4：错误博物馆（经典 bug 可交互演示，每段代码都能真机运行看后果）
+  { to: '/bugs', label: '🐛 错误博物馆' },
 ]
 
 export function AppShell() {

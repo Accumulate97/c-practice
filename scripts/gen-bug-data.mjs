@@ -1,0 +1,672 @@
+/**
+ * 任务 3-4「错误博物馆」语料生成器：npm run gen:bugs
+ *
+ * 纪律：
+ *   ① 展品内容以**本脚本为唯一真相**，public/data/bugs/exhibits.json 是产物，不手改。
+ *   ② 展品代码必须是标准 C99，且**不得出现本站禁用项**（gets / conio.h / getch / system("pause") / C++ 语法）。
+ *      所以「缓冲区溢出」这件展品用 scanf("%s") 无宽度限制来演示同一个病灶，并在文案里点明 gets 为什么被禁。
+ *   ③ relatedProblems / knowledgeIds 一律从 problems/index.json 与 knowledge/index.json **现算派生**，
+ *      不写死 id，避免索引变动后出现死链。
+ *   ④ 实测证据（真实 stdout / 退出码 / 编译器诊断）由 scripts/probe-bug-exhibits.ts 写进
+ *      public/data/bugs/observed.json，本脚本不猜、不编。
+ */
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+const P = JSON.parse(readFileSync(join(ROOT, 'public/data/problems/index.json'), 'utf8'))
+const K = JSON.parse(readFileSync(join(ROOT, 'public/data/knowledge/index.json'), 'utf8'))
+
+const CATEGORIES = [
+  { id: 'pointer', title: '指针', emoji: '🎯' },
+  { id: 'memory', title: '内存', emoji: '🧠' },
+  { id: 'array', title: '数组与字符串', emoji: '📏' },
+  { id: 'number', title: '数值', emoji: '🔢' },
+  { id: 'logic', title: '语法与逻辑', emoji: '⚖️' },
+]
+
+const SEVERITY = {
+  crash: { label: '直接崩溃', hint: '进程被信号杀死，判分如实报 runtime-error' },
+  silent: { label: '静默出错', hint: '跑得通、不报警，结果却是错的' },
+  invisible: { label: '隐形', hint: '运行期完全看不出来，只有工具能查' },
+}
+
+/** 从章节 + 关键词派生关联，凑不满就退回本章前几条 */
+function pickProblems(chapter, kws, n = 4) {
+  const inCh = P.problems.filter((p) => p.chapter === chapter)
+  const hit = inCh.filter((p) => kws.some((k) => String(p.title ?? '').includes(k)))
+  const rest = inCh.filter((p) => !hit.includes(p))
+  return [...hit, ...rest].slice(0, n).map((p) => p.id)
+}
+function pickCards(chapter, kws, n = 3) {
+  const inCh = K.cards.filter((c) => c.chapter === chapter)
+  const hay = (c) => String(c.title ?? '') + (c.keyPoints ?? []).join('')
+  const hit = inCh.filter((c) => kws.some((k) => hay(c).includes(k)))
+  const rest = inCh.filter((c) => !hit.includes(c))
+  return [...hit, ...rest].slice(0, n).map((c) => c.id)
+}
+
+const EX = [
+  {
+    id: 'wild-pointer',
+    emoji: '🎯',
+    title: '野指针：没初始化就解引用',
+    category: 'pointer',
+    severity: 'silent',
+    chapter: '第9章 指针',
+    kws: ['指针', '地址'],
+    symptom: '本站实测更可怕：p 里是栈上遗留的地址，*p = 42 居然写成功了，退出码 0、诊断 0 条。错误被完全隐藏。',
+    story: 'int *p; 只是给指针变量本身分配了 8 字节，**没有给它一个合法的指向**，里面是栈上遗留的垃圾值。往这个随机地址写 4 字节属于未定义行为：在本站的判分环境里它恰好落在自己栈上，于是"成功"了 —— 换个环境（地址落到没映射的页）就是 SIGSEGV 退出码 139。真正危险的不是崩溃，而是这种"看起来一切正常"：数据已经被写进了不属于你的地方，等到几分钟后别处出问题时，现场早就不在了。',
+    takeaway: [
+      '定义指针的同时就给它一个值：要么指向真实对象（int *p = &x;），要么置空（int *p = NULL;）。',
+      '解引用前判空：if (p != NULL) *p = 42; —— NULL 解引用是必然崩溃，比随机地址崩溃好查一万倍。',
+      '本站实测 gcc 13.2 + -Wall -Wextra 对此 **0 条诊断**：-Wmaybe-uninitialized 只在编译器追得出数据流时才报，别指望它兜底。',
+    ],
+    compilerSays: '本站实测：0 条诊断，编译通过、运行退出码 0。编译器与环境都没拦住它 —— 这就是为什么"指针定义即初始化"要当纪律背。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int *p;                       /* 只定义，没赋值：里面是栈上的垃圾 */
+    printf("p 里存的地址是 %p\n", (void *)p);
+    *p = 42;                      /* ← 往随机地址写 4 字节 */
+    printf("写进去了：%d\n", *p);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int value = 0;
+    int *p = &value;              /* 定义即初始化，指向一个真实存在的对象 */
+    *p = 42;
+    printf("value = %d\n", value);
+
+    int *q = NULL;                /* 暂时没有目标就置空 */
+    if (q != NULL) *q = 1;        /* 用前判空，绝不解引用 NULL */
+    printf("q = %p，判空后安全跳过\n", (void *)q);
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'scanf-overflow',
+    emoji: '🌊',
+    title: '缓冲区溢出：scanf("%s") 不看你的数组多大',
+    category: 'array',
+    severity: 'silent',
+    chapter: '第6章 数组',
+    kws: ['字符数组', '字符串', '输入'],
+    symptom: '你往 buf[8] 里读，改的却是隔壁的 canary —— 程序不崩、不报警，数据被悄悄改掉。',
+    story: 'scanf("%s", buf) 会一直读到空白符为止，**它没有任何办法知道 buf 只有 8 字节**。输入 16 个字符，它就老老实实写 16 个字符加一个 \'\\0\'，多出来的 9 字节顺着内存往后踩：先踩坏同一结构体里的 canary，再往后就是栈帧、返回地址。这正是本站禁用 gets() 的原因 —— gets 连宽度参数都没有，无法安全使用。',
+    takeaway: [
+      'scanf 读字符串**必须写宽度**，且宽度 = 数组大小 - 1：char buf[8] 配 "%7s"。',
+      '需要读含空格的一行时用 fgets(buf, sizeof buf, stdin)，它天生带长度；fgets 会把换行也读进来，记得手动换成 \'\\0\'。',
+      '结构体里把"数据"和"哨兵"放在一起，是自查溢出最便宜的办法：哨兵一变，就说明你写超了。',
+    ],
+    compilerSays: '本站实测：病症代码 0 条诊断（scanf("%s") 不带宽度，gcc 不报）；-Wformat-overflow 只在编译器算得出长度时才提示，靠不住。',
+    buggy: {
+      stdin: 'ABCDEFGHIJKLMNOP\n',
+      code: String.raw`#include <stdio.h>
+
+/* buf 后面紧跟 canary 和 tail：越界写会先踩坏 canary */
+struct Box {
+    char buf[8];
+    int  canary;
+    char tail[16];
+};
+
+int main(void) {
+    struct Box b;
+    b.canary = 0;
+    printf("读入前 canary = %d\n", b.canary);
+    scanf("%s", b.buf);                     /* ← 没有宽度限制，输入多长写多长 */
+    printf("读入后 canary = %d   ← 被越界写踩坏了\n", b.canary);
+    printf("buf = [%s]   ← buf 只有 8 字节，%%s 却把 16 个字符全打出来了\n", b.buf);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: 'ABCDEFGHIJKLMNOP\n',
+      code: String.raw`#include <stdio.h>
+#include <string.h>
+
+struct Box {
+    char buf[8];
+    int  canary;
+    char tail[16];
+};
+
+int main(void) {
+    struct Box b;
+    b.canary = 0;
+    scanf("%7s", b.buf);                    /* 宽度 = sizeof buf - 1，最多写 7 字符 + '\0' */
+    printf("canary = %d（完好无损）\n", b.canary);
+    printf("buf = [%s]   ← 超出的部分留在输入流里，没有踩到别人\n", b.buf);
+
+    char line[64];
+    if (fgets(line, sizeof line, stdin) != NULL) {   /* 读整行的正确姿势 */
+        line[strcspn(line, "\n")] = '\0';
+        printf("fgets 读到剩余部分：[%s]\n", line);
+    }
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'off-by-one',
+    emoji: '📏',
+    title: '数组越界：i <= n 的一字之差',
+    category: 'array',
+    severity: 'silent',
+    chapter: '第6章 数组',
+    kws: ['数组', '下标', '循环'],
+    symptom: '本站实测 sum = 32914（正确应为 150），而且换个编译器、换台机器就是另一个数 —— 多读的那一格不是你的。',
+    story: 'int a[5] 的合法下标是 0…4。for (i = 0; i <= 5; i++) 多跑一轮，读 a[5] —— 那是数组后面紧邻的栈内存，可能是循环变量 i、可能是 sum、也可能是完全无关的垃圾。C **不做下标检查**，越界读写属于未定义行为（UB）：编译器有权假设它不发生，于是优化、寄存器分配都可能变得"不讲道理"。',
+    takeaway: [
+      '循环上界写 i < n，不写 i <= n；n 用 sizeof a / sizeof a[0] 算，别手写魔数。',
+      '越界不一定崩溃，"能跑出结果"完全不能证明没越界 —— 未定义行为经常碰巧对。',
+      '自查手段：编译时加 -fsanitize=address（本站判分环境不带，本地可以），运行时立刻指出越界那一行。',
+    ],
+    compilerSays: '-Wall -Wextra 对这种运行期才知道的下标一般一声不响。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int a[5] = {10, 20, 30, 40, 50};
+    int sum = 0;
+    for (int i = 0; i <= 5; i++) {          /* ← 应该是 i < 5，多读了一格 a[5] */
+        sum += a[i];
+    }
+    printf("sum = %d（正确应为 150）\n", sum);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int a[] = {10, 20, 30, 40, 50};
+    const int n = (int)(sizeof a / sizeof a[0]);   /* 元素个数由编译器算，改数组不用改循环 */
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+    }
+    printf("n = %d, sum = %d\n", n, sum);
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'dangling-return',
+    emoji: '👻',
+    title: '悬空指针：返回局部变量的地址',
+    category: 'pointer',
+    severity: 'silent',
+    chapter: '第7章 函数',
+    kws: ['函数', '返回', '局部变量', '作用域'],
+    symptom: '本站实测被 SIGSEGV 打死（退出码 139），而且 stdout 一个字都没有 —— 崩溃时 stdio 缓冲区没 flush，printf 的内容跟着一起丢了。',
+    story: 'value 是 make() 的局部变量，住在栈上；make 一返回，那块栈就被标记为可回收，返回它的地址等于交出一把已经作废的钥匙。在本站的判分环境里它当场段错误；但**别的环境里它常常"碰巧打印出 7"** —— 因为 make 返回后到 printf 之间没人动过那块栈。这类 bug 的典型特征是"加一行无关代码结果就变了"。另外注意实测 stdout 为空：程序崩溃时缓冲区不会自动 flush，所以"没有任何输出"本身就是崩溃的证据之一（想留住输出要靠 fflush(stdout) 或把 \\n 换成行缓冲场景）。',
+    takeaway: [
+      '永远不要返回局部变量的地址；-Wall 会明确报 warning: function returns address of local variable。',
+      '三种正确姿势：① 调用者提供存储，函数写出参（void make(int *out)）；② 返回 malloc 的堆内存（并写清谁负责 free）；③ 返回值本身而不是地址。',
+      'static 局部变量也能"活下来"，但它不可重入、线程不安全，只在确实需要单例时用。',
+    ],
+    compilerSays: '本站实测 1 条诊断：warning: function returns address of local variable [-Wreturn-local-addr]。这是编译器少数真能替你拦住的悬空指针。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int *make(void) {
+    int value = 7;
+    return &value;              /* ← value 在 make 返回的那一刻就死了 */
+}
+
+int main(void) {
+    int *p = make();
+    printf("*p = %d   ← 碰巧还是 7，但这块栈已经不属于你了\n", *p);
+    printf("再调用一次别的函数之后……\n");
+    printf("这行 printf 自己也用了栈\n");
+    printf("*p = %d   ← 同一个 p，值可能已经变了\n", *p);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <stdlib.h>
+
+void make_out(int *out) { *out = 7; }        /* 姿势①：调用者给存储，函数写出参 */
+
+int *make_heap(void) {                        /* 姿势②：返回堆内存，调用者负责 free */
+    int *p = (int *)malloc(sizeof(int));
+    if (p != NULL) *p = 7;
+    return p;
+}
+
+int main(void) {
+    int value = 0;
+    make_out(&value);
+    printf("出参方式 value = %d\n", value);
+
+    int *hp = make_heap();
+    if (hp != NULL) {
+        printf("堆方式 *hp = %d\n", *hp);
+        free(hp);
+        hp = NULL;
+    }
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'use-after-free',
+    emoji: '⚰️',
+    title: '释放后继续使用 + 二次 free',
+    category: 'memory',
+    severity: 'crash',
+    chapter: '第9章 指针',
+    kws: ['动态', '内存', 'malloc', 'free'],
+    symptom: '本站实测 abort（退出码 134），stderr 打出 free(): double free detected in tcache 2 与 SIGABRT；stdout 因缓冲未 flush 而全空。',
+    story: 'free(p) 之后，那块内存的所有权已经还给堆管理器，p 却仍然存着旧地址 —— 它变成了悬空指针。继续 *p = 100 是在写别人可能已经分配走的内存（可能悄悄破坏别人的数据）；再 free(p) 一次则破坏了堆的空闲链表，glibc 检测到就直接终止进程。**注意崩溃点不是犯错点**：真正的错误是 free 之后没有把 p 置 NULL。',
+    takeaway: [
+      'free(p) 之后立刻 p = NULL；后续 if (p != NULL) 自然就拦住了。',
+      'free(NULL) 是合法的空操作，所以"置空 + 判空"这套写法不会引入新问题。',
+      '二次 free 与写已释放内存都属未定义行为：可能立刻崩、可能几天后在别处崩、也可能永远不崩。',
+    ],
+    compilerSays: '编译器看不出运行期的所有权，-Wall -Wextra 通常不报；只能靠 ASan / valgrind。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int *p = (int *)malloc(sizeof(int));
+    if (p == NULL) return 1;
+    *p = 99;
+    printf("free 之前 *p = %d\n", *p);
+
+    free(p);                    /* 所有权还给堆，但 p 还指着那块地址 */
+    *p = 100;                   /* ← 写已释放内存：未定义行为 */
+    printf("free 之后 *p = %d   ← 读到什么都不奇怪\n", *p);
+
+    free(p);                    /* ← 二次释放：glibc 会 abort */
+    printf("这行永远到不了\n");
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int *p = (int *)malloc(sizeof(int));
+    if (p == NULL) return 1;
+    *p = 99;
+    printf("free 之前 *p = %d\n", *p);
+
+    free(p);
+    p = NULL;                   /* 释放后立刻置空，指针不再有"看起来能用"的地址 */
+
+    if (p != NULL) {
+        *p = 100;               /* 判空后这行自然被跳过 */
+        printf("不会走到这里\n");
+    } else {
+        printf("p 已置空，写操作被安全拦下\n");
+    }
+    free(p);                    /* free(NULL) 是合法空操作，不会二次释放 */
+    printf("程序正常结束，退出码 0\n");
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'memory-leak',
+    emoji: '🕳️',
+    title: '内存泄漏：跑得好好的，内存全漏光',
+    category: 'memory',
+    severity: 'invisible',
+    chapter: '第9章 指针',
+    kws: ['动态', '内存', 'malloc'],
+    symptom: '本站实测：输出正常、退出码 0、诊断 0 条，漏掉的 4 096 000 字节在 stdout 里没有任何痕迹。运行期你什么都看不出来 —— 这就是它排进必修展品的原因。',
+    story: '循环里每次 malloc 4 KB 却从不 free，1000 轮就是 4 MB 再也拿不回来。进程结束时操作系统会回收全部内存，所以小程序"看起来没事"；但常驻程序（服务、游戏、嵌入式主循环）会一路涨到 OOM 被杀。泄漏的唯一线索不在 stdout 里，而在 RSS（常驻内存）曲线和 valgrind 的 "definitely lost" 报告里 —— 本站判分只看 stdout，所以**诚实地说：这件展品在本站跑不出任何异常**。',
+    takeaway: [
+      'malloc / calloc / realloc 与 free 成对出现；写 malloc 的同一时刻就把 free 写进去，别等"以后"。',
+      '提前 return、break、goto 错误分支最容易漏掉 free —— 统一走一个出口（goto cleanup）是内核风格的做法。',
+      'realloc 失败返回 NULL 但**不释放原指针**：必须用临时变量接，否则原内存直接泄漏。',
+      '本地自查：valgrind --leak-check=full ./a.out 或 gcc -fsanitize=address。',
+    ],
+    compilerSays: 'gcc 默认不报；开 -Wall 也不会报泄漏。clang 的 -Wunused-but-set-variable 之类帮不上忙，这是运行期问题。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    long total = 0;
+    for (int i = 0; i < 1000; i++) {
+        int *p = (int *)malloc(1024 * sizeof(int));   /* 每轮 4 KB */
+        if (p == NULL) {
+            printf("第 %d 次分配失败\n", i);
+            break;
+        }
+        p[0] = i;
+        total += (long)(1024 * sizeof(int));
+        /* ← 这里少一句 free(p)：4 KB 直到进程结束都拿不回来 */
+    }
+    printf("累计申请 %ld 字节，一个字节都没归还\n", total);
+    printf("可是：输出正常、退出码 0、编译器没警告 —— 泄漏在运行期是隐形的\n");
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    long total = 0;
+    for (int i = 0; i < 1000; i++) {
+        int *p = (int *)malloc(1024 * sizeof(int));
+        if (p == NULL) {
+            printf("第 %d 次分配失败\n", i);
+            break;                       /* 失败也要保证已分配的都被释放了 */
+        }
+        p[0] = i;
+        total += (long)(1024 * sizeof(int));
+        free(p);                         /* 用完立刻还：常驻内存不随轮次增长 */
+        p = NULL;
+    }
+    printf("累计申请并归还 %ld 字节，峰值占用只有一轮的 4 KB\n", total);
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'int-overflow',
+    emoji: '🔢',
+    title: '整数溢出：INT_MAX + 1 变成负数',
+    category: 'number',
+    severity: 'silent',
+    chapter: '第2章 数据类型、运算符与表达式',
+    kws: ['整型', 'int', '溢出', '数据类型'],
+    symptom: 'INT_MAX + 1 打印出 -21483648；10^10 存进 int 变成 1410065408。没有崩溃，没有警告，只有错得离谱的数。',
+    story: '32 位 int 只有 32 个二进制位，装不下的部分被直接丢掉（回绕）。**有符号溢出在 C 标准里是未定义行为**（无符号溢出才是良定义的回绕）—— 意味着编译器可以假设它不发生，进而做出让你意外的优化，比如把 for (int i = 0; i <= INT_MAX; i++) 优化成死循环。真实事故里它表现为：乘法算容量算小了 → malloc 分配的缓冲区不够 → 溢出。',
+    takeaway: [
+      '可能变大就用更宽的类型：long long（至少 64 位）；字面量记得加 LL，否则先在 int 里溢出再提升。',
+      '做乘法前估算上界，或先判断 a > LLONG_MAX / b 再乘。',
+      '需要精确边界时用 <stdint.h> 的 int32_t / int64_t 与 <limits.h> 的 INT_MAX / LLONG_MAX，别用 sizeof 猜。',
+      '无符号回绕虽合法，但拿 unsigned 做减法当"差值"是经典坑：0u - 1u = 4294967295。',
+    ],
+    compilerSays: '本站实测：变量运算的溢出（INT_MAX + 1）**0 条诊断**；只有纯常量表达式（如 int y = 2147483647 + 1;）gcc 才报 warning: integer overflow in expression of type int results in -2147483648 [-Woverflow]。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+    int max = INT_MAX;
+    printf("INT_MAX        = %d\n", max);
+    printf("INT_MAX + 1    = %d   ← 有符号溢出，回绕成最小值\n", max + 1);
+
+    int product = 1000 * 1000 * 1000;   /* 10^9，int 装得下 */
+    product = product * 10;             /* 10^10，装不下了 */
+    printf("10^10 存进 int = %d\n", product);
+
+    unsigned int u = 0u;
+    printf("0u - 1u        = %u   ← 无符号回绕是良定义的\n", u - 1u);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+    long long big = 1000LL * 1000 * 1000 * 10;   /* 字面量加 LL，全程 64 位运算 */
+    printf("10^10 存进 long long = %lld\n", big);
+
+    int a = INT_MAX;
+    if (a > INT_MAX - 1) {                        /* 加之前先判断，而不是加完再后悔 */
+        printf("a = %d 再加 1 会溢出，提前拦下\n", a);
+    }
+
+    long long x = 3000000000LL, y = 4000000000LL;
+    if (y != 0 && x > LLONG_MAX / y) {
+        printf("%lld * %lld 会溢出，改用别的算法\n", x, y);
+    } else {
+        printf("%lld * %lld = %lld\n", x, y, x * y);
+    }
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'assign-in-if',
+    emoji: '⚖️',
+    title: 'if (x = 0)：把 == 写成 =',
+    category: 'logic',
+    severity: 'silent',
+    chapter: '第4章 逻辑运算和分支结构',
+    kws: ['if', '关系', '逻辑', '赋值'],
+    symptom: '该走的分支不走，而且 score 被这一行**偷偷改成了 0**。程序照跑，逻辑全错。',
+    story: 'C 里赋值表达式的值就是被赋的那个值，所以 if (score = 0) 完全合法：先把 score 改成 0，再拿 0 当条件 → 假 → 走 else。这是 C 为了支持 while ((c = getchar()) != EOF) 这种写法付出的代价。**本站实测 gcc 13.2 在 -std=c99 -Wall -Wextra 下对 if (score = 0)、if (score = 1)、if (score = other) 三种写法一律 0 条诊断** —— 别的环境/别的编译器可能会提示 suggest parentheses around assignment used as truth value，但在你交作业的这个环境里，只能靠人眼。',
+    takeaway: [
+      '条件里出现单个 = 就先怀疑自己；写成 if (0 == score)（Yoda 式）能让误写 = 直接编译不过。',
+      '确实要用赋值做条件时多套一层括号：while ((c = getchar()) != EOF)（本站实测同样 0 条诊断）—— 括号不是为了消警告，是为了让读代码的人一眼看出这是故意的。',
+      '同理警惕：if (x = NULL)、if (n = 0)、if (p = malloc(...))（这个反而漏了判空）。',
+    ],
+    compilerSays: '本站实测：0 条诊断。这件展品是"编译器帮不了你"的典型 —— 唯一的防线是写代码时把 == 数清楚，或用 Yoda 式 0 == score 让误写直接编译失败。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int score = 85;
+    if (score = 0) {                 /* ← 想写 ==，写成 =：先改成 0，再拿 0 当条件 */
+        printf("score 是 0\n");
+    } else {
+        printf("走到 else：score 不是 0？\n");
+    }
+    printf("score = %d   ← 它刚刚被 if 那一行改掉了\n", score);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    int score = 85;
+    if (score == 0) {                /* 两个等号才是比较 */
+        printf("score 是 0\n");
+    } else {
+        printf("score 不是 0\n");
+    }
+    printf("score = %d（没有被改动）\n", score);
+
+    if (0 == score) {                /* Yoda 式：误写成 = 会直接编译失败 */
+        printf("这行不会执行\n");
+    }
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'sizeof-parameter',
+    emoji: '📦',
+    title: '数组当参数：sizeof 只剩 8',
+    category: 'array',
+    severity: 'silent',
+    chapter: '第6章 数组',
+    kws: ['数组', '函数', '形参', 'sizeof'],
+    symptom: '同一个数组，在 main 里 sizeof 是 40、算出 10 个元素；传进函数变成 8、算出 2 个元素。',
+    story: '数组做函数形参时会**退化（decay）成指向首元素的指针**，void show(int a[]) 与 void show(int *a) 是同一个函数。函数里 sizeof(a) 量的是指针本身（x86-64 上 8 字节），不是数组。于是 sizeof a / sizeof a[0] = 8 / 4 = 2，循环只处理前两个元素 —— 剩下的数据被静悄悄丢掉。',
+    takeaway: [
+      '把长度一起传进去：void show(int *a, int n)；调用处用 sizeof a / sizeof a[0] 算好再传。',
+      '函数签名里写 int a[10] 也是骗人的，编译器当成 int *a，不会检查长度。',
+      'C99 可以用 void show(int n, int a[n]) 或 static 关键字表达意图，但长度仍然要调用者保证。',
+      '字符串是唯一例外：靠 \'\\0\' 结尾自描述长度，所以 char *s 传进去还能用 strlen(s) 量。',
+    ],
+    compilerSays: '本站实测 4 条诊断（2 warning + 2 note）：warning: \'sizeof\' on array function parameter \'a\' will return size of \'int *\' [-Wsizeof-array-argument]。gcc 真拦得住这一件，看见就该改。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+void show(int a[]) {                       /* 形参其实是 int *a */
+    size_t n = sizeof(a) / sizeof(a[0]);   /* ← 量的是指针，不是数组 */
+    printf("函数内 sizeof(a) = %zu，算出元素个数 = %zu\n", sizeof(a), n);
+    int sum = 0;
+    for (size_t i = 0; i < n; i++) sum += a[i];
+    printf("函数内求和 = %d（只加了前 %zu 个，剩下的被丢了）\n", sum, n);
+}
+
+int main(void) {
+    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    printf("main 内 sizeof(a) = %zu，元素个数 = %zu\n",
+           sizeof(a), sizeof(a) / sizeof(a[0]));
+    show(a);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+void show(const int *a, int n) {           /* 长度显式传进来 */
+    int sum = 0;
+    for (int i = 0; i < n; i++) sum += a[i];
+    printf("函数内元素个数 = %d，求和 = %d\n", n, sum);
+}
+
+int main(void) {
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    const int n = (int)(sizeof a / sizeof a[0]);
+    printf("main 内元素个数 = %d\n", n);
+    show(a, n);
+    return 0;
+}
+`,
+    },
+  },
+  {
+    id: 'unterminated-string',
+    emoji: '🔚',
+    title: '字符串没有 \'\\0\'：%s 一路读到别人地盘',
+    category: 'array',
+    severity: 'silent',
+    chapter: '第6章 数组',
+    kws: ['字符串', '字符数组', 'strlen'],
+    symptom: '本站实测打印出 [ABCDE]，看着完全正常 —— 因为 s 后面正好躺着一个 0 字节。换一次编译、换一台机器就可能多出一串垃圾字符，甚至段错误。',
+    story: 'C 的字符串不是"带长度的字符数组"，而是**以 \'\\0\' 结尾的字符序列**。char s[5] 装满 5 个字母就没有位置放结束符了，%s / strlen / strcmp 全都会从 s 开始一路往后扫，直到偶然遇见一个 0 字节 —— 那已经是数组之外的内存。这类越界读通常不崩，所以特别容易被漏掉。',
+    takeaway: [
+      '存 n 个字符要开 n + 1 字节。注意 char s[5] = "ABCDE" 在 **C 里是合法的**（本站实测 0 条诊断，结束符被悄悄丢掉），C++ 才把它当错误 —— 所以别拿"能编译"当"有结束符"的证据。',
+      '手工填充字符后**记得自己补 \'\\0\'**：s[i] = \'\\0\'。',
+      '需要"带长度的字节串"时，永远成对传 (指针, 长度)，并用 strncmp / memcpy / memmove 这类带长度的函数，别用 str* 系列。',
+    ],
+    compilerSays: '本站实测：两种写法都是 0 条诊断。运行期填充漏掉结束符，编译器根本看不见 —— 只有 %s 打印出垃圾字符时你才会发现。',
+    buggy: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+
+int main(void) {
+    char s[5];
+    for (int i = 0; i < 5; i++) s[i] = (char)('A' + i);   /* 装满 5 格，没有 '\0' */
+    printf("s = [%s]   ← %%s 找不到结束符，越界读到了后面的栈内存\n", s);
+    return 0;
+}
+`,
+    },
+    safe: {
+      stdin: '',
+      code: String.raw`#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    char s[6];                                   /* 5 个字符 + 1 个 '\0' */
+    for (int i = 0; i < 5; i++) s[i] = (char)('A' + i);
+    s[5] = '\0';                                 /* 手工填充就必须手工结束 */
+    printf("s = [%s], strlen = %zu\n", s, strlen(s));
+
+    char t[6] = "ABCDE";                         /* 字面量初始化：编译器自动补 '\0' */
+    printf("t = [%s], sizeof t = %zu\n", t, sizeof t);
+    return 0;
+}
+`,
+    },
+  },
+]
+
+const exhibits = EX.map((e) => ({
+  id: e.id,
+  emoji: e.emoji,
+  title: e.title,
+  category: e.category,
+  severity: e.severity,
+  severityLabel: SEVERITY[e.severity].label,
+  severityHint: SEVERITY[e.severity].hint,
+  chapter: e.chapter,
+  symptom: e.symptom,
+  story: e.story,
+  compilerSays: e.compilerSays,
+  takeaway: e.takeaway,
+  buggy: e.buggy,
+  safe: e.safe,
+  knowledgeIds: pickCards(e.chapter, e.kws, 3),
+  relatedProblems: pickProblems(e.chapter, e.kws, 4),
+}))
+
+// 自检：禁用项一个都不许出现（AGENTS.md 第二节第 6 条）
+const BANNED = [/\bgets\s*\(/, /conio\.h/, /\bgetch\s*\(/, /system\s*\(\s*"pause"/, /\bnew\s+[A-Za-z_]/, /\bdelete\s*\[/, /\bcin\b/, /\bcout\b/, /&\s*[a-z_]+\s*=/]
+for (const ex of exhibits) {
+  for (const v of ['buggy', 'safe']) {
+    const code = ex[v].code
+    for (const re of BANNED) {
+      if (re.test(code)) {
+        // 展品正文里"提到"gets 是允许的（讲解需要），但可运行代码里绝不允许
+        throw new Error(`展品 ${ex.id}.${v} 命中禁用项 ${re}`)
+      }
+    }
+    if (!code.includes('int main(void)')) throw new Error(`展品 ${ex.id}.${v} 缺 main`)
+    if (!ex.knowledgeIds.length || !ex.relatedProblems.length) throw new Error(`展品 ${ex.id} 关联派生为空`)
+  }
+}
+
+const out = {
+  generatedBy: 'scripts/gen-bug-data.mjs',
+  note: '产物文件，请勿手改；改内容请改生成脚本后重跑 npm run gen:bugs。实测证据见同目录 observed.json。',
+  categories: CATEGORIES,
+  severity: SEVERITY,
+  exhibits,
+}
+const dir = join(ROOT, 'public', 'data', 'bugs')
+mkdirSync(dir, { recursive: true })
+writeFileSync(join(dir, 'exhibits.json'), JSON.stringify(out, null, 2) + '\n', 'utf8')
+console.log(`✅ 生成 ${exhibits.length} 件展品 → public/data/bugs/exhibits.json`)
+console.log('   分类：' + CATEGORIES.map((c) => c.title).join(' / '))
+console.log('   关联：' + exhibits.reduce((a, e) => a + e.knowledgeIds.length, 0) + ' 张卡片 · ' + exhibits.reduce((a, e) => a + e.relatedProblems.length, 0) + ' 道题（全部从索引现算）')

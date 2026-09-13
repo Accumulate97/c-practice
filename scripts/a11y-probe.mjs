@@ -38,7 +38,7 @@ const pages = [
   `#/problems/p/${byType('programming')}`, `#/problems/p/${byType('code_completion')}`,
   `#/problems/p/${byType('debug')}`, `#/problems/p/${byType('code_reading')}`,
   `#/problems/p/${byType('single_choice')}`, `#/problems/p/${byType('fill_blank')}`,
-  '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/nope-404',
+  '#/viz', `#/viz/${V.demos[0].id}`, '#/viz/compare', '#/progress', '#/path', '#/errata', '#/playground', '#/judge-lab', '#/cheatsheet', '#/bugs', '#/nope-404',
 ]
 
 let bad = 0

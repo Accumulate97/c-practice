@@ -33,7 +33,7 @@ import { join } from 'node:path'
 const SUITES = [
   'acceptance:site-ui', 'acceptance:list-ui', 'acceptance:progress-ui', 'acceptance:viz-ui',
   'acceptance:dbg-ui', 'acceptance:subpath', 'acceptance:stage10', 'acceptance:cc', 'acceptance:dbg',
-  'acceptance:viz3d', 'acceptance:playground', 'acceptance:learn',
+  'acceptance:viz3d', 'acceptance:playground', 'acceptance:learn', 'acceptance:bugs',
 ]
 const HARD_TIMEOUT_MS = 12 * 60 * 1000
 const SUMMARY = 'tmp/acc-summary.txt'

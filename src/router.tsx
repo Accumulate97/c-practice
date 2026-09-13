@@ -172,6 +172,18 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载速查手册…</p>
         ),
       },
+      // 任务 3-4：错误博物馆。展品语料 + 构建期实测证据两份 JSON 都在 public/data/bugs/，
+      // 页面本身拖着 JudgeClient（运行看后果），一律路由级 lazy，首页不为它付体积。
+      {
+        path: 'bugs',
+        lazy: async () => {
+          const mod = await import('./pages/BugMuseumPage')
+          return { Component: mod.BugMuseumPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在打开错误博物馆…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
       // 阶段 2 的判分实测台。任务 3-1 后它从主导航退到页脚（面向学习者的入口是 /playground），
       // 但**路由保留**：a11y 专项与 stage10 验收都把它列进页面清单，且它是排查判分链路的开发工具。
