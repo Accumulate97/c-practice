@@ -22,6 +22,7 @@
     "acceptance:stage10": "node scripts/acceptance-stage10.mjs",
     "acceptance:viz-ui": "node scripts/acceptance-viz-ui.mjs",
     "acceptance:viz3d": "node scripts/acceptance-viz3d-ui.mjs",
+    "acceptance:playground": "node scripts/acceptance-playground.mjs",
     "build": "tsc -b && vite build",
     "backfill:viz": "node scripts/backfill-viz-links.ts",
     "build:index": "node scripts/build-index.ts",

@@ -18,6 +18,12 @@ const STORE_RUNTIME = /^.*node_modules[\\/](zustand|use-sync-external-store|@bab
 // 单独切一个 chunk，好处有二：① 只有真正打开 3D 演示页才会下载，首页 / 列表页零负担；
 // ② 业务代码迭代时这个 chunk 的哈希不变，浏览器缓存持续命中。
 // 注意别把 zustand 之类的共享包写进来，见上面 STORE_RUNTIME 的说明。
+// 编辑器运行时（CodeMirror 6 + Lezer 语法）：程序填空题的 BlankCodeEditor 与任务 3-1 的
+// 代码游乐场都用它，两边都走路由级 lazy，Rolldown 会自动把公共依赖提成一个共享 chunk。
+// 点名成 'codemirror' 只是为了①名字可读（默认会按目录名切成 dist-*.js）②业务代码迭代时
+// 它的哈希不变，浏览器缓存持续命中。同样注意别把 zustand 之类被入口依赖的包写进来（见上）。
+const CODEMIRROR_RUNTIME = /^.*node_modules[\\/](@codemirror|@lezer|codemirror|style-mod|w3c-keyname|crelt)[\\/]/
+
 const THREE_RUNTIME = /^.*node_modules[\\/](@react-three[\\/](?:drei|fiber)|three|three-stdlib|three-mesh-bvh|camera-controls|maath|suspend-react|its-fine|react-use-measure|stats-gl)[\\/]/
 
 // 部署到 GitHub Pages 的项目站点（https://<user>.github.io/C-practice/）时，
@@ -36,6 +42,7 @@ export default defineConfig({
           if (REACT_RUNTIME.test(id)) return 'react'
           if (STORE_RUNTIME.test(id)) return 'store'
           if (THREE_RUNTIME.test(id)) return 'three'
+          if (CODEMIRROR_RUNTIME.test(id)) return 'codemirror'
           return undefined
         },
       },

@@ -9,7 +9,8 @@ const NAV = [
   // 学 / 懂 / 练 的三分法是首页三卡与产品心智的骨架，所以不动 config.sections，只在这里加入口。
   { to: '/viz3d', label: '🧊 3D 馆' },
   { to: '/progress', label: '📈 我的进度' },
-  { to: '/judge-lab', label: '🧪 判分实测台' },
+  // 任务 3-1：游乐场是面向学习者的正式板块（原「判分实测台」退到页脚，它验的是后端链路）
+  { to: '/playground', label: '🧪 游乐场' },
 ]
 
 export function AppShell() {
@@ -64,6 +65,10 @@ export function AppShell() {
         {/* 阶段 10-3：勘误表入口放页脚 —— 它是查证性内容，不该占主导航的位置 */}
         <Link data-role="errata-link" to="/errata" className="underline decoration-dotted" style={{ color: 'var(--fg-muted)' }}>
           📕 原书勘误表
+        </Link>
+        {/* 开发者工具：判分链路实测台（四类结论 + 降级路径），不占主导航位置 */}
+        <Link data-role="judge-lab-link" to="/judge-lab" className="underline decoration-dotted" style={{ color: 'var(--fg-muted)' }}>
+          🔬 判分实测台
         </Link>
       </footer>
     </div>

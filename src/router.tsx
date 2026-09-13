@@ -137,8 +137,21 @@ export const router = createHashRouter([
           <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载勘误表…</p>
         ),
       },
+      // 任务 3-1：代码游乐场（JudgeLab 的正式版）。CodeMirror + 判分层都在这个 chunk 里，
+      // 必须路由级 lazy —— 首页与题目列表页不为它付一分钱体积（口径同题目详情页）。
+      {
+        path: 'playground',
+        lazy: async () => {
+          const mod = await import('./pages/PlaygroundPage')
+          return { Component: mod.PlaygroundPage }
+        },
+        HydrateFallback: () => (
+          <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>正在加载代码游乐场（含代码编辑器）…</p>
+        ),
+      },
       { path: 'progress', element: <ProgressPage /> },
-      // 阶段 2 的判分实测台，阶段 4 判分器进刷题页后可移除
+      // 阶段 2 的判分实测台。任务 3-1 后它从主导航退到页脚（面向学习者的入口是 /playground），
+      // 但**路由保留**：a11y 专项与 stage10 验收都把它列进页面清单，且它是排查判分链路的开发工具。
       { path: 'judge-lab', element: <JudgeLabPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],

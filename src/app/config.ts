@@ -49,3 +49,27 @@ export const sections = [
   { path: '/viz', emoji: '🎬', title: '可视化演示', intent: '懂', desc: '它是怎么工作的' },
   { path: '/problems', emoji: '✍️', title: '在线刷题', intent: '练', desc: '我会不会用' },
 ] as const
+
+/**
+ * 代码游乐场（任务 3-1）可选的编译器注册表。
+ *
+ * 每一项都在 2026-09-13 用「executorRequest:true + filters.execute:true + -std=c99 -Wall -Wextra +
+ * stdin 真喂进去」实机跑通，并断言 didExecute===true && truncated===false && code===0 &&
+ * stdout==="sum=5050" 之后才写进来（探测脚本 tmp/probe-compilers.mjs，5/5 全绿，
+ * 单次往返 484~2958 ms）。Godbolt 的 /api/compilers/c 列了 1049 个编译器，
+ * 但绝大多数（交叉编译器 / 只出汇编的）不给执行，所以这里只登记实测可执行的。
+ *
+ * ⚠️ 判分口径不随游乐场变：题目判分永远走 judge.godboltCompiler（cg132），
+ *    换编译器只影响游乐场里的探索性运行，不改任何题目的 verified 结论。
+ */
+export const playgroundCompilers = [
+  { id: 'cg132', label: 'GCC 13.2（默认 · 与全站判分同口径）', note: 'x86-64 gcc 13.2，实测 execTime 32 ms' },
+  { id: 'cg152', label: 'GCC 15.2', note: 'x86-64 gcc 15.2，-Wextra 诊断更啰嗦，适合看警告' },
+  { id: 'cg162', label: 'GCC 16.2', note: 'x86-64 gcc 16.2，最新稳定版，实测 execTime 19 ms' },
+  { id: 'cclang1810', label: 'Clang 18.1', note: 'x86-64 clang 18.1.0，错误提示带修复建议' },
+  { id: 'cclang2010', label: 'Clang 20.1', note: 'x86-64 clang 20.1.0，C23 支持最全' },
+] as const
+
+/** 游乐场默认编译器：与判分同口径，避免「游乐场能跑、判分不过」的错觉 */
+export const PLAYGROUND_DEFAULT_COMPILER = playgroundCompilers[0].id
+

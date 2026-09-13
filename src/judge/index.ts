@@ -59,6 +59,26 @@ export function getBackend(): JudgeBackend {
   return backend
 }
 
+/**
+ * 按编译器 id 取后端实例（任务 3-1 代码游乐场用）。
+ *
+ * 仍然走注册表这一个出口 —— 页面不许自己 fetch Godbolt（见本文件顶部约定）。
+ * 每个编译器一个独立实例，且 id 带上编译器名（'godbolt:cg152'）：
+ * client.ts 的结果缓存键与跨标签页锁名都吃 backend.id，共用一个 id 会让
+ * 「同一份代码换个编译器」的结果互相顶掉（godbolt.ts 的 GodboltOptions.id 注释里写过这条坑）。
+ * 默认编译器直接复用 getBackend() 的单例，不多建一份、不多开一把锁。
+ */
+const perCompiler = new Map<string, JudgeBackend>()
+
+export function getBackendFor(compilerId: string): JudgeBackend {
+  if (!compilerId || compilerId === judge.godboltCompiler) return getBackend()
+  const hit = perCompiler.get(compilerId)
+  if (hit) return hit
+  const backend = createGodboltBackend({ id: `godbolt:${compilerId}`, compiler: compilerId })
+  perCompiler.set(compilerId, backend)
+  return backend
+}
+
 /** 单测/联调用：注入替身后端 */
 export function registerBackend(id: string, factory: Factory): void {
   BACKENDS[id] = factory

@@ -152,6 +152,8 @@ function Ready({ data }: { data: LoadedProblem }) {
 
       <TypeRenderer problem={problem} />
 
+      <PlaygroundLink problem={problem} />
+
       <RelatedVizLinks vizIds={problem.vizIds} />
 
       {/* 阶段 10-1 反向通路：题目 → 知识卡片。题目侧没有 knowledgeIds（实测 518 题 0 条），
@@ -164,6 +166,36 @@ function Ready({ data }: { data: LoadedProblem }) {
 
       <ProgressPanel problemId={problem.id} />
     </>
+  )
+}
+
+/**
+ * 「在游乐场打开」（任务 3-1）：把本题代码带进 /#/playground?problem=<id>，
+ * 学生可以自己改着跑、换编译器看诊断，而不必在答题框里试错。
+ * 只对**含完整可编译代码**的题型出现（编程 / 改错 / 程序填空 / 程序阅读）；
+ * 选择题、判断题这类没有代码可带，硬塞一个入口只会点进去报错。
+ */
+const PLAYGROUND_TYPES = new Set(['programming', 'debug', 'code_completion', 'code_reading'])
+
+function PlaygroundLink({ problem }: { problem: ProblemRecord }) {
+  const type = String(problem.type ?? '')
+  if (!PLAYGROUND_TYPES.has(type)) return null
+  const rec = problem as unknown as Record<string, unknown>
+  const hasCode = ['code', 'code_starter', 'fixed_code', 'solution', 'reference'].some(
+    (k) => typeof rec[k] === 'string' && (rec[k] as string).trim().length > 0,
+  )
+  if (!hasCode) return null
+  return (
+    <p className="text-xs">
+      <Link
+        to={`/playground?problem=${problem.id}`}
+        data-role="playground-open-link"
+        className="rounded border px-2 py-1 no-underline"
+        style={{ borderColor: 'var(--border)', background: 'var(--bg-elev)', color: 'var(--fg-link)' }}
+      >
+        🧪 在游乐场打开这道题的代码（可自由修改、切换编译器）
+      </Link>
+    </p>
   )
 }
 
