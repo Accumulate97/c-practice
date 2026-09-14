@@ -39,6 +39,7 @@ import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags as T } from '@lezer/highlight'
 import { cpp } from '@codemirror/lang-cpp'
 import { MONO_FONT } from './CodeEditor'
+import { useMobileEditor } from './useMobileEditor'
 
 /** 与 grading/blank-match.ts 的 SlotMark 同构；这里自带一份，避免 components 反向依赖 modules */
 export interface BlankSlotSpec {
@@ -157,21 +158,21 @@ const baseTheme = EditorView.theme({
   '&': {
     color: 'var(--fg)',
     backgroundColor: 'var(--bg-elev)',
-    fontSize: '13px',
+    fontSize: 'var(--cp-code-fs, 13px)',
     border: '1px solid var(--border)',
     borderRadius: '8px',
     overflow: 'hidden',
     maxHeight: '62vh',
   },
   '&.cm-focused': { outline: '2px solid var(--color-brand)', outlineOffset: '-2px' },
-  '.cm-scroller': { fontFamily: MONO_FONT, lineHeight: '20px', overflow: 'auto' },
-  '.cm-content': { caretColor: 'var(--color-brand)', padding: '6px 0' },
+  '.cm-scroller': { fontFamily: MONO_FONT, lineHeight: 'var(--cp-code-lh, 20px)', overflow: 'auto' },
+  '.cm-content': { caretColor: 'var(--color-brand)', padding: '6px 0 var(--cp-code-pad-b, 0px)' },
   '.cm-gutters': {
     backgroundColor: 'var(--bg)',
     color: 'var(--fg-muted)',
     borderRight: '1px solid var(--border)',
     fontFamily: MONO_FONT,
-    fontSize: '12px',
+    fontSize: 'var(--cp-gutter-fs, 12px)',
   },
   '.cm-activeLine': { backgroundColor: 'var(--code-line-active)' },
   '.cm-activeLineGutter': { backgroundColor: 'var(--code-line-active)', color: 'var(--fg)' },
@@ -183,6 +184,11 @@ export function BlankCodeEditor(props: Props) {
   const { template, slots, initialValues, disabled = false, ariaLabel = '程序填空代码编辑器' } = props
   const hostRef = useRef<HTMLDivElement>(null)
   const internals = useRef<Internals>({ view: null, slotsField: null })
+  // useMobileEditor 要在软键盘弹起时把光标滚回可视区，得能拿到 view；
+  // internals.current.view 是给命令式 API 用的，两者在同一个 effect 里同步赋值/清空。
+  const viewRef = useRef<EditorView | null>(null)
+  // 任务 4-2：移动端字号 / 行高 / 键盘遮挡适配（口径与游乐场编辑器完全一致，见 useMobileEditor）
+  useMobileEditor(viewRef, hostRef)
   // 回调放进 ref：EditorView 只在挂载时建一次，闭包里读到的必须是最新的 onChange
   const cbRef = useRef({ onChange: props.onChange, onActiveSlot: props.onActiveSlot, onBlockedEdit: props.onBlockedEdit })
   cbRef.current = { onChange: props.onChange, onActiveSlot: props.onActiveSlot, onBlockedEdit: props.onBlockedEdit }
@@ -204,9 +210,11 @@ export function BlankCodeEditor(props: Props) {
       state: EditorState.create({ doc: built.doc, extensions }),
     })
     internals.current.view = view
+    viewRef.current = view
     return () => {
       view.destroy()
       internals.current.view = null
+      viewRef.current = null
       internals.current.slotsField = null
     }
     // 只认内容签名：template / slots 的身份变化但内容相同时不重建

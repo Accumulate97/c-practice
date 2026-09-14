@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { VIZ3D_COUNT, groupedCatalog } from '../modules/viz3d/catalog'
+import { saveDataEnabled } from '../components/common/useMobileEditor'
+import { lowEndReason, useNarrow } from '../modules/viz3d/useStageEnv'
 import { loadMetaMap, type Viz3DMeta } from '../modules/viz3d/loader3d'
 import { sceneLabel } from '../modules/viz3d/types'
 
@@ -20,9 +22,31 @@ const panel: CSSProperties = { borderColor: 'var(--border)', background: 'var(--
 const muted: CSSProperties = { color: 'var(--fg-muted)' }
 const chip: CSSProperties = { borderColor: 'var(--border)', color: 'var(--fg-muted)' }
 
+/**
+ * 意图预取：指针进入 / 键盘聚焦卡片时才开始拉 three chunk。
+ *
+ * 这里刻意**不用** requestIdleCallback 空闲预取：那会给每个只是路过列表页的人下 ~885 KB，
+ * 直接撞掉 acceptance:viz3d 的「3D 列表页不下载 three chunk」不变量，也违背路由级 lazy 的初衷。
+ * hover / focus 抢跑通常能省下 200–500 ms 的白屏等待，代价几乎为零；
+ * 同时监听 focus，是为了让只用键盘的学生享有同样的抢跑效果（不能只对鼠标用户友好）。
+ * 失败要把 prefetched 翻回 false，否则一次网络抖动就永久放弃预热。
+ */
+let prefetched = false
+function prefetchStage3D(): void {
+  if (prefetched) return
+  prefetched = true
+  void import('../modules/viz3d/Stage3DScene').catch(() => {
+    prefetched = false
+  })
+}
+
 export function Viz3DListPage() {
   const [meta, setMeta] = useState<Map<string, Viz3DMeta> | null>(null)
   const groups = groupedCatalog()
+  const narrow = useNarrow()
+  /** 低配 / 省流模式下不预热：抢跑那点体验提升，不值得让弱机先付 885 KB 的下载与解析 */
+  const [worthWarming] = useState<boolean>(() => lowEndReason() === null && saveDataEnabled() === false)
+  const warm = worthWarming && !narrow
 
   useEffect(() => {
     let alive = true
@@ -71,6 +95,8 @@ export function Viz3DListPage() {
                   <Link
                     to={`/viz3d/${entry.id}`}
                     data-role="viz3d-card"
+                    onPointerEnter={warm ? prefetchStage3D : undefined}
+                    onFocus={warm ? prefetchStage3D : undefined}
                     data-id={entry.id}
                     data-scene={entry.scene}
                     className="block h-full rounded-xl border p-3 no-underline transition-colors hover:border-[var(--color-brand)]"

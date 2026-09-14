@@ -29,7 +29,8 @@ import { VIZ3D_BY_ID, type Viz3DCatalogEntry } from '../modules/viz3d/catalog'
 import { Viz3DNotFound, loadDemo3D } from '../modules/viz3d/loader3d'
 import { LEGEND, roleHex } from '../modules/viz3d/palette'
 import { counterLabel, sceneLabel } from '../modules/viz3d/types'
-import { NARROW_QUERY, useIsDark, useMedia, webglSupported } from '../modules/viz3d/useStageEnv'
+import { NARROW_QUERY, lowEndReason, useIsDark, useMedia, webglSupported } from '../modules/viz3d/useStageEnv'
+import { LoadingBar } from '../components/common/LoadingBar'
 import { CodePanel3D } from '../modules/viz3d/CodePanel3D'
 
 /** 3D 运行时（three + fiber + drei + 七个场景）全部藏在这个动态 import 后面 */
@@ -62,6 +63,9 @@ export function Viz3DDemoPage() {
   const [busy, setBusy] = useState(false)
   const dark = useIsDark()
   const narrow = useMedia(NARROW_QUERY)
+  // 低配探测只跑一次：核数 / 内存 / 省流 / reduce-motion 在页面生命周期内不会变，
+  // 用 useState 惰性初始化，免得每次渲染都去读一遍 navigator 和 matchMedia。
+  const [lowEnd] = useState<string | null>(() => lowEndReason())
 
   useEffect(() => {
     setGlOk(webglSupported())
@@ -163,9 +167,17 @@ export function Viz3DDemoPage() {
   const active = phase.entry
   const demo = phase.demo
   const Renderer2D = rendererFor(demo.renderer).Component
-  const use3D = pref === 'solid' ? glOk === true : pref === 'flat' ? false : glOk === true && !narrow
+  // 低配只在 **auto** 时参与降级。pref==='solid' 是用户点了「仍要看 3D」的明确意愿，
+  // 探测是启发式（核数/内存/省流），拿它去否决一次明确点击，那个按钮就成了死的。
+  const use3D =
+    pref === 'solid' ? glOk === true : pref === 'flat' ? false : glOk === true && !narrow && lowEnd === null
   const autoFlat = pref === 'auto' && !use3D
-  const flatReason = glOk === false ? '当前浏览器不可用 WebGL' : '屏幕较窄，触屏手势与 3D 旋转冲突'
+  const flatReason =
+    glOk === false
+      ? '当前浏览器不可用 WebGL'
+      : lowEnd !== null
+        ? `设备判定为低配（${lowEnd}），3D 可能明显掉帧`
+        : '屏幕较窄，触屏手势与 3D 旋转冲突'
 
   return (
     <Player
@@ -249,6 +261,20 @@ export function Viz3DDemoPage() {
                 </button>
               </p>
             ) : null}
+            {pref === 'solid' && narrow && use3D ? (
+              /* 任务 4-2：窄屏上是用户自己强开了 3D，那就把「横屏更好用」讲清楚，
+                 同时留一条回 2D 的路 —— 强开不等于不能反悔。 */
+              <p
+                className="rounded-md border px-3 py-2 text-xs"
+                style={{ ...panel, borderColor: 'var(--border)' }}
+                data-role="viz3d-landscape-hint"
+              >
+                📱 竖屏下拖拽旋转会和页面滚动抢手势，横屏体验更好。
+                <button type="button" onClick={() => setPref('flat')} className="ml-2 underline" style={btn}>
+                  切回 2D 视图
+                </button>
+              </p>
+            ) : null}
             <ul className="flex flex-wrap gap-x-3 gap-y-1 text-[11px]" style={muted} aria-label="语义色图例">
               {LEGEND.map((l) => (
                 <li key={l.role} className="flex items-center gap-1">
@@ -281,9 +307,11 @@ export function Viz3DDemoPage() {
                 {use3D ? (
                   <Suspense
                     fallback={
-                      <p className="p-3 text-sm" style={muted} data-role="viz3d-loading">
-                        正在载入 3D 运行时（three.js，约 885 KB，之后走浏览器缓存）…
-                      </p>
+                      <LoadingBar
+                        role="viz3d-loading"
+                        label="正在载入 3D 运行时（three.js，约 885 KB，之后走浏览器缓存）…"
+                        slowHint="网络较慢？可先点上方「切到 2D 平面视图」，步骤与解说完全一致。"
+                      />
                     }
                   >
                     <Stage3DScene

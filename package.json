@@ -30,6 +30,7 @@
     "acceptance:review": "node scripts/acceptance-review.mjs",
     "acceptance:search": "node scripts/acceptance-search.mjs",
     "acceptance:failover": "node scripts/acceptance-failover.mjs",
+    "acceptance:onboard": "node scripts/acceptance-onboard.mjs",
     "probe:backends": "node scripts/probe-backends.mjs",
     "build": "tsc -b && vite build",
     "backfill:viz": "node scripts/backfill-viz-links.ts",

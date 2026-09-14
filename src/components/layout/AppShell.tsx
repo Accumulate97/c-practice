@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { APP_NAME, sections } from '../../app/config'
 import { ThemeToggle } from './ThemeToggle'
+// 任务 4-1/4-3：首访引导浮层与全站路由加载条都挂在外壳上 —— 它们是「全站级」的东西，
+// 放进任何一个页面都会漏（换页就没了）。
+import { NavProgress } from './NavProgress'
+import { OnboardingOverlay, resetOnboarding } from './OnboardingOverlay'
 
 const NAV = [
   { to: '/', label: '首页' },
@@ -90,6 +94,7 @@ export function AppShell() {
       >
         跳到主要内容
       </a>
+      <NavProgress />
       <header className="sticky top-0 z-10 -mx-4 mb-6 border-b bg-[var(--bg)]/95 px-4 py-3 backdrop-blur" style={{ borderColor: 'var(--border)' }}>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="text-lg font-semibold">{APP_NAME}</span>
@@ -170,7 +175,21 @@ export function AppShell() {
         <Link data-role="judge-lab-link" to="/judge-lab" className="underline decoration-dotted" style={{ color: 'var(--fg-muted)' }}>
           🔬 判分实测台
         </Link>
+        {/* 任务 4-1：引导浮层可以关掉，那就必须能找回来。
+            先清掉「已看过」的两处痕迹（localStorage + 会话变量），再用 ?boot=1 强制弹一次 ——
+            光靠清 key 不够：已经有做题记录的老用户不满足「首访」条件，只有 ?boot=1 能压过它。
+            用 Link 而不是 button：与页脚其余入口同一套尺寸口径，不会踩窄屏点击目标 <24px 的线。 */}
+        <Link
+          data-role="onboarding-replay"
+          to="/?boot=1"
+          onClick={() => resetOnboarding()}
+          className="underline decoration-dotted"
+          style={{ color: 'var(--fg-muted)' }}
+        >
+          🧭 重看新手引导
+        </Link>
       </footer>
+      <OnboardingOverlay />
     </div>
   )
 }

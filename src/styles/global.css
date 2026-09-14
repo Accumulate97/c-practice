@@ -169,3 +169,71 @@ mark {
   border-radius: 3px;
   padding: 0 1px;
 }
+
+/* ══════════ 任务 4-2：触屏设备的表单字号 ══════════
+   iOS Safari 在聚焦「字号 < 16px」的可编辑元素时会把整页放大到 ~150%，且失焦后不缩回。
+   本站表单控件普遍是 Tailwind 的 text-sm（14px），手机上一点输入框整页就糊了。
+   这里必须用 !important：text-sm 是**类选择器**（特异度 0,1,0），元素选择器压不住它；
+   与其给几十个控件逐个改类名，不如在唯一真正需要的场景（pointer: coarse）一次性抬到 16px。
+   CodeMirror 用的是 contenteditable 的 div，不在本规则里，它的字号由 useMobileEditor 单独控制。 */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ══════════ 任务 4-3：路由切换进度条 ══════════
+   路由级 lazy 在**客户端切页**时不渲染 HydrateFallback（那个只管首次加载），
+   页面会纹丝不动地卡在动态 import 上 —— 进 3D 馆要下 885 KB 的 three.js，慢网下像点了没反应。
+   用不确定的滑动动画而不是百分比：浏览器不暴露动态 import 的下载进度，
+   画一个假的「60%」卡在那里比什么都不显示更让人以为站点挂了（与 LoadingBar 同一口径）。 */
+.nav-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 60;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-progress[data-busy="1"] {
+  opacity: 1;
+}
+
+/* nav-progress-slide-bg
+   滑动的是**背景图位置**而不是元素本身（transform: translateX）。
+   原因：进度条子元素比父容器窄，用 translateX 送它出场时，它的 getBoundingClientRect
+   会真的跑到视口外（left 可以是 -149，right 可以是 616）——虽然父级 overflow:hidden 把它裁掉了、
+   肉眼看不见，document.scrollWidth 也不会变宽，但「窄屏逐元素越界」这类无障碍探针量的是盒子，
+   2026-09-14 的 a11y:probe 因此在 375px 下 20 个页面各报一条（合计 20 处，全是这一个元素）。
+   改成宽 100% 的元素 + 40% 宽的渐变在 background-position 上滑，盒子恒定贴满父级，
+   视觉完全一致，探针也就没话说了。别把它「修」回 translateX。 */
+.nav-progress-bar {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(90deg, transparent 0%, var(--fg-link) 30%, var(--fg-link) 70%, transparent 100%);
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  background-position: -100% 0;
+  animation: nav-progress-slide 1.1s ease-in-out infinite;
+}
+
+/* background-position 的百分比是相对「容器宽 - 图像宽」算的：
+   -100% → 图像左边缘在 -0.6W（整块在容器外左侧），200% → +1.2W（整块在容器外右侧） */
+@keyframes nav-progress-slide {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-progress-bar {
+    animation: none;
+    background-image: none;
+    background-color: var(--fg-link);
+    opacity: 0.75;
+  }
+}

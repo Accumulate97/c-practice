@@ -31,6 +31,7 @@ import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags as T } from '@lezer/highlight'
 import type { CompileDiag } from '../../judge/types'
 import { MONO_FONT } from './CodeEditor'
+import { useMobileEditor } from './useMobileEditor'
 
 export interface PlaygroundEditorHandle {
   /** 把某一行滚到视野中间（点诊断条目时用） */
@@ -138,20 +139,20 @@ const baseTheme = EditorView.theme({
   '&': {
     color: 'var(--fg)',
     backgroundColor: 'var(--bg-elev)',
-    fontSize: '13px',
+    fontSize: 'var(--cp-code-fs, 13px)',
     border: '1px solid var(--border)',
     borderRadius: '8px',
     overflow: 'hidden',
   },
   '&.cm-focused': { outline: '2px solid var(--color-brand)', outlineOffset: '-2px' },
-  '.cm-scroller': { fontFamily: MONO_FONT, lineHeight: '20px', overflow: 'auto' },
-  '.cm-content': { caretColor: 'var(--color-brand)', padding: '6px 0' },
+  '.cm-scroller': { fontFamily: MONO_FONT, lineHeight: 'var(--cp-code-lh, 20px)', overflow: 'auto' },
+  '.cm-content': { caretColor: 'var(--color-brand)', padding: '6px 0 var(--cp-code-pad-b, 0px)' },
   '.cm-gutters': {
     backgroundColor: 'var(--bg)',
     color: 'var(--fg-muted)',
     borderRight: '1px solid var(--border)',
     fontFamily: MONO_FONT,
-    fontSize: '12px',
+    fontSize: 'var(--cp-gutter-fs, 12px)',
   },
   '.cm-activeLine': { backgroundColor: 'var(--code-line-active)' },
   '.cm-activeLineGutter': { backgroundColor: 'var(--code-line-active)', color: 'var(--fg)' },
@@ -177,6 +178,9 @@ export function PlaygroundEditor(props: Props) {
   } = props
   const hostRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
+  // 任务 4-2：触屏上把字号抬到 16px（iOS Safari 聚焦 <16px 的输入会强制整页放大，一放大布局就歪），
+  // 底部多留 6rem 让软键盘弹起来时光标那行不被顶出可视区。变量写在宿主 div 上，桌面端原值不变。
+  useMobileEditor(viewRef, hostRef)
   // 回调放 ref：EditorView 只在挂载时建一次，闭包里必须读到最新的 onRun/onChange
   const cbRef = useRef({ onChange, onRun, disabled })
   cbRef.current = { onChange, onRun, disabled }
