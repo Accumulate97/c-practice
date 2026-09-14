@@ -36,10 +36,29 @@
 import { judge } from '../app/config'
 import type { JudgeBackend } from './types'
 import { createGodboltBackend } from './backends/godbolt'
+import { createFailoverBackend } from './failover'
 
 type Factory = () => JudgeBackend
 
-const godbolt: Factory = () => createGodboltBackend()
+/**
+ * 主后端 = Godbolt 编译器梯队（ADR-0002）。
+ *
+ * 链 id 沿用 'godbolt'（createFailoverBackend 的默认值），所以 client.ts 的结果缓存键、
+ * 跨标签页锁名、JudgeLab 上显示的后端名都不变 —— 容灾对学生和既有进度是完全透明的。
+ * 关掉梯队（failoverEnabled=false 或 tiers 为空）时返回裸后端，行为与 2026-09-14 之前一致。
+ */
+const godbolt: Factory = () => {
+  const primary = createGodboltBackend()
+  if (!judge.failoverEnabled) return primary
+  const tiers = judge.godboltFailoverTiers
+    .filter((c) => c !== judge.godboltCompiler)
+    .map((c) => createGodboltBackend({ id: `godbolt:${c}`, compiler: c }))
+  if (tiers.length === 0) return primary
+  return createFailoverBackend([primary, ...tiers], {
+    cooldownMs: judge.failoverCooldownMs,
+    budgetMs: judge.failoverBudgetMs,
+  })
+}
 
 const BACKENDS: Record<string, Factory> = { godbolt }
 
@@ -67,6 +86,10 @@ export function getBackend(): JudgeBackend {
  * client.ts 的结果缓存键与跨标签页锁名都吃 backend.id，共用一个 id 会让
  * 「同一份代码换个编译器」的结果互相顶掉（godbolt.ts 的 GodboltOptions.id 注释里写过这条坑）。
  * 默认编译器直接复用 getBackend() 的单例，不多建一份、不多开一把锁。
+ *
+ * 这里**故意不挂容灾梯队**：用户在游乐场里显式挑了「gcc 14.2」，主后端故障时悄悄换成
+ * 13.1 出结果，就是拿另一个编译器冒充他的选择。显式选择宁可如实报「后端不可用」，
+ * 让用户自己决定重试还是换编译器。默认编译器（走 getBackend()）才享受梯队。
  */
 const perCompiler = new Map<string, JudgeBackend>()
 

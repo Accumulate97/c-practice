@@ -29,6 +29,8 @@
     "acceptance:bugs": "node scripts/acceptance-bugs.mjs",
     "acceptance:review": "node scripts/acceptance-review.mjs",
     "acceptance:search": "node scripts/acceptance-search.mjs",
+    "acceptance:failover": "node scripts/acceptance-failover.mjs",
+    "probe:backends": "node scripts/probe-backends.mjs",
     "build": "tsc -b && vite build",
     "backfill:viz": "node scripts/backfill-viz-links.ts",
     "build:index": "node scripts/build-index.ts && node scripts/build-search-index.mjs",

@@ -41,6 +41,25 @@ export const judge = {
   userArguments: '-std=c99 -Wall -Wextra',
   /** 顶层 code=-1 同时表示编译失败与 TLE，必须靠 buildResult.code / timedOut 区分 */
   resultOrder: ['buildResult.code', 'timedOut', 'code', 'truncated'] as const,
+
+  /**
+   * ── 容灾梯队（ADR-0002，2026-09-14）────────────────────────────────────
+   * 主编译器出传输层故障时自动顺延到下一级，学生无感；全链失败才落到 client 的降级自评。
+   * 梯队填的是同厂不同版本，不是「换个厂商」—— 因为 Piston 已白名单化（401）、
+   * Wandbox 沙箱起不来（500），此刻没有可浏览器直连的第二厂商，证据见
+   * scripts/probe-backends.mjs 与 docs/adr/0002-judge-failover.md。
+   * 三个 id 于 2026-09-14 实测全部 HTTP 200 / didExecute=true / stdout="ok"。
+   * 顺序即优先级；VITE_GODBOLT_FAILOVER='' 可关掉梯队，VITE_JUDGE_FAILOVER=off 可整体停用。
+   */
+  failoverEnabled: import.meta.env.VITE_JUDGE_FAILOVER !== 'off',
+  godboltFailoverTiers: (import.meta.env.VITE_GODBOLT_FAILOVER ?? 'cg142,cg131')
+    .split(',')
+    .map((s: string) => s.trim())
+    .filter((s: string) => s.length > 0),
+  /** 一级被判不健康后多久之内直接跳过它，免得每个请求都先撞一次故障 */
+  failoverCooldownMs: 60_000,
+  /** 单次 execute 走完整条链的墙钟预算，超了就交给 client 降级，绝不让容灾拖到分钟级 */
+  failoverBudgetMs: 30_000,
 } as const
 
 /** 阶段 1 的三个板块入口，后续阶段逐个填实 */
