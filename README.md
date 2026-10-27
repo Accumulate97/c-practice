@@ -6,7 +6,7 @@ C 语言 + 数据结构在线学习平台。纯静态，部署到 GitHub Pages�
 
 # C 语言与数据结构在线学习平台
 
-🔗 **在线访问：https://accumulate97.github.io/c-practice/**
+🔗 **在线访问：https://c-practice.xyz**
 
 > 纯静态站点，无需安装，打开即用。含 2074 道题、345 张知识卡片、34+ 套可视化演示。
 
